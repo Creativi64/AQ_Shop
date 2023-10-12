@@ -1,3 +1,6 @@
+## [1.2.0]
+- Anpassungen für GA4
+
 ## [1.1.0]
 - Anpassungen für dynamisches Ausführen von Js-Skripten bei Akzeptieren, zb GA
 

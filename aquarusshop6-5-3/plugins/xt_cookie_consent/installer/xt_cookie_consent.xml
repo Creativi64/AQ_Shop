@@ -2,7 +2,7 @@
 <xtcommerceplugin>
 
     <code>xt_cookie_consent</code>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <type>law</type>
 
     <title>Cookie Consent</title>
@@ -12,7 +12,7 @@
     <developer>xt:Commerce</developer>
     <url>https://www.xt-commerce.com</url>
 
-    <minimum_store_version>6.4.3</minimum_store_version>
+    <minimum_store_version>6.5.3</minimum_store_version>
 
     <marketplace_link><![CDATA[https://addons.xt-commerce.com/index.php?page=product&info=8084]]></marketplace_link>
     <documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/spaces/MANUAL/pages/994508805]]></documentation_link>
@@ -133,11 +133,11 @@
 
     <minimumupdateversion>1.0.0</minimumupdateversion>
     <db_update>
-        <!--update>
-            <version>1.0.0</version>
-            <to_version>1.0.1</to_version>
-            <code><![CDATA[// ]]> </code>
-        </update-->
+        <update>
+            <version>1.1.0</version>
+            <to_version>1.2.0</to_version>
+            <code><![CDATA[include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS. 'xt_cookie_consent/installer/updates/1.1.0_1.2.0.php';]]> </code>
+        </update>
     </db_update>
 
 </xtcommerceplugin>

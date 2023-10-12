@@ -21,11 +21,11 @@
 
 </style>
 
-{include file="./paypal-checkout-script-tag.tpl.html"}
+{*include file="./paypal-checkout-script-tag.tpl.html"*}
 
 <script>
 
-document.addEventListener('DOMContentLoaded', function ()
+document.addEventListener('PayPalSdkLoaded', function ()
 {
     console.log("paypal-checkout-payment.tpl.html");
     enableFoundingSources();

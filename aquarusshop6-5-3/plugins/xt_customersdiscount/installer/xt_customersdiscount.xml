@@ -2,7 +2,7 @@
 <xtcommerceplugin>
 
   <code>xt_customersdiscount</code>
-  <version>5.2.0</version>
+  <version>5.2.2</version>
   <type>core</type>
   
   <minimum_store_version>6.5.3</minimum_store_version>
@@ -113,6 +113,11 @@
       <version>5.1.8</version>
       <to_version>5.1.9</to_version>
       <code><![CDATA[require _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_customersdiscount/installer/updates/5.1.8_5.1.9.php';]]></code>
+    </update>
+    <update>
+      <version>5.2.0</version>
+      <to_version>5.2.1</to_version>
+      <code><![CDATA[require _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_customersdiscount/installer/updates/5.2.0_5.2.1.php';]]></code>
     </update>
   </db_update>
 

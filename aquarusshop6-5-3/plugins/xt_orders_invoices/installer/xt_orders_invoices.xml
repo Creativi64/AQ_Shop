@@ -2,7 +2,7 @@
 <xtcommerceplugin>
 
     <code>xt_orders_invoices</code>
-    <version>6.0.18</version>
+    <version>6.0.19</version>
     <type>core</type>
 
     <minimum_store_version>6.2.2</minimum_store_version>

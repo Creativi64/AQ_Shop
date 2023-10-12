@@ -1,3 +1,39 @@
+## [3.1.7]
+- Js-Ladevorgang/ Templates überarbeitet  
+  PayPal SDK sollte nun nur einmal geladen werden  
+  nach DomcContentLoaded, sollte den Seitenaufbau nicht aufhalten  
+  wird in display.php_content_head.php geladen  
+  dort gibt es den Hook display.php:content_head:render_ppcp_sdk_code  
+  per Hook kann die boolean Variable *$render_ppcp_sdk_code* true/false gesetzt werden  
+  oder per Funktion *do_render_ppcp_sdk_code* in ppcp_config.php
+- Unterstützung für PHP 8.2 / 8.1 / 7.4
+
+## [3.1.6]
+- Zahlungseinstellung *New order status* hinzugefügt
+- In der Bestellung wird *Express* ausgewiesen, wenn über Expresskauf bestellt
+- hookpoints in buildPurchaseUnit  return $purchase_units;  
+  xt_paypal_checkout:buildPurchaseUnit_top  
+  xt_paypal_checkout:buildPurchaseUnit_bottom
+
+## [3.1.5]
+- ppcp_config.php / PPCP_DONT_LOAD_SDK_PAGES / PPCP_DONT_LOAD_SDK_COMPONENT_MESSAGES
+  https://xtcommerce.atlassian.net/wiki/spaces/MANUAL/pages/2860482567
+- Anpassungen im Javascript (Shop)
+
+## [3.1.4]
+- FIX im Express Checkout confirmation wird uU fälschlicherweise ein Fehler angezeigt  
+  PATCH_VALUE_REQUIRED: Please specify a 'value' to for the field that is being patched.  
+  wenn in PayPal ein Land ohne Versand gewählt und dann aber korrigiert wurde
+- Hinweistexte an den Plugin-Einstellungen, dass Client-ID etc durch den Signup gesetzt werden
+- intern IUR-266-99870 
+
+## [3.1.3]
+- Anpassung für xt_product_options 6.2.2 (Express-Checkout am Artikel)
+
+## [3.1.2]
+- IPN für Rückzahlungen löst nun wieder Statusupdate im Shop aus  
+  (war absichtlich deaktiviert um nicht die WAWI's zu triggern)
+
 ## [3.1.1]
 - FIX Versandkosten für Händler Inland
 

@@ -2,8 +2,8 @@
 <xtcommerceplugin>
 
     <code>xt_paypal_checkout</code>
-    <version>3.1.1</version>
-    <type>payment</type>
+    <version>3.1.7</version>
+    <type>payments</type>
 
     <title>PayPal Checkout</title>
     <description>PayPal Checkout</description>
@@ -73,10 +73,10 @@
             <type>textfield</type>
             <sort_order>130</sort_order>
             <de>
-                <title>Client/App ID (Live)</title>
+                <title>Client/App ID (Live) - wird durch Signup gesetzt (Backend > Einstellungen)</title>
             </de>
             <en>
-                <title>Client/App ID (Live)</title>
+                <title>Client/App ID (Live) - set during Signup (Backend > Settings)</title>
             </en>
         </config>
 
@@ -86,10 +86,10 @@
             <value></value>
             <sort_order>131</sort_order>
             <de>
-                <title>Privater Schlüssel (Live)</title>
+                <title>Privater Schlüssel (Live) - wird durch Signup gesetzt (Backend > Einstellungen)</title>
             </de>
             <en>
-                <title>API key (Live)</title>
+                <title>API key (Live) - set during Signup (Backend > Settings)</title>
             </en>
         </config>
 
@@ -99,10 +99,10 @@
             <value></value>
             <sort_order>132</sort_order>
             <de>
-                <title><![CDATA[Merchant-ID (Live)]]></title>
+                <title><![CDATA[Merchant-ID (Live) - wird durch Signup gesetzt (Backend > Einstellungen)]]></title>
             </de>
             <en>
-                <title><![CDATA[Merchant-ID (Live)]]></title>
+                <title><![CDATA[Merchant-ID (Live) - set during Signup (Backend > Settings)]]></title>
             </en>
         </config>
 
@@ -113,10 +113,10 @@
             <value></value>
             <sort_order>135</sort_order>
             <de>
-                <title>Client/App ID (Test)</title>
+                <title>Client/App ID (Test) - wird durch Signup gesetzt (Backend > Einstellungen)</title>
             </de>
             <en>
-                <title>Client/App ID (Test)</title>
+                <title>Client/App ID (Test) - set during Signup (Backend > Settings)</title>
             </en>
         </config>
 
@@ -126,10 +126,10 @@
             <value></value>
             <sort_order>136</sort_order>
             <de>
-                <title>Privater Schlüssel (Test)</title>
+                <title>Privater Schlüssel (Test) - wird durch Signup gesetzt (Backend > Einstellungen)</title>
             </de>
             <en>
-                <title>Private key (Test)</title>
+                <title>Private key (Test) - set during Signup (Backend > Settings)</title>
             </en>
         </config>
 
@@ -139,10 +139,10 @@
             <value></value>
             <sort_order>140</sort_order>
             <de>
-                <title><![CDATA[Merchant-ID (Test)]]></title>
+                <title><![CDATA[Merchant-ID (Test) - wird durch Signup gesetzt (Backend > Einstellungen)]]></title>
             </de>
             <en>
-                <title><![CDATA[Merchant-ID (Test)]]></title>
+                <title><![CDATA[Merchant-ID (Test) - set during Signup (Backend > Settings)]]></title>
             </en>
         </config>
 
@@ -246,9 +246,17 @@
             <active>1</active>
         </code>
 
+
+        <code>
+            <hook>display.php:content_head</hook>
+            <phpcode><![CDATA[require_once _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/display.php_content_head.php';]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+
         <code>
             <hook>display.php:after_minify_serve_footer</hook>
-            <phpcode><![CDATA[require _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/display.php_after_minify_serve_footer.php';]]></phpcode>
+            <phpcode><![CDATA[require_once _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/display.php_after_minify_serve_footer.php';]]></phpcode>
             <order>0</order>
             <active>1</active>
         </code>
@@ -446,6 +454,22 @@
             <active>1</active>
         </code>
 
+        <code>
+            <hook>index.php:setSnapshot</hook>
+            <phpcode>
+                <![CDATA[require(_SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/index.php_setSnapshot.php');]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>admin_order_edit_setOrderData:bottom</hook>
+            <phpcode>
+                <![CDATA[require(_SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/admin_order_edit_setOrderData_bottom.php');]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
 
     </plugin_code>
 
@@ -560,6 +584,22 @@
             <version>3.0.4</version>
             <to_version>3.0.5</to_version>
             <code><![CDATA[include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS. 'xt_paypal_checkout/installer/updates/3.0.0_3.0.1.php';]]></code>
+            <messages>
+                <post>
+                    <de><![CDATA[Nächste Schritte:<br /><br />
+<a style="color: #2a699f; text-decoration:underline; font-size:2em" href="#" onclick="ppcp_enablePayments(); return false;">Klicken Sie hier um die gewählten Zahlungsweisen zu reaktivieren</a>
+<script>function ppcp_enablePayments(){new Ext.data.Connection().request({url:"adminHandler.php",method:"GET",params:{plugin:"xt_paypal_checkout",load_section:"xt_paypal_checkout",pg:"enablePayments",sec: typeof paypal_checkout_constant != "undefined" ? paypal_checkout_constant.SYSTEM_SECURITY_KEY : ""},success:function(a){void 0!==Ext.getCmp("plugin_installedgridForm")&&Ext.getCmp("plugin_installedgridForm").getStore().reload();var b=JSON.parse(a.responseText).statusText;Ext.MessageBox.alert("OK",b)},failure:function(a){Ext.MessageBox.alert("Error","Fehler beim aktivieren des Plugins/Zahlungsweisen.")}})}</script>]]></de>
+                    <en><![CDATA[Next steps:<br /><br />
+<a style="color: #2a699f; text-decoration:underline; font-size:2em" onclick="enablePayments(); return false;">Click here to reactivate the selected payment methods</a>
+<script>function ppcp_enablePayments(){new Ext.data.Connection().request({url:"adminHandler.php",method:"GET",params:{plugin:"xt_paypal_checkout",load_section:"xt_paypal_checkout",pg:"enablePayments",sec: typeof paypal_checkout_constant != "undefined" ? paypal_checkout_constant.SYSTEM_SECURITY_KEY : ""},success:function(a){void 0!==Ext.getCmp("plugin_installedgridForm")&&Ext.getCmp("plugin_installedgridForm").getStore().reload();var b=JSON.parse(a.responseText).statusText;Ext.MessageBox.alert("OK",b)},failure:function(a){Ext.MessageBox.alert("Error","Fehler beim aktivieren des Plugins/Zahlungsweisen.")}})}</script>]]></en>
+                </post>
+            </messages>
+        </update>
+
+        <update>
+            <version>3.1.5</version>
+            <to_version>3.1.6</to_version>
+            <code><![CDATA[include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS. 'xt_paypal_checkout/installer/updates/3.1.5_3.1.6.php';]]></code>
             <messages>
                 <post>
                     <de><![CDATA[Nächste Schritte:<br /><br />

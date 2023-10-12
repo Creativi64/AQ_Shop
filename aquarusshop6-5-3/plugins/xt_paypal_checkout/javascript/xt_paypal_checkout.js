@@ -413,7 +413,8 @@ function ppcCreateOrder(data, actions, button_container_selector)
             url,
             {
                 method: 'POST',
-                body: formData
+                body: formData,
+                redirect: "error"
             }
         ).then(function (response) {
             console.log(response);
@@ -424,8 +425,9 @@ function ppcCreateOrder(data, actions, button_container_selector)
             return resJson.data.id;
         }).catch((error) => {
             console.log(error, isExpress);
-            if(!isExpress) window.location.href = window.XT.baseUrl + '?page=checkout&page_action=payment&error=ERROR_PAYMENT'
-            else window.location.href = window.XT.baseUrl + '?page=cart&error=ERROR_PAYMENT'
+            if(!isExpress) window.location.href = window.XT.baseUrl + '?page=checkout&page_action=payment&error=ERROR_PAYMENT';
+            else if (page !='product') window.location.href = window.XT.baseUrl + '?page=cart&error=ERROR_PAYMENT';
+            else if (page =='product') location.reload();
         });
     }
 }
@@ -611,10 +613,14 @@ function ppcRemoveSubmitButton()
 function ppcWaitModal(close)
 {
     try {
-        if (typeof close === 'undefined')
-            document.getElementById('ppc_wait_overlay').classList.remove("hidden");
-        else
-            document.getElementById('ppc_wait_overlay').classList.add("hidden");
+        const modal = document.getElementById('ppc_wait_overlay');
+        if(modal) {
+            if (typeof close === 'undefined')
+                modal.classList.remove("hidden");
+            else
+                modal.classList.add("hidden");
+        }
+        else console.warn('ES WURDE KEIN ppc_wait_overlay GEFUNDEN');
     }
     catch(e)
     {

@@ -2,7 +2,7 @@
 <xtcommerceplugin>
 
   <code>xt_startpage_products</code>
-  <version>5.0.7</version>
+    <version>5.0.7</version>
   <type>core</type>
 
   <minimum_store_version>6.2.2</minimum_store_version>
@@ -12,8 +12,8 @@
 
   <marketplace_link><![CDATA[https://addons.xt-commerce.com/index.php?page=product&info=5574]]></marketplace_link>
   <documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=44007431]]></documentation_link>
-
-  <doc_links>
+  
+    <doc_links>
     <doc_link>
       <key>xt_startpage_products</key>
       <url>https://xtcommerce.atlassian.net/wiki/spaces/MANUAL/pages/44007431</url>
@@ -68,7 +68,7 @@
 						) ENGINE=".DB_STORAGE_ENGINE." DEFAULT CHARSET=utf8";
 					
 					$db->Execute($create);
-					]]>      </code>
+					]]></code>
     </update>
     <update>
       <version>1.0.3</version>
@@ -90,7 +90,7 @@
 						if ($plugin->_FieldExists('products_startpage_sort_' . $store['id'], DB_PREFIX . '_products'))
 							$db->Execute("ALTER TABLE " . DB_PREFIX . "_products DROP `products_startpage_sort_" . $store['id'] . "`");
 					}
-					]]>      </code>
+					]]></code>
     </update>
     <update>
       <version>1.0.5</version>
@@ -114,7 +114,7 @@
       <hook>page_registry.php:bottom</hook>
       <phpcode><![CDATA[
 					define('PAGE_XT_STARTPAGE_PRODUCTS', _SRV_WEB_PLUGINS.'xt_startpage_products/pages/xt_startpage_products.php');
-				]]>      </phpcode>
+				]]></phpcode>
       <order>1</order>
       <active>1</active>
     </code>
@@ -122,7 +122,7 @@
       <hook>class.productsPost.php:bottom</hook>
       <phpcode><![CDATA[
 					include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_startpage_products/hooks/class.productsPost.php_bottom.php';
-				]]>      </phpcode>
+				]]></phpcode>
       <order>1</order>
       <active>1</active>
     </code>

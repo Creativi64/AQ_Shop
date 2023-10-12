@@ -12,3 +12,10 @@
     font-style: normal;
 }
 
+input[name*=XT_PAYPAL_CHECKOUT_CLIENT],
+input[name*=XT_PAYPAL_CHECKOUT_CLIENT],
+input[name*=XT_PAYPAL_CHECKOUT_MERCHANT_ID]
+{
+    pointer-events: none !important;
+}
+

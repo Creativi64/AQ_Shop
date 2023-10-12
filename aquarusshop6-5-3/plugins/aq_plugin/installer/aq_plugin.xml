@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <icon>aquarus_logo.jpg</icon>
+    <code>aq_plugin</code>
+    <version>0.2</version>
+    <type>utility</type>
+    <minimum_store_version>6.5.0</minimum_store_version>
+    <title>Aquarus Untility Plugin</title>
+    <plugin_code>
+        <code>
+            <hook>class.cart.php:_addCart_Check</hook>
+            <phpcode><![CDATA[include _SRV_WEBROOT. _SRV_WEB_PLUGINS.'aq_plugin/hooks/aq_cart.php';]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>form_handler.php:update_product_top</hook>
+            <phpcode><![CDATA[include _SRV_WEBROOT. _SRV_WEB_PLUGINS.'aq_plugin/hooks/aq_cart_delete.php';]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>module_checkout.php:checkout_first</hook>
+            <phpcode><![CDATA[include _SRV_WEBROOT. _SRV_WEB_PLUGINS.'aq_plugin/hooks/aq_checkout_block.php';]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+    </plugin_code>
+    <configuration>
+        <config>
+            <key>AQ_SHOW_ARTICEL_PRICE</key>
+            <type>status</type>
+            <value>1</value>
+            <de>
+                <title>Preise Ausblenden</title>
+                <description>Für Produkte mit keinem bestand oder preis wird der Preis ausgeblendet</description>
+            </de>
+        </config>
+        <config>
+            <key>AQ_PACKAGE_COST_ARTICEL_ID</key>
+            <value>1</value>
+            <de>
+                <title>Artikel ID der Verpackungspauschale</title>
+                <description>Wenn die Verpackungspauschale nicht die erste Artikel nummer habe solle kann man diese hier anpassen </description>
+            </de>
+        </config>
+        <config>
+            <key>AQ_NO_PRICE_TEXT</key>
+            <value>Bei Interressse nehmen sie kontakt über das Formular zu uns auf</value>
+            <de>
+                <title>Kein preis text</title>
+                <description>Kein Preiß text</description>
+            </de>
+        </config>
+    </configuration>
+</xtcommerceplugin>

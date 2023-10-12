@@ -1,9 +1,0 @@
-[17-Jun-2023 14:36:51 Europe/Berlin] PHP Fatal error:  Declaration of ADODB_pdo::metaIndexes($table, $normalize = true) must be compatible with ADOConnection::MetaIndexes($table, $primary = false, $owner = false) in /homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/vendor/adodb/adodb-php/drivers/adodb-pdo.inc.php on line 276
-[17-Jun-2023 14:38:06 Europe/Berlin] PHP Fatal error:  Declaration of ADODB_pdo::metaIndexes($table, $normalize = true) must be compatible with ADOConnection::MetaIndexes($table, $primary = false, $owner = false) in /homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/vendor/adodb/adodb-php/drivers/adodb-pdo.inc.php on line 276
-[17-Jun-2023 14:45:06 Europe/Berlin] PHP Fatal error:  Declaration of ADODB_pdo::metaIndexes($table, $normalize = true) must be compatible with ADOConnection::MetaIndexes($table, $primary = false, $owner = false) in /homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/vendor/adodb/adodb-php/drivers/adodb-pdo.inc.php on line 276
-[17-Jun-2023 19:00:11 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "multistore" not found in /homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/store_handler.php:32
-Stack trace:
-#0 /homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtCore/main.php(217): include()
-#1 /homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtWizard/index.php(67): require_once('/homepages/2/d4...')
-#2 {main}
-  thrown in /homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/store_handler.php on line 32

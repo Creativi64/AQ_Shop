@@ -1,1 +1,0 @@
-created by xt db error handler xtFramework/library/adodb-xt/xtcommerce-errorhandler.inc.php

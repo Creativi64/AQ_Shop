@@ -1,3 +1,6 @@
+## [5.3.2]
+- FIX Undefined constant "XT_MASTER_SLAVE_ACTIVE"
+
 ## [5.3.1]
 - FIX update 5.1.1-5.2.0, hard codierter Tabellenname
 

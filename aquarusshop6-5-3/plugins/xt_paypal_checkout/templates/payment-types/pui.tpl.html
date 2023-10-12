@@ -1,7 +1,7 @@
 <div class="paypal_checkout_selection paypal_checkout_selection_pui" style="display:flex;padding-top:10px">
 
-    <div style="flex:0; margin-right: 15px; width: 70px">
-        <input id="paypal_checkout_selection_pui_phoneNumberPrefix" type="text" required__X="required" class="xt-form-required" name="phoneNumberPrefix" value="49" placeholder="49" style="width:70px">
+    <div style="flex:0; margin-right: 15px; width: 80px">
+        <input id="paypal_checkout_selection_pui_phoneNumberPrefix" type="text" required__X="required" class="xt-form-required" name="phoneNumberPrefix" value="49" placeholder="49" style="width:80px">
         <label for="paypal_checkout_selection_pui_phoneNumber" >&nbsp;{txt key=TEXT_PHONE_PREFIX} *</label>
     </div>
     <div style="flex:1; max-width: 200px" class="pull-left">
@@ -19,7 +19,7 @@
 <div id="paypal_checkout_selection_pui-error" style="color: #9f3a38"> </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function ()
+    document.addEventListener('PayPalSdkLoaded', function ()
     {
         ppcSetupPuiForm();
     });
