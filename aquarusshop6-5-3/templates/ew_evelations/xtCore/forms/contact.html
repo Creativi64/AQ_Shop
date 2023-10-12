@@ -1,0 +1,146 @@
+<div id="contact">
+    {$message}
+    {include file="$selected_template/xtCore/pages/content.html"}
+    {if $show_form eq 'true'}
+        <p class="alert alert-info"><i class="fa fa-info-circle"></i> {txt key=TEXT_CONTACT_INTRO}</p>
+    {/if}
+    {if $show_form eq 'true'}
+        {form class="form-horizontal" type=form name=login action='dynamic' link_params=getParams method=post conn=SSL role="form"}
+        {form type=hidden name=action value=send}
+        <fieldset>
+            <legend>{txt key=TEXT_CONTACT_PAGE}</legend>
+            <div class="form-group">
+                <label class="col-sm-3" for="email_address">{txt key=TEXT_EMAIL}*</label>
+                <div class="col-sm-9">
+                    <input id="email_address" type="email" name="email_address" value="{$email_address}" maxlength="40" autocomplete="email" required />
+                </div>
+            </div>
+            {if $show_title eq 1}
+                <div class="form-group">
+                    <label class="col-sm-3" for="default_address_customers_title">{txt key=TEXT_CUSTOMERS_TITLE}</label>
+                    <div class="col-sm-9">
+                        {if $title_data|is_array && $title_data|count}
+                            {form params='id="default_address_customers_title"' type=select name='title' value=$title_data default=$title class="form-control"}
+                        {else}
+                            {form params='id="default_address_customers_title"' type=text   name='title' value=$title_data default=$title class="form-control"}
+                        {/if}
+                    </div>
+                </div>
+            {/if}
+            <div class="form-group">
+                <label class="col-sm-3" for="firstname">{txt key=TEXT_FIRSTNAME}*</label>
+                <div class="col-sm-9">
+                {form id=firstname type=text name=firstname params='maxlength="40"' value=$firstname params='required'}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" for="lastname">{txt key=TEXT_LASTNAME}*</label>
+                <div class="col-sm-9">
+                {form id=lastname type=text name=lastname params='maxlength="40"' value=$lastname params='required'}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" for="company">{txt key=TEXT_COMPANY}</label>
+                <div class="col-sm-9">
+                {form id=company type=text name=company params='maxlength="40"' value=$company}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" for="telefone">{txt key=TEXT_PHONE}</label>
+                <div class="col-sm-9">
+                    <input type="tel" id="telefone" name="telefone" maxlength="32" value="{$telefone}" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" for="mobile_phone">{txt key=TEXT_MOBILE_PHONE}</label>
+                <div class="col-sm-9">
+                    <input type="tel" id="mobile_phone" name="mobile_phone" maxlength="32" value="{$mobile_phone}" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" for="order_id">{txt key=TEXT_ORDER_NUMBER}</label>
+                <div class="col-sm-9">
+                    <input type="number" id="order_id" name="order_id" maxlength="40" value="{$order_id}" min="1" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" for="customer_message">{txt key=TEXT_MESSAGE}</label>
+                <div class="col-sm-9">
+                {form class="form-control" id=customer_message type=textarea name=customer_message params='cols="50" rows="15"' value=$customer_message}
+                </div>
+            </div>
+
+            {if $smarty.const._STORE_CAPTCHA == 'ReCaptcha'}
+                {assign var='recaptcha' value=true}
+            {else}
+                {assign var='recaptcha' value=false}
+            {/if}
+            {if $recaptcha == 'true' || $recaptcha == true}
+                <div class="form-group">
+                    <label class="col-sm-3" for="captcha_code">{txt key=TEXT_CAPTCHA}*</label>
+                    <div class="col-sm-9 recaptcha-wrapper"></div>
+                </div>
+            {else}
+                <div class="form-group">
+                    <label class="col-sm-3" for="captcha_code">{txt key=TEXT_CAPTCHA}*</label>
+                    <div class="col-sm-9">
+                        <p id="captcha-img">
+                            <img id="captchaImg"
+                                src="data:image/gif;base64,R0lGODlhAQABAID/AP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                                alt="{txt key=TEXT_CAPTCHA}"
+                                class="img-responsive img-thumbnail" />
+                        </p>
+                        {form id=captcha_code type=text name=captcha params='maxlength="30"' params='required'}
+                    </div>
+                </div>
+            {/if}
+
+            <div class="form-group">
+                <div class="col-sm-3">&nbsp;</div>
+                <div class="col-sm-9">
+                    <div class="checkbox">
+                        <label>{form type=checkbox name=contact_opt_in value=1 params='required'} {txt key=TEXT_CONTACT_OPT_IN}</label>
+                    </div>
+                </div>
+            </div>
+            {if $show_privacy eq 1}
+                {content cont_id=2 is_id='false'}
+                <div class="form-group">
+                    <div class="col-sm-3">&nbsp;</div>
+                    <div class="col-sm-9">
+                        {if $show_privacy_type eq 1}
+                            <div class="checkbox">
+                                <label>
+									{form type=checkbox name=privacy value=1}
+									{txt key=TEXT_PRIVACY_TEXT_INFO_1} <a href="{$privacy_link}" target="_blank">{txt key=TEXT_PRIVACY_TEXT}</a> {txt key=TEXT_PRIVACY_TEXT_INFO_2}{txt key=TEXT_DOT}
+                                </label>
+                            </div>
+                        {else}
+							<p>{txt key=TEXT_PRIVACY_TEXT_INFO} <a href="{$privacy_link}" target="_blank">{txt key=TEXT_PRIVACY_TEXT}</a>{txt key=TEXT_DOT}</p>
+                        {/if}
+                    </div>
+                </div>
+            {/if}
+
+            <div class="form-group">
+                <div class="col-sm-9 col-sm-offset-3">
+                    <p>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                            {txt key=BUTTON_SUBMIT}
+                        </button>
+                    </p>
+                    <p class="required">{txt key=TEXT_MUST}</p>
+                </div>
+            </div>
+        </fieldset>
+        {form type=formend}
+
+   {/if}
+</div><!-- #contact -->
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		const captchaImg = document.getElementById('captchaImg');
+		if(captchaImg) {	setTimeout(function(captchaImg){ captchaImg.src = '{$captcha_link}'; }, 500, captchaImg);	}
+	});
+</script>

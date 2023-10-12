@@ -1,0 +1,9 @@
+
+In diesem Ordner befindet sich das xt-Standard-Template
+Wir empfehlen ausdrücklich hier keine Änderungen durchzuführen.
+Änderungen hier können dazu führen, dass bei wichtigen Updates des xt-Standard-Template's Ihre Webseite nicht korrekt dargestellt wird.
+Aktualisieren Sie hier möglichst nur bei Updates Ihrer xt-Version.
+
+Bitte lesen Sie unser Handbuch zum Thema Template-Überschreibung:
+
+https://xtcommerce.atlassian.net/wiki/spaces/MANUAL/pages/778076161

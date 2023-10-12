@@ -1,0 +1,18 @@
+Hello {$customers_title} {$customers_firstname} {$customers_lastname},
+  
+We received your message and we will get in touch with you soon.
+
+{txt key="TEXT_CONTACT"}
+{if $customers_title}{txt key="TEXT_CUSTOMERS_TITLE"}: {$customers_title}{/if}
+{txt key="TEXT_FIRSTNAME"}: {$customers_firstname}
+{txt key="TEXT_LASTNAME"}: {$customers_lastname}
+{txt key="TEXT_COMPANY"}: {$company}
+{txt key="TEXT_PHONE"}: {$telefone}
+{txt key="TEXT_MOBILE_PHONE"}: {$mobile_phone}
+{txt key="TEXT_ORDER_NUMBER"}: {$order_no}
+{txt key="TEXT_MESSAGE"}:	{$message}
+
+Attention: This email adress was submitted to us by a customer. If you did not register with us, please feel free to contact us immediately.
+
+------------------------------------------------------------------------------------------------------------
+{$_system_footer_txt}

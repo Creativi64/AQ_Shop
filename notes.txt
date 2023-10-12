@@ -1,0 +1,10 @@
+Die kategoren die unter www.aquarus.de stehen weden immer als top categorie angezeigt
+Unter kategorienen können mit top categorie haken zusätzlich hinzugefügt werden
+
+SUMA URLS müssen generiet sein
+
+Einstellungen->Konfiguration->Sonstiges im Feld Brutto-Admin 
+
+Man kann Im XT Commerece Unterschiedliche/mehrere Shops Anlegen das bestimmt die shop ID
+
+DAS PLUGIN xt_serials MUSS INSTALLIERT SEIN

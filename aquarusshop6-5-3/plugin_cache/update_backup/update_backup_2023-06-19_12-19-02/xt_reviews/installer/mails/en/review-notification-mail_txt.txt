@@ -1,0 +1,9 @@
+A client submitted a new review
+
+{txt key=TEXT_ORDER_NUMBER}: {$orders_id}
+{txt key=TEXT_REVIEW_DATE}: {$review_date}
+{txt key=TEXT_REVIEW_STATUS}: {$review_status}
+{txt key=TEXT_REVIEW_LANGUAGE_CODE}: {$language_code}
+{txt key=TEXT_REVIEW_RATING}: {$review_rating}
+{txt key=TEXT_REVIEW_TEXT}:
+{$review_text}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" vc:minVersion="1.1">
+  <xs:element name="xtcommercetheme" type="xtcommercethemeType"/>
+  <xs:complexType name="xtcommercethemeType">
+    <xs:choice maxOccurs="unbounded">
+      <xs:element type="xs:string" name="overrides" minOccurs="0"/>
+      <xs:element type="xs:string" name="title"/>
+      <xs:element type="xs:string" name="version"/>
+      <xs:element type="xs:string" name="minimum_store_version"/>
+      <xs:element type="xs:string" name="developer"/>
+      <xs:element type="xs:string" name="url"/>
+      <xs:element type="xs:string" name="marketplace_link"/>
+      <xs:element type="xs:string" name="documentation_link"/>
+      <xs:element type="xs:string" name="updatecheck_link"/>
+      <xs:element type="xs:string" name="icon"/>
+      <xs:element type="xs:string" name="less_support"/>
+      <xs:element type="xs:string" name="less_folder"/>
+      <xs:element type="xs:string" name="less_file"/>
+      <xs:element type="xs:string" name="less_variable_file"/>
+      <xs:element type="xs:string" name="css_file"/>
+      <xs:element type="xs:string" name="less_import_directories"/>
+    </xs:choice>
+  </xs:complexType>
+</xs:schema>

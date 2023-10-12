@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<xtcommerceplugin>
+
+  <code>xt_cleancache</code>
+  <version>5.3.1</version>
+  <type>cache</type>
+  
+  <minimum_store_version>6.2.0</minimum_store_version>
+  
+  <developer>xt:Commerce</developer>
+  <url>https://www.xt-commerce.com</url>
+  
+  <marketplace_link><![CDATA[https://addons.xt-commerce.com/index.php?page=product&info=4374]]></marketplace_link>
+  <documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=12910603]]></documentation_link>
+  
+    <doc_links>
+    <doc_link>
+      <key>xt_cleancache_types</key>
+      <url>https://xtcommerce.atlassian.net/wiki/spaces/MANUAL/pages/12910603</url>
+      <type>acl_nav</type>
+    </doc_link>
+  </doc_links>
+
+  
+  <title>Clean Cache</title>
+  <icon>xt-commerce_logo.jpg</icon>
+  
+		<messages>
+			<post>
+				<de><![CDATA[Aktivieren Sie das Plugin und laden Sie dann das Backend neu.]]></de>
+				<en><![CDATA[Activate plugin an then reload page.]]></en>
+			</post>
+		</messages>
+
+		<db_install><![CDATA[
+			require_once _SRV_WEBROOT.'plugins/xt_cleancache/installer/install.php';
+		]]></db_install>
+		<db_uninstall><![CDATA[
+			require_once _SRV_WEBROOT.'plugins/xt_cleancache/installer/uninstall.php';
+		]]></db_uninstall>
+
+		<minimumupdateversion>1.0.3</minimumupdateversion>
+		<db_update>
+			<update>
+				<version>1.0.3</version>
+				<to_version>1.0.4</to_version>
+				<code><![CDATA[
+				$colExists = $db->GetOne("SELECT id FROM " . DB_PREFIX . "_clean_cache WHERE type='Templates' ");
+				if (!$colExists)
+				{
+					$db->Execute("INSERT INTO `".DB_PREFIX."_clean_cache` ( `type`, `date_added`, `last_modified`) VALUES ( 'Templates', '2012-04-05 00:00:00', '2012-04-05 00:00:00');");
+				}
+					]]>
+				</code>
+			</update>
+			<update>
+				<version>1.0.4</version>
+				<to_version>1.0.5</to_version>
+				<code><![CDATA[
+					]]>
+				</code>
+			</update>
+						<update>
+				<version>1.0.5</version>
+				<to_version>1.0.6</to_version>
+				<code><![CDATA[
+					]]>
+				</code>
+			</update>
+            <update>
+                <version>1.0.6</version>
+                <to_version>1.0.7</to_version>
+                <code><![CDATA[
+					]]>
+                </code>
+            </update>
+            <update>
+                <version>1.0.7</version>
+                <to_version>1.0.8</to_version>
+                <code><![CDATA[include _SRV_WEBROOT.'plugins/xt_cleancache/installer/update/1.0.7-1.0.8.php';
+					]]>
+                </code>
+            </update>
+			<update>
+				<version>1.0.8</version>
+				<to_version>1.1.0</to_version>
+				<code><![CDATA[include _SRV_WEBROOT.'plugins/xt_cleancache/installer/update/1.0.8-1.1.0.php';
+					]]>
+				</code>
+				<messages>
+					<post>
+						<de><![CDATA[Aktivieren Sie das Plugin und laden Sie dann das Backend neu.]]></de>
+						<en><![CDATA[Activate plugin an then reload page.]]></en>
+					</post>
+				</messages>
+			</update>
+			<update>
+				<version>5.0.0</version>
+				<to_version>5.0.5</to_version>
+				<code><![CDATA[include _SRV_WEBROOT.'plugins/xt_cleancache/installer/update/5.0.4-5.0.5.php';
+					]]>
+				</code>
+				<messages>
+					<post>
+						<de><![CDATA[Aktivieren Sie das Plugin und laden Sie dann das Backend neu.]]></de>
+						<en><![CDATA[Activate plugin an then reload page.]]></en>
+					</post>
+				</messages>
+			</update>
+			<update>
+				<version>5.0.1</version>
+				<to_version>5.0.5</to_version>
+				<code><![CDATA[include _SRV_WEBROOT.'plugins/xt_cleancache/installer/update/5.0.4-5.0.5.php';
+					]]>
+				</code>
+				<messages>
+					<post>
+						<de><![CDATA[Aktivieren Sie das Plugin und laden Sie dann das Backend neu.]]></de>
+						<en><![CDATA[Activate plugin an then reload page.]]></en>
+					</post>
+				</messages>
+			</update>
+			<update>
+				<version>5.0.2</version>
+				<to_version>5.0.5</to_version>
+				<code><![CDATA[include _SRV_WEBROOT.'plugins/xt_cleancache/installer/update/5.0.4-5.0.5.php';
+					]]>
+				</code>
+				<messages>
+					<post>
+						<de><![CDATA[Aktivieren Sie das Plugin und laden Sie dann das Backend neu.]]></de>
+						<en><![CDATA[Activate plugin an then reload page.]]></en>
+					</post>
+				</messages>
+			</update>
+			<update>
+				<version>5.0.3</version>
+				<to_version>5.0.5</to_version>
+				<code><![CDATA[include _SRV_WEBROOT.'plugins/xt_cleancache/installer/update/5.0.4-5.0.5.php';
+					]]>
+				</code>
+				<messages>
+					<post>
+						<de><![CDATA[Aktivieren Sie das Plugin und laden Sie dann das Backend neu.]]></de>
+						<en><![CDATA[Activate plugin an then reload page.]]></en>
+					</post>
+				</messages>
+			</update>
+			<update>
+				<version>5.0.4</version>
+				<to_version>5.0.5</to_version>
+				<code><![CDATA[include _SRV_WEBROOT.'plugins/xt_cleancache/installer/update/5.0.4-5.0.5.php';
+					]]>
+				</code>
+				<messages>
+					<post>
+						<de><![CDATA[Aktivieren Sie das Plugin und laden Sie dann das Backend neu.]]></de>
+						<en><![CDATA[Activate plugin an then reload page.]]></en>
+					</post>
+				</messages>
+			</update>
+			<update>
+				<version>5.1.0</version>
+				<to_version>5.1.1</to_version>
+				<code><![CDATA[include _SRV_WEBROOT.'plugins/xt_cleancache/installer/update/5.1.0-5.1.1.php';
+					]]>
+				</code>
+				<messages>
+					<post>
+						<de><![CDATA[Aktivieren Sie das Plugin und laden Sie dann das Backend neu.]]></de>
+						<en><![CDATA[Activate plugin an then reload page.]]></en>
+					</post>
+				</messages>
+			</update>
+			<update>
+				<version>5.1.1</version>
+				<to_version>5.2.0</to_version>
+				<code><![CDATA[include _SRV_WEBROOT.'plugins/xt_cleancache/installer/update/5.1.1-5.2.0.php';
+					]]>
+				</code>
+				<messages>
+					<post>
+						<de><![CDATA[Aktivieren Sie das Plugin und laden Sie dann das Backend neu.]]></de>
+						<en><![CDATA[Activate plugin an then reload page.]]></en>
+					</post>
+				</messages>
+			</update>
+			<update>
+				<version>5.2.0</version>
+				<to_version>5.2.1</to_version>
+				<code><![CDATA[include _SRV_WEBROOT.'plugins/xt_cleancache/installer/update/5.2.0-5.2.1.php';
+					]]>
+				</code>
+				<messages>
+					<post>
+						<de><![CDATA[Aktivieren Sie das Plugin und laden Sie dann das Backend neu.]]></de>
+						<en><![CDATA[Activate plugin an then reload page.]]></en>
+					</post>
+				</messages>
+			</update>
+        </db_update>
+
+
+		<plugin_code>
+			<code>
+				<hook>class.plugin_installed.php:_set_bottom</hook>
+				<phpcode><![CDATA[
+					require_once _SRV_WEBROOT.'plugins/xt_cleancache/hooks/exec_clean_cache.php'; 
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>class.plugin_installed.php:_setStatus_bottom</hook>
+				<phpcode><![CDATA[
+					require_once _SRV_WEBROOT.'plugins/xt_cleancache/hooks/exec_clean_cache.php'; 
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>admin_dropdown.php:dropdown</hook>
+				<phpcode><![CDATA[
+					require_once _SRV_WEBROOT.'plugins/xt_cleancache/hooks/admin_dropdown_php_dropdown.php'; 
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>page_registry.php:bottom</hook>
+				<phpcode><![CDATA[
+					require_once _SRV_WEBROOT.'plugins/xt_cleancache/hooks/page_registry.phpbottom.php'; 
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>row_actions.php:actions</hook>
+				<phpcode><![CDATA[
+					require_once _SRV_WEBROOT.'plugins/xt_cleancache/hooks/row_actions_php_actions.php'; 
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>cronjob.php:main</hook>
+				<phpcode><![CDATA[
+					require_once _SRV_WEBROOT.'plugins/xt_cleancache/hooks/cronjob_php_main.php'; 
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+		</plugin_code>
+</xtcommerceplugin>

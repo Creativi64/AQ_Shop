@@ -1,0 +1,10 @@
+{
+  "name": "xt_responsive",
+  "version": "6.5.0.0",
+  "author": "xt:Commerce",
+  "dependencies": {
+    "@sweetalert2/theme-bootstrap-4": "^4.0.1",
+    "@sweetalert2/theme-minimal": "^4.0.1",
+    "sweetalert2": "^10.13.0"
+  }
+}

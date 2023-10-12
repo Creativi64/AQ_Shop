@@ -1,0 +1,88 @@
+.easy-credit-product-widget p
+{
+    font-size: 10px;
+    font-weight: bold;
+    color: #929292;
+}
+.easy-credit-product-widget a
+{
+    color: #009cde;
+}
+
+.box.easy-credit-product-widget
+{
+    border: 2px solid #009cde;
+    border-radius: 4px;
+    background-color: #fbfcfd;
+    padding: 3px 5px;
+}
+
+#ec_installments_popup .panel-default
+{
+    border: 1px solid #c4d7fb;
+    border-radius: 4px;
+    background-color: #fbfcfd;
+}
+
+#ec_installments_popup .panel-body {
+    padding: 15px;
+}
+
+#ec_installments_popup .option-line {
+    display: block; /*table-header-group;*/
+    padding-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.easy-credit-product-widget.installments-cart
+{
+    float: right;
+    margin-right:15px;
+}
+
+.easy-credit-product-widget.installments-cart.easy_credit_4200
+{
+    float: right;
+    margin-right:0px;
+}
+
+.easy-credit-product-widget.installments-product.easy_credit_4200
+{
+    display: block;
+}
+
+.easy-credit-product-widget.installments-product
+{
+    margin-top:10px;
+}
+
+#ec_installments_popup .panel-default
+{
+    border: 1px solid #c4d7fb;
+    border-radius: 4px;
+    background-color: #fbfcfd;
+}
+
+.easy_credit_option_4200
+{
+    margin-bottom: 10px;
+}
+
+#checkout-confirmation span.sub-total.financing
+{
+    display: block;
+    line-height: 20px;
+}
+
+
+#checkout-confirmation .row.financing-info .col
+{
+    padding: 0 8px;
+}
+
+#checkout-confirmation .row.financing-info
+{
+    padding: 8px 0;
+}
+
+.ec_customers_dob .bootstrap-datetimepicker-widget {color: #666 !important; }

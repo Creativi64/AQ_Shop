@@ -1,0 +1,13 @@
+<ul class="breadcrumb">
+    {foreach name=aussen item=breadcrumb from=$top_navigation}
+        {if $breadcrumb.name|strip_tags|trim != ''}
+            {if $smarty.foreach.aussen.first == true}
+                <li class="home"><a href="{$breadcrumb.url}" title="{$breadcrumb.name|escape:'html'}" class="text-muted"><i class="fa fa-home"></i><span class="sr-only">{$breadcrumb.name|escape:"html"}</span></a></li>
+            {elseif $smarty.foreach.aussen.last == false}
+                <li><span><a href="{$breadcrumb.url}"><span>{$breadcrumb.name|strip_tags|escape:"html"|trim|truncate:50:" ..."}</span></a></span></li>
+            {else}
+                <li class="active" title="{$breadcrumb.name|escape:'html'}">{$breadcrumb.name|strip_tags|escape:"html"|trim|truncate:50:" ..."}</li>
+            {/if}
+        {/if}
+    {/foreach}
+</ul>

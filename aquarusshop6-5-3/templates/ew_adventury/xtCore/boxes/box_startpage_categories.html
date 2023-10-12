@@ -1,0 +1,57 @@
+{if $_categories}
+    <div id="box-start-page-categories" class="top-categories">
+        <div class="row">
+            <div class="col col-lg-12 col-1">
+                <h2 class="breaking-headline">{txt key=TEXT_BOX_TITLE_CATEGORIES}</h2>
+            </div>
+        </div>
+        <div class="listing">
+            <div class="row">
+                {foreach key=k name=a item=module_data from=$_categories}
+                <div class="col col-xs-6 col-sm-12 col-md-6">
+                    <div class="section panel panel-default panel-shadow" onclick="document.location.href='{$module_data.categories_link}'" style="cursor:pointer;">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <span class="image">
+                                    {if $module_data.categories_image}
+                                        <a href="{$module_data.categories_link}" class="vertical-helper image-link">{img img=$module_data.categories_image type=m_ewadventurycategorythumb class="productImageBorder img-responsive" alt=$module_data.categories_name|escape:"html"}</a>
+                                    {else}
+                                        <a href="{$module_data.categories_link}" class="vertical-helper image-link no-image">{img img='no_image.png' type=t_img class="productImageBorder img-responsive" alt=$module_data.categories_name|escape:"html"}</a>
+                                    {/if}
+                                </span>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="panel-body">
+                                    <span class="title text-word-wrap visible-xs text-center">
+                                        <a href="{$module_data.categories_link}">
+                                            <span>{$module_data.categories_name}</span>
+                                        </a>
+                                    </span>
+                                    <p class="title text-word-wrap hidden-xs">
+                                        <a href="{$module_data.categories_link}">
+                                            <strong>{$module_data.categories_name}</strong>
+                                        </a>
+                                    </p>
+                                    <a class="desc hidden-xs" href="{$module_data.categories_link}" title="{$module_data.categories_name|escape:'html'}">
+                                        {if $module_data.categories_description|strip_tags|trim != ''}
+                                            <span class="visible-md visible-lg">
+                                                {$module_data.categories_description|strip_tags|html_entity_decode:2:"UTF-8"|trim|truncate:140:'&nbsp;...':false}
+                                            </span>
+                                            <span class="visible-xs visible-sm">
+                                                {$module_data.categories_description|strip_tags|html_entity_decode:2:"UTF-8"|trim|truncate:300:'&nbsp;...':false}
+                                            </span>
+                                        {else}
+                                            {txt key=TEXT_MORE_DETAILS}&nbsp;...
+                                        {/if}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {/foreach}
+            </div>
+        </div>
+    </div><!-- #box-start-page-categories -->
+{/if}
+

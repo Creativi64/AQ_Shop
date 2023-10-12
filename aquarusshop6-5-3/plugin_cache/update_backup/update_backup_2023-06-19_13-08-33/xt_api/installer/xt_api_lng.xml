@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_XT_API</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[API]]></value>
+	</en>
+	<de>
+		<value><![CDATA[API]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_API_USER_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[user id]]></value>
+	</en>
+	<de>
+		<value><![CDATA[User-ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_API_USERNAME</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[API Username]]></value>
+	</en>
+	<de>
+		<value><![CDATA[API Benutzername]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_ACCESS_STATUS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Status]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_API_LOG_ACTIVE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[api log activated]]></value>
+	</en>
+	<de>
+		<value><![CDATA[API Log aktiviert]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_API_PASSWORD</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[API Password]]></value>
+	</en>
+	<de>
+		<value><![CDATA[API Passwort]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_API_ACCESS_RESTRICTIONS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[API IP Restrictions]]></value>
+	</en>
+	<de>
+		<value><![CDATA[API IP Beschränkung (; getrennte IP Liste)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_API_LOG</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[API Log]]></value>
+	</en>
+	<de>
+		<value><![CDATA[API Log]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_API_LOG_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[API Log ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[API Log ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_LOG_TIME</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Time]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zeit]]></value>
+	</de>
+</phrase>
+		<phrase>
+			<key>TEXT_REQUEST_SERVICE</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[API Call]]></value>
+			</en>
+			<de>
+				<value><![CDATA[API Call]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_REQUEST_SOURCE</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[API Call Source]]></value>
+			</en>
+			<de>
+				<value><![CDATA[API Call Quelle]]></value>
+			</de>
+		</phrase>
+        <phrase>
+            <key>TEXT_API_REQUEST</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[API Request]]></value>
+            </en>
+            <de>
+                <value><![CDATA[API Request]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_API_RESPONSE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[API Response]]></value>
+            </en>
+            <de>
+                <value><![CDATA[API Response]]></value>
+            </de>
+        </phrase>
+</language_content>
+</xtcommerceplugin>

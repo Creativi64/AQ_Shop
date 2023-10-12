@@ -1,0 +1,30 @@
+
+{if $_categories}
+<div id="box-topcategories" class="main-navigation navbar navbar-default hidden-xs hidden-sm" role="navigation">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header .main-navigation .navbar-collapse">
+				<span class="sr-only">Navigation</span>
+                            <span class="burger pull-left">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </span>
+				<span class="caret pull-left"></span>
+			</button>
+			<div class="navbar-search visible-float-breakpoint">
+				{box name=search htmlonly=1}
+			</div>
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				{foreach name=aussen item=module_data from=$_categories}
+					{if $module_data.top_category == 1}
+						<li id="top-categories-categorie-{$module_data.categories_id}" class="{if $module_data.active}active{/if}"><a href="{$module_data.categories_link}">{$module_data.categories_name}</a></li>
+					{/if}
+				{/foreach}
+			</ul>
+		</div>
+	</div>
+</div><!-- #box-topcategories -->
+{/if}

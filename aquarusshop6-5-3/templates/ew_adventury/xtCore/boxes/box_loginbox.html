@@ -1,0 +1,32 @@
+<div id="box-loginbox" class="clearfix">
+    {form type=form name=create_account action='customer' paction='login' link_params=getParams method=post conn=SSL role="form"}
+        {form type=hidden name=action value=login}
+        {form type=hidden name=link_target value=index}
+        <div class="form-group">
+            <label for="login_email">{txt key=text_email}*</label>
+            <input type="email"
+                   id="login_email"
+                   name="email"
+                   maxlength="50"
+                   autocomplete="email"
+                   required
+            />
+        </div>
+        <div class="form-group">
+            <label for="login_password">{txt key=text_password}*</label>
+            {form type=password id="login_password" name=password maxlength='30' params='autocomplete="current-password" required'}
+            <p class="help-block"><a href="{link page='customer' paction='password_reset' conn=SSL}"><i class="mdi mdi-email"></i> {txt key=text_link_lostpassword}</a></p>
+        </div>
+
+        <p class="pull-left">
+            <button type="submit" class="btn btn-primary">
+                {txt key=BUTTON_LOGIN}
+            </button>
+            &nbsp;{txt key=TEXT_EW_ADVENTURY_OR}&nbsp;
+            <a href="{link page='customer' paction='login' conn=SSL}">
+                {txt key=TEXT_EW_ADVENTURY_CREATE_ACCOUNT}
+            </a>
+        </p>
+    {form type=formend}
+    {hook key=box_login_tpl}
+</div><!-- #box-loginbox -->

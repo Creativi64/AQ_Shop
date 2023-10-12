@@ -1,0 +1,12 @@
+<table style="border:0">
+    {foreach key=$k item=$v from=$view_items name=view_items}
+        {if $v|@is_array}
+            {include file="./details-overview.tpl.html" view_items=$v}
+        {else}
+            <tr>
+                <td>{$k}</td>
+                <td>{$v}</td>
+            </tr>
+        {/if}
+    {/foreach}
+</table>

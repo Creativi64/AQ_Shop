@@ -1,0 +1,31 @@
+{if !isset($disable_content_container)}
+{if $data.content_image|trim != ''}
+    <div class="full-width-image content-image img-thumbnail">
+        {img img=$data.content_image type=m_org class="img-responsive" alt=$data.title|escape:"html"}
+    </div>
+{/if}
+<h1>{$data.title}</h1>
+{if $file}
+    {$file}
+{else}
+    <div class="textstyles">
+        {$data.content_body}
+    </div>
+{/if}
+<div class="clearfix"></div>
+{if $data.subcontent}
+    <hr />
+    <p class="h4">{txt key=HEADING_SUB_CONTENT}</p>
+    <ul class="list-inline">
+        {foreach name=aussen item=module_data from=$data.subcontent}
+            <li>
+                <a href="{$module_data.link}" class="btn btn-secondary">
+                    <i class="fa fa-info-circle"></i>
+                    {$module_data.title|trim}
+                </a>
+            </li>
+        {/foreach}
+    </ul>
+    <br />
+{/if}
+{/if}

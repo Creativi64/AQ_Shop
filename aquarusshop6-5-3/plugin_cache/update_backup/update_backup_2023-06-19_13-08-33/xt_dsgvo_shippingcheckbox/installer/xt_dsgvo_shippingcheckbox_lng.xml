@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+	
+    <phrase>
+      <key>TEXT_XT_DSGVO_SHIPPINGCHECKBOX</key>
+      <class>store</class>
+      <de>
+        <value><![CDATA[Ich willige ein, dass meine E-Mail-Adresse & Telefonnummer im Rahmen der Vertragsabwicklung an den Versanddienstleister weitergegeben wird, um über den Status der Lieferung informiert zu werden. Dieser Verwendung der E-Mail-Adresse & Telefonnummer kann jederzeit durch eine Mitteilung an uns widersprochen werden. Die Kontaktdaten für die Ausübung des Widerspruchs finden Sie im Impressum.]]></value>
+      </de>
+      <en>
+        <value><![CDATA[I agree that my e-mail address and telephone number will be passed on to the shipping service provider as part of the contract processing in order to be informed about the status of the delivery. This use of the e-mail address and telephone number can be objected to at any time by notifying us. The contact details for exercising the objection can be found in the imprint.]]></value>
+      </en>
+    </phrase> 
+        <phrase>
+      <key>ERROR_XT_DSGVO_SHIPPINGCHECKBOX</key>
+      <class>store</class>
+      <de>
+        <value><![CDATA[Bitte akzeptieren Sie die Datenweitergabe an unsere Versanddienstleiter]]></value>
+      </de>
+      <en>
+        <value><![CDATA[Please accept the data transfer to our shipping service provider]]></value>
+      </en>
+    </phrase>
+  <phrase>
+    <key>TEXT_DSGVO_SHIPPING_STATUS</key>
+    <class>admin</class>
+    <de>
+      <value><![CDATA[DSGVO: Checkbox für Einverständnis anzeigen]]></value>
+    </de>
+    <en>
+      <value><![CDATA[GDPR:Show Constent Checkbox]]></value>
+    </en>
+  </phrase>
+    <phrase>
+      <key>TEXT_DSGVO_SHIPPING_REQUIRED_STATUS</key>
+      <class>admin</class>
+      <de>
+        <value><![CDATA[DSGVO: Keine Bestellung ohne Einverständnis]]></value>
+      </de>
+      <en>
+        <value><![CDATA[GDPR: No Order without Opt-In]]></value>
+      </en>
+    </phrase>
+    <phrase>
+      <key>TEXT_DSGVO_SHIPPING_CONSENT</key>
+      <class>both</class>
+      <de>
+        <value><![CDATA[DSGVO - Datenweitergabe an Versanddienstleister]]></value>
+      </de>
+      <en>
+        <value><![CDATA[GDPR - Submit Data to shipping provider]]></value>
+      </en>
+    </phrase>
+  </language_content>
+</xtcommerceplugin>

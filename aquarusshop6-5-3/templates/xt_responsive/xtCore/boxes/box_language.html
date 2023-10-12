@@ -1,0 +1,20 @@
+<div class="language">
+    <p class="headline">{txt key=TEXT_LANGUAGE}</p>
+    {form type=form name=language method=post}{* post um crawler zu vertreiben *}
+    <select name="new_lang" onchange="location.href=this.options[this.selectedIndex].value" class="show-tick form-control">
+        {foreach name=aussen item=box_data from=$lang_data}
+
+            {assign var='lang_switch_params' value='?language='}
+            {if $box_data.link|strstr:'?'}
+                {assign var='lang_switch_params' value='&language='}
+            {/if}
+
+            {if !$selected_lang}{* <!-- no cookie, $selected_lang != available --> *}
+                <option data-content="<span class='option-title'>{txt key=TEXT_LANGUAGE}: </span>{$box_data.name}" value="{$box_data.link}{$lang_switch_params}{$box_data.code}"{if $language == $box_data.code} selected="selected"{/if}>{$box_data.name}</option>
+            {else}{* <!-- choose selected by option value, not by shown language (because of some crazy user configurations) --> *}
+                <option data-content="<span class='option-title'>{txt key=TEXT_LANGUAGE}: </span>{$box_data.name}" value="{$box_data.link}{$lang_switch_params}{$box_data.code}"{if $selected_lang == $box_data.code} selected="selected"{/if}>{$box_data.name}</option>
+            {/if}
+        {/foreach}
+    </select>
+    {form type=formend}
+</div>

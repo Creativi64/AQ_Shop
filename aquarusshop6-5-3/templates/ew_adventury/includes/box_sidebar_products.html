@@ -1,0 +1,21 @@
+<div id="bottom_box_{$code}" class="bottom-boxes bottom-boxes-{$code} {if $classes} {$classes}{/if}">
+    <p class="breaking-headline">
+        {if $_show_more_link == 'true' && ($_show_page_link == 'true' || $_show_page_link == 1)}
+            <a href="{link page=$code conn=SSL}">
+        {/if}
+        {$headline}
+        {if $code == 'xt_last_viewed_products'}
+            {$smarty.const.XT_LAST_VIEWED_PRODUCTS_TITEL}
+        {/if}
+        {if $_show_more_link == 'true' && ($_show_page_link == 'true' || $_show_page_link == 1)}
+            </a>
+        {/if}
+    </p>
+    {hook key=box_sidebar_products_product_top module_data=$module_data}
+    {include file="$selected_template/xtCore/pages/product_listing/product_listing_slider_single.html"
+        code=$code
+        headline=$headline
+        product_listing=$product_listing
+    }
+    {hook key=box_sidebar_products_product_bottom module_data=$module_data}
+</div><!-- .products-box -->

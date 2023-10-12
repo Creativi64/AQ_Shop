@@ -1,0 +1,38 @@
+<div class="container">
+	<div class="header">
+		<ul class="nav nav-pills pull-right">
+
+		</ul>
+		<h3 class="text-muted"><img src="templates/img/top_logo.jpg"alt="" /></h3>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">{$smarty.const.TEXT_RECALCULATE_DIGITAL_TAX}</h3>
+		</div>
+		<div class="panel-body">
+			<p>{$smarty.const.TEXT_RECALCULATE_DIGITAL_TAX_EXPLAIN}</p>
+			<form method="post" action="{$current_page}" class="form-horizontal">
+
+				<fieldset class="col-xs-12">
+					{if $error}
+					<div class="alert alert-danger">
+						<ul class="info_error">
+							{foreach name=aussen item=err from=$error}
+							<li class="infoError">{$err.text}</li>
+							{/foreach}
+						</ul>
+					</div>
+					{/if}
+				</fieldset>
+
+				<fieldset class="col-xs-12">
+					<div class="col-xs-12">
+						<label class="form-group" for="tax_class_id">{$smarty.const.TEXT_TAX_CLASS}:</label>
+						{form params='id="tax_class_id"' type=select name='tax_class_id' value=$tax_classes default=$default_tax_class class="form-control"}
+					</div>
+				</fieldset>
+
+				<input type="submit" class="btn btn-large btn-success next-btn" value="{txt key=TEXT_BUTTON_NEXT}" style="float:right">
+			</form>
+		</div>
+	</div>

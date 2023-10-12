@@ -1,0 +1,47 @@
+{if $data}
+        <div class="carousel-outer-wrap">
+            <div class="{$params.name} picture-slider owl clear">
+                <div id="pictureCarousel-{$data.slider_id}">
+                    {foreach key=key item=item from=$data.slides}
+                        {if $item.slide_image}
+                            <div class="imageDISABLE_SPINNER image-{$key} pull-left">
+                                {if $item.slide_link}<a href="{$item.slide_link}">{/if}
+									{if $key==0}
+                                    <img alt="{$item.slide_alt_text|escape:'html'}" class="img-responsive" src="{img img=$item.slide_image type=m_org path_only=true}">
+									{else}
+									<img alt="{$item.slide_alt_text|escape:'html'}" class="img-responsive lazyOwl" data-src="{img img=$item.slide_image type=m_org path_only=true}">
+									{/if}
+                                {if $item.slide_link}</a>{/if}
+                            </div><!-- .image -->
+                        {/if}
+                    {/foreach}
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+
+document.addEventListener('DOMContentLoaded', function () {
+	if(typeof jQuery.fn.owlCarousel === 'function')
+	{
+		const teaserElement_{$data.slider_id} = document.querySelector('#pictureCarousel-{$data.slider_id}');
+		if (teaserElement_{$data.slider_id}.length != 0) {
+			$(teaserElement_{$data.slider_id}).owlCarousel({
+				singleItem: true,
+				navigation: true,
+				pagination: false,
+				slideSpeed: {$data.slide_speed},
+				paginationSpeed: {$data.pagination_speed},
+				scrollPerPage: true,
+				autoPlay: {$data.auto_play_speed},
+				stopOnHover: true,
+				autoHeight: true,
+				lazyLoad: true,
+				addClassActive: true,
+				navigationText: ['', '']
+			});
+		}
+	}
+});
+
+</script>
+{/if}

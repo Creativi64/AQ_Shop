@@ -1,0 +1,20 @@
+{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+    <div class="box-cart text-right hidden-xs" onclick="document.location.href='{link page='cart'}'">
+        <a href="{link page='cart'}">
+            <div class="box-cart-info-bg img-circle text-center ripple">
+                <i class="fa fa-2x fa-shopping-cart"></i>
+            </div>
+        </a>
+        <div class="box-cart-info text-left">
+            {txt key=TEXT_CART}<br />
+            <a href="{link page='cart'}"><span class="box-cart-box-article">{if $content_count}{$content_count} {txt key=TEXT_ARTICLE},{else}0 {txt key=TEXT_ARTICLE}{/if}</span><span class="text-muted"> {$cart_total}</span></a>
+        </div>
+    </div><!-- #box-cart -->
+    
+    {if $content_count != 0}
+        <div class="btn-cart-mobile visible-xs" onclick="document.location.href='{link page='cart'}'">
+            <span class="pull-left text-muted"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;<strong><span class="cart-count">{if $content_count}{$content_count} {txt key=TEXT_ARTICLE}{else}0 {txt key=TEXT_ARTICLE}{/if}</span></strong></span>
+            <span class="pull-right text-primary cart-total">{$cart_total}</span>
+        </div>
+    {/if}
+{/if}

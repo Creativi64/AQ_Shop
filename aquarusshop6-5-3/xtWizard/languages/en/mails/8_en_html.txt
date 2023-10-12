@@ -1,0 +1,18 @@
+{include file="file:$_system_root_templates/email/email_top.html"}
+<!-- // Begin Content \\ -->
+<table class="email-content" cellpadding="0" cellspacing="0" width="660" style="font: 12px Arial, Helvetica, sans-serif;color: #484848;">
+	<tr>
+		<td>
+			<h1 style="font-size:14px;">Hello {$order_data.billing_title} {$order_data.billing_firstname} {$order_data.billing_lastname},</h1>
+			<p>Status of your order <b>{$order_data.orders_id}</b> changed.</p>
+			{if $comments}
+			<p style="background: #FF7B00; padding: 10px;"><b>Remarks and comments regarding your order:</b> {$comments}</p>
+			{/if}
+			<p style="color:#000000; background: #FF7B00; padding: 10px;">New status:<br />
+			<b>{$status}</b></p>
+			<p>You got questions regarding our offers, please do not hesitate to contact us.</p>
+		</td>
+	</tr>
+</table>
+<!-- // End Content \\ -->
+{include file="file:$_system_root_templates/email/email_bottom.html"}

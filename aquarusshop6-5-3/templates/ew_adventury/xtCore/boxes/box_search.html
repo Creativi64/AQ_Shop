@@ -1,0 +1,22 @@
+<div id="box-search" class="hidden-xs">
+    <span class="sr-only">{txt key=BUTTON_SEARCH}</span>
+    <a href="javascript:void(0);" class="open-overlay-search btn btn-link">
+        <i class="mdi mdi-magnify"></i> {txt key=BUTTON_SEARCH}
+    </a>
+</div>
+
+<!-- Rich Snippet Search Data -->
+<script type="application/ld+json">
+/* <![CDATA[ {literal} */
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "url": "{/literal}http://{$smarty.server.SERVER_NAME}{literal}",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{/literal}http://{$smarty.server.SERVER_NAME}{literal}/search?page=search&page_action=query&desc=on&sdesc=on&keywords={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+/* {/literal} ]]> */
+</script>

@@ -1,0 +1,7 @@
+<div class="box-cache">
+    {if $order_by}
+        {box_cache name=$name htmlonly=$htmlonly order_by=$order_by}
+    {else}
+        {box_cache name=$name htmlonly=$htmlonly}
+    {/if}
+</div>

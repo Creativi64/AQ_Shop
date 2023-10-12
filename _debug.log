@@ -1,0 +1,4143 @@
+ ----- 2023-07-02 06:16:39 TAX ------ 
+tax::__set_state(array(
+   'position' => NULL,
+   'url_data' => 
+  array (
+  ),
+   'sql_limit' => NULL,
+   '_AdminHandler' => NULL,
+   'sql_search' => NULL,
+   '_table' => 'xt_tax_rates',
+   '_table_lang' => NULL,
+   '_table_seo' => NULL,
+   '_master_key' => 'tax_rates_id',
+   'country_code' => 'DE',
+   'zone_id' => 31,
+   'zone_id_digital' => 31,
+   'data' => 
+  array (
+    1 => 19.0,
+    2 => 7.0,
+    3 => 19.0,
+  ),
+))
+
+ ----- 2023-07-02 06:16:39 CURRENCY ------ 
+currency::__set_state(array(
+   'position' => NULL,
+   'url_data' => 
+  array (
+  ),
+   'sql_limit' => NULL,
+   '_AdminHandler' => NULL,
+   'sql_search' => NULL,
+   'default_currency' => 'EUR',
+   '_table' => 'xt_currencies',
+   '_table_lang' => NULL,
+   '_table_seo' => NULL,
+   '_master_key' => 'currencies_id',
+   'perm_array' => 
+  array (
+    'shop_perm' => 
+    array (
+      'type' => 'shop',
+      'key' => 'currencies_id',
+      'value_type' => 'currency',
+      'pref' => 'c',
+    ),
+  ),
+   'permission' => 
+  item_permission::__set_state(array(
+     '_data' => 
+    array (
+    ),
+     '_table' => NULL,
+     '_where' => NULL,
+  )),
+   'currencies_id' => 1,
+   'title' => 'EUR',
+   'code' => 'EUR',
+   'prefix' => 'EUR',
+   'suffix' => '',
+   'dec_point' => ',',
+   'thousands_sep' => '.',
+   'decimals' => 2,
+   'value_multiplicator' => 1.0,
+   'last_updated' => NULL,
+))
+
+ ----- 2023-07-02 06:16:39 Page ------ 
+page::__set_state(array(
+   'default_page' => 'index',
+   'loaded_page' => 'xtCore/pages/index.php',
+   'page_name' => 'index',
+   'page_action' => '',
+))
+
+ ----- 2023-07-02 06:16:39 GET ------ 
+
+
+ ----- 2023-07-02 06:16:39 POST ------ 
+
+
+ ----- 2023-07-02 06:16:39 SESSION ------ 
+array (
+  '_cookie_consent' => '1',
+  '_USE_CACHE_COUNTRIES' => false,
+  '_USE_CACHE_LANGUAGE_CONTENT' => false,
+  'customer' => 
+  customer::__set_state(array(
+     'customers_id' => 0,
+     'customers_status' => '1',
+     'customer_info' => 
+    array (
+      'account_type' => 0,
+    ),
+     'customer_default_address' => 
+    array (
+    ),
+     'customer_shipping_address' => 
+    array (
+    ),
+     'customer_payment_address' => 
+    array (
+    ),
+     'error' => false,
+     '_master_key' => 'customers_id',
+     '_master_key_add' => 'address_book_id',
+     '_table' => 'xt_customers',
+     '_table_add' => 'xt_customers_addresses',
+     'password_special_signs' => 3,
+     'master_id' => 'customers_id',
+  )),
+  'geoip_country' => 'DE',
+  'selected_currency' => 'EUR',
+  'selected_language' => 'de',
+  'customer_group_discount' => 0,
+  'cart' => 
+  cart::__set_state(array(
+     'show_content' => 
+    array (
+      '119_XT' => 
+      array (
+        'customers_id' => NULL,
+        'products_id' => '119',
+        'products_key' => '119_XT',
+        'products_quantity' => 1,
+        'products_info' => NULL,
+        'products_digital' => '0',
+        'type' => 'product',
+        'status' => 1,
+        'sort_order' => 0,
+        'shop_id' => 1,
+        'external_id' => '1001001743',
+        'permission_id' => '0',
+        'products_owner' => '1',
+        'products_ean' => '010010017431',
+        'products_average_quantity' => '0',
+        'products_shippingtime' => '6',
+        'products_shippingtime_nostock' => NULL,
+        'products_model' => '1001001743',
+        'products_master_flag' => '0',
+        'products_master_model' => '',
+        'ms_open_first_slave' => '2',
+        'ms_show_slave_list' => '2',
+        'ms_filter_slave_list' => '2',
+        'ms_filter_slave_list_hide_on_product' => '2',
+        'products_image_from_master' => '2',
+        'ms_load_masters_free_downloads' => '2',
+        'ms_load_masters_main_img' => '2',
+        'load_mains_imgs' => '2',
+        'sum_quantity_for_graduated_price' => '2',
+        'products_keywords_from_master' => '2',
+        'products_short_description_from_master' => '2',
+        'products_description_from_master' => '2',
+        'products_option_template' => '',
+        'products_option_list_template' => '',
+        'products_option_master_price' => '',
+        'products_master_slave_order' => '0',
+        'products_mpn' => NULL,
+        'price_flag_graduated_all' => '0',
+        'price_flag_graduated_1' => '0',
+        'price_flag_graduated_2' => '0',
+        'price_flag_graduated_3' => '0',
+        'price_flag_graduated_4' => '0',
+        'products_sort' => '0',
+        'products_image' => 'product:1001001743.jpg',
+        'products_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  12,50</span>',
+          'plain' => 12.5,
+          'plain_otax' => 10.5,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  12,50',
+              'plain' => 12.5,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  10,50',
+              'plain' => 10.5,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'date_added' => '2023-06-16 20:33:38',
+        'last_modified' => '2023-07-01 16:08:52',
+        'date_available' => '',
+        'products_weight' => '0.0000',
+        'products_condition' => 'NewCondition',
+        'products_status' => '1',
+        'products_tax_class_id' => '1',
+        'product_template' => '',
+        'product_list_template' => '',
+        'manufacturers_id' => '0',
+        'products_ordered' => '0',
+        'products_transactions' => '0',
+        'products_fsk18' => '0',
+        'products_vpe' => '0',
+        'products_vpe_status' => '0',
+        'products_vpe_value' => '0.0000',
+        'products_unit' => '0',
+        'products_average_rating' => '0.0000',
+        'products_rating_count' => '0',
+        'flag_has_specials' => false,
+        'total_downloads' => '0',
+        'group_discount_allowed' => '1',
+        'google_product_cat' => '0',
+        'products_canonical_master' => '0',
+        'products_serials' => '0',
+        'language_code' => 'de',
+        'reload_st' => '0',
+        'products_name' => 'DiaGal Hohllochbohrer  1,5x30mm, 5St.',
+        'products_description' => '<P>Diamantierter Hohllochbohrer</P>
+<P>Einsatz als Nass und Trockenbohrer für Marmor, Kalkstein, Granit, Keramik, Fliesen, Kunststoffe. Wir empfehlen aber überwiegend<STRONG> nass</STRONG> zu arbeiten, um die Standzeit zu verlängern. </P>',
+        'products_short_description' => 'DiaGal Hohllochbohrer 1,5x30mm, 5St.',
+        'products_keywords' => '',
+        'products_url' => '',
+        'products_store_id' => '1',
+        'url_md5' => '21ccf510a23e46dd59defdf5a5e8c993',
+        'url_text' => 'de/diagal-hohllochbohrer-1-5x30mm-5st',
+        'link_type' => '1',
+        'link_id' => '119',
+        'meta_title' => '',
+        'meta_description' => '',
+        'meta_keywords' => '',
+        'store_id' => '1',
+        'products_price_db' => '10.5000000000',
+        'products_tax_rate' => 19.0,
+        'products_link' => 'https://www.aquarusshop.de/de/diagal-hohllochbohrer-1-5x30mm-5st',
+        'products_image_data' => 
+        array (
+          'file' => '1001001743.jpg',
+          'type' => 'images',
+          'class' => 'product',
+          'download_status' => 'free',
+          'status' => 'true',
+          'owner' => 1,
+          'date_added' => '2023-06-15 18:44:49',
+          'last_modified' => '2023-06-23 23:47:19',
+          'max_dl_count' => 0,
+          'max_dl_days' => 0,
+          'total_downloads' => 0,
+          'external_id' => '',
+          'media_name' => NULL,
+          'media_description' => NULL,
+          'language_code' => NULL,
+        ),
+        'allow_add_cart' => true,
+        'products_tax_info' => 
+        array (
+          'tax' => 19.0,
+          'tax_desc' => 'inkl. 19 % USt',
+        ),
+        'base_price' => false,
+        'products_shipping_link' => 'https://www.aquarusshop.de/de/lieferinformationen',
+        'stock_status_id' => 1,
+        'mapping_schema_org' => 0,
+        'stock_image' => 
+        array (
+          'name' => 'Sofort versandfähig, ausreichende Stückzahl',
+          'image' => 'rule_1.png',
+          'stock_status_id' => 1,
+          'mapping_schema_org' => 0,
+        ),
+        '_original_products_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  12,50</span>',
+          'plain' => 12.495,
+          'plain_otax' => 10.5,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  12,50',
+              'plain' => 12.495,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  10,50',
+              'plain' => 10.5,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_price_before_discount' => 
+        array (
+          'plain_otax' => 10.5,
+          'plain' => 12.495,
+        ),
+        'products_price_otax' => 10.5,
+        'products_final_price_otax' => 10.5,
+        'add_single_price' => 0.0,
+        'products_final_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  12,50</span>',
+          'plain' => 12.5,
+          'plain_otax' => 10.5,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  12,50',
+              'plain' => 12.5,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  10,50',
+              'plain' => 10.5,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_tax_value' => 19.0,
+        'products_tax' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  2,00</span>',
+          'plain' => 1.995798,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  2,00',
+              'plain' => 1.995798,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_tax_single' => 0.0,
+        'products_final_tax' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  2,00</span>',
+          'plain' => 1.9957983193277,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  2,00',
+              'plain' => 1.9957983193277,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+      ),
+    ),
+     'show_sub_content' => 
+    array (
+    ),
+     'content' => 
+    array (
+      '119_XT' => 
+      array (
+        'customers_id' => NULL,
+        'products_id' => 119,
+        'products_key' => '119_XT',
+        'products_quantity' => 1,
+        'products_info' => NULL,
+        'products_digital' => '0',
+        'type' => 'product',
+        'status' => 1,
+        'sort_order' => 0,
+        'shop_id' => 1,
+      ),
+    ),
+     'content_total' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  12,50</span>',
+      'plain' => 12.5,
+      'plain_otax' => 10.5,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  12,50',
+          'plain' => 12.5,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  10,50',
+          'plain' => 10.5,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'content_tax' => 
+    array (
+      1 => 
+      array (
+        'tax_value' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  2,00</span>',
+          'plain' => 1.9957983193277,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  2,00',
+              'plain' => 1.9957983193277,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'tax_key' => 19.0,
+      ),
+    ),
+     'content_count' => 1,
+     'content_weight' => 0.0,
+     'sub_content' => 
+    array (
+    ),
+     'sub_content_total' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  0,00</span>',
+      'plain' => 0.0,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'sub_content_tax' => 
+    array (
+    ),
+     'sub_content_count' => 0,
+     'sub_content_weight' => 0,
+     'type' => 'physical',
+     'total' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  12,50</span>',
+      'plain' => 12.5,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  12,50',
+          'plain' => 12.5,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'tax' => 
+    array (
+      1 => 
+      array (
+        'tax_value' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  2,00</span>',
+          'plain' => 1.9957983193277,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  2,00',
+              'plain' => 1.9957983193277,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'tax_key' => 19.0,
+      ),
+    ),
+     'weight' => 0.0,
+     'total_discount' => 0,
+     'cart_total_full_for_customers_discount' => 12.495,
+     'discount' => 'false',
+     'cart_total_full' => 10.5,
+     'content_total_physical' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  12,50</span>',
+      'plain' => 12.5,
+      'plain_otax' => 10.5,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  12,50',
+          'plain' => 12.5,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  10,50',
+          'plain' => 10.5,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'content_weight_physical' => 0.0,
+     'total_physical' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  12,50</span>',
+      'plain' => 12.5,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  12,50',
+          'plain' => 12.5,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+  )),
+  'pp-access-token' => 
+  array (
+    1 => 'credentials_not_found_check_backend',
+  ),
+  'ppcp_activated_payments' => 
+  array (
+    0 => 'xt_prepayment',
+  ),
+  'pp-client-token' => 'credentials_not_found_check_backend',
+  'fraudnet_session_identifier' => 'EAFF6EEB4A9F9A70EB12F4E0672C3252',
+  'cron_cleanup' => 1688314580,
+  'brotkrumen' => 'https://www.aquarusshop.de/de/cart',
+  'session_withStockOnly' => 0,
+  'last_viewed_products' => 
+  array (
+    0 => 91,
+    1 => 52,
+    2 => 86,
+  ),
+)
+
+ ----- 2023-07-02 06:16:39 ORDER ------ 
+
+
+ ----- 2023-07-02 06:16:42 ------ 
+array (
+  'action' => 'add_product',
+  'product' => 119,
+  'qty' => 2,
+  'gotoCart' => '0',
+  'products_key' => '119_XT',
+)
+
+ ----- 2023-07-02 06:16:42 TAX ------ 
+tax::__set_state(array(
+   'position' => NULL,
+   'url_data' => 
+  array (
+  ),
+   'sql_limit' => NULL,
+   '_AdminHandler' => NULL,
+   'sql_search' => NULL,
+   '_table' => 'xt_tax_rates',
+   '_table_lang' => NULL,
+   '_table_seo' => NULL,
+   '_master_key' => 'tax_rates_id',
+   'country_code' => 'DE',
+   'zone_id' => 31,
+   'zone_id_digital' => 31,
+   'data' => 
+  array (
+    1 => 19.0,
+    2 => 7.0,
+    3 => 19.0,
+  ),
+))
+
+ ----- 2023-07-02 06:16:42 CURRENCY ------ 
+currency::__set_state(array(
+   'position' => NULL,
+   'url_data' => 
+  array (
+  ),
+   'sql_limit' => NULL,
+   '_AdminHandler' => NULL,
+   'sql_search' => NULL,
+   'default_currency' => 'EUR',
+   '_table' => 'xt_currencies',
+   '_table_lang' => NULL,
+   '_table_seo' => NULL,
+   '_master_key' => 'currencies_id',
+   'perm_array' => 
+  array (
+    'shop_perm' => 
+    array (
+      'type' => 'shop',
+      'key' => 'currencies_id',
+      'value_type' => 'currency',
+      'pref' => 'c',
+    ),
+  ),
+   'permission' => 
+  item_permission::__set_state(array(
+     '_data' => 
+    array (
+    ),
+     '_table' => NULL,
+     '_where' => NULL,
+  )),
+   'currencies_id' => 1,
+   'title' => 'EUR',
+   'code' => 'EUR',
+   'prefix' => 'EUR',
+   'suffix' => '',
+   'dec_point' => ',',
+   'thousands_sep' => '.',
+   'decimals' => 2,
+   'value_multiplicator' => 1.0,
+   'last_updated' => NULL,
+))
+
+ ----- 2023-07-02 06:16:42 Page ------ 
+page::__set_state(array(
+   'default_page' => 'index',
+   'loaded_page' => 'xtCore/pages/index.php',
+   'page_name' => 'index',
+   'page_action' => '',
+))
+
+ ----- 2023-07-02 06:16:42 GET ------ 
+
+
+ ----- 2023-07-02 06:16:42 POST ------ 
+
+
+ ----- 2023-07-02 06:16:42 SESSION ------ 
+array (
+  '_cookie_consent' => '1',
+  '_USE_CACHE_COUNTRIES' => false,
+  '_USE_CACHE_LANGUAGE_CONTENT' => false,
+  'customer' => 
+  customer::__set_state(array(
+     'customers_id' => 0,
+     'customers_status' => '1',
+     'customer_info' => 
+    array (
+      'account_type' => 0,
+    ),
+     'customer_default_address' => 
+    array (
+    ),
+     'customer_shipping_address' => 
+    array (
+    ),
+     'customer_payment_address' => 
+    array (
+    ),
+     'error' => false,
+     '_master_key' => 'customers_id',
+     '_master_key_add' => 'address_book_id',
+     '_table' => 'xt_customers',
+     '_table_add' => 'xt_customers_addresses',
+     'password_special_signs' => 3,
+     'master_id' => 'customers_id',
+  )),
+  'geoip_country' => 'DE',
+  'selected_currency' => 'EUR',
+  'selected_language' => 'de',
+  'customer_group_discount' => 0,
+  'cart' => 
+  cart::__set_state(array(
+     'show_content' => 
+    array (
+      '119_XT' => 
+      array (
+        'customers_id' => NULL,
+        'products_id' => '119',
+        'products_key' => '119_XT',
+        'products_quantity' => 2,
+        'products_info' => NULL,
+        'products_digital' => '0',
+        'type' => 'product',
+        'status' => 1,
+        'sort_order' => 0,
+        'shop_id' => 1,
+        'external_id' => '1001001743',
+        'permission_id' => '0',
+        'products_owner' => '1',
+        'products_ean' => '010010017431',
+        'products_average_quantity' => '0',
+        'products_shippingtime' => '6',
+        'products_shippingtime_nostock' => NULL,
+        'products_model' => '1001001743',
+        'products_master_flag' => '0',
+        'products_master_model' => '',
+        'ms_open_first_slave' => '2',
+        'ms_show_slave_list' => '2',
+        'ms_filter_slave_list' => '2',
+        'ms_filter_slave_list_hide_on_product' => '2',
+        'products_image_from_master' => '2',
+        'ms_load_masters_free_downloads' => '2',
+        'ms_load_masters_main_img' => '2',
+        'load_mains_imgs' => '2',
+        'sum_quantity_for_graduated_price' => '2',
+        'products_keywords_from_master' => '2',
+        'products_short_description_from_master' => '2',
+        'products_description_from_master' => '2',
+        'products_option_template' => '',
+        'products_option_list_template' => '',
+        'products_option_master_price' => '',
+        'products_master_slave_order' => '0',
+        'products_mpn' => NULL,
+        'price_flag_graduated_all' => '0',
+        'price_flag_graduated_1' => '0',
+        'price_flag_graduated_2' => '0',
+        'price_flag_graduated_3' => '0',
+        'price_flag_graduated_4' => '0',
+        'products_sort' => '0',
+        'products_image' => 'product:1001001743.jpg',
+        'products_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  12,50</span>',
+          'plain' => 12.5,
+          'plain_otax' => 10.5,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  12,50',
+              'plain' => 12.5,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  10,50',
+              'plain' => 10.5,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'date_added' => '2023-06-16 20:33:38',
+        'last_modified' => '2023-07-01 16:08:52',
+        'date_available' => '',
+        'products_weight' => '0.0000',
+        'products_condition' => 'NewCondition',
+        'products_status' => '1',
+        'products_tax_class_id' => '1',
+        'product_template' => '',
+        'product_list_template' => '',
+        'manufacturers_id' => '0',
+        'products_ordered' => '0',
+        'products_transactions' => '0',
+        'products_fsk18' => '0',
+        'products_vpe' => '0',
+        'products_vpe_status' => '0',
+        'products_vpe_value' => '0.0000',
+        'products_unit' => '0',
+        'products_average_rating' => '0.0000',
+        'products_rating_count' => '0',
+        'flag_has_specials' => false,
+        'total_downloads' => '0',
+        'group_discount_allowed' => '1',
+        'google_product_cat' => '0',
+        'products_canonical_master' => '0',
+        'products_serials' => '0',
+        'language_code' => 'de',
+        'reload_st' => '0',
+        'products_name' => 'DiaGal Hohllochbohrer  1,5x30mm, 5St.',
+        'products_description' => '<P>Diamantierter Hohllochbohrer</P>
+<P>Einsatz als Nass und Trockenbohrer für Marmor, Kalkstein, Granit, Keramik, Fliesen, Kunststoffe. Wir empfehlen aber überwiegend<STRONG> nass</STRONG> zu arbeiten, um die Standzeit zu verlängern. </P>',
+        'products_short_description' => 'DiaGal Hohllochbohrer 1,5x30mm, 5St.',
+        'products_keywords' => '',
+        'products_url' => '',
+        'products_store_id' => '1',
+        'url_md5' => '21ccf510a23e46dd59defdf5a5e8c993',
+        'url_text' => 'de/diagal-hohllochbohrer-1-5x30mm-5st',
+        'link_type' => '1',
+        'link_id' => '119',
+        'meta_title' => '',
+        'meta_description' => '',
+        'meta_keywords' => '',
+        'store_id' => '1',
+        'products_price_db' => '10.5000000000',
+        'products_tax_rate' => 19.0,
+        'products_link' => 'https://www.aquarusshop.de/de/diagal-hohllochbohrer-1-5x30mm-5st',
+        'products_image_data' => 
+        array (
+          'file' => '1001001743.jpg',
+          'type' => 'images',
+          'class' => 'product',
+          'download_status' => 'free',
+          'status' => 'true',
+          'owner' => 1,
+          'date_added' => '2023-06-15 18:44:49',
+          'last_modified' => '2023-06-23 23:47:19',
+          'max_dl_count' => 0,
+          'max_dl_days' => 0,
+          'total_downloads' => 0,
+          'external_id' => '',
+          'media_name' => NULL,
+          'media_description' => NULL,
+          'language_code' => NULL,
+        ),
+        'allow_add_cart' => true,
+        'products_tax_info' => 
+        array (
+          'tax' => 19.0,
+          'tax_desc' => 'inkl. 19 % USt',
+        ),
+        'base_price' => false,
+        'products_shipping_link' => 'https://www.aquarusshop.de/de/lieferinformationen',
+        'stock_status_id' => 1,
+        'mapping_schema_org' => 0,
+        'stock_image' => 
+        array (
+          'name' => 'Sofort versandfähig, ausreichende Stückzahl',
+          'image' => 'rule_1.png',
+          'stock_status_id' => 1,
+          'mapping_schema_org' => 0,
+        ),
+        '_original_products_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  12,50</span>',
+          'plain' => 12.495,
+          'plain_otax' => 10.5,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  12,50',
+              'plain' => 12.495,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  10,50',
+              'plain' => 10.5,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_price_before_discount' => 
+        array (
+          'plain_otax' => 10.5,
+          'plain' => 12.495,
+        ),
+        'products_price_otax' => 10.5,
+        'products_final_price_otax' => 21.0,
+        'add_single_price' => 0.0,
+        'products_final_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  25,00</span>',
+          'plain' => 25.0,
+          'plain_otax' => 21.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  25,00',
+              'plain' => 25.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  21,00',
+              'plain' => 21.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_tax_value' => 19.0,
+        'products_tax' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  2,00</span>',
+          'plain' => 1.995798,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  2,00',
+              'plain' => 1.995798,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_tax_single' => 0.0,
+        'products_final_tax' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  3,99</span>',
+          'plain' => 3.9915966386555,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  3,99',
+              'plain' => 3.9915966386555,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+      ),
+      '52_XT' => 
+      array (
+        'customers_id' => NULL,
+        'products_id' => '52',
+        'products_key' => '52_XT',
+        'products_quantity' => 1,
+        'products_info' => NULL,
+        'products_digital' => '1',
+        'type' => 'product',
+        'status' => 1,
+        'sort_order' => 0,
+        'shop_id' => 1,
+        'external_id' => NULL,
+        'permission_id' => '0',
+        'products_owner' => '1',
+        'products_ean' => '1',
+        'products_average_quantity' => '0',
+        'products_shippingtime' => '0',
+        'products_shippingtime_nostock' => '0',
+        'products_model' => '1',
+        'products_master_flag' => '0',
+        'products_master_model' => '',
+        'ms_open_first_slave' => '2',
+        'ms_show_slave_list' => '2',
+        'ms_filter_slave_list' => '2',
+        'ms_filter_slave_list_hide_on_product' => '2',
+        'products_image_from_master' => '2',
+        'ms_load_masters_free_downloads' => '2',
+        'ms_load_masters_main_img' => '2',
+        'load_mains_imgs' => '2',
+        'sum_quantity_for_graduated_price' => '2',
+        'products_keywords_from_master' => '2',
+        'products_short_description_from_master' => '2',
+        'products_description_from_master' => '2',
+        'products_option_template' => '',
+        'products_option_list_template' => '',
+        'products_option_master_price' => '',
+        'products_master_slave_order' => '0',
+        'products_mpn' => '',
+        'price_flag_graduated_all' => '0',
+        'price_flag_graduated_1' => '0',
+        'price_flag_graduated_2' => '0',
+        'price_flag_graduated_3' => '0',
+        'price_flag_graduated_4' => '0',
+        'products_sort' => '0',
+        'products_image' => 'product:noimage.gif',
+        'products_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  5,00</span>',
+          'plain' => 5.0,
+          'plain_otax' => 5.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'date_added' => '2023-06-13 12:32:36',
+        'last_modified' => '2023-07-02 17:08:34',
+        'date_available' => '',
+        'products_weight' => '0.0000',
+        'products_condition' => '',
+        'products_status' => '1',
+        'products_tax_class_id' => '0',
+        'product_template' => '',
+        'product_list_template' => '',
+        'manufacturers_id' => '0',
+        'products_ordered' => '0',
+        'products_transactions' => '0',
+        'products_fsk18' => '0',
+        'products_vpe' => '0',
+        'products_vpe_status' => '0',
+        'products_vpe_value' => '0.0000',
+        'products_unit' => '0',
+        'products_average_rating' => '0.0000',
+        'products_rating_count' => '0',
+        'flag_has_specials' => false,
+        'total_downloads' => '0',
+        'group_discount_allowed' => '0',
+        'google_product_cat' => NULL,
+        'products_canonical_master' => '0',
+        'products_serials' => '0',
+        'language_code' => 'de',
+        'reload_st' => '0',
+        'products_name' => 'Verpackungspauschale',
+        'products_description' => 'Dieser Artikel stellt die Verpackungspauschale in die versandl&auml;nder dar',
+        'products_short_description' => '',
+        'products_keywords' => '',
+        'products_url' => '',
+        'products_store_id' => '1',
+        'url_md5' => 'a47e0a829986b1e7983a294adf2bca2f',
+        'url_text' => 'de/verpackungspauschale',
+        'link_type' => '1',
+        'link_id' => '52',
+        'meta_title' => '',
+        'meta_description' => '',
+        'meta_keywords' => '',
+        'store_id' => '1',
+        'products_price_db' => '5.0000000000',
+        'products_tax_rate' => NULL,
+        'products_link' => 'https://www.aquarusshop.de/de/verpackungspauschale',
+        'allow_add_cart' => true,
+        'products_tax_info' => 
+        array (
+          'tax' => NULL,
+          'tax_desc' => NULL,
+        ),
+        'base_price' => false,
+        'products_shipping_link' => 'https://www.aquarusshop.de/de/lieferinformationen',
+        'stock_status_id' => 1,
+        'mapping_schema_org' => 0,
+        'stock_image' => 
+        array (
+          'name' => 'Sofort versandfähig, ausreichende Stückzahl',
+          'image' => 'rule_1.png',
+          'stock_status_id' => 1,
+          'mapping_schema_org' => 0,
+        ),
+        '_original_products_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  5,00</span>',
+          'plain' => 5.0,
+          'plain_otax' => 5.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_price_before_discount' => 
+        array (
+          'plain_otax' => 5.0,
+          'plain' => 5.0,
+        ),
+        'products_price_otax' => 5.0,
+        'products_final_price_otax' => 5.0,
+        'add_single_price' => 0.0,
+        'products_final_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  5,00</span>',
+          'plain' => 5.0,
+          'plain_otax' => 5.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_tax_value' => NULL,
+        'products_tax' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  0,00</span>',
+          'plain' => 0.0,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_tax_single' => 0.0,
+        'products_final_tax' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  0,00</span>',
+          'plain' => 0.0,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+      ),
+    ),
+     'show_sub_content' => 
+    array (
+    ),
+     'content' => 
+    array (
+      '119_XT' => 
+      array (
+        'customers_id' => NULL,
+        'products_id' => 119,
+        'products_key' => '119_XT',
+        'products_quantity' => 2,
+        'products_info' => NULL,
+        'products_digital' => '0',
+        'type' => 'product',
+        'status' => 1,
+        'sort_order' => 0,
+        'shop_id' => 1,
+      ),
+      '52_XT' => 
+      array (
+        'customers_id' => NULL,
+        'products_id' => 52,
+        'products_key' => '52_XT',
+        'products_quantity' => 1,
+        'products_info' => NULL,
+        'products_digital' => '1',
+        'type' => 'product',
+        'status' => 1,
+        'sort_order' => 0,
+        'shop_id' => 1,
+      ),
+    ),
+     'content_total' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  30,00</span>',
+      'plain' => 30.0,
+      'plain_otax' => 26.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  30,00',
+          'plain' => 30.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  26,00',
+          'plain' => 26.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'content_tax' => 
+    array (
+      1 => 
+      array (
+        'tax_value' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  3,99</span>',
+          'plain' => 3.9915966386555,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  3,99',
+              'plain' => 3.9915966386555,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'tax_key' => 19.0,
+      ),
+    ),
+     'content_count' => 3,
+     'content_weight' => 0.0,
+     'sub_content' => 
+    array (
+    ),
+     'sub_content_total' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  0,00</span>',
+      'plain' => 0.0,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'sub_content_tax' => 
+    array (
+    ),
+     'sub_content_count' => 0,
+     'sub_content_weight' => 0,
+     'type' => 'mixed',
+     'total' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  30,00</span>',
+      'plain' => 30.0,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  30,00',
+          'plain' => 30.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'tax' => 
+    array (
+      1 => 
+      array (
+        'tax_value' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  3,99</span>',
+          'plain' => 3.9915966386555,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  3,99',
+              'plain' => 3.9915966386555,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'tax_key' => 19.0,
+      ),
+    ),
+     'weight' => 0.0,
+     'total_discount' => 0,
+     'cart_total_full_for_customers_discount' => 29.99,
+     'discount' => 'false',
+     'cart_total_full' => 26.0,
+     'content_total_physical' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  25,00</span>',
+      'plain' => 25.0,
+      'plain_otax' => 21.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  25,00',
+          'plain' => 25.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  21,00',
+          'plain' => 21.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'content_weight_physical' => 0.0,
+     'total_physical' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  25,00</span>',
+      'plain' => 25.0,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  25,00',
+          'plain' => 25.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+  )),
+  'pp-access-token' => 
+  array (
+    1 => 'credentials_not_found_check_backend',
+  ),
+  'ppcp_activated_payments' => 
+  array (
+    0 => 'xt_prepayment',
+  ),
+  'pp-client-token' => 'credentials_not_found_check_backend',
+  'fraudnet_session_identifier' => 'EAFF6EEB4A9F9A70EB12F4E0672C3252',
+  'cron_cleanup' => 1688314580,
+  'brotkrumen' => 'https://www.aquarusshop.de/de/cart',
+  'session_withStockOnly' => 0,
+  'last_viewed_products' => 
+  array (
+    0 => 91,
+    1 => 52,
+    2 => 86,
+  ),
+)
+
+ ----- 2023-07-02 06:16:42 ORDER ------ 
+
+
+ ----- 2023-07-02 06:16:43 TAX ------ 
+tax::__set_state(array(
+   'position' => NULL,
+   'url_data' => 
+  array (
+  ),
+   'sql_limit' => NULL,
+   '_AdminHandler' => NULL,
+   'sql_search' => NULL,
+   '_table' => 'xt_tax_rates',
+   '_table_lang' => NULL,
+   '_table_seo' => NULL,
+   '_master_key' => 'tax_rates_id',
+   'country_code' => 'DE',
+   'zone_id' => 31,
+   'zone_id_digital' => 31,
+   'data' => 
+  array (
+    1 => 19.0,
+    2 => 7.0,
+    3 => 19.0,
+  ),
+))
+
+ ----- 2023-07-02 06:16:43 CURRENCY ------ 
+currency::__set_state(array(
+   'position' => NULL,
+   'url_data' => 
+  array (
+  ),
+   'sql_limit' => NULL,
+   '_AdminHandler' => NULL,
+   'sql_search' => NULL,
+   'default_currency' => 'EUR',
+   '_table' => 'xt_currencies',
+   '_table_lang' => NULL,
+   '_table_seo' => NULL,
+   '_master_key' => 'currencies_id',
+   'perm_array' => 
+  array (
+    'shop_perm' => 
+    array (
+      'type' => 'shop',
+      'key' => 'currencies_id',
+      'value_type' => 'currency',
+      'pref' => 'c',
+    ),
+  ),
+   'permission' => 
+  item_permission::__set_state(array(
+     '_data' => 
+    array (
+    ),
+     '_table' => NULL,
+     '_where' => NULL,
+  )),
+   'currencies_id' => 1,
+   'title' => 'EUR',
+   'code' => 'EUR',
+   'prefix' => 'EUR',
+   'suffix' => '',
+   'dec_point' => ',',
+   'thousands_sep' => '.',
+   'decimals' => 2,
+   'value_multiplicator' => 1.0,
+   'last_updated' => NULL,
+))
+
+ ----- 2023-07-02 06:16:43 Page ------ 
+page::__set_state(array(
+   'default_page' => 'index',
+   'loaded_page' => 'xtCore/pages/cart.php',
+   'page_name' => 'cart',
+   'page_action' => 'index',
+))
+
+ ----- 2023-07-02 06:16:43 GET ------ 
+array (
+  'page' => 'cart',
+  'page_action' => 'index',
+)
+
+ ----- 2023-07-02 06:16:43 POST ------ 
+
+
+ ----- 2023-07-02 06:16:43 SESSION ------ 
+array (
+  '_cookie_consent' => '1',
+  '_USE_CACHE_COUNTRIES' => false,
+  '_USE_CACHE_LANGUAGE_CONTENT' => false,
+  'customer' => 
+  customer::__set_state(array(
+     'customers_id' => 0,
+     'customers_status' => '1',
+     'customer_info' => 
+    array (
+      'account_type' => 0,
+    ),
+     'customer_default_address' => 
+    array (
+    ),
+     'customer_shipping_address' => 
+    array (
+    ),
+     'customer_payment_address' => 
+    array (
+    ),
+     'error' => false,
+     '_master_key' => 'customers_id',
+     '_master_key_add' => 'address_book_id',
+     '_table' => 'xt_customers',
+     '_table_add' => 'xt_customers_addresses',
+     'password_special_signs' => 3,
+     'master_id' => 'customers_id',
+  )),
+  'geoip_country' => 'DE',
+  'selected_currency' => 'EUR',
+  'selected_language' => 'de',
+  'customer_group_discount' => 0,
+  'cart' => 
+  cart::__set_state(array(
+     'show_content' => 
+    array (
+      '119_XT' => 
+      array (
+        'customers_id' => NULL,
+        'products_id' => '119',
+        'products_key' => '119_XT',
+        'products_quantity' => 2,
+        'products_info' => NULL,
+        'products_digital' => '0',
+        'type' => 'product',
+        'status' => 1,
+        'sort_order' => 0,
+        'shop_id' => 1,
+        'external_id' => '1001001743',
+        'permission_id' => '0',
+        'products_owner' => '1',
+        'products_ean' => '010010017431',
+        'products_average_quantity' => '0',
+        'products_shippingtime' => '6',
+        'products_shippingtime_nostock' => NULL,
+        'products_model' => '1001001743',
+        'products_master_flag' => '0',
+        'products_master_model' => '',
+        'ms_open_first_slave' => '2',
+        'ms_show_slave_list' => '2',
+        'ms_filter_slave_list' => '2',
+        'ms_filter_slave_list_hide_on_product' => '2',
+        'products_image_from_master' => '2',
+        'ms_load_masters_free_downloads' => '2',
+        'ms_load_masters_main_img' => '2',
+        'load_mains_imgs' => '2',
+        'sum_quantity_for_graduated_price' => '2',
+        'products_keywords_from_master' => '2',
+        'products_short_description_from_master' => '2',
+        'products_description_from_master' => '2',
+        'products_option_template' => '',
+        'products_option_list_template' => '',
+        'products_option_master_price' => '',
+        'products_master_slave_order' => '0',
+        'products_mpn' => NULL,
+        'price_flag_graduated_all' => '0',
+        'price_flag_graduated_1' => '0',
+        'price_flag_graduated_2' => '0',
+        'price_flag_graduated_3' => '0',
+        'price_flag_graduated_4' => '0',
+        'products_sort' => '0',
+        'products_image' => 'product:1001001743.jpg',
+        'products_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  12,50</span>',
+          'plain' => 12.5,
+          'plain_otax' => 10.5,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  12,50',
+              'plain' => 12.5,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  10,50',
+              'plain' => 10.5,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'date_added' => '2023-06-16 20:33:38',
+        'last_modified' => '2023-07-01 16:08:52',
+        'date_available' => '',
+        'products_weight' => '0.0000',
+        'products_condition' => 'NewCondition',
+        'products_status' => '1',
+        'products_tax_class_id' => '1',
+        'product_template' => '',
+        'product_list_template' => '',
+        'manufacturers_id' => '0',
+        'products_ordered' => '0',
+        'products_transactions' => '0',
+        'products_fsk18' => '0',
+        'products_vpe' => '0',
+        'products_vpe_status' => '0',
+        'products_vpe_value' => '0.0000',
+        'products_unit' => '0',
+        'products_average_rating' => '0.0000',
+        'products_rating_count' => '0',
+        'flag_has_specials' => false,
+        'total_downloads' => '0',
+        'group_discount_allowed' => '1',
+        'google_product_cat' => '0',
+        'products_canonical_master' => '0',
+        'products_serials' => '0',
+        'language_code' => 'de',
+        'reload_st' => '0',
+        'products_name' => 'DiaGal Hohllochbohrer  1,5x30mm, 5St.',
+        'products_description' => '<P>Diamantierter Hohllochbohrer</P>
+<P>Einsatz als Nass und Trockenbohrer für Marmor, Kalkstein, Granit, Keramik, Fliesen, Kunststoffe. Wir empfehlen aber überwiegend<STRONG> nass</STRONG> zu arbeiten, um die Standzeit zu verlängern. </P>',
+        'products_short_description' => 'DiaGal Hohllochbohrer 1,5x30mm, 5St.',
+        'products_keywords' => '',
+        'products_url' => '',
+        'products_store_id' => '1',
+        'url_md5' => '21ccf510a23e46dd59defdf5a5e8c993',
+        'url_text' => 'de/diagal-hohllochbohrer-1-5x30mm-5st',
+        'link_type' => '1',
+        'link_id' => '119',
+        'meta_title' => '',
+        'meta_description' => '',
+        'meta_keywords' => '',
+        'store_id' => '1',
+        'products_price_db' => '10.5000000000',
+        'products_tax_rate' => 19.0,
+        'products_link' => 'https://www.aquarusshop.de/de/diagal-hohllochbohrer-1-5x30mm-5st',
+        'products_image_data' => 
+        array (
+          'file' => '1001001743.jpg',
+          'type' => 'images',
+          'class' => 'product',
+          'download_status' => 'free',
+          'status' => 'true',
+          'owner' => 1,
+          'date_added' => '2023-06-15 18:44:49',
+          'last_modified' => '2023-06-23 23:47:19',
+          'max_dl_count' => 0,
+          'max_dl_days' => 0,
+          'total_downloads' => 0,
+          'external_id' => '',
+          'media_name' => NULL,
+          'media_description' => NULL,
+          'language_code' => NULL,
+        ),
+        'allow_add_cart' => true,
+        'products_tax_info' => 
+        array (
+          'tax' => 19.0,
+          'tax_desc' => 'inkl. 19 % USt',
+        ),
+        'base_price' => false,
+        'products_shipping_link' => 'https://www.aquarusshop.de/de/lieferinformationen',
+        'stock_status_id' => 1,
+        'mapping_schema_org' => 0,
+        'stock_image' => 
+        array (
+          'name' => 'Sofort versandfähig, ausreichende Stückzahl',
+          'image' => 'rule_1.png',
+          'stock_status_id' => 1,
+          'mapping_schema_org' => 0,
+        ),
+        '_original_products_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  12,50</span>',
+          'plain' => 12.495,
+          'plain_otax' => 10.5,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  12,50',
+              'plain' => 12.495,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  10,50',
+              'plain' => 10.5,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_price_before_discount' => 
+        array (
+          'plain_otax' => 10.5,
+          'plain' => 12.495,
+        ),
+        'products_price_otax' => 10.5,
+        'products_final_price_otax' => 21.0,
+        'add_single_price' => 0.0,
+        'products_final_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  25,00</span>',
+          'plain' => 25.0,
+          'plain_otax' => 21.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  25,00',
+              'plain' => 25.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  21,00',
+              'plain' => 21.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_tax_value' => 19.0,
+        'products_tax' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  2,00</span>',
+          'plain' => 1.995798,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  2,00',
+              'plain' => 1.995798,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_tax_single' => 0.0,
+        'products_final_tax' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  3,99</span>',
+          'plain' => 3.9915966386555,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  3,99',
+              'plain' => 3.9915966386555,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+      ),
+      '52_XT' => 
+      array (
+        'customers_id' => NULL,
+        'products_id' => '52',
+        'products_key' => '52_XT',
+        'products_quantity' => 1,
+        'products_info' => NULL,
+        'products_digital' => '1',
+        'type' => 'product',
+        'status' => 1,
+        'sort_order' => 0,
+        'shop_id' => 1,
+        'external_id' => NULL,
+        'permission_id' => '0',
+        'products_owner' => '1',
+        'products_ean' => '1',
+        'products_average_quantity' => '0',
+        'products_shippingtime' => '0',
+        'products_shippingtime_nostock' => '0',
+        'products_model' => '1',
+        'products_master_flag' => '0',
+        'products_master_model' => '',
+        'ms_open_first_slave' => '2',
+        'ms_show_slave_list' => '2',
+        'ms_filter_slave_list' => '2',
+        'ms_filter_slave_list_hide_on_product' => '2',
+        'products_image_from_master' => '2',
+        'ms_load_masters_free_downloads' => '2',
+        'ms_load_masters_main_img' => '2',
+        'load_mains_imgs' => '2',
+        'sum_quantity_for_graduated_price' => '2',
+        'products_keywords_from_master' => '2',
+        'products_short_description_from_master' => '2',
+        'products_description_from_master' => '2',
+        'products_option_template' => '',
+        'products_option_list_template' => '',
+        'products_option_master_price' => '',
+        'products_master_slave_order' => '0',
+        'products_mpn' => '',
+        'price_flag_graduated_all' => '0',
+        'price_flag_graduated_1' => '0',
+        'price_flag_graduated_2' => '0',
+        'price_flag_graduated_3' => '0',
+        'price_flag_graduated_4' => '0',
+        'products_sort' => '0',
+        'products_image' => 'product:noimage.gif',
+        'products_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  5,00</span>',
+          'plain' => 5.0,
+          'plain_otax' => 5.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'date_added' => '2023-06-13 12:32:36',
+        'last_modified' => '2023-07-02 17:08:34',
+        'date_available' => '',
+        'products_weight' => '0.0000',
+        'products_condition' => '',
+        'products_status' => '1',
+        'products_tax_class_id' => '0',
+        'product_template' => '',
+        'product_list_template' => '',
+        'manufacturers_id' => '0',
+        'products_ordered' => '0',
+        'products_transactions' => '0',
+        'products_fsk18' => '0',
+        'products_vpe' => '0',
+        'products_vpe_status' => '0',
+        'products_vpe_value' => '0.0000',
+        'products_unit' => '0',
+        'products_average_rating' => '0.0000',
+        'products_rating_count' => '0',
+        'flag_has_specials' => false,
+        'total_downloads' => '0',
+        'group_discount_allowed' => '0',
+        'google_product_cat' => NULL,
+        'products_canonical_master' => '0',
+        'products_serials' => '0',
+        'language_code' => 'de',
+        'reload_st' => '0',
+        'products_name' => 'Verpackungspauschale',
+        'products_description' => 'Dieser Artikel stellt die Verpackungspauschale in die versandl&auml;nder dar',
+        'products_short_description' => '',
+        'products_keywords' => '',
+        'products_url' => '',
+        'products_store_id' => '1',
+        'url_md5' => 'a47e0a829986b1e7983a294adf2bca2f',
+        'url_text' => 'de/verpackungspauschale',
+        'link_type' => '1',
+        'link_id' => '52',
+        'meta_title' => '',
+        'meta_description' => '',
+        'meta_keywords' => '',
+        'store_id' => '1',
+        'products_price_db' => '5.0000000000',
+        'products_tax_rate' => NULL,
+        'products_link' => 'https://www.aquarusshop.de/de/verpackungspauschale',
+        'allow_add_cart' => true,
+        'products_tax_info' => 
+        array (
+          'tax' => NULL,
+          'tax_desc' => NULL,
+        ),
+        'base_price' => false,
+        'products_shipping_link' => 'https://www.aquarusshop.de/de/lieferinformationen',
+        'stock_status_id' => 1,
+        'mapping_schema_org' => 0,
+        'stock_image' => 
+        array (
+          'name' => 'Sofort versandfähig, ausreichende Stückzahl',
+          'image' => 'rule_1.png',
+          'stock_status_id' => 1,
+          'mapping_schema_org' => 0,
+        ),
+        '_original_products_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  5,00</span>',
+          'plain' => 5.0,
+          'plain_otax' => 5.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_price_before_discount' => 
+        array (
+          'plain_otax' => 5.0,
+          'plain' => 5.0,
+        ),
+        'products_price_otax' => 5.0,
+        'products_final_price_otax' => 5.0,
+        'add_single_price' => 0.0,
+        'products_final_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  5,00</span>',
+          'plain' => 5.0,
+          'plain_otax' => 5.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_tax_value' => NULL,
+        'products_tax' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  0,00</span>',
+          'plain' => 0.0,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_tax_single' => 0.0,
+        'products_final_tax' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  0,00</span>',
+          'plain' => 0.0,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+      ),
+    ),
+     'show_sub_content' => 
+    array (
+    ),
+     'content' => 
+    array (
+      '119_XT' => 
+      array (
+        'customers_id' => NULL,
+        'products_id' => 119,
+        'products_key' => '119_XT',
+        'products_quantity' => 2,
+        'products_info' => NULL,
+        'products_digital' => '0',
+        'type' => 'product',
+        'status' => 1,
+        'sort_order' => 0,
+        'shop_id' => 1,
+      ),
+      '52_XT' => 
+      array (
+        'customers_id' => NULL,
+        'products_id' => 52,
+        'products_key' => '52_XT',
+        'products_quantity' => 1,
+        'products_info' => NULL,
+        'products_digital' => '1',
+        'type' => 'product',
+        'status' => 1,
+        'sort_order' => 0,
+        'shop_id' => 1,
+      ),
+    ),
+     'content_total' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  30,00</span>',
+      'plain' => 30.0,
+      'plain_otax' => 26.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  30,00',
+          'plain' => 30.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  26,00',
+          'plain' => 26.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'content_tax' => 
+    array (
+      1 => 
+      array (
+        'tax_value' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  3,99</span>',
+          'plain' => 3.9915966386555,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  3,99',
+              'plain' => 3.9915966386555,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'tax_key' => 19.0,
+      ),
+    ),
+     'content_count' => 3,
+     'content_weight' => 0.0,
+     'sub_content' => 
+    array (
+    ),
+     'sub_content_total' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  0,00</span>',
+      'plain' => 0.0,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'sub_content_tax' => 
+    array (
+    ),
+     'sub_content_count' => 0,
+     'sub_content_weight' => 0,
+     'type' => 'mixed',
+     'total' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  30,00</span>',
+      'plain' => 30.0,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  30,00',
+          'plain' => 30.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'tax' => 
+    array (
+      1 => 
+      array (
+        'tax_value' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  3,99</span>',
+          'plain' => 3.9915966386555,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  3,99',
+              'plain' => 3.9915966386555,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'tax_key' => 19.0,
+      ),
+    ),
+     'weight' => 0.0,
+     'total_discount' => 0,
+     'cart_total_full_for_customers_discount' => 29.99,
+     'discount' => 'false',
+     'cart_total_full' => 26.0,
+     'content_total_physical' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  25,00</span>',
+      'plain' => 25.0,
+      'plain_otax' => 21.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  25,00',
+          'plain' => 25.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  21,00',
+          'plain' => 21.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'content_weight_physical' => 0.0,
+     'total_physical' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  25,00</span>',
+      'plain' => 25.0,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  25,00',
+          'plain' => 25.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+  )),
+  'pp-access-token' => 
+  array (
+    1 => 'credentials_not_found_check_backend',
+  ),
+  'ppcp_activated_payments' => 
+  array (
+    0 => 'xt_prepayment',
+  ),
+  'pp-client-token' => 'credentials_not_found_check_backend',
+  'fraudnet_session_identifier' => 'EAFF6EEB4A9F9A70EB12F4E0672C3252',
+  'cron_cleanup' => 1688314580,
+  'brotkrumen' => 'https://www.aquarusshop.de/de/cart',
+  'session_withStockOnly' => 0,
+  'last_viewed_products' => 
+  array (
+    0 => 91,
+    1 => 52,
+    2 => 86,
+  ),
+)
+
+ ----- 2023-07-02 06:16:43 ORDER ------ 
+
+
+ ----- 2023-07-02 06:16:46 TAX ------ 
+tax::__set_state(array(
+   'position' => NULL,
+   'url_data' => 
+  array (
+  ),
+   'sql_limit' => NULL,
+   '_AdminHandler' => NULL,
+   'sql_search' => NULL,
+   '_table' => 'xt_tax_rates',
+   '_table_lang' => NULL,
+   '_table_seo' => NULL,
+   '_master_key' => 'tax_rates_id',
+   'country_code' => 'DE',
+   'zone_id' => 31,
+   'zone_id_digital' => 31,
+   'data' => 
+  array (
+    1 => 19.0,
+    2 => 7.0,
+    3 => 19.0,
+  ),
+))
+
+ ----- 2023-07-02 06:16:46 CURRENCY ------ 
+currency::__set_state(array(
+   'position' => NULL,
+   'url_data' => 
+  array (
+  ),
+   'sql_limit' => NULL,
+   '_AdminHandler' => NULL,
+   'sql_search' => NULL,
+   'default_currency' => 'EUR',
+   '_table' => 'xt_currencies',
+   '_table_lang' => NULL,
+   '_table_seo' => NULL,
+   '_master_key' => 'currencies_id',
+   'perm_array' => 
+  array (
+    'shop_perm' => 
+    array (
+      'type' => 'shop',
+      'key' => 'currencies_id',
+      'value_type' => 'currency',
+      'pref' => 'c',
+    ),
+  ),
+   'permission' => 
+  item_permission::__set_state(array(
+     '_data' => 
+    array (
+    ),
+     '_table' => NULL,
+     '_where' => NULL,
+  )),
+   'currencies_id' => 1,
+   'title' => 'EUR',
+   'code' => 'EUR',
+   'prefix' => 'EUR',
+   'suffix' => '',
+   'dec_point' => ',',
+   'thousands_sep' => '.',
+   'decimals' => 2,
+   'value_multiplicator' => 1.0,
+   'last_updated' => NULL,
+))
+
+ ----- 2023-07-02 06:16:46 Page ------ 
+page::__set_state(array(
+   'default_page' => 'index',
+   'loaded_page' => 'xtCore/pages/cart.php',
+   'page_name' => 'cart',
+   'page_action' => 'index',
+))
+
+ ----- 2023-07-02 06:16:46 GET ------ 
+array (
+  'page' => 'cart',
+  'page_action' => 'index',
+)
+
+ ----- 2023-07-02 06:16:46 POST ------ 
+
+
+ ----- 2023-07-02 06:16:46 SESSION ------ 
+array (
+  '_cookie_consent' => '1',
+  '_USE_CACHE_COUNTRIES' => false,
+  '_USE_CACHE_LANGUAGE_CONTENT' => false,
+  'customer' => 
+  customer::__set_state(array(
+     'customers_id' => 0,
+     'customers_status' => '1',
+     'customer_info' => 
+    array (
+      'account_type' => 0,
+    ),
+     'customer_default_address' => 
+    array (
+    ),
+     'customer_shipping_address' => 
+    array (
+    ),
+     'customer_payment_address' => 
+    array (
+    ),
+     'error' => false,
+     '_master_key' => 'customers_id',
+     '_master_key_add' => 'address_book_id',
+     '_table' => 'xt_customers',
+     '_table_add' => 'xt_customers_addresses',
+     'password_special_signs' => 3,
+     'master_id' => 'customers_id',
+  )),
+  'geoip_country' => 'DE',
+  'selected_currency' => 'EUR',
+  'selected_language' => 'de',
+  'customer_group_discount' => 0,
+  'cart' => 
+  cart::__set_state(array(
+     'show_content' => 
+    array (
+      '119_XT' => 
+      array (
+        'customers_id' => NULL,
+        'products_id' => '119',
+        'products_key' => '119_XT',
+        'products_quantity' => 2,
+        'products_info' => NULL,
+        'products_digital' => '0',
+        'type' => 'product',
+        'status' => 1,
+        'sort_order' => 0,
+        'shop_id' => 1,
+        'external_id' => '1001001743',
+        'permission_id' => '0',
+        'products_owner' => '1',
+        'products_ean' => '010010017431',
+        'products_average_quantity' => '0',
+        'products_shippingtime' => '6',
+        'products_shippingtime_nostock' => NULL,
+        'products_model' => '1001001743',
+        'products_master_flag' => '0',
+        'products_master_model' => '',
+        'ms_open_first_slave' => '2',
+        'ms_show_slave_list' => '2',
+        'ms_filter_slave_list' => '2',
+        'ms_filter_slave_list_hide_on_product' => '2',
+        'products_image_from_master' => '2',
+        'ms_load_masters_free_downloads' => '2',
+        'ms_load_masters_main_img' => '2',
+        'load_mains_imgs' => '2',
+        'sum_quantity_for_graduated_price' => '2',
+        'products_keywords_from_master' => '2',
+        'products_short_description_from_master' => '2',
+        'products_description_from_master' => '2',
+        'products_option_template' => '',
+        'products_option_list_template' => '',
+        'products_option_master_price' => '',
+        'products_master_slave_order' => '0',
+        'products_mpn' => NULL,
+        'price_flag_graduated_all' => '0',
+        'price_flag_graduated_1' => '0',
+        'price_flag_graduated_2' => '0',
+        'price_flag_graduated_3' => '0',
+        'price_flag_graduated_4' => '0',
+        'products_sort' => '0',
+        'products_image' => 'product:1001001743.jpg',
+        'products_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  12,50</span>',
+          'plain' => 12.5,
+          'plain_otax' => 10.5,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  12,50',
+              'plain' => 12.5,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  10,50',
+              'plain' => 10.5,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'date_added' => '2023-06-16 20:33:38',
+        'last_modified' => '2023-07-01 16:08:52',
+        'date_available' => '',
+        'products_weight' => '0.0000',
+        'products_condition' => 'NewCondition',
+        'products_status' => '1',
+        'products_tax_class_id' => '1',
+        'product_template' => '',
+        'product_list_template' => '',
+        'manufacturers_id' => '0',
+        'products_ordered' => '0',
+        'products_transactions' => '0',
+        'products_fsk18' => '0',
+        'products_vpe' => '0',
+        'products_vpe_status' => '0',
+        'products_vpe_value' => '0.0000',
+        'products_unit' => '0',
+        'products_average_rating' => '0.0000',
+        'products_rating_count' => '0',
+        'flag_has_specials' => false,
+        'total_downloads' => '0',
+        'group_discount_allowed' => '1',
+        'google_product_cat' => '0',
+        'products_canonical_master' => '0',
+        'products_serials' => '0',
+        'language_code' => 'de',
+        'reload_st' => '0',
+        'products_name' => 'DiaGal Hohllochbohrer  1,5x30mm, 5St.',
+        'products_description' => '<P>Diamantierter Hohllochbohrer</P>
+<P>Einsatz als Nass und Trockenbohrer für Marmor, Kalkstein, Granit, Keramik, Fliesen, Kunststoffe. Wir empfehlen aber überwiegend<STRONG> nass</STRONG> zu arbeiten, um die Standzeit zu verlängern. </P>',
+        'products_short_description' => 'DiaGal Hohllochbohrer 1,5x30mm, 5St.',
+        'products_keywords' => '',
+        'products_url' => '',
+        'products_store_id' => '1',
+        'url_md5' => '21ccf510a23e46dd59defdf5a5e8c993',
+        'url_text' => 'de/diagal-hohllochbohrer-1-5x30mm-5st',
+        'link_type' => '1',
+        'link_id' => '119',
+        'meta_title' => '',
+        'meta_description' => '',
+        'meta_keywords' => '',
+        'store_id' => '1',
+        'products_price_db' => '10.5000000000',
+        'products_tax_rate' => 19.0,
+        'products_link' => 'https://www.aquarusshop.de/de/diagal-hohllochbohrer-1-5x30mm-5st',
+        'products_image_data' => 
+        array (
+          'file' => '1001001743.jpg',
+          'type' => 'images',
+          'class' => 'product',
+          'download_status' => 'free',
+          'status' => 'true',
+          'owner' => 1,
+          'date_added' => '2023-06-15 18:44:49',
+          'last_modified' => '2023-06-23 23:47:19',
+          'max_dl_count' => 0,
+          'max_dl_days' => 0,
+          'total_downloads' => 0,
+          'external_id' => '',
+          'media_name' => NULL,
+          'media_description' => NULL,
+          'language_code' => NULL,
+        ),
+        'allow_add_cart' => true,
+        'products_tax_info' => 
+        array (
+          'tax' => 19.0,
+          'tax_desc' => 'inkl. 19 % USt',
+        ),
+        'base_price' => false,
+        'products_shipping_link' => 'https://www.aquarusshop.de/de/lieferinformationen',
+        'stock_status_id' => 1,
+        'mapping_schema_org' => 0,
+        'stock_image' => 
+        array (
+          'name' => 'Sofort versandfähig, ausreichende Stückzahl',
+          'image' => 'rule_1.png',
+          'stock_status_id' => 1,
+          'mapping_schema_org' => 0,
+        ),
+        '_original_products_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  12,50</span>',
+          'plain' => 12.495,
+          'plain_otax' => 10.5,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  12,50',
+              'plain' => 12.495,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  10,50',
+              'plain' => 10.5,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_price_before_discount' => 
+        array (
+          'plain_otax' => 10.5,
+          'plain' => 12.495,
+        ),
+        'products_price_otax' => 10.5,
+        'products_final_price_otax' => 21.0,
+        'add_single_price' => 0.0,
+        'products_final_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  25,00</span>',
+          'plain' => 25.0,
+          'plain_otax' => 21.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  25,00',
+              'plain' => 25.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  21,00',
+              'plain' => 21.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_tax_value' => 19.0,
+        'products_tax' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  2,00</span>',
+          'plain' => 1.995798,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  2,00',
+              'plain' => 1.995798,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_tax_single' => 0.0,
+        'products_final_tax' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  3,99</span>',
+          'plain' => 3.9915966386555,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  3,99',
+              'plain' => 3.9915966386555,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+      ),
+      '52_XT' => 
+      array (
+        'customers_id' => NULL,
+        'products_id' => '52',
+        'products_key' => '52_XT',
+        'products_quantity' => 1,
+        'products_info' => NULL,
+        'products_digital' => '1',
+        'type' => 'product',
+        'status' => 1,
+        'sort_order' => 0,
+        'shop_id' => 1,
+        'external_id' => NULL,
+        'permission_id' => '0',
+        'products_owner' => '1',
+        'products_ean' => '1',
+        'products_average_quantity' => '0',
+        'products_shippingtime' => '0',
+        'products_shippingtime_nostock' => '0',
+        'products_model' => '1',
+        'products_master_flag' => '0',
+        'products_master_model' => '',
+        'ms_open_first_slave' => '2',
+        'ms_show_slave_list' => '2',
+        'ms_filter_slave_list' => '2',
+        'ms_filter_slave_list_hide_on_product' => '2',
+        'products_image_from_master' => '2',
+        'ms_load_masters_free_downloads' => '2',
+        'ms_load_masters_main_img' => '2',
+        'load_mains_imgs' => '2',
+        'sum_quantity_for_graduated_price' => '2',
+        'products_keywords_from_master' => '2',
+        'products_short_description_from_master' => '2',
+        'products_description_from_master' => '2',
+        'products_option_template' => '',
+        'products_option_list_template' => '',
+        'products_option_master_price' => '',
+        'products_master_slave_order' => '0',
+        'products_mpn' => '',
+        'price_flag_graduated_all' => '0',
+        'price_flag_graduated_1' => '0',
+        'price_flag_graduated_2' => '0',
+        'price_flag_graduated_3' => '0',
+        'price_flag_graduated_4' => '0',
+        'products_sort' => '0',
+        'products_image' => 'product:noimage.gif',
+        'products_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  5,00</span>',
+          'plain' => 5.0,
+          'plain_otax' => 5.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'date_added' => '2023-06-13 12:32:36',
+        'last_modified' => '2023-07-02 17:08:34',
+        'date_available' => '',
+        'products_weight' => '0.0000',
+        'products_condition' => '',
+        'products_status' => '1',
+        'products_tax_class_id' => '0',
+        'product_template' => '',
+        'product_list_template' => '',
+        'manufacturers_id' => '0',
+        'products_ordered' => '0',
+        'products_transactions' => '0',
+        'products_fsk18' => '0',
+        'products_vpe' => '0',
+        'products_vpe_status' => '0',
+        'products_vpe_value' => '0.0000',
+        'products_unit' => '0',
+        'products_average_rating' => '0.0000',
+        'products_rating_count' => '0',
+        'flag_has_specials' => false,
+        'total_downloads' => '0',
+        'group_discount_allowed' => '0',
+        'google_product_cat' => NULL,
+        'products_canonical_master' => '0',
+        'products_serials' => '0',
+        'language_code' => 'de',
+        'reload_st' => '0',
+        'products_name' => 'Verpackungspauschale',
+        'products_description' => 'Dieser Artikel stellt die Verpackungspauschale in die versandl&auml;nder dar',
+        'products_short_description' => '',
+        'products_keywords' => '',
+        'products_url' => '',
+        'products_store_id' => '1',
+        'url_md5' => 'a47e0a829986b1e7983a294adf2bca2f',
+        'url_text' => 'de/verpackungspauschale',
+        'link_type' => '1',
+        'link_id' => '52',
+        'meta_title' => '',
+        'meta_description' => '',
+        'meta_keywords' => '',
+        'store_id' => '1',
+        'products_price_db' => '5.0000000000',
+        'products_tax_rate' => NULL,
+        'products_link' => 'https://www.aquarusshop.de/de/verpackungspauschale',
+        'allow_add_cart' => true,
+        'products_tax_info' => 
+        array (
+          'tax' => NULL,
+          'tax_desc' => NULL,
+        ),
+        'base_price' => false,
+        'products_shipping_link' => 'https://www.aquarusshop.de/de/lieferinformationen',
+        'stock_status_id' => 1,
+        'mapping_schema_org' => 0,
+        'stock_image' => 
+        array (
+          'name' => 'Sofort versandfähig, ausreichende Stückzahl',
+          'image' => 'rule_1.png',
+          'stock_status_id' => 1,
+          'mapping_schema_org' => 0,
+        ),
+        '_original_products_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  5,00</span>',
+          'plain' => 5.0,
+          'plain_otax' => 5.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_price_before_discount' => 
+        array (
+          'plain_otax' => 5.0,
+          'plain' => 5.0,
+        ),
+        'products_price_otax' => 5.0,
+        'products_final_price_otax' => 5.0,
+        'add_single_price' => 0.0,
+        'products_final_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  5,00</span>',
+          'plain' => 5.0,
+          'plain_otax' => 5.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_tax_value' => NULL,
+        'products_tax' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  0,00</span>',
+          'plain' => 0.0,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_tax_single' => 0.0,
+        'products_final_tax' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  0,00</span>',
+          'plain' => 0.0,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+      ),
+    ),
+     'show_sub_content' => 
+    array (
+    ),
+     'content' => 
+    array (
+      '119_XT' => 
+      array (
+        'customers_id' => NULL,
+        'products_id' => 119,
+        'products_key' => '119_XT',
+        'products_quantity' => 2,
+        'products_info' => NULL,
+        'products_digital' => '0',
+        'type' => 'product',
+        'status' => 1,
+        'sort_order' => 0,
+        'shop_id' => 1,
+      ),
+      '52_XT' => 
+      array (
+        'customers_id' => NULL,
+        'products_id' => 52,
+        'products_key' => '52_XT',
+        'products_quantity' => 1,
+        'products_info' => NULL,
+        'products_digital' => '1',
+        'type' => 'product',
+        'status' => 1,
+        'sort_order' => 0,
+        'shop_id' => 1,
+      ),
+    ),
+     'content_total' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  30,00</span>',
+      'plain' => 30.0,
+      'plain_otax' => 26.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  30,00',
+          'plain' => 30.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  26,00',
+          'plain' => 26.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'content_tax' => 
+    array (
+      1 => 
+      array (
+        'tax_value' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  3,99</span>',
+          'plain' => 3.9915966386555,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  3,99',
+              'plain' => 3.9915966386555,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'tax_key' => 19.0,
+      ),
+    ),
+     'content_count' => 3,
+     'content_weight' => 0.0,
+     'sub_content' => 
+    array (
+    ),
+     'sub_content_total' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  0,00</span>',
+      'plain' => 0.0,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'sub_content_tax' => 
+    array (
+    ),
+     'sub_content_count' => 0,
+     'sub_content_weight' => 0,
+     'type' => 'mixed',
+     'total' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  30,00</span>',
+      'plain' => 30.0,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  30,00',
+          'plain' => 30.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'tax' => 
+    array (
+      1 => 
+      array (
+        'tax_value' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  3,99</span>',
+          'plain' => 3.9915966386555,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  3,99',
+              'plain' => 3.9915966386555,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'tax_key' => 19.0,
+      ),
+    ),
+     'weight' => 0.0,
+     'total_discount' => 0,
+     'cart_total_full_for_customers_discount' => 29.99,
+     'discount' => 'false',
+     'cart_total_full' => 26.0,
+     'content_total_physical' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  25,00</span>',
+      'plain' => 25.0,
+      'plain_otax' => 21.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  25,00',
+          'plain' => 25.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  21,00',
+          'plain' => 21.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'content_weight_physical' => 0.0,
+     'total_physical' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  25,00</span>',
+      'plain' => 25.0,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  25,00',
+          'plain' => 25.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+  )),
+  'pp-access-token' => 
+  array (
+    1 => 'credentials_not_found_check_backend',
+  ),
+  'ppcp_activated_payments' => 
+  array (
+    0 => 'xt_prepayment',
+  ),
+  'pp-client-token' => 'credentials_not_found_check_backend',
+  'fraudnet_session_identifier' => 'EAFF6EEB4A9F9A70EB12F4E0672C3252',
+  'cron_cleanup' => 1688314580,
+  'brotkrumen' => 'https://www.aquarusshop.de/de/cart',
+  'session_withStockOnly' => 0,
+  'last_viewed_products' => 
+  array (
+    0 => 91,
+    1 => 52,
+    2 => 86,
+  ),
+)
+
+ ----- 2023-07-02 06:16:46 ORDER ------ 
+
+
+ ----- 2023-07-02 06:17:03 ------ 
+array (
+  'products_key' => '52_XT',
+  'qty' => '1',
+)
+
+ ----- 2023-07-02 06:17:03 TAX ------ 
+tax::__set_state(array(
+   'position' => NULL,
+   'url_data' => 
+  array (
+  ),
+   'sql_limit' => NULL,
+   '_AdminHandler' => NULL,
+   'sql_search' => NULL,
+   '_table' => 'xt_tax_rates',
+   '_table_lang' => NULL,
+   '_table_seo' => NULL,
+   '_master_key' => 'tax_rates_id',
+   'country_code' => 'DE',
+   'zone_id' => 31,
+   'zone_id_digital' => 31,
+   'data' => 
+  array (
+    1 => 19.0,
+    2 => 7.0,
+    3 => 19.0,
+  ),
+))
+
+ ----- 2023-07-02 06:17:03 CURRENCY ------ 
+currency::__set_state(array(
+   'position' => NULL,
+   'url_data' => 
+  array (
+  ),
+   'sql_limit' => NULL,
+   '_AdminHandler' => NULL,
+   'sql_search' => NULL,
+   'default_currency' => 'EUR',
+   '_table' => 'xt_currencies',
+   '_table_lang' => NULL,
+   '_table_seo' => NULL,
+   '_master_key' => 'currencies_id',
+   'perm_array' => 
+  array (
+    'shop_perm' => 
+    array (
+      'type' => 'shop',
+      'key' => 'currencies_id',
+      'value_type' => 'currency',
+      'pref' => 'c',
+    ),
+  ),
+   'permission' => 
+  item_permission::__set_state(array(
+     '_data' => 
+    array (
+    ),
+     '_table' => NULL,
+     '_where' => NULL,
+  )),
+   'currencies_id' => 1,
+   'title' => 'EUR',
+   'code' => 'EUR',
+   'prefix' => 'EUR',
+   'suffix' => '',
+   'dec_point' => ',',
+   'thousands_sep' => '.',
+   'decimals' => 2,
+   'value_multiplicator' => 1.0,
+   'last_updated' => NULL,
+))
+
+ ----- 2023-07-02 06:17:03 Page ------ 
+page::__set_state(array(
+   'default_page' => 'index',
+   'loaded_page' => 'xtCore/pages/cart.php',
+   'page_name' => 'cart',
+   'page_action' => '',
+))
+
+ ----- 2023-07-02 06:17:03 GET ------ 
+array (
+  'page' => 'cart',
+)
+
+ ----- 2023-07-02 06:17:03 POST ------ 
+array (
+  'action' => 'update_product',
+  'products_key' => 
+  array (
+    0 => '119_XT',
+    1 => '52_XT',
+  ),
+  'qty' => 
+  array (
+    0 => '2',
+    1 => '1',
+  ),
+  'cart_delete' => 
+  array (
+    0 => '119_XT',
+  ),
+)
+
+ ----- 2023-07-02 06:17:03 SESSION ------ 
+array (
+  '_cookie_consent' => '1',
+  '_USE_CACHE_COUNTRIES' => false,
+  '_USE_CACHE_LANGUAGE_CONTENT' => false,
+  'customer' => 
+  customer::__set_state(array(
+     'customers_id' => 0,
+     'customers_status' => '1',
+     'customer_info' => 
+    array (
+      'account_type' => 0,
+    ),
+     'customer_default_address' => 
+    array (
+    ),
+     'customer_shipping_address' => 
+    array (
+    ),
+     'customer_payment_address' => 
+    array (
+    ),
+     'error' => false,
+     '_master_key' => 'customers_id',
+     '_master_key_add' => 'address_book_id',
+     '_table' => 'xt_customers',
+     '_table_add' => 'xt_customers_addresses',
+     'password_special_signs' => 3,
+     'master_id' => 'customers_id',
+  )),
+  'geoip_country' => 'DE',
+  'selected_currency' => 'EUR',
+  'selected_language' => 'de',
+  'customer_group_discount' => 0,
+  'cart' => 
+  cart::__set_state(array(
+     'show_content' => 
+    array (
+      '52_XT' => 
+      array (
+        'customers_id' => NULL,
+        'products_id' => '52',
+        'products_key' => '52_XT',
+        'products_quantity' => 1,
+        'products_info' => NULL,
+        'products_digital' => '1',
+        'type' => 'product',
+        'status' => 1,
+        'sort_order' => 0,
+        'shop_id' => 1,
+        'external_id' => NULL,
+        'permission_id' => '0',
+        'products_owner' => '1',
+        'products_ean' => '1',
+        'products_average_quantity' => '0',
+        'products_shippingtime' => '0',
+        'products_shippingtime_nostock' => '0',
+        'products_model' => '1',
+        'products_master_flag' => '0',
+        'products_master_model' => '',
+        'ms_open_first_slave' => '2',
+        'ms_show_slave_list' => '2',
+        'ms_filter_slave_list' => '2',
+        'ms_filter_slave_list_hide_on_product' => '2',
+        'products_image_from_master' => '2',
+        'ms_load_masters_free_downloads' => '2',
+        'ms_load_masters_main_img' => '2',
+        'load_mains_imgs' => '2',
+        'sum_quantity_for_graduated_price' => '2',
+        'products_keywords_from_master' => '2',
+        'products_short_description_from_master' => '2',
+        'products_description_from_master' => '2',
+        'products_option_template' => '',
+        'products_option_list_template' => '',
+        'products_option_master_price' => '',
+        'products_master_slave_order' => '0',
+        'products_mpn' => '',
+        'price_flag_graduated_all' => '0',
+        'price_flag_graduated_1' => '0',
+        'price_flag_graduated_2' => '0',
+        'price_flag_graduated_3' => '0',
+        'price_flag_graduated_4' => '0',
+        'products_sort' => '0',
+        'products_image' => 'product:noimage.gif',
+        'products_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  5,00</span>',
+          'plain' => 5.0,
+          'plain_otax' => 5.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'date_added' => '2023-06-13 12:32:36',
+        'last_modified' => '2023-07-02 17:08:34',
+        'date_available' => '',
+        'products_weight' => '0.0000',
+        'products_condition' => '',
+        'products_status' => '1',
+        'products_tax_class_id' => '0',
+        'product_template' => '',
+        'product_list_template' => '',
+        'manufacturers_id' => '0',
+        'products_ordered' => '0',
+        'products_transactions' => '0',
+        'products_fsk18' => '0',
+        'products_vpe' => '0',
+        'products_vpe_status' => '0',
+        'products_vpe_value' => '0.0000',
+        'products_unit' => '0',
+        'products_average_rating' => '0.0000',
+        'products_rating_count' => '0',
+        'flag_has_specials' => false,
+        'total_downloads' => '0',
+        'group_discount_allowed' => '0',
+        'google_product_cat' => NULL,
+        'products_canonical_master' => '0',
+        'products_serials' => '0',
+        'language_code' => 'de',
+        'reload_st' => '0',
+        'products_name' => 'Verpackungspauschale',
+        'products_description' => 'Dieser Artikel stellt die Verpackungspauschale in die versandl&auml;nder dar',
+        'products_short_description' => '',
+        'products_keywords' => '',
+        'products_url' => '',
+        'products_store_id' => '1',
+        'url_md5' => 'a47e0a829986b1e7983a294adf2bca2f',
+        'url_text' => 'de/verpackungspauschale',
+        'link_type' => '1',
+        'link_id' => '52',
+        'meta_title' => '',
+        'meta_description' => '',
+        'meta_keywords' => '',
+        'store_id' => '1',
+        'products_price_db' => '5.0000000000',
+        'products_tax_rate' => NULL,
+        'products_link' => 'https://www.aquarusshop.de/de/verpackungspauschale',
+        'allow_add_cart' => true,
+        'products_tax_info' => 
+        array (
+          'tax' => NULL,
+          'tax_desc' => NULL,
+        ),
+        'base_price' => false,
+        'products_shipping_link' => 'https://www.aquarusshop.de/de/lieferinformationen',
+        'stock_status_id' => 1,
+        'mapping_schema_org' => 0,
+        'stock_image' => 
+        array (
+          'name' => 'Sofort versandfähig, ausreichende Stückzahl',
+          'image' => 'rule_1.png',
+          'stock_status_id' => 1,
+          'mapping_schema_org' => 0,
+        ),
+        '_original_products_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  5,00</span>',
+          'plain' => 5.0,
+          'plain_otax' => 5.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_price_before_discount' => 
+        array (
+          'plain_otax' => 5.0,
+          'plain' => 5.0,
+        ),
+        'products_price_otax' => 5.0,
+        'products_final_price_otax' => 5.0,
+        'add_single_price' => 0.0,
+        'products_final_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  5,00</span>',
+          'plain' => 5.0,
+          'plain_otax' => 5.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_tax_value' => NULL,
+        'products_tax' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  0,00</span>',
+          'plain' => 0.0,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_tax_single' => 0.0,
+        'products_final_tax' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  0,00</span>',
+          'plain' => 0.0,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+      ),
+    ),
+     'show_sub_content' => 
+    array (
+    ),
+     'content' => 
+    array (
+      '52_XT' => 
+      array (
+        'customers_id' => NULL,
+        'products_id' => 52,
+        'products_key' => '52_XT',
+        'products_quantity' => 1,
+        'products_info' => NULL,
+        'products_digital' => '1',
+        'type' => 'product',
+        'status' => 1,
+        'sort_order' => 0,
+        'shop_id' => 1,
+      ),
+    ),
+     'content_total' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  5,00</span>',
+      'plain' => 5.0,
+      'plain_otax' => 5.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  5,00',
+          'plain' => 5.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  5,00',
+          'plain' => 5.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'content_tax' => 
+    array (
+    ),
+     'content_count' => 1,
+     'content_weight' => 0.0,
+     'sub_content' => 
+    array (
+    ),
+     'sub_content_total' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  0,00</span>',
+      'plain' => 0.0,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'sub_content_tax' => 
+    array (
+    ),
+     'sub_content_count' => 0,
+     'sub_content_weight' => 0,
+     'type' => 'virtual',
+     'total' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  5,00</span>',
+      'plain' => 5.0,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  5,00',
+          'plain' => 5.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'tax' => 
+    array (
+    ),
+     'weight' => 0.0,
+     'total_discount' => 0,
+     'cart_total_full_for_customers_discount' => 5.0,
+     'discount' => 'false',
+     'cart_total_full' => 5.0,
+     'content_total_physical' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  0,00</span>',
+      'plain' => 0.0,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'content_weight_physical' => 0,
+     'total_physical' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  0,00</span>',
+      'plain' => 0.0,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+  )),
+  'pp-access-token' => 
+  array (
+    1 => 'credentials_not_found_check_backend',
+  ),
+  'ppcp_activated_payments' => 
+  array (
+    0 => 'xt_prepayment',
+  ),
+  'pp-client-token' => 'credentials_not_found_check_backend',
+  'fraudnet_session_identifier' => 'EAFF6EEB4A9F9A70EB12F4E0672C3252',
+  'cron_cleanup' => 1688314611,
+  'brotkrumen' => 'https://www.aquarusshop.de/de/cart',
+  'session_withStockOnly' => 0,
+  'last_viewed_products' => 
+  array (
+    0 => 91,
+    1 => 52,
+    2 => 86,
+  ),
+)
+
+ ----- 2023-07-02 06:17:03 ORDER ------ 
+
+
+ ----- 2023-07-02 06:19:44 ------ 
+array (
+  'products_key' => '52_XT',
+  'qty' => '1',
+)
+
+ ----- 2023-07-02 06:19:44 TAX ------ 
+tax::__set_state(array(
+   'position' => NULL,
+   'url_data' => 
+  array (
+  ),
+   'sql_limit' => NULL,
+   '_AdminHandler' => NULL,
+   'sql_search' => NULL,
+   '_table' => 'xt_tax_rates',
+   '_table_lang' => NULL,
+   '_table_seo' => NULL,
+   '_master_key' => 'tax_rates_id',
+   'country_code' => 'DE',
+   'zone_id' => 31,
+   'zone_id_digital' => 31,
+   'data' => 
+  array (
+    1 => 19.0,
+    2 => 7.0,
+    3 => 19.0,
+  ),
+))
+
+ ----- 2023-07-02 06:19:44 CURRENCY ------ 
+currency::__set_state(array(
+   'position' => NULL,
+   'url_data' => 
+  array (
+  ),
+   'sql_limit' => NULL,
+   '_AdminHandler' => NULL,
+   'sql_search' => NULL,
+   'default_currency' => 'EUR',
+   '_table' => 'xt_currencies',
+   '_table_lang' => NULL,
+   '_table_seo' => NULL,
+   '_master_key' => 'currencies_id',
+   'perm_array' => 
+  array (
+    'shop_perm' => 
+    array (
+      'type' => 'shop',
+      'key' => 'currencies_id',
+      'value_type' => 'currency',
+      'pref' => 'c',
+    ),
+  ),
+   'permission' => 
+  item_permission::__set_state(array(
+     '_data' => 
+    array (
+    ),
+     '_table' => NULL,
+     '_where' => NULL,
+  )),
+   'currencies_id' => 1,
+   'title' => 'EUR',
+   'code' => 'EUR',
+   'prefix' => 'EUR',
+   'suffix' => '',
+   'dec_point' => ',',
+   'thousands_sep' => '.',
+   'decimals' => 2,
+   'value_multiplicator' => 1.0,
+   'last_updated' => NULL,
+))
+
+ ----- 2023-07-02 06:19:44 Page ------ 
+page::__set_state(array(
+   'default_page' => 'index',
+   'loaded_page' => 'xtCore/pages/cart.php',
+   'page_name' => 'cart',
+   'page_action' => '',
+))
+
+ ----- 2023-07-02 06:19:44 GET ------ 
+array (
+  'page' => 'cart',
+)
+
+ ----- 2023-07-02 06:19:44 POST ------ 
+array (
+  'action' => 'update_product',
+  'products_key' => 
+  array (
+    0 => '119_XT',
+    1 => '52_XT',
+  ),
+  'qty' => 
+  array (
+    0 => '2',
+    1 => '1',
+  ),
+  'cart_delete' => 
+  array (
+    0 => '119_XT',
+  ),
+)
+
+ ----- 2023-07-02 06:19:44 SESSION ------ 
+array (
+  '_cookie_consent' => '1',
+  '_USE_CACHE_COUNTRIES' => false,
+  '_USE_CACHE_LANGUAGE_CONTENT' => false,
+  'customer' => 
+  customer::__set_state(array(
+     'customers_id' => 0,
+     'customers_status' => '1',
+     'customer_info' => 
+    array (
+      'account_type' => 0,
+    ),
+     'customer_default_address' => 
+    array (
+    ),
+     'customer_shipping_address' => 
+    array (
+    ),
+     'customer_payment_address' => 
+    array (
+    ),
+     'error' => false,
+     '_master_key' => 'customers_id',
+     '_master_key_add' => 'address_book_id',
+     '_table' => 'xt_customers',
+     '_table_add' => 'xt_customers_addresses',
+     'password_special_signs' => 3,
+     'master_id' => 'customers_id',
+  )),
+  'geoip_country' => 'DE',
+  'selected_currency' => 'EUR',
+  'selected_language' => 'de',
+  'customer_group_discount' => 0,
+  'cart' => 
+  cart::__set_state(array(
+     'show_content' => 
+    array (
+      '52_XT' => 
+      array (
+        'customers_id' => NULL,
+        'products_id' => '52',
+        'products_key' => '52_XT',
+        'products_quantity' => 1,
+        'products_info' => NULL,
+        'products_digital' => '1',
+        'type' => 'product',
+        'status' => 1,
+        'sort_order' => 0,
+        'shop_id' => 1,
+        'external_id' => NULL,
+        'permission_id' => '0',
+        'products_owner' => '1',
+        'products_ean' => '1',
+        'products_average_quantity' => '0',
+        'products_shippingtime' => '0',
+        'products_shippingtime_nostock' => '0',
+        'products_model' => '1',
+        'products_master_flag' => '0',
+        'products_master_model' => '',
+        'ms_open_first_slave' => '2',
+        'ms_show_slave_list' => '2',
+        'ms_filter_slave_list' => '2',
+        'ms_filter_slave_list_hide_on_product' => '2',
+        'products_image_from_master' => '2',
+        'ms_load_masters_free_downloads' => '2',
+        'ms_load_masters_main_img' => '2',
+        'load_mains_imgs' => '2',
+        'sum_quantity_for_graduated_price' => '2',
+        'products_keywords_from_master' => '2',
+        'products_short_description_from_master' => '2',
+        'products_description_from_master' => '2',
+        'products_option_template' => '',
+        'products_option_list_template' => '',
+        'products_option_master_price' => '',
+        'products_master_slave_order' => '0',
+        'products_mpn' => '',
+        'price_flag_graduated_all' => '0',
+        'price_flag_graduated_1' => '0',
+        'price_flag_graduated_2' => '0',
+        'price_flag_graduated_3' => '0',
+        'price_flag_graduated_4' => '0',
+        'products_sort' => '0',
+        'products_image' => 'product:noimage.gif',
+        'products_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  5,00</span>',
+          'plain' => 5.0,
+          'plain_otax' => 5.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'date_added' => '2023-06-13 12:32:36',
+        'last_modified' => '2023-07-02 17:08:34',
+        'date_available' => '',
+        'products_weight' => '0.0000',
+        'products_condition' => '',
+        'products_status' => '1',
+        'products_tax_class_id' => '0',
+        'product_template' => '',
+        'product_list_template' => '',
+        'manufacturers_id' => '0',
+        'products_ordered' => '0',
+        'products_transactions' => '0',
+        'products_fsk18' => '0',
+        'products_vpe' => '0',
+        'products_vpe_status' => '0',
+        'products_vpe_value' => '0.0000',
+        'products_unit' => '0',
+        'products_average_rating' => '0.0000',
+        'products_rating_count' => '0',
+        'flag_has_specials' => false,
+        'total_downloads' => '0',
+        'group_discount_allowed' => '0',
+        'google_product_cat' => NULL,
+        'products_canonical_master' => '0',
+        'products_serials' => '0',
+        'language_code' => 'de',
+        'reload_st' => '0',
+        'products_name' => 'Verpackungspauschale',
+        'products_description' => 'Dieser Artikel stellt die Verpackungspauschale in die versandl&auml;nder dar',
+        'products_short_description' => '',
+        'products_keywords' => '',
+        'products_url' => '',
+        'products_store_id' => '1',
+        'url_md5' => 'a47e0a829986b1e7983a294adf2bca2f',
+        'url_text' => 'de/verpackungspauschale',
+        'link_type' => '1',
+        'link_id' => '52',
+        'meta_title' => '',
+        'meta_description' => '',
+        'meta_keywords' => '',
+        'store_id' => '1',
+        'products_price_db' => '5.0000000000',
+        'products_tax_rate' => NULL,
+        'products_link' => 'https://www.aquarusshop.de/de/verpackungspauschale',
+        'allow_add_cart' => true,
+        'products_tax_info' => 
+        array (
+          'tax' => NULL,
+          'tax_desc' => NULL,
+        ),
+        'base_price' => false,
+        'products_shipping_link' => 'https://www.aquarusshop.de/de/lieferinformationen',
+        'stock_status_id' => 1,
+        'mapping_schema_org' => 0,
+        'stock_image' => 
+        array (
+          'name' => 'Sofort versandfähig, ausreichende Stückzahl',
+          'image' => 'rule_1.png',
+          'stock_status_id' => 1,
+          'mapping_schema_org' => 0,
+        ),
+        '_original_products_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  5,00</span>',
+          'plain' => 5.0,
+          'plain_otax' => 5.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_price_before_discount' => 
+        array (
+          'plain_otax' => 5.0,
+          'plain' => 5.0,
+        ),
+        'products_price_otax' => 5.0,
+        'products_final_price_otax' => 5.0,
+        'add_single_price' => 0.0,
+        'products_final_price' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  5,00</span>',
+          'plain' => 5.0,
+          'plain_otax' => 5.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  5,00',
+              'plain' => 5.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_tax_value' => NULL,
+        'products_tax' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  0,00</span>',
+          'plain' => 0.0,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+        'products_tax_single' => 0.0,
+        'products_final_tax' => 
+        array (
+          'formated' => '<span class="price-tag">EUR  0,00</span>',
+          'plain' => 0.0,
+          'plain_otax' => 0.0,
+          'data' => 
+          array (
+            'PRICE' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+            ),
+            'PRICE_OTAX' => 
+            array (
+              'formated' => 'EUR  0,00',
+              'plain' => 0.0,
+              'date_available' => '',
+              'date_expired' => '',
+            ),
+          ),
+        ),
+      ),
+    ),
+     'show_sub_content' => 
+    array (
+    ),
+     'content' => 
+    array (
+      '52_XT' => 
+      array (
+        'customers_id' => NULL,
+        'products_id' => 52,
+        'products_key' => '52_XT',
+        'products_quantity' => 1,
+        'products_info' => NULL,
+        'products_digital' => '1',
+        'type' => 'product',
+        'status' => 1,
+        'sort_order' => 0,
+        'shop_id' => 1,
+      ),
+    ),
+     'content_total' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  5,00</span>',
+      'plain' => 5.0,
+      'plain_otax' => 5.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  5,00',
+          'plain' => 5.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  5,00',
+          'plain' => 5.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'content_tax' => 
+    array (
+    ),
+     'content_count' => 1,
+     'content_weight' => 0.0,
+     'sub_content' => 
+    array (
+    ),
+     'sub_content_total' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  0,00</span>',
+      'plain' => 0.0,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'sub_content_tax' => 
+    array (
+    ),
+     'sub_content_count' => 0,
+     'sub_content_weight' => 0,
+     'type' => 'virtual',
+     'total' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  5,00</span>',
+      'plain' => 5.0,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  5,00',
+          'plain' => 5.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'tax' => 
+    array (
+    ),
+     'weight' => 0.0,
+     'total_discount' => 0,
+     'cart_total_full_for_customers_discount' => 5.0,
+     'discount' => 'false',
+     'cart_total_full' => 5.0,
+     'content_total_physical' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  0,00</span>',
+      'plain' => 0.0,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+     'content_weight_physical' => 0,
+     'total_physical' => 
+    array (
+      'formated' => '<span class="price-tag">EUR  0,00</span>',
+      'plain' => 0.0,
+      'plain_otax' => 0.0,
+      'data' => 
+      array (
+        'PRICE' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+        ),
+        'PRICE_OTAX' => 
+        array (
+          'formated' => 'EUR  0,00',
+          'plain' => 0.0,
+          'date_available' => '',
+          'date_expired' => '',
+        ),
+      ),
+    ),
+  )),
+  'pp-access-token' => 
+  array (
+    1 => 'credentials_not_found_check_backend',
+  ),
+  'ppcp_activated_payments' => 
+  array (
+    0 => 'xt_prepayment',
+  ),
+  'pp-client-token' => 'credentials_not_found_check_backend',
+  'fraudnet_session_identifier' => 'EAFF6EEB4A9F9A70EB12F4E0672C3252',
+  'cron_cleanup' => 1688314759,
+  'brotkrumen' => 'https://www.aquarusshop.de/de/cart',
+  'session_withStockOnly' => 0,
+  'last_viewed_products' => 
+  array (
+    0 => 91,
+    1 => 52,
+    2 => 86,
+  ),
+)
+
+ ----- 2023-07-02 06:19:44 ORDER ------ 
+
+

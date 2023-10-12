@@ -1,0 +1,248 @@
+<div id="edit-adress">
+	<h1>{txt key=TEXT_EDIT_ADDRESS}</h1>
+	{form type=form name=edit_address action='dynamic' link_params='page_action=edit_address' method=post conn=SSL}
+	{form type=hidden name=action value=edit_address}
+	{if $address_book_id}{form type=hidden name=address_book_id value=$address_book_id}{/if}
+	{$message}
+	{hook key=account_tpl_edit_address_center}
+
+    <fieldset>
+        <legend>{txt key=TEXT_PERSONAL}</legend>
+        {if $show_gender eq 1}
+        <div class="form-group">
+            <label for="customers_gender">{txt key=TEXT_GENDER}*</label>
+            {form class="form-control" type=select name=customers_gender value=$gender_data default=$customers_gender}
+        </div>
+        {/if}
+        {if $show_company eq 1}
+        <div class="form-group">
+            <label for="customers_company">{txt key=TEXT_COMPANY_NAME}{if _STORE_COMPANY_MIN_LENGTH > 0}*{/if}</label>
+            {form id=customers_company type=text name=customers_company value=$customers_company}
+        </div>
+        <div class="form-group">
+            <label for="customers_company_2">{txt key=TEXT_COMPANY_NAME_2}</label>
+            {form id=customers_company_2 type=text name=customers_company_2 value=$customers_company_2}
+        </div>
+        <div class="form-group">
+            <label for="customers_company_3">{txt key=TEXT_COMPANY_NAME_3}</label>
+            {form id=customers_company_3 type=text name=customers_company_3 value=$customers_company_3}
+        </div>
+        {/if}
+
+
+        {if $show_title eq 1}
+        <!-- variante 1 mit Freifeld für Eingabe eines beliebigen Wertes -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                $('.dropdown-menu a').click(function() {
+                    console.log($(this).attr('data-value'));
+                    $(this).closest('.dropdown').find('input#customers_title')
+                        .val($(this).attr('data-value'));
+                    $(this).closest('.dropdown-menu').dropdown('toggle')
+                    return false;
+                });
+            });
+        </script>
+
+        {$title_dd = false}
+        {if is_array($title_data) && count($title_data)>0}{$title_dd = true}{/if}
+
+        <div class="form-group">
+            <label for="customers_title">{txt key=TEXT_CUSTOMERS_TITLE}{if $title_required}*{/if}</label>
+
+            <div class="{if $title_dd}input-group dropdown{/if}">
+                <input type="text" name="customers_title" id="customers_title" class="form-control customers_title dropdown-toggle" value="{$customers_title}">
+                {if $title_dd}
+                <ul class="dropdown-menu pull-right" style="width:100%">
+                    {foreach item=title from=$title_data}
+                    <li><a href="#" data-value="{$title.text}">{$title.text}</a></li>
+                    {/foreach}
+                </ul>
+                <span role="button" class="input-group-addon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></span>
+                {/if}
+            </div>
+
+        </div>
+
+        <!-- variante 2 nur die im Backend eingestellten Werte können verwendet werden -->
+        {if $title_dd}
+        <!-- div class="form-group">
+            <label for="customers_title">{txt key=TEXT_CUSTOMERS_TITLE}{if $title_required}*{/if}</label>
+            <div>
+                {form params='id="customers_title"' type=select name='customers_title' value=$title_data default=$customers_title class="form-control"}
+            </div>
+        </div-->
+        {/if}
+
+        {/if}<!-- show_title -->
+
+
+        <div class="form-group">
+            <label for="customers_firstname">{txt key=TEXT_FIRSTNAME}*</label>
+            {form id=customers_firstname type=text name=customers_firstname value=$customers_firstname}
+        </div>
+        <div class="form-group">
+            <label for="customers_lastname">{txt key=TEXT_LASTNAME}*</label>
+            {form id=customers_lastname type=text name=customers_lastname value=$customers_lastname}
+        </div>
+        {if $show_birthdate eq 1}
+        <div class="form-group">
+            <label for="customers_dob">{txt key=TEXT_BIRTHDATE}*</label>
+            {form id=customers_dob type=text name=customers_dob value=$customers_dob}
+        </div>
+        {/if}
+    </fieldset>
+
+    <fieldset>
+        <legend>{txt key=TEXT_ADDRESS}</legend>
+        {hook key=account_tpl_edit_address_address_top}
+        <div class="form-group">
+            <label for="customers_street_address">{txt key=TEXT_STREET}*</label>
+            {form id=customers_street_address type=text name=customers_street_address value=$customers_street_address}
+        </div>
+        <div class="form-group">
+            <label for="customers_address_addition">{txt key=TEXT_ADDRESS_ADDITION}</label>
+            {form id=customers_address_addition type=text name=customers_address_addition value=$customers_address_addition}
+        </div>
+        {if $show_suburb eq 1}
+        <div class="form-group">
+            <label for="customers_suburb">{txt key=TEXT_SUBURB}</label>
+            {form id=customers_suburb type=text name=customers_suburb value=$customers_suburb}
+        </div>
+        {/if}
+        <div class="form-group">
+            <label for="customers_postcode">{txt key=TEXT_CODE}*</label>
+            {form id=customers_postcode type=text name=customers_postcode value=$customers_postcode}
+        </div>
+        <div class="form-group">
+            <label for="customers_city">{txt key=TEXT_CITY}*</label>
+            {form id=customers_city type=text name=customers_city value=$customers_city}
+        </div>
+        <div class="form-group">
+            <label for="customers_country_code">{txt key=TEXT_COUNTRY}*</label>
+            <div id='countries'>{form type=select name=customers_country_code value=$country_data default=$selected_country}</div><!-- #countries -->
+        </div>
+        {if $show_federal_states eq 1}
+        <div id="federals" class="form-group" >
+            {foreach item='federal_states' from=$country_data}
+            {if $federal_states.federal_states}
+            <div class="federals-states {$federal_states.id}" style="display:none">
+                <label for="default_address_customers_federal_state_code">{txt key=TEXT_FEDERAL_STATES}*</label><br />
+                {form params='id="customers_federal_state_code"' type=select name='customers_federal_state_code' value=$federal_states.federal_states default=$customers_federal_state_code}
+            </div>
+            {/if}
+            {/foreach}
+        </div>
+        {/if}
+        {if $show_state eq 1}
+        <div class="form-group">
+            <label for="customers_zone_code">{txt key=TEXT_STATE}</label>
+            {form type=select name=customers_zone_code value=$customers_zone_code default=$selected_zone}
+        </div>
+        {/if}
+        {if $show_county eq 1}
+        <div class="form-group">
+            <label for="">{txt key=TEXT_COUNTY}</label>
+            {$INPUT_COUNTY}
+        </div>
+        {/if}
+        {hook key=account_tpl_edit_address_address_bottom}
+    </fieldset>
+
+    <fieldset>
+        <legend>{txt key=TEXT_CONTACT}</legend>
+        <div class="form-group">
+            <label for="customers_phone">{txt key=TEXT_PHONE}{if _STORE_TELEPHONE_MIN_LENGTH > 0}*{/if}</label>
+            {form id=customers_phone type=text name=customers_phone value=$customers_phone}
+        </div>
+        <div class="form-group">
+            <label for="customers_mobile_phone">{txt key=TEXT_MOBILE_PHONE}{if _STORE_MOBILE_PHONE_MIN_LENGTH > 0}*{/if}</label>
+            {form id=customers_mobile_phone type=text name=customers_mobile_phone value=$customers_mobile_phone}
+        </div>
+        <div class="form-group">
+            <label for="customers_fax">{txt key=TEXT_FAX}{if _STORE_FAX_MIN_LENGTH > 0}*{/if}</label>
+            {form id=customers_fax type=text name=customers_fax value=$customers_fax}
+        </div>
+    </fieldset>
+
+	{if $adType}
+	    {form type=hidden name=address_class value=$adType}
+	    {form type=hidden name=adType value=$adType}
+	{else}
+        <div class="well">
+            <div class="form-group">
+                <label for="old_address_class">{txt key=TEXT_ADDRESS_TYPE}</label>
+                {form id=old_address_class type=hidden name=old_address_class value=$old_address_class}
+                {form class="form-control" type=select name=address_class value=$address_type default=$address_class}
+            </div>
+        </div>
+	{/if}
+
+    <p class="required pull-left">{txt key=TEXT_MUST}</p>
+
+    <div class="form-submit pull-right text-right">
+        <p>
+            {if $adType eq 'shipping'}
+                <a href="{link page='checkout' paction=shipping conn=SSL}" class="btn btn-default">{txt key=BUTTON_BACK}</a>
+            {/if}
+            {if $adType eq 'payment'}
+                <a href="{link page='checkout' paction=payment conn=SSL}" class="btn btn-default">{txt key=BUTTON_BACK}</a>
+            {/if}
+            {if !$adType}
+                <a href="{link page='customer' paction=address_overview conn=SSL}" class="btn btn-default">{txt key=BUTTON_BACK}</a>
+            {/if}
+
+            <button type="submit" class="btn btn-primary">
+                {txt key=BUTTON_NEXT}
+            </button>
+        </p>
+    </div>
+
+	{form type=formend}
+
+	{literal}
+	<script type="text/javascript">
+        var dobClicked = false;
+        var dobPreselect = {/literal}new Date({$dobPreselect}){literal};
+        document.addEventListener("DOMContentLoaded",function(event){
+ 			$('#countries').change(function(){
+ 				var selected_country = $('#countries option:selected').val();
+                $('.federals-states').css({'display':'none'});
+				if($('.'+selected_country).length != 0){
+                    $('.federals-states.'+selected_country).css({'display':'block'});
+                    var selectedFederalStateValue  = $('.federals-states.'+selected_country + ' select option[selected=selected]').val();
+                    if (typeof selectedFederalStateValue == 'undefined') selectedFederalStateValue = 1;
+                    $('.federals-states.'+selected_country + ' select').val( selectedFederalStateValue );
+                }
+                else {
+                    $('.federals-states select').val('');
+ 				}
+            });
+                //update bootstrap-select
+            $(".federals-states select, #countries select").attr('data-live-search', 'true').selectpicker('render');
+            // init federal states
+            $('#countries').trigger('change');
+            
+
+            var dobInput = $('#customers_dob');
+            if (dobInput.length) {
+                dobInput.datetimepicker({
+                    minDate: new Date({/literal}{$min_date}{literal}),
+                    maxDate:  new Date({/literal}{$max_date}{literal}),
+                    useCurrent: false,
+                    format: '{/literal}{$smarty.const._STORE_ACCOUNT_DOB_FORMAT|upper}{literal}',
+                    locale: '{/literal}{if $language=="de"}de{else}en{/if}{literal}'
+                }).on('dp.show', function()
+                {
+                    if (!dobClicked && dobPreselect!=false){
+                        dobInput.data("DateTimePicker").date( dobPreselect );// set
+                        {/literal}{if $is_new}{literal}dobInput.data("DateTimePicker").date( null ); // and unset to unselect and force user to click{/literal}{/if}{literal}
+                        dobClicked = true;
+                    }
+                });
+            }
+
+ 		});
+	</script>
+	{/literal}
+</div><!-- #edit-adress -->

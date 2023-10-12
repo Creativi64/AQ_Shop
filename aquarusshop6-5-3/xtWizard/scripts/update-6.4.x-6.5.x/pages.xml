@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WizardScript>
+	<Title>Update 6.4.x > 6.5.x</Title>
+	<Pages>
+		<Page>
+			<PageID>index</PageID>
+			<PageMethod>doUpdate</PageMethod>
+			<PageCondition></PageCondition>
+		</Page>
+		<Page>
+			<PageID>updateVersionInfoPhp</PageID>
+			<PageMethod>updateVersionInfoPhp</PageMethod>
+			<PageCondition></PageCondition>
+		</Page>
+		<Page>
+			<PageID>finish</PageID>
+			<PageMethod>displayFinishPage</PageMethod>
+			<PageCondition></PageCondition>
+		</Page>
+	</Pages>
+</WizardScript>

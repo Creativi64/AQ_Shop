@@ -1,0 +1,11 @@
+Hello {$address_data.customers_title} {$address_data.customers_firstname} {$address_data.customers_lastname},
+
+For your email address a request to reset the password was received.
+
+To confirm this inquiry, please click the following confirmation link, or copy the url into you browser.
+      
+Your confirmation link:
+{$remember_link}
+
+------------------------------------------------------------------------------------------------------------
+{$_system_footer_txt}

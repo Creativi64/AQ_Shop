@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+
+    <code>xt_ckeditor</code>
+    <version>1.0.3</version>
+    <type>core</type>
+
+    <minimum_store_version>6.2.0</minimum_store_version>
+
+    <developer>xt:Commerce</developer>
+    <url>https://www.xt-commerce.com</url>
+
+    <marketplace_link><![CDATA[https://addons.xt-commerce.com/index.php?page=product&info=7994]]></marketplace_link>
+    <documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=768114689]]></documentation_link>
+
+    <title>CKEditor Extensions</title>
+    <icon>xt-commerce_logo.jpg</icon>
+
+    <messages>
+        <post>
+            <de><![CDATA[Aktivieren Sie das Plugin und laden Sie dann das Backend neu.]]></de>
+            <en><![CDATA[Activate plugin an then reload page.]]></en>
+        </post>
+    </messages>
+
+    <plugin_code>
+        <code>
+            <hook>ejsadmin.php:more_js</hook>
+            <phpcode><![CDATA[require_once _SRV_WEBROOT.'plugins/xt_ckeditor/hooks/ejsadmin.php_more_js.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.configuration:getConfigHeaderData_bottom</hook>
+            <phpcode><![CDATA[require_once _SRV_WEBROOT.'plugins/xt_ckeditor/hooks/class.configuration_getConfigHeaderData_bottom.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+    </plugin_code>
+
+    <db_install><![CDATA[require_once _SRV_WEBROOT.'plugins/xt_ckeditor/installer/install.php';]]></db_install>
+    <db_uninstall><![CDATA[require_once _SRV_WEBROOT.'plugins/xt_ckeditor/installer/uninstall.php';]]></db_uninstall>
+
+    <minimumupdateversion>1.0.0</minimumupdateversion>
+    <db_update>
+        <!--update>
+            <version>1.0.0</version>
+            <to_version>1.0.1</to_version>
+            <code><![CDATA[//]]>
+            </code>
+        </update-->
+    </db_update>
+
+</xtcommerceplugin>

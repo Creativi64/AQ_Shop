@@ -1,0 +1,115 @@
+{if !$wanted}
+    {assign var="wanted" value="v1"}
+{/if}
+{if !$available}
+    {assign var="available" value="v2"}
+{/if}
+<div class="product-listing product-listing-{$wanted}"
+    data-listing-switch-enabled="true"
+    data-listing-switch-current="{$wanted}"
+>
+    {$categories}
+    {if $product_listing}
+
+        {if $manufacturer.MANUFACTURER.manufacturers_image}<div class="manufacturers-image">{img img=$manufacturer.MANUFACTURER.manufacturers_image type=m_org class="img-responsive img-thumbnail"}</div><br />{/if}
+
+        {if $heading_text}
+            {if !$smarty.get.page || $smarty.get.page == 'index'}
+                <h2 class="breaking-headline index-heading">{$heading_text}</h2>
+            {else}
+                {if $smarty.get.page == 'cart'}
+                    <h2 class="breaking-headline {$smarty.get.page}-heading">{$heading_text}</h2>
+                {else}
+                    <h1 class="breaking-headline {$smarty.get.page}-heading">{$heading_text}</h1>
+                {/if}
+            {/if}
+        {/if}
+        {if $smarty.get.page == 'search'}
+            {include file="$selected_template/xtCore/pages/search.html" included=true type="tpl_include"}
+        {/if}
+
+        {if $PRODUCTS_DROPDOWN}{$PRODUCTS_DROPDOWN}{/if}
+        {if $manufacturer && $manufacturer.MANUFACTURER.manufacturers_description|trim != ''}<div class="manufacturers-description text-word-wrap">{$manufacturer.MANUFACTURER.manufacturers_description}</div>{/if}
+        {if $MANUFACTURER_DROPDOWN && !$MANUFACTURER_DROPDOWN.options}{if $MANUFACTURER_DROPDOWN}{$MANUFACTURER_DROPDOWN}{/if}{/if}
+
+        <div class="clearfix"></div>
+
+        <br />
+        <hr class="listing-split"/>
+        {if $NAVIGATION_PAGES || (is_array($sort_dropdown) && $sort_dropdown.options)}
+            <div class="row products-sort-pages top{if !$smarty.get.page || $smarty.get.page == 'index'} pull-right{/if}">
+                {if $sort_dropdown.options}
+                    <div class="col col-md-7 products-sort">
+                        {form type=form name=sort_dropdown action='dynamic' method=get}
+                        <div class="clearfix">
+                            <div class="pull-left-lg">
+                                {if isset($current_manufacturer_id)}{form type=hidden name=page value='manufacturers'} {else} {form type=hidden name=page value='categorie'} {/if}
+                                {if isset($current_category_id)}{form type=hidden name=cat value=$current_category_id}{/if}
+                                {if isset($current_manufacturer_id)}{form type=hidden name=mnf value=$current_manufacturer_id}{/if}
+                                {form class="form-control" type=select name=sorting value=$sort_dropdown.options default=$sort_default onchange='this.form.submit();'}
+                                {*if $smarty.const._STORE_STOCK_CHECK_DISPLAY == 'true'}
+                                <input class="" type="checkbox" name="withStockOnly" {if $smarty.session.session_withStockOnly}checked="checked"{/if} onchange="this.form.submit();"> nur mit Bestand
+                                <input class="" type="hidden" name="session_withStockOnly" value="{$smarty.session.session_withStockOnly}">
+                                {/if*}
+                            </div>
+                            {if $MANUFACTURER_DROPDOWN && $MANUFACTURER_DROPDOWN.options}
+                                <div class="manufacturer-dropdown pull-left-lg">
+                                    {form class="form-control" type=select name=filter_id value=$MANUFACTURER_DROPDOWN.options default=$filter_default onchange='this.form.submit();'}
+                                </div>
+                            {/if}
+                            <div class="clearfix"></div>
+                        </div>
+                        {hook key=product_listing_base_sort_form_bottom}
+                        {form type=formend}
+                    </div><!-- .products-sort -->
+                    <div class="col col-md-5 navigation-pages">
+                        <div class="btn-toolbar pull-right" role="toolbar">
+                            {box name=listing_switch_buttons htmlonly=1}
+                            {$NAVIGATION_PAGES}
+                        </div>
+                    </div><!-- .navigation-pages -->
+                {else}
+                    <div class="col col-md-12 navigation-pages">
+                        <div class="btn-toolbar pull-right" role="toolbar">
+                            {box name=listing_switch_buttons htmlonly=1}
+                            {$NAVIGATION_PAGES}
+                        </div>
+                    </div><!-- .navigation-pages -->
+                {/if}
+            </div><!-- .products-sort-pages -->
+            <div class="clearfix"></div>
+        {/if}
+        <hr class="listing-split"/>
+        <br />
+        <div class="listing">
+            <div class="row ew_row">
+                {foreach name=listing item=module_data from=$product_listing}
+                    <div class="col col-ms-6 col-sm-6 col-md-4 {if $smarty.foreach.listing.first} col-first{elseif $smarty.foreach.listing.last} col-last{/if}">
+                        <div class="listing-switch-area listing-switch-area-{$wanted} wanted">
+                            {include file="$selected_template/includes/panel_product_listing.html" listing_version=$wanted}
+                        </div>
+                        <div class="listing-switch-area listing-switch-area-{$available} available">
+                            {include file="$selected_template/includes/panel_product_listing.html" listing_version=$available}
+                        </div>
+                    </div><!-- .col -->
+                {/foreach}
+            </div><!-- .row -->
+        </div><!-- .listing -->
+
+        {if $NAVIGATION_PAGES}
+            <div class="row products-sort-pages bottom">
+                <div class="col-md-12 navigation-pages text-right">
+                    <hr />
+                    {$NAVIGATION_PAGES}
+                </div><!-- .navigation-pages -->
+            </div><!-- .products-sort-pages -->
+        {/if}
+    {/if}
+
+    {$error_listing}
+
+    {if $category_data.categories_description_bottom}
+        <hr />
+        <div id="categorie-description-bottom" class="textstyles text-word-wrap text-muted">{$category_data.categories_description_bottom}</div>
+    {/if}
+</div>

@@ -1,0 +1,229 @@
+{if
+    $page == 'index' OR
+    $page == 'product' OR
+    $page == 'cart' OR
+    $page == 'checkout' OR
+    $page == '404' OR
+    $smarty.get.page_action == 'login' OR
+    $smarty.get.page_action == 'order_info'
+}
+    {assign var="show_index_boxes" value="false"}
+{else}
+    {assign var="show_index_boxes" value="true"}
+{/if}
+{hook key=index_top}
+<div id="site-wrap" class="{$page}-wrap{if $page != 'index'} subpage-wrap{/if}{if $smarty.get.page_action} {$smarty.get.page_action}-action-wrap{/if} shop{$smarty.const.EW_ADVENTURY_SHOP_ID}">
+    {if !isset($smarty.get.viewport) || $smarty.get.viewport != 'modal'}
+        <div id="header">
+            {box name=noscript htmlonly=1}
+            <div id="meta-navigation">
+                <div class="container">
+                    <ul class="hidden-xs hidden-sm list-inline pull-left user text-muted">
+                        {hook key=meta_nav_left_first}
+                        {hook key=ew_adventury_navmeta}
+                        {hook key=meta_nav_left_last}
+                    </ul>
+                    <ul class="list-inline pull-right user text-muted">
+                        {hook key=meta_nav_right_first}
+                        {if $account == true}
+                            {if $registered_customer}
+                                <li><i class="mdi mdi-account-circle"></i> <a href="{link page='customer' conn=SSL}">{txt key=TEXT_ACCOUNT}</a></li>
+                            {else}
+                                <li><i class="mdi mdi-login"></i> <a href="{link page='customer' paction='login' conn=SSL}" data-toggle="modal" data-target="#loginModal" data-remote="false">{txt key=TEXT_LOGIN}</a></li>
+                            {/if}
+                        {/if}
+                        <li><i class="mdi mdi-magnify"></i> <a href="javascript:void(0);" class="open-overlay-search">{txt key=BUTTON_SEARCH}</a></li>
+
+                        {box name=cart}
+                        {hook key=meta_nav_right_last}
+                    </ul>
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+            <div id="main-navigation" class="navbar navbar-default" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle btn-mobile" data-toggle="collapse" data-target="#mobile-menu">
+                            <span class="sr-only">Toggle navigation</span>
+                            <i class="mdi mdi-menu icon-menu"></i>
+                        </button>
+                        <a href="{link page='index'}" class="navbar-brand text-muted">
+                            <img class="img-responsive" src="media/logo/{$smarty.const._STORE_LOGO}" alt="{$smarty.const._STORE_NAME}" />
+                        </a>
+                        {box name=header htmlonly=1}
+                    </div>
+                </div>
+                <div id="main-navigation-top" class="navbar-collapse collapse hidden-xs">
+                    <ul class="nav navbar-nav">
+                        {hook key=ew_adventury_navbar}
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div><!-- #main-navigation -->
+
+            {if defined('CONFIG_EW_ADVENTURY_PLUGIN_MEGANAV') && $smarty.const.CONFIG_EW_ADVENTURY_PLUGIN_MEGANAV|trim == '1'}
+                <div class="mega-menu-cover"> </div>
+                <div id="mega-menu" class="mega-menu hidden hidden-xs"> </div>
+            {/if}
+
+        </div><!-- #header -->
+
+        {hook key=pre_content_container}
+        {if !isset($disable_content_container)}
+            <div id="container"{if $page == '404' || $page == 'checkout'} class="no-breadcrump-container"{/if}>
+                {hook key=container_top}
+
+                {if $page != 'index' && $page != '404' && $page != 'checkout'}
+                    {include file="$selected_template/xtCore/pages/navigation/breadcrumb.html" type="tpl_include"}
+                {/if}
+
+                {hook key=ew_adventury_teaser}
+                {hook key=ew_adventury_startpage_top}
+
+                {* <!-- hook for cached xt_startpage_products --> *}
+
+                {hook key=ew_adventury_usp}
+                {if $page == 'index' }{$content}{/if}
+                {hook key=ew_adventury_startpage_bottom}
+                {if $page == 'index' }
+                <div class="container">
+                    {page name=xt_live_shopping type=user order_by=rand limit=10 nopaging=true tpl="product_listing_slider.html"}
+                </div>
+                {/if}
+
+                <div id="content">
+                    {if $page != 'categorie' && $page != 'product' && $page != 'manufacturer'}
+                        <div class="container">
+                            {if $page != 'index' }{$content}{/if}
+                            {if $page == 'index' }
+                                {hook key=ew_adventury_topcategories}
+                                {box name=startpage_categories}
+                            {/if}
+                        </div>
+                    {else}
+                        {$content}
+                    {/if}
+                </div><!-- #content -->
+                {hook key=ew_adventury_testimonials}
+
+                {*box name=manufacturers_slider order_by='m.manufacturers_name'*}
+
+                {hook key=container_bottom}
+            </div><!-- #container -->
+        {/if}
+        {hook key=after_content_container}
+
+        <div id="footer">
+            <div class="container" id="footer-accordion" role="tablist" aria-multiselectable="true">
+                <div class="row footer-top">
+                    <div class="col col-sm-4 col-1">
+                            {include file="$selected_template/includes/box_cache_wrap.html" name=footer_contact htmlonly=1 type="tpl_include"}
+                    </div>
+                    <div class="col col-sm-4 col-1">
+                        {hook key=ew_adventury_footer_info}
+                            {include file="$selected_template/includes/box_cache_wrap.html" name=footer_left htmlonly=1 type="tpl_include"}
+                    </div>
+                    <div class="col col-sm-4 col-2">
+                        {hook key=ew_adventury_footer_content}
+                            {include file="$selected_template/includes/box_cache_wrap.html" name=footer_right htmlonly=1 type="tpl_include"}
+
+                    </div>
+                </div>
+                <div class="row footer-bottom">
+                    <div class="col col-sm-4 col-1">
+                        {include file="$selected_template/includes/box_cache_wrap.html" name=manufacturers htmlonly=0 order_by='m.manufacturers_name' type="tpl_include"}
+                    </div>
+                    <div class="col col-sm-4 col-2">
+                        {box name=currency}
+                    </div>
+                    <div class="col col-sm-4 hidden-sm hidden-md hidden-lg">
+                        {box name=language}
+                    </div>
+                    <div class="col col-sm-4 col-3">
+                        {include file="$selected_template/includes/box_cache_wrap.html" name=payment_logos htmlonly=0 type="tpl_include"}
+                        {box name=trusted_shops_ratings}
+                        {box name=trusted_shops_seal}
+                        {box name=trusted_shops_video}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-xs-12">
+                        {if defined('CONFIG_EW_ADVENTURY_PLUGIN_LISTING_FOOTERTAX') && $smarty.const.CONFIG_EW_ADVENTURY_PLUGIN_LISTING_FOOTERTAX|trim == '1'}
+                            <p class="img-thumbnail tax-footer"><small>* {txt key=TEXT_EW_ADVENTURY_TAX_FOOTER}</small></p>
+                        {/if}
+                    </div>
+                </div>
+            </div>
+            <div id="footer-meta" class="text-center text-muted">
+                <ul class="navmeta visible-xs-block visible-sm-block list-unstyled">
+                    {hook key=ew_adventury_navmeta}
+                </ul>
+                {if $smarty.const.CONFIG_EW_ADVENTURY_PLUGIN_SIDEBUTTONS == 0}
+	                <div class="hidden-xs">
+	                	{box name=language}
+	                </div>
+                {/if}
+                {box name=trusted_shops_rich_snippet}
+                [<copyright>]
+                {hook key=index_footer_tpl}
+            </div>
+        </div><!-- #footer -->
+
+        <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <p class="h3 modal-title">{txt key=TEXT_LOGIN}</p>
+                    </div>
+                    <div class="modal-body">
+                        {box name=loginbox}
+                    </div>
+                </div>
+            </div>
+        </div><!-- #loginModal -->
+
+        <a id="back-to-top" class="affix-top backtotop btn btn-link" href="javascript:void(0)">
+            <i class="mdi mdi-arrow-collapse-up"></i>
+            <span class="sr-only">Back to Top</span>
+        </a>
+
+        <div id="overlay-search">
+            <div class="container">
+                {form id="search-box-form" type=form name=search_box action='search' link_params=getParams method=get conn=SSL role="form"}
+                    {form type=hidden name=page value=search}
+                    {form type=hidden name=page_action value=query}
+                    {form type=hidden name=desc value="on"}
+                    {form type=hidden name=sdesc value="on"}
+                <div class="form-group">
+                    <div class="input-group input-group-lg">
+                        <input class="form-control" type="search" id="keywords" name="keywords" placeholder="{txt key=TEXT_ENTER_SEARCH_TERM}" value="{$smarty.get.keywords|strip_tags}" />
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-default">
+                                <i class="mdi mdi-magnify"></i>
+                                <span class="sr-only">{txt key=BUTTON_SEARCH}</span>
+                            </button>
+                        </span>
+                        <span class="input-group-btn">
+                            <button type="button" class="close"><i class="mdi mdi-close"></i></button>
+                        </span>
+                    </div>
+                </div>
+                {form type=formend}
+            </div>
+        </div>
+
+        {hook key=ew_adventury_navbar_mobile}
+
+        {* <!-- Docked Sidenavigation --> *}
+        {box name=floating_boxes htmlonly=1}
+
+        {include file="$selected_template/includes/box_cronjob_wrap.html" name=manufacturers htmlonly=0 type="tpl_include"}
+
+    {else}
+        {$content}
+    {/if}
+</div>

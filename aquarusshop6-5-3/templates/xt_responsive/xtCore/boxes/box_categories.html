@@ -1,0 +1,10 @@
+<!-- obsolete -->
+<div class="box-categories sidebar-box">
+    <p class="headline text-uppercase">{if $_parent.categories_name}{$_parent.categories_name}{else}{txt key=TEXT_BOX_TITLE_CATEGORIES}{/if}</p>
+    <ul class="nav nav-pills nav-stacked">
+        {foreach name=aussen item=module_data from=$_categories}
+            <li id="box-categories-categorie-{$module_data.categories_id}" class="level{$module_data.level}{if $module_data.active} active{/if}"><a href="{$module_data.categories_link}">{$module_data.categories_name}</a></li>
+        {/foreach}
+    </ul>
+</div>
+<!-- obsolete -->

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+
+  <code>xt_bank_details</code>
+  <version>5.1.0</version>
+  <type>payment</type>
+  
+  <minimum_store_version>5.1.4</minimum_store_version>
+  
+  <developer>xt:Commerce</developer>
+  <url>https://www.xt-commerce.com</url>
+  
+  <marketplace_link><![CDATA[https//addons.xt-commerce.com/index.php?page=product&info=6134]]></marketplace_link>
+  <documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=52953090]]></documentation_link>
+  
+  <title>Bank details</title>
+  <icon>xt_bank_details.jpeg</icon>
+
+    <plugin_code>
+
+        <code>
+            <hook>class.order.php:_buildData_bottom</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_bank_details/hooks/class.order.php__buildData_bottom.php';
+                ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.order.php:_deleteOrder_bottom</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_bank_details/hooks/class.order.php__deleteOrder_bottom.php';
+                ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.orders.php:_sendOrderMail_top</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_bank_details/hooks/class.orders.php__sendOrderMail_top.php';
+                ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+
+    </plugin_code>
+
+    <db_install><![CDATA[
+        include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS. 'xt_bank_details/installer/install.php';
+        ]]>
+    </db_install>
+
+    <db_uninstall><![CDATA[
+        include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS. 'xt_bank_details/installer/uninstall.php';
+        ]]>
+    </db_uninstall>
+
+    <minimumupdateversion>1.0.0</minimumupdateversion>
+    <db_update>
+        <update>
+            <version>1.0.0</version>
+            <to_version>1.0.1</to_version>
+            <code><![CDATA[ // ]]></code>
+        </update>
+        <update>
+            <version>1.0.1</version>
+            <to_version>1.0.2</to_version>
+            <code><![CDATA[ // ]]></code>
+        </update>
+        <update>
+            <version>1.0.2</version>
+            <to_version>6.0.0</to_version>
+            <code><![CDATA[ // ]]></code>
+        </update>
+    </db_update>
+
+</xtcommerceplugin>

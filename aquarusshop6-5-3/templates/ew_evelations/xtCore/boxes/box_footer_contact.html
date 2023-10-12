@@ -1,0 +1,34 @@
+{content cont_id=6 is_id=false}
+{if $_content_6}
+	<div class="hidden-xs">
+		<p class="headline">{$_content_6.title}</p>
+		<div class="footer-contact">
+		    {if $_content_6.content_image}
+		        <p><img class="img-responsive" src="media/images/org/{$_content_6.content_image}"  alt="{$_content_6.title}"/></p>
+		    {/if}
+		    {$_content_6.content_body_short}
+		    {if $_content_6.content_link}
+		        <p><a href="{$_content_6.content_link}"><i class="fa fa-chevron-circle-right"></i> {txt key=TEXT_CONTACT_PAGE}</a></p>
+		    {/if}
+		</div>
+	</div>
+	<div class="hidden-sm hidden-md hidden-lg">
+		<h4 role="tab" id="footerContactHeading" class="headline">
+	       	<a data-toggle="collapse" class="collapsed collapse-status" data-parent="#footer-accordion" href="#footerContact" aria-expanded="true" aria-controls="footerContact">
+	       		{$_content_6.title}
+				<i class="fa fa-plus-circle plus pull-right"> </i> <i class="fa fa-minus-circle minus pull-right"> </i>
+			</a>
+	    </h4>
+	    <div id="footerContact" class="collapse" role="tabpanel" aria-labelledby="footerContactHeading">
+			<div class="footer-contact">
+			    {if $_content_6.content_image}
+			        <p><img class="img-responsive" src="media/images/org/{$_content_6.content_image}" alt="{$_content_6.title}"/></p>
+			    {/if}
+			    {$_content_6.content_body_short}
+			    {if $_content_6.content_link}
+			        <p><a href="{$_content_6.content_link}"><i class="fa fa-chevron-circle-right"></i> {txt key=TEXT_CONTACT_PAGE}</a></p>
+			    {/if}
+			</div>
+	    </div>
+	</div>
+{/if}

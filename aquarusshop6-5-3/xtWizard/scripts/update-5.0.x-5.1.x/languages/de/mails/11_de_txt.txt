@@ -1,0 +1,8 @@
+Hallo {$customers_title} {$customers_firstname} {$customers_lastname},
+
+Anbei finden Sie eine Datei im xml-Format. Diese Datei enthält die bei uns über Sie gespeicherten Informationen.
+
+Achtung: Diese E-Mail-Adresse wurde uns von einem Kunden bekannt gegeben. Falls Sie sich nicht angemeldet haben, antworten Sie bitte auf diese E-Mail.
+
+------------------------------------------------------------------------------------------------------------
+{$_system_footer_txt}

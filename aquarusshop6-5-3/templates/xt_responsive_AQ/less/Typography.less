@@ -1,0 +1,557 @@
+//  _____                                         _
+// /__   \_   _ _ __   ___   __ _ _ __ __ _ _ __ | |__  _   _
+//   / /\/ | | | '_ \ / _ \ / _` | '__/ _` | '_ \| '_ \| | | |
+//  / /  | |_| | |_) | (_) | (_| | | | (_| | |_) | | | | |_| |
+//  \/    \__, | .__/ \___/ \__, |_|  \__,_| .__/|_| |_|\__, |
+//        |___/|_|          |___/          |_|          |___/
+//
+// Media queries
+// -------------
+// We use the following media queries in our Less files to create the key breakpoints in our grid system.
+// ```less
+//    @media (max-width: @screen-xs-max) { ... }
+//    @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }
+//    @media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }
+//    @media (min-width: @screen-lg-min) { ... }
+// ```
+//;
+
+/**
+* PT-Sans Fonts
+* @see http://www.fontsquirrel.com/fonts/pt-sans
+*/
+@font-face {
+    font-family: 'pt_sansregular';
+    src: url('@{web-font-path}/ptsans_regular/PTS55F-webfont.eot');
+    src: url('@{web-font-path}/ptsans_regular/PTS55F-webfont.eot?#iefix') format('embedded-opentype'),
+    url('@{web-font-path}/ptsans_regular/PTS55F-webfont.woff') format('woff'),
+    url('@{web-font-path}/ptsans_regular/PTS55F-webfont.ttf') format('truetype'),
+    url('@{web-font-path}/ptsans_regular/PTS55F-webfont.svg#pt_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'pt_sansbold';
+    src: url('@{web-font-path}/ptsans_bold/PTS75F-webfont.eot');
+    src: url('@{web-font-path}/ptsans_bold/PTS75F-webfont.eot?#iefix') format('embedded-opentype'),
+    url('@{web-font-path}/ptsans_bold/PTS75F-webfont.woff') format('woff'),
+    url('@{web-font-path}/ptsans_bold/PTS75F-webfont.ttf') format('truetype'),
+    url('@{web-font-path}/ptsans_bold/PTS75F-webfont.svg#pt_sansbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/**
+ * Font Smoothing
+ */
+* {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-smoothing: antialiased;
+    font-weight: 400;
+}
+
+/**
+* HEADINGS
+*/
+h1 {
+    margin-top: 5px;
+    padding-top: 0;
+}
+
+.headline,
+.headline-underline {
+    &.h1 {
+        .h1;
+    }
+    &, &.h2 {
+        .h2;
+    }
+    &.h3 {
+        .h3;
+    }
+    &.h4 {
+        .h4;
+    }
+    &.h5 {
+        .h4;
+    }
+    .text-uppercase;
+    .text-word-wrap;
+    &[data-toggle="collapse"] {
+        .cursor-pointer;
+        .subpage-wrap & {
+            background-color: @gray-lighter !important;
+            padding: (@grid-gutter-width / 2) !important;
+            padding-right: @grid-gutter-width !important;
+            margin-bottom: @grid-gutter-width !important;
+            .h3;
+        }
+        &:before {
+            .fa-icon();
+            .fa-icon-class(sort);
+            .pull-right;
+            color: @text-muted;
+            .subpage-wrap & {
+                margin-right: -(@grid-gutter-width / 2);
+            }
+        }
+        &[aria-expanded="true"]:before {
+            .fa-icon-class(@directional-fa-icon-close);
+        }
+        &[aria-expanded="false"]:before {
+            .fa-icon-class(@directional-fa-icon-down);
+        }
+        &:extend(.clearfix all);
+    }
+}
+
+.headline-underline,
+.headline[aria-expanded="false"] {
+    &.h1 {
+        padding-bottom: (@font-size-h1 / 2);
+        margin-bottom: @font-size-h1;
+    }
+    &, &.h2 {
+        padding-bottom: (@font-size-h2 / 2);
+        margin-bottom: @font-size-h2;
+    }
+    &.h3 {
+        padding-bottom: (@font-size-h3 / 2);
+        margin-bottom: @font-size-h3;
+    }
+    &.h4 {
+        padding-bottom: (@font-size-h4 / 2);
+        margin-bottom: @font-size-h4;
+    }
+    &.h5 {
+        padding-bottom: (@font-size-h5 / 2);
+        margin-bottom: @font-size-h5;
+    }
+    border-bottom: 1px solid @hr-border;
+    .well & {
+        border-bottom-color: @well-border;
+    }
+}
+
+/**
+* BOLD
+*/
+b, strong, dt, label, th, .label {
+    .bold;
+}
+
+label.btn, .label.btn, small {
+    font-family: @font-family-sans-serif;
+}
+
+/**
+* TEXT STYLES / USER CONTENT
+*/
+.textstyles {
+    table {
+        .table;
+        .table-striped;
+        .table-bordered;
+    }
+    img {
+        .img-responsive;
+        width: auto !important;
+        height: auto !important;
+    }
+}
+
+/**
+ * FORM STYLES
+ **/
+.js-input-count {
+    font-size: @font-size-middle;
+}
+
+.required {
+    color: @ew-required-color;
+}
+
+legend {
+    .text-muted;
+}
+
+.control-label {
+    text-align: left !important;
+}
+
+/**
+* TEXT STYLES
+*/
+.text-secondary {
+    color: @brand-secondary;
+}
+
+/**
+* BUTTONS
+*/
+.btn-lg .glyphicon, .btn-lg .glyphicon, .btn-lg .glyphicon {
+    top: 4px;
+}
+
+.btn-lg.btn-cart, .btn-lg.btn-qty {
+    font-size: 16px;
+}
+
+/**
+* QTY Button Group
+*/
+input.qty {
+    text-align: center;
+}
+
+/**
+* SIDEBAR TOGGLE
+*/
+.sidebar-products {
+    .product-info {
+        p:last-child {
+            margin-bottom: 0;
+        }
+        .text-muted {
+            font-size: @font-size-middle;
+        }
+    }
+    .product-price, .product-price * {
+        white-space: normal;
+    }
+}
+
+/**
+* CART PAGE / CHECKOUT
+*/
+.table .image-link {
+    text-decoration: none;
+    text-align: center;
+}
+
+#cart .table,
+#checkout-confirmation .table {
+    .text-muted {
+        font-size: @font-size-middle;
+        margin-bottom: 5px;
+    }
+}
+
+/**
+* LISTING DEFAULTS
+*/
+.product-name a {
+    color: @brand-secondary;
+}
+
+.products-sort-pages {
+    @media (min-width: @screen-xs-min) {
+        .nav-pages {
+            text-align: right;
+        }
+    }
+}
+
+/**
+* LISTING SWITCH
+*/
+.product-listing-switch {
+    &.product-listing-v1 {
+        .text-left-v1 {
+            .text-left;
+        }
+        .text-right-v1 {
+            .text-right;
+        }
+        .text-center-v1 {
+            .text-center;
+        }
+    }
+    &.product-listing-v2 {
+        .text-left-v2 {
+            .text-left;
+            &.text-right-xs {
+                .text-right-xs;
+            }
+            &.text-right-sm {
+                .text-right-sm;
+            }
+            &.text-right-md {
+                .text-right-md;
+            }
+            &.text-right-lg {
+                .text-right-lg;
+            }
+            &.text-center-xs {
+                .text-center-xs;
+            }
+            &.text-center-sm {
+                .text-center-sm;
+            }
+            &.text-center-md {
+                .text-center-md;
+            }
+            &.text-center-lg {
+                .text-center-lg;
+            }
+        }
+        .text-right-v2 {
+            .text-right;
+            &.text-left-xs {
+                .text-left-xs;
+            }
+            &.text-left-sm {
+                .text-left-sm;
+            }
+            &.text-left-md {
+                .text-left-md;
+            }
+            &.text-left-lg {
+                .text-left-lg;
+            }
+            &.text-center-xs {
+                .text-center-xs;
+            }
+            &.text-center-sm {
+                .text-center-sm;
+            }
+            &.text-center-md {
+                .text-center-md;
+            }
+            &.text-center-lg {
+                .text-center-lg;
+            }
+        }
+        .text-center-v2 {
+            .text-center;
+            &.text-left-xs {
+                .text-left-xs;
+            }
+            &.text-left-sm {
+                .text-left-sm;
+            }
+            &.text-left-md {
+                .text-left-md;
+            }
+            &.text-left-lg {
+                .text-left-lg;
+            }
+            &.text-right-xs {
+                .text-right-xs;
+            }
+            &.text-right-sm {
+                .text-right-sm;
+            }
+            &.text-right-md {
+                .text-right-md;
+            }
+            &.text-right-lg {
+                .text-right-lg;
+            }
+        }
+    }
+}
+
+/**
+* PRODUCT
+*/
+#product.detail {
+    .product-infos {
+        .table {
+            font-size: @font-size-middle;
+        }
+    }
+    .ms-options {
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        br {
+            display: none;
+        }
+        span.bold {
+            .control-label;
+        }
+
+        /* label template */
+        .default_option,
+        .default_option_selected {
+            font-family: @ew-font-family-regular;
+        }
+    }
+}
+
+/*safari fix*/
+.secondary .panel-danger .product-name a {
+    color: @panel-danger-text;
+}
+
+.listing .panel-danger .title a {
+    color: @panel-danger-text;
+}
+
+/**
+* REVIEWS
+*/
+.product-reviews {
+    font-size: @font-size-middle;
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 15px;
+    .text-muted;
+}
+
+/**
+* CHECKOUT
+*/
+#checkout {
+    .progress {
+        .active,
+        .done {
+            text-shadow: 1px 1px rgba(0, 0, 0, .3);
+        }
+        .progress-bar-success {
+            .progress-bar-success;
+            color: @progress-bar-color;
+        }
+    }
+    .address p:not(.headline):not(.headline-underline) {
+        margin-bottom: 0;
+    }
+    #checkout-confirmation .alert p {
+        margin: 0 0 5px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    .headline,
+    .headline-underline {
+        .h4;
+        .well & {
+            margin-top: 0;
+        }
+    }
+}
+
+/**
+* CUSTOMER
+*/
+.customer-wrap {
+    &.order_info-action-wrap {
+        .headline,
+        .headline-underline {
+            .h4;
+            .well & {
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+
+/**
+* ALERTS
+*/
+#installer_warning {
+    text-align: center;
+}
+
+/**
+* PROGRESS BAR
+*/
+.progress-bar-default {
+    .text-muted;
+}
+
+/**
+* IMAGES
+*/
+img {
+    font-size: @font-size-middle;
+    color: @gray-lighter;
+    image-rendering: -webkit-optimize-contrast  ;
+}
+
+.content-image {
+    margin-bottom: @grid-gutter-width;
+}
+
+/**
+* reCaptcha
+*/
+.recaptchatable, #recaptcha_area tr, #recaptcha_area td, #recaptcha_area th {
+    line-height: 0 !important;
+}
+
+/**
+* SELECTION HANDLING
+*/
+::selection {
+    color: #FFF;
+    text-shadow: none;
+}
+
+::-moz-selection {
+    color: #FFF;
+    text-shadow: none;
+}
+
+.btn::selection {
+    color: inherit;
+    text-shadow: inherit;
+}
+
+.btn::-moz-selection {
+    color: inherit;
+    text-shadow: inherit;
+}
+
+/**
+* Vertical align helper
+*
+* 1. Auf wrappendes Element, dessen Kinder vertikal mittig ausgerichtet werden sollen die Klasse "vertical-helper" setzen
+* 2. Das wrappende Element muss eine Hoehe definiert haben und ein Block Element sein
+*/
+.vertical-helper {
+    white-space: nowrap;
+}
+
+.vertical-helper:after {
+    content: " ";
+    font-size: 0;
+}
+
+/**
+* Button list to show buttons horizontal in a list
+*/
+.btn-list {
+    li {
+        a, input, button {
+            &, strong, b {
+                font-family: @ew-font-family-regular;
+                font-weight: normal;
+            }
+        }
+    }
+}
+
+/**
+* BADGES / LABELS
+*/
+.label.label-light,
+.badge.badge-light {
+    background-color: @gray-light;
+}
+.label.label-lighter,
+.badge.badge-lighter {
+    background-color: @gray-lighter;
+    color: @gray;
+}
+.label.label-special-price,
+.badge.badge-special-price {
+    background-color: @special-price-color;
+    color: #FFF;
+}

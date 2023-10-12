@@ -1,0 +1,272 @@
+<div id="checkout-confirmation" class="row">
+    <div class="col col-sm-3">
+        <div class="well shipping-address address">
+            <p class="headline-underline clearfix">
+                {txt key=TEXT_SHIPPING_ADDRESS}
+                <a title="{txt key=TEXT_EDIT}" class="btn btn-xs btn-default pull-right" href="{link page='checkout' paction='shipping' conn=SSL}">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="sr-only">{txt key=TEXT_EDIT}</span>
+                </a>
+            </p>
+            {if $shipping_address.customers_company}<p>{$shipping_address.customers_company}</p>{/if}
+            {if $shipping_address.customers_company_2}<p>{$shipping_address.customers_company_2}</p>{/if}
+            {if $shipping_address.customers_company_3}<p>{$shipping_address.customers_company_3}</p>{/if}
+            <p>{if $shipping_address.customers_title}{$shipping_address.customers_title} {/if}{$shipping_address.customers_firstname} {$shipping_address.customers_lastname}</p>
+            <p>{$shipping_address.customers_street_address}</p>
+            {if $shipping_address.customers_address_addition}</p>{$shipping_address.customers_address_addition}</p>{/if}
+            {if $shipping_address.customers_suburb}<p>{$shipping_address.customers_suburb}</p>{/if}
+            <p>{$shipping_address.customers_postcode} {$shipping_address.customers_city}</p>
+            <p>{$shipping_address.customers_country}</p>
+        </div>
+        {if $shipping_info.shipping_name}
+        <div class="well">
+            <p class="headline-underline clearfix">
+                {txt key=TEXT_SHIPPING_METHOD}
+                <a title="{txt key=TEXT_EDIT}" class="btn btn-xs btn-default pull-right" href="{link page='checkout' paction='shipping' conn=SSL}">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="sr-only">{txt key=TEXT_EDIT}</span>
+                </a>
+            </p>
+            {if $shipping_info.shipping_name}<p class="bold">{$shipping_info.shipping_name}</p>{/if}
+            {if $shipping_info.shipping_desc}<p>{$shipping_info.shipping_desc}</p>{/if}
+            {if $shipping_info.shipping_info}<p>{$shipping_info.shipping_info}</p>{/if}
+        </div>
+        {/if}
+        <div class="well payment-address address">
+            <p class="headline-underline clearfix">
+                {txt key=TEXT_PAYMENT_ADDRESS}
+                <a title="{txt key=TEXT_EDIT}" class="btn btn-xs btn-default pull-right" href="{link page='checkout' paction='payment' conn=SSL}">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="sr-only">{txt key=TEXT_EDIT}</span>
+                </a>
+            </p>
+            {if $payment_address.customers_company}<p>{$payment_address.customers_company}</p>{/if}
+            {if $payment_address.customers_company_2}<p>{$payment_address.customers_company_2}</p>{/if}
+            {if $payment_address.customers_company_3}<p>{$payment_address.customers_company_3}</p>{/if}
+            <p>{if $payment_address.customers_title}{$payment_address.customers_title} {/if}{$payment_address.customers_firstname} {$payment_address.customers_lastname}</p>
+            <p>{$payment_address.customers_street_address}</p>
+            {if $payment_address.customers_address_addition}</p>{$payment_address.customers_address_addition}</p>{/if}
+            {if $payment_address.customers_suburb}<p>{$payment_address.customers_suburb}</p>{/if}
+            <p>{$payment_address.customers_postcode} {$payment_address.customers_city}</p>
+            <p>{$payment_address.customers_country}</p>
+        </div>
+        <div class="well">
+            <p class="headline-underline clearfix">
+                {txt key=TEXT_PAYMENT_METHOD}
+                <a title="{txt key=TEXT_EDIT}" class="btn btn-xs btn-default pull-right" href="{link page='checkout' paction='payment' conn=SSL}">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="sr-only">{txt key=TEXT_EDIT}</span>
+                </a>
+            </p>
+            {if $payment_info.payment_name}<p class="bold">{$payment_info.payment_name}</p>{/if}
+            {if $payment_info.payment_desc}<p>{$payment_info.payment_desc}</p>{/if}
+            {if $payment_info.payment_info}<p>{$payment_info.payment_info}</p>{/if}
+        </div>
+        <div class="well">
+            <p class="headline-underline clearfix">
+                {txt key=TEXT_COMMENTS}
+                <a title="{txt key=TEXT_EDIT}" class="btn btn-xs btn-default pull-right" href="{link page='checkout' paction='payment' conn=SSL}">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="sr-only">{txt key=TEXT_EDIT}</span>
+                </a>
+            </p>
+            {if $smarty.session.order_comments == ''}
+            <p>{txt key=TEXT_NO_REMARK}</p>
+            {else}
+            <p>{$smarty.session.order_comments|nl2br}</p>
+            {/if}
+        </div>
+        {hook key=tpl_checkout_confirmation_info_boxes}
+    </div>
+    <div class="col col-sm-9">
+        <h1>{txt key=TEXT_CONFIRMATION_DESC}</h1>
+        {hook key=checkout_tpl_info}
+        {form type=form name=process action='checkout' method=post conn=SSL role="form" id='checkout-form'}
+        {form type=hidden name=action value=process}
+
+        {if $payment_info.payment_cost_info eq '1' and $language eq 'de'}
+        <p class="alert alert-info">{txt key=TEXT_ORDER_CONFIRMATION_BUTTON_LAW}</p>
+        {/if}
+        {if $post_form eq '1'}
+        <p class="alert alert-info">{txt key=TEXT_INFO_PAY_NEXT_STEP}</p>
+        {/if}
+
+        <div class="alert alert-warning">
+            {if $smarty.const._STORE_TERMSCOND_CHECK eq 'true'}
+            {content cont_id=3 is_id='false'}
+            <p class="checkbox">
+                <label>
+                    {form type=checkbox name=conditions_accepted}
+                    {txt key=TEXT_TERMSANDCOND_CONFIRMATION_5} <a href="{$_content_3.content_link}" target="_blank">{txt key=TEXT_TERMSANDCOND_CONFIRMATION_2}</a>{txt key=TEXT_DOT}
+                </label>
+            </p>
+            {else}
+            {content cont_id=3 is_id='false'}
+            <p><span class="glyphicon glyphicon-ok"></span> <strong>{txt key=TEXT_TERMSANDCOND_CONFIRMATION_4} <a href="{$_content_3.content_link}" target="_blank">{txt key=TEXT_TERMSANDCOND_CONFIRMATION_2}</a>{txt key=TEXT_DOT}</strong></p>
+            {/if}
+            {if $show_digital_checkbox eq 'true'}
+            <p class="checkbox">
+                <label>
+                    {form type=checkbox name=withdrawal_reject_accepted}
+                    {txt key=TEXT_DIGITALCOND_CHECK}
+                </label>
+            </p>
+            {/if}
+            {hook key=checkout_tpl_form}
+        </div>
+
+        <div class="div-table table-hover table-bordered">
+            <div class="row th">
+                <div class="col col-md-8">
+                    {txt key=TEXT_ARTICLE}
+                </div>
+                <div class="col col-md-2 hidden-xs hidden-sm text-right">
+                    {txt key=TEXT_SINGLE_PRICE}
+                </div>
+                <div class="col col-md-2 hidden-xs hidden-sm text-right">
+                    {txt key=TEXT_TOTAL_PRICE}
+                </div>
+            </div>
+            {foreach key=key item=product from=$data}
+            {form type=hidden name='products_key[]' value=$product.products_key}
+            <div class="row tr">
+                <div class="col col-xs-5 col-md-2">
+                    <p class="image">
+                        {if !$product.products_image || $product.products_image == 'product:noimage.gif'}
+                        <a href="{$product.products_link}" class="vertical-helper image-link no-image img-thumbnail">{img img='no_image.png' type=t_img class="productImageBorder img-responsive" alt=$product.products_name|escape:"html"}</a>
+                        {else}
+                        <a href="{$product.products_link}" class="vertical-helper image-link img-thumbnail" target="_blank">{img img=$product.products_image type=m_thumb class="productImageBorder img-responsive" alt=$product.products_name|escape:"html"}</a>
+                        {/if}
+                    </p>
+                </div>
+                <div class="col col-xs-7 col-md-6">
+                    <p class="product-name break-word bold">
+                        <a href="{$product.products_link}" target="_blank">{$product.products_name}</a>
+                    </p>
+                    {hook key=cart_xt_options pid=$product.products_id}
+                    {if $product.products_short_description}
+                    <p class="product-description text-muted">{$product.products_short_description|strip_tags|truncate:100:'...'} [<a href="{$product.products_link}" target="_blank">{txt key=TEXT_MORE}</a>]</p>
+                    {elseif $product.products_description}
+                    <p class="product-description text-muted">{$product.products_description|strip_tags|truncate:100:'...'} [<a href="{$product.products_link}" target="_blank">{txt key=TEXT_MORE}</a>]</p>
+                    {/if}
+                    <ul class="label-list btn-list fixed-padding">
+                        <li>
+                            <a href="{link page='cart'}" class="btn btn-xs btn-primary">
+                                <span class="glyphicon glyphicon-pencil"></span>&nbsp;
+                                {txt key=TEXT_EDIT}
+                            </a>
+                            &nbsp;
+                        </li>
+                        <li><span class="badge">{$product.products_quantity} {if $product.products_unit_name}{$product.products_unit_name}{else}{txt key=TEXT_QTY}{/if}</span></li>
+                        {if $product.products_information}<li><span class="badge">{$product.products_information|replace:'<tr class="contentrow1">':''|replace:'<tr class="contentrow2">':''|replace:'<td>':''|replace:'<td class="left" colspan="4">':''|replace:'</td>':''|replace:'</tr>':''}</span></li>{/if}
+                        {if $product.products_model!=''}<li><span class="badge">{txt key=TEXT_PRODUCTS_MODEL} {$product.products_model}</span></li>{/if}
+                        {if $product.products_weight > 0}<li><span class="badge">{include file="$selected_template/includes/products_weight_wrap.html" products_weight=$product.products_weight type="tpl_include"}</span></li>{/if}
+
+                        {if $product.shipping_status_data.name}<li><span class="badge">{txt nkey=TEXT_SHIPPING_STATUS} {$product.shipping_status_data.name}</span></li>{/if}
+                        {if $product.base_price}<li><span class="badge">{$product.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$product.base_price.vpe.name}</span></li>{/if}
+                    </ul>
+
+                    {*<!-- price info visible-xs visible-sm part --- start -->*}
+                    <div class="hidden-md hidden-lg text-left-xs">
+                        <span class="text-middle">{txt key=TEXT_SINGLE_PRICE}:</span><br />
+                        <p class="product-price">
+                            {$product.products_price.formated}
+                            {if $product._cart_discount}&nbsp;<span class="price-old">{$product._original_products_price.formated}</span>&nbsp;<span class="small">(-{$product._cart_discount} %)</span>
+                            {/if}
+                        </p>
+                        <span class="text-middle">{txt key=TEXT_TOTAL_PRICE}:</span><br />
+                        <p class="product-price final-price">{$product.products_final_price.formated}</p>
+                    </div>
+                    {*<!-- / price info visible-xs visible-sm part --- end -->*}
+                </div>
+                <div class="col col-md-2 hidden-xs hidden-sm text-right">
+                    <p class="product-price">
+                        {$product.products_price.formated}
+                        {if $product._cart_discount}<br />
+                        <span class="price-old">{$product._original_products_price.formated}</span><br />
+                        <span class="small">(-{$product._cart_discount} %)</span>
+                        {/if}
+                    </p>
+                </div>
+                <div class="col col-md-2 hidden-xs hidden-sm text-right">
+                    <p class="product-price final-price">{$product.products_final_price.formated}</p>
+                </div>
+            </div>
+            {/foreach}
+            <div class="row tfoot text-right">
+                <div class="col col-md-offset-5 col-xs-5 col-md-5">
+                    {hook key=checkout_tpl_form_total_lines_top}
+                    {hook key=checkout_tpl_form_total_lines}
+                    {txt key=TEXT_SUB_TOTAL}
+                </div>
+                <div class="col col-xs-7 col-md-2">
+                    {$sub_total}
+                </div>
+            </div>
+            {foreach item=sub_data_item from=$sub_data}
+            <div class="row tfoot text-right">
+                <div class="col col-md-offset-5 col-xs-5 col-md-5">
+                    {$sub_data_item.products_name}
+                </div>
+                <div class="col col-xs-7 col-md-2">
+                    {$sub_data_item.products_price.formated}
+                </div>
+            </div>
+            {/foreach}
+            <div class="row tfoot bold text-right">
+                <div class="col col-md-offset-5 col-xs-5 col-md-5">
+                    {txt key=TEXT_TOTAL}
+                </div>
+                <div class="col col-xs-7 col-md-2">
+                    <span id="grand-total-value">{$total}</span>
+                </div>
+            </div>
+            {foreach item=tax_data from=$tax}
+            <div class="row tfoot text-right">
+                <div class="col col-md-offset-5 col-xs-5 col-md-5">
+                    {txt key=TEXT_TAX} {$tax_data.tax_key}%
+                </div>
+                <div class="col col-xs-7 col-md-2">
+                    {$tax_data.tax_value.formated|replace:"*":""}
+                </div>
+            </div>
+            {/foreach}
+            {if $discount}
+            <div class="row tfoot text-right">
+                <div class="col col-md-offset-5 col-xs-5 col-md-5">
+                    <strong>{txt key=TEXT_DISCOUNT_MADE}</strong>
+                </div>
+                <div class="col col-xs-7 col-md-2">
+                    {$discount.formated}
+                </div>
+            </div>
+            {/if}
+
+            {hook key=checkout_tpl_form_total_lines_bottom}
+        </div><!-- .div-table -->
+
+        <br />
+
+        <div class="clearfix">
+            <a href="{link page='checkout' paction='payment' conn=SSL}" class="btn btn-default pull-left">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                {txt key=BUTTON_BACK}
+            </a>
+            {if isset($button_changed_html)}
+                {$button_changed_html}
+            {else}
+                <button type="submit" class="btn btn-success preloader pull-right">
+                    <span class="glyphicon glyphicon-flag"></span>
+                    {txt key=BUTTON_CONFIRM_ORDER}
+                </button>
+            {/if}
+        </div>
+
+        <br />
+
+        {hook key=checkout_tpl_confiramtion}{* deprecated *}
+        {hook key=checkout_tpl_confirmation}
+        {form type=formend}
+        {hook key=checkout_tpl_bottom}
+    </div>
+</div><!-- #checkout-confirmation .row -->

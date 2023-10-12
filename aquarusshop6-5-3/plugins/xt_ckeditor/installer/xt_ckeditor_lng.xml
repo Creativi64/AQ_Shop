@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <language_content>
+        <phrase>
+            <key>TEXT_SYSTEM_CKEDITOR_CONFIG</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Additional CKEditor config]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Zusätzliche Konfiguration CKEditor]]></value>
+            </de>
+        </phrase>
+    </language_content>
+</xtcommerceplugin>

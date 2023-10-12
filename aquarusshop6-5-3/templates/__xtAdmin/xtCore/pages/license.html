@@ -1,0 +1,14 @@
+<div style="margin-top:20px; width:450px;margin-left:30px;">
+	<p>{txt key=TEXT_LICENSE_INFO}</p>
+	<h1> </h1>
+	<table width="450px;" >
+		
+		{foreach name=aussen item=info from=$lic_parms}
+		  <tr>
+			<td width="30%" class="left">{txt key=$info.text}:</td>
+			<td width="30%" class="left">{$info.value}</td>
+			<td></td>
+		  </tr> 
+		{/foreach}
+	</table>
+</div>

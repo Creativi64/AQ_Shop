@@ -1,0 +1,219 @@
+* Expire in 0 ms for 6 (transfer 0x564dfcb48280)
+* Expire in 20000 ms for 8 (transfer 0x564dfcb48280)
+* Expire in 5000 ms for 2 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 1 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+* Expire in 0 ms for 1 (transfer 0x564dfcb48280)
+*   Trying 104.26.3.39...
+* TCP_NODELAY set
+* Expire in 2500 ms for 3 (transfer 0x564dfcb48280)
+* Expire in 200 ms for 4 (transfer 0x564dfcb48280)
+* Connected to lng.xt-commerce.com (104.26.3.39) port 443 (#0)
+* ALPN, offering h2
+* ALPN, offering http/1.1
+* successfully set certificate verify locations:
+*   CAfile: none
+  CApath: /etc/ssl/certs
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384
+* ALPN, server accepted to use h2
+* Server certificate:
+*  subject: C=US; ST=California; L=San Francisco; O=Cloudflare, Inc.; CN=xt-commerce.com
+*  start date: Apr  5 00:00:00 2023 GMT
+*  expire date: Apr  4 23:59:59 2024 GMT
+*  subjectAltName: host "lng.xt-commerce.com" matched cert's "*.xt-commerce.com"
+*  issuer: C=US; O=Cloudflare, Inc.; CN=Cloudflare Inc ECC CA-3
+*  SSL certificate verify ok.
+* Using HTTP2, server supports multi-use
+* Connection state changed (HTTP/2 confirmed)
+* Copying HTTP/2 data in stream buffer to connection buffer after upgrade: len=0
+* Using Stream ID: 1 (easy handle 0x564dfcb48280)
+> GET /api/get/getLanguagePack?TranslationCode%5B0%5D=en&ShopVersion%5B0%5D=6.5.3&TranslationPlugin=StoreTranslations&ExportFormat=1 HTTP/2
+Host: lng.xt-commerce.com
+User-Agent: XT:Commerce Platform
+Accept: */*
+
+* old SSL session ID is stale, removing
+* Connection state changed (MAX_CONCURRENT_STREAMS == 256)!
+< HTTP/2 200 
+< date: Mon, 19 Jun 2023 11:10:28 GMT
+< content-type: text/html; charset=utf-8
+< x-powered-by: PHP/5.3.29
+< set-cookie: PHPSESSID=i6ajmlviu42g9pgm91pqhukf32; path=/
+< expires: Thu, 19 Nov 1981 08:52:00 GMT
+< cache-control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+< pragma: no-cache
+< access-control-allow-origin: *
+< access-control-allow-methods: POST, GET, OPTIONS
+< access-control-allow-headers: x-requested-with, content-type
+< cf-cache-status: DYNAMIC
+< report-to: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=HAmuGIplYvknh5T%2BIVKsSrgxMvg1yIsFZdGnxB2JJtu4OBaS%2BGOWCq8XVJ58q67eGTBpBXsdSN4zkU3mnQC47lDRqiGg3RvHUO6OOpyAGCZw8h8GMnFLZe4jxaoui387NXaN7eU%3D"}],"group":"cf-nel","max_age":604800}
+< nel: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+< server: cloudflare
+< cf-ray: 7d9b53623b009b31-FRA
+< 
+* Connection #0 to host lng.xt-commerce.com left intact

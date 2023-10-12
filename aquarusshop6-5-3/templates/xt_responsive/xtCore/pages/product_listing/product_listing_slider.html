@@ -1,0 +1,121 @@
+{if $product_listing}
+    <div class="product-listing product-slider carousel-outer-wrap {$code}">
+
+		{$unique_id = md5($heading_text)}
+
+        {if $heading_text}
+            <h2 class="headline"
+                data-toggle="collapse"
+                data-target="#slider-{$unique_id}"
+                aria-expanded="true"
+                aria-controls="slider-{$unique_id}">
+                {$heading_text}
+            </h2>
+        {/if}
+
+        <div id="slider-{$unique_id}" class="slider{if $heading_text} collapse collapse-auto-toggle-xs in{/if}">
+            <div class="listing equalize-no-panels owl">
+                <div id="productCarousel-{$unique_id}" class="productCarousel">
+
+                    {foreach name=listing key=key item=module_data from=$product_listing}
+                        <div class="col col-{$key+1}{if $smarty.foreach.listing.first} col-first{elseif $smarty.foreach.listing.last} col-last{/if}">
+                            <div class="section panel panel-default{if $module_data.flag_has_specials == 1} special-price{/if}{if $module_data.date_available!=''} available-soon{/if}">
+                                {hook key=product_listing_slider_section_panel_top module_data=$module_data}
+                                <div class="section-body panel-body">
+                                    <p class="image text-center">
+                                        {if !$module_data.products_image || $module_data.products_image == 'product:noimage.gif'}
+                                            <a href="{$module_data.products_link}" class="vertical-helper image-link no-image">
+                                                <i class="no-image-icon"></i>
+                                            </a>
+                                        {else}
+                                            <a href="{$module_data.products_link}" class="vertical-helper image-link">
+                                                <img alt="{if $module_data.products_image_data.media_name}{$module_data.products_image_data.media_name|escape:'html'}{else}{$module_data.products_name|escape:'html'}{/if}{if $module_data.products_image_data.copyright_holder} &copy; {$module_data.products_image_data.copyright_holder}{/if}" title="{if $module_data.products_image_data.media_name}{$module_data.products_image_data.media_name|escape:'html'}{else}{$module_data.products_name|escape:'html'}{/if}{if $module_data.products_image_data.copyright_holder} &copy; {$module_data.products_image_data.copyright_holder}{/if}" class="img-responsive" src="{img img=$module_data.products_image type=m_info path_only=true}" data-src="{img img=$module_data.products_image type=m_info path_only=true}">
+                                            </a>
+                                        {/if}
+                                    </p>
+                                    <div class="title">
+                                        <p class="h4"><a href="{$module_data.products_link}">{$module_data.products_name}</a></p>
+                                        {if $module_data.products_short_description|strip_tags|trim != ''}
+                                            <p class="desc desc-short text-middle hidden-xs">{$module_data.products_short_description|strip_tags|truncate:85:'...'}</p>
+                                        {elseif $module_data.products_description|strip_tags|trim != ''}
+                                            <p class="desc desc-long text-middle hidden-xs">{$module_data.products_description|strip_tags|truncate:85:'...'}</p>
+                                        {/if}
+                                    </div>
+                                    {if $module_data.review_stars_rating}
+                                        <div class="product-reviews cursor-pointer" onclick="document.location.href='{$module_data.link_reviews_list}'"  data-toggle="popover" data-placement="bottom" data-content="{if $module_data.products_rating_count}<i class='fa fa-heart-o'></i> {$module_data.products_rating_count} {txt key=TEXT_XT_REVIEWS_INFO}<br /><i class='fa fa-star-o'></i> {math equation='(x-1) / 100 * y' x=$module_data.review_stars_rating y=5 format='%.1f'} {txt key=TEXT_PAGINATION_FROM} 5{else}{txt key=TEXT_XT_REVIEWS_NO_REVIEWS}{/if}">
+                                            <div class="reviews_rating_light">
+                                                <i></i><i></i><i></i><i></i><i></i>
+                                                <div class="reviews_rating_dark" style="width:{$module_data.review_stars_rating}%">
+                                                    <i></i><i></i><i></i><i></i><i></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {/if}
+                                    {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $module_data.products_price.formated neq ''}
+                                        <p class="product-price">{$module_data.products_price.formated}</p>
+                                        {if $module_data.base_price}
+                                            <p class="vpe">{$module_data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$module_data.base_price.vpe.name}</p>
+                                        {/if}
+                                        {if $module_data.products_shipping_link}
+                                            <p class="product-tax-shipping">{$module_data.products_tax_info.tax_desc} <a href="{$module_data.products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a></p>
+                                        {else}
+                                            <p class="product-tax-shipping">{$module_data.products_tax_info.tax_desc} {txt key=TEXT_EXCL_SHIPPING}</p>
+                                        {/if}
+                                    {/if}
+
+                                    {if $module_data.show_stock}
+                                    <p class="product-stock">{txt key=TEXT_STOCK} {$module_data.products_quantity|round} {if $module_data.products_unit_name}{$module_data.products_unit_name}{/if}</p>
+                                    {/if}
+                                </div>
+                                <footer class="section-footer">
+                                    {hook key=product_listing_slider_footer_top module_data=$module_data}
+                                    {if $module_data.allow_add_cart eq 'true'}
+                                        {form type=form name=product action='dynamic' link_params=getParams method=post}
+                                        {form type=hidden name=action value=add_product}
+                                        {form type=hidden name=product value=$module_data.products_id}
+                                        {form type=hidden name=qty value=1}
+                                        {form type=hidden name=gotoCart value=$smarty.const._STORE_GOTO_CART_DIRECTLY}
+                                    {/if}
+                                    <div class="clearfix footer-buttons{if $module_data.allow_add_cart neq 'true'} b-0{/if}">
+                                        <a href="{$module_data.products_link}" class="btn btn-sm btn-default pull-left" role="button">
+                                            {txt key=TEXT_MORE}...
+                                        </a>
+                                        {if $module_data.allow_add_cart eq 'true'}
+                                            <button type="submit" class="btn btn-sm btn-cart pull-right" title="{txt key=BUTTON_ADD_CART}" data-toggle="tooltip">
+                                                <i class="fa fa-shopping-basket"></i>
+                                                <span class="sr-only">{txt key=BUTTON_ADD_CART}</span>
+                                            </button>
+                                        {/if}
+                                    </div>
+                                    {if $module_data.allow_add_cart eq 'true'}
+                                        {form type=formend}
+                                    {/if}
+                                    {hook key=product_listing_slider_footer_bottom module_data=$module_data}
+                                </footer>
+                                {include file="includes/product_info_label.html" position=slider isSpecial=$module_data.flag_has_specials dateAvailable=$module_data.date_available}
+                                {hook key=product_listing_slider_section_panel_bottom module_data=$module_data}
+                            </div>
+                        </div><!-- .col -->
+                    {/foreach}
+
+                    {if $show_more && $code && $code!='xt_auto_cross_sell' && $code!='xt_cross_selling'}
+                        <div class="col col-{$key+1}{if $smarty.foreach.listing.first} col-first{elseif $smarty.foreach.listing.last} col-last{/if}">
+                            <div class="section panel panel-default">
+                                <div class="section-body vertical-helper">
+                                    <p class="image text-center text-big title">
+                                        <a class="" href="{link page=$code conn=SSL}" title="{txt key='TEXT_MORE'}">
+                                            <i class="fa fa-plus-circle fa-5x"></i><br/>{txt key="TEXT_MORE"}
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    {/if}
+
+                </div><!-- .productCarousel -->
+            </div><!-- .listing -->
+        </div><!-- .listing-outer -->
+
+    </div>
+{/if}
+{$error_listing}

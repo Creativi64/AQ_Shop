@@ -1,0 +1,87 @@
+{assign var="visible_items" value="1"}
+
+<div id="box_{$code}" data-visible-items="{$visible_items}" class="products-box listing no-image-height-helper equalize-nothing panel panel-{if $code == 'xt_special_products'}secondary{else}default{/if} switch-area{if $classes} {$classes}{/if}">
+
+    <div class="panel-heading">
+        <p class="panel-title text-uppercase">
+            {if ($_show_more_link == 'true' && $_show_page_link == 'true') || ($_show_more_link == '1' && $_show_page_link == '1')}
+                <a href="{link page=$code conn=SSL}">
+            {/if}
+            {$heading_text}
+            {if ($_show_more_link == 'true' && $_show_page_link == 'true') || ($_show_more_link == '1' && $_show_page_link == '1')}
+                </a>
+            {/if}
+        </p>
+    </div>
+
+    <div class="panel-body switch-items text-center product-listing">
+        {foreach name=aussen key=nr item=module_data from=$product_listing}
+                {if !$smarty.foreach.aussen.first}
+                    <hr class="seperator" />
+                {/if}
+        {hook key=box_sidebar_products_product_top module_data=$module_data}
+        <div class="section">
+            <div class="product product-{$nr}{if $smarty.foreach.aussen.first} first-product{/if}{if $smarty.foreach.aussen.last} last-product{/if}{if $module_data.flag_has_specials == 1} special-price{/if}{if $module_data.date_available!=''} available-soon{/if}">
+
+                <div class="product-image">
+                    <p class="image">
+                        {if !$module_data.products_image || $module_data.products_image == 'product:noimage.gif'}
+                            <a href="{$module_data.products_link}" class="vertical-helper image-link no-image">
+                                <i class="no-image-icon"></i>
+                            </a>
+                        {else}
+                            <a href="{$module_data.products_link}" class="vertical-helper image-link">
+                                {img img=$module_data.products_image type=m_info class="productImageBorder img-responsive" alt="{if $module_data.products_image_data.media_name}{$module_data.products_image_data.media_name|escape:'html'}{else}{$module_data.products_name|escape:'html'}{/if}{if $module_data.products_image_data.copyright_holder} &copy; {$module_data.products_image_data.copyright_holder}{/if}" title="{if $module_data.products_image_data.media_name}{$module_data.products_image_data.media_name|escape:'html'}{else}{$module_data.products_name|escape:'html'}{/if}{if $module_data.products_image_data.copyright_holder} &copy; {$module_data.products_image_data.copyright_holder}{/if}"}
+                            </a>
+                        {/if}
+                    </p>
+                </div>
+                <p class="product-name h4 title"><a href="{$module_data.products_link}">{$module_data.products_name}</a></p>
+                {if $module_data.review_stars_rating}
+                    <div class="product-reviews cursor-pointer" onclick="document.location.href='{$module_data.link_reviews_list}'"  data-toggle="popover" data-placement="bottom" data-content="{if $module_data.products_rating_count}<i class='fa fa-heart-o'></i> {$module_data.products_rating_count} {txt key=TEXT_XT_REVIEWS_INFO}<br /><i class='fa fa-star-o'></i> {math equation='(x-1) / 100 * y' x=$module_data.review_stars_rating y=5 format='%.1f'} {txt key=TEXT_PAGINATION_FROM} 5{else}{txt key=TEXT_XT_REVIEWS_NO_REVIEWS}{/if}">
+                        <div class="reviews_rating_light">
+                            <i></i><i></i><i></i><i></i><i></i>
+                            <div class="reviews_rating_dark" style="width:{$module_data.review_stars_rating}%">
+                                <i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                        </div>
+                    </div>
+                {/if}
+                {if $smarty.const.AQ_SHOW_ARTICEL_PRICE neq '1' and $module_data.products_price.plain neq '0' or $module_data.products_quantity|round gt '0'}
+                    {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $module_data.products_price.formated neq ''}
+                        <p class="product-price">{$module_data.products_price.formated}</p>
+                        {if $module_data.base_price}
+                            <p class="vpe">{$module_data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$module_data.base_price.vpe.name}</p>
+                        {/if}
+
+                        {if $module_data.products_shipping_link}
+                            <p class="product-tax-shipping">{$module_data.products_tax_info.tax_desc} {if !$module_data.products_digital}<a href="{$module_data.products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}</p>
+                        {else}
+                            <p class="product-tax-shipping">{$module_data.products_tax_info.tax_desc} {if !$module_data.products_digital}{txt key=TEXT_EXCL_SHIPPING}{/if}</p>
+                        {/if}
+                    {/if}
+                {/if}
+                {if $module_data.show_stock}
+                    <p class="product-stock">{txt key=TEXT_STOCK} {$module_data.products_quantity|round} {if $module_data.products_unit_name}{$module_data.products_unit_name}{/if}</p>
+                {/if}
+
+                {include file="includes/product_info_label.html" position=$position isSpecial=$module_data.flag_has_specials dateAvailable=$module_data.date_available}
+            	{hook key=box_sidebar_products_product_bottom module_data=$module_data}
+            </div>
+
+        </div>
+        {/foreach}
+    </div>
+
+    {if $product_listing|@count >= ($visible_items+1)}
+        <button class="btn btn-block btn-default switch-button panel-footer" type="button">
+            <span class="more">
+                <strong>+{math equation="x - y" x=$product_listing|@count y=$visible_items}</strong> {txt key=BUTTON_SHOW}
+            </span>
+            <span class="less">
+                <strong>-{math equation="x - y" x=$product_listing|@count y=$visible_items}</strong> {txt key=BUTTON_SHOW}
+            </span>
+        </button>
+    {/if}
+
+</div><!-- .products-box -->

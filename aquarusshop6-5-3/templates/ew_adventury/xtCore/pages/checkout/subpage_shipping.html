@@ -1,0 +1,91 @@
+<div id="checkout-shipping" class="row">
+	<div class="col col-sm-3">
+		<div class="well shipping-address address">
+            <p class="headline-underline clearfix">
+                {txt key=TEXT_SHIPPING_ADDRESS}
+                {if $shipping_address.allow_change == true}
+					<a title="{txt key=TEXT_EDIT}"
+						class="btn btn-xs btn-primary pull-right edit-address-trigger"
+						href="{link page='customer' paction='edit_address' params="adType=`$shipping_address.address_class`&abID=`$shipping_address.address_book_id`" conn=SSL}"
+					>
+						<span class="glyphicon glyphicon-pencil"></span>
+						<span class="sr-only">{txt key=TEXT_EDIT}</span>
+					</a>
+					<div id="edit-address-modal" class="modal fade" tabindex="-1" role="dialog">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title text-center" id="exampleModalLabel">{txt key=TEXT_SHIPPING_ADDRESS}</h4>
+								</div>
+								<div class="modal-body">
+									<div class="loader text-center" style="margin: 0; padding: 40px;">
+										<i class="fa fa-spinner fa-pulse fa-2x fa-fw text-muted"></i>
+										<span class="sr-only">Loading...</span>
+									</div>
+									<div class="content"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{/if}
+			</p>
+			{if $shipping_address.customers_company}<p>{$shipping_address.customers_company}</p>{/if}
+			{if $shipping_address.customers_company_2}<p>{$shipping_address.customers_company_2}</p>{/if}
+            {if $shipping_address.customers_company_3}<p>{$shipping_address.customers_company_3}</p>{/if}
+            <p>{if $shipping_address.customers_title}{$shipping_address.customers_title} {/if}{$shipping_address.customers_firstname} {$shipping_address.customers_lastname}</p>
+			<p>{$shipping_address.customers_street_address}</p>
+			{if $shipping_address.customers_address_addition}</p>{$shipping_address.customers_address_addition}</p>{/if}
+			{if $shipping_address.customers_suburb}</p>{$shipping_address.customers_suburb}</p>{/if}
+			<p>{$shipping_address.customers_postcode} {$shipping_address.customers_city}</p>
+			<p>{$shipping_address.customers_country}</p>
+			<p><br /></p>
+			{if $shipping_address.allow_change == true}
+				{form type=form role="form" name=shipping_address action='dynamic' link_params='page_action=shipping' method=post conn=SSL}
+				<div class="form-group">
+					<label for="address_data">{txt key=TEXT_SELECT_SHIPPING_ADDRESS}</label>
+
+						{form id="address_data" class="form-control" type=select name=adID value=$address_data params='onchange="this.form.submit();" data-style=""' default=$smarty.session.customer->customer_shipping_address.address_book_id}
+				</div>
+				{form type=hidden name=adType value=shipping}
+				{form type=hidden name=action value=select_address}
+				{form type=formend}
+				{if $add_new_address eq 1}
+					<!--<p>{txt key=TEXT_NEW_SHIPPING_ADDRESS}</p>-->
+					<a class="btn btn-primary" href="{link page='customer' paction='edit_address' params='adType=shipping' conn=SSL}">
+						<i class="mdi mdi-plus"></i>
+						{txt key=BUTTON_ADD_ADDRESS}
+					</a>
+				{/if}
+			{/if}
+		</div>
+		{hook key=tpl_checkout_shipping_info_boxes}
+	</div>
+	<div class="col col-sm-9">
+		{box name=xt_delivery_date type=user}
+		<h1>{txt key=TEXT_SELECT_SHIPPING_DESC}</h1>
+		{form type=form role="form" name=shipping action='checkout' method=post conn=SSL}
+        {form type=hidden name=action value=shipping}
+
+        <ul class="list-group">
+			{foreach name=aussen item=sdata from=$shipping_data}
+				<li class="list-group-item clearfix cursor-pointer">{$sdata.shipping}</li>
+			{/foreach}
+        </ul>
+		{box name=xt_checkout_options type=user}
+
+        <div class="clearfix">
+            <a href="{link page='cart' conn=SSL}" class="btn btn-default pull-left">
+				<i class="mdi mdi-arrow-left"></i>
+                {txt key=BUTTON_BACK}
+            </a>
+            <button type="submit" class="btn btn-success preloader pull-right">
+                <i class="mdi mdi-check"></i>
+                {txt key=BUTTON_NEXT}
+            </button>
+        </div>
+
+        {hook key=checkout_tpl_shipping}
+        {form type=formend}
+	</div>
+</div>

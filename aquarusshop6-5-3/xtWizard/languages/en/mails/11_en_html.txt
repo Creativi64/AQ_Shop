@@ -1,0 +1,13 @@
+{include file="file:$_system_root_templates/email/email_top.html"}
+<!-- // Begin Content \\ -->
+<table class="email-content" cellpadding="0" cellspacing="0" width="660" style="font: 12px Arial, Helvetica, sans-serif;color: #484848;">
+	<tr>
+		<td>
+			<h1 style="font-size:14px;">Hallo {$customers_title} {$customers_firstname} {$customers_lastname},</h1>
+			<p>Enclosed you will find an xml file. This file contains the information we stored about you</p>
+            <p style="background: #FFE0E4; padding: 10px;"><b>Attention:</b> This email adress was submitted to us by a customer. If you did not register with us, please feel free to contact us immediately.
+		</td>
+	</tr>
+</table>
+<!-- // End Content \\ -->
+{include file="file:$_system_root_templates/email/email_bottom.html"}

@@ -1,0 +1,1 @@
+{$_store_name} | Payment instructions for Pay upon invoice, no. {$order_data.orders_id}

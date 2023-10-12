@@ -1,0 +1,336 @@
+{$message}
+<div id="product" class="detail">
+    <div class="pinfo row{if $flag_has_specials == 1} special-price{/if}{if $date_available!=''} available-soon{/if}">
+        <div class="col col-sm-7 col-md-8">
+            <a name="product_images" style="line-height: 0px; text-decoration: none" >&nbsp;</a>
+            <div class="lightgallery product-images row">
+                <div class="col{if !$more_images || $more_images|@count == 0} col-sm-12{else} col-md-10 col-md-push-2{/if}">
+                    <div class="image product-image center">
+                        {if !$products_image || $products_image == 'product:noimage.gif'}
+                            <span class="vertical-helper image-link no-image img-thumbnail img-label-wrap">
+                                <i class="no-image-icon"></i>
+                                {include file="includes/product_info_label.html" position="product-page" isSpecial=$flag_has_specials dateAvailable=$date_available}
+                                {hook key=tpl_product_no_img module_data=$product}
+                            </span>
+                        {else}
+                            <figure>
+                                <a href="{img img=$products_image type=m_org path_only=true}"class="image-link cursor-zoom" data-type="main">
+                                    <span class="img-thumbnail img-label-wrap">
+                                        <img src="{img img=$products_image type=m_info path_only=true}" alt="{if $products_image_data.media_name}{$products_image_data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $products_image_data.copyright_holder} &copy; {$products_image_data.copyright_holder}{/if}" title="{if $products_image_data.media_name}{$products_image_data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $products_image_data.copyright_holder} &copy; {$products_image_data.copyright_holder}{/if}" class="img-responsive image-link">
+                                        {include file="includes/product_info_label.html" position="product-page" isSpecial=$flag_has_specials dateAvailable=$date_available}
+                                        {hook key=tpl_product_img module_data=$product}
+                                    </span>
+                                </a>
+                                {if $products_image_data.copyright_holder}
+                                <span class="copyright text-small" style="display: inline-flex">&copy; {$products_image_data.copyright_holder}</span>
+                                {/if}
+                            </figure>
+                        {/if}
+                    </div>
+                </div>
+                {if $more_images && $more_images|@count != 0}
+                    <div class="col col-md-2 col-md-pull-10">
+                        <div class="more-images row listing equalize-nothing">
+                            {foreach name=aussen key=index item=img_data from=$more_images}
+                            <figure class="section col{if $index > 3} hidden{/if}{if $index == 3 && $more_images|count > 4} show-more{/if} col-xs-3 col-md-12">
+                                <a href="{img img=$img_data.file type=m_org path_only=true}" class="vertical-helper image-link text-center img-thumbnail" >
+                                    <img src="{img img=$img_data.file type=m_thumb path_only=true}" alt="{if $img_data.data.media_name}{$img_data.data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $img_data.data.copyright_holder} &copy; {$img_data.data.copyright_holder}{/if}" title="{if $img_data.data.media_name}{$img_data.data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $img_data.data.copyright_holder} &copy; {$img_data.data.copyright_holder}{/if}" class="productImageBorder img-responsive" width="auto" height="auto">
+                                </a>
+                            </figure>
+                            {/foreach}
+                        </div>
+                    </div>
+                {/if}
+                <hr class="visible-xs">
+            </div>
+            {hook key=products_images_tpl}
+        </div>
+        <div class="col col-sm-5 col-md-4">
+
+            {if $product_outdated eq 1}
+            <div class="alert alert-error alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <p class="item"><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;&nbsp;{txt key=PRODUCT_OUTDATED_SHORT}</p>
+            </div>
+            {/if}
+            {if $product_outdated_soon eq 1}
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <p class="item"><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;&nbsp;{txt key=PRODUCT_OUTDATED_SOON_SHORT}</p>
+            </div>
+            {/if}
+
+            <a name="product_info" style="line-height: 0px; text-decoration: none" >&nbsp;</a>
+            <div class="product-info">
+                {hook key=product_info_top product=$product}
+                {if $manufacturer.manufacturers_image}
+                    <p class="product-manufacturer image pull-right">
+                        <a href="{$manufacturer.link}"><img src="{img img=$manufacturer.manufacturers_image type=m_manufacturer_thumb path_only=true}"
+                             alt="{txt key=HEADING_PRODUCTS_MANUFACTURERS}: {$manufacturer.manufacturers_name|escape:'html'}"
+                             title="{txt key=HEADING_PRODUCTS_MANUFACTURERS}: {$manufacturer.manufacturers_name|escape:'html'}"
+                             class="img-responsive img-thumbnail"
+                        ></a>
+                    </p>
+                {/if}
+                <h1 class="title h3 text-word-wrap">{$products_name}</h1>
+                {if $products_model!=''}
+                    <p class="product-model float-sm-left">
+                        <span class="text-small">{txt key=TEXT_PRODUCTS_MODEL}:</span>
+                        <span class="badge badge-lighter">{$products_model}</span>
+                    </p>
+                {/if}
+                <!-- {if $products_ean!=''}
+                    <p class="product-model float-sm-left">
+                        <span class="text-small">{txt key=TEXT_PRODUCTS_EAN}:</span>
+                        <span class="badge badge-lighter">{$products_ean}</span>
+                    </p>
+                {/if} /-->
+                {if $manufacturer.manufacturers_name}
+                    <p class="product-manufacturer name">
+                        <span class="text-small">{txt key=HEADING_PRODUCTS_MANUFACTURERS}:</span>
+                        <span class="badge badge-lighter"><a href="{$manufacturer.link}">{$manufacturer.manufacturers_name}</a></span>
+                    </p>
+                {/if}
+                {if $products_url}
+                <p class="product-url name">
+                    <span class="text-small"><a href="{$products_url}" target="_blank">{$products_url}</a>&nbsp;<span class="text-small glyphicon glyphicon-new-window"></span></span>
+                </p>
+                {/if}
+                <div class="clearfix"></div>
+                {if $smarty.const.AQ_SHOW_ARTICEL_PRICE neq '1' and $products_price.plain neq '0' or $products_quantity|round gt '0'}
+                    {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $products_price.formated neq ''}
+                        <div>
+                            <p class="product-price this">
+                                {$products_price.formated}
+                                <br class="visible-xs">
+                                <span class="product-tax">{$products_tax_info.tax_desc}</span>
+                            </p>
+                        </div>
+                        <ul class="product-meta-info">
+                            {if !$products_digital}
+                                {if $products_shipping_link}
+                                    <li class="product-shipping"><a href="{$products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a></li>
+                                {else}
+                                    <li class="product-shipping">{txt key=TEXT_EXCL_SHIPPING}</li>
+                                {/if}
+                            {/if}
+                            {if $base_price}
+                                <li class="vpe">{$products_vpe_value|number_format_prec} {$base_price.vpe.name} / {$base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$base_price.vpe.name}</li>
+                            {/if}
+                        </ul>
+                        {price_table}
+                    {/if}
+                {else}
+                    <p>{$smarty.const.AQ_NO_PRICE_TEXT}</p>
+                {/if}
+                <ul class="product-meta-info bold">
+                    {if $stock_image}
+                        <li class="product-stock-image">
+                            <img src="{img img=$stock_image.image type=t_img_stockrules path_only=true}"
+                                 class="img-responsive cursor-help"
+                                 alt="{$stock_image.name}"
+                                 title="{$stock_image.name}"
+                                 data-toggle="tooltip" />
+                            <span class="sr-only">{$stock_image.name}</span>
+                        </li>
+                    {/if}
+                    
+                    {if $shipping_status_data.name}
+                        <li class="product-shipping-status">{txt key=TEXT_SHIPPING_STATUS} {$shipping_status_data.name}</li>
+                        {if $shipping_status_data.image}
+                        <li class="product-stock-image">
+                            <img src="{img img=$shipping_status_data.image type=t_img_stockrules path_only=true}"
+                                 class="img-responsive cursor-help"
+                                 alt="{txt key=TEXT_SHIPPING_STATUS} {$shipping_status_data.name}"
+                                 title="{txt key=TEXT_SHIPPING_STATUS} {$shipping_status_data.name}"
+                                 data-toggle="tooltip" />
+                            <span class="sr-only">{$shipping_status_data.name}</span>
+                        </li>
+                        {/if}
+                    {/if}
+
+                    {if $show_stock}
+                    <li class="product-stock">{txt key=TEXT_STOCK} {$products_quantity|round} {if $products_unit_name}{$products_unit_name}{/if}</li>
+                    {/if}
+                    
+                    {if $products_weight > 0}
+                        <li class="product-weight">{txt key=TEXT_PRODUCTS_WEIGHT} {$products_weight|weight_format:"kg"}</li>
+                    {/if}
+                </ul>
+                {if $products_discount!=''}
+                    <p class="product-discount">{$products_discount}</p>
+                {/if}
+
+                {if $products_master_flag == 1 OR  $products_master_model != ''}
+                        <div class="ms-options clearfix">
+                            {hook key=product_info_tpl_options}
+                        </div>
+                {/if}
+                {hook key=product_info_tpl_before_cart}
+                {hook key=product_info_bundle}
+                {if $date_available!=''}
+                    <p class="box info">{txt key=TEXT_PRODUCT_AVAILABLE} <strong>{$date_available_object|date_format_intl:"EEEE, dd.MM.Y"}</strong></p>
+                {/if}
+                {if $allow_add_cart eq 'true'}
+                    {if $products_fsk18 == '1'}
+                        <p class="box error">{txt key=TEXT_PRODUCTS_FSK18_NOTE}</p>
+                    {/if}
+                {/if}
+                
+                {hook key="notify_on_restock_tpl.notify_box"}
+                
+                {if $allow_add_cart eq 'true'}
+                    <hr />
+                    {form type=form name=product id="main_product_form" action='dynamic' link_params=getParams method=post}
+                    {form type=hidden name=action value=add_product}
+                    {form type=hidden name=product value=$products_id}
+                    {form type=hidden name=gotoCart value=$smarty.const._STORE_GOTO_CART_DIRECTLY}
+                    {$products_information}
+                    <div class="add-to-cart clearfix right">
+
+                        <div class="form-inline">
+
+                            {* mengenauswahl dropdown oder number *}
+                            {assign var=quantity_input value='dropdown'}
+
+                            {* werte für das dropdown *}
+                            {if empty($qtyOptions)}
+                                {$maxQuantity = 30}
+                                {$qtyOptions = []}
+                                {$i = 0}
+                                {while $i < $maxQuantity}
+                                    {$n = $i + 1}
+                                    {$qtyOptions.$i = ['id' => $n, 'text' => $n]}
+                                    {$i = $i + 1}
+                                {/while}
+                            {/if}
+
+                            {* standardwert für das dropdown *}
+                            {if empty($defaultQtyOption)}
+                                {$defaultQtyOption = 1}
+                            {/if}
+
+                            <div class="input-group" style="display: inline-table;vertical-align: middle;">
+                                {if $quantity_input == 'number'}
+                                    <input type="number"
+                                           class="form-control btn-lg btn-qty"
+                                           {if $smarty.const._STORE_ALLOW_DECIMAL_QUANTITIY == 'false'}min="1"{/if}
+                                           size="1"
+                                           required="required"
+                                           step="any"
+                                           name="qty"
+                                           autocomplete="off"
+                                           id="form-qty-{$products_id}"
+                                           value="1"
+                                           style="width: 6em; height: 2.7em;"
+                                           placeholder="{txt key=TEXT_QTY}">
+                                {elseif $quantity_input == 'dropdown'}
+                                    <div style="display: inline-table;vertical-align: middle;border-left: 1px solid #e0e0e0;border-top: 1px solid #e0e0e0;border-bottom: 1px solid #e0e0e0;">
+                                        {form params="id='form-qty-`$products_id`' data-size='7' data-width='7em' data-style='btn btn-lg btn-default btn-qty'" type="select" name="qty" value=$qtyOptions default="$defaultQtyOption"}
+                                    </div>
+                                    {if $products_unit_name}<label for="form-qty-{$products_id}" class="input-group-addon text-regular" style="width:auto">{$products_unit_name}</label>{/if}
+                                {/if}
+
+                            </div>
+
+                            <button type="submit" class="btn btn-lg btn-cart" data-toggle="tooltip" title="{txt key=BUTTON_ADD_CART}">
+                                <span class="hidden-md">{txt key=TEXT_CART}</span>
+                                <span class="hidden-xs hidden-sm hidden-lg"><i class="fa fa-shopping-basket"></i></span>
+                                <span class="">&nbsp;<i class="fa fa-plus"></i></span>
+                            </button>
+                        </div>
+
+
+                    </div>
+                    {form type=formend}
+                {/if}
+
+				{hook key=product_info_tpl_cart}
+
+                {if $review_stars_rating}
+                    {math assign=ratingValue equation='(x-1) / 100 * y' x=$review_stars_rating y=5 format='%.1f'}
+                    <hr />
+                    <div class="product-reviews">
+                        <div class="cursor-pointer" onclick="document.location.href='{$link_reviews_list}'">
+                            <div class="reviews_rating_light" data-toggle="popover" data-placement="bottom" data-content="{if $products_rating_count}<i class='fa fa-heart-o'></i> {$products_rating_count} {txt key=TEXT_XT_REVIEWS_INFO}<br /><i class='fa fa-star-o'></i> {$ratingValue} {txt key=TEXT_PAGINATION_FROM} 5{else}{txt key=TEXT_XT_REVIEWS_NO_REVIEWS}{/if}">
+                                <i></i><i></i><i></i><i></i><i></i>
+                                <div class="reviews_rating_dark" style="width:{$review_stars_rating}%">
+                                    <i></i><i></i><i></i><i></i><i></i>
+                                </div>
+                            </div>
+                        </div>
+                        {if $ratingValue>0}
+                        <span class="text-muted text-small">{txt key=TEXT_REVIEW_RATING}: <span>{$ratingValue}</span> {txt key=TEXT_PAGINATION_FROM} 5</span>
+                        {else}
+                        <span class="text-muted text-small">{txt key=TEXT_XT_REVIEWS_NO_REVIEWS}</span>
+                        {/if}
+                        <div class="clearfix"></div>
+                    </div>
+                {/if}
+
+                {hook key=products_info_bottom}
+            </div>
+        </div>
+    </div><!-- .pinfo -->
+
+    <div class="pcontent">
+
+        <div id="options-list" class="info-panel">
+            {hook key=product_info_tpl_productlist}
+        </div>
+
+        {if $products_description && $products_description|strip_tags|trim != ''}
+            <div id="description" class="textstyles text-word-wrap info-panel">
+                <p class="headline"
+                   data-toggle="collapse"
+                   data-target="#description-collapse"
+                   aria-expanded="true"
+                   aria-controls="description-collapse">
+                    {txt key=TEXT_PRODUCTS_DESCRIPTION}
+                </p>
+                <div id="description-collapse" class="collapse collapse-auto-toggle-xs in">
+                    {$products_description}
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        {/if}
+
+        {if count($media_files)}
+            <div id="files" class="info-panel">
+                <p class="headline"
+                   data-toggle="collapse"
+                   data-target="#files-collapse"
+                   aria-expanded="true"
+                   aria-controls="files-collapse">
+                    {txt key=TEXT_DOWNLOADS}
+                </p>
+                <div id="files-collapse" class="collapse collapse-auto-toggle-xs in">
+                    {include file="xtCore/pages/files/product_public_files.html"}
+                </div>
+            </div>
+        {/if}
+
+        {hook key=product_info_tpl}
+        {hook key=product_info_tpl_tab_headline}
+        {hook key=product_info_tpl_tab_box}
+
+        {if $review_stars_rating}
+            <div id="reviews" class="info-panel">
+                <p class="headline"
+                   data-toggle="collapse"
+                   data-target="#reviews-collapse"
+                   aria-expanded="true"
+                   aria-controls="reviews-collapse">
+                    {txt key=TEXT_XT_REVIEWS_INFO}
+                </p>
+                <div id="reviews-collapse" class="collapse collapse-auto-toggle-xs in">
+                    {hook key=product_info_tpl_reviews}
+                </div>
+            </div>
+        {/if}
+
+        {hook key=product_info_tpl_tab_box_2}
+
+    </div>
+
+</div><!-- #product -->

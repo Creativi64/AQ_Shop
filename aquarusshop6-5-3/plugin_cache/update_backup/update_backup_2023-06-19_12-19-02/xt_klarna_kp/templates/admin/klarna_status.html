@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+  <link rel="stylesheet" href="theme.css" type="text/css"> </head>
+<style>
+
+.wizard {
+	width: 100%;
+	background: #ccc;
+}
+
+.active {
+	background: green;
+	color: #FFFFFF !important;
+}
+
+.active:after {
+  border-left: 30px solid green !important;
+}
+
+.notactive {
+	background: #EBEBEB;
+}
+
+.wizard span {
+    padding: 20px 12px 20px;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    min-width: 32.9%;
+    margin-left: 0.25%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    color: #707070;
+    text-transform: uppercase;
+}
+
+.wizard span:first-child {
+        margin-left: 0;
+    }
+    
+    
+.wizard:not(.left-arrow) span:before {
+    width: 0;
+    height: 0;
+    border-top: 30px inset transparent;
+    border-bottom: 30px inset transparent;
+    border-left: 30px solid #ccc;
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+}
+
+.wizard:not(.left-arrow) span:after {
+    width: 0;
+    height: 0;
+    border-top: 30px inset transparent;
+    border-bottom: 30px inset transparent;
+    border-left: 30px solid #EBEBEB;
+    position: absolute;
+    content: "";
+    top: 0;
+    right: -30px;
+    z-index: 2;
+}
+ 
+.wizard span:first-child:before,
+.wizard span:last-child:after {
+    border: none;
+}
+
+.green {
+color: green;
+}
+
+.yellow {
+color: yellow;
+}
+
+</style>
+<body id="klarnastatus" class="" >
+{if $status eq 'PENDING'}
+  <nav class="navbar navbar-expand-md bg-primary navbar-dark">
+    <div class="container">
+      <img src="images/klarna-white.svg"/ height="20px">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent"> </div>
+    </div>
+  </nav>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 text-center">
+          <i class="far fa-clock fa-10x green"></i>
+        </div>
+        <div class="col-md-8">
+          <p class="lead">Sie haben sich erfolgreich für den Klarna Checkout registriert!
+            <br> </p>
+          <p class="">Klarna prüft nun Ihre Daten und in Kürze können Sie Zahlungen mit Klarna Checkout in Ihrem Shop entgegen nehmen!</p>
+<div class="alert alert-warning" role="alert">
+  Sie können dieses Fenster nun schließen, der Status ihrer Klarna Integration wird automatisch innerhalb weniger Minuten in Ihrem Shop aktualisiert - Laden Sie in 5 Minuten das Backend neu (F5 oder Loggen Sie sich aus und wieder ein um die Anzeige zu aktualisieren)
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 border border-primary py-2">
+          <p class="lead">Klarna Checkout - Status Ihrer Registrierung</p>
+          <div class="row px-2">
+            
+            
+<div class="wizard" ng-cloak>
+    <span class="active">
+        <div class="badge">
+            <div class="border"></div>
+        </div>
+        <i class="far fa-check-circle"></i> Registrierung
+    </span>
+    <span class="notactive">
+        <div class="badge">
+            <div class="border"></div>
+        </div>
+        <i class="far fa-circle"></i> Zahlung akzeptieren
+    </span>
+    <span class="notactive">
+        <div class="badge">
+            <div class="border"></div>
+        </div>
+        <i class="far fa-circle"></i> Auszahlung erhalten
+    </span>
+</div>
+            
+            
+          </div><br />
+          <p class="">Klarna prüft aktuell Ihre Registrierung und Sie können schon bald Zahlungen Ihrer Kunden entgegen nehmen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{elseif $status eq 'TRANSACTIONS_ENABLED'}
+
+ <nav class="navbar navbar-expand-md bg-primary navbar-dark">
+    <div class="container">
+      <img src="images/klarna-white.svg"/ height="20px">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent"> </div>
+    </div>
+  </nav>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 text-center">
+          <i class="far fa-check-circle fa-10x green"></i>
+        </div>
+        <div class="col-md-8">
+          <p class="lead">Herzlichen Glückwunsch!</p><br />
+          <p class="">Sie können nun Zahlungen mit Klarna Checkout in Ihrem Shop entgegennehmen!</p>
+          
+          <div class="alert alert-warning" role="alert">Bitte beachten Sie, dass erst eine echte Bestellung eingegangen sein muss, bevor Klarna den Status Ihres Accounts für Auszahlungen aktivieren kann.</div>
+          
+          <p class="">Aktivieren Sie hierzu den Live-Modus von Klarna Checkout.</p>
+          <p class="">Damit Klarna Auszahlungen an Sie tätigen darf, benötigen wir aus gesetzlichen Gründen noch ein paar weitere Daten von Ihnen.</p>
+          <p><a class="btn btn-primary m-0" href="klarna.php?page=widget">Weitere Daten an Klarna übermitteln</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 border border-primary py-2">
+          <p class="lead">Klarna Checkout - Status Ihrer Registrierung</p>
+          <div class="row px-2">
+                    
+<div class="wizard" ng-cloak>
+    <span class="active">
+        <div class="badge">
+            <div class="border"></div>
+        </div>
+        <i class="far fa-check-circle"></i> Registrierung
+    </span>
+    <span class="active">
+        <div class="badge">
+            <div class="border"></div>
+        </div>
+        <i class="far fa-check-circle"></i> Zahlung akzeptieren
+    </span>
+    <span class="notactive">
+        <div class="badge">
+            <div class="border"></div>
+        </div>
+        <i class="far fa-circle"></i> Auszahlung erhalten
+    </span>
+</div>
+              
+          </div><br />
+          <p class="">Sie können nun Bestellungen in Ihrem Shop mit Klarna Checkout akzeptieren!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{elseif $status eq 'ADDITIONAL_REVIEW'}
+  <nav class="navbar navbar-expand-md bg-primary navbar-dark">
+    <div class="container">
+      <img src="images/klarna-white.svg"/ height="20px">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent"> </div>
+    </div>
+  </nav>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 text-center">
+          <i class="far fa-clock fa-10x"></i>
+        </div>
+        <div class="col-md-8">
+          <p class="lead">Ihr Shop wird momentan von Klarna überprüft.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{elseif $status eq 'SUSPENDED'}
+  <nav class="navbar navbar-expand-md bg-primary navbar-dark">
+    <div class="container">
+      <img src="images/klarna-white.svg"/ height="20px">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent"> </div>
+    </div>
+  </nav>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 text-center">
+          <i class="fas fa-lock fa-10x"></i>
+        </div>
+        <div class="col-md-8">
+          <p class="lead">Ihr Klarna-Konto wurde gesperrt.
+            <br> </p>
+          <p class="">Klarna wird sich mit Ihnen bezüglich weiterer Informationen in Verbindung setzen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{elseif $status eq 'TRANSACTIONS_DISABLED'}
+  <nav class="navbar navbar-expand-md bg-primary navbar-dark">
+    <div class="container">
+      <img src="images/klarna-white.svg"/ height="20px">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent"> </div>
+    </div>
+  </nav>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 text-center">
+          <i class="fas fa-lock fa-10x"></i>
+        </div>
+        <div class="col-md-8">
+          <p class="lead">Das Empfangen von Zahlungen wurde für Ihren Klarna-Account deaktiviert.
+            <br> </p>
+          <p class="">Bitte vervollständigen Sie den nächsten Schritt "Auszahlungen erhalten" bevor Sie wieder Zahlungen empfangen können.</p>
+           <p><a class="btn btn-primary m-0" href="klarna.php?page=widget">Weitere Daten an Klarna übermitteln</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+{elseif $status eq 'PAYOUTS_ENABLED'}
+  <nav class="navbar navbar-expand-md bg-primary navbar-dark">
+    <div class="container">
+      <img src="images/klarna-white.svg"/ height="20px">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent"> </div>
+    </div>
+  </nav>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 text-center">
+          <i class="far fa-check-circle fa-10x"></i>
+        </div>
+        <div class="col-md-8">
+          <p class="lead">Ihr Klarna Account ist vollständig aktiviert.
+            <br> </p>
+        </div>
+      </div>
+    </div>
+  </div>
+{/if}
+  
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

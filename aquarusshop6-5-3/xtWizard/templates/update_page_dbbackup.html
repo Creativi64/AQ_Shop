@@ -1,0 +1,52 @@
+<div class="container">
+ 	<div class="header">
+    	<ul class="nav nav-pills pull-right">
+        {if $show_language == '1'}
+        	<label for="install_lang">{$smarty.const._TEXT_SELECT_LANGUAGE}</label>
+			<a href="{$current_page}&install_lang=de"><img src="../media/flags/de.gif" /></a>
+			<a href="{$current_page}&install_lang=en"><img src="../media/flags/gb.gif" /></a>
+		{/if}
+		</ul>
+		<h3 class="text-muted"><img src="templates/img/top_logo.jpg"alt="" /></h3>
+	</div>
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">{$smarty.const.TEXT_CREATE_DBBACKUP}</h3>
+	  </div>
+	  <div class="panel-body">
+	   <form method="post" action="{$current_page}" class="form-horizontal" onsubmit="document.getElementById('submit_btn').disabled=true">
+
+    		<fieldset class="col-xs-12">
+				{if $error}
+				<div class="alert alert-danger">
+					<ul class="info_error">
+						{foreach name=aussen item=err from=$error}
+						<li class="infoError">{$err.text}</li>
+						{/foreach}
+					</ul>
+				</div>
+				{/if}
+    			<div class="col-xs-8">
+    				<label class="checkbox form-group" for="_dbBackup"></label>
+    				<input id="_dbBackup" type="checkbox" name="_dbBackup" value="1"{$_dbBackup}> <a href="#" class="tt" data-toggle="tooltip" title="{$smarty.const.TEXT_DATABASE_UPDATE_BACKUP}">{$smarty.const.TEXT_DATABASE_UPDATE_BACKUP}</a>
+					<p style="padding-left:17px">{$smarty.const.TEXT_DB_BACKUP_INFO|sprintf:$sql_backup_dir}</p>
+
+					<label class="checkbox form-group" for="_dbCleanup"></label>
+					<input id="_dbCleanup" type="checkbox" name="_dbCleanup" value="1"{$_dbCleanup}> <a href="#" class="tt" data-toggle="tooltip" title="{$smarty.const.TEXT_CLEANUP_DB}">{$smarty.const.TEXT_CLEANUP_DB}</a><br />
+					<p style="padding-left:17px">{$smarty.const.TEXT_CLEANUP_DB_INFO}</p>
+					<ul>
+						{foreach item=dateColSettings from=$cleanup_tables key=table}
+						<li><span style="display: inline-block; width:220px">{$table}</span> {if $dateColSettings}{$dateColSettings.days} {$smarty.const.TEXT_DAYS}{else}{$smarty.const.TEXT_ALL}{/if}</li>
+						{/foreach}
+					</ul>
+    			</div>
+    			<div class="col-xs-4">
+	    			{$smarty.const.TEXT_WAIT_BACKUP}
+    			</div>
+    		</fieldset>
+			<div class="btn_wrap" style="margin:16px">
+				<input id="submit_btn" type="submit" class="btn next-btn btn-large btn-success" value="{txt key=TEXT_BUTTON_NEXT}" >
+			</div>
+    	</form>
+	  </div>
+</div>

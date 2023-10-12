@@ -1,0 +1,431 @@
+//    __                         _
+//   / /  __ _ _   _  ___  _   _| |_
+//  / /  / _` | | | |/ _ \| | | | __|
+// / /__| (_| | |_| | (_) | |_| | |_
+// \____/\__,_|\__, |\___/ \__,_|\__|
+//             |___/
+//
+// For each shop client you could create its own less file
+// layout_[shop_id].less
+// @example for shop client id 1 name it 'layout_1.less'
+//
+// Media queries
+// -------------
+// We use the following media queries in our Less files to create the key breakpoints in our grid system.
+// ```less
+//    @media (max-width: @screen-xs-max) { ... }
+//    @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }
+//    @media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }
+//    @media (min-width: @screen-lg-min) { ... }
+// ```
+//;
+
+/**
+* FIXES
+*/
+* {
+    outline: 0 none !important;
+}
+
+/* Internet Explorer 10 auf Windows 8 und Windows Phone 8 */
+@-webkit-viewport {
+    width: device-width;
+}
+
+@-moz-viewport {
+    width: device-width;
+}
+
+@-ms-viewport {
+    width: device-width;
+}
+
+@-o-viewport {
+    width: device-width;
+}
+
+@viewport {
+    width: device-width;
+}
+
+@media print {
+    a.hidden-href-print[href]:after {
+        content: none !important;
+    }
+}
+
+[data-notify] {
+    border-width: 2px;
+    animation-duration: 0.4s;
+}
+
+
+/**
+* GRID
+*/
+#site-wrap,
+#site-wrap > .container,
+#site-wrap > .container-fluid {
+    min-width: @ew-global-min-width;
+}
+
+.main-navigation,
+.meta-navigation {
+    .container {
+        min-width: @ew-global-min-width - @grid-gutter-width;
+    }
+}
+
+#site-wrap {
+    padding-bottom: @grid-gutter-width;
+}
+
+#content {
+    margin-bottom: @grid-gutter-width;
+    .secondary {
+        overflow: hidden;
+        .panel {
+            margin-bottom: @grid-gutter-width;
+            .panel-body {
+                padding: @ew-box-categories-horizontal-padding;
+                p:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+/**
+* HEADER
+*/
+#header {
+    background: @body-bg;
+    .header-top {
+        .col {
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-top: @grid-gutter-width;
+            padding-bottom: @grid-gutter-width;
+            > .inner {
+                @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+                    padding-top: (@grid-gutter-width / 2);
+                }
+                .logo {
+                    margin: 0;
+                    padding: 0;
+                    &, img {
+                        max-height: @input-height-large;
+                        max-width: 100%;
+                        height: auto;
+                        width: auto;
+                    }
+                }
+                &.top-search {
+                    @media (min-width: @grid-float-breakpoint) {
+                        .input-group {
+                            .form-control,
+                            .input-group-addon,
+                            .input-group-btn .btn {
+                                .input-lg();
+                            }
+                            .form-control {
+                                font-size: @font-size-base;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**
+* FOOTER
+*/
+#footer {
+    border-top: @footer-border;
+    padding-bottom: @grid-gutter-width;
+    padding-top: @grid-gutter-width;
+    background-color: @footer-background;
+    color: @footer-text-color;
+    a {
+        color: @footer-link-color;
+        text-decoration: none;
+        &:hover {
+            color: @footer-link-hover-color;
+        }
+    }
+    .headline {
+        .h4;
+        .text-uppercase;
+        padding-bottom: (@font-size-h4 / 2);
+        margin-bottom: @font-size-h4;
+        border-bottom: @footer-heading-border;
+        &, a {
+            color: @footer-heading-color;
+        }
+    }
+    .col {
+        margin-bottom: @grid-gutter-width;
+        ul {
+            .list-unstyled;
+        }
+    }
+    .bootstrap-select {
+        margin-bottom: @grid-gutter-width;
+        a {
+            color: @headings-color;
+        }
+        .option-title {
+            .hidden;
+        }
+    }
+    @media (max-width: @screen-xs-max) {
+        text-align: center;
+        padding-bottom: (@grid-gutter-width * 3);
+        .bootstrap-select {
+            width: 60%;
+            .filter-option {
+                text-align: center;
+            }
+        }
+    }
+}
+
+.copyright, .parseTime {
+    &, a {
+        color: @footer-copyright-color;
+        font-size: @footer-copyright-font-size;
+        text-decoration: none;
+    }
+    .text-center;
+    margin-bottom: 5px;
+}
+
+#footer-meta {
+    margin-top: (@grid-gutter-width * 3);
+}
+
+/**
+* STICKY FOOTER
+*/
+html, body, #site-wrap {
+    height: 100%;
+}
+
+#container {
+    min-height: 100%;
+    height: auto;
+}
+
+/**
+* SELECTION HANDLING
+*/
+::selection {
+    background: @brand-primary;
+}
+
+::-moz-selection {
+    background: @brand-primary;
+}
+
+.btn::selection {
+    background: inherit;
+}
+
+.btn::-moz-selection {
+    background: inherit;
+}
+
+/**
+* Vertical align helper
+*
+* 1. Auf wrappendes Element, dessen Kinder vertikal mittig ausgerichtet werden sollen die Klasse "vertical-helper" setzen
+* 2. Das wrappende Element muss eine Hoehe definiert haben und ein Block Element sein
+*/
+.vertical-helper * {
+    display: inline-block;
+    float: none;
+    vertical-align: middle;
+}
+
+.vertical-helper:after {
+    visibility: hidden;
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/**
+ * Z-index hacks
+ */
+.bootstrap-select.btn-group .dropdown-menu {
+    z-index: @zindex-dropdown;
+}
+
+#fancybox-overlay {
+    z-index: @zindex-modal-background !important;
+}
+
+#fancybox-wrap {
+    z-index: @zindex-modal !important;
+}
+
+/**
+ * Fix QTY Buttons
+ */
+.input-group-sm > .form-control,
+.input-group-sm > .input-group-addon,
+.input-group-sm > .input-group-btn > .btn {
+    height: 35px;
+}
+
+/**
+* Button list to show buttons horizontal in a list
+*/
+.btn-list, .label-list {
+    list-style: none;
+    padding: 0;
+    &:extend(.clearfix all);
+    li {
+        list-style-type: none;
+        float: left;
+        margin: 0 5px 5px 0;
+        a:not(.btn), input:not(.btn), button:not(.btn) {
+            display: inline-block;
+            .btn;
+            .btn-primary;
+        }
+        .label, label {
+            display: inline-block;
+            margin: 0;
+        }
+    }
+}
+
+/**
+ * "No Image" Image (Version 2016 ;))
+ */
+.image {
+    .no-image {
+        text-align: center;
+        width: 100%;
+        .no-image-icon {
+            padding: 50% 0;
+            &:before {
+                .fa-icon();
+                .fa-icon-class(camera);
+                font-size: @listing-noimage-size;
+                color: @listing-noimage-color;
+            }
+        }
+    }
+}
+
+/**
+ * Inputs with prefix
+ */
+.inputs-with-prefix {
+    .form-group .bootstrap-select.btn-group {
+        width: 100%;
+        @media (max-width: @screen-xs-max) {
+            margin-bottom: (@grid-gutter-width / 2);
+        }
+    }
+}
+
+/**
+* STARTPAGE THUMBS
+*/
+.teaser.thumbs {
+    .col {
+        margin-bottom: @grid-gutter-width;
+    }
+}
+
+/**
+* WELLS
+*/
+.well {
+    .box-shadow(@well-shadow);
+    border: @well-border-setting;
+    padding: @well-padding;
+    &.well-lg {
+        padding: @well-padding-lg;
+    }
+    &.well-sm {
+        padding: @well-padding-sm;
+    }
+    hr {
+        border-color: @well-border;
+        background-color: #FFF;
+        height: 1px;
+    }
+}
+
+/**
+* PROGRESS BAR
+*/
+.progress-bar {
+    .checkout-progress & {
+        font-size: @font-size-middle;
+    }
+}
+
+#box-start-page-categories{
+    font-size: 0.9em;
+}
+#box-start-page-categories.categorie-listing .section .title a:first-child
+{
+    padding-bottom:0;
+}
+#box-start-page-categories.categorie-listing .section .title a:last-child
+{
+    padding-top:0;
+}
+#box-start-page-categories a img {
+    vertical-align: top;
+    min-width: 100%;
+}
+
+#box-start-page-categories p.image a  {
+    max-height:120px;
+    overflow:hidden
+}
+
+#header .header-top .col.col-logo
+{
+    padding: 5px 0;
+}
+#header .header-top .col>.inner .logo, #header .header-top .col>.inner .logo img {
+    max-height: 154px;
+}
+
+img.img-listingTop {
+    width: 100%
+}
+
+.xt-form-error {
+    border: 1px solid #b11d1a !important;
+    outline: none;
+    border-color: #b11d1a !important;
+    box-shadow: 0px 0px 5px 2px #b11d1a !important
+}
+
+.xt-form-error[type="checkbox"] {
+    /*
+    outline: 1px solid #b11d1a !important;
+    outline-offset: -1px;
+    */
+    background-color: #fcf8e3;
+}
+
+.div-table.table-bordered .tr:last-child {
+    border-bottom: none;
+}
+
+#cart-table ul.label-list li.product-stock-image
+{
+    margin-top: 5px;
+}

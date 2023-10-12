@@ -1,0 +1,24 @@
+{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+    <li class="popover-trigger" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" title="{txt key=TEXT_CART}" data-content='<span class="box-cart-box-article">{if $content_count}{$content_count} {txt key=TEXT_ARTICLE},{else}0 {txt key=TEXT_ARTICLE}{/if}</span><span class="text-muted"> {$cart_total}</span>'>
+        {if $content_count}<i class="mdi mdi-cart"></i>{else}<i class="mdi mdi-cart-outline"></i>{/if}
+        <a href="{link page='cart'}">{txt key=TEXT_CART} {if $content_count}({$content_count}){/if}</a>
+    </li>
+    {if $content_count != 0 and $page != 'cart' and $page != 'checkout' and $page != 'customer'}
+        <div id="cart-bottom-floating">
+            <div class="container">
+                <div class="col col-xs-4 text-center text-uppercase col-left">
+                    <a href="{link page='cart'}" title="{txt key=TEXT_CART}">
+                        <span class="mdi mdi-cart mdi-24px"></span>
+                        <span class="hidden-xs hidden-sm">{if $content_count}{$content_count} {txt key=TEXT_ARTICLE}{else}0 {txt key=TEXT_ARTICLE}{/if}</span>
+                        <span class="hidden-md hidden-lg">{if $content_count}{$content_count}{else}0{/if}</span>
+                    </a>
+                </div>
+                <div class="col col-xs-8 text-center text-uppercase col-right">
+                    <a href="{link page='checkout' paction='shipping' conn=SSL}" title="{txt key=TEXT_CHECKOUT}">
+                        {txt key=BUTTON_CHECKOUT}<span class="hidden-xs hidden-sm"> ({$cart_total})</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {/if}
+{/if}

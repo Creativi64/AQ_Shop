@@ -1,0 +1,22 @@
+{include file="file:$_system_root_templates/email/email_top.html"}
+<!-- // Begin Content \\ -->
+<table class="email-content" cellpadding="0" cellspacing="0" width="660" style="font: 12px Arial, Helvetica, sans-serif;color: #484848;">
+	<tr>
+		<td>
+			<h1 style="font-size:14px;">Hello {$customers_title} {$customers_firstname} {$customers_lastname},</h1>
+			<p>We received your message and we will get in touch with you soon.</p>
+			<h2 style="font-size:12px;">{txt key="TEXT_CONTACT"}</h2>
+            {if $customers_title}<p>{txt key="TEXT_CUSTOMERS_TITLE"}: {$customers_title}</p>{/if}
+			<p>{txt key="TEXT_FIRSTNAME"}: {$customers_firstname}</p>
+			<p>{txt key="TEXT_LASTNAME"}: {$customers_lastname}</p>
+		    <p>{txt key="TEXT_COMPANY"}: {$company}</p>
+	        <p>{txt key="TEXT_PHONE"}: {$telefone}</p>
+			<p>{txt key="TEXT_MOBILE_PHONE"}: {$mobile_phone}</p>
+	        <p>{txt key="TEXT_ORDER_NUMBER"}: {$order_no}</p>
+	        <p>{txt key="TEXT_MESSAGE"}: {$message|nl2br}</p>
+            <p style="background: #FFE0E4; padding: 10px;"><b>Attention:</b> This email adress was submitted to us by a customer. If you did not register with us, please feel free to contact us immediately.</p>
+		</td>
+	</tr>
+</table>
+<!-- // End Content \\ -->
+{include file="file:$_system_root_templates/email/email_bottom.html"}

@@ -1,0 +1,71 @@
+{* if you need more or less deeper tree data in $_categories set the maxlevel paramter in xtCore/boxes; default maxLevel is 3 *}
+{if $_categories}
+    {if $params.position == 'navbar'}
+
+        <ul class="nav navbar-nav">
+            {foreach key=k name=a item=i from=$_categories}
+                <li id="cid-{$i.categories_id}" class="level-{$i.level} lang-{$language}{if $i.active == 1} active current{/if}{if $smarty.foreach.a.first} first{/if}{if $smarty.foreach.a.last} last{/if}{if $i.sub} dropdown{if $params.mega == 'true'} mega-dropdown{/if}{/if}">
+                    <a class="dropdown-toggle" href="{$i.categories_link}"{if $i.sub} data-toggle="dropdown" data-hover="dropdown"{/if}>
+                        {$i.categories_name|escape:'html'}
+                        {if $i.sub}<b class="caret"></b>{/if}
+                    </a>
+                    {if $i.sub}
+                        <ul class="dropdown-menu">
+                            {foreach key=k1 name=a1 item=i1 from=$i.sub}
+                                {if $params.mega == 'true'}
+                                    <li class="level-{$i1.level}">
+                                        <a href="{$i1.categories_link}" class="title">{$i1.categories_name|escape:'html'}</a>
+                                        {if $i1.sub}
+                                            <ul class="{if $i1.level>=2}hidden-xs {/if}level-{math equation="x+1" x=$i1.level}">
+                                                {foreach key=k2 name=a2 item=i2 from=$i1.sub}
+                                                    <li class="level-{$i2.level}">
+                                                        <a href="{$i2.categories_link}">{$i2.categories_name|escape:'html'}</a>
+                                                    </li>
+                                                {/foreach}
+                                            </ul>
+                                        {/if}
+                                    </li>
+                                {else}
+                                    <li>
+                                        <a href="{$i1.categories_link}">{$i1.categories_name|escape:'html'}</a>
+                                    </li>
+                                {/if}
+                            {/foreach}
+                            <li class="static divider hidden-float-breakpoint"></li>
+                            <li class="static">
+                                <a class="dropdown-header" href="{$i.categories_link}">
+                                    <i class="fa fa-caret-right"></i>&nbsp;
+                                    {txt key=TEXT_MORE_DETAILS}:&nbsp;
+                                    <span class="text-uppercase text-primary">{$i.categories_name|escape:'html'}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    {/if}
+                </li>
+            {/foreach}
+        </ul>
+
+    {else}
+
+        <div class="{$params.name} {$params.position} cid-{$current_parent_id} box-categories panel panel-default text-word-wrap">
+            <div class="panel-heading">
+                <p class="panel-title text-uppercase">
+                    <i class="fa fa-bars"></i>
+                    {if $current_parent_data}
+                        <a href="{$current_parent_data.categories_link}">{$current_parent_data.categories_name}</a>
+                    {else}
+                        {txt key=TEXT_BOX_TITLE_CATEGORIES}
+                    {/if}
+                </p>
+            </div>
+            <ul class="nav nav-pills nav-stacked">
+                {foreach name=aussen item=module_data from=$_categories}
+                    <li class="level-{if $current_parent_id}{$module_data.level-1}{else}{$module_data.level}{/if} cid-{$module_data.categories_id}{if $module_data.active} active{/if}">
+                        <a href="{$module_data.categories_link}"><span class="{if $module_data.level > 3}icon{/if}">{$module_data.categories_name}</span></a>
+                    </li>
+                {/foreach}
+            </ul>
+        </div>
+
+    {/if}
+{/if}

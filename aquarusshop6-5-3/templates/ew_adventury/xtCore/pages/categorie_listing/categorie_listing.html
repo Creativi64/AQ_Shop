@@ -1,0 +1,54 @@
+<div id="categorie-listing" class="categorie-listing{if $categories_description|trim == ''} categorie-listing-nodesc{/if}">
+	<div class="categorie-listing-header{if $categorie_listing != ''} has-subs{/if}"{if $more_images.0.file} style="background-image:url('{img img=$more_images.0.file type=m_org alt=$categories_name|escape:'html' title=$categories_name|escape:'html' path_only=true}')"{/if}>
+		<div class="container">
+			<div class="row cat-content">
+				<div class="col {if $more_images.0.file}col-xs-12 col-sm-12 col-md-6 col-lg-8{else}col-xs-12{/if}">
+					{if $categories_heading_title|strip_tags|trim != ''}
+						<h1>{$categories_heading_title}{if $categories_name|strip_tags|trim != ''}<br /><small>{$categories_name}</small>{/if}</h1>
+					{else}
+						<h1>{$categories_name}</h1>
+					{/if}
+					{if $categories_description|trim != ''}
+						<div id="categorie-description" class="textstyles text-word-wrap">{$categories_description}</div>
+					{/if}
+				</div>
+				{if $more_images.0.file}
+					<div class="hidden-xs hidden-sm col col-md-6 col-lg-4">
+					</div>
+				{/if}
+			</div>
+			<a href="{$categories_link}" class="btn btn-sm btn-default" title="{txt key=TEXT_EW_ADVENTURY_BACK_TO_CATEGORY_OVERVIEW}">{txt key=TEXT_EW_ADVENTURY_BACK_TO_CATEGORY_OVERVIEW}</a>
+		</div>
+	</div>
+	{if $categorie_listing != ''}
+		<div class="categorie-listing-sub-header">
+			<div class="container">
+				<div class="slider">
+					<div class="owl listing equalize-nothing">
+						<div id="categoryCarousel-category" class="categoryCarousel">
+							{foreach key=k name=a item=module_data from=$categorie_listing}
+								<div class="col">
+									<div class="section panel panel-default panel-shadow" onclick="document.location.href='{$module_data.categories_link}'" style="cursor:pointer;">
+										<div class="cat-image">
+											<div class="panel-body text-center">
+												<span class="title text-word-wrap"><a href="{$module_data.categories_link}">{$module_data.categories_name}</a></span>
+											</div>
+											{if $module_data.categories_image}
+												<a href="{$module_data.categories_link}" class="vertical-helper image-link">{img img=$module_data.categories_image type=m_ewadventurycategorythumb class="productImageBorder img-responsive img-listingTop" alt="$module_data.categories_name|escape:'html' {if $categories_image_data && $categories_image_data.$categories_image_id.copyright_holder }&copy;&nbsp;{$categories_image_data.$categories_image_id.copyright_holder}{/if}" title="$module_data.categories_name|escape:'html' {if $categories_image_data && $categories_image_data.$categories_image_id.copyright_holder }&copy;&nbsp;{$categories_image_data.$categories_image_id.copyright_holder}{/if}"}</a>
+												{if $categories_image_data && $categories_image_data.$categories_image_id.copyright_holder }
+													&copy;&nbsp;{$categories_image_data.$categories_image_id.copyright_holder}
+												{/if}
+											{else}
+												<a href="{$module_data.categories_link}" class="vertical-helper image-link no-image">{img img='no_image.png' type=t_img class="productImageBorder img-responsive img-listingTop" alt=$module_data.categories_name|escape:"html"}</a>
+											{/if}
+										</div>
+									</div>
+								</div>
+							{/foreach}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{/if}
+</div><!-- #categorie-listing -->

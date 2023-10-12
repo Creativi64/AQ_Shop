@@ -1,0 +1,110 @@
+<div id="checkout-payment" class="row">
+	<div class="col col-sm-3">
+		<div class="well payment-address address">
+			<p class="headline-underline clearfix">
+                {txt key=TEXT_PAYMENT_ADDRESS}
+                {if $payment_address.allow_change == true}
+					<a title="{txt key=TEXT_EDIT}"
+                        class="btn btn-xs btn-primary pull-right edit-address-trigger"
+                        href="{link page='customer' paction='edit_address' params="adType=`$payment_address.address_class`&abID=`$payment_address.address_book_id`" conn=SSL}"
+					>
+						<span class="glyphicon glyphicon-pencil"></span>
+						<span class="sr-only">{txt key=TEXT_EDIT}</span>
+					</a>
+					<div id="edit-address-modal" class="modal fade" tabindex="-1" role="dialog">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title text-center" id="exampleModalLabel">{txt key=TEXT_PAYMENT_ADDRESS}</h4>
+								</div>
+								<div class="modal-body">
+									<div class="loader text-center" style="margin: 0; padding: 40px;">
+										<i class="fa fa-spinner fa-pulse fa-2x fa-fw text-muted"></i>
+										<span class="sr-only">Loading...</span>
+									</div>
+									<div class="content"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{/if}
+            </p>
+			{if $payment_address.customers_company}<p>{$payment_address.customers_company}</p>{/if}
+			<p>{if $payment_address.customers_title}{$payment_address.customers_title} {/if}{$payment_address.customers_firstname} {$payment_address.customers_lastname}</p>
+			<p>{$payment_address.customers_street_address}</p>
+			{if $payment_address.customers_suburb}<p>{$payment_address.customers_suburb}</p>{/if}
+			<p>{$payment_address.customers_postcode} {$payment_address.customers_city}</p>
+			<p>{$payment_address.customers_country}</p>
+			<p><br /></p>
+			{if $shipping_address.allow_change == true}
+                {form type=form role="form" name=payment_address action='dynamic' link_params='page_action=payment' method=post conn=SSL}
+                <div class="form-group">
+                    <label for="address_data">{txt key=TEXT_SELECT_PAYMENT_ADDRESS}</label>
+                    {form id="address_data" class="form-control" type=select name=adID value=$address_data params='onchange="this.form.submit();" data-style=""' default=$smarty.session.customer->customer_payment_address.address_book_id params='onchange="this.form.submit();"'}
+				</div>
+                {form type=hidden name=adType value=payment}
+                {form type=hidden name=action value=select_address}
+                {form type=formend}
+                {if $add_new_address eq 1}
+                    <!--<p>{txt key=TEXT_NEW_PAYMENT_ADDRESS}</p>-->
+                    <a class="btn btn-primary" href="{link page='customer' paction='edit_address' params='adType=payment' conn=SSL}">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        {txt key=BUTTON_ADD_ADDRESS}
+                    </a>
+                {/if}
+			{/if}
+		</div>
+		<div class="well shipping-address address">
+			<p class="headline-underline">
+				{txt key=TEXT_SHIPPING_ADDRESS}
+				<a title="{txt key=TEXT_EDIT}" class="btn btn-xs btn-default pull-right" href="{link page='checkout' paction='shipping' conn=SSL}">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="sr-only">{txt key=TEXT_EDIT}</span>
+                </a>
+			</p>
+			{if $shipping_address.customers_company}<p>{$shipping_address.customers_company}</p>{/if}
+			<p>{if $shipping_address.customers_title}{$shipping_address.customers_title} {/if}{$shipping_address.customers_firstname} {$shipping_address.customers_lastname}</p>
+			<p>{$shipping_address.customers_street_address}</p>
+			{if $shipping_address.customers_suburb}<p>{$shipping_address.customers_suburb}</p>{/if}
+			<p>{$shipping_address.customers_postcode} {$shipping_address.customers_city}</p>
+			<p>{$shipping_address.customers_country}</p>
+		</div>
+		{hook key=tpl_checkout_payment_info_boxes}
+	</div>
+	<div class="col col-sm-9">
+		<h1>{txt key=TEXT_SELECT_PAYMENT_DESC}</h1>
+		{form type=form role="form" name=payment action='checkout' method=post conn=SSL}
+		{form type=hidden name=action value=payment}
+
+        <ul class="list-group">
+            {foreach name=aussen item=pdata from=$payment_data}
+                <li class="list-group-item clearfix cursor-pointer">{$pdata.payment}</li>
+            {/foreach}
+        </ul>
+
+        {hook key=checkout_tpl_payment_comment}
+
+		<div class="well form-counter">
+			<p class="h4">{txt key=TEXT_COMMENTS} <small>{txt key=TEXT_MAX_CHARACTERS}</small></p>
+            <textarea name="comments" id="comments" class="form-control autosizejs" cols="50" rows="3" placeholder="{txt key=TEXT_COMMENTS_DESC}" maxlength="255">{$smarty.session.order_comments}</textarea>
+		</div>
+
+        <div class="clearfix">
+            <a href="{link page='checkout' paction='shipping' conn=SSL}" class="btn btn-default pull-left link-back">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                {txt key=BUTTON_BACK}
+            </a>
+            {if !empty($payment_data)}
+                <button type="submit" class="btn btn-success preloader pull-right">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    {txt key=BUTTON_NEXT}
+                </button>
+            {/if}
+        </div>
+
+        {hook key=checkout_tpl_payment}
+        {form type=formend}
+
+    </div>
+</div><!-- #checkout-payment .row -->

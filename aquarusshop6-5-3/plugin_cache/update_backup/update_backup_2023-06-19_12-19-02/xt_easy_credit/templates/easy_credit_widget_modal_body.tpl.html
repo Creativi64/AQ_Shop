@@ -1,0 +1,22 @@
+
+    <div class="product-listing product-listing-1">
+        <div class="listing row products">
+            {foreach $options as $option}
+                <div class="col col-md-4 col-sm-6 col-{$option@index+1}{if $option@first} col-first{elseif $option@last} col-last{/if}">
+                    <div class="section panel panel-default">
+                        <div class="section-body panel-body">
+                            <p>Plan {$option@key+1}</p>
+                            <span class="option-line bold">{$option.zahlungsplan.anzahlRaten} monatliche Raten in H&ouml;he von <span class="float-right">{$option.zahlungsplan.betragRate}&nbsp;{$option.monthly_payment.currency_code}</span></span>
+                            <span class="option-line">{txt key='TEXT_FINANCING_NOMINAL_RATE_SHORT'}: <span class="float-right">{$option.zinsen.nominalzins}&nbsp;%</span></span>
+                            <span class="option-line">{txt key='TEXT_FINANCING_APR_SHORT'}: <span class="float-right">{$option.zinsen.effektivzins}&nbsp;%</span></span>
+                            <span class="option-line">{txt key='TEXT_FINANCING_TOTAL_INTEREST_SHORT'}: <span class="float-right">{$option.zinsen.anfallendeZinsen}&nbsp;{$option.total_interest.currency_code}</span></span>
+                            <span class="option-line bold">{txt key='TEXT_FINANCING_TOTAL_COST_SHORT'}: <span class="float-right">{$option.gesamtsumme}&nbsp;{$option.total_cost.currency_code}</span></span>
+                        </div>
+                    </div>
+                </div>
+            {/foreach}
+        </div>
+    </div>
+    <p class="">
+        {$example}<br />
+    </p>

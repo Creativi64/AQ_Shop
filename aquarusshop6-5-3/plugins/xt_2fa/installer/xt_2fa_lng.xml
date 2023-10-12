@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+    <language_content>
+
+    <phrase>
+        <key>TEXT_PLUGIN_XT_TWOFA_STATUS</key>
+        <class>admin</class>
+        <de>
+            <value><![CDATA[2FA Status]]></value>
+        </de>
+        <en>
+            <value><![CDATA[2FA Status]]></value>
+        </en>
+    </phrase>
+
+        <phrase>
+            <key>TEXT_2FA_CODE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[2FA Code]]></value>
+            </de>
+            <en>
+                <value><![CDATA[2FA Code]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>ERROR_2FA_LOGIN_FAILED</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[2FA Code stimmt nicht überein]]></value>
+            </de>
+            <en>
+                <value><![CDATA[2FA Code not correct]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_2FA_LOGIN</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Zwei-Faktor-Authentifizierung (2FA)]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Zwei-Faktor-Authentifizierung (2FA)]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_2FA_AUTH_CODE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Code]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Code]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_2FA_CODE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[2FA Code]]></value>
+            </de>
+            <en>
+                <value><![CDATA[2FA Code]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_2FA_SCAN_CODE_DESC</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Scannen Sie die den Code mit Ihrer Authenticator App und geben Sie den aktuellen Authentifizierungscode zur Aktivierung ein.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Scannen Sie die den Code mit Ihrer Authenticator App und geben Sie den aktuellen Authentifizierungscode zur Aktivierung ein.]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_2FA_BUTTON_ACTIVATE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Absenden]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Absenden]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_2FA_TAB_TITLE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[2FA]]></value>
+            </de>
+            <en>
+                <value><![CDATA[2FA]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_2FA_SUCCESS</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Erfolgreich aktiviert]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Successful activated]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_2FA_SUCCESS_REMOVED</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Erfolgreich deaktiviert]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Successful deactivated]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_2FA_WRONG_CODE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Falscher 2FA Code]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Wrong 2FA Code]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_2FA_DEACTIVATE_DESC</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Um die Zwei-Faktor-Authentifizierung für diesen Benutzer zu deaktivieren, geben Sie bitte den aktuellen Authentifizierungscode ein]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Um die Zwei-Faktor-Authentifizierung für diesen Benutzer zu deaktivieren, geben Sie bitte den aktuellen Authentifizierungscode ein]]></value>
+            </en>
+        </phrase>
+
+    </language_content>
+</xtcommerceplugin>

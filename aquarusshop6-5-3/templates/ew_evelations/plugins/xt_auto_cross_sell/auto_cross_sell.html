@@ -1,0 +1,20 @@
+{if $smarty.get.page == 'cart'}
+
+    {include file="$selected_template/xtCore/pages/product_listing/product_listing_slider.html"
+        code="xt_auto_cross_sell"
+        headline=$smarty.const.TEXT_HEADING_AUTO_CROSS_SELL
+        product_listing=$_auto_cross_sell
+        page="cart"
+    }
+{else}
+    {include file="$selected_template/xtCore/pages/product_listing/product_listing_slider.html"
+        code="xt_auto_cross_sell"
+        headline=$smarty.const.TEXT_HEADING_AUTO_CROSS_SELL
+        product_listing=$_auto_cross_sell
+        classes=""
+        active=""
+        extended="1"
+        _show_more_link=false
+        _show_page_link=false
+    }
+{/if}

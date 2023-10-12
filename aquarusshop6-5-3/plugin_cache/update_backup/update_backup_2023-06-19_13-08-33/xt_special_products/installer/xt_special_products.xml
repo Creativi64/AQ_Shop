@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+
+    <code>xt_special_products</code>
+    <version>5.1.1</version>
+    <type>core</type>
+
+    <minimum_store_version>6.2.2</minimum_store_version>
+
+    <developer>xt:Commerce</developer>
+    <url>https://www.xt-commerce.com</url>
+
+    <marketplace_link><![CDATA[https://addons.xt-commerce.com/index.php?page=product&info=5564]]></marketplace_link>
+    <documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=58818588]]></documentation_link>
+
+    <title>Specials Page</title>
+    <icon>xt-commerce_logo.jpg</icon>
+
+    <db_install><![CDATA[
+              include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_special_products/installer/install.php';
+          ]]></db_install>
+    <db_uninstall><![CDATA[
+              include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_special_products/installer/uninstall.php';
+          ]]></db_uninstall>
+    <minimumupdateversion>1.0.2</minimumupdateversion>
+    <db_update>
+        <update>
+            <version>1.0.2</version>
+            <to_version>1.0.3</to_version>
+            <code><![CDATA[
+                      $seo_plugin_file = _SRV_WEBROOT.'/xtFramework/classes/class.seo_plugins.php';
+                      if (file_exists($seo_plugin_file))
+                      {
+                          require_once $seo_plugin_file;
+
+                           $seo_plugin = new seo_plugins();
+                           $seo_plugin->setPluginSEO('xt_special_products');
+                      }
+                  ]]></code>
+        </update>
+        <update>
+            <version>1.0.3</version>
+            <to_version>1.0.4</to_version>
+            <code><![CDATA[// ]]></code>
+        </update>
+        <update>
+            <version>1.0.4</version>
+            <to_version>1.0.5</to_version>
+            <code><![CDATA[// ]]></code>
+        </update>
+        <update>
+            <version>1.0.5</version>
+            <to_version>1.0.6</to_version>
+            <code><![CDATA[// ]]></code>
+        </update>
+        <update>
+            <version>1.0.6</version>
+            <to_version>1.0.7</to_version>
+            <code><![CDATA[// ]]></code>
+        </update>
+        <update>
+            <version>5.0.3</version>
+            <to_version>5.0.4</to_version>
+            <code><![CDATA[include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_special_products/installer/updates/5.0.3_5.0.4.php';]]></code>
+        </update>
+    </db_update>
+
+    <plugin_code>
+        <code>
+            <hook>page_registry.php:bottom</hook>
+            <phpcode><![CDATA[
+                  define('PAGE_XT_SPECIAL_PRODUCTS', _SRV_WEB_PLUGINS.'xt_special_products/pages/xt_special_products.php');
+              ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.customers_status.php:_set_bottom</hook>
+            <phpcode><![CDATA[
+                  $db_check = new database_check();
+                  $db_check->GroupCheckTable(TABLE_PRODUCTS_PRICE_SPECIAL);
+              ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>admin_dropdown.php:dropdown</hook>
+            <phpcode><![CDATA[include(_SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_special_products/hooks/admin_dropdown.php_dropdown.php');]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+    </plugin_code>
+
+    <configuration>
+
+        <config>
+            <key>XT_SPECIAL_PRODUCTS_ACTIVATED</key>
+            <type>status</type>
+            <value>1</value>
+            <sort_order>-10</sort_order>
+            <de>
+                <title>Status</title>
+                <description/>
+            </de>
+            <en>
+                <title>Status</title>
+                <description/>
+            </en>
+        </config>
+
+        <config>
+            <key>ACTIVATE_XT_SPECIAL_PRODUCTS_PAGE</key>
+            <type>status</type>
+            <value>1</value>
+            <de>
+                <title>Seite aktivieren - Direktaufruf</title>
+                <description>Seite aktivieren - Direktaufruf</description>
+            </de>
+            <en>
+                <title>Activate page - direct call</title>
+                <description>Activate page - direct call</description>
+            </en>
+        </config>
+        <config>
+            <key>ACTIVATE_XT_SPECIAL_PRODUCTS_START_PAGE</key>
+            <type>status</type>
+            <value>1</value>
+            <de>
+                <title>Auf Startseite anzeigen</title>
+                <description>Auf Startseite anzeigen</description>
+            </de>
+            <en>
+                <title>Display on start page</title>
+                <description>Display on start page</description>
+            </en>
+        </config>
+        <config>
+            <key>XT_SPECIAL_PRODUCTS_PAGE_LIMIT</key>
+            <value>24</value>
+            <de>
+                <title>Anzahl Artikel</title>
+            </de>
+            <en>
+                <title>Max. articles</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_SPECIAL_PRODUCTS_PAGE_TPL</key>
+            <value>product_listing_v1.html</value>
+            <de>
+                <title>Template</title>
+            </de>
+            <en>
+                <title>Template</title>
+            </en>
+        </config>
+
+        <config>
+            <key>ACTIVATE_XT_SPECIAL_PRODUCTS_BOX</key>
+            <type>status</type>
+            <value>1</value>
+            <de>
+                <title>Box anzeigen</title>
+            </de>
+            <en>
+                <title>Activate box</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_SPECIAL_PRODUCTS_BOX_LIMIT</key>
+            <value>3</value>
+            <de>
+                <title>Anzahl Artikel in Box</title>
+            </de>
+            <en>
+                <title>Max. articles in Box</title>
+            </en>
+        </config>
+
+        <config>
+            <key>XT_SPECIAL_PRODUCTS_SHOW_TYPE</key>
+            <type>dropdown</type>
+            <value>nothing</value>
+            <url>plg_xt_special_products_show_type</url>
+            <de>
+                <title>Produktauswahl</title>
+            </de>
+            <en>
+                <title>Products to show</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_SPECIAL_PRODUCTS_FILTER_CATEGORY</key>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title>Kategorie-Filter</title>
+                <description/>
+            </de>
+            <en>
+                <title>Category filter</title>
+                <description/>
+            </en>
+        </config>
+    </configuration>
+</xtcommerceplugin>

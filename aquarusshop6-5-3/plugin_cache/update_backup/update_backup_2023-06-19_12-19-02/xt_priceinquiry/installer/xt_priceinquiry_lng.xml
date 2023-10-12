@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_COMPETITOR_PRICE</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Competitors price]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Mitbewerberpreis]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COMPETITOR_URL</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Competitor URL (link to product)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Mitbewerber-URL (zum Produkt)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_PRICEINQUIRY</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Priceinquiry]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Preisanfrage]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_PRICEINQUIRY_ASK</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Billiger gesehen ?]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Billiger gesehen ?]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_PRICEINQUIRY_INTRO</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Sie haben dieses Produkt wo anders zu einem besseren Preis gesehen? Dann füllen Sie bitte das Formular hier aus, und wir versuchen, diesen Preis zu halten.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sie haben dieses Produkt wo anders zu einem besseren Preis gesehen? Dann füllen Sie bitte das Formular hier aus, und wir versuchen, diesen Preis zu halten.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_PRICEINQUIRY_PRICE_ERROR</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Please insert competitor price]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte geben Sie einen Preis an!]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_PRICEINQUIRY_URL_ERROR</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Please insert competitor URL]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte geben Sie eine URL an!]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

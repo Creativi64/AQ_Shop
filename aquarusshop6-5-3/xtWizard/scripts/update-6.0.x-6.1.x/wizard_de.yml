@@ -1,0 +1,1 @@
+.wizard.TEXT_UPDATE_SYSTEM_SEARCH_SPLIT=Die Option 'Einstellungen > Konfiguration > Performance > Suchanfragen trennen' wird in die Datei conf/config_search.php verschoben.<br />Nachdem Sie das Update komplett beendet haben (nach Überschreiben aller Dateien) setzen Sie dort den Wert von _SYSTEM_SEARCH_SPLIT auf <pre>false</pre>

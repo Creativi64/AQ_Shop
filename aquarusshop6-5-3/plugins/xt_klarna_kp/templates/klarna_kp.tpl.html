@@ -1,0 +1,34 @@
+
+{if $payment_name|trim != '' && $payment_code|trim != ''}
+    <div class="item item-{$payment_code}-{$klarna_payment_method} {if $payment_code == $payment_selected && $smarty.session.kp_selected_payment_method_category == $klarna_payment_method} selected{/if} payment-container">
+        {if $payment_icon|trim != ''}
+            {img url={$payment_icon} alt=$payment_name class="icon img-responsive img-thumbnail pull-right" style="margin-top:-15px; border:none; max-height:50px; "}
+        {/if}
+        <header data-toggle="collapse" data-target=".item-{$payment_code}-{$klarna_payment_method} .collapse">
+            <label class="cursor-pointer">
+                <span class="check">
+                    {if $payment_hidden == true}
+                        {form type=hidden name=selected_payment value="$payment_code:$klarna_payment_method"}
+                    {else}
+                        {if $payment_code == $payment_selected && $smarty.session.kp_selected_payment_method_category == $klarna_payment_method}
+                            {form type=radio name=selected_payment value="$payment_code:$klarna_payment_method" checked=true style="vertical-align: text-top;"}
+                        {else}
+                            {form type=radio name=selected_payment value="$payment_code:$klarna_payment_method" style="vertical-align: text-top;"}
+                        {/if}
+                    {/if}
+                </span>
+                <span class="name payment-name">{$payment_name}</span><span id="spinner_{$payment_code}_{$klarna_payment_method}">&nbsp;<i class="fa fa-refresh fa-1x" style="-webkit-animation:spin_kp_spinner 1.2s linear infinite;  -moz-animation:spin_kp_spinner 1.2s linear infinite;  animation:spin_kp_spinner 1.2s linear infinite;" ></i></span>
+                {if $payment_price.formated}
+                    <small class="price">&nbsp;{$payment_price.formated}</small>
+                {/if}
+            </label>
+        </header>
+        <div class="desc collapse{if $payment_code == $payment_selected && $smarty.session.kp_selected_payment_method_category == $klarna_payment_method} in{/if} payment-desc">
+            {if $payment_desc|trim != ''}
+                {$payment_desc}
+            {/if}
+            <div id="klarna_kp_container_{$klarna_payment_method}" style="" onclick=""></div>
+        </div>
+    </div>
+{/if}
+

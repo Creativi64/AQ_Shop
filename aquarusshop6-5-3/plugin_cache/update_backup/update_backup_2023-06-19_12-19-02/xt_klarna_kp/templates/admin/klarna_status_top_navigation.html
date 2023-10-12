@@ -1,0 +1,47 @@
+<!--  Klarna Dashboard Widget-->
+<div id="account_status">
+<div class="info-box">            
+              {if $status eq 'PENDING'}
+              <span class="info-box-icon info-box-orange"><i class="far fa-clock"></i></span>
+            	<div class="info-box-content">
+              		<span class="info-box-text">Klarna Checkout Status</span>
+              		<span class="info-box-number"><a onClick="openKlarnaStatusPage();">Registrierung in Prüfung</a></span>
+              {elseif $status eq 'TRANSACTIONS_ENABLED'}
+                            <span class="info-box-icon info-box-orange"><i class="fas fa-exclamation"></i></span>
+            	<div class="info-box-content">
+              		<span class="info-box-text">Klarna Checkout Status</span>
+              		<span class="info-box-number"><a onClick="openKlarnaStatusPage();">Daten für Auszahlung benötigt</a></span> 
+              {elseif $status eq 'ADDITIONAL_REVIEW_1' || $status eq 'ADDITIONAL_REVIEW_2' || $status eq 'ADDITIONAL_REVIEW_3'}
+              <span class="info-box-icon info-box-orange"><i class="fas fa-clock"></i></span>
+            	<div class="info-box-content">
+              		<span class="info-box-text">Klarna Checkout Status</span>
+              		<span class="info-box-number"><a onClick="openKlarnaStatusPage();">Registrierung in Prüfung</a></span>  
+              {elseif $status eq 'TRANSACTIONS_DISABLED'}
+              <span class="info-box-icon info-box-red"><i class="fas fa-exclamation-triangle"></i></span>
+            	<div class="info-box-content">
+              		<span class="info-box-text">Klarna Checkout Status</span>
+              		<span class="info-box-number"><a onClick="openKlarnaStatusPage();">Transaktionen deaktiviert</a></span>  
+              	{elseif $status eq 'SUSPENDED'}
+              <span class="info-box-icon info-box-red"><i class="fas fa-exclamation-triangle"></i></span>
+            	<div class="info-box-content">
+              		<span class="info-box-text">Klarna Checkout Status</span>
+              		<span class="info-box-number"><a onClick="openKlarnaStatusPage();">Klarna-Konto gesperrt</a></span> 
+              {elseif $status eq 'PAYOUTS_ENABLED'}
+              <span class="info-box-icon info-box-green"><i class="far fa-check-circle"></i></span>
+            	<div class="info-box-content">
+              		<span class="info-box-text">Klarna Checkout Status</span>
+              		<span class="info-box-number">Live</span>             
+                         
+              {else}
+              <span class="info-box-icon info-box-red"><i class="fas fa-exclamation"></i></span>
+            	<div class="info-box-content">
+              		<span class="info-box-text">Klarna Checkout Status</span>
+              		<span class="info-box-number"><a onClick="openKlarnaRegisterPage();" style="cursor:pointer">Registrierung erforderlich</a></span>
+              
+              {/if}
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          </div> 
+       
+<!-- Klarna End -->

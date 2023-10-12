@@ -1,0 +1,54 @@
+xt:Commerce - used libraries
+
+##
+ADOdb - Database Abstraction Library
+http://adodb.sourceforge.net/
+Version 5.20.4
+License; LGPL,BSD
+
+
+##
+PHP Captcha
+http://www.ejeliot.com/pages/2
+License: BSD
+
+
+##
+Ext JS Library 2.0.2
+http://extjs.com/
+License: LGPL
+
+
+##
+jquery
+Version 1.8.6
+License: MIT
+
+Thickbox 3
+License: MIT
+
+moments.js
+License: MIT
+
+pikaday.js
+License: MIT
+
+##
+nuSOAP
+http://dietrich.ganx4.com/nusoap
+Version: 0.7.3
+License: LGPL
+
+
+
+##
+PHP-Ext Open Source Project
+http://php-ext.googlecode.com
+Sergei Walter <sergeiw[at]gmail[dot]com>
+Copyright 2008 Sergei Walter
+License: LGPL
+
+##
+Smarty Template Engine
+Version: 3.1.29
+License: LGPL

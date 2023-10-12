@@ -1,0 +1,15 @@
+<div id="checkout-success">
+    <h1>
+        <i class="fa fa-check text-success"></i>
+        {txt key=TEXT_PAGE_TITLE_CHECKOUT_SUCCESS}
+    </h1>
+    {if $smarty.session.kco_order_id}
+        <div id="klarna-order-success-details" style="width:50%; max-width:640px; margin:auto; border:solid 1px #444">{hook key=kco_checkout_success}</div>
+    {/if}
+    <br />
+    <p>{txt key=TEXT_CHECKOUT_SUCCESS_DESC}</p>
+    {if $show_next_button eq 'true'}
+        <p><a href="{link page='index' conn=NOSSL}" class="btn btn-secondary">{txt key=BUTTON_NEXT}</a></p>
+    {/if}
+    {hook key=checkout_success_tpl}
+</div><!-- #checkout-shipping .row -->

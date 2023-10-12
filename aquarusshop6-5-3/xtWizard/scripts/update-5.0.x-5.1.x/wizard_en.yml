@@ -1,0 +1,14 @@
+.wizard.TEXT_ALTER_DB=DB adaptions
+.wizard.TEXT_CLEAN_ORDER_STATUS_CODES=Cleanup order status codes
+.wizard.TEXT_NEW_IMG_TYPE=New image typ:
+.wizard.TEXT_NEW_FIELD=New DB-Field / Attribut:
+.wizard.TEXT_WEST_NAVI_REMOVE=Backend West-Navigation cleanup
+.wizard.TEXT_WEST_NAVI_ADD=Backend West-Navigation new entries
+.wizard.TEXT_WEST_NAVI_HIDE_DEACTIVATED_PLGS=Backend West-Navigation
+.wizard.TEXT_MULTI_STORE_CONFIG=Configuration Multishop:
+.wizard.TEXT_FIX_PRODUCTS_UNIT=Fix wrong products units
+.wizard.TEXT_COPY_VERSION_INFO=<span style="font-weight:bold">Overwrite the file versioninfo.php in the main directory</span> (see <a href="https://xtcommerce.atlassian.net/wiki/spaces/MANUAL/pages/493158401/Anleitung+xt+Commerce+5.0.xx+auf+5.1.xx+updaten" target="_blank">Manual</a>). Then click 'Next' to continue.
+.wizard.TEXT_RECALCULATE_DIGITAL_TAX=Selection digital tax / recalculation
+.wizard.TEXT_RECALCULATE_DIGITAL_TAX_EXPLAIN=Select the tax class that should be used in your shop as a digital article tax. <br /> Leave the field blank only if there really is no corresponding tax class, regardless of whether you have digital articles or not.
+.wizard.TEXT_TAX_CLASS=Tax class
+.wizard.TEXT_UPDATE_CONFIG_PHP=update config/config.php

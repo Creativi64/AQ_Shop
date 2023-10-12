@@ -1,0 +1,17 @@
+<div class="box-search">
+    {form class="search-box-form" type=form name=search_box action='search' link_params=getParams method=get conn=SSL}
+        {form type=hidden name=page value=search}
+        {form type=hidden name=page_action value=query}
+        {form type=hidden name=desc value="{if $smarty.const.SEARCH_BOX_SEARCH_IN_DESC}on{/if}"}
+        {form type=hidden name=sdesc value="{if $smarty.const.SEARCH_BOX_SEARCH_IN_SDESC}on{/if}"}
+        <div class="input-group">
+            <input type="text" name="keywords" class="form-control keywords" value="{$smarty.get.keywords|strip_tags}" placeholder="{txt key=TEXT_ENTER_SEARCH_TERM}" />
+            <span class="input-group-btn">
+                <button type="submit" class="submit-button btn btn-primary" title="{txt key=BUTTON_SEARCH}" data-toggle="tooltip" data-placement="auto">
+                    <i class="fa fa-search"></i>
+                    <span class="sr-only">{txt key=BUTTON_SEARCH}</span>
+                </button>
+            </span>
+        </div>
+    {form type=formend}
+</div>

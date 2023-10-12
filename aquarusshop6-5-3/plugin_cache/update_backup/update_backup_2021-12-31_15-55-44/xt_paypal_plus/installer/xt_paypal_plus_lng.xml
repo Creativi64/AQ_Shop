@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>BUTTON_PPP_PAYMENT_DETAILS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Paypal Plus payment details]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Paypal Plus Zahlungsdetails]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PPP_INVALID_REFUND_AMOUNT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Invalid refund amount. Check refund typ refunds already made for this order]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Ungültiger Betrag. Prüfen Sie den Typ der Rückzahlung und bereits getätigte Rückzahlungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_IN_PAYPAL_PLUS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Add to Paypal Plus]]></value>
+	</en>
+	<de>
+		<value><![CDATA[In Paypal Plus aktivieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_PLUS_REFUNDS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Paypal Plus Refunds]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Paypal Plus Rückzahlungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_PLUS_TRANSACTIONS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Paypal Plus Transactions]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Paypal Plus Transaktionen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPPLUS_EMAIL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Email in Paypal]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal Email]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_NO_SSL_FOR_WEBHOOK</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[ssl required to use paypal plus]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Es wird ein SSL-Zertifikat benötigt damit Sie PayPal-Plus nutzen können.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_ORDER_REFUNDED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Order is refunded successfully ]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellung erfolgreich Zurückgezahlt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_PAYMENT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Payment ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Payment ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_PAYMENT_DETAILS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PPP payment details]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PPP Zahlungsdetails]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_PAYMENT_INFO</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Paypal Plus Payment info: <br /><br />]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Paypal Plus Payment info:]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_PAYPAL_REFUNDS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PPP refund]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PPP Rückzahlung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_REFUNDS_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Refund ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Refund ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_REFUNDS_TYPE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Refund type]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rückerstattungs Typ]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_REFUNDS_TYPE_FULL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Full]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Komplett]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_REFUNDS_TYPE_PARTIAL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Partial]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Partial]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_REFUND_MEMO</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Memo]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Notiz]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_TEST_CONNECTION</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Test connection to PayPal-Server]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Verbindung zu Paypal-Server testen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_PAYPAL_PLUS_DETAILS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[View transaction details]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Transaktionsdetails anzeigen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_PAYPAL_PLUS_REFUNDS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Create refund]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rückerstattung vornehmen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_PLUS_PRESELECT_PAYPAL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Preselect Paypal]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal vorauswählen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_PLUS_TRANSACTION_IS_ALREDY_REFUNDED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Transaction was alredy refunded.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Transaktion wurde bereits erstattet.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_AMOUNT_CURRENCY</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Currency]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Währung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_AMOUNT_TOTAL</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Total amount]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Gesamtsumme]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_CORRECTION_ROUNDING</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[rounding rorrection]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Korrektur Rundung]]></value>
+	</de>
+	<fr>
+		<value><![CDATA[rounding rorrection]]></value>
+	</fr>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_CREATE_TIME</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Create time]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Erstellungs Zeitpunkt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_PARENT_PAYMENT</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Payment ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zahlungs ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_PAYMENT_MODE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Paypal mode]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Paypal mode]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_PROTECTION_ELIGIBILITY</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Eligibility]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Eligibility]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_PROTECTION_ELIGIBILITY_TYPE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Eligibility type]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Eligibility type]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_PUI_BANKDETAILS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Bankdetails]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bankverbindung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_PUI_BANKDETAILS_HINT</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Upon receipt of the invoice, please use the following bank account:]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bei Erhalt der Rechnung verwenden Sie, bitte, folgende Bankverbindung:]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_PUI_BANKDETAILS_HINT_2</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[The information about the bank are again shown on the invoice and in the order email.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Die Informationen zur Bankverbindung sind nochmals auf der Rechnung und in der Bestell-E-Mail ausgewiesen.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_PUI_DUE_DATE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[due date]]></value>
+	</en>
+	<bp>
+		<value><![CDATA[due date]]></value>
+	</bp>
+	<cn>
+		<value><![CDATA[due date]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Zahlungsziel]]></value>
+	</de>
+	<es>
+		<value><![CDATA[due date]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[due date]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[due date]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[due date]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[due date]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[due date]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[due date]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_PUI_SUCCESS_CLAIM_ASSIGN</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[%s has assigned the claim against you to PayPal (Europe) S.à r.l. et Cie, S.C.A. You will only be released from your payment obligation upon payment to PayPal (Europe) S.à r.l. et Cie, S.C.A.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[%s hat die Forderung gegen Sie im Rahmen eines laufenden Factoringvertrages an die PayPal (Europe) S.àr.l. et Cie, S.C.A. abgetreten. Zahlungen mit schuldbefreiender Wirkung können nur an die PayPal (Europe) S.àr.l. et Cie, S.C.A. geleistet werden.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_REASON_CODE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[reason code]]></value>
+	</en>
+	<de>
+		<value><![CDATA[reason code]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_REFUNDED</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Refunded]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zurückgezahlt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_STATE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Status]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_TRANSACTION_FEE_CURRENCY</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Fee currency]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Transaktionsgebühr Währung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_TRANSACTION_FEE_VALUE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Transaction fee]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Transaktionsgebühr]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_UPDATE_TIME</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Update time]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Update time]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_PAYPAL_PLUS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Paypal Plus]]></value>
+	</en>
+	<bp>
+		<value><![CDATA[Paypal Plus]]></value>
+	</bp>
+	<cn>
+		<value><![CDATA[Paypal Plus]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Paypal Plus]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Paypal Plus]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Paypal Plus]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Paypal Plus]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[Paypal Plus]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Paypal Plus]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Paypal Plus]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Paypal Plus]]></value>
+	</ru>
+	<tr>
+		<value><![CDATA[Paypal Plus]]></value>
+	</tr>
+	<tw>
+		<value><![CDATA[Paypal Plus]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_PAYMENT_ERROR</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[An error occurred in the payment process.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Im Zahlungprozess ist ein Fehler aufgetreten.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_ADDITIONAL_FEE</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Any transaction fees for PayPal PLUS incl. Debit and credit cards are displayed at the end of the checkout.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Eventuell anfallende Transaktionsgebühren für PayPal PLUS inkl. Lastschrift und Kreditkarte werden am Ende des Checkouts angezeigt.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_CONFIRM_PAYMENT_METHOD</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Comments]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bemerkungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_PAYMENT_CANCELED_BY_USER</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Payment canceled by user.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zahlung abgebrochen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PPP_PAYMENT_NOT_AVAILABLE_DUE_TO_BROWSER</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Obviously you are using Internet Explorer in a version smaller then 10.<br />To use <a class="ppp-link" href="https://www.paypal.com/en/webapps/mpp/personal" target="_blank">Paypal Plus</a> as payment in Internet Explorer, please update Internet Explorer to version 10 or higher or use a different browser.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Offensichtlich verwenden Sie den Internet Explorer in einer Version kleiner Version 10.<br />Um <a class="ppp-link" href="https://www.paypal.com/de/webapps/mpp/personal" target="_blank">Paypal Plus</a> als Zahlungvariante im Internet Explorer zu verwenden, aktualisieren Sie bitte den Internet Explorer mindestes auf Version 10 oder verwenden Sie eine anderen Browser.]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

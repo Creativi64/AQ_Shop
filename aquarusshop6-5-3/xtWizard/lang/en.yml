@@ -1,0 +1,303 @@
+.wizard.HOSTING_ALTERNATIVE=Recommended webhostings
+.wizard.HOSTING_PER_MONTH=<br />per month*
+.wizard.HOSTING_PRICING_INFO=*Okt. 2018: Please check prices at Hosting Providers website
+.wizard.HOSTING_TILL=Till
+.wizard.HOSTING_VISITORS_DAY=Visitors / Day
+.wizard.TEXT_ACTIVITING_COUNTRIES=Activating countries...
+.wizard.TEXT_ACTIVITING_LANGUAGE=Activating language...
+.wizard.TEXT_ALREADY_APPLIED=This update is already applied.
+.wizard.TEXT_APPLY_CAN_NOT_BE_APPLIED=You must apply previous updates first.
+.wizard.TEXT_APPLY_UPDATE=You can apply this update.
+.wizard.TEXT_AVAILABLE_UPDATES=Available Updates for current version
+.wizard.TEXT_BACKINGUP_PLUGIN=Backingup plugin 
+.wizard.TEXT_BUTTON_CLOSE=Close
+.wizard.TEXT_BUTTON_FORCE_NEXT=Proceed anyways
+.wizard.TEXT_BUTTON_GO=Let's go!
+.wizard.TEXT_BUTTON_NEXT=Next
+.wizard.TEXT_BUTTON_REGISTER=Sign up
+.wizard.TEXT_BUTTON_RELOAD=Reload page
+.wizard.TEXT_BUTTON_SAVE=Save
+.wizard.TEXT_CREATE_DBBACKUP=Creating database backup
+.wizard.TEXT_DATABASE_UPDATE_BACKUP=Create database backup?
+.wizard.TEXT_DB_BACKUP_INFO=The backup is compressed and saved in folder %
+.wizard.TEXT_CLEANUP_DB=Perform database cleanup BEFORE backup?
+.wizard.TEXT_CLEANUP_DB_INFO=When cleaning up the database, all entries older than x days are deleted in the tables below.<br><br>The cleanup can be selected independently of the 'Backup' option, but is carried out always BEFORE the backup.
+.wizard.TEXT_DAYS=days
+.wizard.TEXT_ALL=all
+
+.wizard.TEXT_DOWNLOAD=Download
+.wizard.TEXT_DOWNLOADING_LATEST_TRANSLATIONS=Downloading latest translations
+.wizard.TEXT_EMAIL=Email
+.wizard.TEXT_EMAIL_NOT_MATCH=Please enter your email and license key in order to download your license directly from the xt:Commerce Server. (Error #005)
+.wizard.TEXT_EMAIL_NOT_VALID=Please enter your email and license key in order to download your license directly from the xt:Commerce Server. (Error #001)
+.wizard.TEXT_ERROR_DOWNLOAD_LICENSE=Please enter your email and license key in order to download your license directly from the xt:Commerce Server. (Error #004)
+.wizard.TEXT_EXECUTING_DB_UPDATE_SCRIPT=Executing SQL scripts
+.wizard.TEXT_EXECUTING_QUERY=Executing query:
+.wizard.TEXT_CHANGING_TABLE_ENGINE=Changing tables storage engine from MyISAM to InnoDB
+.wizard.TEXT_NO_MYISAM_TABLES=No MyIsam tables found. Engine-Update not required
+.wizard.TEXT_CHANGING_COLUMN_DEFINITION=Spalten-Definition ändern
+.wizard.TEXT_NO_COLS_TO_CHANGE=No columns to change found
+.wizard.TEXT_FAILED_INSERT_LANG_CONTENT=Failed to install language content 
+.wizard.TEXT_FAILED_INSERT_LANG_CONTENT_MENU=Failed to install category tree language content
+.wizard.TEXT_FAILED_PL_BACKUP=Failed to backup plugin 
+.wizard.TEXT_FAILED_REBIULD_CATETGORIES=Failed to rebuild categories
+.wizard.TEXT_FAILED_STORE_DATA=Failed to update data for Store ID
+.wizard.TEXT_FINISHED=Finished. Click "next" to proceed with the installation.
+.wizard.TEXT_FINISHED_UPDATE=Update step completed. Click "next" to proceed with the update.
+.wizard.TEXT_HIDE_LOG=Hide log
+.wizard.TEXT_IMPORTING_TRANSLATIONS=Importing translations...
+.wizard.TEXT_IMPORT_COUNTRIES=Import countries...
+.wizard.TEXT_IMPORT_STOPWORDS=Import stopwords...
+.wizard.TEXT_INSERTING_DEMO_DATA=Inserting demo data...
+.wizard.TEXT_INSERTING_LANG_CONTENT=Installing language content
+.wizard.TEXT_INSERTING_LANG_CONTENT_MENU=Inserting category tree language content
+.wizard.TEXT_INSTALL=Install
+.wizard.TEXT_INSTALLING_DEFAULT_CONTENT=Installing default content
+.wizard.TEXT_INSTALLING_LANGUAGE_CONTENT=Installing language content
+.wizard.TEXT_INSTALLING_PLUGINS=Installing plugin
+.wizard.TEXT_INSTALLING_SYSTEM_CONTENT=Installing system content
+.wizard.TEXT_INSTALL_MAIL_TEMPLATES=Install mail templates...
+.wizard.TEXT_LICENSE_KEY=License Key
+.wizard.TEXT_LICENSE_KEY_NOT_VALID=Please enter your email and license key in order to download your license directly from the xt:Commerce Server. (Error #002)
+.wizard.TEXT_LICENSE_LINK_HEADER=You have no xt:Commerce license?
+.wizard.TEXT_LICENSE_NOT_FOUND=Please enter your email and license key in order to download your license directly from the xt:Commerce Server. (Error #003)
+.wizard.TEXT_NO_LICENSE=Please enter your email and license key in order to download your license directly from the xt:Commerce Server.
+.wizard.TEXT_NO_LICENSE_HEADING=No license file found!
+.wizard.TEXT_OVERWRITE_FILES_MSG=Please overwrite all core files but conf/config.php.<br><br> When you are ready please proceed with the update!
+.wizard.TEXT_OVERWRITE_FILES_TITLE=Overwrite core files
+.wizard.TEXT_PLUGIN_HAS_HIGHER_VERSION=Current installed plugin version is higher than the newly copied one. Please revert the files.
+.wizard.TEXT_PLUGIN_MINIMUM_UPDATE_VERSION=Currently installed plugin version doesn't meet the minimum required version requirement, please copy the files of the previous plugin version back in the folder /plugins/
+.wizard.TEXT_PLUGIN_NO_FILES_FOUND=Files are not found for plugin (*.xml)
+.wizard.TEXT_PLUGIN_UPDATED=Plugin updated successfully
+.wizard.TEXT_FAILED_PLUGIN_UPDATED=Plugin was not updated
+.wizard.TEXT_PLUGIN_UP_TO_DATE=Plugin is up to date
+.wizard.TEXT_PROCESSING=Processing ...
+.wizard.TEXT_SHOP_LICENSE_LINK=https://addons.xt-commerce.com/en/Shopsoftware.html
+.wizard.TEXT_SHOP_LICENSE_LINK_TEXT=Buy xt:Commerce 6 PRO License
+.wizard.TEXT_QUERY_FAILED=Failed to execute:
+.wizard.TEXT_QUERY_SKIPPED=Note, the following message does not have to be an error and can usually be ignored<br>Query not executed:
+.wizard.TEXT_READING_XML_FILE=Reading XML file...
+.wizard.TEXT_REBUILDING_CATEGORIES=Rebuilding categories
+.wizard.TEXT_SAVING_CURRENCY=Saving currency...
+.wizard.TEXT_SAVING_LANGUAGE=Saving language...
+.wizard.TEXT_SETTING_UP_TAXES=Setting up taxes...
+.wizard.TEXT_SHOW_LOG=Show log
+.wizard.TEXT_SKIP=Skip / Next
+.wizard.TEXT_DEMO_LICENSE_LINK=https://www.xt-commerce.com/xtcommerce-6-pro-30-tage-demo/
+.wizard.TEXT_DEMO_LICENSE_LINK_TEXT=Request your xt:Commerce 6 PRO Demo License
+.wizard.TEXT_SUCCESS_REBIULD_CATETGORIES=Rebuild categories successfully
+.wizard.TEXT_UPDATE=Update
+.wizard.TEXT_UPDATING=Updating ...
+.wizard.TEXT_UPDATING_COUNTRY_PHONE_PREFIX=Updating countries phone prefix
+.wizard.TEXT_UPDATING_DATA_STORE=Updating data for Store ID
+.wizard.TEXT_UPDATING_DATA_STORE_EXECUTED=Executed rows for store 
+.wizard.TEXT_UPDATING_PLUGIN=Updating plugin
+.wizard.TEXT_UPDATING_TAX_RATES=Updating tax rates
+.wizard.TEXT_WAIT_BACKUP=After you click next, please do not refresh the page until you see a message
+.wizard.XTC_HOSTINGS_HEADER=We recommend:
+.wizard.XTC_TH_HOSTER=Hoster
+.wizard.XTC_TH_PACK=Web Hosting
+.wizard.XTC_TH_PRICE=Price
+.wizard.XTC_TH_RATING=Rating
+.wizard.XTC_TH_SSIZE=Shop size
+.wizard._ERROR_API_PASSWORD=Bitte geben Sie Ihr API-Passwort an!
+.wizard._ERROR_API_SIGNATURE=Bitte geben Sie Ihre API-Signatur an!
+.wizard._ERROR_API_USER=Bitte geben Sie Ihren API-Benutzer an!
+.wizard._ERROR_BILLPAY_MERCHANT_ID=Bitte geben Sie Ihre Verkäufer ID an!
+.wizard._ERROR_BILLPAY_MERCHANT_PASSWORD=Bitte geben Sie Ihren Billpay Lizenzschlüssel an!
+.wizard._ERROR_CEO=CEO not valid!
+.wizard._ERROR_CITY=City not valid!
+.wizard._ERROR_COMPANY=Shopcompany not valid!
+.wizard._ERROR_DATABASE=Please enter the database name!
+.wizard._ERROR_DEFAULT_LANGUAGE_NOT_SELECTED=Default language need to be installed as language pack
+
+.wizard._ERROR_EKOMI_AGB=Please accept the terms and conditions or proceed without eKomi
+.wizard._ERROR_EKOMI_EMAIL=E-Mail is not valid
+.wizard._ERROR_EMAIL=Please enter an E-Mail address!
+.wizard._ERROR_EMAIL_FROM=Email Address(sender) not valid!
+.wizard._ERROR_EMAIL_MATCH=E-Mail addresses are not matching!
+.wizard._ERROR_EMAIL_TO=Email Address(recipient) not valid!
+.wizard._ERROR_LICENSE=Please accept the license terms and condition.
+.wizard._ERROR_NEED_MYSQL5=xt:Commerce benötigt eine MYSQL 5 Datenbank, Sie haben versucht xt:Commerce in eine MYSQL 3 oder MYSQL 4 Datenbank zu installieren
+.wizard._ERROR_GETTING_GRANTS=Error occured while getting database grants
+.wizard._ERROR_GRANT_CREATE_VIEW=xt:Commerce requires grants to create views on the database
+.wizard._ERROR_DB_CONNECT=Could not connect to database<br />Check database your settings<br />
+.wizard._ERROR_MYSQL_VERSION=Database-Version is %s, but a version >= %s is required
+
+.wizard._ERROR_NO_LANGUAGE_SELECTED=Please select a language
+
+.wizard._ERROR_PASSWORD=Please enter the database password!
+.wizard._ERROR_DB_PREFIX=Table prefix required (Regex [a-zA-Z]+[a-zA-Z0-9_]+)!
+.wizard._ERROR_SERVER=Please enter a database server!
+.wizard._ERROR_START_ERROR=<p><strong>System Requirements not met</strong></p><p>One or more Server requirements of xt:Commerce 6 were not met. Please check the settings or contact your webhosting provider and ask them to adjust the settings to the requirements.
+.wizard._ERROR_START_SUCCESS=<p><strong>System requirements are met!</strong></p><p>Click "Next" to continue with the configuration.</p>
+.wizard._ERROR_CURL_SSL=cURL error 60: SSL certificate problem: unable to get local issuer certificate<br /> <a target="_blank" href="https://xtcommerce.atlassian.net/wiki/spaces/MANUAL/pages/626851886">More Information in our Manual</a>
+
+
+.wizard._ERROR_STORE_NAME=Store title not valid!
+.wizard._ERROR_STREET_ADDRESS=Streetaddress not valid!
+.wizard._ERROR_USER=Please enter a database user!
+.wizard._ERROR_ZIP=ZIP Code not valid!
+.wizard._MAX_EXECUTION_TIME=php-configuration "max_execution_time" (min. 180 sec)
+.wizard._SYSTEM_CHECK_IMAGE_FTBBOX=PHP function imageftbbox (PHP Freetype support)
+.wizard._SYSTEM_CHECK_MAGIC_QUOTES=Magic quotes On (magic_quotes_gpc)
+.wizard._SYSTEM_CHECK_MOD_REWRITE=Apache - mod_rewrite (SEO URL!)
+.wizard._SYSTEM_CHECK_OPENSSL=openssl Library
+.wizard._SYSTEM_CHECK_SOAP=PHP SOAP Library
+.wizard._SYSTEM_CURL=PHP - cURL
+.wizard._SYSTEM_FILE_UPLOAD=File uploads
+.wizard._SYSTEM_GDLIB=PHP - GDlib v2
+.wizard._SYSTEM_GDLIB_GIF=PHP - GDlib GIF Support
+.wizard._SYSTEM_MEMORY_LIMIT=Memory Limit (minimum 128MB)
+.wizard._SYSTEM_PHP_VERSION=PHP-Version >= %s
+.wizard._SYSTEM_FILEINFO=Fileinfo support
+.wizard._SYSTEM_CHECK_HTACCESS=.htaccess not found. Please check if you have uploaded the .htaccess file into the Shop Root Folder.
+.wizard._SYSTEM_MBSTRING=PHP mbstring Library (<a href="https://php.net/manual/en/mbstring.installation.php" target="_blank">Link</a>)
+.wizard._SYSTEM_ION_CUBE_VERSION=Ioncube Encoder Version %s
+.wizard._SYSTEM_LINK=PHP Function link() deactivated, this function is required to serve file downloads
+.wizard._SYSTEM_SYMLINK=PHP Function symlink() deactivated, this function is required to serve file downloads
+
+.wizard._SYSTEM_REG_GLOBALS=Register Globals off
+.wizard._SYSTEM_SAFE_MODE=Safe Mode off
+.wizard._SYSTEM_SESSION_AUTOSTART=Session Auto Start off
+.wizard._SYSTEM_ZLIB=PHP - Zlib
+.wizard._TEXT_DATABASE_ADMIN_EMAIL=Administrator Email
+.wizard._TEXT_DATABASE_COUNTRY=Country
+.wizard._TEXT_DATABASE_DB_NAME=Database
+.wizard._TEXT_DATABASE_DEMO=Demodata
+.wizard._TEXT_DATABASE_EMAIL_FROM=Sender email address
+.wizard._TEXT_DATABASE_EMAIL_FROM_INFO=Sender of emails, e.g. service@your-shop.com)
+.wizard._TEXT_DATABASE_EMAIL_TO=Recipient email address
+.wizard._TEXT_DATABASE_EMAIL_TO_INFO=Email recipient order-mails, e.g. orders@your-shop.com
+.wizard._TEXT_DATABASE_HEADER=Database
+.wizard._TEXT_DATABASE_HEADER_PRE=Administrator & Languages
+.wizard._TEXT_DATABASE_HOST=Database server
+.wizard._TEXT_DATABASE_IMPORT_LANG=Languages
+.wizard._TEXT_DATABASE_INFO1=If you dont know this parameters, ask your hosting provider.
+.wizard._TEXT_DATABASE_INFO2=The installation requires an empty database, the script will change the charset of this database to utf-8!
+.wizard._TEXT_DATABASE_INFO3=The installer will install some demoproducts.
+.wizard._TEXT_DATABASE_LANG_BP=Português brasileiro
+.wizard._TEXT_DATABASE_LANG_DE=German
+.wizard._TEXT_DATABASE_LANG_DEFAULT=Default language
+.wizard._TEXT_DATABASE_LANG_EN=Englisch
+.wizard._TEXT_DATABASE_LANG_TR=Turkish
+.wizard._TEXT_DATABASE_PASS=Password
+.wizard._TEXT_DATABASE_PREFIX=Table prefix
+.wizard._TEXT_DATABASE_REPEAT_EMAIL=Repeat E-Mail
+.wizard._TEXT_DATABASE_RULES=- Database server (usually \'localhost\')<br />- Username/Password<br />- Name of your database<br />
+.wizard._TEXT_DATABASE_TITLE=For the database connection (mysql) you need following Informations
+.wizard._TEXT_DATABASE_TITLE_PRE=Please select you languages and country of incorporation for automated tax-setup.
+.wizard._TEXT_DATABASE_USER=Username
+.wizard._TEXT_DATABASE_WARNING=Attention!
+.wizard._TEXT_DATABASE_STORAGE_ENGINE=MySQL Storage engine
+.wizard._TEXT_DATABASE_STORAGE_ENGINE_INFO=Expertsetting for MySQL 5.6 & 5.7
+.wizard._TEXT_EKOMI_AGB_CHECK=I accept the terms and conditions of eKomi Ltd and aktivate the free eKomi Collect-Service.
+.wizard._TEXT_EKOMI_EMAIL=E-Mail Adresse
+.wizard._TEXT_FINISH_ADMIN_LINK=Link to adminarea
+.wizard._TEXT_FINISH_ADMIN_NAME=admin
+.wizard._TEXT_FINISH_HEADER=Installation successfull!
+.wizard._TEXT_FINISH_INFO1=The Installer created an administrator account with following details.<br/> Please write down username and password and keep it secure.
+.wizard._TEXT_FINISH_PASS=Password
+.wizard._TEXT_FINISH_SHOPLINK=Link to frontend
+.wizard._TEXT_FINISH_SUCCESS=xt:Commerce 6 installation was successfull!
+
+.wizard._TEXT_FINISH_USERNAME=Username
+.wizard._TEXT_LANGUAGE_DESC=Languages are currently being installed, please do not stop the process.
+.wizard._TEXT_LANGUAGE_INFO1=Language
+.wizard._TEXT_LANGUAGE_INFO2=successfull installed.
+.wizard._TEXT_LANGUAGE_TITLE=Installing languages
+.wizard._TEXT_LICENSE=License / EULA
+.wizard._TEXT_LICENSE_CHECK=I accept the license terms and condition.
+.wizard._TEXT_PLUGIN_DESC=Plugins are currently being installed, please do not stop the process.
+.wizard._TEXT_PLUGIN_FROM=from
+.wizard._TEXT_PLUGIN_HERE=hier
+.wizard._TEXT_PLUGIN_INFO1=Plugin
+.wizard._TEXT_PLUGIN_INFO2=successfull installed
+.wizard._TEXT_PLUGIN_INFO3=
+.wizard._TEXT_PLUGIN_TITLE=Installing Plugins
+.wizard._TEXT_SELECT_LANGUAGE=Language:
+.wizard._TEXT_SHOPOWNER_CEO=CEO
+.wizard._TEXT_SHOPOWNER_CITY=City
+.wizard._TEXT_SHOPOWNER_COMPANY=Company
+.wizard._TEXT_SHOPOWNER_FAX=Fax
+.wizard._TEXT_SHOPOWNER_HEADER=Shopcompany
+.wizard._TEXT_SHOPOWNER_STREETADDRESS=Streetaddress
+.wizard._TEXT_SHOPOWNER_TELEPHONE=Phone
+.wizard._TEXT_SHOPOWNER_VAT_ID=VAT ID
+.wizard._TEXT_SHOPOWNER_REGISTER_ID=Company registration Number
+.wizard._TEXT_SHOPOWNER_REGISTER_COURT=Commercial Register
+.wizard._TEXT_SHOPOWNER_ZIP=ZIP Code
+.wizard._TEXT_SHOP_NAME=Store title
+.wizard._TEXT_START_CHECK=Systemcheck
+.wizard._TEXT_START_COLUMN1=Requirement
+.wizard._TEXT_START_COLUMN2=Version/Value
+.wizard._TEXT_START_COLUMN3=Status
+.wizard._TEXT_START_INTRO=This wizard will guide you through the installation of xt:Commerce 6<br />On following pages the installer will create your database and admin access.<br /><br /><a href="https://xtcommerce.atlassian.net/wiki/display/MANUAL/Systemanforderungen" target="_blank">The xt:Commerce guide</a> gives you some advice for the recommended system requirements.<br /><br />If you have any questions, check out our forums at <a href="https://www.xt-commerce.com/forum/english-xt-commerce-4-0-general-questions/" target="_blank"><b>www.xt-commerce.com/forum</b></a> or our customer Support at <a href="mailto:helpdesk@xt-commerce.com">helpdesk@xt-commerce.com</a><br />
+.wizard._TEXT_START_INTRO_APS=This wizard will guide you through the installation of xt:Commerce 6 Demo-Version<br /><br />On following pages the installer will create your shop and admin access.<br /><br />If you have any questions, contact our customer Support at <a href="mailto:helpdesk@xt-commerce.com">helpdesk@xt-commerce.com</a><br />
+
+.wizard._TEXT_START_LANG_BP=Português brasileiro
+.wizard._TEXT_START_LANG_DE=Deutsch
+.wizard._TEXT_START_LANG_EN=English
+.wizard._TEXT_START_LICENSEINFO=Lizenzinformationen
+.wizard._TEXT_START_PERMISSIONS=Permissions
+.wizard._TEXT_START_PERMISSIONS_FAIL=Some file/folder permissions are not ok - please grant writing rights to this folders. If these folders are do not exist, please create them. Then reload this page.
+.wizard._TEXT_START_PERMISSIONS_PASS=File/Folder permissions are ok
+.wizard._TEXT_START_SETTINGS=Systemrequirements
+.wizard._TEXT_START_TITLE=<span class="xt">xt:</span>Commerce 6.0
+.wizard._TEXT_ERROR_DATABASE_NOT_EMPTY=There is allready a xt:Commerce installation in this Database. Please choose either another Database-Prefix, or install it into a different, empty Database.
+
+.wizard._TEXT_START_UPDATE_FINISH_CONTENT=Database update complet. Please delete the folder <b>/xtWizard/</b>!<br /><br />Follow the instructions in the update manuall.
+
+.wizard._TEXT_START_UPDATE_FINISH_TITLE=Update is successful!
+.wizard._TEXT_UPDATE_INTRO=This wizard will perform an update to <span class="xt">xt:</span>Commerce 6.1!
+.wizard._TEXT_UPDATE_INTRO_VERSION=Please first perform the update to version 4.2.00, after that you can pderform further updates with the xtWizard. All update instructions can be found at the following URL: <br /> <a href="https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=2555933" target="_blank">https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=2555933</a><br /> Successful business wishes the xt: Commerce GmbH!
+.wizard._TEXT_UPDATING_DATA_STORES=Updating stores data
+.wizard.TEXT_NOW_UPLOAD_FILES=now upload files and click next
+.wizard.TEXT_INFO_PLACE_LICENSE=Please note: for an update to xt: Commerce 6.1, in a <span style='font-weight:bold'>later</span> step of the update, a valid xt:Commerce 6.1 license is needed!
+.wizard.TEXT_INFO_PLACE_LICENSE_JS=Continue only if you have a valid xt:Commerce 6.1 license!
+.wizard.TEXT_LIC_NOT_WRITEABLE_HEADER=Licensefolder not write-able
+.wizard.TEXT_LIC_NOT_WRITEABLE=Please give write-permissions to the license Folder (lic/)
+
+.wizard.TEXT_NO_LICENSE_FREE=Please register for a free xt:Commerce Test license to complete the installation.<br />Or load your xt:Commerce PRO license into the /lic folder. Then click the following link to <a href="./index.php">restart the installation</a>
+.wizard.TEXT_ERROR_LICENSE_FORM=Please fill in following Form Fields
+.wizard._TEXT_SHOPOWNER_EMAIL=E-Mail Address
+.wizard._TEXT_SHOPOWNER_FIRSTNAME=Firstname
+.wizard._TEXT_SHOPOWNER_LASTNAME=Lastname
+.wizard.TEXT_LICENSE_FORM_HEADER_KLARNA=xt:Commerce 30-Day Test licence
+.wizard.TEXT_LICENSE_FORM_HEADER_OTHER=xt:Commerce PRO licence-options
+.wizard.TEXT_MUST=required fields
+
+.wizard.TEXT_INSTALL_PATCH=Your current version is% s. Please install the patch first on version% s. <br/> The patch can be found at the URL https://helpdesk.xt-commerce.com/index.php?/knowledgebase/list/index/43/patches <br / > After installing the patch, please update this page.
+.wizard.TEXT_DB_UPDATE=Database Update
+
+.wizard.TEXT_ERROR_VERSIONINFO_NOT_UPDATED=The file versioninfo.php could not be created / updated.
+.wizard.TEXT_VERSION_INFO_CREATE_MANUALLY=Please create the file versioninfo.php in the main directory with the following content. <br/> Then click on 'Next'.
+
+.wizard.TEXT_ERROR_PLUGIN_ONLY_IN_FREE_VERSION=This plugin can only be used in the FREE version of xt:Commerce.
+.wizard.TEXT_ERROR_PLUGIN_ONLY_IN_PRO_VERSION=This plugin can only be used in the PRO version of xt:Commerce.
+
+.wizard._TEXT_SSL_SUPPORTED=SSL certificate exists and active?
+.wizard._TEXT_SSL_SUPPORTED_INFO=If you access this page via a secure connection (https / SSL), activate this checkbox. If not, you can also enable SSL later.
+
+.wizard._TEXT_INSTALL_EU_RATES=Yes, I also sell goods to other EU countries for more than € 10,000 a year. As a result, the new regulations will apply from July 1, 2021.
+
+.wizard.TEXT_UPDATING_DB_STORES=Updating DB _stores
+.wizard.TEXT_PLEASE_INSTALL_KCO=Please check in the backend if the plugin xt_klarna_kco is installed and activated!
+
+.wizard.TEXT_SWITCH_TO_HTTPS=It seems that this server allows secure connections via SSL / https. Please click the following link to install via a secure connection. This will set certain entries in the database correctly during the installation.
+.wizard.TEXT_INFO_NO_HTTPS=It seems your hosting is not configured for https / ssl. We recommend enabling SSL in your hosting package. <a href="https://xtcommerce.atlassian.net/wiki/spaces/MANUAL/pages/917573" target="_blank">Manual</a>
+
+.wizard._TEXT_KEEP_LOGIN_SECRET=Save this login infomations ! Keep this login information in a safe place !
+
+.wizard.TEXT_UPDATE_PLUGIN_UPDATED_SCRIPT=Database update script was executed to update plugin from version %s to version %s
+.wizard.TEXT_UPDATE_PLUGIN_UPDATED_SCRIPT_SKIPPED=No database update needed for plugin update from %s to %s
+.wizard.TEXT_CODE_REMOVED_FOR_HOOKPOINT=Removed plugin hookpoint
+.wizard.TEXT_CODE_REMOVED_FOR_CONFIG=Removed plugin configuration
+
+.wizard.TEXT_INFO_CHECK_HTACCESS=For some webhosters it is necessary to extend the file .htaccess/php.ini with specific entries. Please read this <a href="https://xtcommerce.atlassian.net/wiki/spaces/MANUAL/pages/917657" target="info-htaccess">information</a>.
+.wizard.TEXT_INFO_SHOP_SETUP=More information about how setting up your shop you will in the <a href="https://xtcommerce.atlassian.net/wiki/spaces/MANUAL/pages/101682092" target="info-shop-setup">manual</a>.
+.wizard._TEXT_SIGNUP_NEWSLETTER=I agree to xt:Commerce GmbH sending me Newsletter for news and updates. I can withdraw my consent any time. I have read and accept the <a href="https://www.xt-commerce.com/privatsphaere-datenschutz/" target="_blank">data privacy notes</a>.
+
+.wizard.TEXT_REMOVE_DIRECTORY=Remove directory
+
+.wizard.TEXT_INSTALLATION_FAIL_REQUIRED_PLUGINS=This Plugins requires following other plugins, please install them first.

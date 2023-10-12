@@ -1,0 +1,19 @@
+{include file="file:$_system_root_templates/email/email_top.html"}
+<!-- // Begin Content \\ -->
+<table class="email-content" cellpadding="0" cellspacing="0" width="660" style="font: 12px Arial, Helvetica, sans-serif;color: #484848;">
+	<tr>
+		<td>
+			<h1 style="font-size:14px;">Hallo {$address_data.default.customers_title} {$address_data.default.customers_firstname} {$address_data.default.customers_lastname},</h1>
+			<p>Soeben haben wir Ihr Kundenkonto angelegt, als Kunde haben Sie folgende Vorteile in unserem Shop.</p>
+			<p>
+				<b>Dauerhafter Warenkorb</b> - Sie können Artikel in Ihren Warenkorb legen und dieser wird bis zu Ihrem nächsten Besuch gespeichert.<br />
+				<b>Adressbuch</b> - Sie können nun verschiedene Liefer- und Rechnungsadressen verwalten.<br />
+				<b>Bestellhistorie</b> - Übersicht über getätigte und aktuelle Bestellungen.
+			</p>
+			<p>Sollten Sie Fragen zu unserem Angebot haben, zögern Sie bitte nicht uns zu kontaktieren.</p>
+			<p style="background: #FFE0E4; padding: 10px;"><b>Achtung:</b> Diese E-Mail-Adresse wurde uns von einem Kunden bekannt gegeben. Falls Sie sich nicht angemeldet haben, antworten Sie bitte auf diese E-Mail.</p>
+		</td>
+	</tr>
+</table>
+<!-- // End Content \\ -->
+{include file="file:$_system_root_templates/email/email_bottom.html"}

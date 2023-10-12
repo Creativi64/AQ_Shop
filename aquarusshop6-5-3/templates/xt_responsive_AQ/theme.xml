@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xtcommercetheme>
+	<overrides>xt_responsive</overrides>
+	<title>xt:Commerce Responsive</title>
+	<version>6.5.3</version>
+	<minimum_store_version>6.5.3</minimum_store_version>
+	<developer>xt:Commerce</developer>
+	<url>https://www.xt-commerce.com</url>
+	<marketplace_link>https://www.xt-commerce.com</marketplace_link>
+	<documentation_link>https://www.xt-commerce.com</documentation_link>
+	<updatecheck_link>https://www.xt-commerce.com</updatecheck_link>
+	<icon>theme.png</icon>
+	<less_support>true</less_support>
+	<less_folder>less</less_folder>
+	<less_file>Template.less</less_file>
+	<less_variable_file>Variables.less</less_variable_file>
+	<css_file>css/Template.css</css_file>
+	<less_import_directories>components/bootstrap/less/,components/bootstrap-select/less/,components/fontawesome/less/,components/animate.css/</less_import_directories>
+</xtcommercetheme>

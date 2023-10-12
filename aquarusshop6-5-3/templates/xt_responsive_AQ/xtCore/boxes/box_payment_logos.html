@@ -1,0 +1,17 @@
+
+
+    <div class="payment-logos">
+        <p class="headline">{txt key=TEXT_PAYMENTS_FEE}</p>
+        <div class="logos">
+            {if (!$is_pro_version || (defined('KLARNA_LOGO_PRO') && $smarty.const.KLARNA_LOGO_PRO === true)) && $smarty.const.KLARNA_LOGO_URL}<img class="img-responsive" src="{$smarty.const.KLARNA_LOGO_URL}" alt="{txt key=TEXT_KLARNA_SLOGAN}" title="{txt key=TEXT_KLARNA_SLOGAN}" data-toggle="tooltip" />{/if}
+            {foreach name=aussen item=module_data from=$_payment_logos}
+                {assign var="image"        value="$tpl_path/img/payments/$language/`$module_data.payment_code`.png"}
+                {assign var="image_system" value="$tpl_path_system/img/payments/$language/`$module_data.payment_code`.png"}
+                {if file_exists($image)}
+                    <img src="{$tpl_url_path}img/payments/{$language}/{$module_data.payment_code}.png" alt="{$module_data.payment_name}" title="{$module_data.payment_name}" data-toggle="tooltip" />
+                {elseif file_exists($image_system)}
+                    <img src="{$tpl_url_path_system}img/payments/{$language}/{$module_data.payment_code}.png" alt="{$module_data.payment_name}" title="{$module_data.payment_name}" data-toggle="tooltip" />
+                {/if}
+            {/foreach}
+        </div>
+    </div>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+
+    <code>xt_cashpayment</code>
+    <version>1.0.1</version>
+    <type>payment</type>
+
+    <developer>xt:Commerce</developer>
+    <url>https://www.xt-commerce.com</url>
+
+    <title>Barzahlung</title>
+    <description>Prepayment Module</description>
+    <icon>xt-commerce_logo.jpg</icon>
+
+    <payment>
+        <payment_code>xt_cashpayment</payment_code>
+        <payment_dir>xt_cashpayment</payment_dir>
+        <payment_icon></payment_icon>
+        <payment_tpl></payment_tpl>
+        <de>
+            <title>Barzahlung</title>
+            <description></description>
+        </de>
+        <en>
+            <title>Cash</title>
+            <description></description>
+        </en>
+
+    </payment>
+
+    <db_install><![CDATA[include_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_cashpayment/installer/install.php';]]></db_install>
+
+</xtcommerceplugin> 

@@ -1,0 +1,29 @@
+<div id="box-loginbox" class="clearfix">
+    {form type=form name=create_account action='customer' paction='login' method=post conn=SSL}
+        {form type=hidden name=action value=login}
+        {form type=hidden name=link_target value=index}
+        <div class="form-group">
+            <label for="login_email">{txt key=text_email}*</label>
+            {form type=email id="login_email" name=email maxlength='50'}
+        </div>
+        <div class="form-group">
+            <label for="login_password">{txt key=text_password}*</label>
+            {form type=password id="login_password" name=password maxlength='30'}
+            <p class="help-block"><a href="{link page='customer' paction='password_reset' conn=SSL}"><i class="fa fa-envelope"></i> {txt key=text_link_lostpassword}</a></p>
+        </div>
+        
+        <p class="required pull-left pull-none-xs">{txt key=TEXT_MUST}</p>
+        
+        <p class="pull-right pull-none-xs">
+        <a href="{link page='customer' paction='login' params='form=register' conn=SSL}" class="btn btn-default">
+                <span class="hidden-xs">{txt key=TEXT_NEW_CUSTOMER}</span>
+                <span class="visible-xs">{txt key=BUTTON_REGISTER}</span>
+            </a>
+            <button type="submit" class="btn btn-success">
+                <i class="fa fa-sign-in"></i>
+                {txt key=BUTTON_LOGIN}
+            </button>
+        </p>
+    {form type=formend}
+    {hook key=box_login_tpl}
+</div><!-- #box-loginbox -->

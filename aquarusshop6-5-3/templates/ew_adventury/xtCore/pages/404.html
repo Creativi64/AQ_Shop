@@ -1,0 +1,19 @@
+<h1 class="breaking-headline">{txt key=TEXT_PAGE_NOT_FOUND}</h1>
+
+<p class="alert alert-warning"><i class="mdi mdi-code-not-equal"></i>&nbsp;&nbsp;{txt key=TEXT_PAGE_NOT_FOUND_INTRO}</p>
+
+{*content block_id=10 levels=nested}
+{if $_content_10|count > 0}
+    {foreach name=aussen item=box_data from=$_content_10}
+        <a href="{$box_data.link}"><strong>{$box_data.title}</strong></a>
+        <br />{$box_data.content_body}
+    <br />
+    {/foreach}
+    <br />
+{/if*}
+
+{if version_compare(_SYSTEM_VERSION, '5.0.0', '>=')}
+    {include file="$selected_template/xtCore/pages/search.html" type="tpl_include"}
+{else}
+    {include file="/xtCore/pages/search.html" type="tpl_include"}
+{/if}

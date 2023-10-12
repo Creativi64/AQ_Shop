@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+
+    <payment>
+        <payment_code>xt_paypal_checkout_paylater</payment_code>
+        <payment_dir>xt_paypal_checkout</payment_dir>
+        <payment_tpl>xt_paypal_checkout.tpl.html</payment_tpl>
+
+        <payment_icon>xt_paypal_checkout.png</payment_icon>
+        <payment_sort>-90</payment_sort>
+
+        <de>
+            <title>Später Bezahlen</title>
+            <description></description>
+        </de>
+        <en>
+            <title>Pay later</title>
+            <description></description>
+        </en>
+    </payment>
+
+    <configuration_payment>
+
+        <config>
+            <key>PAYLATER_ORDER_STATUS_CREATED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>16</value>
+            <sort_order>45</sort_order>
+            <de>
+                <title><![CDATA[Bestellstatus - CREATED]]></title>
+            </de>
+            <en>
+                <title><![CDATA[Orders status - CREATED]]></title>
+            </en>
+        </config>
+
+        <!-- oder status mapping -->
+        <config>
+            <key>PAYLATER_ORDER_STATUS_SAVED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>17</value>
+            <sort_order>50</sort_order>
+            <de>
+                <title><![CDATA[Bestellstatus - SAVED ]]></title>
+            </de>
+            <en>
+                <title><![CDATA[Orders status - SAVED ]]></title>
+            </en>
+        </config>
+        <config>
+            <key>PAYLATER_ORDER_STATUS_COMPLETED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>23</value>
+            <sort_order>55</sort_order>
+            <de>
+                <title><![CDATA[Bestellstatus - COMPLETED ]]></title>
+            </de>
+            <en>
+                <title><![CDATA[Orders status - COMPLETED ]]></title>
+            </en>
+        </config>
+
+        <config>
+            <key>PAYLATER_ORDER_STATUS_VOIDED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>32</value>
+            <sort_order>60</sort_order>
+            <de>
+                <title><![CDATA[Bestellstatus - VOIDED ]]></title>
+            </de>
+            <en>
+                <title><![CDATA[Orders status - VOIDED ]]></title>
+            </en>
+        </config>
+
+        <config>
+            <key>PAYLATER_ORDER_STATUS_PAYER_ACTION_REQUIRED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>17</value>
+            <sort_order>65</sort_order>
+            <de>
+                <title><![CDATA[Bestellstatus - PAYER_ACTION_REQUIRED ]]></title>
+            </de>
+            <en>
+                <title><![CDATA[Orders status - PAYER_ACTION_REQUIRED ]]></title>
+            </en>
+        </config>
+
+        <config>
+            <key>PAYLATER_ORDER_PARTIALLY_REFUNDED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>17</value>
+            <sort_order>70</sort_order>
+            <de>
+                <title><![CDATA[Bestellstatus - Teilweise zurückgezahlt]]></title>
+            </de>
+            <en>
+                <title><![CDATA[Orders status - Partially refunded]]></title>
+            </en>
+        </config>
+        <config>
+            <key>PAYLATER_ORDER_FULLY_REFUNDED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>17</value>
+            <sort_order>71</sort_order>
+            <de>
+                <title><![CDATA[Bestellstatus - Vollständig zurückgezahlt]]></title>
+            </de>
+            <en>
+                <title><![CDATA[Orders status - Fully refunded]]></title>
+            </en>
+        </config>
+
+        <config>
+            <key>PAYLATER_EXPRESS_ACTIVATED</key>
+            <type>status</type>
+            <value>1</value>
+            <sort_order>100</sort_order>
+            <de>
+                <title><![CDATA[Im Express-Checkout im Warenkorb und am Artikel verwenden]]></title>
+            </de>
+            <en>
+                <title><![CDATA[Express-Checkout in cart and on product page]]></title>
+            </en>
+        </config>
+
+        <config>
+            <key>PAYLATER_CHARGE_IMMEDIATELY</key>
+            <type>hidden</type>
+            <value>1</value>
+            <sort_order>75</sort_order>
+            <de>
+                <title><![CDATA[Kundenkonto sofort belasten]]></title>
+            </de>
+            <en>
+                <title><![CDATA[Charge amounts immediately]]></title>
+            </en>
+        </config>
+
+
+    </configuration_payment>
+
+
+
+
+
+</xtcommerceplugin>

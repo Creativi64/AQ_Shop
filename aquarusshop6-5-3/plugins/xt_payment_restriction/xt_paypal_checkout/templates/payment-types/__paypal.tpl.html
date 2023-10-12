@@ -1,0 +1,22 @@
+<div style="" class="pull-right paypal-button-container-{$data_pp_placement}">
+    <div id="paypal_button_container_1" class="paypal_button_container"></div>
+</div>
+
+
+
+<div class="clearfix"></div>
+
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function ()
+    {
+        try {
+            renderAllEligibleButtonsCart();
+        }
+        catch(e)
+        {
+            console.log(e);
+        }
+    });
+</script>

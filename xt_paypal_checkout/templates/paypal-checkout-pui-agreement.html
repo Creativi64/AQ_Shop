@@ -1,0 +1,39 @@
+<br/>
+{form type="checkbox" id="paypal_checkout_pui_agreement_accepted" name="paypal_checkout_pui_agreement_accepted" class="xt-form-required"}
+{txt key=TEXT_XT_PAYPAL_CHECKOUT_PUI_AGREEMENT}
+<script>
+    document.addEventListener('DOMContentLoaded', function(e){
+        const cb = document.getElementById('paypal_checkout_pui_agreement_accepted');
+        if(cb)
+        {
+            cb.setAttribute('required', 'required');
+        }
+        const form = document.getElementById('checkout-form');
+        if(form)
+        {
+            form.addEventListener('submit', function(event)
+            {
+                ppcWaitModal();
+                setTimeout(function () {
+                    document.getElementById("ppc_oops").style.display = "block"
+                }, 4000);
+            });
+        }
+    });
+</script>
+
+<div class="ppcp-modal hidden" id="ppc_wait_overlay" tabindex="-1" role="dialog" aria-labelledby="ppc_wait_overlay" aria-hidden="true">
+    <div class="ppcp-modal-dialog">
+        <div class="ppcp-modal-content">
+            <div class="ppcp-modal-body" id="ppc_wait_overlay_body">
+                <div style="text-align: center; margin-bottom:10px">
+                    <img class="img-responsive" src="media/logo/{$smarty.const._STORE_LOGO}" alt="{$smarty.const._STORE_NAME}" style="display: unset;"/>
+                </div>
+                <div id="ppc_wait_overlay_step2" style="text-align: center; font-size:1.1em; padding:15px 0; color:#333">
+                    <i class="fa fa-refresh fa-2x" style="-webkit-animation:spin_ppcp_spinner 1.2s linear infinite;  -moz-animation:spin_ppcp_spinner 1.2s linear infinite;  animation:spin_ppcp_spinner 1.2s linear infinite;" ></i>
+                    <p style="display: none" id="ppc_oops">{txt key="TEXT_PAYPAL_CHECKOUT_REDIRECT_INFO_OOPS"}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

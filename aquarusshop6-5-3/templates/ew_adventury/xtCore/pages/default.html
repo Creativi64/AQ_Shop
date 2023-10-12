@@ -1,0 +1,31 @@
+{if $content_status == 1}
+    {if $content_body|strip_tags|trim != '' || $content_body_short|strip_tags|trim != ''}
+        <div id="startpage-content">
+            <div class="container">
+                {if $content_body && $content_body|strip_tags|trim != '' && $content_heading && $content_heading|trim != ''}
+                    <h1 class="breaking-headline">{$content_heading}</h1>
+                {/if}
+                <div class="row">
+                    {if $content_body && $content_body|strip_tags|trim != ''}
+                        <div class="col col-sm-12">
+                            <div class="index-big wow fadeInLeft" data-wow-delay="500ms" data-wow-duration="700ms">
+                                <div class="txt textstyles text-word-wrap">
+                                    {$content_body}
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    {/if}
+                    {if $content_body_short && $content_body_short|strip_tags|trim != ''}
+                        <div class="col col-sm-12">
+                            <div class="txt textstyles text-word-wrap index-small wow fadeInRight" data-wow-delay="500ms" data-wow-duration="700ms">
+                                {$content_body_short}
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    {/if}
+                </div>
+            </div>
+        </div>
+    {/if}
+{/if}

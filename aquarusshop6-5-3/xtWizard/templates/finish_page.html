@@ -1,0 +1,55 @@
+<div class="container">
+ 	<div class="header">
+    	<ul class="nav nav-pills pull-right">
+		</ul>
+		<h3 class="text-muted"><img src="templates/img/top_logo.jpg"alt="" /></h3>
+	</div>
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">{$smarty.const._TEXT_FINISH_HEADER}</h3>
+	  </div>
+	  <div class="panel-body">
+	  	<div class="col-xs-12">
+	  		<div class="col-md-6">
+				<div class="alert alert-success">
+	        		<i class=""></i> {txt key="_TEXT_FINISH_SUCCESS"}
+	    		</div>
+	    		 <table>
+		            <tr>
+		                <td>{$smarty.const._TEXT_FINISH_USERNAME}:</td>
+		                <td>&nbsp;&nbsp;<pre class="selectable" style="margin-left:15px">{$smarty.const._TEXT_FINISH_ADMIN_NAME}</pre></td>
+		            </tr>
+		            <tr>
+		                <td>{$smarty.const._TEXT_FINISH_PASS}:</td>
+		                <td>&nbsp;&nbsp;<pre class="selectable" style="margin-left:15px">{$password}</pre></td>
+		            </tr>
+		        </table>
+				<div class="alert alert-info">
+					<i class=""></i> {txt key="_TEXT_KEEP_LOGIN_SECRET"}
+				</div>
+				{if $smarty.const._APS_INSTALL_PACKAGE neq 'true'}
+				<div class="alert alert-info">
+					<p>{txt key="TEXT_INFO_CHECK_HTACCESS"}</p>
+					<p>{txt key="TEXT_INFO_SHOP_SETUP"}</p>
+				</div>
+				{/if}
+		        <p><a class="btn btn-default" href="../index.php" target="_blank">{$smarty.const._TEXT_FINISH_SHOPLINK}</a></p>
+		        <p><a class="btn btn-primary" href="../xtAdmin/login.php" target="_blank">{$smarty.const._TEXT_FINISH_ADMIN_LINK}</a></p>
+	    	</div>
+	    	<div class="col-md-6">
+	    		<div id="fb-root"></div>
+		        {literal}
+		        <script>(function(d, s, id) {
+		            var js, fjs = d.getElementsByTagName(s)[0];
+		            if (d.getElementById(id)) return;
+		            js = d.createElement(s); js.id = id;
+		            js.src = "//connect.facebook.net/de_DE/all.js#xfbml=1&appId=130636380409772";
+		            fjs.parentNode.insertBefore(js, fjs);
+		        }(document, 'script', 'facebook-jssdk'));
+		        {/literal}
+		        </script>
+		        <div class="fb-like-box" data-href="https://www.facebook.com/xtCommerce" data-width="400" data-height="220" data-show-faces="true" data-stream="false" data-header="true"></div>
+	    	</div>
+	    </div>
+	  </div>
+</div>

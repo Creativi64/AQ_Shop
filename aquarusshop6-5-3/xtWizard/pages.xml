@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WizardScript>
+    <Title>Wizard</Title>
+    <Pages>
+        <Page>
+            <PageID>index</PageID>
+            <PageMethod>displayStartPage</PageMethod>
+            <PageCondition></PageCondition>
+        </Page>
+        <Page>
+            <PageID>install</PageID>
+            <PageMethod>installPage</PageMethod>
+            <PageCondition><![CDATA[
+				if (isset($_GET['WizardType']) ) {
+					return true;
+				}
+				return false;
+			]]></PageCondition>
+        </Page>
+        <Page>
+            <PageID>license</PageID>
+            <PageMethod>licensePage</PageMethod>
+            <PageCondition><![CDATA[
+				if (Wizard::getInstance()->getWizardType() == Wizard::WIZARD_TYPE_INSTALL) {
+					return true;
+				}
+				return false;
+			]]></PageCondition>
+        </Page>
+        <Page>
+            <PageID>database</PageID>
+            <PageMethod>databasePage</PageMethod>
+            <PageCondition><![CDATA[
+				if (Wizard::getInstance()->getWizardType() == Wizard::WIZARD_TYPE_INSTALL) {
+					return true;
+				}
+				return false;
+			]]></PageCondition>
+        </Page>
+        <Page>
+            <PageID>language</PageID>
+            <PageMethod>languagePage</PageMethod>
+            <PageCondition><![CDATA[
+				if (Wizard::getInstance()->getWizardType() == Wizard::WIZARD_TYPE_INSTALL) {
+					return true;
+				}
+				return false;
+			]]></PageCondition>
+        </Page>
+        <Page>
+            <PageID>plugins</PageID>
+            <PageMethod>pluginsPage</PageMethod>
+            <PageCondition><![CDATA[
+				if (Wizard::getInstance()->getWizardType() == Wizard::WIZARD_TYPE_INSTALL) {
+					return true;
+				}
+				return false;
+			]]></PageCondition>
+        </Page>
+        <Page>
+            <PageID>shopowner</PageID>
+            <PageMethod>shopownerPage</PageMethod>
+            <PageCondition><![CDATA[
+				if (Wizard::getInstance()->getWizardType() == Wizard::WIZARD_TYPE_INSTALL) {
+					return true;
+				}
+				return false;
+			]]></PageCondition>
+        </Page>
+        <Page>
+            <PageID>finish</PageID>
+            <PageMethod>finishPage</PageMethod>
+            <PageCondition><![CDATA[
+				if (Wizard::getInstance()->getWizardType() == Wizard::WIZARD_TYPE_INSTALL) {
+					return true;
+				}
+				return false;
+			]]></PageCondition>
+        </Page>
+        <Page>
+            <PageID>db_backup</PageID>
+            <PageMethod>dbBackup</PageMethod>
+            <PageCondition><![CDATA[
+				if (isset($_GET['WizardType']) && $_GET['WizardType'] == Wizard::WIZARD_TYPE_UPDATE) {
+					return true;
+				}
+				return false;
+			]]></PageCondition>
+        </Page>
+        <Page>
+            <PageID>update</PageID>
+            <PageMethod>updatePage</PageMethod>
+            <PageCondition><![CDATA[
+				if (isset($_GET['WizardType']) && $_GET['WizardType'] == Wizard::WIZARD_TYPE_UPDATE) {
+					return true;
+				}
+				return false;
+			]]></PageCondition>
+        </Page>
+        <Page>
+            <PageID>backupPlugins</PageID>
+            <PageMethod>backupPlugins</PageMethod>
+            <PageCondition><![CDATA[
+				if (isset($_GET['WizardType']) && $_GET['WizardType'] == Wizard::WIZARD_TYPE_UPDATE) {
+					return true;
+				}
+				return false;
+			]]></PageCondition>
+        </Page>
+        <Page>
+            <PageID>displayUpdateFilesPage</PageID>
+            <PageMethod>displayUpdateFilesPage</PageMethod>
+            <PageCondition><![CDATA[
+				if (isset($_GET['WizardType']) && $_GET['WizardType'] == Wizard::WIZARD_TYPE_UPDATE) {
+					return true;
+				}
+				return false;
+			]]></PageCondition>
+        </Page>
+        <Page>
+            <PageID>pluginsUpdate</PageID>
+            <PageMethod>pluginsUpdate</PageMethod>
+            <PageCondition><![CDATA[
+				if (isset($_GET['WizardType']) && $_GET['WizardType'] == Wizard::WIZARD_TYPE_UPDATE) {
+					return true;
+				}
+				return false;
+			]]></PageCondition>
+        </Page>
+        <Page>
+            <PageID>languageContent</PageID>
+            <PageMethod>languageContentUpdate</PageMethod>
+            <PageCondition><![CDATA[
+				if (isset($_GET['WizardType']) && $_GET['WizardType'] == Wizard::WIZARD_TYPE_UPDATE) {
+					return true;
+				}
+				return false;
+			]]></PageCondition>
+        </Page>
+        <Page>
+            <PageID>61postInstall</PageID>
+            <PageMethod>_61postInstall</PageMethod>
+            <PageCondition><![CDATA[
+                $plg = new plugin();
+                $exists = $plg->_FieldExists('shop_domain', TABLE_MANDANT_CONFIG);
+				return isset($_GET['WizardType']) && $_GET['WizardType'] == Wizard::WIZARD_TYPE_UPDATE && version_compare(_SYSTEM_VERSION, '6.1.0', '>=') && $exists; // hier müsste ein check rein ob der postInstall noch nötig ist (haben wir jetzt). oder einfach ausführen, fehler werden gefangen // && version_compare(_SYSTEM_VERSION, '6.2.0', '<')
+			]]></PageCondition>
+        </Page>
+        <Page>
+            <PageID>installKco</PageID>
+            <PageMethod>installKco</PageMethod>
+            <PageCondition><![CDATA[
+				global $xtPlugin, $is_pro_version;
+				return $is_pro_version===false && isset($_GET['WizardType']) && $_GET['WizardType'] && $_GET['WizardType'] == Wizard::WIZARD_TYPE_UPDATE && version_compare(_SYSTEM_VERSION, '6.1.0', '>=') && !array_key_exists('xt_klarna_kco', $xtPlugin->active_modules);
+			]]></PageCondition>
+        </Page>
+        <Page>
+            <PageID>cleanCache</PageID>
+            <PageMethod>cleanCache</PageMethod>
+            <PageCondition><![CDATA[
+				if (isset($_GET['WizardType']) && $_GET['WizardType'] == Wizard::WIZARD_TYPE_UPDATE) {
+					return true;
+				}
+				return false;
+			]]></PageCondition>
+        </Page>
+        <Page>
+            <PageID>finishUpdate</PageID>
+            <PageMethod>finishUpdatePage</PageMethod>
+            <PageCondition><![CDATA[
+				if (isset($_GET['WizardType']) && $_GET['WizardType'] == Wizard::WIZARD_TYPE_UPDATE) {
+					return true;
+				}
+				return false;
+			]]></PageCondition>
+        </Page>
+        <Page>
+            <PageID>info</PageID>
+            <PageMethod>infoPage</PageMethod>
+            <PageCondition></PageCondition>
+        </Page>
+    </Pages>
+</WizardScript>

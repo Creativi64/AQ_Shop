@@ -1,0 +1,10 @@
+<div id="checkout">
+
+    {$message}
+
+    {if $page_action == confirmation}
+    {include file="xtFree/xtCore/pages/checkout/subpage_confirmation.html" type="tpl_include"}
+    {elseif $page_action == success}
+    {include file="xtCore/pages/checkout/subpage_success.html" type="tpl_include"}
+    {/if}
+</div>

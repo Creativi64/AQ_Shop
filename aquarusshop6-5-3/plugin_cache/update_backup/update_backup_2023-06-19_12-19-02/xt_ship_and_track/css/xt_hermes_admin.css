@@ -1,0 +1,66 @@
+.sat-fa-icon
+{
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    font-style: normal;
+    color:inherit !important;
+}
+.tracking-page:before { content: "\f14d"; }
+.tracking-email:before { content: "\f0e0"; }
+.tracking-refresh:before { content: "\f2f1"; }
+.tracking-delete:before { content: "\f2ed"; color: #ff00003d }
+.tracking-print:before { content: "\f02f"; }
+
+
+.shipcloud-bg-green .x-btn-center{
+    background: #6aea93;
+}
+
+.shipcloud-bg-green .x-btn-center:hover{
+    background: #5cb86b;
+}
+
+div[id^=addParcelForm_shipcloud] fieldset { margin-top: 20px; }
+
+div[id^=addParcelForm_shipcloud] .x-btn-center {
+           padding: 2px 6px !important;
+           border: 1px gray solid !important;
+    border-radius: 2px;
+    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.75);
+}
+
+div[id^=addParcelForm_shipcloud] .x-btn-center:active {
+    padding: 2px 6px !important;
+    border: 1px gray solid !important;
+    border-radius: 2px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+div[id^=addParcelForm_shipcloud] .x-btn-left,
+div[id^=addParcelForm_shipcloud] .x-btn-right,
+div[id^=addParcelForm_shipcloud] .x-btn-center{
+    background-image: none;
+}
+
+img[id^=applyTotalFromCart] {vertical-align: middle }
+img[id^=applyTotalFromCart]:hover {cursor: pointer; cursor: hand; }
+
+textarea[name=COL_SHIPCLOUD_SETTINGS_HINT_LABEL]
+{
+    color: #004d22;
+    font-weight: bold;
+    border: none;
+    background: none;
+}
+/*
+#node_xt_ship_and_track_shipcloudWrapper .x-toolbar .ytb-text,
+#node_xt_ship_and_track_shipcloudWrapper .x-paging-info
+{
+    display: none;
+}
+*/
+.sc-disable { display: none; }

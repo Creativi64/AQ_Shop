@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+
+    <code>xt_invoice</code>
+    <version>1.0.1</version>
+    <type>payment</type>
+
+    <store_license_type>PRO</store_license_type>
+
+    <developer>xt:Commerce</developer>
+    <url>https://www.xt-commerce.com</url>
+
+    <title>Invoice (Rechnung)</title>
+    <description>Rechnung Zahlungsmodul</description>
+    <icon>xt-commerce_logo.jpg</icon>
+
+    <payment>
+        <payment_code>xt_invoice</payment_code>
+        <payment_dir>xt_invoice</payment_dir>
+        <payment_icon></payment_icon>
+        <payment_tpl></payment_tpl>
+        <de>
+            <title>Rechnung</title>
+            <description></description>
+        </de>
+        <en>
+            <title>Invoice</title>
+            <description></description>
+        </en>
+        <es>
+            <title>Factura</title>
+            <description></description>
+        </es>
+        <bp>
+            <title>Fatura</title>
+            <description></description>
+        </bp>
+    </payment>
+
+	<db_install><![CDATA[include_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_invoice/installer/install.php';]]></db_install>
+
+</xtcommerceplugin> 

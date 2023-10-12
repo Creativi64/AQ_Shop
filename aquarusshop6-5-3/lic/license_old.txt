@@ -1,0 +1,51 @@
+company: AQUARUS Ston Development &amp; Tools
+created: 2020-11-09 02:56:07
+key: 8367fc387f1d4951091ec5912a582e62
+license: xt:Commerce 6 - Single License
+mailaddress: einkauf@aquarus.net
+maxproducts: 0
+maxstores: 1
+maxversion: 633
+name: Daniela Kreuzer
+project: xt:Commerce 6
+updatesuntil: 2022-12-22 10:19:54
+versiontype: PRO
+
+------ LICENSE FILE DATA -------
+0WT64769P5Q9YCWp9KRLwgNdghZSh/dR
+KiqRbS7wyu1ZboFvQhkFzT8doK8inWx/
+P8e7dey7nlhkiAPqyPPrCu3O5axhcF5A
+u5lP/zgdzVEuPsqDrPJjblRXmDXkI+xx
+ukL51tk8SbAYCBKC47SH5l8HRzf7N6/n
+Vj8I65Ez8A4S8Jses2ehAClYcg+0lKbJ
+cFYXhG5yOxQjkdE2PjagHNYbYvvWbEdi
+Z8WCEmIOZNRpxr0Jkb4zTgEkCyjEq0X7
+8O+MopmAlVskwAfVZYAltTstEnBU1/vV
+AldiJU6wpR+5Ly1jWznw2ptJ1M4F8WvG
+gZWk25HsYxkIgY7gBqGeaPiB5V4XnL/w
+Zksy40ngsV0hqe9jn9xEAm2yYE9GKSqQ
+bgJBr2spLscIDYFf+JDMOU0iMezpqJJk
+HEf8JQv3TWPgKYglE/kTwmKPLCEEhVBB
+PBlHDCxcAyMWMORYuzrG0V0DOPCFWTt8
+qrkKobS61u+RNDvgDTpeBY6ifEQUylhx
+wOsz/3+AD4/1cb2qxIQ04syf6ThIjoJ7
+tZC2KZAZuvUgj0sqH/BvzWrj05efYJpS
+TJaCEjsCYHGkEWbkn47fKYvRwrO28HUf
+bAAAwFN7SZhIhykPTt+gD05NXyzLG+GT
+4pro3qnqWTwWB+7pCGnYZ7iJU05glBkH
+ZMPP3WzPkWuTiEEPTYwU9zwE/zw/RN4k
+sD7il1HNtZhDmTXlHTfuVyNa/8lSokDR
+w3vTH320Qfh61GXqLp3PIIoVVVWc9+vS
+lGpLI4MgbR5FpiCgcEMLITEgLO0Yc6A3
+yGCfrfW9EPV8IJzHW4B0pep6hghBsk4/
+K54p8rA3I9cU9ky+auL8NDZn/FeEkJ46
+XSzMQM8hk+zb3StoCagBkS/isI0N/gTJ
+p/AaLxyUj6YTiEy8m+9wjrJLTO6TdXY2
+DacpT/4RgJh0REYlS8GR53hwfLAM2Awk
+VII8NUNmPiZPIsrnPMuJuxdrPUFgAkiB
+m342/m0hsBmmkj9FkG5gHYqhizosKzfg
+jygtaOYD0+Lg3IcRK80kSCvusiooZ5kU
+WKOp4HNK8KKYtvMLG85cKmQusmaGCH7p
+dyZ3V9ckRr2b8DDkv28QcazpSGbKdIbv
+cLMb4CvqQjzg/xNPfmk1mqYSX7L=
+--------------------------------

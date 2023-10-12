@@ -1,0 +1,34 @@
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+		<thead>
+			<tr>
+				<th class="left">{txt key=TEXT_FILE}</th>
+				<th class="right">{txt key=TEXT_SIZE}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{foreach name=aussen item=file_data from=$media_files}
+			<tr class="{cycle values='odd,even'}">
+				<td>
+					<strong>
+						<a href="{$file_data.download_url|escape:'html'}"
+							rel="nofollow"
+							target="_blank">
+							{if $file_data.extension eq 'pdf'}
+                                <i class="mdi mdi-file" aria-hidden="true"></i>
+                            {elseif $file_data.extension eq 'zip' || $file_data.extension eq 'rar'}
+                                <i class="mdi mdi-archive" aria-hidden="true"></i>
+                            {else}
+                                <i class="mdi mdi-download" aria-hidden="true"></i>
+                            {/if}&nbsp;&nbsp;
+							&nbsp;<span class="name">{if $file_data.media_name}{$file_data.media_name}{else}{$file_data.file}{/if}</span>
+						</a>
+					</strong>
+					{if $file_data.media_description}{$file_data.media_description}{/if}
+				</td>
+				<td class="right">{$file_data.media_size|fsize_format:"MB"}</td>
+			</tr>
+			{/foreach}
+		</tbody>
+    </table>
+</div>

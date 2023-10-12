@@ -1,0 +1,19 @@
+{
+    "require": {
+        "phpmailer/phpmailer": "^6.2",
+        "ezyang/htmlpurifier": "^4.13",
+        "dompdf/dompdf": "2.0.*",
+        "smarty/smarty": "^4.2",
+        "econea/nusoap": "^v0.9",
+        "jaybizzle/crawler-detect": "1.*",
+        "mrclay/minify": "^3.0",
+        "tedivm/jshrink": "^1.3",
+        "oyejorge/less.php": "1.7.0.14",
+        "alexanderpoellmann/paymentfont":"*",
+        "guzzlehttp/guzzle": "^7.0",
+        "ibericode/vat": "^2.0",
+        "robthree/twofactorauth": "*",
+        "adodb/adodb-php": "^5.0",
+        "centarro/kco_rest": "^4.2"
+    }
+}

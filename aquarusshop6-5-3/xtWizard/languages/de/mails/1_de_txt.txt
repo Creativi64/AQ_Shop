@@ -1,0 +1,10 @@
+Hallo {$address_data.customers_title} {$address_data.customers_firstname} {$address_data.customers_lastname},
+
+Sie erhalten diese automatische E-Mail aufgrund Ihrer Anfrage nach Ihrem Passwort.
+      
+Ihr neues Passwort: {$NEW_PASSWORD}
+
+Aus Sicherheitsgründen bitten wir Sie, Ihr neues Passwort gleich nach dem einloggen zu ändern.
+
+------------------------------------------------------------------------------------------------------------
+{$_system_footer_txt}

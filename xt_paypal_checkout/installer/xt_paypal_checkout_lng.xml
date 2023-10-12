@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+    <language_content>
+
+    <phrase>
+        <key>TEXT_XT_PAYPAL_CHECKOUT</key>
+        <class>both</class>
+        <de>
+            <value><![CDATA[PayPal Checkout]]></value>
+        </de>
+        <en>
+            <value><![CDATA[PayPal Checkout]]></value>
+        </en>
+    </phrase>
+
+    <phrase>
+        <key>XT_PAYPAL_CHECKOUT</key>
+        <class>both</class>
+        <de>
+            <value><![CDATA[PayPal Checkout]]></value>
+        </de>
+        <en>
+            <value><![CDATA[PayPal Checkout]]></value>
+        </en>
+    </phrase>
+
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_WARNING_TEST_MODE</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[PayPal Checkout wird momentan im Testmodus ausgeführt (SANDBOX)!<br/>Dass heißt, Ihre Zahlung wird nicht verarbeitet und die Bestellung wird nicht ausgeliefert!<br/>]]></value>
+            </de>
+            <en>
+                <value><![CDATA[PayPal Checkout working in test mode (SANDBOX)!<br/> That means your payment will not be processed and the order will not be delivered!<br/>]]></value>
+            </en>
+        </phrase>TEXT_PAYPAL_CHECKOUT_REDIRECT_INFO
+
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_REDIRECT_INFO</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[Bestellung wird verarbeitet.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Order is being processed]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_REDIRECT_INFO_OOPS</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[Oops, es dauert etwas länger. Gleich geht es weiter.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Oops, it's taking a little longer. It's about to go on.]]></value>
+            </en>
+        </phrase>
+
+
+
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_DO_CAPTURE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Erfassen]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Capture]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_MAX_AVAIL_CAPTURE_AMOUNT</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Dieser Betrag kann maximal erfasst werden]]></value>
+            </de>
+            <en>
+                <value><![CDATA[This amount can be captured maximum]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_CAPTURE_AMOUNT</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Betrag]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Amount]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_CAPTURE_LABEL</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Erfassen]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Capture]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_DO_REFUND</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Rückerstatten]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Refund]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_MAX_AVAIL_REFUND_AMOUNT</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Dieser Betrag kann maximal rückerstattet werden]]></value>
+            </de>
+            <en>
+                <value><![CDATA[This amount can be refunded maximum]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_REFUND_AMOUNT</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Betrag]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Amount]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_REFUND_LABEL</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Rückerstatten]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Do refund]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_REFUNDED</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[rückerstattet]]></value>
+            </de>
+            <en>
+                <value><![CDATA[refunded]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_DO_CANCEL</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Stornieren]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Cancel]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_ASK_CANCEL</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Soll wirklich storniert werden? Alle bisher eingezogenen Beträge werden rückerstattet!]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Do you really want to cancel? All amounts collected so far will be refunded!]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_CANCEL_LABEL</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Stornieren]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Cancel]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_CANCEL_WAIT</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Einen Moment, Zahlung wird storniert]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Just am moment, payment is being canceled]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_CARD_NUMBER</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Kartennummer]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Card number]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_EXPIRATION_DATE</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[gültig bis]]></value>
+            </de>
+            <en>
+                <value><![CDATA[expires]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_CVV</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[CVV]]></value>
+            </de>
+            <en>
+                <value><![CDATA[CVV]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_CARD_HOLDER</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Name auf der Karte]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Name on card]]></value>
+            </en>
+        </phrase>
+
+
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_CAPTURE_WAIT</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Einen Moment, Erfassung wird durchgeführt]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Just am moment, processing capture]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_CANCEL_WAIT</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Einen Moment, Bestellung wird storniert]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Just am moment, order is being canceled]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_REFUND_WAIT</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Einen Moment, Rückerstattung wird ausgeführt]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Just am moment, refund is being processed]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_CONNECTING</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Verbindung mit PayPal herstellen]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Connecting to PayPal]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_CAPTURE_ALL_ASK</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Capture für Auswahl durchführen]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Capture selected orders]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_DONT_FORGET_TO_CAPTURE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Vergessen Sie nicht den verbleibenden Betrag einzuziehen]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Don't forget to charge the remaining amount]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_CHECKOUT_DETAILS</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[PayPal Zahlungsdetails]]></value>
+            </de>
+            <en>
+                <value><![CDATA[PayPal payment deatils]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>XT_PAYPAL_CHECKOUT_MERCHANT_ID_TITLE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Händler-ID]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Merchant-ID]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_SIGNUP</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[PayPal Checkout Signup]]></value>
+            </de>
+            <en>
+                <value><![CDATA[PayPal Checkout Signup]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_RELOAD_ORDER</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Status neu abrufen]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Retrieve status]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_SHOW_ORDER_DETAILS</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Details anzeigen]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Show details]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_TRANSACTIONS</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[PayPal Checkout Transactions]]></value>
+            </en>
+            <de>
+                <value><![CDATA[PayPal Checkout Transaktionen]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_REFUNDS</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[PayPal Checkout Refunds]]></value>
+            </en>
+            <de>
+                <value><![CDATA[PayPal Checkout Rückzahlungen]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_DETAILS</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Reload data from PayPal and show details]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Daten von PayPal neu laden und anzeigen]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_PPCP_PAYMENT_INFO</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[PayPal order data: <br /><br />]]></value>
+            </en>
+            <de>
+                <value><![CDATA[PayPal Bestelldetails:]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_PPCP_ORDER_ID</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[PayPal order ID]]></value>
+            </en>
+            <de>
+                <value><![CDATA[PayPal Bestell-ID]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_PPCP_ORDER_STATUS</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[PayPal order status]]></value>
+            </en>
+            <de>
+                <value><![CDATA[PayPal Bestell-Status]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_PPCP_DO_REFUND</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Choose the amount to refund]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Wählen Sie den Rückzahlungsbetrag]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_PPCP_DO_REFUND_LABEL</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Refund now]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Jetzt zurückzahlen]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_PPCP_REFUND_ID</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Refund-ID]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Rückzahlung-ID]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_PPCP_AMOUNT</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Amount]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Betrag]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_PPCP_MEMO</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Comments]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Kommentar]]></value>
+            </de>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_PPCP_ACTIVATING_CARD_PAYMENT_NOT_POSSIBLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Your merchant account does not meet the conditions for activating credit card payments]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Ihr Händler-Account erfüllt nicht die Bedingungen zur Aktivierung der Kreditkarten-Zahlungen]]></value>
+            </de>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_PUI_AGREEMENT</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[Mit Klicken auf den Button akzeptieren Sie die <a href="https://www.ratepay.com/legal-payment-terms" target="_blank">Ratepay Zahlungsbedingungen</a> und erklären sich mit der Durchführung einer <a href="https://www.ratepay.com/legal-payment-dataprivacy" target="_blank">Risikoprüfung durch Ratepay</a>, unseren Partner,  einverstanden. Sie akzeptieren auch PayPals <a href="https://www.paypal.com/de/webapps/mpp/ua/privacy-full?locale.x=de_DE" target="_blank">Datenschutzerklärung</a>. Falls Ihre Transaktion per Kauf auf Rechnung erfolgreich abgewickelt werden kann, wird der Kaufpreis an Ratepay abgetreten und Sie dürfen nur an Ratepay überweisen, nicht an den Händler.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[By clicking on the button, you agree to the <a href="https://www.ratepay.com/legal-payment-terms" target="_blank">terms of payment</a> and <a href="https://www.ratepay.com/legal-payment-dataprivacy" target="_blank">performance of a risk check</a> from the payment partner, Ratepay. You also agree to PayPal’s <a href="https://www.paypal.com/us/webapps/mpp/ua/privacy-full" target="_blank">privacy statement</a>. If your request to purchase upon invoice is accepted, the purchase price claim will be assigned to Ratepay, and you may only pay Ratepay, not the merchant.]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_PUI_AGREEMENT_ERROR</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[Bitte akzeptieren Sie die Ratepay Zahlungsbedingungen]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Please accept the Ratepay terms of payment]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_PUI_ERROR_CANNOT_BE_VERIFIED</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[Die Kombination aus Ihrem Namen und Ihrer Anschrift konnte nicht validiert werden. Bitte korrigieren Sie Ihre Daten und versuchen Sie es erneut. Weitere Informationen finden Sie in den Ratepay <a href="https://www.ratepay.com/legal-payment-dataprivacy/?lang=de" title="external link" target="_blank" rel="noopener noreferrer" class="dx-external-href" pa-marked="1">Datenschutzbestimmungen</a> oder nutzen Sie das Ratepay <a href="https://www.ratepay.com/kontakt/" title="external link" target="_blank" rel="noopener noreferrer" class="dx-external-href" pa-marked="1">Kontaktformular</a>.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[The combination of your name and address could not be validated. Please correct your data and try again. You can find further information in the <a href="https://www.ratepay.com/en/ratepay-data-privacy-statement/" title="external link" target="_blank" rel="noopener noreferrer" class="dx-external-href" pa-marked="1">Ratepay Data Privacy Statement</a> or you can contact Ratepay using this <a href="https://www.ratepay.com/en/contact/" title="external link" target="_blank" rel="noopener noreferrer" class="dx-external-href" pa-marked="1">contact form</a>.]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_PUI_ERROR_DECLINED</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[Die gewählte Zahlungsart kann nicht genutzt werden. Diese Entscheidung basiert auf einem automatisierten Datenverarbeitungsverfahren. Weitere Informationen finden Sie in den Ratepay <a href="https://www.ratepay.com/legal-payment-dataprivacy/?lang=de" title="external link" target="_blank" rel="noopener noreferrer" class="dx-external-href" pa-marked="1">Datenschutzbestimmungen</a> oder nutzen Sie das Ratepay <a href="https://www.ratepay.com/kontakt/" title="external link" target="_blank" rel="noopener noreferrer" class="dx-external-href" pa-marked="1">Kontaktformular</a>.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[It is not possible to use the selected payment method. This decision is based on automated data processing. You can find further information in the <a href="https://www.ratepay.com/en/ratepay-data-privacy-statement/" title="external link" target="_blank" rel="noopener noreferrer" class="dx-external-href" pa-marked="1">Ratepay Data Privacy Statement</a> or you can contact Ratepay using this <a href="https://www.ratepay.com/en/contact/" title="external link" target="_blank" rel="noopener noreferrer" class="dx-external-href" pa-marked="1">contact form</a>.]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_CARD_DECLINED_ERROR</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[Die Kreditkartenzahlung wurde abgelehnt.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[The credit card payment was declined.]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_CARD_ERROR</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[Die Kreditkartenzahlung wurde nicht ausgeführt.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[The credit card payment was not executed.]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_CHOOSE_DIFFERENT_PAYMENT_METHOD</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[Bitte wählen Sie eine andere Zahlungsart.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Please choose a different payment method.]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_PUI_MAIL_SUBJECT</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[{$_store_name} | Zahlungshinweise zum Rechnungskauf, Bestellnr. {$order_data.orders_id}]]></value>
+            </de>
+            <en>
+                <value><![CDATA[{$_store_name} | Payment instructions for Pay upon invoice, no. {$order_data.orders_id}]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_ERROR_PHONE_REQUIRED</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Telefonnummer erforderlich. Mindestens 3 Ziffern]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Phone number required. min length 3 digits]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_ERROR_BIRTHDAY_REQUIRED</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Geburtsdatum erforderlich. Mindestalter für Rechnungskauf beträgt 18 Jahre.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Date of birth required. Minimum age for purchase on account is 18 years.]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_OVERCAPTURE_MSG</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Der Endbetrag ist nun höher als der zuvor bei PayPal bestätigte Betrag. Sie müssen den neuen Betrag nochmals bei PayPal bestätigen. Klicken Sie nochmals 'Direkt zu PayPal'.<br><br>Hinweis: Es wurden bis jetzt kein Beträge über Ihr PayPal-Konto abgebucht.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[The final amount is now higher than the amount previously confirmed with PayPal. You must confirm the new amount again with PayPal. Click 'PayPal Checkout' again.<br><br>Note: Up to now, no amounts have been debited from your PayPal account.]]></value>
+            </en>
+        </phrase>
+
+
+
+
+
+
+
+
+
+    <!-- plgbuilder row functions -->
+    <phrase>
+        <key>TEXT_xt_paypal_checkout_ROW_FNC_1</key>
+        <class>admin</class>
+        <de>
+            <value><![CDATA[row fnc 1]]></value>
+        </de>
+        <en>
+            <value><![CDATA[row fnc 1]]></value>
+        </en>
+    </phrase>
+
+    <!-- plgbuilder db columns -->
+        
+    </language_content>
+</xtcommerceplugin>
+<!-- pb version 1.0.0 -->

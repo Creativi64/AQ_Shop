@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+
+    <code>xt_paypal_checkout</code>
+    <version>2.2.3</version>
+    <type>payment</type>
+
+    <title>PayPal Checkout</title>
+    <description>PayPal Checkout</description>
+    <icon>xt_paypal_checkout.png</icon>
+    <url>https://www.xt-commerce.com</url>
+
+    <minimum_store_version>6.3.3</minimum_store_version>
+
+    <required_plugins>
+    	<plugin>xt_bank_details</plugin>
+    </required_plugins>
+
+    <developer>xt:Commerce</developer>
+    <marketplace_link><![CDATA[https://addons.xt-commerce.com/index.php?page=product&info=8474]]></marketplace_link>
+    <documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=2777710596]]></documentation_link>
+
+    <messages>
+        <post>
+            <de><![CDATA[Nächste Schritte:<br /><br />
+1) Aktivieren Sie das Plugin und laden das Backend neu<br />
+2) Unter Einstellungen im Seitenmenü führen Sie den <i>PayPal Checkout Signup</i> durch<br />
+3) Prüfen Sie dann die Einstellungen im Plugin<br />
+<br />
+<a style="color: #2a699f; text-decoration:underline" href="https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=2777710596" target="_blank">Dokumentation</a>]]></de>
+            <en><![CDATA[Next steps:<br /><br />
+1) Activate the plugin and reload the backend<br />
+2) Under Settings in the side menu, perform the <i>PayPal Checkout Signup</i><br />
+3) Then check the settings in the plugin<br />
+<br />
+<a style="color: #2a699f; text-decoration:underline" href="https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=2777710596" target="_blank">Documentation</a>]]></en>
+        </post>
+    </messages>
+
+    <configuration>
+
+        <config>
+            <key>XT_PAYPAL_CHECKOUT_ACTIVATED</key>
+            <value>1</value>
+            <type>status</type>
+            <sort_order>0</sort_order>
+
+            <de>
+                <title><![CDATA[Aktiviert für Mandanten]]></title>
+            </de>
+            <en>
+                <title><![CDATA[Aktiviert für Mandanten]]></title>
+            </en>
+        </config>
+
+        <config>
+            <key>XT_PAYPAL_CHECKOUT_TESTMODE</key>
+            <value>0</value>
+            <type>status</type>
+            <sort_order>120</sort_order>
+            <de>
+                <title>Testmodus</title>
+            </de>
+            <en>
+                <title>Test mode</title>
+            </en>
+        </config>
+
+        <!--  LIVE  -->
+        <config>
+            <key>XT_PAYPAL_CHECKOUT_CLIENT_ID_LIVE</key>
+            <value></value>
+            <type>textfield</type>
+            <sort_order>130</sort_order>
+            <de>
+                <title>Client/App ID (Live)</title>
+            </de>
+            <en>
+                <title>Client/App ID (Live)</title>
+            </en>
+        </config>
+
+        <config>
+            <key>XT_PAYPAL_CHECKOUT_CLIENT_SECRET_LIVE</key>
+            <type>password</type>
+            <value></value>
+            <sort_order>131</sort_order>
+            <de>
+                <title>Privater Schlüssel (Live)</title>
+            </de>
+            <en>
+                <title>API key (Live)</title>
+            </en>
+        </config>
+
+        <config>
+            <key>XT_PAYPAL_CHECKOUT_MERCHANT_ID_LIVE</key>
+            <type>textfield</type>
+            <value></value>
+            <sort_order>132</sort_order>
+            <de>
+                <title><![CDATA[Merchant-ID (Live)]]></title>
+            </de>
+            <en>
+                <title><![CDATA[Merchant-ID (Live)]]></title>
+            </en>
+        </config>
+
+        <!--  SANDBOX  -->
+        <config>
+            <key>XT_PAYPAL_CHECKOUT_CLIENT_ID_TEST</key>
+            <type>textfield</type>
+            <value></value>
+            <sort_order>135</sort_order>
+            <de>
+                <title>Client/App ID (Test)</title>
+            </de>
+            <en>
+                <title>Client/App ID (Test)</title>
+            </en>
+        </config>
+
+        <config>
+            <key>XT_PAYPAL_CHECKOUT_CLIENT_SECRET_TEST</key>
+            <type>password</type>
+            <value></value>
+            <sort_order>136</sort_order>
+            <de>
+                <title>Privater Schlüssel (Test)</title>
+            </de>
+            <en>
+                <title>Private key (Test)</title>
+            </en>
+        </config>
+
+        <config>
+            <key>XT_PAYPAL_CHECKOUT_MERCHANT_ID_TEST</key>
+            <type>textfield</type>
+            <value></value>
+            <sort_order>140</sort_order>
+            <de>
+                <title><![CDATA[Merchant-ID (Test)]]></title>
+            </de>
+            <en>
+                <title><![CDATA[Merchant-ID (Test)]]></title>
+            </en>
+        </config>
+
+        <config>
+            <key>XT_PAYPAL_CHECKOUT_SETUP_WEBHOOKS</key>
+            <type>status</type>
+            <sort_order>150</sort_order>
+            <value>0</value>
+            <de>
+                <title><![CDATA[<b>Webhooks</b> anlegen beim speichern]]></title>
+            </de>
+            <en>
+                <title><![CDATA[on save setup <b>Webhooks</b>]]></title>
+            </en>
+        </config>
+
+        <config>
+            <key>XT_PAYPAL_CHECKOUT_BUTTON_SIZE</key>
+            <type>textfield</type>
+            <sort_order>160</sort_order>
+            <value>37</value>
+            <de>
+                <title><![CDATA[Button-Höhe (25-55)]]></title>
+            </de>
+            <en>
+                <title><![CDATA[Button height]]></title>
+            </en>
+        </config>
+
+        <config>
+            <key>XT_PAYPAL_CHECKOUT_BUTTON_SHAPE</key>
+            <type>dropdown</type>
+            <sort_order>170</sort_order>
+            <url>ppcp_button_shape</url>
+            <value>rect</value>
+            <de>
+                <title><![CDATA[Button-Form]]></title>
+            </de>
+            <en>
+                <title><![CDATA[Button shape]]></title>
+            </en>
+        </config>
+
+        <config>
+            <key>XT_PAYPAL_CHECKOUT_BUTTON_COLOR</key>
+            <type>dropdown</type>
+            <sort_order>180</sort_order>
+            <url>ppcp_button_color</url>
+            <value>black</value>
+            <de>
+                <title><![CDATA[Button-Farbe]]></title>
+            </de>
+            <en>
+                <title><![CDATA[Button color]]></title>
+            </en>
+        </config>
+
+    </configuration>
+
+    <plugin_code>
+
+        <code>
+            <hook>class.payment.php:_buildData_data</hook>
+            <phpcode><![CDATA[require _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/class.payment.php__buildData_data.php';]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>ejsadmin.php:more_js</hook>
+            <phpcode><![CDATA[require _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/ejsadmin.php_more_js.php';]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>adminHandler.php:_bottom</hook>
+            <phpcode><![CDATA[require _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/adminHandler.php__bottom.php';]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>admin_dropdown.php:dropdown</hook>
+            <phpcode><![CDATA[require _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/admin_dropdown.php_dropdown.php';]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>display.php:after_minify_serve_footer</hook>
+            <phpcode><![CDATA[require _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/display.php_after_minify_serve_footer.php';]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>index_footer_tpl</hook>
+            <phpcode><![CDATA[require_once _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/index_footer_tpl.php';]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>_pre_include</hook>
+            <phpcode><![CDATA[require_once _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/_pre_include.php';]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>module_checkout.php:checkout_first</hook>
+            <phpcode><![CDATA[require _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/module_checkout.php_checkout_first.php';]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>module_customer.php:success_login</hook>
+            <phpcode><![CDATA[require _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/module_customer.php_success_login.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>module_checkout.php:checkout_page_actions</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/module_checkout_php_checkout_page_actions.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>module_checkout.php:checkout_payment_bottom</hook>
+            <phpcode><![CDATA[require _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/module_checkout.php_checkout_payment_bottom.php';	]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>module_checkout.php:checkout_process_check</hook>
+            <phpcode><![CDATA[require _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/module_checkout.php_checkout_process_check.php';	]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>module_checkout.php:checkout_bottom</hook>
+            <phpcode><![CDATA[require _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/module_checkout_php_checkout_bottom.php';	]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>module_checkout.php:checkout_proccess_bottom</hook>
+            <phpcode><![CDATA[require _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/module_checkout.php_checkout_proccess_bottom.php';]]></phpcode>
+            <order>1000</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>module_checkout.php:checkout_data</hook>
+            <phpcode><![CDATA[require _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/module_checkout.php_checkout_data.php';]]></phpcode>
+            <order>1000</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>module_checkout.php:checkout_shipping_bottom</hook>
+            <phpcode><![CDATA[require _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/module_checkout_php_checkout_shipping_bottom.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>form_handler.php:select_address_bottom</hook>
+            <phpcode><![CDATA[include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/form_handler_php_select_address_bottom.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>module_customer.php:edit_address_link_target</hook>
+            <phpcode><![CDATA[include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/module_customer.php_edit_address_link_target.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>checkout_tpl_bottom</hook>
+            <phpcode>
+                <![CDATA[require_once(_SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/checkout_tpl_bottom.php');]]></phpcode>
+            <order>-1000</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>cart_tpl_form</hook>
+            <phpcode><![CDATA[require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/cart_tpl_form.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>product_info_tpl_cart</hook>
+            <phpcode><![CDATA[require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/product_info_tpl_cart.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>checkout_tpl_form</hook>
+            <phpcode><![CDATA[require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/checkout_tpl_form.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>meta_nav_right_last</hook>
+            <phpcode><![CDATA[//require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/meta_nav_right_last.php';]]></phpcode>
+            <order>1</order>
+            <active>0</active>
+        </code>
+
+        <code>
+            <hook>index_boxes_bottom</hook>
+            <phpcode><![CDATA[//require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/index_boxes_bottom.php';]]></phpcode>
+            <order>1</order>
+            <active>0</active>
+        </code>
+
+
+        <!--  backend -->
+        <code>
+            <hook>class.order.php:_buildData_top</hook>
+            <phpcode>
+                <![CDATA[require(_SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/class.order.php__buildData_top.php');]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.order.php:_buildData_bottom</hook>
+            <phpcode><![CDATA[require _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/class.order.php__buildData_bottom.php';]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.order_edit.php:hook_order_edit_display_tpl:add_menu_button_at_next_btn_pos</hook>
+            <phpcode>
+                <![CDATA[require(_SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/class.order_edit.php_hook_order_edit_display_tpl_add_menu_button_at_next_btn_pos.php');]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.plugin_installed.php:_set_bottom</hook>
+            <phpcode>
+                <![CDATA[require(_SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/class.plugin_installed.php__set_bottom.php');]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.plugin_installed.php:_setStatus_top</hook>
+            <phpcode>
+                <![CDATA[require(_SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/class.plugin_installed.php__setStatus_top.php');]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>ExtFunctions:_paymentIconRenderer_top</hook>
+            <phpcode>
+                <![CDATA[require(_SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/ExtFunctions__paymentIconRenderer_top.php');]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.payment.php:_buildData_filter</hook>
+            <phpcode>
+                <![CDATA[require(_SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal_checkout/hooks/class.payment.php__buildData_filter.php');]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+
+    </plugin_code>
+
+
+
+    <db_install><![CDATA[
+        include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS. 'xt_paypal_checkout/installer/install.php';
+        ]]>
+    </db_install>
+
+    <db_uninstall><![CDATA[
+        include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS. 'xt_paypal_checkout/installer/uninstall.php';
+        ]]>
+    </db_uninstall>
+
+    <minimumupdateversion>1.0.0</minimumupdateversion>
+    <db_update>
+        <update>
+            <version>1.0.8</version>
+            <to_version>1.0.9</to_version>
+            <code><![CDATA[include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS. 'xt_paypal_checkout/installer/updates/1.0.8_1.0.9.php';]]>
+            </code>
+            <messages>
+                <post>
+                    <de><![CDATA[Nächste Schritte:<br /><br />
+<a style="color: #2a699f; text-decoration:underline; font-size:2em" href="#" onclick="ppcp_enablePayments(); return false;">Klicken Sie hier um die gewählten Zahlungsweisen zu reaktivieren</a>
+<script>function ppcp_enablePayments(){new Ext.data.Connection().request({url:"adminHandler.php",method:"GET",params:{plugin:"xt_paypal_checkout",load_section:"xt_paypal_checkout",pg:"enablePayments",sec: typeof paypal_checkout_constant != "undefined" ? paypal_checkout_constant.SYSTEM_SECURITY_KEY : ""},success:function(a){void 0!==Ext.getCmp("plugin_installedgridForm")&&Ext.getCmp("plugin_installedgridForm").getStore().reload();var b=JSON.parse(a.responseText).statusText;Ext.MessageBox.alert("OK",b)},failure:function(a){Ext.MessageBox.alert("Error","Fehler beim aktivieren des Plugins/Zahlungsweisen.")}})}</script>]]></de>
+                    <en><![CDATA[Next steps:<br /><br />
+<a style="color: #2a699f; text-decoration:underline; font-size:2em" onclick="enablePayments(); return false;">Click here to reactivate the selected payment methods</a>
+<script>function ppcp_enablePayments(){new Ext.data.Connection().request({url:"adminHandler.php",method:"GET",params:{plugin:"xt_paypal_checkout",load_section:"xt_paypal_checkout",pg:"enablePayments",sec: typeof paypal_checkout_constant != "undefined" ? paypal_checkout_constant.SYSTEM_SECURITY_KEY : ""},success:function(a){void 0!==Ext.getCmp("plugin_installedgridForm")&&Ext.getCmp("plugin_installedgridForm").getStore().reload();var b=JSON.parse(a.responseText).statusText;Ext.MessageBox.alert("OK",b)},failure:function(a){Ext.MessageBox.alert("Error","Fehler beim aktivieren des Plugins/Zahlungsweisen.")}})}</script>]]></en>
+                </post>
+            </messages>
+        </update>
+        <update>
+            <version>2.0.4</version>
+            <to_version>2.0.5</to_version>
+            <code><![CDATA[include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS. 'xt_paypal_checkout/installer/updates/2.0.4_2.0.5.php';]]></code>
+            <messages>
+                <post>
+                    <de><![CDATA[Nächste Schritte:<br /><br />
+<a style="color: #2a699f; text-decoration:underline; font-size:2em" href="#" onclick="ppcp_enablePayments(); return false;">Klicken Sie hier um die gewählten Zahlungsweisen zu reaktivieren</a>
+<script>function ppcp_enablePayments(){new Ext.data.Connection().request({url:"adminHandler.php",method:"GET",params:{plugin:"xt_paypal_checkout",load_section:"xt_paypal_checkout",pg:"enablePayments",sec: typeof paypal_checkout_constant != "undefined" ? paypal_checkout_constant.SYSTEM_SECURITY_KEY : ""},success:function(a){void 0!==Ext.getCmp("plugin_installedgridForm")&&Ext.getCmp("plugin_installedgridForm").getStore().reload();var b=JSON.parse(a.responseText).statusText;Ext.MessageBox.alert("OK",b)},failure:function(a){Ext.MessageBox.alert("Error","Fehler beim aktivieren des Plugins/Zahlungsweisen.")}})}</script>]]></de>
+                    <en><![CDATA[Next steps:<br /><br />
+<a style="color: #2a699f; text-decoration:underline; font-size:2em" onclick="enablePayments(); return false;">Click here to reactivate the selected payment methods</a>
+<script>function ppcp_enablePayments(){new Ext.data.Connection().request({url:"adminHandler.php",method:"GET",params:{plugin:"xt_paypal_checkout",load_section:"xt_paypal_checkout",pg:"enablePayments",sec: typeof paypal_checkout_constant != "undefined" ? paypal_checkout_constant.SYSTEM_SECURITY_KEY : ""},success:function(a){void 0!==Ext.getCmp("plugin_installedgridForm")&&Ext.getCmp("plugin_installedgridForm").getStore().reload();var b=JSON.parse(a.responseText).statusText;Ext.MessageBox.alert("OK",b)},failure:function(a){Ext.MessageBox.alert("Error","Fehler beim aktivieren des Plugins/Zahlungsweisen.")}})}</script>]]></en>
+                </post>
+            </messages>
+        </update>
+        <update>
+            <version>2.0.5</version>
+            <to_version>2.1.0</to_version>
+            <code><![CDATA[include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS. 'xt_paypal_checkout/installer/updates/2.0.5_2.1.0.php';]]></code>
+            <messages>
+                <post>
+                    <de><![CDATA[Nächste Schritte:<br /><br />
+<a style="color: #2a699f; text-decoration:underline; font-size:2em" href="#" onclick="ppcp_enablePayments(); return false;">Klicken Sie hier um die gewählten Zahlungsweisen zu reaktivieren</a>
+<script>function ppcp_enablePayments(){new Ext.data.Connection().request({url:"adminHandler.php",method:"GET",params:{plugin:"xt_paypal_checkout",load_section:"xt_paypal_checkout",pg:"enablePayments",sec: typeof paypal_checkout_constant != "undefined" ? paypal_checkout_constant.SYSTEM_SECURITY_KEY : ""},success:function(a){void 0!==Ext.getCmp("plugin_installedgridForm")&&Ext.getCmp("plugin_installedgridForm").getStore().reload();var b=JSON.parse(a.responseText).statusText;Ext.MessageBox.alert("OK",b)},failure:function(a){Ext.MessageBox.alert("Error","Fehler beim aktivieren des Plugins/Zahlungsweisen.")}})}</script>]]></de>
+                    <en><![CDATA[Next steps:<br /><br />
+<a style="color: #2a699f; text-decoration:underline; font-size:2em" onclick="enablePayments(); return false;">Click here to reactivate the selected payment methods</a>
+<script>function ppcp_enablePayments(){new Ext.data.Connection().request({url:"adminHandler.php",method:"GET",params:{plugin:"xt_paypal_checkout",load_section:"xt_paypal_checkout",pg:"enablePayments",sec: typeof paypal_checkout_constant != "undefined" ? paypal_checkout_constant.SYSTEM_SECURITY_KEY : ""},success:function(a){void 0!==Ext.getCmp("plugin_installedgridForm")&&Ext.getCmp("plugin_installedgridForm").getStore().reload();var b=JSON.parse(a.responseText).statusText;Ext.MessageBox.alert("OK",b)},failure:function(a){Ext.MessageBox.alert("Error","Fehler beim aktivieren des Plugins/Zahlungsweisen.")}})}</script>]]></en>
+                </post>
+            </messages>
+        </update>
+        <update>
+            <version>2.1.6</version>
+            <to_version>2.2.0</to_version>
+            <code><![CDATA[include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS. 'xt_paypal_checkout/installer/updates/2.1.6_2.2.0.php';]]></code>
+            <messages>
+                <post>
+                    <de><![CDATA[Nächste Schritte:<br /><br />
+<a style="color: #2a699f; text-decoration:underline; font-size:2em" href="#" onclick="ppcp_enablePayments(); return false;">Klicken Sie hier um die gewählten Zahlungsweisen zu reaktivieren</a>
+<script>function ppcp_enablePayments(){new Ext.data.Connection().request({url:"adminHandler.php",method:"GET",params:{plugin:"xt_paypal_checkout",load_section:"xt_paypal_checkout",pg:"enablePayments",sec: typeof paypal_checkout_constant != "undefined" ? paypal_checkout_constant.SYSTEM_SECURITY_KEY : ""},success:function(a){void 0!==Ext.getCmp("plugin_installedgridForm")&&Ext.getCmp("plugin_installedgridForm").getStore().reload();var b=JSON.parse(a.responseText).statusText;Ext.MessageBox.alert("OK",b)},failure:function(a){Ext.MessageBox.alert("Error","Fehler beim aktivieren des Plugins/Zahlungsweisen.")}})}</script>]]></de>
+                    <en><![CDATA[Next steps:<br /><br />
+<a style="color: #2a699f; text-decoration:underline; font-size:2em" onclick="enablePayments(); return false;">Click here to reactivate the selected payment methods</a>
+<script>function ppcp_enablePayments(){new Ext.data.Connection().request({url:"adminHandler.php",method:"GET",params:{plugin:"xt_paypal_checkout",load_section:"xt_paypal_checkout",pg:"enablePayments",sec: typeof paypal_checkout_constant != "undefined" ? paypal_checkout_constant.SYSTEM_SECURITY_KEY : ""},success:function(a){void 0!==Ext.getCmp("plugin_installedgridForm")&&Ext.getCmp("plugin_installedgridForm").getStore().reload();var b=JSON.parse(a.responseText).statusText;Ext.MessageBox.alert("OK",b)},failure:function(a){Ext.MessageBox.alert("Error","Fehler beim aktivieren des Plugins/Zahlungsweisen.")}})}</script>]]></en>
+                </post>
+            </messages>
+        </update>
+    </db_update>
+
+</xtcommerceplugin>
+        <!-- pb version 1.0.0 -->

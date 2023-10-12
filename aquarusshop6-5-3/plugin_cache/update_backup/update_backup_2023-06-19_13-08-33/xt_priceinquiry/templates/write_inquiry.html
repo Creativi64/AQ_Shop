@@ -1,0 +1,96 @@
+<div id="product" class="detail">
+    <h1>{$product_data.products_name}</h1>
+
+    <div class="pinfo row">
+        <div class="product-images col col-sm-4">
+            <div class="image product-image img-thumbnail center">
+                {if !$product_data.products_image || $product_data.products_image == 'product:noimage.gif'}
+                    <a href="{$module_data.products_link}" class="vertical-helper image-link no-image">
+                        <i class="no-image-icon"></i>
+                    </a>
+                {else}
+                    <span class="vertical-helper image-link">{img img=$product_data.products_image type=m_info class="productImageBorder img-responsive" alt=$product_data.products_name|escape:"html" width=auto height=auto itemprop=image}</span>
+                {/if}
+            </div>
+            {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $product_data.products_price.formated neq ''}
+                <p class="product-price">{$product_data.products_price.formated}</p>
+            {/if}
+            {if $product_data.products_model!=''}
+                <p class="product-model">{txt key=TEXT_PRODUCTS_MODEL} <span class="bold">{$product_data.products_model}</span></p>
+            {/if}
+        </div>
+        <div id="reviews" class="col col-sm-8">
+
+            {$message}
+
+            {form type=form name=write_review action='dynamic' link_params=getParams method=post}
+			{form type=hidden name=action value=send}
+            {form type=hidden name=products_name value=$product_data.products_name}
+			{form type=hidden name=products_id value=$product_data.products_id}
+            {form type=hidden name=products_model value=$product_data.products_model}
+            {form type=hidden name=products_link value=$product_data.products_link}
+
+            <fieldset>
+                <legend><span class="glyphicon glyphicon-envelope"></span>&nbsp;{txt key=TEXT_XT_PRICEINQUIRY}</legend>
+                
+                <div class="form-group">
+                    <label for="review_title">{txt key=TEXT_EMAIL}*</label>
+                    {form id=email_address type=text name=email_address size=60 value=$email_address}
+                </div>
+                <div class="form-group">
+                    <label for="review_title">{txt key=TEXT_FIRSTNAME}*</label>
+                    {form id=firstname type=text name=firstname size=60 value=$firstname}
+                </div>
+                <div class="form-group">
+                    <label for="review_title">{txt key=TEXT_LASTNAME}*</label>
+                    {form id=lastname type=text name=lastname size=60 value=$lastname}
+                </div>
+                <div class="form-group">
+                    <label for="review_title">{txt key=TEXT_COMPETITOR_PRICE}*</label>
+                    {form id=competitor_price type=text name=competitor_price size=60 value=$competitor_price}
+                </div>
+                <div class="form-group">
+                    <label for="review_title">{txt key=TEXT_COMPETITOR_URL}*</label>
+                    {form id=competitor_url type=text name=competitor_url size=60 value=$competitor_url}
+                </div>
+                <div class="form-group">
+                    <label for="review_text">{txt key=TEXT_MESSAGE}*</label>
+                    {form id=customer_message type=textarea class="form-control" name=customer_message cols=60 rows=10 value=$customer_message}
+                </div>
+                
+        {if $logged_in eq 'false'} 
+                    {if $smarty.const._STORE_CAPTCHA == 'ReCaptcha'}
+                    <div class="row">
+                        <div class="form-group pull-right">
+                            <div class="col-sm-9 recaptcha-wrapper"></div>
+                        </div>
+                    </div>
+                    {else}
+		<div class="form-group">
+			<label for="captcha_code">{txt key=TEXT_CAPTCHA}*</label>
+			<div>
+				<p id="captcha-img">
+					<img src="{$captcha_link}" alt="{txt key=TEXT_CAPTCHA}"
+						class="img-responsive img-thumbnail" />
+				</p>
+				{form id=captcha_code type=text name=captcha params='maxlength="30"'}
+			</div>
+		</div>
+		{/if}
+		        {/if}
+
+            </fieldset>
+
+            <div class="form-submit pull-right">
+                <a href="{$products_link}" class="btn btn-default" role="button">{txt key=BUTTON_BACK}</a>
+                <button type="submit" class="btn btn-success">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    {txt key=BUTTON_SUBMIT}
+                </button>
+            </div>
+
+            <p class="required">{txt key=TEXT_MUST}</p>
+            {form type=formend}
+        </div>
+    </div>
+</div>

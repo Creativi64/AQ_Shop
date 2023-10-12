@@ -1,0 +1,46 @@
+{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+    <div class="box-cart">
+        <div class="inner btn-group" role="group" aria-label="{txt key=TEXT_CART}">
+            {if $show_cart_content && $content_count}
+                <div class="btn-group hidden-xs">
+                    <button type="button" class="btn btn-default btn-left dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {$content_count} {txt key=TEXT_ARTICLE}&nbsp;&nbsp;&nbsp;<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{link page='cart'}">
+                                <strong class="text-uppercase">{txt key=TEXT_SUB_TOTAL}:</strong><br />
+                                {$cart_total|strip_tags|trim}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn-group dropup visible-xs">
+                    <button type="button" class="btn btn-cart btn-left dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="text-uppercase">{txt key=TEXT_CART}:</span>
+                        {$content_count} {txt key=TEXT_ARTICLE} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{link page='cart'}">
+                                <strong class="text-uppercase">{txt key=TEXT_SUB_TOTAL}:</strong>
+                                {$cart_total|strip_tags|trim}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            {else}
+                <a href="{link page='cart'}" class="btn btn-default btn-left hidden-xs">
+                    0 {txt key=TEXT_ARTICLE}
+                </a>
+                <a href="{link page='cart'}" class="btn btn-cart btn-left visible-xs">
+                    0 {txt key=TEXT_ARTICLE}
+                </a>
+            {/if}
+            <a href="{link page='cart'}" class="btn btn-cart btn-right" title="{txt key=TEXT_CART}" data-toggle="tooltip" data-placement="auto">
+                <i class="fa fa-shopping-basket"></i>
+                <span class="sr-only">{txt key=TEXT_CART}</span>
+            </a>
+        </div>
+    </div>
+{/if}

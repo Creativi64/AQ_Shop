@@ -1,0 +1,21 @@
+<h1>{txt key=TEXT_PAGE_TITLE_PAY}</h1>
+<p>{txt key=TEXT_PAY_FORMULAR}</p>
+{form type=form role="form" name="pay" action="{$psp_target}" method="post" conn="SSL" id="checkout-pay"}
+
+	{foreach from=$psp_params key=k item=v}
+	<input type="hidden" name="{$k}" value="{$v}" />
+	{/foreach}
+
+	<div class="clearfix">
+		<a href="{link page='checkout' paction='shipping' conn=SSL}" class="btn btn-default pull-left">
+			<i class="fa fa-chevron-left"></i>
+			{txt key=BUTTON_BACK}
+		</a>
+		<button id="pay-submit" type="submit" class="btn btn-success pull-right">
+			<span class="glyphicon glyphicon-ok"></span>
+			{txt key=BUTTON_START_PAYMENT}
+		</button>
+	</div>
+
+	{hook key=checkout_tpl_pay}
+{form type=formend}

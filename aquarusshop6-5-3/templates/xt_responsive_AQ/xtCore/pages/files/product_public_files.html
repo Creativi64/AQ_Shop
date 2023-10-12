@@ -1,0 +1,30 @@
+<div class="download-table div-table table-hover">
+    <div class="row th hidden-xs">
+        <div class="col col-sm-8">{txt key=TEXT_FILE}</div>
+        <div class="col col-sm-4 text-right text-left-xs">{txt key=TEXT_SIZE}</div>
+    </div>
+    {foreach name=aussen item=file_data from=$media_files}
+    <div class="row tr cursor-pointer" onclick="var win = window.open('{$file_data.download_url}', '_blank');win.focus();">
+            <div class="col col-sm-8">
+                <p class="title">
+                <a href="{$file_data.download_url}" rel="nofollow" target="_blank" onclick="return false;" >
+
+                    {if $file_data.extension eq 'pdf'}
+                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                    {elseif $file_data.extension eq 'zip' || $file_data.extension eq 'rar'}
+                    <i class="fa fa-file-archive-o" aria-hidden="true"></i>
+                    {else}
+                    <i class="fa fa-file-o" aria-hidden="true"></i>
+                    {/if}
+                    &nbsp;<span class="name">{if $file_data.media_name}{$file_data.media_name}{else}{$file_data.file}{/if}</span>
+                    </a>
+                    <small class="visible-xs-inline">({$file_data.media_size|fsize_format:"MB"})</small>
+                </p>
+                {if $file_data.media_description}<p>{$file_data.media_description}</p>{/if}
+            </div>
+            <div class="col col-sm-4 text-right hidden-xs">
+                {$file_data.media_size|fsize_format:"MB"}
+            </div>
+        </div>
+    {/foreach}
+</div>

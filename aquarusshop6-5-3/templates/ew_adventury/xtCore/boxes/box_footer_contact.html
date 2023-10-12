@@ -1,0 +1,35 @@
+{content cont_id=6 is_id=false}
+{if $_content_6}
+	<div class="hidden-xs">
+		<p class="headline">{$_content_6.title}</p>
+		<div class="footer-contact">
+		    {if $_content_6.content_image}
+		        <p><img class="img-responsive" src="media/images/org/{$_content_6.content_image}"  alt="{$_content_6.title}"/></p>
+		    {/if}
+		    {$_content_6.content_body_short}
+		    {if $_content_6.content_link}
+		        <p><a href="{$_content_6.content_link}"><i class="mdi mdi-mailbox"></i> {txt key=TEXT_CONTACT_PAGE}</a></p>
+		    {/if}
+		</div>
+	</div>
+	<div class="hidden-sm hidden-md hidden-lg">
+		<h4 role="tab" id="footerContactHeading" class="headline">
+	       	<a data-toggle="collapse" class="collapsed collapse-status" data-parent="#footer-accordion" href="#footerContact" aria-expanded="true" aria-controls="footerContact">
+	       		{$_content_6.title}
+				<i class="mdi mdi-plus-box-outline plus pull-right"></i>
+				<i class="mdi mdi-minus-box-outline minus pull-right"></i>
+			</a>
+	    </h4>
+	    <div id="footerContact" class="collapse" role="tabpanel" aria-labelledby="footerContactHeading">
+			<div class="footer-contact">
+			    {if $_content_6.content_image}
+			        <p><img class="img-responsive" src="media/images/org/{$_content_6.content_image}" alt="{$_content_6.title}"/></p>
+			    {/if}
+			    {$_content_6.content_body_short}
+			    {if $_content_6.content_link}
+			        <p><a href="{$_content_6.content_link}"><i class="mdi mdi-mailbox"></i> {if version_compare(_SYSTEM_VERSION, '4.1.10', '>=')}{txt key=TEXT_CONTACT_PAGE}{/if}{if version_compare(_SYSTEM_VERSION, '4.1.0', '<=')}{$_content_6.title}{/if}</a></p>
+			    {/if}
+			</div>
+	    </div>
+	</div>
+{/if}

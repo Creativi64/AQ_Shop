@@ -1,0 +1,28 @@
+<div id="categorie-listing" class="text-word-wrap">
+
+    {if $categories_image}
+        <div class="full-width-image category-image img-thumbnail">
+            {img class="img-responsive img-listingTop" img=$categories_image type=m_listingTop alt=$categories_name|escape:'html' title=$categories_name|escape:'html'}
+			{if $categories_image_data && $categories_image_data.$categories_image_id.copyright_holder }
+				&copy;&nbsp;{$categories_image_data.$categories_image_id.copyright_holder}
+			{/if}
+        </div>
+    {/if}
+
+	{if $categories_heading_title|strip_tags|trim != ''}
+	    <h1 class="text-primary">{$categories_heading_title}</h1>
+	{else}
+	    <h1 class="text-primary">{$categories_name}</h1>
+	{/if}
+
+	{if $categories_description|trim != ''}
+	    <div id="categorie-description" class="textstyles">{$categories_description}</div>
+	{/if}
+
+	{include file="includes/categorie_listing.html"
+		position=$smarty.get.page|strip_tags|htmlspecialchars|trim
+		categorie_listing=$categorie_listing
+		heading=$smarty.const.TEXT_HEADING_MORE_CATEGORIES
+	}
+
+</div><!-- #categorie-listing -->

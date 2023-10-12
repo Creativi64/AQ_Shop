@@ -1,0 +1,140 @@
+INSERT INTO `##_customers_status_description` VALUES (1, 'de', 'Gast');
+INSERT INTO `##_customers_status_description` VALUES (2, 'de', 'Neuer Kunde');
+INSERT INTO `##_customers_status_description` VALUES (3, 'de', 'Händler');
+INSERT INTO `##_customers_status_description` VALUES (4, 'de', 'Händler (EU)');
+
+INSERT INTO `##_media_gallery_description` VALUES (1, 'de', 'Standard Bilder');
+INSERT INTO `##_media_gallery_description` VALUES (2, 'de', 'Artikelbilder');
+INSERT INTO `##_media_gallery_description` VALUES (3, 'de', 'Kategoriebilder');
+INSERT INTO `##_media_gallery_description` VALUES (4, 'de', 'Herstellerbilder');
+INSERT INTO `##_media_gallery_description` VALUES (5, 'de', 'Contentbilder');
+INSERT INTO `##_media_gallery_description` VALUES (6, 'de', 'freie Downloads');
+INSERT INTO `##_media_gallery_description` VALUES (7, 'de', 'kostenpfl. Downloads');
+
+INSERT INTO `##_system_status_description` VALUES (1, 'de', 'Sofort versandfähig, ausreichende Stückzahl', 'rule_1.png');
+INSERT INTO `##_system_status_description` VALUES (2, 'de', 'Sofort versandfähig, geringe Stückzahl', 'rule_2.png');
+INSERT INTO `##_system_status_description` VALUES (3, 'de', 'Derzeit nicht lieferbar. Ware bereits nachbestellt', 'rule_3.png');
+INSERT INTO `##_system_status_description` VALUES (4, 'de', 'Derzeit nicht lieferbar', 'rule_4.png');
+INSERT INTO `##_system_status_description` VALUES (5, 'de', 'Nur gegen Vorbestellung', 'rule_5.png');
+INSERT INTO `##_system_status_description` VALUES (6, 'de', '1-2 Tage', NULL);
+INSERT INTO `##_system_status_description` VALUES (7, 'de', '2-4 Tage', NULL);
+INSERT INTO `##_system_status_description` VALUES (8, 'de', '1 Woche', NULL);
+
+
+INSERT INTO `##_system_status_description` VALUES (9, 'de', 'Kilogramm', NULL);
+INSERT INTO `##_system_status_description` VALUES (10, 'de', 'Liter', NULL);
+INSERT INTO `##_system_status_description` VALUES (11, 'de', 'Kubikmeter', NULL);
+INSERT INTO `##_system_status_description` VALUES (12, 'de', 'Meter', NULL);
+INSERT INTO `##_system_status_description` VALUES (13, 'de', 'Quadratmeter', NULL);
+INSERT INTO `##_system_status_description` VALUES (14, 'de', '100 Gramm', NULL);
+INSERT INTO `##_system_status_description` VALUES (15, 'de', '100 Milliliter', NULL);
+
+INSERT INTO `##_system_status_description` VALUES (37, 'de', 'Zentimeter', NULL);
+INSERT INTO `##_system_status_description` VALUES (38, 'de', 'Milliliter', NULL);
+INSERT INTO `##_system_status_description` VALUES (39, 'de', 'Stück', NULL);
+INSERT INTO `##_system_status_description` VALUES (40, 'de', 'Paar', NULL);
+INSERT INTO `##_system_status_description` VALUES (41, 'de', 'Packung / Pack', NULL);
+INSERT INTO `##_system_status_description` VALUES (42, 'de', 'Palette', NULL);
+INSERT INTO `##_system_status_description` VALUES (43, 'de', 'Europalette', NULL);
+INSERT INTO `##_system_status_description` VALUES (44, 'de', 'Milligramm', NULL);
+INSERT INTO `##_system_status_description` VALUES (45, 'de', 'Gramm', NULL);
+
+
+INSERT INTO `##_system_status_description` VALUES (24, 'de', 'Asien', NULL);
+INSERT INTO `##_system_status_description` VALUES (25, 'de', 'Afrika', NULL);
+INSERT INTO `##_system_status_description` VALUES (26, 'de', 'Nordamerika', NULL);
+INSERT INTO `##_system_status_description` VALUES (27, 'de', 'Südamerika', NULL);
+INSERT INTO `##_system_status_description` VALUES (28, 'de', 'Antarktika', NULL);
+INSERT INTO `##_system_status_description` VALUES (29, 'de', 'Australien/Ozeanien', NULL);
+INSERT INTO `##_system_status_description` VALUES (30, 'de', 'Europa (ohne EU)', NULL);
+INSERT INTO `##_system_status_description` VALUES (31, 'de', 'EU', NULL);
+
+INSERT INTO `##_system_status_description` VALUES (16, 'de', 'Offen', NULL);
+INSERT INTO `##_system_status_description` VALUES (17, 'de', 'In Bearbeitung', '');
+INSERT INTO `##_system_status_description` VALUES (23, 'de', 'Zahlung erhalten', NULL);
+INSERT INTO `##_system_status_description` VALUES (32, 'de', 'Zahlung storniert', NULL);
+INSERT INTO `##_system_status_description` VALUES (33, 'de', 'Versandt', NULL);
+INSERT INTO `##_system_status_description` VALUES (34, 'de', 'Storniert', NULL);
+
+INSERT INTO `##_system_status_description` VALUES (60, 'de', 'Zurückgezahlt', NULL);
+INSERT INTO `##_system_status_description` VALUES (61, 'de', 'Teilweise Zurückgezahlt', '');
+INSERT INTO `##_system_status_description` VALUES (62, 'de', 'Zahlung in Prüfung', NULL);
+INSERT INTO `##_system_status_description` VALUES (63, 'de', 'Zahlung abgelehnt', NULL);
+INSERT INTO `##_system_status_description` VALUES (64, 'de', 'Zahlung einbehalten', NULL);
+INSERT INTO `##_system_status_description` VALUES (65, 'de', 'Zahlung fehlgeschlagen', NULL);
+INSERT INTO `##_system_status_description` VALUES (66, 'de', 'Zahlung abgelaufen', NULL);
+
+INSERT INTO `##_system_status_description` VALUES (35, 'de', 'google shopping', NULL);
+INSERT INTO `##_system_status_description` VALUES (36, 'de', 'geizhals.at', NULL);
+
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (1, 'de', 'Alabama');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (2, 'de', 'Alaska');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (3, 'de', 'American Samoa');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (4, 'de', 'Arizona');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (5, 'de', 'Arkansas');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (6, 'de', 'California');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (7, 'de', 'Colorado');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (8, 'de', 'Connecticut');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (9, 'de', 'Delaware');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (10, 'de', 'District of Columbia');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (11, 'de', 'Federated States of Micronesia');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (12, 'de', 'Florida');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (13, 'de', 'Georgia');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (14, 'de', 'Guam');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (15, 'de', 'Hawaii');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (16, 'de', 'Idaho');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (17, 'de', 'Illinois');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (18, 'de', 'Indiana');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (19, 'de', 'Iowa');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (20, 'de', 'Kansas');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (21, 'de', 'Kentucky');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (22, 'de', 'Louisiana');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (23, 'de', 'Maine');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (24, 'de', 'Marshall Islands');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (25, 'de', 'Maryland');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (26, 'de', 'Massachusetts');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (27, 'de', 'Michigan');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (28, 'de', 'Minnesota');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (29, 'de', 'Mississippi');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (30, 'de', 'Missouri');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (31, 'de', 'Montana');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (32, 'de', 'Nebraska');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (33, 'de', 'Nevada');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (34, 'de', 'New Hampshire');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (35, 'de', 'New Jersey');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (36, 'de', 'New Mexico');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (37, 'de', 'New York');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (38, 'de', 'North Carolina');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (39, 'de', 'North Dakota');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (40, 'de', 'Northern Mariana Islands');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (41, 'de', 'Ohio');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (42, 'de', 'Oklahoma');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (43, 'de', 'Oregon');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (44, 'de', 'Palau');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (45, 'de', 'Pennsylvania');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (46, 'de', 'Puerto Rico');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (47, 'de', 'Rhode Island');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (48, 'de', 'South Carolina');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (49, 'de', 'South Dakota');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (50, 'de', 'Tennessee');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (51, 'de', 'Texas');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (52, 'de', 'Utah');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (53, 'de', 'Vermont');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (54, 'de', 'Virgin Islands');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (55, 'de', 'Virginia');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (56, 'de', 'Washington');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (57, 'de', 'West Virginia');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (58, 'de', 'Wisconsin');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (59, 'de', 'Wyoming');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (60, 'de', 'Armed Forces Americas');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (61, 'de', 'Armed Forces');
+INSERT INTO `##_federal_states_description` (`states_id`, `language_code`, `state_name`) VALUES (62, 'de', 'Armed Forces Pacific');
+
+INSERT INTO `##_config_lang` (`language_code`, `config_key`, `language_value`, `store_id`, `group_id`, `sort_order`) VALUES ('de', '_STORE_NAME',        'xt:Commerce 6'   , 1, 1, 5);
+INSERT INTO `##_config_lang` (`language_code`, `config_key`, `language_value`, `store_id`, `group_id`, `sort_order`) VALUES ('de', '_STORE_STORE_CLAIM', 'More than a Shop', 1, 1, 10);
+
+INSERT INTO `##_config_lang` (`language_code`, `config_key`, `language_value`, `store_id`, `group_id`, `sort_order`) VALUES ('de', '_STORE_META_PUBLISHER','', 1, 16, 5);
+INSERT INTO `##_config_lang` (`language_code`, `config_key`, `language_value`, `store_id`, `group_id`, `sort_order`) VALUES ('de', '_STORE_META_COMPANY','', 1, 16, 6);
+INSERT INTO `##_config_lang` (`language_code`, `config_key`, `language_value`, `store_id`, `group_id`, `sort_order`) VALUES ('de', '_STORE_META_DESCRIPTION','', 1, 16, 11);
+INSERT INTO `##_config_lang` (`language_code`, `config_key`, `language_value`, `store_id`, `group_id`, `sort_order`) VALUES ('de', '_STORE_META_KEYWORDS','', 1, 16, 12);
+INSERT INTO `##_config_lang` (`language_code`, `config_key`, `language_value`, `store_id`, `group_id`, `sort_order`) VALUES ('de', '_STORE_META_FREE_META','', 1, 16, 13);

@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+
+    <code>xt_ga4</code>
+    <version>1.3.1</version>
+    <type>tracking</type>
+
+    <developer>xt:Commerce</developer>
+    <url>https://www.xt-commerce.com</url>
+
+    <title>Google Analytics 4</title>
+    <icon>googleanalytics.png</icon>
+
+    <minimum_store_version>6.5.3</minimum_store_version>
+
+    <marketplace_link><![CDATA[https://addons.xt-commerce.com/index.php?page=product&info=834]]></marketplace_link>
+    <documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/spaces/MANUAL/pages/2846556161]]></documentation_link>
+
+    <required_plugins>
+        <plugin>
+            <code>xt_cookie_consent</code>
+            <version>1.2.0</version>
+        </plugin>
+    </required_plugins>
+
+    <plugin_code>
+
+        <code>
+            <hook>display.php:content_head</hook>
+            <phpcode><![CDATA[
+      if(constant(XT_GA4_ACTIVE)) {
+                require_once _SRV_WEBROOT.'plugins/xt_ga4/classes/class.xt_ga4.php';
+                $ga4 = new xt_ga4();
+                $ga4->_showGlobalTag();
+      }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>display.php:content_top</hook>
+            <phpcode><![CDATA[
+      if(constant(XT_GA4_ACTIVE)) {
+                $ga4->_showGTMBodyTag();
+      }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+    </plugin_code>
+
+    <configuration>
+        <config>
+            <key>XT_GA4_ACTIVE</key>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title>Für Shop aktiviert</title>
+            </de>
+            <en>
+                <title>Activated for store</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_GA4_MEASUREMENT_ID</key>
+            <value></value>
+            <de>
+                <title>Analytics 4 MEASUREMENT ID (G-XXXXXXXXX)</title>
+            </de>
+            <en>
+                <title>Analytics 4 MEASUREMENT ID (G-XXXXXXXXX)</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_GA4_GTM_ID</key>
+            <value></value>
+            <de>
+                <title>GTM ID (optional GTM-XXXXXX)</title>
+            </de>
+            <en>
+                <title>GTM ID (optional GTM-XXXXXX)</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_GA4_GLOBALTAG</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>true</value>
+            <de>
+                <title>gtag.js Verwenden</title>
+            </de>
+            <en>
+                <title>use gtag.js</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_GA4_GLOBALTAG_GTM</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>false</value>
+            <de>
+                <title>GTM Verwenden</title>
+            </de>
+            <en>
+                <title>use GTM</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_GA4_DO_NOT_TRACK</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>false</value>
+            <de>
+                <title>Do-Not-Track Einstellung beachten</title>
+            </de>
+            <en>
+                <title>Honor Do-Not-Track setting</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_GA4_NET_PRICES</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>false</value>
+            <de>
+                <title>Netto Preise übertragen (Produkte / Conversion / Warenkorb)</title>
+            </de>
+            <en>
+                <title>Submit net prices (products / conversions / cart)</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_GA4_ADWORDS_CONVERSION</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>true</value>
+            <de>
+                <title>Adwords Conversion in dataLayer hinzufügen</title>
+            </de>
+            <en>
+                <title>Add Adwords Conversion in dataLayer</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_GA4_ADWORDS_CONVERSION_ID</key>
+            <type>text</type>
+            <value></value>
+            <de>
+                <title>AdWords Conversion ID</title>
+            </de>
+            <en>
+                <title>AdWords Conversion ID</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_GA4_ADWORDS_CONVERSION_LABEL</key>
+            <type>text</type>
+            <value></value>
+            <de>
+                <title>AdWords Conversion Label</title>
+            </de>
+            <en>
+                <title>AdWords Conversion Label</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_GA4_ADWORDS_CONVERSION_SHIPPING</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>false</value>
+            <de>
+                <title>Conversionwert incl. Versandkosten</title>
+            </de>
+            <en>
+                <title>Include shipping costs in conversion value</title>
+            </en>
+        </config>
+    </configuration>
+</xtcommerceplugin>

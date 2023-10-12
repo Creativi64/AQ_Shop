@@ -1,0 +1,82 @@
+
+{if $product_listing}
+<div class="product-listing {$code}">
+
+    {$unique_id = md5($heading_text)}
+
+    {if $heading_text}
+    <p class="headline"
+       data-toggle="collapse"
+       data-target="#ms-slaves-{$unique_id}"
+       aria-expanded="true"
+       aria-controls="ms-slaves-{$unique_id}">
+        {$heading_text}
+    </p>
+    {/if}
+
+    <div id="ms-slaves-{$unique_id}" class="{if $heading_text} collapse collapse-auto-toggle-xs in{/if}">
+        <div class="listing equalize-no-panels owl">
+            {foreach item=module_data from=$product_listing name=listing key=key }
+            {if $module_data.products_id != $smarty.get.info}
+            <div class="listing row panel">
+                <div class="col col-lg-2 col-md-2 col-sm-2">
+                    <a href="{$module_data.products_link}">
+                        <p class="image">
+                            {if !$module_data.products_image || $module_data.products_image == 'product:noimage.gif'}
+                            <a href="{$module_data.products_link}" class="vertical-helper image-link no-image img-thumbnail">
+                                <i class="no-image-icon"></i>
+                            </a>
+                            {else}
+                            <a href="{$module_data.products_link}" class="vertical-helper image-link img-thumbnail">{img img=$module_data.products_image type=m_thumb class="productImageBorder img-responsive" alt="{if $module_data.products_image_data.media_name}{$module_data.products_image_data.media_name|escape:'html'}{else}{$module_data.products_name|escape:'html'}{/if}{if $module_data.products_image_data.copyright_holder} &copy; {$module_data.products_image_data.copyright_holder}{/if}" title="{if $module_data.products_image_data.media_name}{$module_data.products_image_data.media_name|escape:'html'}{else}{$module_data.products_name|escape:'html'}{/if}{if $module_data.products_image_data.copyright_holder} &copy; {$module_data.products_image_data.copyright_holder}{/if}"}</a>
+                            {/if}
+                        </p>
+                    </a>
+                </div>
+                <div class="col col-lg-4 col-md-5 col-sm-5">
+                    <a href="{$module_data.products_link}">{$module_data.products_name}</a><br />{txt key=TEXT_PRODUCTS_MODEL} {$module_data.products_model}
+
+                    {if $module_data.show_stock}
+                    <p class="product-stock">{txt key=TEXT_STOCK} {$module_data.products_quantity|round} {if $module_data.products_unit_name}{$module_data.products_unit_name}{/if}</p>
+                    {/if}
+                </div>
+
+                <div class="col col-lg-2 col-md-2 col-sm-2">
+                    {if $smarty.const.AQ_SHOW_ARTICEL_PRICE neq '1' and $module_data.products_price.plain neq '0' or $module_data.products_quantity|round gt '0'}
+                        {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $module_data.products_price.formated neq ''}
+                            {$module_data.products_price.formated}
+                        {/if}
+                    {/if}
+                </div>
+                <div class="col col-lg-4 col-md-3 col-sm-3 pull-right">
+
+                    {if $module_data.allow_add_cart eq 'true'}
+                        {form type=form name=product action='dynamic' link_params=getParams method=post}
+                        {form type=hidden name=action value=add_product}
+                        {form type=hidden name=product value=$module_data.products_id}
+                        {form type=hidden name=gotoCart value=$smarty.const._STORE_GOTO_CART_DIRECTLY}
+                        <div class="add-to-cart clearfix btn-group">
+
+                            <div class="pull-left">
+                                <label for="form-qty-{$module_data.products_id}" class="sr-only">{txt key=TEXT_QTY}</label>
+                                {$qtyOptions = [ ['id'=>1,'text'=>'&nbsp;&nbsp;1'], ['id'=>2,'text'=>'&nbsp;&nbsp;2'], ['id'=>3,'text'=>'&nbsp;&nbsp;3'], ['id'=>4,'text'=>'&nbsp;&nbsp;4'], ['id'=>5,'text'=>'&nbsp;&nbsp;5'], ['id'=>6,'text'=>'&nbsp;&nbsp;6'], ['id'=>7,'text'=>'&nbsp;&nbsp;7'], ['id'=>8,'text'=>'&nbsp;&nbsp;8'], ['id'=>9,'text'=>'&nbsp;&nbsp;9'], ['id'=>10,'text'=>'&nbsp;10']  ]}
+                                {form params="id='form-qty-`$module_data.products_id`' data-size='5' data-width='auto' data-style='btn btn-lg btn-default'" type="select" name="qty" value=$qtyOptions default="1"}
+                            </div>
+
+                            <button type="submit" class="btn btn-lg btn-cart">
+                               <i class="fa fa-shopping-basket"></i>&nbsp;&nbsp;
+                                 <span class="hidden-md">{txt key=BUTTON_ADD_CART}</span>
+                            </button>
+                        </div>
+
+                        {form type=formend}
+                    {/if}
+
+                </div>
+            </div>
+            {/if}
+            {/foreach}
+        </div>
+    </div>
+
+</div>
+{/if}

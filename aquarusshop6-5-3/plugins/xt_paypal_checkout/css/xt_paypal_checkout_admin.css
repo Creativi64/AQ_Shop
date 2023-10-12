@@ -1,0 +1,14 @@
+.xt_paypal_checkout_refunds::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f359";
+    font-style: normal;
+}
+
+.xt_paypal_checkout_details::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f05a";
+    font-style: normal;
+}
+

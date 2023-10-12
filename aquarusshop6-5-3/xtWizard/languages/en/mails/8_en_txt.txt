@@ -1,0 +1,15 @@
+Hello {$order_data.billing_title} {$order_data.billing_firstname} {$order_data.billing_lastname},
+
+Status of your order #{$order_data.orders_id} changed.
+
+{if $comments}
+Remarks and comments regarding your order: 
+{$comments}
+{/if}
+
+New status: {$status}
+
+You got questions regarding our offers, please do not hesitate to contact us.
+
+------------------------------------------------------------------------------------------------------------
+{$_system_footer_txt}

@@ -1,0 +1,39 @@
+<h1>{txt key=TEXT_PAGE_TITLE_ACCOUNT}</h1>
+{$message}
+
+{if $registered_customer != true}
+<p class="h3">{txt key=TEXT_ACCOUNT_TITLE_WELCOME}</p>
+<p>{txt key=TEXT_ACCOUNT_WELCOME}</p>
+<p><a href="{link page='customer' paction='login' conn=SSL}" class="btn btn-success">{txt key=TEXT_ACCOUNT_LOGIN}</a></p>
+{/if}
+
+{if $registered_customer == true}
+<p class="h3">{txt key=TEXT_ACCOUNT_TITLE}</p>
+<ul class="btn-list">
+	{if $smarty.session.customer->customers_status != $smarty.const._STORE_CUSTOMERS_STATUS_ID_GUEST && $smarty.session.customer->customers_status != 0}<li><a class="button" href="{link page='customer' paction=edit_customer conn=SSL}">{txt key=TEXT_ACCOUNT_EDIT}</a></li>{/if}
+	<li><a class="button" href="{link page='customer' paction=address_overview conn=SSL}">{txt key=TEXT_ACCOUNT_ADRESSBOOK}</a></li>
+	{if $show_gdpr_download}<li><a class="button" href="{link page='customer' paction=dsgvo_download conn=SSL}" download="dsgvo_report.xml">{txt key=TEXT_DOWNLOAD_DSGVO_REPORT}</a></li>{/if}
+	{hook key=account_tpl_account_data}
+</ul>
+{/if}
+
+{hook key=account_tpl_module_data}
+
+{if $order_data}
+<br />
+<p class="h3">{txt key=TEXT_ACCOUNT_ORDERS} {if $order_data} & {txt key=TEXT_ACCOUNT_DOWNLOADS}{/if}</p>
+{include file="xtCore/pages/order_history_block.html" type="tpl_include"}
+{/if}
+
+<ul class="btn-list">
+{if $download_flag == true}
+    <li><a class="btn btn-warning" href="{link page='customer' paction=download_overview conn=SSL}"><span class="glyphicon glyphicon-download"></span> {txt key=TEXT_ACCOUNT_DOWNLOADS_MORE}</a></li>
+{/if}
+{if $order_data}
+    <li><a class="btn btn-primary" href="{link page='customer' paction=order_overview conn=SSL}"><span class="glyphicon glyphicon-time"></span> {txt key=TEXT_ACCOUNT_ALL_ORDERS}</a></li>
+{/if}
+</ul>
+
+<div class="clearfix"></div>
+
+{hook key=account_tpl_module_data_bottom}

@@ -1,0 +1,169 @@
+{hook key=box_sidebar_products_product_top module_data=$module_data}
+<div class="section panel panel-default cursor-pointer {if $module_data.flag_has_specials == 1 || isset($module_data.products_price.data.SPECIAL_PRICE)}panel-discount{/if}" onclick="document.location.href='{$module_data.products_link}'">
+    {if $module_data.products_price.formated|strstr:"price-new"}
+        {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $module_data.products_price.formated neq ''}
+        <div class="floating-price">
+            <p class="product-price">{$module_data.products_price.formated}</p>
+        </div>
+        {/if}
+    {/if}
+
+
+
+    <div class="section-body panel-body">
+        {hook key=product_listing_base_section_panel_top module_data=$module_data}
+        {* <!-- LISTING V1 START --> *}
+        {if $listing_version == "v1"}
+            <p>
+                {if !$module_data.products_image || $module_data.products_image == 'product:noimage.gif'}
+                    <a href="{$module_data.products_link}" class="vertical-helper image-link no-image">
+                        <span class="mdi mdi-shape-rectangle-plus product-preview-icon vertical-helper"></span>
+                        {img img='no_image.png' type=t_img class="image center product-image productImageBorder img-responsive" alt=$module_data.products_name|escape:"html"}
+                    </a>
+                {else}
+                    <a href="{$module_data.products_link}" class="vertical-helper image-link" title="{if $module_data.products_image_data.media_name}{$module_data.products_image_data.media_name|escape:'html'}{else}{$module_data.products_name|escape:'html'}{/if}{if $module_data.products_image_data.copyright_holder} &copy; {$module_data.products_image_data.copyright_holder}{/if}">
+                        <span class="mdi mdi-shape-rectangle-plus product-preview-icon vertical-helper"></span>
+                        {img img=$module_data.products_image type=m_ewadventurythumb class="image center product-image productImageBorder img-responsive" alt="{if $module_data.products_image_data.media_name}{$module_data.products_image_data.media_name|escape:'html'}{else}{$module_data.products_name|escape:'html'}{/if}{if $module_data.products_image_data.copyright_holder} &copy; {$module_data.products_image_data.copyright_holder}{/if}" title="{if $module_data.products_image_data.media_name}{$module_data.products_image_data.media_name|escape:'html'}{else}{$module_data.products_name|escape:'html'}{/if}{if $module_data.products_image_data.copyright_holder} &copy; {$module_data.products_image_data.copyright_holder}{/if}"}
+                    </a>
+                {/if}
+            </p>
+            <div class="panel-body-info text-center">
+                <p class="title"><a href="{$module_data.products_link}">{$module_data.products_name}</a></p>
+                {if defined('CONFIG_EW_ADVENTURY_PLUGIN_LISTING_NORATING') && $smarty.const.CONFIG_EW_ADVENTURY_PLUGIN_LISTING_NORATING|trim == '1'}
+                    {if $module_data.shipping_status || $module_data.stock_image}
+                        <div class="shipping shipping-{$module_data.products_shippingtime}">
+                        {if $module_data.stock_image}<span class="stockimage popover-trigger" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="{txt key=TEXT_SHIPPING_STATUS}" data-content="{$module_data.stock_image.name}">{img img=$module_data.stock_image.image type=t_img_stockrules alt=$module_data.stock_image.name}</span>{/if}
+                        </div>
+                    {/if}
+                {else}
+                    {if $module_data.review_stars_rating}
+                        <div class="product-reviews cursor-pointer popover-trigger" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="{txt key=TEXT_XT_REVIEWS_INFO}" data-content="{if $module_data.products_rating_count}{$module_data.products_rating_count} {txt key=TEXT_XT_REVIEWS_INFO} {txt key=TEXT_EW_ADVENTURY_POPOVER_RATING_AVERAGE} {math equation='(x-1) / 100 * y' x=$module_data.review_stars_rating y=5 format='%.1f'} {txt key=TEXT_PAGINATION_FROM} 5 {txt key=TEXT_EW_ADVENTURY_POPOVER_RATING_STAR}.{else}{txt key=TEXT_XT_REVIEWS_NO_REVIEWS}.{/if}" onclick="document.location.href='{$module_data.link_reviews_list}'">
+                            <div class="reviews_rating_light">
+                                <div class="reviews_rating_dark" style="width:{$module_data.review_stars_rating}%"></div>
+                            </div>
+                        </div>
+                    {/if}
+                {/if}
+                {if $module_data.show_stock}
+                    <p class="product-stock text-muted">
+                        <small>{txt key=TEXT_STOCK} {$module_data.products_quantity|round} {if $module_data.products_unit_name}{$module_data.products_unit_name}{/if}</small>
+                    </p>
+                {/if}
+                {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $module_data.products_price.formated neq ''}
+                    {if defined('CONFIG_EW_ADVENTURY_PLUGIN_LISTING_FOOTERTAX') && $smarty.const.CONFIG_EW_ADVENTURY_PLUGIN_LISTING_FOOTERTAX|trim == '1'}
+                        <p class="product-price">{$module_data.products_price.formated}*</p>
+                        {if $module_data.base_price}
+                            <p class="vpe">{$module_data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$module_data.base_price.vpe.name}</p>
+                        {/if}
+                    {else}
+                        <p class="product-price">{$module_data.products_price.formated}</p>
+                        {if $module_data.base_price}
+                            <p class="vpe">{$module_data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$module_data.base_price.vpe.name}</p>
+                        {/if}
+                        {if $module_data.products_shipping_link}
+                            <p class="product-tax-shipping">{$module_data.products_tax_info.tax_desc} {if !$module_data.products_digital}<a href="{$module_data.products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}</p>
+                        {else}
+                            <p class="product-tax-shipping">{$module_data.products_tax_info.tax_desc} {if !$module_data.products_digital}{txt key=TEXT_EXCL_SHIPPING}{/if}</p>
+                        {/if}
+                    {/if}
+                {/if}
+                {if $module_data.date_available|trim != ""}
+                    <div class="product-date-available cursor-pointer popover-trigger" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="{txt key=TEXT_INFO}" data-content="{txt key=TEXT_PRODUCT_AVAILABLE} {$module_data.date_available|date_format:"%A, %d.%m.%Y"}">
+                        {$module_data.date_available|date_format:"%d.%m."}
+                    </div>
+                {/if}
+            </div>
+        {/if}
+
+        {* <!-- LISTING V2 START --> *}
+        {if $listing_version == "v2"}
+            <div class="row panel-body-info">
+                <div class="col col-xs-4">
+                    <p>
+                        {if !$module_data.products_image || $module_data.products_image == 'product:noimage.gif'}
+                            <a href="{$module_data.products_link}" class="vertical-helper image-link no-image">
+                                <i class="mdi mdi-shape-rectangle-plus product-preview-icon vertical-helper"></i>
+                                {img img='no_image.png' type=t_img class="image center product-image productImageBorder img-responsive" alt=$module_data.products_name|escape:"html"}
+                            </a>
+                        {else}
+                            <a href="{$module_data.products_link}" class="vertical-helper image-link">
+                                <i class="mdi mdi-shape-rectangle-plus product-preview-icon vertical-helper"></i>
+                                {img img=$module_data.products_image type=m_ewadventurythumb class="image center product-image productImageBorder img-responsive" alt=$module_data.products_name|escape:"html"}
+                            </a>
+                        {/if}
+                    </p>
+                </div>
+                <div class="col col-xs-8">
+                    <p class="title"><a href="{$module_data.products_link}">{$module_data.products_name}</a></p>
+                    {if defined('CONFIG_EW_ADVENTURY_PLUGIN_LISTING_NORATING') && $smarty.const.CONFIG_EW_ADVENTURY_PLUGIN_LISTING_NORATING|trim == '1'}
+                        {if $module_data.shipping_status || $module_data.stock_image}
+                            <div class="shipping shipping-{$module_data.products_shippingtime}">
+                            {if $module_data.stock_image}<span class="stockimage popover-trigger" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="{txt key=TEXT_SHIPPING_STATUS}" data-content="{$module_data.stock_image.name}">{img img=$module_data.stock_image.image type=t_img_stockrules alt=$module_data.stock_image.name}</span>{/if}
+                            </div>
+                        {/if}
+                    {else}
+                        {if $module_data.review_stars_rating}
+                            <div class="product-reviews cursor-pointer popover-trigger" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="{txt key=TEXT_XT_REVIEWS_INFO}" data-content="{if $module_data.products_rating_count}{$module_data.products_rating_count} {txt key=TEXT_XT_REVIEWS_INFO} {txt key=TEXT_EW_ADVENTURY_POPOVER_RATING_AVERAGE} {math equation='(x-1) / 100 * y' x=$module_data.review_stars_rating y=5 format='%.1f'} {txt key=TEXT_PAGINATION_FROM} 5 {txt key=TEXT_EW_ADVENTURY_POPOVER_RATING_STAR}.{else}{txt key=TEXT_XT_REVIEWS_NO_REVIEWS}.{/if}" onclick="document.location.href='{$module_data.link_reviews_list}'">
+                                <div class="reviews_rating_light">
+                                    <div class="reviews_rating_dark" style="width:{$module_data.review_stars_rating}%"></div>
+                                </div>
+                            </div>
+                        {/if}
+                    {/if}
+                    {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $module_data.products_price.formated neq ''}
+                        {if defined('CONFIG_EW_ADVENTURY_PLUGIN_LISTING_FOOTERTAX') && $smarty.const.CONFIG_EW_ADVENTURY_PLUGIN_LISTING_FOOTERTAX|trim == '1'}
+                            <p class="product-price">{$module_data.products_price.formated}*</p>
+                            {if $module_data.base_price}
+                                <p class="vpe">{$module_data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$module_data.base_price.vpe.name}</p>
+                            {/if}
+                        {else}
+                            <p class="product-price">{$module_data.products_price.formated}</p>
+                            {if $module_data.base_price}
+                                <p class="vpe">{$module_data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$module_data.base_price.vpe.name}</p>
+                            {/if}
+                            {if $module_data.products_shipping_link}
+                                <p class="product-tax-shipping">{$module_data.products_tax_info.tax_desc} {if !$module_data.products_digital}<a href="{$module_data.products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}</p>
+                            {else}
+                                <p class="product-tax-shipping">{$module_data.products_tax_info.tax_desc} {if !$module_data.products_digital}{txt key=TEXT_EXCL_SHIPPING}{/if}</p>
+                            {/if}
+                        {/if}
+                    {/if}
+                    {if $module_data.products_short_description|strip_tags|trim != ''}
+                        <div class="desc desc-short text-muted {if $extended && $extended == '1'}hidden-xs{/if}">{$module_data.products_short_description}</div>
+                    {elseif $module_data.products_description|strip_tags|trim != ''}
+                        <div class="desc desc-long text-muted {if $extended && $extended == '1'}hidden-xs{/if}">{$module_data.products_description|strip_tags|truncate:200:'...'}</div>
+                    {/if}
+                    {if $module_data.date_available!=''}
+                        <br /><p class="box info"><i class="mdi mdi-calendar"></i>&nbsp;&nbsp;{txt key=TEXT_PRODUCT_AVAILABLE} {$module_data.date_available|date_format:"%A, %d.%m.%Y"}</p>
+                    {else}
+                    {/if}
+                    <a href="{$module_data.products_link}" title="{$module_data.products_name|escape:"html"}" class="btn btn-default pull-left hidden-xs hidden-sm" role="button">
+                        <i class="mdi mdi-open-in-new"></i> {txt key=BUTTON_TO_ARTICLE}
+                    </a>
+                    {if defined('CONFIG_EW_ADVENTURY_PLUGIN_LISTING_CARTBUTTON') && $smarty.const.CONFIG_EW_ADVENTURY_PLUGIN_LISTING_CARTBUTTON|trim == '1'}
+                        {if $module_data.allow_add_cart eq 'true'}
+                            {form type=form name=product id={"product_listing_add_cart_{$module_data.products_id}"} action='dynamic' link_params=getParams method=post}
+                            {form type=hidden name=action value=add_product}
+                            {form type=hidden name=product value=$module_data.products_id}
+                            {form type=hidden name=qty value=1}
+                            {if version_compare(_SYSTEM_VERSION, '5.1.0', '>=')}
+                                {if version_compare(_SYSTEM_VERSION, '5.1.3', '>=')}
+                                    {form type=hidden name=gotoCart value=$smarty.const._STORE_GOTO_CART_DIRECTLY}
+                                {else}
+                                    {form type=hidden name=gotoCart value='1'}
+                                {/if}
+                            {/if}
+                            <button type="submit" class="btn btn-primary preloader pull-left btn-cart-listing" title="{txt key=BUTTON_ADD_CART}">
+                                <i class="mdi mdi-cart-plus"></i>&nbsp;
+                                {txt key=TEXT_CART}
+                            </button>
+                            {form type=formend}
+                        {/if}
+                    {/if}
+                </div>
+            </div>
+        {/if}
+        {hook key=product_listing_base_section_panel_bottom module_data=$module_data}
+    </div>
+</div>
+

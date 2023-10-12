@@ -1,0 +1,23 @@
+
+
+<div class="modal" id="paypal_express_modal_redirecting" tabindex="-1" role="dialog" aria-labelledby="paypal_express_modal_redirecting_info" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body" id="paypal_express_modal_redirecting_body">
+                <div style="text-align: center; margin-bottom:10px">
+                    <img class="img-responsive" src="media/logo/{$smarty.const._STORE_LOGO}" alt="{$smarty.const._STORE_NAME}" style="display: unset;"/>
+                </div>
+                <div id="paypal_express_modal_redirecting_info" style="text-align: center; font-size:1.1em; padding:15px 0">
+                    <p>{txt key="TEXT_REDIRECTING_TO_PAYPAL"}</p>
+                    <i class="fa fa-refresh fa-2x" style="-webkit-animation:spin_pp_spinner 1.2s linear infinite;  -moz-animation:spin_pp_spinner 1.2s linear infinite;  animation:spin_pp_spinner 1.2s linear infinite;" ></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    @-moz-keyframes spin_pp_spinner { 100% { -moz-transform: rotate(360deg); } }
+    @-webkit-keyframes spin_pp_spinner { 100% { -webkit-transform: rotate(360deg); } }
+    @keyframes spin_pp_spinner { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+</style>
+</div>

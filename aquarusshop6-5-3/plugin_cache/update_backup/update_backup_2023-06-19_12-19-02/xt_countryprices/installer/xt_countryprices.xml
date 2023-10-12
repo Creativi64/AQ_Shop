@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+
+	<code>xt_countryprices</code>
+	<version>1.1.0</version>
+	<type>marketing</type>
+
+	<minimum_store_version>6.3.3</minimum_store_version>
+
+	<developer>xt:Commerce</developer>
+	<url>https://www.xt-commerce.com</url>
+
+
+	<title>Länderabhängige Preise</title>
+	<description>Länderpreise für Produkte</description>
+	<icon>xt-commerce_logo.jpg</icon>
+
+	<marketplace_link><![CDATA[https://addons.xt-commerce.com/index.php?page=product&info=23]]></marketplace_link>
+	<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=917630]]></documentation_link>
+
+	<db_install><![CDATA[require_once _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_countryprices/installer/install.php';]]></db_install>
+	<db_uninstall><![CDATA[require_once _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_countryprices/installer/uninstall.php';]]></db_uninstall>
+
+	<minimumupdateversion>1.0.0</minimumupdateversion>
+
+	<plugin_code>
+		<code>
+			<hook>class.product.php:_get_data</hook>
+			<phpcode><![CDATA[require _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_countryprices/hooks/class.product.php__get_data.php';]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>css_admin.php:css</hook>
+			<phpcode><![CDATA[require _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_countryprices/hooks/css_admin.php_css.php';]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>page_registry.php:bottom</hook>
+			<phpcode><![CDATA[require _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_countryprices/hooks/page_registry.php_bottom.php';]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>class.product.php:_delete_bottom</hook>
+			<phpcode><![CDATA[require _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_countryprices/hooks/class.product.php__delete_bottom.php';]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>class.product.php:_getPrice_center</hook>
+			<phpcode><![CDATA[require _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_countryprices/hooks/class.product.php__getPrice_center.php';]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+	</plugin_code>
+
+	<db_update>
+		<update>
+			<version>1.0.0</version>
+			<to_version>1.0.1</to_version>
+			<code><![CDATA[
+				$db->Execute("ALTER TABLE ".DB_PREFIX."_products_price_country ADD INDEX `products_id_country_code` (`products_id`,`country_code`)");
+				]]>
+			</code>
+		</update>
+	</db_update>
+
+</xtcommerceplugin>

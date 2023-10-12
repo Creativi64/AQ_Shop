@@ -1,0 +1,13 @@
+Anfrage über Kontaktformular:
+{txt key="TEXT_CONTACT"}
+{txt key="TEXT_CUSTOMERS_TITLE"}: {if $customers_title}{$customers_title}{else}-{/if}
+{txt key="TEXT_FIRSTNAME"}: {$customers_firstname}
+{txt key="TEXT_LASTNAME"}: {$customers_lastname}
+{txt key="TEXT_COMPANY"}: {$company}
+{txt key="TEXT_PHONE"}: {$telefone}
+{txt key="TEXT_MOBILE_PHONE"}: {$mobile_phone}
+{txt key="TEXT_ORDER_NUMBER"}: {$order_no}
+{txt key="TEXT_EMAIL"}: {$mail}
+{txt key="TEXT_MESSAGE"}:	{$message}
+
+{$_system_footer_txt}

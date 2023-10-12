@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+
+    <code>xt_prepayment</code>
+    <version>1.0.1</version>
+    <type>payment</type>
+
+    <developer>xt:Commerce</developer>
+    <url>https://www.xt-commerce.com</url>
+
+    <title>Prepayment (Vorkasse)</title>
+    <description>Prepayment Module</description>
+    <icon>xt-commerce_logo.jpg</icon>
+
+    <payment>
+        <payment_code>xt_prepayment</payment_code>
+        <payment_dir>xt_prepayment</payment_dir>
+        <payment_icon></payment_icon>
+        <payment_tpl></payment_tpl>
+        <de>
+            <title>Vorkasse</title>
+            <description></description>
+        </de>
+        <en>
+            <title>Prepayment</title>
+            <description></description>
+        </en>
+    </payment>
+
+    <db_install><![CDATA[include_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_prepayment/installer/install.php';]]></db_install>
+
+</xtcommerceplugin> 

@@ -1,0 +1,1 @@
+.wizard.TEXT_UPDATE_SYSTEM_SEARCH_SPLIT=Option 'configuration > configuration > performance => split search requests' will move to file conf/config_search.php<br />After you completely finsihed the update process (after replacing all files) set value of _SYSTEM_SEARCH_SPLIT to <pre>false</pre> in conf/config_search.php

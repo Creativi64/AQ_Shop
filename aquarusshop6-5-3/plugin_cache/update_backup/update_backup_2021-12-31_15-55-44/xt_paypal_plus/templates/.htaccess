@@ -1,0 +1,9 @@
+<Files paypal_plus_patch_addresses.html>
+    <IfModule !mod_authz_core.c>
+        Order Deny,Allow
+        allow from all
+	</IfModule>
+	<IfModule mod_authz_core.c>
+		Require all granted
+	</IfModule>
+</Files>

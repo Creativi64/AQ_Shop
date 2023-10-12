@@ -1,0 +1,10 @@
+Hallo {$address_data.customers_title} {$address_data.customers_firstname} {$address_data.customers_lastname},
+
+You receive this email, due to your request to reset the password.
+      
+Your new password: {$NEW_PASSWORD}
+
+For security reasons we ask you to change this temporary password immediately after the first login.
+
+------------------------------------------------------------------------------------------------------------
+{$_system_footer_txt}

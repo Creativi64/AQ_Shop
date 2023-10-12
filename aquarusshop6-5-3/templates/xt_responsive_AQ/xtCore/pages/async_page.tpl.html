@@ -1,0 +1,9 @@
+<div id="{$params.name}_{$params.timestamp}">{$params.name}</div>
+<script>
+document.addEventListener("DOMContentLoaded", function(event)
+{
+    let params = {$params_js};
+    //console.log(params, xtConnector);
+    setTimeout(xtConnector.page, 100, params);
+});
+</script>

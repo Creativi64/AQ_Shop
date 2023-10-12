@@ -1,0 +1,83 @@
+<div class="product-listing product-listing-slider{if $code} {$code}{/if} control-button-light carousel-outer-wrap">
+    {$categories}
+    {if $product_listing}
+
+        {if $manufacturer.MANUFACTURER.manufacturers_image}<div class="pull-right manufacturers-image">{img img=$manufacturer.MANUFACTURER.manufacturers_image type=m_org class="img-responsive"}</div><br />{/if}
+
+        {if $PRODUCTS_DROPDOWN}{$PRODUCTS_DROPDOWN}{/if}
+        {if $manufacturer && $manufacturer.MANUFACTURER.manufacturers_description|trim != ''}<div class="manufacturers-description text-word-wrap">{$manufacturer.MANUFACTURER.manufacturers_description}</div>{/if}
+        {if $MANUFACTURER_DROPDOWN}{if $MANUFACTURER_DROPDOWN}{$MANUFACTURER_DROPDOWN}{/if}{/if}
+
+        {assign var="unique_id" value=$heading_text|md5}
+        {assign var="unique_carousel_id" value="productCarousel-`$unique_id`"}
+
+        {if $heading_text}
+        <h2 class="breaking-headline">{$heading_text}</h2>
+        {elseif $extended && $extended == '1' || $page == 'cart'}
+            <div class="pcontent-part">
+                <h2 class="breaking-headline">{$headline}{if $heading_text}{$heading_text}{/if}</h2>
+            </div>
+        {/if}
+
+        {* Master Slave *}
+        {if $code}
+            {if $code == 'xt_master_slave'}
+                <div id="pcontent-part-productlist" class="pcontent-part"
+                    data-orientation-nav-url="{$products_link}#pcontent-part-productlist"
+                    data-orientation-nav-classes="move"
+                    data-orientation-nav-icon="<i class='fa fa-wrench'></i>"
+                    data-orientation-nav-label="{txt key=TEXT_PRODUCT_OPTIONS}"
+                >
+                <p class="breaking-headline">{txt key=TEXT_PRODUCT_OPTIONS}</p>
+            {/if}
+        {/if}
+
+
+        <div class="listing-container">
+            <div id="slider-{$unique_carousel_id}" class="slider{if $heading_text} collapse collapse-auto-toggle-xs in{/if}">
+                <div class="listing equalize-no-panels owl">
+                    <div id="productCarousel-{$unique_carousel_id}" class="productCarousel">
+                        {foreach name=listing key=key item=module_data from=$product_listing}
+                            <div class="
+                                col col-{$key+1}
+                                {if $smarty.foreach.listing.first}col-first{elseif $smarty.foreach.listing.last}col-last{/if}
+                                {if $code == 'xt_master_slave' && $smarty.get.page == 'product' && $module_data.products_master_model != '' && $smarty.get.info == $module_data.products_id}ms-selected-listing-product{/if}
+                            ">
+                                {hook key=product_listing_slider_section_panel_top module_data=$module_data}
+                                {include file="$selected_template/includes/panel_product_listing.html" listing_version="v1"}
+                                {hook key=product_listing_slider_section_panel_bottom module_data=$module_data}
+                            </div><!-- .col -->
+                        {/foreach}
+
+                        {if $show_more && $code && $code!='xt_auto_cross_sell' && $code!='xt_cross_selling' && $code!='xt_master_slave'}
+                        <div class="col col-{$key+1} col-last">
+                            <div class="section panel panel-shadow panel-default cursor-pointer">
+                                <div class="section-body panel-body vertical-helper center" style="height:550px">
+                                    <a class="image" href="{link page=$code conn=SSL}" title="{txt key='TEXT_MORE'}">
+                                        <i class="fa fa-plus-circle fa-5x"></i><br/>{txt key="TEXT_MORE"}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {/if}
+
+                    </div>
+                </div>
+	        </div><!-- .listing -->
+        </div>
+
+        {* Master Slave *}
+        {if $code}
+            {if $code == 'xt_master_slave'}
+                </div>
+            {/if}
+        {/if}
+
+    {/if}
+
+    {$error_listing}
+
+    {if $category_data.categories_description_bottom}
+        <div id="categorie-description-bottom" class="textstyles text-word-wrap">{$category_data.categories_description_bottom}</div>
+    {/if}
+</div>

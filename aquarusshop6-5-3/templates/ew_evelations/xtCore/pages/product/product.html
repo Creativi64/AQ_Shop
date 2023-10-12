@@ -1,0 +1,367 @@
+<div id="product" class="detail">
+
+    {if $allow_add_cart eq 'true'}
+        {if $products_fsk18 == '1'}
+            <div class="error box">
+                <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;{txt key=TEXT_PRODUCTS_FSK18_NOTE}
+            </div>
+        {/if}
+    {/if}
+
+    {if $product_outdated eq 1}
+        <div class="error box">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;{txt key=PRODUCT_OUTDATED_SHORT}
+        </div>
+    {/if}
+
+    {if $product_outdated_soon eq 1}
+        <div class="box info">
+            <i class="fa fa-calendar"></i>&nbsp;&nbsp;{txt key=PRODUCT_OUTDATED_SOON_SHORT}
+        </div>
+    {/if}
+
+    {if $date_available!=''}
+        <div class="box info">
+            <i class="fa fa-calendar"></i>&nbsp;&nbsp;{txt key=TEXT_PRODUCT_AVAILABLE} {$date_available_object|date_format_intl:"EEEE, dd.MM.yyyy"}
+        </div>
+    {/if}
+
+    <div id="pinfo" class="row">
+        <div class="col col-xs-12 col-sm-5 col-md-4">
+            <div id="product-informations-affix-container">
+                <div class="lightgallery product-images">
+                    {if !$products_image || $products_image == 'product:noimage.gif'}
+                        <span class="vertical-helper image-link no-image">{img img='no_image.png' type=t_img class="productImageBorder img-responsive" alt=$products_name|escape:"html"}</span>
+                        {hook key=tpl_product_no_img module_data=$product}
+                    {else}
+                        <div class="image product-image img-thumbnail center">
+                            <figure>
+                                <a name="product_images" href="{img img=$products_image type=m_org path_only=true}" class="image-link img-responsive" data-type="main">
+                                    <img src="{img img=$products_image type=m_info path_only=true}" alt="{if $products_image_data.media_name}{$products_image_data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $products_image_data.copyright_holder} &copy; {$products_image_data.copyright_holder}{/if}" title="{if $products_image_data.media_name}{$products_image_data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $products_image_data.copyright_holder} &copy; {$products_image_data.copyright_holder}{/if}" class="img-responsive image-link">
+                                    {hook key=tpl_product_img module_data=$product}
+                                </a>
+                                {if $products_image_data.copyright_holder}
+                                <span class="copyright text-small">&copy; {$products_image_data.copyright_holder}</span>
+                                {/if}
+                            </figure>
+                        </div>
+                    {/if}
+                    {if $more_images && $more_images|@count != 0}
+                        <div class="more-images row listing hidden-affix">
+                            {foreach name=aussen item=img_data from=$more_images key=index}
+                                {if $smarty.foreach.aussen.index != 0}
+                                    <figure class="col section col-md-3 col-xs-2">
+                                        <a href="{img img=$img_data.file type=m_org path_only=true}" class="vertical-helper img-thumbnail image-link text-center" itemprop="contentUrl">
+                                            <img src="{img img=$img_data.file type=m_ewevelationsinfo path_only=true}" alt="{if $img_data.data.media_name}{$img_data.data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $img_data.data.copyright_holder} &copy; {$img_data.data.copyright_holder}{/if}" title="{if $img_data.data.media_name}{$img_data.data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $img_data.data.copyright_holder} &copy; {$img_data.data.copyright_holder}{/if}" class="productImageBorder img-responsive">
+                                        </a>
+                                    </figure>
+                                {/if}
+                            {/foreach}
+                        </div>
+                    {/if}
+                </div>
+
+                <p class="text-uppercase h2 hidden-xs visible-affix">{$products_name}</p>
+
+                {hook key="notify_on_restock_tpl.notify_box"}
+
+                <div class="well visible-affix hidden-xs">
+                    {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $products_price.formated neq ''}
+                        <p class="product-price this">{$products_price.formated}</p>
+                        {if $base_price}
+                            <p class="product-base-price">{$base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$base_price.vpe.name}</p>
+                        {/if}
+                        <p class="product-tax-shipping">
+                            {$products_tax_info.tax_desc}
+                            {if !$products_digital}
+                                {if $products_shipping_link}
+                                    <a href="{$products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a>
+                                {else}
+                                    {txt key=TEXT_EXCL_SHIPPING}
+                                {/if}
+                            {/if}
+                        </p>
+                    {/if}
+
+                    {if $products_master_flag == 1 OR $products_master_model != ''}
+                        {if $allow_add_cart != 'true'}
+                            <hr />
+                            <div class="add-to-cart dummy">
+                                <a href="{$products_link}#ms-options" class="btn btn-default move" title="{txt key=TEXT_EW_EVELATIONS_BUTTON_ADD_CART_MASTER_DUMMY}">
+                                    <i class="fa fa-cart-arrow-down"></i>&nbsp;&nbsp;{txt key=BUTTON_ADD_CART}
+                                </a>
+                            </div>
+                        {/if}
+                    {/if}
+
+                    {hook key="notify_on_restock_tpl.notify_box"}
+
+                    {if $allow_add_cart eq 'true'}
+                        <hr />
+                        {form type=form name=product action='dynamic' link_params=getParams method=post class="form-inline" role="form"}
+                        {form type=hidden name=action value=add_product}
+                        {form type=hidden name=product value=$products_id}
+                        {form type=hidden name=gotoCart value=$smarty.const._STORE_GOTO_CART_DIRECTLY}
+                        {$products_information}
+                        <div class="add-to-cart form-inline">
+                            <div class="form-group">
+                                <div class="input-group spinner jq-spinner" data-trigger="spinner">
+                                    <input type="text" name="qty" value="1" data-rule="quantity" class="form-control input-number" placeholder="{if $products_unit_name}{$products_unit_name}{else}{txt key=TEXT_QTY}{/if}" data-min="1" data-max="9999">
+                                    <span class="input-group-addon">
+                                        <a href="#" class="spin-up" data-spin="up"><i class="fa fa-sort-asc"></i></a>
+                                        <a href="#" class="spin-down" data-spin="down"><i class="fa fa-sort-desc"></i></a>
+                                    </span>
+                                </div>
+                                <button type="submit" class="btn btn-primary preloader submit">
+                                    <i class="fa fa-cart-arrow-down"></i>&nbsp;&nbsp;{txt key=BUTTON_ADD_CART}
+                                </button>
+                            </div>
+                        </div>
+                        {form type=formend}
+                    {/if}
+                </div><!-- .product-pictures.hidden-xs -->
+            </div><!-- #product-informations-affix-container -->
+        </div>
+        <div class="col col-xs-12 col-sm-7 col-md-8">
+            <div class="row">
+
+                <div class="visible-sm clearfix"></div>
+
+                <div id="product-infos" class="col col-md-5 col-md-push-7"
+                    data-orientation-nav-url="{$products_link}#product-infos"
+                    data-orientation-nav-classes="move"
+                    data-orientation-nav-icon="<i class='fa fa-shopping-cart'></i>"
+                    data-orientation-nav-label="{txt key=TEXT_CART}"
+                >
+                    <h1 class="product-name text-uppercase h2 visible-xs visible-sm" >{$products_name}</h1>
+                    <div class="well">
+                        {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $products_price.formated neq ''}
+                            <div>
+                                <p class="product-price this">{$products_price.formated}</p>
+                            </div>
+
+                            {if $base_price}
+                                <p class="product-base-price">{$base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$base_price.vpe.name}</p>
+                            {/if}
+                            <p class="product-tax-shipping">
+                                {$products_tax_info.tax_desc}
+                                {if !$products_digital}
+                                    {if $products_shipping_link}
+                                        <a href="{$products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a>
+                                    {else}
+                                        {txt key=TEXT_EXCL_SHIPPING}
+                                    {/if}
+                                {/if}
+                            </p>
+                        {/if}
+                        {if $products_weight > 0}
+                            <hr />
+                            <p class="product-weight">{include file="$selected_template/includes/products_weight_wrap.html" products_weight=$products_weight type="tpl_include"}</p>
+                        {/if}
+                        {if $show_stock}
+                            <p class="product-stock text-muted">{txt key=TEXT_STOCK} {$products_quantity|round} {if $products_unit_name}{$products_unit_name}{/if}</p>
+                        {/if}
+
+                        {if $shipping_status_data.name}
+                            <p class="product-shipping-status">{txt key=TEXT_SHIPPING_STATUS} {$shipping_status_data.name}</p>
+                        {/if}
+
+                        {if $stock_image}
+                            <p class="product-stock-image">{img img=$stock_image.image type=t_img_stockrules alt=$stock_image.name title=$stock_image.name}</p>
+                            <p class="product-stock-name"><i class="fa fa-truck"></i> {$stock_image.name}</p>
+                        {/if}
+                        {if $products_discount!=''}
+                            <p class="product-discount">{$products_discount}</p>
+                        {/if}
+
+                        {if $products_master_flag == 1 OR  $products_master_model != ''}
+                            <div id="ms-options" class="clearfix">
+                                {hook key=product_info_tpl_options}
+                            </div><!-- #ms-options -->
+                            {if $allow_add_cart != 'true'}
+                                <div class="add-to-cart dummy">
+                                    <a href="{$products_link}#ms-options" class="btn btn-default move" title="{txt key=TEXT_EW_EVELATIONS_BUTTON_ADD_CART_MASTER_DUMMY}">
+                                        <i class="fa fa-cart-arrow-down"></i>&nbsp;&nbsp;{txt key=BUTTON_ADD_CART}
+                                    </a>
+                                </div>
+                            {/if}
+                        {/if}
+
+                        {hook key=product_info_tpl_before_cart}
+                        {hook key=product_info_bundle}
+
+                        {hook key=product_info_tpl_cart}
+
+                        {hook key="notify_on_restock_tpl.notify_box"}
+
+                        {if $allow_add_cart eq 'true'}
+                            <hr />
+                            {form type=form name=product id="main_product_form" action='dynamic' link_params=getParams method=post class="form-inline" role="form"}
+                                {form type=hidden name=action value=add_product}
+                                {form type=hidden name=product value=$products_id}
+                                {form type=hidden name=gotoCart value=$smarty.const._STORE_GOTO_CART_DIRECTLY}
+                                {$products_information}
+                                <div class="add-to-cart form-inline">
+                                    <div class="form-group">
+                                        <div class="input-group spinner jq-spinner" data-trigger="spinner">
+                                            <input type="text"
+                                                name="qty"
+                                                value="1"
+                                                class="form-control input-number"
+                                                placeholder="{if $products_unit_name}{$products_unit_name}{else}{txt key=TEXT_QTY}{/if}"
+                                                data-rule="quantity"
+                                                data-min="1"
+                                                data-max="null"
+                                            >
+                                            <span class="input-group-addon">
+                                                <a href="#" class="spin-up" data-spin="up"><i class="fa fa-sort-asc"></i></a>
+                                                <a href="#" class="spin-down" data-spin="down"><i class="fa fa-sort-desc"></i></a>
+                                            </span>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary preloader submit">
+                                            <i class="fa fa-cart-arrow-down"></i>&nbsp;&nbsp;{txt key=BUTTON_ADD_CART}
+                                        </button>
+                                    </div>
+                                </div>
+                            {form type=formend}
+                        {/if}
+                        <div class="clearfix"></div>
+                    </div>
+                </div><!-- #product-infos -->
+
+                <div id="product-intro" class="col col-md-7 col-md-pull-5">
+                    <p class="product-name text-uppercase h2 hidden-xs hidden-sm">{$products_name}</p>
+                    <hr />
+                    {hook key=product_info_top product=$product}
+                    {if $manufacturer}
+                        <p class="mnf">
+                            {if $manufacturer.link}<a href="{$manufacturer.link}">{/if}
+                                {if $manufacturer.manufacturers_image}
+                                    <img src="{img img=$manufacturer.manufacturers_image type=m_manufacturer_thumb path_only=true}"
+                                        alt="{txt key=HEADING_PRODUCTS_MANUFACTURERS}: {$manufacturer.manufacturers_name|escape:'html'}"
+                                        title="{txt key=HEADING_PRODUCTS_MANUFACTURERS}: {$manufacturer.manufacturers_name|escape:'html'}"
+                                        class="img-responsive img-thumbnail mnf-logo pull-right"
+                                    >
+                                {/if}
+                                <span class="{if $manufacturer.manufacturers_image}hidden{/if}">{$manufacturer.manufacturers_name|escape:'html'}</span>
+                            {if $manufacturer.link}</a>{/if}
+                        </p>
+                    {/if}
+                    {if $products_model!=''}
+                        <p class="product-model"><strong>{txt key=TEXT_PRODUCTS_MODEL}</strong> {$products_model}</p>
+                    {/if}
+                    {if $review_stars_rating}
+                    <div class="left">
+                        <div class="product-reviews cursor-pointer popover-trigger" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="{txt key=TEXT_XT_REVIEWS_INFO}" data-content="{if $products_rating_count}{$products_rating_count} {txt key=TEXT_XT_REVIEWS_INFO} {txt key=TEXT_EW_EVELATIONS_POPOVER_RATING_AVERAGE} {math equation='(x-1) / 100 * y' x=$review_stars_rating y=5 format='%.1f'} {txt key=TEXT_PAGINATION_FROM} 5 {txt key=TEXT_EW_EVELATIONS_POPOVER_RATING_STAR}.{else}{txt key=TEXT_XT_REVIEWS_NO_REVIEWS}.{/if}" onclick="document.location.href='{$link_reviews_list}'">
+                            <div class="reviews_rating_light">
+                                <div class="reviews_rating_dark" style="width:{$review_stars_rating}%"></div>
+                            </div>
+                        </div><br />
+                        <span class="products_rating_count text-muted"><small><span>{math equation='(x-1) / 100 * y' x=$review_stars_rating y=5 format='%.1f'}</span> {txt key=TEXT_PAGINATION_FROM} 5 {txt key=TEXT_EW_EVELATIONS_POPOVER_RATING_STAR}</small></span>{if $products_rating_count}
+                        <span class="hidden">{$products_name}</span>
+                        <span class="hidden">{if $products_rating_count}{$products_rating_count}{else}0{/if}</span>{/if}
+                    </div>
+                    {/if}
+                    <div class="clearfix"></div>
+                    <hr />
+                    <div class="hook_products_images_tpl">
+                        {hook key=products_images_tpl}
+                    </div>
+                    {if $products_short_description && $products_short_description|strip_tags|trim != ''}
+                        <div class="short-description textstyles text-word-wrap">
+                            {$products_short_description}
+                            <div class="clearfix"></div>
+                        </div>
+                    {/if}
+                    {price_table}
+                    {if $products_description && $products_description|strip_tags|trim != '' || count($media_files) || ($manufacturer.manufacturers_name && $manufacturer.link)}
+                        <p>
+                            {if $products_description && $products_description|strip_tags|trim != ''}
+                                <a href="{$products_link}#pcontent-part-description" class="move btn btn-sm btn-default"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;{txt key=TEXT_MORE_DETAILS}</a>
+                            {/if}
+                            {if count($media_files)}
+                                <a href="{$products_link}#pcontent-part-files" class="move btn btn-sm btn-default"><i class="fa fa-download"></i>&nbsp;&nbsp;{txt key=TEXT_DOWNLOADS}</a>
+                            {/if}
+                            {if $manufacturer.manufacturers_name && $manufacturer.link}
+                                <a href="{$manufacturer.link}" class="btn btn-sm btn-default"><i class="fa fa-arrow-circle-right"></i>&nbsp;&nbsp;{$manufacturer.manufacturers_name}</a>
+                            {/if}
+                        </p>
+                    {/if}
+
+                    {hook key=products_info_bottom}
+                </div><!-- #product-intro -->
+
+            </div>
+            <div id="pcontent">
+
+                <div id="productlist" class="textstyles">
+                    {hook key=product_info_tpl_productlist}
+                </div>
+
+                {if $products_description && $products_description|strip_tags|trim != ''}
+                    <div id="pcontent-part-description" class="pcontent-part"
+                        data-orientation-nav-url="{$products_link}#pcontent-part-description"
+                        data-orientation-nav-classes="move"
+                        data-orientation-nav-icon="<i class='fa fa-info-circle'></i>"
+                        data-orientation-nav-label="{txt key=TEXT_PRODUCTS_DESCRIPTION}"
+                    >
+                        <h2 class="breaking-headline">{txt key=TEXT_PRODUCTS_DESCRIPTION}</h2>
+                        <div id="description" class="textstyles text-word-wrap">
+                            <p class="headline">{$products_name}</p>
+                            <div>{$products_description}</div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                {/if}
+                
+                {if $review_stars_rating}
+                    <div id="pcontent-part-reviews" class="pcontent-part"
+                        data-orientation-nav-url="{$products_link}#pcontent-part-reviews"
+                        data-orientation-nav-classes="move"
+                        data-orientation-nav-icon="<i class='fa fa-star'></i>"
+                        data-orientation-nav-label="{txt key=TEXT_XT_REVIEWS_INFO}"
+                    >
+                        <h2 class="breaking-headline"><span style="display:none;">{math equation='(x-1) / 100 * y' x=$review_stars_rating y=5 format='%.1f'}</span><span>{if $products_rating_count}{$products_rating_count}{else}0{/if}</span> {txt key=TEXT_XT_REVIEWS_INFO}</h2>
+                        <div id="reviews" class="textstyles">
+                            {hook key=product_info_tpl_reviews}
+                        </div>
+                    </div>
+                {/if}
+                
+            	{hook key=product_info_tpl}
+
+                {if count($media_files)}
+                    <div id="pcontent-part-files" class="pcontent-part"
+                        data-orientation-nav-url="{$products_link}#pcontent-part-files"
+                        data-orientation-nav-classes="move"
+                        data-orientation-nav-icon="<i class='fa fa-download'></i>"
+                        data-orientation-nav-label="{txt key=TEXT_DOWNLOADS}"
+                    >
+                        <h2 class="breaking-headline">{txt key=TEXT_DOWNLOADS}</h2>
+                        <div id="files" >
+                            {include file="$selected_template/xtCore/pages/files/product_public_files.html"}
+                        </div>
+                    </div>
+                {/if}
+
+                {hook key=product_info_tpl_tab_headline}
+                {hook key=product_info_tpl_tab_box}
+
+                {if defined('CONFIG_EW_EVELATIONS_PLUGIN_ALTERNATIVE_SHAREBUTTONS') && $smarty.const.CONFIG_EW_EVELATIONS_PLUGIN_ALTERNATIVE_SHAREBUTTONS|trim == '1'}
+                    <div class="shariff"
+                        data-button-style="standard"
+                        data-lang="{$language}"
+                        data-url="{$products_link}"
+                        data-services="['facebook', 'twitter', 'googleplus', 'whatsapp', 'telegram']"
+                        data-mail-url="mailto:"
+                    ></div>
+                    <div class="clearfix"></div>
+                {/if}
+
+                {hook key=product_info_tpl_tab_box_2}
+
+            </div><!-- #pcontent -->
+        </div>
+    </div>
+
+</div><!-- #product -->

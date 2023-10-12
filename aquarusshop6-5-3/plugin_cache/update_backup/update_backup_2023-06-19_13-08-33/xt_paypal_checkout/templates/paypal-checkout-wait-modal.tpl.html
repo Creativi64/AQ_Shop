@@ -1,0 +1,19 @@
+
+<div class="ppcp-modal hidden" id="ppc_wait_overlay" tabindex="-1" role="dialog" aria-labelledby="ppc_wait_overlay" aria-hidden="true">
+    <div class="ppcp-modal-dialog">
+        <div class="ppcp-modal-content">
+            <div class="ppcp-modal-body" id="ppc_wait_overlay_body">
+                <div style="text-align: center; margin-bottom:10px">
+                    <img class="img-responsive" src="media/logo/{$smarty.const._STORE_LOGO}" alt="{$smarty.const._STORE_NAME}" style="display: unset;"/>
+                </div>
+                <div id="ppc_wait_overlay_step2" style="text-align: center; font-size:1.1em; padding:15px 0">
+                    <p>{txt key="TEXT_PAYPAL_CHECKOUT_REDIRECT_INFO"}</p>
+                    <i class="fa fa-refresh fa-2x" style="-webkit-animation:spin_ppcp_spinner 1.2s linear infinite;  -moz-animation:spin_ppcp_spinner 1.2s linear infinite;  animation:spin_ppcp_spinner 1.2s linear infinite;" ></i>
+                    <p style="display: none" id="ppc_oops">{txt key="TEXT_PAYPAL_CHECKOUT_REDIRECT_INFO_OOPS"}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

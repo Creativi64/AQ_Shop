@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <language_content>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Amazon Pay Checkout v2]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Amazon Pay Checkout v2]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_CHECKOUTSESSIONCANCELED</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[An error has occurred. Please choose another payment method. (Code:932)]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Ein Fehler ist aufgetreten. Bitte wählen Sie eine andere Zahlungsart. (Code:932)]]></value>
+            </de><!-- die Transaktion stornierte oder die Zahlung abgelehnt wurde -->
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_AMAZON_CHARGE_DECLINED_ERROR</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[An error has occurred. Please choose another payment method. (Code:931)]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Ein Fehler ist aufgetreten. Bitte wählen Sie eine andere Zahlungsart. (Code:931)]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_AMAZON_CHARGE_CANCELED_ERROR</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[An error has occurred. Please choose another payment method. (Code:930)]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Ein Fehler ist aufgetreten. Bitte wählen Sie eine andere Zahlungsart. (Code:930)]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_CURRENCYMISMATCH</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[The currency code provided in the request does not match the currency set during checkout.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Der in der Anfrage angegebene Währungscode stimmt nicht mit der beim Auschecken festgelegten Währung überein.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_TRANSACTIONAMOUNTEXCEEDED</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[You've exceeded the maximum charge amount allowed for the Checkout Session. (Code:933)]]></value>
+            </en>
+            <de>
+                <value>
+                    <![CDATA[Sie haben den maximal zulässigen Gebührenbetrag für die Checkout-Sitzung überschritten. (Code:933)]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_COMPLETECHECKOUTSESSION_DEFAULT</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[An error has occurred. Please choose another payment method. (Code:934)]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Ein Fehler ist aufgetreten. Bitte wählen Sie eine andere Zahlungsart. (Code:934)]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_UPDATECHECKOUTSESSION_DEFAULT</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[An error has occurred. Please choose another payment method. (Code:935)]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Ein Fehler ist aufgetreten. Bitte wählen Sie eine andere Zahlungsart. (Code:935)]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_GETCHECKOUTSESSION_DEFAULT</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[An error has occurred. Please choose another payment method. (Code:936)]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Ein Fehler ist aufgetreten. Bitte wählen Sie eine andere Zahlungsart. (Code:936)]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_NO_CHECKOUTSESSION</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[Session timed out.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Sitzung abgelaufen.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_CAPTURECHARGE_DEFAULT</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[An error has occurred. Please try again. (Code:937)]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut. (Code:937)]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_IPN_MESSAGE</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[Amazon charge state: ]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Amazon Charge Status: ]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_MISSING_ORDER</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[Missing order.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Order fehlt.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_MISSING_CHARGE_ID</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[Missing charge id]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Fehlende Charge Id]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_CORRUPT_CHARGE_DATA</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[Corrupt charge data.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Fehlerhafte Charge Daten.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_GETCHARGEPERMISSION_DEFAULT</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[An error has occurred. Please try again.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_MISSING_CHARGEPERMISSION_ID</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[An error has occurred. Please try again.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_PACKSTATION_SHIPPINGADDRESS</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[Please change your delivery address to a NOT packing station.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Bitte ändern Sie Ihre Lieferadresse auf eine NICHT Packstation.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_UNSUPPORTED_SHIPPING_COUNTRY</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[Shipping to the address you have chosen is not possible. Please change your delivery address to another country.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Ein Versand an die von Ihnen gewählte Adresse ist nicht möglich. Bitte ändern sie Ihre Lieferadresse auf ein anderes Land.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_LOGIN_PAGE_HEADLINE</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[Login with Amazon]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Login mit Amazon]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_LOGIN_PAGE_DESC</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Mit Bezahlen über Amazon können Sie bei uns ganz einfach mit den Zahlungs- und Versandinformationen aus Ihrem Amazon-Kundenkonto bezahlen.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Amazon Pay makes shopping on our website even easier by using the payment information in your Amazon account.]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_V2_ORDER_STATUS_AUTHORIZATIONINITIATED_TITLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Order status - Payment authorization initiated]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Bestellstatus - Zahlung autorisierung angestoßen]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_V2_ORDER_STATUS_AUTHORIZED_TITLE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Bestellstatus - Zahlung autorisiert]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Order status - Payment Authorized]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_V2_ORDER_STATUS_CAPTUREINITATED_TITLE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Bestellstatus - Zahlung angestoßen]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Order status - Payment initated]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_V2_ORDER_STATUS_CAPTURED_TITLE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Bestellstatus - Zahlung abgeschlossen]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Order status - Payment captured]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_V2_ORDER_STATUS_CANCELED_TITLE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Bestellstatus - Zahlung abgebrochen]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Order status - Payment canceled]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_V2_ORDER_STATUS_DECLINED_TITLE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Bestellstatus- Zahlung abgelehnt]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Order status - Payment declined]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_V2_ORDER_STATUS_ERROR_TITLE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Bestellstatus - Zahlung gescheitert]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Order status - Failed]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_V2_ORDER_CAPTURE_ON_CHECKOUT_TITLE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Capture bei]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Capture On]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_V2_ORDER_STATUS_DO_CANCEL_TITLE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Shop Bestellstatus - Bestellung storniert]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Shop order status - Order canceled]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_V2_ORDER_STATUS_COMPLETED_TITLE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Bestellstatus - Zahlung komplett]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Order status - Payment Completed]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_V2_ORDER_STATUS_OPENED_TITLE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Bestellstatus - open]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Orders status - open]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_SHIPPING_MAPPING</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Amazon Versender Mapping]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Amazon shipper mapping]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_UNDEFINED_ERROR_501</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[An error has occurred. Please try again. (ERROR:501)]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut. (Fehler:501)]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_UNDEFINED_ERROR_502</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[An error has occurred. Please try again. (Code:502)]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut. (Code:502)]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_UNDEFINED_ERROR_503</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[An error has occurred. Please try again. (Code:503)]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut. (Code:503)]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_UNDEFINED_ERROR_504</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[An error has occurred. Please try again. (Code:504)]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut. (Code:504)]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_UNDEFINED_ERROR_505</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[An error has occurred. Please try again. (Code:505)]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut. (Code:505)]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_AMAZON_INTERNAL_ERROR</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Amazon Pay, internal error.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Amazon Pay, interner Fehler.]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_NOT_CHARGEABLE_DEFAULT</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[An error has occurred. Please choose another payment method. (Code:937)]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Ein Fehler ist aufgetreten. Bitte wählen Sie eine andere Zahlungsart. (Code:937)]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_NOT_CHARGEABLE_PAYMENTMETHODINVALID</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[Payment method not allowed. Please choose another payment method. (Code:938)]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Zahlungsart nicht erlaubt. Bitte wählen Sie eine andere Zahlungsart. (Code:938)]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_NOT_CHARGEABLE_PAYMENTMETHODDELETED</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[This payment method is no longer available. Please choose another payment method. (Code:939)]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Diese Zahlungsart steht nicht mehr zur Verfügung. Bitte wählen Sie eine andere Zahlungsart. (Code:939)]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_NOT_CHARGEABLE_BILLINGADDRESSDELETED</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[Please enter a billing address in your Amazon account.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Bitte hinterlegen Sie in Ihrem Amazon Account eine Rechnungsadresse.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_NOT_CHARGEABLE_PAYMENTMETHODEXPIRED</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[This payment method has expired. Please choose another payment method. (Code:940)]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Diese Zahlungsart ist abgelaufen. Bitte wählen Sie eine andere Zahlungsart. (Code:940)]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_NOT_CHARGEABLE_PAYMENTMETHODNOTALLOWED</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[Payment method not allowed. Please choose another payment method. (Code:941)]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Zahlungsart nicht erlaubt. Bitte wählen Sie eine andere Zahlungsart. (Code:941)]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_NOT_CHARGEABLE_PAYMENTMETHODNOTSET</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[Please choose a payment method.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Bitte wählen Sie eine Zahlungsart.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_NOT_CHARGEABLE_CHARGEINPROGRESS</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[An error has occurred. Please try again later.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Ein Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_NOT_CHARGEABLE_MFAFAILED</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[An error has occurred. Please try again later.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Ein Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_CLOSED_MERCHANTCLOSED</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[Please choose another payment method.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Bitte wählen Sie eine andere Zahlungsart.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_CLOSED_BUYERCANCELED</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[Please choose another payment method.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Bitte wählen Sie eine andere Zahlungsart.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_CLOSED_AMAZONCANCELED</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[Please choose another payment method.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Bitte wählen Sie eine andere Zahlungsart.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_CLOSED_AMAZONCLOSED</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[Please choose another payment method.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Bitte wählen Sie eine andere Zahlungsart.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_ERROR_MESSAGE_CLOSED_EXPIRED</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[Session timed out.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Sitzung abgelaufen.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_SHIPPING_MAPPING_ID</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[ID]]></value>
+            </en>
+            <de>
+                <value><![CDATA[ID]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_CARRIER_CODE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Amazon Carrier Code]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Amazon Carrier Code]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_MESSAGE_AUTHORIZATION_INITIATED</key>
+            <class>store</class>
+            <en>
+                <value><![CDATA[Your transaction with Amazon Pay is currently being validated. Please be aware that we will inform you shortly as needed.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Ihre Zahlung mit Amazon Pay ist derzeit noch in Prüfung. Bitte beachten Sie, dass wir uns mit Ihnen in Kürze per Email in Verbindung setzen werden, falls noch Unklarheiten bestehen sollten.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_MESSAGE_PRIVATE_KEY_MISSING</key>
+            <class>store</class>
+            <en>
+                <value><![CDATA[Please install your private key in the plug-in folder.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Bitte installieren Sie Ihren privaten Schlüssel im PlugIn Ordner.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TEXT_TFM_AMAZON_PAYMENTS_V2_MESSAGE_PRIVATE_KEY_FOLDER_MISSING</key>
+            <class>store</class>
+            <en>
+                <value><![CDATA[Private key folder not found.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Ordner für privaten Schlüssel nicht gefunden.]]></value>
+            </de>
+        </phrase>
+    </language_content>
+</xtcommerceplugin>

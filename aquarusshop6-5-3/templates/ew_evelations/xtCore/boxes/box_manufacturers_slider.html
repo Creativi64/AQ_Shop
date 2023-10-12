@@ -1,0 +1,54 @@
+{if $_manufacturers && $_manufacturers|is_array && $_manufacturers|count}
+<div class="carousel-outer-wrap container">
+    <div class="{$params.name} picture-slider owl">
+        <div class=pictureCarousel-manufactures-slider>
+            {foreach key=key item=item from=$_manufacturers}
+                {if $item.manufacturers_image}
+                    <div class="image image-{$key}">
+                        {if $item.link}<a href="{$item.link}">{/if}
+                            <img alt="{$item.manufacturers_name|escape:'html'}"
+                                class="img-responsive lazyOwl"
+                                src="{img img=$item.manufacturers_image type=m_thumb path_only=true}"
+                                data-src="{img img=$item.manufacturers_image type=m_thumb path_only=true}">
+                        {if $item.link}</a>{/if}
+                    </div><!-- .image -->
+                {else}
+                    <div class="image image-{$key}">
+                        {if $item.link}<a href="{$item.link}">{/if}
+                            {$item.manufacturers_name|escape:'html'}<br/>
+                            <img alt="{$item.manufacturers_name|escape:'html'}"
+                                class="img-responsive lazyOwl"
+                                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
+                                data-src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==">
+                        {if $item.link}</a>{/if}
+                    </div><!-- .image -->
+                {/if}
+            {/foreach}
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        var teaserElement = jQuery('.pictureCarousel-manufactures-slider');
+        if (teaserElement.length != 0) {
+            teaserElement.owlCarousel({
+                singleItem: false,
+                navigation: true,
+                pagination: false,
+                slideSpeed: 400,
+                paginationSpeed: 400,
+                scrollPerPage: false,
+                autoPlay: 3000,
+                stopOnHover: true,
+                autoHeight: false,
+                autoWidth: true,
+                lazyLoad: false,
+                addClassActive: false,
+                navigationText: ['', ''],
+                items: 8,
+                margin: 10
+            });
+        }
+    });
+</script>
+{/if}

@@ -1,0 +1,523 @@
+.plus::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f067";
+    font-style: normal;
+}
+
+.folder_add::before {
+ font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f07b";
+  font-style: normal;
+}
+
+.enable::before {
+ font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f14a";
+  font-style: normal;
+}
+
+.disable::before {
+ font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f0c8";
+  font-style: normal;
+}
+
+.add::before {
+ font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f0c7";
+  font-style: normal;
+}
+
+.reload::before,
+.upd::before {
+ font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f2f1";
+  font-style: normal;
+}
+
+.upload_image::before {font-family: "Font Awesome 5 Free";font-weight: 600;content: "\f302";font-style: normal;}
+
+.cancel {
+	background-image: url(../images/icons/cancel.png) !important;
+}
+
+.ORDER_EDIT_REMOVE_ITEM::before,
+.delete_order::before,
+.delete::before,
+.deletePlugin::before {
+ font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f2ed";
+  font-style: normal;
+  color: #ff00003d;
+}
+
+.edit::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f044";
+  font-style: normal;
+}
+
+.copy::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f0c5";
+  font-style: normal;
+}
+
+
+.folder_delete::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f2ed";
+  font-style: normal;
+  color: red;
+}
+
+.folder_edit::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f044";
+  font-style: normal;
+}
+
+.brick_link::before,
+.link_go::before,
+.custom_Link_Define::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f0c1";
+  font-style: normal;
+}
+
+.product_add::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f02a";
+  font-style: normal;
+}
+
+.layout::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f15c";
+  font-style: normal;
+}
+
+
+.run_export::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f144";
+  font-style: normal;
+}
+
+.export_categories::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f468";
+    font-style: normal;
+}
+
+.export_manufacturers::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f275";
+    font-style: normal;
+}
+
+
+.install_plugin::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f055";
+  font-style: normal;
+}
+
+.update_plugin::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f2f1";
+  font-style: normal;
+}
+
+.export_language::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f019";
+    font-style: normal;
+}
+
+.update_translations::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f1ab";
+  font-style: normal;
+}
+
+.export_nottranslated::before, .export_lang_class_problems::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f06a";
+    font-style: normal;
+    color: red;
+}
+
+.start::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f144";
+    font-style: normal;
+}
+
+.products_cross_selling::before , .blog_message_cross_selling::before {
+				  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f217";
+  font-style: normal;
+}
+
+.products_to_attributes::before {
+	 font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f1c0";
+  font-style: normal;
+}
+
+.more_categories::before {
+		 font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f468";
+  font-style: normal;
+}
+
+.products_media::before {
+ font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  content: "\f1c6";
+  font-style: normal;
+}
+
+.products_stats::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f200";
+  font-style: normal;
+}
+
+.email_media::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f0c6";
+    font-style: normal;
+}
+
+.products_special_price::before {
+	  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f153";
+  font-style: normal;
+}
+
+.shipping_price::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f4c0";
+    font-style: normal;
+}
+
+.payment_price::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f4c0";
+    font-style: normal;
+}
+
+.products_group_price::before {
+		  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f0c0";
+  font-style: normal;
+}
+
+.move_product::before {
+			  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f2f5";
+  font-style: normal;
+}
+
+.image_imageupload::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f093";
+  font-style: normal;
+}
+
+.image_fileupload::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f093";
+  font-style: normal;
+}
+
+.plugin_hookpoints::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f574";
+  font-style: normal;
+}
+
+.documentation_link::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f02d";
+  font-style: normal;
+}
+
+.marketplace_link::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f217";
+  font-style: normal;
+}
+
+.acl_group_permissions::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f084";
+  font-style: normal;
+}
+
+.coupon_categories::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f468";
+    font-style: normal;
+}
+
+.coupon_products::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f02a";
+    font-style: normal;
+}
+
+.customer_prices::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f153";
+    font-style: normal;
+}
+
+.coupon_customer::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f0c0";
+    font-style: normal;
+}
+
+.sort_up::before, .sort2_up::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f0de";
+    font-style: normal;
+}
+
+.sort_down::before, .sort2_down::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f0dd";
+    font-style: normal;
+}
+
+.image_processing::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f2f1";
+    font-style: normal;
+}
+
+.multi_move::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f362";
+  font-style: normal;
+}
+
+.multi_link::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f0c1";
+  font-style: normal;
+}
+
+.multi_copy::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f0c5";
+  font-style: normal;
+}
+
+.address::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f2b9";
+  font-style: normal;
+}
+
+.orders::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f07a";
+  font-style: normal;
+}
+
+/* order_edit */
+.SHOW_PRODUCT {
+    background-image: url("../images/icons/world.png") !important;
+}
+.NEW_ORDER::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f217";
+  font-style: normal;
+}
+
+.ORDER_EDIT_ADD_ITEM::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f217";
+  font-style: normal;
+}
+
+.ORDER_EDIT_CALCULATE_GRADUATED::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f1ec";
+  font-style: normal;
+}
+
+
+.ORDER_EDIT_UPDATE_ITEM::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f0c7";
+  font-style: normal;
+}
+
+.ORDER_EDIT_SAVE_COUPON::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f0c7";
+  font-style: normal;
+}
+
+.ORDER_EDIT_REMOVE_COUPON::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f2ed";
+  font-style: normal;
+}
+
+.ORDER_EDIT_APPLY_NEW_ADDRESS {}
+.ORDER_EDIT_APPLY_EDITED_ADDRESS {}
+.ORDER_EDIT_APPLY_EXISTING_ADDRESS {}
+.ORDER_EDIT_APPLY_PAYMENT_SHIPPING {}
+.cron_log::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f15c";
+  font-style: normal;
+}
+.cron_start::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f144";
+  font-style: normal;
+}
+
+.slides::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f302";
+  font-style: normal;
+}
+
+.generate_css::before {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f2f1";
+  font-style: normal;
+}
+
+.theme_history::before {
+	font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  content: "\f187";
+  font-style: normal;
+}
+
+.unlink::before
+{
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f127";
+    font-style: normal;
+}
+
+.dsgvo_send_admin::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f505";
+    font-style: normal;
+}
+
+.refresh-tab::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f01e";
+    font-style: normal;
+}
+.close-tab::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f410";
+    font-style: normal;
+}
+.close-other-tabs::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f410";
+    font-style: solid;
+}
+
+.PLUGIN_CHANGELOG::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f46d";
+    font-style: normal;
+}
+
+.open_web::before {
+    content: "\f0ac";
+    font-family: "Font Awesome 5 Free";
+    font-style: normal;
+    font-weight: 600;
+    color: black;
+}
+.copy_address { color: black}
+ .clipboard::before {
+     content: "\f328";
+     font-family: "Font Awesome 5 Pro";
+     font-style: normal;
+     font-weight: 600;
+ }
+

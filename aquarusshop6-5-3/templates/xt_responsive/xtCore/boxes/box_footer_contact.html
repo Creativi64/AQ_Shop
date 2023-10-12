@@ -1,0 +1,10 @@
+{content cont_id=5 is_id=true}
+{if $_content_5|@count != 0 && $_content_5.content_status == 1}
+    <div class="contact">
+        <p class="headline">{$_content_5.title}</p>
+        {$_content_5.content_body_short}
+        {if $_content_5.content_link}
+            <p><a href="{$_content_5.content_link}"><i class="fa fa-envelope-o"></i> {txt key=TEXT_CONTACT_PAGE}</a></p>
+        {/if}
+    </div>
+{/if}

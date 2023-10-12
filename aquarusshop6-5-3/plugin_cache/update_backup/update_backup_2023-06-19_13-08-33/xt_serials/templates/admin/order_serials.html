@@ -1,0 +1,25 @@
+<tpl>
+    <div class="row">
+        <div class="col-xs-12 table-responsive">
+            <span class="h5">{txt key=TEXT_PRODUCTS_SERIALS}</span>
+            <table class="table table-striped orderSerialsLogs">
+                <thead>
+                    <tr>
+                        <th width="150">{txt key=TEXT_PRODUCTS_NAME}</th>
+                        <th width="100">{txt key=TEXT_PRODUCTS_MODEL}</th>
+                        <th width="150">{txt key=TEXT_SERIAL_NUMBER}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {foreach name=aussen item=serial from=$data}
+                    <tr>
+                        <td style="text-align:left;">{$serial.products_name}</td>
+                        <td style="text-align:left;">{$serial.products_model}</td>
+                        <td style="text-align:left;">{$serial.serial_number}</td>
+                    </tr>
+                    {/foreach}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</tpl>

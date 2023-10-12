@@ -1,0 +1,521 @@
+
+{if $smarty.get.form == "register" || $smarty.post.form == "register"}
+    <a href="{link page='customer' paction='login'}" class="btn btn-success pull-right">
+        <i class="fa fa-sign-in"></i> {txt key=BUTTON_LOGIN}
+    </a>
+{/if}
+
+<h1>{txt key=TEXT_PAGE_TITLE_LOGIN}</h1>
+
+{$message}
+{hook key=login_top}
+
+<div class="row">
+    {if $smarty.get.form != "register" && $smarty.post.form != "register"}
+
+        {hook key=login_returning_top}
+        <div class="col col-md-6 col-md-push-6">
+            <div class="panel panel-default">
+                <p class="panel-heading"><strong><i class="fa fa-user"></i> {txt key=TEXT_RETURNING}</strong></p>
+                <div id="loginbox" class="clearfix panel-body">
+                    <p>{txt key=TEXT_TXT_RETURNING}</p>
+                    {form type=form name=login action='dynamic' link_params='page_action=login' method=post conn=SSL}
+                    {form type=hidden name=action value=login}
+                    {form type=hidden name=link_target value=index}
+
+                    <div class="form-group">
+                        <label for="email">{txt key=text_email}*</label>
+                        {form id=email type=text name=email maxlength='50'}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">{txt key=text_password}*</label>
+                        {form id=password type=password name=password maxlength='30'}
+                    </div>
+
+                    <p class="required pull-left">{txt key=TEXT_MUST}</p>
+
+                    <p class="pull-right">
+                        <a href="{link page='customer' paction='password_reset' conn=SSL}" class="btn btn-default">{txt key=text_link_lostpassword}</a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-sign-in"></i> {txt key=BUTTON_LOGIN}
+                        </button>
+                    </p>
+
+                    {form type=formend}
+                </div><!-- #loginbox -->
+            </div>
+        </div><!-- .col -->
+        <div class="col col-md-6 col-md-pull-6">
+            <div class="panel panel-default">
+                <p class="panel-heading"><strong><span class="glyphicon glyphicon-share-alt"></span> {txt key=TEXT_NEW_CUSTOMER}</strong></p>
+                <div class="panel-body">
+                    <p>{txt key=TEXT_TXT_NEW_CUSTOMER}{if $smarty.const._STORE_ALLOW_GUEST_ORDERS == 'true'}<br />{txt key=TEXT_TXT_GUEST}<br />{txt key=TEXT_NO_GUEST_ALLOWED_WITH_VAT}{/if}</p>
+                    <div class="register-short">
+                        <form>
+                            <div class="pull-right text-right">
+                                <p>
+                                    <a href="{link page='customer' paction='login' params='form=register' conn=SSL}" class="btn btn-primary">
+                                        {txt key=BUTTON_NEXT}
+                                    </a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {hook key=login_returning_bottom}
+
+    {/if}
+
+    {if $smarty.get.form == "register" || $smarty.post.form == "register"}
+	<div class="col col-xs-12">
+
+        {hook key=login_register_top}
+
+        <div class="panel panel-default">
+            <p class="panel-heading"><strong><span class="glyphicon glyphicon-share-alt"></span> {txt key=TEXT_NEW_CUSTOMER}</strong></p>
+            <div class="panel-body">
+                <div id="registerbox">
+                    {form type=form name=create_account id=create_account action='dynamic' link_params='page_action=login' method=post conn=SSL role="form"}
+                        {form type=hidden name=action value=add_customer}
+                        {form type=hidden name=page value='customer'}
+                        {form type=hidden name=form value='register'}
+                        {form type=hidden name='default_address[address_class]' value=default}
+
+                        <fieldset>
+                        <legend>{txt key=BUTTON_REGISTER}</legend>
+
+                        <div class="row">
+                            <!--div class="col col-md-3 bold">{txt key=TEXT_ACCOUNT}{if $smarty.const._STORE_ALLOW_GUEST_ORDERS != 'true'}<span class="required">*</span>{/if}</div-->
+                            <div class="col col-md-12">
+
+                                <div class="input-group">
+                                    <!-- remember: wenn checkbox.name=guest-account nicht angehakt, wird der input nicht gesendet, also haben wir in customer niemals guest-account!=register, also auch niemals guest-account=guest -->
+                                    <input type="checkbox" value="register" id="accountType" name="guest-account" class="guest-account checkbox-inline"style="vertical-align:text-top" {$account_type_checked}/>
+                                    <label for="accountType" class="checkbox-inline" style="display:table-cell">{txt key=TEXT_I_WANT_TO_REGISTER}{if $smarty.const._STORE_ALLOW_GUEST_ORDERS != 'true'}*{/if}</label>
+                                </div>
+
+                                <p class="visible-register-account help-block" style="font-size:90%">
+                                    {if $smarty.const._STORE_ALLOW_GUEST_ORDERS != 'true'}{txt key=ERROR_ACCEPT_ACOUNT_CREATION}<br />{/if}
+                                    {txt key=TEXT_TXT_NEW_CUSTOMER}
+                                </p>
+                                {if $smarty.const._STORE_ALLOW_GUEST_ORDERS == 'true'}
+                                <p class="visible-register-guest help-block" style="font-size:90%">{txt key=TEXT_TXT_GUEST}{if $smarty.const._STORE_ACCOUNT_COMPANY_VAT_CHECK == 'true'}&nbsp;{txt key=TEXT_NO_VAT_ALLOWED_WITH_GUEST}{/if}</p>
+                                {/if}
+                            </div>
+                        </div>
+
+                        <div class="form-group row visible-register-account">
+                            <label for="cust_info_customers_password" class="col col-md-3">{txt key=TEXT_PASSWORD_ENTRY}*</label>
+                            <div class="col col-md-9">
+                                {form id=cust_info_customers_password type=password name='cust_info[customers_password]' value=$cust_info.customers_password}
+                            </div>
+                        </div>
+                        <div class="form-group row visible-register-account">
+                            <label for="cust_info_customers_password_confirm" class="col col-md-3">{txt key=TEXT_PASSWORD_ENTRY_CONFIRM}*</label>
+                            <div class="col col-md-9">
+                                {form id=cust_info_customers_password_confirm type=password name='cust_info[customers_password_confirm]' value=$cust_info.customers_password_confirm}
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <p class="required">{txt key=TEXT_MUST}</p>
+                    </fieldset>
+
+                        <fieldset>
+                            <legend>{txt key=TEXT_PERSONAL}</legend>
+                            {if $show_gender eq 1}
+                                <div class="form-group row">
+                                    <label for="default_address_customers_gender" class="col col-md-3">{txt key=TEXT_GENDER}*</label>
+                                    <div class="col col-md-9">
+                                        {form params='id="default_address_customers_gender"' type=select name='default_address[customers_gender]' value=$gender_data default=$default_address.customers_gender class="form-control"}
+                                    </div>
+                                </div>
+                            {/if}
+
+
+                            {if $show_title eq 1}
+                            <!-- variante 1 mit Freifeld für Eingabe eines beliebigen Wertes -->
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    $('.dropdown-menu a').click(function() {
+                                        console.log($(this).attr('data-value'));
+                                        $(this).closest('.dropdown').find('input#default_address_customers_title')
+                                            .val($(this).attr('data-value'));
+                                        $(this).closest('.dropdown-menu').dropdown('toggle')
+                                        return false;
+                                    });
+                                });
+                            </script>
+
+                            {$title_dd = false}
+                            {if is_array($title_data) && count($title_data)>0}{$title_dd = true}{/if}
+
+                            <div class="form-group row">
+                                <label for="default_address_customers_title" class="col col-md-3">{txt key=TEXT_CUSTOMERS_TITLE}{if $title_required}*{/if}</label>
+                                <div class="col-md-9">
+                                    <div class="{if $title_dd}input-group dropdown{/if}">
+                                        <input type="text" name="default_address[customers_title]" id="default_address_customers_title" class="form-control default_address_customers_title dropdown-toggle" value="{$default_address.customers_title}">
+                                        {if $title_dd}
+                                        <ul class="dropdown-menu pull-right" style="width:100%">
+                                            {foreach item=title from=$title_data}
+                                            <li><a href="#" data-value="{$title.text}">{$title.text}</a></li>
+                                            {/foreach}
+                                        </ul>
+                                        <span role="button" class="input-group-addon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></span>
+                                        {/if}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- variante 2 nur die im Backend eingestellten Werte können verwendet werden -->
+                            {if $title_dd}
+                            <!--div class="form-group row">
+                                <label for="default_address_customers_title" class="col col-md-3">{txt key=TEXT_CUSTOMERS_TITLE}{if $title_required}*{/if}</label>
+                                <div class="col col-md-9">
+                                    {form params='id="default_address_customers_title"' type=select name='default_address[customers_title]' value=$title_data default=$default_address.customers_title class="form-control"}
+                                </div>
+                            </div-->
+                            {/if}
+
+                            {/if}<!-- show_title -->
+
+                            <div class="form-group row">
+                                <label for="default_address_customers_firstname" class="col col-md-3">{txt key=TEXT_FIRSTNAME}*</label>
+                                <div class="col col-md-9">
+                                    {form id=default_address_customers_firstname type=text name='default_address[customers_firstname]' value=$default_address.customers_firstname}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="default_address_customers_lastname" class="col col-md-3">{txt key=TEXT_LASTNAME}*</label>
+                                <div class="col col-md-9">
+                                    {form id=default_address_customers_lastname type=text name='default_address[customers_lastname]' value=$default_address.customers_lastname}
+                                </div>
+                            </div>
+                            {if $show_birthdate eq 1}
+                                <div class="form-group row">
+                                    <label for="default_address_customers_dob" class="col col-md-3">{txt key=TEXT_BIRTHDATE}*</label>
+                                    <div class="col col-md-9">
+                                        {form id=default_address_customers_dob type=text name='default_address[customers_dob]' value=$default_address.customers_dob}
+                                    </div>
+                                </div>
+                            {/if}
+                            <div class="form-group row">
+                                <label for="cust_info_customers_email_address" class="col col-md-3">{txt key=TEXT_EMAIL}*</label>
+                                <div class="col col-md-9">
+                                    {form id=cust_info_customers_email_address type=email name='cust_info[customers_email_address]' value=$cust_info.customers_email_address}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="cust_info_customers_email_address_confirm" class="col col-md-3">{txt key=TEXT_EMAIL_CONFIRM}*</label>
+                                <div class="col col-md-9">
+                                    {form id=cust_info_customers_email_address_confirm type=email name='cust_info[customers_email_address_confirm]' value=$cust_info.customers_email_address_confirm}
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        {if $show_company eq 1}
+                            <fieldset>
+                                <legend>{txt key=TEXT_COMPANY}</legend>
+                                <div class="form-group row">
+                                    <label for="default_address_customers_company" class="col col-md-3">{txt key=TEXT_COMPANY_NAME}{if _STORE_COMPANY_MIN_LENGTH > 0}*{/if}</label>
+                                    <div class="col col-md-9">
+                                        {form id=default_address_customers_company type=text name='default_address[customers_company]' value=$default_address.customers_company}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="default_address_customers_company_2" class="col col-md-3">{txt key=TEXT_COMPANY_NAME_2}</label>
+                                    <div class="col col-md-9">
+                                        {form id=default_address_customers_company_2 type=text name='default_address[customers_company_2]' value=$default_address.customers_company_2}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="default_address_customers_company_3" class="col col-md-3">{txt key=TEXT_COMPANY_NAME_3}</label>
+                                    <div class="col col-md-9">
+                                        {form id=default_address_customers_company_3 type=text name='default_address[customers_company_3]' value=$default_address.customers_company_3}
+                                    </div>
+                                </div>
+                                {if $show_vat eq 1}
+                                    <div class="form-group row">
+                                        <label for="cust_info_customers_vat_id" class="col col-md-3">{txt key=TEXT_VAT_ID}</label>
+                                        <div class="col col-md-9">
+                                            {form id=cust_info_customers_vat_id type=text name='cust_info[customers_vat_id]' value=$cust_info.customers_vat_id class='disabled-register-guest'}
+                                            {if $smarty.const._STORE_ALLOW_GUEST_ORDERS == 'true'}
+                                            <p class="visible-register-guest small help-block">{txt key=TEXT_NO_VAT_ALLOWED_WITH_GUEST}</p>
+                                            {/if}
+                                        </div>
+                                    </div>
+                                {/if}
+                            </fieldset>
+                        {/if}
+                        <fieldset>
+                            <legend>{txt key=TEXT_ADDRESS}</legend>
+                            {hook key=login_register_address_top}
+                            <div class="form-group row">
+                                <label for="default_address_customers_street_address" class="col col-md-3">{txt key=TEXT_STREET}*</label>
+                                <div class="col col-md-9">
+                                    {form id=default_address_customers_street_address type=text name='default_address[customers_street_address]' value=$default_address.customers_street_address}
+                                </div>
+                            </div>
+                        {if $show_address_addition eq 1 || true}
+                            <div class="form-group row">
+                                <label for="customers_address_addition" class="col col-md-3">{txt key=TEXT_ADDRESS_ADDITION}</label>
+                                <div class="col col-md-9">
+                                    {form id=default_customers_address_addition type=text name='default_address[customers_address_addition]' value=$default_address.customers_address_addition}
+                                </div>
+                            </div>
+                        {/if}
+                            {if $show_suburb eq 1}
+                                <div class="form-group row">
+                                    <label for="default_address_customers_suburb" class="col col-md-3">{txt key=TEXT_SUBURB}</label>
+                                    <div class="col col-md-9">
+                                        {form id=default_address_customers_suburb type=text name='default_address[customers_suburb]' value=$default_address.customers_suburb}
+                                    </div>
+                                </div>
+                            {/if}
+                            <div class="form-group row">
+                                <label for="default_address_customers_postcode" class="col col-md-3">{txt key=TEXT_CODE}*</label>
+                                <div class="col col-md-9">
+                                    {form id=default_address_customers_postcode type=text name='default_address[customers_postcode]' value=$default_address.customers_postcode}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="default_address_customers_city" class="col col-md-3">{txt key=TEXT_CITY}*</label>
+                                <div class="col col-md-9">
+                                    {form id=default_address_customers_city type=text name='default_address[customers_city]' value=$default_address.customers_city}
+                                </div>
+                            </div>
+                            <div id="countries" class="form-group row">
+                                <label for="default_address_customers_country_code" class="col col-md-3">{txt key=TEXT_COUNTRY}*</label>
+                                <div class="col col-md-9">
+                                    {if isset($default_address.customers_country_code)}
+                                        {form params='id="default_address_customers_country_code"' class="form-control" type=select name='default_address[customers_country_code]' value=$country_data default=$default_address.customers_country_code}
+                                    {else}
+                                        {form params='id="default_address_customers_country_code"' class="form-control" type=select name='default_address[customers_country_code]' value=$country_data default=$default_country}
+                                    {/if}
+                                </div>
+                            </div>
+                            {if $show_federal_states eq 1}
+                                <div id="federals" class="form-group row">
+
+                                    {foreach item='federal_states' from=$country_data}
+                                    {if $federal_states.federal_states}
+                                    <div class="form-group federals-states {$federal_states.id}" style="display:none">
+                                        <label for="default_address_customers_federal_state_code" class="col col-md-3">{txt key=TEXT_FEDERAL_STATES}*</label>
+                                        <div class="col col-md-9">
+                                            {form params='id="default_address_customers_federal_state_code"' class="form-control" type=select name='default_address[customers_federal_state_code]' value=$federal_states.federal_states default=$default_address.customers_federal_state_code}
+                                        </div>
+                                    </div>
+                                    {/if}
+                                    {/foreach}
+
+                                </div>
+                            {/if}
+
+                            {hook key=login_register_address_bottom}
+                        </fieldset>
+
+                        <fieldset class="inputs-with-prefix">
+                            <legend>{txt key=TEXT_CONTACT}</legend>
+                            <div class="form-group row">
+                                <label for="default_address_customers_phone" class="col col-md-3">{txt key=TEXT_PHONE}{if _STORE_TELEPHONE_MIN_LENGTH > 0}*{/if}</label>
+                                <div class="col col-md-9">
+                                    {if _STORE_SHOW_PHONE_PREFIX eq 'true'}
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-5 col-md-4">
+                                                {if isset($default_address.customers_phone_prefix)}
+                                                    {form params='id="default_address_customers_phone_prefix"' type=select name='default_address[customers_phone_prefix]' value=$phone_prefix default=$default_address.customers_phone_prefix}
+                                                {else}
+                                                    {form params='id="default_address_customers_phone_prefix"' type=select name='default_address[customers_phone_prefix]' value=$phone_prefix default=$smarty.const._STORE_PHONE_PREFIX}
+                                                {/if}
+                                            </div>
+                                            <div class="col-xs-12 col-sm-7 col-md-8">
+                                                {form id=default_address_customers_phone type=text name='default_address[customers_phone]' value=$default_address.customers_phone}
+                                            </div>
+                                        </div>
+                                    {else}
+                                        {form id=default_address_customers_phone type=text name='default_address[customers_phone]' value=$default_address.customers_phone}
+                                    {/if}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="default_address_customers_mobile_phone" class="col col-md-3">{txt key=TEXT_MOBILE_PHONE}{if _STORE_MOBILE_PHONE_MIN_LENGTH > 0}*{/if}</label>
+                                <div class="col col-md-9">
+                                    {if _STORE_SHOW_PHONE_PREFIX eq 'true'}
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-5 col-md-4">
+                                                {if isset($default_address.customers_mobile_phone_prefix)}
+                                                    {form params='id="default_address_customers_mobile_phone_prefix"' type=select name='default_address[customers_mobile_phone_prefix]' value=$phone_prefix default=$default_address.customers_mobile_phone_prefix}
+                                                {else}
+                                                    {form params='id="default_address_customers_mobile_phone_prefix"' type=select name='default_address[customers_mobile_phone_prefix]' value=$phone_prefix default=$smarty.const._STORE_PHONE_PREFIX}
+                                                {/if}
+                                            </div>
+                                            <div class="col-xs-12 col-sm-7 col-md-8">
+                                                {form id=default_address_customers_mobile_phone type=text name='default_address[customers_mobile_phone]' value=$default_address.customers_mobile_phone}
+                                            </div>
+                                        </div>
+                                    {else}
+                                        {form id=default_address_customers_mobile_phone type=text name='default_address[customers_mobile_phone]' value=$default_address.customers_mobile_phone}
+                                    {/if}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="default_address_customers_fax" class="col col-md-3">{txt key=TEXT_FAX}</label>
+                                <div class="col col-md-9">
+                                    {if _STORE_SHOW_PHONE_PREFIX eq 'true'}
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-5 col-md-4">
+                                                {if isset($default_address.customers_fax_prefix)}
+                                                    {form params='id="default_address_customers_fax_prefix"' type=select name='default_address[customers_fax_prefix]' value=$phone_prefix default=$default_address.customers_fax_prefix}
+                                                {else}
+                                                    {form params='id="default_address_customers_fax_prefix"' type=select name='default_address[customers_fax_prefix]' value=$phone_prefix default=$smarty.const._STORE_PHONE_PREFIX}
+                                                {/if}
+                                            </div>
+                                            <div class="col-xs-12 col-sm-7 col-md-8">
+                                                {form id=default_address_customers_fax type=text name='default_address[customers_fax]' value=$default_address.customers_fax}
+                                            </div>
+                                        </div>
+                                    {else}
+                                        {form id=default_address_customers_fax type=text name='default_address[customers_fax]' value=$default_address.customers_fax}
+                                    {/if}
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div class="form-submit pull-right text-right">
+                            {if $show_privacy eq 1}
+                                {content cont_id=2 is_id='false'}
+                                {if $show_privacy_type eq 1}
+                                    <div class="checkbox">
+                                        <label>
+                                            {form type=checkbox name=privacy value=1}
+                                            {txt key=TEXT_PRIVACY_TEXT_INFO_1} <a href="{$privacy_link}" target="_blank">{txt key=TEXT_PRIVACY_TEXT}</a> {txt key=TEXT_PRIVACY_TEXT_INFO_2}{txt key=TEXT_DOT}
+                                        </label>
+                                    </div>
+                                {else}
+                                    <p>{txt key=TEXT_PRIVACY_TEXT_INFO} <a href="{$privacy_link}" target="_blank">{txt key=TEXT_PRIVACY_TEXT}</a>{txt key=TEXT_DOT}</p>
+                                {/if}
+                            {/if}
+                            {hook key=login_create_account_tpl}
+                            <p>
+                                <a href="{link page='customer' paction='login' conn=SSL}" class="btn btn-default">
+                                    {txt key=BUTTON_BACK}
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    {txt key=BUTTON_NEXT}
+                                </button>
+                            </p>
+                        </div>
+
+                        <div class="clearfix visible-xs"></div>
+
+                        <p class="required pull-right-xs">{txt key=TEXT_MUST}</p>
+                        <div class="clearfix"></div>
+
+                    {form type=formend}
+
+                        <script>
+                            const _STORE_ALLOW_GUEST_ORDERS = {if $smarty.const._STORE_ALLOW_GUEST_ORDERS == 'true'}true{else}false{/if};
+                        </script>
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded",function(event)
+                        {
+                            const accountTypeChangeEvent = new Event('change');
+                            const accountTypeInput = document.getElementById('accountType');
+                            accountTypeInput.addEventListener('change', (e) =>
+                            {
+                                let display_register = 'none';
+                                let display_guest = 'block';
+
+                                if (e.target.checked)
+                                {
+                                    display_register = 'block';
+                                    display_guest = 'none';
+
+                                    // egal, ob _STORE_ALLOW_GUEST_ORDERS input.guest-account bekommt value 'register'
+                                    this.value = "register";
+                                    // evtl für gast disabled'te input wieder aktivieren
+                                    document.querySelectorAll('input.disabled-register-guest').forEach((el) => { el.removeAttribute("disabled"); });
+                                } else {
+                                    // die nicht gecheckte checkbox wird nicht gesendet, pro forma aber auf value 'guest' gesetzt
+                                    this.value = "guest";
+                                    // für gast nicht erlaubte inputs leeren und deaktiveren
+                                    // aber nur wenn gast erlaubt
+                                    if(_STORE_ALLOW_GUEST_ORDERS)
+                                        document.querySelectorAll('input.disabled-register-guest').forEach((el) => {
+                                            el.value = "";
+                                            el.setAttribute('disabled', 'true');
+                                        });
+                                }
+                                // ein/ausblenden von gast/register spezifischen texten
+                                document.querySelectorAll('.visible-register-account').forEach((el) => { el.style.display = display_register; });
+                                document.querySelectorAll('.visible-register-guest').forEach((el) => { el.style.display = display_guest; });
+                            });
+                            accountTypeInput.dispatchEvent(accountTypeChangeEvent);
+
+
+
+                            $('#countries').change(function() {
+                                var selected_country = $('#countries option:selected').val();
+                                $('.federals-states').css( { 'display':'none' } );
+                                if($('.'+selected_country).length != 0) {
+                                    $('.federals-states.'+selected_country).css({ 'display':'block' });
+                                    var selectedFederalStateValue  = $('.federals-states.'+selected_country + ' select option[selected=selected]').val();
+                                    if (typeof selectedFederalStateValue == 'undefined') selectedFederalStateValue = 1;
+                                    $('.federals-states.'+selected_country + ' select').val( selectedFederalStateValue );
+                                }
+                                else {
+                                    $('.federals-states select').val('');
+                                }
+                            });
+                            //update bootstrap-select
+                            $(".federals-states select, #countries select").attr('data-live-search', 'true').selectpicker('render');
+                            // init federal states
+                            $('#countries').trigger('change');
+
+                        });
+                        </script>
+
+
+                        <script>
+
+                        document.addEventListener("DOMContentLoaded",function(event)
+                        {
+                            var dobClicked = false;
+                            var dobPreselect = new Date({$dobPreselect});
+
+                            var dobInput = $('#default_address_customers_dob');
+                            if (dobInput.length) {
+                                dobInput.datetimepicker({
+                                    minDate: new Date({$min_date}),
+                                    maxDate:  new Date({$max_date}),
+                                    useCurrent: false,
+                                    format: '{$smarty.const._STORE_ACCOUNT_DOB_FORMAT|upper}',
+                                    locale: '{if $language=="de"}de{else}en{/if}'
+                                }).on('dp.show', function()
+                                {
+                                    if (!dobClicked && dobPreselect!=false){
+                                        dobInput.data("DateTimePicker").date( dobPreselect );// set
+                                        {if $is_new}dobInput.data("DateTimePicker").date( null ); // and unset to unselect and force user to click{/if}
+                                        dobClicked = true;
+                                    }
+                                });
+                            }
+                        });
+                        </script>
+
+                </div><!-- #registerbox -->
+            </div>
+        </div>
+
+        {hook key=login_register_bottom}
+	</div><!-- .col -->
+    {/if}
+
+</div><!-- .row -->
+
+{hook key=login_bottom}

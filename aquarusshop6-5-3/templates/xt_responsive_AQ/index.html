@@ -1,0 +1,247 @@
+{if 
+    $page == 'index' OR
+    $page == 'product' OR
+    $page == 'cart' OR
+    $smarty.get.page_action == 'login' OR
+    $smarty.get.page_action == 'order_info'
+}
+    {assign var="show_index_boxes" value="false"}
+{/if}
+{hook key=index_top}
+<!-- Respond.js IE8 support of media queries -->
+<!--[if lt IE 9]>
+<script type="text/javascript" src="{$smarty.const._SRV_WEB_TEMPLATES}{$smarty.const._STORE_TEMPLATE}/components/Respond/dest/respond.min.js"></script>
+<![endif]-->
+
+
+<div id="site-wrap" class="{$page}-wrap{if $page != 'index'} subpage-wrap{/if}{if $smarty.get.page_action} {$smarty.get.page_action}-action-wrap{/if}">
+    {if !isset($smarty.get.viewport) || $smarty.get.viewport != 'modal'}
+
+        <header id="header">
+            <div class="meta-navigation">
+                <div class="container clearfix">
+                    <ul class="meta list-inline pull-left hidden-xs pull-left">
+                        {hook key=meta_nav_left_first}
+                        {box name=xt_country_preselect}
+                        <li>{box name=language}</li>
+                        <li>{box name=currency}</li>
+                        {hook key=meta_nav_left_last}
+                    </ul>
+                    <ul class="user list-inline pull-right">
+                        {hook key=meta_nav_right_first}
+                        <li><a href="{link page='checkout' paction='shipping' conn=SSL}">{txt key=TEXT_CHECKOUT}</a></li>
+                        {if $account == true}
+                            <li><a href="{link page='customer' conn=SSL}">{txt key='TEXT_ACCOUNT'}</a></li>
+                            {if $registered_customer}
+                                <li><a href="{link page='customer' paction='logoff' conn=SSL}">{txt key=TEXT_LOGOFF} <span class="customer-name hidden-xs">({if $smarty.session.customer->customer_default_address.customers_title}{$smarty.session.customer->customer_default_address.customers_title} {/if}{$smarty.session.customer->customer_default_address.customers_firstname[0]}. {$smarty.session.customer->customer_default_address.customers_lastname})</span></a></li>
+                            {else}
+                                <li><a href="{link page='customer' paction='login' conn=SSL}" data-toggle="modal" data-target="#loginModal" data-remote="false">{txt key=TEXT_LOGIN}</a></li>
+                            {/if}
+                        {elseif $guest_account == true}
+                            {if $amazon_customer}
+                             <li><a href="{link page='customer' paction='logoff' conn=SSL}">{txt key=TEXT_LOGOFF}</a></li>
+                            {else}
+                            <li><a href="{link page='customer' paction='logoff' conn=SSL}">{txt key=TEXT_LOGOFF_GUEST}</a></li>
+                            {/if}
+                        {/if}
+                        {hook key=meta_nav_right_last}
+                    </ul>
+                </div>
+            </div><!-- .meta-navigation -->
+            <div class="header-top">
+                <div class="container">
+                    <div class="row text-center-xs">
+                        <div class="col col-sm-4 col-md-5 col-logo">
+                            <div class="inner branding">
+                                <p class="logo">
+                                    <a href="{link page='index'}" class="text-muted" title="{$smarty.const._STORE_NAME}">
+                                        <img class="img-responsive" src="media/logo/{$smarty.const._STORE_LOGO}" alt="{$smarty.const._STORE_NAME}" />
+                                    </a>
+                                </p>
+                                {*if $smarty.const._STORE_STORE_CLAIM|trim != ''}
+                                    <p class="slogan text-muted">{$smarty.const._STORE_STORE_CLAIM}</p>
+                                {/if*}
+                            </div>
+                        </div>
+                        <div class="col col-sm-4 hidden-xs">
+                            <div class="inner top-search hidden-sm">
+                                {box name=search htmlonly=1}
+                            </div>
+                        </div>
+                        <div class="col col-sm-4 col-md-3 hidden-xs">
+                            <div class="inner top-cart text-right">
+                                {box name=cart}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- .header-top -->
+            <div class="main-navigation navbar navbar-default" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header .main-navigation .navbar-collapse">
+                            <span class="sr-only">Navigation</span>
+                            <span class="burger pull-left">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </span>
+                            <span class="caret pull-left"></span>
+                        </button>
+                        <div class="navbar-search visible-float-breakpoint">
+                            {box name=search htmlonly=1}
+                        </div>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        {box_cache name=categories_recursive position=navbar mega=true cache_id=navbar}
+                    </div>
+                </div>
+            </div><!-- .main-navigation -->
+        </header><!-- #header -->
+
+        {if $page != 'index' && $page != '404' && $page != 'checkout'}
+            <div class="breadcrumb-container">
+                <div class="container">
+            {include file="xtCore/pages/navigation/breadcrumb.html" type="tpl_include"}
+                </div>
+            </div>
+        {/if}
+
+        <noscript>
+            <div class="container">
+                <div class="alert alert-danger text-center">
+                    <p><i class="fa fa-3x fa-exclamation-triangle"></i></p>
+                    {txt key=TEXT_JS_DISABLED_WARNING}
+                </div>
+            </div>
+        </noscript>
+
+		<div id="navContainer" class="container">
+			<ul class="navbar-mega hidden hidden-float-breakpoint with-backdrop-shadow"></ul>
+		</div>
+
+		{hook key=pre_content_container}
+
+		{if !isset($disable_content_container)}
+        <div id="container" class="container">
+            {$smarty.session.ppc_express_checkout}
+            {hook key=container_top}
+            <div id="content" class="row">
+                <div class="col primary{if $show_index_boxes == 'true'} col-sm-8 col-sm-push-4 col-md-9 col-md-push-3{else} col-sm-12{/if}">
+                    {$content}
+                </div>
+                {if $show_index_boxes == 'true'}
+                    <div class="col secondary col-sm-4 col-sm-pull-8 col-md-3 col-md-pull-9">
+                        {hook key=index_boxes_top}
+                        {box_cache name=categories_recursive position=sidebar cache_id=sidebar}
+                        {box name=xt_blog type=user box_type=categories type=user}
+						{box name=xt_blog box_type=featured_messages limit=5 type=user}
+                        {hook key=index_boxes_middle}
+                        <div class="sidebar-products">
+                            {hook key=sidebar_products_top}
+                            {box name=xt_live_shopping type=user limit=2}
+                            {box name=xt_last_viewed_products type=user}
+                            {if $page != 'xt_bestseller_products'}{box name=xt_bestseller_products type=user}{/if}
+                            {if $page != 'xt_special_products'}{box name=xt_special_products type=user order_by='p.products_id'}{/if}
+                            {if $page != 'xt_new_products'}{box name=xt_new_products type=user order_by='p.last_modified DESC'}{/if}
+                            {if $page != 'xt_upcoming_products'}{box name=xt_upcoming_products type=user order_by='p.date_available'}{/if}
+                            {hook key=sidebar_products_bottom}
+                        </div>
+                        {hook key=index_boxes_bottom}
+                    </div>
+                {/if}
+            </div><!-- #content -->
+            
+            {*box name=manufacturers_slider order_by='m.manufacturers_name'*}
+            
+            {hook key=container_bottom}
+        </div><!-- #container -->
+		{/if}
+
+        {hook key=after_content_container}
+
+        <div class="clearfix"></div>
+
+        <footer id="footer">
+            <div class="container">
+                <div id="footer-cols">
+                    <div class="row">
+                        <div class="col col-sm-4">
+                            {box_cache name=footer_contact htmlonly=1}
+                        </div>
+                        <div class="col col-sm-4">
+                            {box_cache name=footer_left htmlonly=1}
+                        </div>
+                        <div class="col col-sm-4">
+                            {box_cache name=footer_right htmlonly=1}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-sm-4">
+                            {box_cache name=manufacturers order_by='m.manufacturers_name'}
+                        </div>
+                        <div class="col col-sm-4">
+                            {box name=language}
+                            {box name=currency}
+                        </div>
+                        <div class="col col-sm-4">
+                            {box_cache name=payment_logos}
+                            {box name=trusted_shops_ratings}
+                            {box name=trusted_shops_seal}
+                            {box name=trusted_shops_video}
+                        </div>
+                    </div>
+                </div>
+                <div id="footer-meta" class="text-center text-muted">
+                    [<copyright>]
+                    {hook key=index_footer_tpl}
+                    {box name=trusted_shops_rich_snippet}
+                    <!--img src="cronjob.php" width="1" height="1" alt="" /-->
+                    {cronjob type="ajax"}
+                </div>
+            </div>
+        </footer><!-- #footer -->
+
+        <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <p class="h3 modal-title">{txt key=TEXT_LOGIN}</p>
+                    </div>
+                    <div class="modal-body">
+                        {box name=loginbox}
+                    </div>
+                </div>
+            </div>
+        </div><!-- #loginModal -->
+        
+        <a id="back-to-top" class="hidden hidden-xs" href="{$smarty.server.REQUEST_URI}#top" rel="nofollow">
+            <i class="fa fa-3x fa-arrow-circle-o-up"></i>
+            <span class="sr-only">Back to Top</span>
+        </a>
+
+        {if $page != 'cart' && $page != 'checkout'}
+            <div class="bottom-cart">
+                {box name=cart}
+            </div>
+        {/if}
+
+    {else}
+        {$content}
+    {/if}
+</div><!-- #site-wrap -->
+<div class="clearfix"></div>
+{if $smarty.session.cartChanged}
+{literal}
+<script type="application/javascript">
+    document.addEventListener("DOMContentLoaded",function(event){
+        showCartChanged();
+    });
+</script>
+{/literal}
+{/if}
+

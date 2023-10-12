@@ -1,0 +1,19 @@
+INSERT INTO `##_content_elements` VALUES (1, 'en', 'Shipping & Returns', 'Shipping & Returns', 'Put here your Shipping & Returns information', '', '','1');
+INSERT INTO `##_content_elements` VALUES (2, 'en', 'Privacy Notice', 'Privacy Notice', 'Put here your Privacy Notice information', '', '','1');
+INSERT INTO `##_content_elements` VALUES (3, 'en', 'Conditions of Use', 'Conditions of Use', 'Conditions of Use<br />Put here your Conditions of Use information', '', '','1');
+INSERT INTO `##_content_elements` VALUES (4, 'en', 'Imprint', 'Imprint', 'Put here your Company information', '', '','1');
+INSERT INTO `##_content_elements` VALUES (5, 'en', 'Index', 'Welcome', 'This is a standard installation of the xt:Commerce 6. All shown products are for demonstration purpose only. While ordering product at this shop, they will neither be charged nor shipped. All given informations to the various products are purely fictional so no personal or legal claim is possible.<br /><br />You are interested to use this software, this shopping cart is based on, feel free to visit<a href="https://www.xt-commerce.com" title="www.xt-commerce.com" rel="noreferrer" target="_blank">www.xt-commerce.com</a>.', '', '','1');
+INSERT INTO `##_content_elements` VALUES (6, 'en', 'Contact', 'Contact', 'Please enter your contact informations', '', '','1');
+INSERT INTO `##_content_elements` VALUES (7, 'en', 'Right of rescission', 'Right of rescission', 'Your informations on the right of rescission', '', '','1');
+INSERT INTO `##_content_elements` VALUES (8, 'en', 'About Us', 'About Us', 'Your informations about your shop', '', '','1');
+INSERT INTO `##_content_elements` VALUES (10, 'en', 'Payment', 'Payment', '<p>List here your payment methods.</p>', '', '','1');
+
+INSERT INTO `##_seo_url` (`url_md5`, `url_text`, `language_code`, `link_type`, `link_id`, `meta_title`, `meta_description`, `meta_keywords`, `store_id`) VALUES('74fd45c40f25bb6561ea727aa9dfd09c', 'en/shipping-returns', 'en', 3, 1, '', '', '','1');
+INSERT INTO `##_seo_url` (`url_md5`, `url_text`, `language_code`, `link_type`, `link_id`, `meta_title`, `meta_description`, `meta_keywords`, `store_id`) VALUES('ea233d944eef958970779443eaffa7d7', 'en/privacy-notice', 'en', 3, 2, '', '', '','1');
+INSERT INTO `##_seo_url` (`url_md5`, `url_text`, `language_code`, `link_type`, `link_id`, `meta_title`, `meta_description`, `meta_keywords`, `store_id`) VALUES('151d229694fe6a155de659e87abc01dc', 'en/conditions-of-use', 'en', 3, 3, '', '', '','1');
+INSERT INTO `##_seo_url` (`url_md5`, `url_text`, `language_code`, `link_type`, `link_id`, `meta_title`, `meta_description`, `meta_keywords`, `store_id`) VALUES('1380862d4e29f91372eece01294c3d2c', 'en/imprint', 'en', 3, 4, '', '', '','1');
+INSERT INTO `##_seo_url` (`url_md5`, `url_text`, `language_code`, `link_type`, `link_id`, `meta_title`, `meta_description`, `meta_keywords`, `store_id`) VALUES('5419495b82466333350846abeab1e916', 'en/index', 'en', 3, 5, '', '', '','1');
+INSERT INTO `##_seo_url` (`url_md5`, `url_text`, `language_code`, `link_type`, `link_id`, `meta_title`, `meta_description`, `meta_keywords`, `store_id`) VALUES('5a8ea6f92baa6194d7e0f4c027cc34f2', 'en/contact', 'en', 3, 6, '', '', '','1');
+INSERT INTO `##_seo_url` (`url_md5`, `url_text`, `language_code`, `link_type`, `link_id`, `meta_title`, `meta_description`, `meta_keywords`, `store_id`) VALUES('c484320a8c4a409e9f6e403709703e43', 'en/right-of-rescission', 'en', 3, 7, '', '', '','1');
+INSERT INTO `##_seo_url` (`url_md5`, `url_text`, `language_code`, `link_type`, `link_id`, `meta_title`, `meta_description`, `meta_keywords`, `store_id`) VALUES('dea4749001d6c2ee1a49295dadc36ab8', 'en/about-us', 'en', 3, 8, '', '', '','1');
+INSERT INTO `##_seo_url` (`url_md5`, `url_text`, `language_code`, `link_type`, `link_id`, `meta_title`, `meta_description`, `meta_keywords`, `store_id`) VALUES('9f4eb78f1a072af801a08cb3fcd64466', 'en/payment', 'en', 3, 10, '', '', '','1');

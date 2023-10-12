@@ -1,0 +1,37 @@
+<style>
+    @media screen and (max-width: 400px) {
+        .paypal_button_container {
+            width: 100%;
+        }
+    }
+    @media screen and (min-width: 400px) {
+        .paypal_button_container {
+            width: 600px;
+        }
+    }
+</style>
+
+{include file="./paypal-checkout-script-tag.tpl.html"}
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function ()
+{
+    try {
+        try {
+            ppcFix_button_changed_html(ppc_button_selector + '_{$requested_position}');
+        }
+        catch(e){
+            console.log('ppcFix_button_changed_html failed', e);
+        }
+        ppcRemoveSubmitButton();
+        enablePaypalButton('{$foundingSource}','{$requested_position}');
+    }
+    catch(e)
+    {
+        console.log(e);
+    }
+});
+</script>
+
+{include file="./paypal-checkout-wait-modal.tpl.html"}

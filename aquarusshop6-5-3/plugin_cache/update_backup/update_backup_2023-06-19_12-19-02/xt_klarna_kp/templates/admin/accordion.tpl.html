@@ -1,0 +1,8 @@
+
+<div class="accordion">
+    <h3 style="padding:1px 1px 1px 2em">{if $type|is_int}{$type+1}{else}{$type}{/if} {if $c}{$c}&nbsp; {/if}{if $name}- &nbsp;<span style="font-weight: bold">{$name}</span>{/if}</h3>
+    <div>
+        {if $type=='captures'}<!--another way to display some extra-->{/if}
+        {include file="./data_table.tpl.html" data=$v}
+    </div>
+</div>

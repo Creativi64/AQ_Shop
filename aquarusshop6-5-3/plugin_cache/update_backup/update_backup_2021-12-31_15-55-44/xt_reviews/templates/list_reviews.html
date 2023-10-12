@@ -1,0 +1,64 @@
+<div id="product" class="detail">
+    <h1>{$products_name} <small>{txt key=TEXT_XT_REVIEWS_HEADING_REVIEWS}</small></h1>
+
+    {$message}
+
+    <div class="pinfo row">
+        <div class="product-images col col-sm-4">
+            <p><a href="{$products_link}" class="btn btn-default" title="{txt key=BUTTON_BACK}">{txt key=BUTTON_BACK}</a></p>
+            <div class="image product-image img-thumbnail center">
+                {if !$products_image || $products_image == 'product:noimage.gif'}
+                    <a href="{$module_data.products_link}" class="vertical-helper image-link no-image">
+                        <i class="no-image-icon"></i>
+                    </a>
+                {else}
+                    <span class="vertical-helper image-link">{img img=$products_image type=m_info class="productImageBorder img-responsive" alt=$products_name|escape:"html" width=auto height=auto itemprop=image}</span>
+                {/if}
+            </div>
+            {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $products_price.formated neq ''}
+                <p class="product-price">{$products_price.formated}</p>
+            {/if}
+
+            {if $review_stars_rating}
+                <div class="product-reviews">
+                    <div class="cursor-pointer" onclick="document.location.href='{$link_reviews_list}'">
+                        <div class="reviews_rating_light" data-toggle="popover" data-placement="bottom" data-content="{if $products_rating_count}<i class='fa fa-heart-o'></i> {$products_rating_count} {txt key=TEXT_XT_REVIEWS_INFO}<br /><i class='fa fa-star-o'></i> {math equation='(x-1) / 100 * y' x=$review_stars_rating y=5 format='%.1f'} {txt key=TEXT_PAGINATION_FROM} 5{else}{txt key=TEXT_XT_REVIEWS_NO_REVIEWS}{/if}">
+                            <i></i><i></i><i></i><i></i><i></i>
+                            <div class="reviews_rating_dark" style="width:{$review_stars_rating}%">
+                                <i></i><i></i><i></i><i></i><i></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            {/if}
+            {if $products_model!=''}
+                <p class="product-model">{txt key=TEXT_PRODUCTS_MODEL} <span class="bold">{$products_model}</span></p>
+            {/if}
+        </div>
+        <div id="reviews" class="col col-sm-8">
+            {if $reviews_data}
+                <div class="row products-sort-pages bottom">
+                    <div class="col-sm-12 navigation-pages text-right">
+                        {$NAVIGATION_PAGES}
+                    </div><!-- .navigation-pages -->
+                </div><!-- .products-sort-pages -->
+                {include file="plugins/xt_reviews/templates/products_reviews_list.html"}
+                <div class="row products-sort-pages bottom">
+                    <div class="col-sm-12 navigation-pages text-right">
+                        {$NAVIGATION_PAGES}
+                    </div><!-- .navigation-pages -->
+                </div><!-- .products-sort-pages -->
+            {else}
+                <p class="text-right">
+                    <span class="btn-group">
+                        <a href="{$link_reviews_write}" class="btn btn-primary" rel="nofollow">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            {txt key=TEXT_XT_REVIEWS_WRITE}
+                        </a>
+                    </span>
+                </p>
+            {/if}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+{include file="file:$_system_root_templates/email/email_top.html"}
+<!-- // Begin Content \\ -->
+<table class="email-content" cellpadding="0" cellspacing="0" width="660" style="font: 12px Arial, Helvetica, sans-serif;color: #484848;">
+	<tr>
+		<td>
+			<p>Contact form request:</p>
+			<h2 style="font-size:12px;">{txt key="TEXT_CONTACT"}</h2>
+			<p>{txt key="TEXT_CUSTOMERS_TITLE"}: {if $customers_title}{$customers_title}{else}-{/if}</p>
+			<p>{txt key="TEXT_FIRSTNAME"}: {$customers_firstname}</p>
+			<p>{txt key="TEXT_LASTNAME"}: {$customers_lastname}</p>
+			<p>{txt key="TEXT_COMPANY"}: {$company}</p>
+			<p>{txt key="TEXT_PHONE"}: {$telefone}</p>
+			<p>{txt key="TEXT_MOBILE_PHONE"}: {$mobile_phone}</p>
+			<p>{txt key="TEXT_ORDER_NUMBER"}: {$order_no}</p>
+			<p>{txt key="TEXT_EMAIL"}: <a href="mailto:{$mail}">{$mail}</a></p>
+			<p>{txt key="TEXT_MESSAGE"}: {$message}</p>
+		</td>
+	</tr>
+</table>
+<!-- // End Content \\ -->
+{include file="file:$_system_root_templates/email/email_bottom.html"}

@@ -1,0 +1,37 @@
+{
+  "name": "jquery-breakpoint-check",
+  "description": "Check/Detect the current visibility of bootstrap 3 breakpoints.",
+  "keywords": [
+    "js",
+    "jquery",
+    "bootstrap",
+    "breakpoints",
+    "check"
+  ],
+  "authors": [
+    "Jens A. (cakebake) <cakebake.dev@gmail.com>"
+  ],
+  "homepage": "https://github.com/cakebake/jquery-breakpoint-check",
+  "license": "MIT",
+  "moduleType": "globals",
+  "main": [
+    "js/jquery-breakpoint-check.js"
+  ],
+  "ignore": [
+    "composer.json"
+  ],
+  "dependencies": {
+    "jquery": "*"
+  },
+  "version": "1.0.1",
+  "_release": "1.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.1",
+    "commit": "6e5cc86b91d174a1b36a743ca5abb9daa0f09f8b"
+  },
+  "_source": "https://github.com/cakebake/jquery-breakpoint-check.git",
+  "_target": "^1.0.1",
+  "_originalSource": "jquery-breakpoint-check",
+  "_direct": true
+}

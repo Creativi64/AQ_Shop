@@ -1,0 +1,29 @@
+{if $smarty.const._STORE_CAPTCHA == 'ReCaptcha'}
+    <div class="row">
+        <div class="form-group pull-right">
+            <div class="col-sm-9 recaptcha-wrapper"></div>
+        </div>
+    </div>
+{else}
+    <div class="form-group">
+        <label class="col-sm-3" for="captcha_code">{txt key=TEXT_CAPTCHA}*</label>
+        <div class="col-sm-9">
+            <p id="captcha-img">
+                <img id="captchaImg"
+                    src="data:image/gif;base64,R0lGODlhAQABAID/AP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+                    alt="{txt key=TEXT_CAPTCHA}"
+                    class="img-responsive img-thumbnail" />
+            </p>
+            {form id=captcha_code type=text name=captcha params='maxlength="30"'}
+        </div>
+    </div>
+{/if}
+
+{if $ignore_registered_customer}<input type="hidden" name="ignore_registered_customer" value="1" />{/if}
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		const captchaImg = document.getElementById('captchaImg');
+		if(captchaImg) {	setTimeout(function(captchaImg){ captchaImg.src = '{$captcha_link}'; }, 500, captchaImg);	}
+	});
+</script>

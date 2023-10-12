@@ -1,0 +1,14 @@
+{if $_categories}
+    <div id="box-categories" class="text-word-wrap">
+        <p class="breaking-headline">
+            {if $parent}
+                <a href="{$parent.categories_link}" title="{$parent.categories_heading_title}">{$parent.categories_name}</a>
+            {else}
+                {txt key=TEXT_BOX_TITLE_CATEGORIES}
+            {/if}
+        </p>
+        <ul class="nav nav-pills nav-stacked">
+            {$categories_list}
+        </ul>
+    </div>
+{/if}

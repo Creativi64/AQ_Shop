@@ -1,0 +1,14 @@
+Hallo {$address_data.default.customers_title} {$address_data.default.customers_firstname} {$address_data.default.customers_lastname},
+
+Soeben haben wir Ihr Kundenkonto angelegt, als Kunde haben Sie folgende Vorteile in unserem Shop.
+
+Dauerhafter Warenkorb -   Sie können Artikel in Ihren Warenkorb legen und dieser wird bis zu Ihrem nächsten Besuch gespeichert.
+Adressbuch - Sie können nun verschiedene Liefer- und Rechnungsadressen verwalten.
+Bestellhistorie - Übersicht über getätigte und aktuelle Bestellungen.
+
+Sollten Sie Fragen zu unserem Angebot haben, zögern Sie bitte nicht uns zu kontaktieren.
+
+Achtung: Diese E-Mail-Adresse wurde uns von einem Kunden bekannt gegeben. Falls Sie sich nicht angemeldet haben, antworten Sie bitte auf diese E-Mail.
+
+------------------------------------------------------------------------------------------------------------
+{$_system_footer_txt}

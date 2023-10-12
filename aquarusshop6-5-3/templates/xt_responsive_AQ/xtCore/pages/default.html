@@ -1,0 +1,33 @@
+{if $content_status == 1}
+{box name=teaser sliderid=1}
+{box name=startpage_categories}
+{page name=xt_startpage_products type=user tpl_type='product_listing'}
+    <div id="startpage-content" class="text-word-wrap">
+        <div class="row">
+            {if $content_body && $content_body|trim != ''}
+                <div class="col {if $content_body_short && $content_body_short|trim != ''}col-sm-8{else}col-sm-12{/if}">
+                    {if $content_heading && $content_heading|trim != ''}
+                        <h1 class="text-uppercase">{$content_heading}</h1>
+                    {/if}
+                    <div class="textstyles">
+                        {$content_body}
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            {/if}
+            {if $content_body_short && $content_body_short|trim != ''}
+                <div class="col {if $content_body && $content_body|trim != ''}col-sm-4{else}col-sm-12{/if}">
+                    <div class="textstyles">
+                        {$content_body_short}
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            {/if}
+        </div>
+    </div>
+{page name=xt_new_products type=user limit=7 tpl="product_listing_slider.html"}
+{page name=xt_live_shopping type=user order_by=rand limit=8 nopaging=true tpl="product_listing_slider.html"}
+{page name=xt_upcoming_products type=user limit=7 order_by='p.date_available' tpl="product_listing_slider.html" }
+{page name=xt_bestseller_products type=user limit=7 tpl="product_listing_slider.html"}
+{page name=xt_special_products type=user limit=7 tpl="product_listing_slider.html"}
+{/if}

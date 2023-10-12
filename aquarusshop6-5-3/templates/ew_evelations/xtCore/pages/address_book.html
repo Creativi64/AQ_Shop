@@ -1,0 +1,57 @@
+<div id="adress-book">
+	<h1 class="breaking-headline">{txt key=TEXT_PAGE_TITLE_ADDRESS_BOOK}</h1>
+	{$message}
+	<p>{txt key=TEXT_ADDRESS_BOOK_INFO}</p>
+
+	{foreach name=aussen item=addresses from=$addresses_data}
+	    <div class="address well clearfix">
+            {if $addresses.allow_change == true}
+                <p class="pull-right btn-group">
+                    <a class="btn btn-default" href="{link page='customer' paction=edit_address params=abID params_value=$addresses.address_book_id conn=SSL}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        {txt key=BUTTON_EDIT}
+                    </a>
+                    <a class="btn btn-danger" href="{link page='customer' paction=delete_address params=abID params_value=$addresses.address_book_id conn=SSL}">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        {txt key=BUTTON_DELETE}
+                    </a>
+                </p>
+            {/if}
+            {include file="$selected_template/includes/box_address_class.html" name=address_class htmlonly=1 type="tpl_include"}
+		    {if $addresses.customers_company}
+                <strong>{$addresses.customers_company}</strong><br />
+            {/if}
+            {if $addresses.customers_company_2}{$addresses.customers_company_2}<br />{/if}
+            {if $addresses.customers_company_3}{$addresses.customers_company_3}<br />{/if}
+            <strong>
+                {if $show_title}{$addresses.customers_title}{/if}
+                {$addresses.customers_firstname}
+                {$addresses.customers_lastname}
+            </strong>
+            <br />
+            {$addresses.customers_street_address}<br />
+            {if $addresses.customers_address_addition}
+                {$addresses.customers_address_addition}<br />
+            {/if}
+		    {if $addresses.customers_suburb}{$addresses.customers_suburb}<br />{/if}
+		    {$addresses.customers_postcode} {$addresses.customers_city}<br />
+		    {if $addresses.customers_zone}{$addresses.customers_zone}<br />{/if}
+		    {$addresses.customers_country}
+	    </div>
+	{/foreach}
+
+    <p class="pull-left text-muted">{$address_count} / {$address_max_count} {txt key=TEXT_POSSIBLE_ENTRIES}</p>
+
+	<p class="pull-right">
+        <a class="btn btn-default" href="{link page='customer' conn=SSL}">
+            {txt key=BUTTON_BACK}
+        </a>
+		{if $add_new_address eq 1}
+		    <a class="btn btn-success" href="{link page='customer' paction=edit_address conn=SSL}">
+                <span class="glyphicon glyphicon-plus"></span>
+                {txt key=BUTTON_ADD_ADDRESS}
+            </a>
+		{/if}
+	</p>
+    <div class="clearfix"></div>
+</div><!-- #adress-book -->

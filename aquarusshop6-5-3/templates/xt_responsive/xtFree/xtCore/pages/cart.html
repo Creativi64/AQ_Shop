@@ -1,0 +1,245 @@
+<div id="cart">
+
+    <div class="col col-md-{if $cart_data|is_array && $cart_data|count}6{else}12{/if}">
+    {if $show_cart_content == true}
+
+        {form type=form name=cart action='dynamic' link_params=getParams method=post conn=SSL}
+        {form type=hidden name=action value=update_product}
+
+        {$message}
+        <h1 class="cui__main-header">{txt key=TEXT_CART}</h1>
+        <div class="btn-group text-right-sm hidden-lg hidden-md hidden-sm">
+            <a href="javascript:history.back();" class="btn btn-default">
+                <i class="fa fa-chevron-left"></i>
+                {txt key=BUTTON_BACK}
+            </a>
+            <button type="submit" class="btn btn-default">
+                <i class="fa fa-refresh"></i>
+                {txt key=BUTTON_UPDATE}
+            </button>
+            <br />&nbsp;
+        </div>
+
+        <div id="cart-table" class="div-table table-hover table-bordered" style="font-size:0.9em">
+            <div class="row th">
+                <div class="col col-sm-8">
+                    {txt key=TEXT_ARTICLE}
+                </div>
+                <div class="col col-sm-2 hidden-xs text-right">
+                    {txt key=TEXT_SINGLE_PRICE}
+                </div>
+                <div class="col col-sm-2 hidden-xs text-right">
+                    {txt key=TEXT_TOTAL_PRICE}
+                </div>
+            </div>
+            {foreach name=aussen key=key item=data from=$cart_data}
+                {form type=hidden name='products_key[]' value=$data.products_key}
+                <div class="row tr">
+                <div class="col col-xs-2 col-sm-2">
+                        <p class="image">
+                            {if !$data.products_image || $data.products_image == 'product:noimage.gif'}
+                                <a href="{$data.products_link}" class="vertical-helper image-link no-image img-thumbnail">
+                                    <i class="no-image-icon"></i>
+                                </a>
+                            {else}
+                                <a href="{$data.products_link}" class="vertical-helper image-link img-thumbnail">{img img=$data.products_image type=m_thumb class="productImageBorder img-responsive" alt=$data.products_name|escape:"html"}</a>
+                            {/if}
+                        </p>
+                    </div>
+                    <div class="col col-xs-7 col-sm-6 col-lg-6">
+                        <p class="product-name break-word bold"><a href="{$data.products_link}" target="_blank">{$data.products_name}</a></p>
+                        {hook key=cart_bundle}
+                        {hook key=cart_xt_options pid=$data.products_id}
+                        {if $data.products_short_description}
+                    <p class="product-description text-muted">{$data.products_short_description|strip_tags|truncate:100:'...'} (<a href="{$data.products_link}">{txt key=TEXT_MORE}</a>)</p>
+                        {elseif $data.products_description}
+                    <p class="product-description text-muted">{$data.products_description|strip_tags|truncate:100:'...'} (<a href="{$data.products_link}">{txt key=TEXT_MORE}</a>)</p>
+                        {/if}
+                        <ul class="label-list fixed-padding">
+                            {if $data.products_information}<li><span class="badge">{$data.products_information|replace:'<tr class="contentrow1">':''|replace:'<tr class="contentrow2">':''|replace:'<td>':''|replace:'<td class="left" colspan="4">':''|replace:'</td>':''|replace:'</tr>':''}</span></li>{/if}
+                            {if $data.products_model!=''}<li><span class="badge">{txt key=TEXT_PRODUCTS_MODEL} {$data.products_model}</span></li>{/if}
+                            {if $data.products_weight > 0}<li><span class="badge">{txt key=TEXT_PRODUCTS_WEIGHT} {$data.products_weight|number_format:2:",":"."} kg</span></li>{/if}
+                            {if $data.shipping_status_data.name}<li><span class="badge">{txt key=TEXT_SHIPPING_STATUS} {$data.shipping_status_data.name}</span></li>{/if}
+                            {if $data.base_price}<li><span class="badge">{$data.products_vpe_value|number_format_prec} {$data.base_price.vpe.name} / {$data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$data.base_price.vpe.name}</span></li>{/if}
+                            {if $data.stock_image}
+                            <!--li class="product-stock-image">
+                                <img src="{img img=$data.stock_image.image type=t_img_stockrules path_only=true}"
+                                     class="img-responsive cursor-help"
+                                     alt="{$data.stock_image.name}"
+                                     title="{$data.stock_image.name}"
+                                     data-toggle="tooltip" />
+                                <span class="sr-only">{$stock_image.name}</span>
+                            </li-->
+                            {/if}
+                        </ul>
+
+                        {*<!-- price info visible-xs part --- start -->*}
+                        <div class="hidden-sm hidden-md hidden-lg text-left-xs">
+                        <div class="col col-xs-6">
+                            <span>{txt key=TEXT_SINGLE_PRICE}:</span><br />
+                            <p class="product-price">
+                                    {$data.products_price.formated}
+                            </p>
+                        </div>
+                        <div class="col col-xs-6">
+                            <span>{txt key=TEXT_TOTAL_PRICE}:</span><br />
+                            <p class="product-price final-price">{$data.products_final_price.formated}</p>
+                        </div>
+                    </div>
+                        {*<!-- / price info visible-xs part --- end -->*}
+
+                        <div class="form-inline">
+                            <div class="form-group form-group-sm">
+                                <div class="input-group">
+
+                                    <input type="number"
+                                           class="form-control"
+                                           {if $smarty.const._STORE_ALLOW_DECIMAL_QUANTITIY == 'false'}min="1"{/if}
+                                           required="required"
+                                           step="any"
+                                           name="qty[]"
+                                           autocomplete="off"
+                                           id="form-qty-{$data.products_id}"
+                                           value="{$data.products_quantity}"
+                                           placeholder="{txt key=TEXT_QTY}"
+                                           style="width: 6em" />
+                                    <label for="form-qty-{$data.products_id}" class="input-group-addon text-regular">{$data.products_unit_name}</label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-default">
+                                <i class="fa fa-refresh"></i>
+                            {*txt key=BUTTON_UPDATE*}
+                            </button>
+                            <span data-toggle="buttons">
+                                <label class="btn btn-sm btn-default">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                    <span class="hidden-xs">{*txt key=TEXT_REMOVE*}</span>
+                                    {form type=checkbox name='cart_delete[]' value=$data.products_key onchange="this.form.submit();"}
+                                </label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col col-sm-2 hidden-xs text-right">
+                        <p class="product-price">
+                                {$data.products_price.formated}
+                            {if $data._cart_discount}<br />
+                            <span class="price-old">{$data._original_products_price.formated}</span><br />
+                            <span class="small">(-{$data._cart_discount} %)</span>
+                            {/if}
+                        </p>
+                    </div>
+                    <div class="col col-sm-2 hidden-xs text-right">
+                        <p class="product-price final-price">{$data.products_final_price.formated}</p>
+                    </div>
+                </div>
+            {/foreach}
+            {hook key=cart_total_top}
+            <div class="row tfoot bold text-right">
+                <div class="col col-sm-offset-4  col-xs-7 col-sm-6">
+                    {txt key=TEXT_SUB_TOTAL}
+                </div>
+                <div class="col  col-xs-5 col-sm-2">
+                    {$cart_total}
+                </div>
+            </div>
+            {hook key=cart_total_tpl}
+            {foreach name=aussen item=tax_data from=$cart_tax}
+                <div class="row tfoot text-right">
+                    <div class="col col-sm-offset-4  col-xs-7 col-sm-6">
+                        {txt key=TEXT_TAX} {$tax_data.tax_key}%
+                        {if $shipping_link}<br /><span class="shipping-link"><a href="{$shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a></span>{/if}
+                    </div>
+                    <div class="col  col-xs-5 col-sm-2 text-right">
+                        {$tax_data.tax_value.formated|replace:"*":""}
+                    </div>
+                </div>
+            {/foreach}
+            {if $discount}
+                <div class="row tfoot text-right">
+                    <div class="col col-sm-offset-4  col-xs-7 col-sm-6">
+                        {txt key=TEXT_DISCOUNT_MADE}
+                    </div>
+                    <div class="col  col-xs-5 col-sm-2">
+                        {$discount.formated}
+                    </div>
+                </div>
+            {/if}
+            {if $cart_total_weight > 0}
+                <div class="row tfoot text-right">
+                    <div class="col col-sm-offset-4  col-xs-7 col-sm-6">
+                        {txt key=TEXT_PRODUCTS_WEIGHT}
+                    </div>
+                    <div class="col  col-xs-5 col-sm-2">
+                    	{$cart_total_weight|weight_format:"kg"}
+                    </div>
+                </div>
+            {/if}
+            {hook key=cart_total_bottom}
+        </div><!-- .div-table -->
+
+
+
+        <div class="btn-group text-right-sm hidden-xs">
+            <br />
+            <a href="javascript:history.back();" class="btn btn-default">
+                <i class="fa fa-chevron-left"></i>
+                {txt key=BUTTON_BACK}
+            </a>
+            <button type="submit" class="btn btn-default">
+                <i class="fa fa-refresh"></i>
+                {txt key=BUTTON_UPDATE}
+            </button>
+        </div>
+
+        <p class="pull-right">&nbsp;&nbsp;</p>
+
+        {hook key=cart_tpl_form}
+
+        <br class="clearfix" />
+        <br />
+
+        {form type=formend}
+
+        {$unique_id = md5($heading_text)}
+
+        <p class="headline"
+           data-toggle="collapse"
+           data-target="#order-comments"
+           aria-expanded="true"
+           aria-controls="order-comments"
+        style="margin-bottom:0 !important; margin-top:0">
+            {txt key=TEXT_COMMENTS}<small id="comments_saved_msg" style="display:none; color:#007e28">&nbsp;&nbsp;gespeichert</small>
+        </p>
+        <div id="order-comments" class="collapse collapse-auto-toggle-xs in">
+
+            <div class="well" style="border-color:#eee; border-top:none">
+                <small>{txt key=TEXT_MAX_CHARACTERS}</small>
+                <textarea name="comments" id="comments" class="form-control autosizejs" cols="50" rows="3" placeholder="{txt key=TEXT_COMMENTS_DESC}" maxlength="255">{$smarty.session.order_comments}</textarea>
+            </div>
+
+        </div>
+
+    {else}
+        <h1>{txt key=TEXT_CART}</h1>
+        {$message}
+        <a href="javascript:history.back();" class="btn btn-default">
+            <i class="fa fa-chevron-left"></i>
+            {txt key=BUTTON_BACK}
+        </a>
+    {/if}
+        {hook key=cart_bottom}
+    </div>
+    {if $cart_data|is_array && $cart_data|count}
+    <div class="col col-md-6" id="kco-checkout">
+        {hook key=kco_checkout}
+    </div>
+    {/if}
+
+
+
+
+
+
+
+</div><!-- #cart -->
+
