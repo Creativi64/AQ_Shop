@@ -1,9 +1,0 @@
-Hallo {$customers_title} {$customers_firstname} {$customers_lastname},
-
-Enclosed you will find an xml file. This file contains the information we stored about you
-
-
-Attention: This email adress was submitted to us by a customer. If you did not register with us, please feel free to contact us immediately.
-
-------------------------------------------------------------------------------------------------------------
-{$_system_footer_txt}

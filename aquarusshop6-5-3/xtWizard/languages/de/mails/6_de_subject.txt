@@ -1,1 +1,0 @@
-{$_store_name} | Ihre Bestellung zur Kontrolle, Bestellnr. {$order_data.orders_id}

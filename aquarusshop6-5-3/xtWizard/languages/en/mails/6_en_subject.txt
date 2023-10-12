@@ -1,1 +1,0 @@
-{$_store_name} | Please review your order, ON {$order_data.orders_id} 

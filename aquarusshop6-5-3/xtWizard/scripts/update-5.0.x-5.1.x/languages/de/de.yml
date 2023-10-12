@@ -1,8 +1,0 @@
-.admin.TEXT_IS_DIGITAL_TAX=Steuerklasse digitale Produkte?
-.admin.TEXT_CUSTOMERS_STATUS_TAX_RATES_CALCULATION_BASE=Basis der Berechnung des Steuersatzes
-.admin.TEXT_TAX_CALCULATION_BASE_B2C_EU=Lieferadresse, Zahlungsadresse für digitale Produkte (B2C EU)
-.admin.TEXT_TAX_CALCULATION_BASE_SHIPPING_ADDRESS=Lieferadresse (B2B)
-.admin.TEXT_TAX_CALCULATION_BASE_PAYMENT_ADDRESS=Zahlungsadresse
-.admin.TEXT_LAST_ACCESS=Letzer Zugriff
-.admin.TEXT_COUNT_DAY_LAST_ACCESS=Anzahl Tag letzter Zugriff
-.admin.TEXT_START_PAGE_CATEGORY=Startseiten-Kategorie

@@ -1,1 +1,0 @@
-{$_store_name} | Ihr Passwort wurde geändert

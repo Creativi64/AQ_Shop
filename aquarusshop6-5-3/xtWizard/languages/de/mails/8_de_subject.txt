@@ -1,1 +1,0 @@
-{$_store_name} | Status Ihrer Bestellung wurde geändert, Bestellnr. {$order_data.orders_id}
