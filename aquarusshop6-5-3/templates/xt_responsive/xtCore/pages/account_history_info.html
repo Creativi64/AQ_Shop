@@ -127,11 +127,6 @@
 						{/if}
 						{hook key=account_history_info_bundle}
 						{hook key=account_history_info_xt_options pid=$data.products_id}
-						{if $data.cart_product.products_short_description}
-						<p class="product-description text-muted">{$data.cart_product.products_short_description|strip_tags|truncate:100:'...'} (<a href="{$data.products_link}">{txt key=TEXT_MORE}</a>)</p>
-						{elseif $data.cart_product.products_description}
-						<p class="product-description text-muted">{$data.cart_product.products_description|strip_tags|truncate:100:'...'} (<a href="{$data.products_link}">{txt key=TEXT_MORE}</a>)</p>
-						{/if}
 						<ul class="label-list fixed-padding">
 							{if $data.products_information.content}<li><span class="badge">{$data.products_information.content|replace:'<tr class="contentrow1">':''|replace:'<tr class="contentrow2">':''|replace:'<td>':''|replace:'<td class="left" colspan="4">':''|replace:'</td>':''|replace:'</tr>':''}</span></li>{/if}
 							{if $data.products_model!=''}<li><span class="badge">{txt key=TEXT_PRODUCTS_MODEL} {$data.products_model}</span></li>{/if}

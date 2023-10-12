@@ -25,9 +25,9 @@
  #########################################################################
  */
 
-if(version_compare(PHP_VERSION, '7.3.0', '<')) {
-    die('xt:Commerce Systemvorraussetzung: Mindestens PHP 7.3 erforderlich, 7.4 empfohlen. Sie verwenden PHP '.PHP_VERSION.'. Bitte kontaktieren Sie Ihren Webhoster mit Hinweis auf: https://www.php.net/supported-versions.php<br><br>
-xt:Commerce system requirement: At least PHP 7.3 is required, 7.4 is recommended. You are using PHP '.PHP_VERSION.'. Please contact your web host with reference to: https://www.php.net/supported-versions.php
+if(version_compare(PHP_VERSION, '8.1.0', '<')) {
+    die('xt:Commerce Systemvorraussetzung: Mindestens PHP 8.1 erforderlich. Sie verwenden PHP '.PHP_VERSION.'. Bitte kontaktieren Sie Ihren Webhoster mit Hinweis auf: https://www.php.net/supported-versions.php<br><br>
+xt:Commerce system requirement: At least PHP 8.1 is required. You are using PHP '.PHP_VERSION.'. Please contact your web host with reference to: https://www.php.net/supported-versions.php
 ');
 }
 

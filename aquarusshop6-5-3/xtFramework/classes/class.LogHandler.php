@@ -99,7 +99,7 @@ class LogHandler extends timer {
      * @param int $popup_trigger
      * @return mixed
      */
-	public function _addPopupNotification($class,$module='',$identification=0,$log_data) {
+	public function _addPopupNotification($class,$module='',$identification=0,$log_data=['no_data']) {
         global $db;
 
         if (is_array($log_data)) $log_data = json_encode($log_data);

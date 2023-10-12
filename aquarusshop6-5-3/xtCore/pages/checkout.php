@@ -30,6 +30,7 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 global $info, $_content, $page, $store_handler, $brotkrumen, $xtLink, $xtPlugin;
 
 $show_index_boxes = false;
+$checkout_data = [];
 
 if ($page->page_action == 'payment' &&
     (!empty($_SESSION['selected_payment_discount']) || !empty($_SESSION['selected_payment']))
@@ -101,6 +102,7 @@ $payment_data = array();
 // ausser zb wir sind in pp express, macht das pp plugin ab version 2.9.0 für xt > 6.1.1
 
 $shipping_data = $checkout->_selectShipping();
+$shipping_errors = $checkout->shipping_errors; // verfügbar erst nach _selectShipping > shipping > buildData etc
 $payment_data = $checkout->_selectPayment();
 
 switch($page->page_action)
@@ -195,6 +197,7 @@ $checkout_data  = array('page_action'=>$page_data,
 							'shipping_address' => $shipping_address,
 							'payment_address' => $payment_address,
 							'shipping_data' => $shipping_data,
+                            'shipping_errors' => $shipping_errors,
 							'payment_data' => $payment_data
 );
 

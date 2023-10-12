@@ -923,6 +923,10 @@ class order_edit_controller
         if (!self::init()) return;
 
         $_SESSION['selected_payment'] = $this->_orderFields['payment_code'];
+        if($_REQUEST['load_section'] == 'order_edit_edit_paymentShipping')
+        {
+            $_SESSION['selected_payment'] = $_REQUEST['payment'];
+        }
 
 
         $payment = new payment();

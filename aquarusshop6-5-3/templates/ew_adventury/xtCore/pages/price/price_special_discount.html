@@ -1,3 +1,7 @@
+{if $OLD_PRICE.plain}
 <span class="price-old">{txt key=TEXT_SPECIAL_INSTEAD} {$OLD_PRICE}</span>
 <span class="price-new">{txt key=TEXT_SPECIAL_ONLY} {$SPECIAL_PRICE}</span>
 <span class="price-discount">{txt key=TEXT_SPECIAL_SAVE} {$DISCOUNT}%</span>
+{else}{* 0 euro *}
+<span class="price-tag">{$SPECIAL_PRICE.formated}</span>
+{/if}

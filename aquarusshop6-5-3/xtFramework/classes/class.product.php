@@ -173,6 +173,8 @@ class product  extends xt_backend_cls{
 		($plugin_code = $xtPlugin->PluginCode('class.product.php:getProductData_SQL')) ? eval($plugin_code) : false;
 
 		$query = "".$this->sql_products->getSQL_query()."";
+
+		($plugin_code = $xtPlugin->PluginCode('class.product.php:getProductData_SQL_after')) ? eval($plugin_code) : false;
         
 		$record = $db->Execute($query);
 		if($record->RecordCount() > 0){
@@ -309,6 +311,14 @@ class product  extends xt_backend_cls{
         
 		if($size=='full'){
 			global $mediaImages, $mediaFiles;
+            if(empty($mediaImages))
+            {
+                $mediaImages = new MediaImages();
+            }
+            if(empty($mediaFiles))
+            {
+                $mediaFiles = new MediaFiles();
+            }
 			$media_data = $mediaFiles->get_media_data($this->data['products_id'], __CLASS__, 'product', 'info='.$this->data['products_id']);
 			$media_images = $mediaImages->get_media_images($this->data['products_id'], __CLASS__);
 
@@ -465,7 +475,9 @@ class product  extends xt_backend_cls{
             array_key_exists($orderId, $_SESSION['order_edit_priceOverride']))
                 $priceOverride =  $_SESSION['order_edit_priceOverride'][$orderId];
         if (array_key_exists($this->pID, $priceOverride)
-            && $_REQUEST['pg'] !== 'calculateGraduatedPrice' && $_REQUEST['pg'] !== 'overview')
+            && !in_array($_REQUEST['pg'], ['calculateGraduatedPrice'], 'overview')
+            && !in_array($_REQUEST['load_section'], ['order_edit_edit_paymentShipping'])
+        )
         {
             if(is_array($products_price))
 			{

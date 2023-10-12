@@ -44,8 +44,9 @@ class shipping extends xt_backend_cls {
 	protected $_table_lang = TABLE_SHIPPING_DESCRIPTION;
 	protected $_table_seo = NULL;
 	protected $_master_key = 'shipping_id';
+    public $shipping_errors = [];
 
-	function __construct() {
+    function __construct() {
 		global $xtPlugin;
 
 		$this->getPermission();
@@ -240,6 +241,8 @@ class shipping extends xt_backend_cls {
 
                 foreach($value['costs'] as $costs)
                 {
+                    if (empty($costs['shipping_allowed'])) continue;
+
                     if(!empty($costs["shipping_country_code"]))
                     {
                         $this->shipping_to['countries'][] = $costs["shipping_country_code"];
@@ -619,6 +622,8 @@ class shipping extends xt_backend_cls {
 		$check_content = array();
 		$check_content = $data['costs'];
 
+        $errors = [];
+
         foreach($check_content as $key => $value) {
 			if(($this->weight >= $value['shipping_type_value_from'] && $this->weight <= $value['shipping_type_value_to']) || ($value['shipping_type_value_to']==0 && $value['shipping_type_value_from']==0)){
 				if($value['shipping_allowed']=='1'){
@@ -629,6 +634,22 @@ class shipping extends xt_backend_cls {
 					break;	
 				}
 			}
+            else {
+                $error = [
+                    'shipping_code' => $data['shipping_code'],
+                    'shipping_name' => $data['shipping_name'],
+                    'error' => 'weight',
+                    'cart' => $this->weight,
+                    'type' => 'maximum',
+                    'limit' => $value['shipping_type_value_to']
+                ];
+                if($this->weight <$value['shipping_type_value_from'])
+                {
+                    $error['type'] = 'minimum';
+                    $error['limit'] = $value['shipping_type_value_from'];
+                }
+                $errors[$data['shipping_code']] = $error;
+            }
 		}
 
 		$data['costs'] = $new_cost;
@@ -637,6 +658,7 @@ class shipping extends xt_backend_cls {
 	
 		if($data_count==0 || !$data_count){
 			unset($data);
+            $this->shipping_errors = array_merge($this->shipping_errors, $errors);
 		}
 		
 		($plugin_code = $xtPlugin->PluginCode('class.shipping.php:_filterWeight_bottom')) ? eval($plugin_code) : false;
@@ -664,6 +686,8 @@ class shipping extends xt_backend_cls {
 		$check_content = array();
 		$check_content = $data['costs'];
 
+        $errors = [];
+
         foreach($check_content as $key => $value) {
 			$value['shipping_type_value_from'] = $price->_calcCurrency($value['shipping_type_value_from']);
 			$value['shipping_type_value_to'] = $price->_calcCurrency($value['shipping_type_value_to']);
@@ -674,6 +698,23 @@ class shipping extends xt_backend_cls {
 				}
 			}
 
+            else {
+                $error = [
+                    'shipping_code' => $data['shipping_code'],
+                    'shipping_name' => $data['shipping_name'],
+                    'error' => 'price',
+                    'cart' => $this->total['plain'],
+                    'type' => 'maximum',
+                    'limit' => $value['shipping_type_value_to']
+                ];
+                if($this->total['plain'] < $value['shipping_type_value_from'])
+                {
+                    $error['type'] = 'minimum';
+                    $error['limit'] = $value['shipping_type_value_from'];
+                }
+                $errors[$data['shipping_code']] = $error;
+            }
+
 		}
 
 		$data['costs'] = $new_cost;
@@ -681,7 +722,8 @@ class shipping extends xt_backend_cls {
 		$data_count = is_countable($data['costs']) ? count($data['costs']) : 0;
 	
 		if($data_count==0 || !$data_count){
-			unset($data);		
+			unset($data);
+            $this->shipping_errors = array_merge($this->shipping_errors, $errors);
 		}
 		
 		($plugin_code = $xtPlugin->PluginCode('class.shipping.php:_filterPrice_bottom')) ? eval($plugin_code) : false;
@@ -1005,7 +1047,7 @@ class shipping extends xt_backend_cls {
             // checks
 			if (!preg_match('/^[0-9a-z.\-\_]+$/i', $data['shipping_code'])){
                 $obj->success = false;
-                $obj->error_message = XT_CORE___text('ERROR_SHIPPINGCODE_WHITESPACE');
+                $obj->error_message = __text('ERROR_SHIPPINGCODE_WHITESPACE');
                 return $obj;  
             }
         }

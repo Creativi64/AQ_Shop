@@ -102,26 +102,24 @@ if(strpos($fav,".ico")!==false){
     echo '<link rel="icon" href="'._SYSTEM_BASE_URL . _SRV_WEB. 'media/logo/' ._STORE_FAVICON.'.png" type="image/png" />'. PHP_EOL;
 }
 
-// href alternate
-$langSwitchLinks = $language->getLanguageSwitchLinks(array());
-($plugin_code = $xtPlugin->PluginCode('display.php:getLanguageSwitchLinks_all')) ? eval($plugin_code) : false;
-    foreach ($langSwitchLinks as $lang => $lsl)
-    {
-        if($lang != $_SESSION["selected_language"])
-            echo '<link rel="alternate" hreflang="' . $lang . '" href="' . $lsl . '" />' . PHP_EOL;
-    }
-
 $store_hreflang_def = constant('_STORE_HREFLANG_DEFAULT');
+// href alternate
+$langSwitchLinks = $language->getLanguageSwitchLinks(array(), $store_hreflang_def);
+($plugin_code = $xtPlugin->PluginCode('display.php:getLanguageSwitchLinks_all')) ? eval($plugin_code) : false;
+foreach ($langSwitchLinks as $lang => $lsl)
+{
+    echo '<link rel="alternate" hreflang="' . $lang . '" href="' . $lsl . '" />' . PHP_EOL;
+}
 
 if (array_key_exists($store_hreflang_def, $langSwitchLinks))
-    {
-    $defLangLink = $language->getLanguageSwitchLinks(array($store_hreflang_def));
+{
+    $defLangLink = $language->getLanguageSwitchLinks(array($store_hreflang_def), $store_hreflang_def);
     ($plugin_code = $xtPlugin->PluginCode('display.php:getLanguageSwitchLinks_href_default')) ? eval($plugin_code) : false;
     echo '<link rel="alternate" hreflang="x-default" href="' . $defLangLink[$store_hreflang_def] . '" />' . PHP_EOL;
-    }
+}
 else if ( isset($store_hreflang_def) && $store_hreflang_def != '')
 {
-    $defLangLink = $language->getLanguageSwitchLinks(array(_STORE_LANGUAGE));
+    $defLangLink = $language->getLanguageSwitchLinks(array(_STORE_LANGUAGE), $store_hreflang_def);
     ($plugin_code = $xtPlugin->PluginCode('display.php:getLanguageSwitchLinks_store_lang')) ? eval($plugin_code) : false;
     echo '<link rel="alternate" hreflang="x-default" href="' . $defLangLink[_STORE_LANGUAGE] . '" />' . PHP_EOL;
 }

@@ -109,7 +109,7 @@ class content extends xt_backend_cls {
 	 * @param int $level
 	 * @return array
 	 */
-	function getChildcontent ($coID, $level = 0,$block, $nested = false) {
+	function getChildcontent ($coID, $level = 0,$block = 0, $nested = false) {
 		$data = $this->_getContentLinksbyParent($block,$coID);
 		$level_data = array();
 
@@ -397,7 +397,7 @@ class content extends xt_backend_cls {
 		return $tree;
 	}
 
-	function walkTree($parent = '0', $tree, $prefix = '') {
+	function walkTree($parent = '0', $tree = [], $prefix = '') {
 		global $xtPlugin, $db, $language;
 		($plugin_code = $xtPlugin->PluginCode('class.content:walkTree_top')) ? eval($plugin_code) : false;
 		if(isset($plugin_return_value))

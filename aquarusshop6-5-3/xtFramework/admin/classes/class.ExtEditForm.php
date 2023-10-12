@@ -967,7 +967,7 @@ class ExtEditForm extends ExtFunctions {
 					$url = $line_data['url'];
 				}
 				$data = $this->_comboBox($label, $name, $url,$line_data['width'],$line_data['listner']);
-				if($line_data['store_autoLoad'] == true)
+				if(constant('_SYSTEM_AUTOLOAD') == 'true') // vs $line_data['store_autoLoad'] == true
 				    $data->getStore()->setAutoLoad(true);
 				break;
             case "dropdown3":

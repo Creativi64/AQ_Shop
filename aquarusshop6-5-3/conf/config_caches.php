@@ -44,7 +44,7 @@ define('_CACHETIME_ADODB',0); // db cache time (seconds)
 /* folgenden Wert nicht ändern, Zeile nicht editieren, wenn Sie nicht absolut genau wissen was Sie tun */
 //define('_DONT_CLEAR_CACHE_ADODB_AUTOMATICALLY', false);
 
-
+// setzt adodb_cahche_time für die Sprache
 define('_CACHETIME_LANGUAGE_CONTENT',0);
 
 define('_CACHETIME_MANUFACTURER_LIST',_TIME_24_HOURS);
@@ -124,9 +124,9 @@ if(FLUSH_OPCACHE === true && function_exists('opcache_reset'))
  * 'false' wurde ehemals für kleine Shops empfohlen, wir raten zur Verwendung von Datenbank-Hooks.
  * die korrekte Funktion mit 'false' wird momentan noch getestet
  *
- * Empfohlen: 'true'
+ * Empfohlen: true
  */
-define('_SYSTEM_USE_DB_HOOKS', 'true');
+define('_SYSTEM_USE_DB_HOOKS', true);
 
 /**
  * Mit Einstellung true wird die Länderkonfiguration in verschiedene /cache/_cache_xt.countries.*.ser geschrieben und von dort gelesen
@@ -143,8 +143,8 @@ define('_USE_CACHE_COUNTRIES', false);
 define('_USE_CACHE_LANGUAGE_CONTENT', false);
 
 /**
-* Mit Einstellung true werden hookpoint codes vorab geladen, reduziert Datenbanklast bei größerer Plugin-Anzal
-*
-*/
+ * Mit Einstellung true werden hookpoint codes vorab geladen, reduziert Datenbanklast bei größerer Plugin-Anzal
+ *
+ */
 
 define('_PRELOAD_PLG_HOOK_CODE',true);

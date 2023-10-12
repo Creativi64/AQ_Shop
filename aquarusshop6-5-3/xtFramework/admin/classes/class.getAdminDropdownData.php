@@ -33,37 +33,32 @@ class getAdminDropdownData {
 
 	function getSystemstatusDropdown($position) {
 		global $system_status;
-		$data=array();
-		
-		if(is_array($_POST) && array_key_exists('query', $_POST)){
-		
-			$status_data = $system_status->values[$position];
-	
-			if (is_array($status_data)) {
-				$data = array(array('id' => '', 'name' => TEXT_EMPTY_SELECTION));
-				foreach ($status_data as $key => $val) {
-					$data[] = array('id'=>$val['id'],'name'=>$val['name']);
-	
-				}
-				return $data;
-			} else {
-				
-                $status_data[] =  array('id' => '',
-                             'name' => TEXT_EMPTY_SELECTION);
-                
-                return $status_data;
-			}
 
-		}else{
-			return $data;
-		}
+        $status_data = $system_status->values[$position];
+
+        if (is_array($status_data)) {
+            $data = array(array('id' => '', 'name' => __define('TEXT_EMPTY_SELECTION')));
+            foreach ($status_data as $key => $val) {
+                $data[] = array('id'=>$val['id'],'name'=>$val['name']);
+
+            }
+            return $data;
+        } else {
+
+            $status_data[] =  array('id' => '',
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
+
+            return $status_data;
+        }
+
+        return $status_data;
 	}
 
 	function getLanguageCodes() {
 		global $db,$language,$filter;
 		$data=array();
 
-		$data[] =  array('id' => '', 'name' => TEXT_EMPTY_SELECTION);
+		$data[] =  array('id' => '', 'name' => __define('TEXT_EMPTY_SELECTION'));
 	
         foreach ($language->_getLanguageList() as $key => $val)
         {
@@ -71,7 +66,6 @@ class getAdminDropdownData {
         }
 
 		return $data;
-
 	}
 
 	function getSslOptions() {
@@ -88,21 +82,16 @@ class getAdminDropdownData {
 	function getCurrencies() {
 		global $db,$currency,$filter;
 		$data=array();
-		
-		if(is_array($_POST) && array_key_exists('query', $_POST)){
-		
-			$data[] =  array('id' => '',
-	                         'name' => TEXT_EMPTY_SELECTION);
-	
-			foreach ($currency->_getCurrencyList('admin') as $key => $val) {
-				$data[] =  array('id' => $val['id'],
-	                             'name' => $val['text']);
-			}
-		
-		}
-		
-		return $data;
 
+        $data[] =  array('id' => '',
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
+
+        foreach ($currency->_getCurrencyList('admin') as $key => $val) {
+            $data[] =  array('id' => $val['id'],
+                             'name' => $val['text']);
+        }
+
+		return $data;
 	}
 
 	function getCountries() {
@@ -112,7 +101,7 @@ class getAdminDropdownData {
 		$countries = new countries();
 		$data[] =  array(
 			'id' => '',
-			'name' => TEXT_EMPTY_SELECTION
+			'name' => __define('TEXT_EMPTY_SELECTION')
 		);
 		
 		foreach ($countries->countries_list_sorted as $key => $val) {
@@ -123,13 +112,12 @@ class getAdminDropdownData {
 		}
 		
 		return $data;
-
 	}
 
 	function getLanguageClasses() {
 		$data=array();
 		$data[] =  array('id' => '',
-                         'name' => TEXT_EMPTY_SELECTION,
+                         'name' => __define('TEXT_EMPTY_SELECTION'),
                          'desc' => '');
 
 		$data[] =  array('id' => 'store',
@@ -145,31 +133,31 @@ class getAdminDropdownData {
 	{
 		return array(
 			array('id' => 'ckeditor', 'name' => 'CKEditor'),
-			array('id' => 'none', 'name' => TEXT_NO_WYSIWYG),
-			array('id' => 'SimpleHtmlEditor', 'name' => TEXT_SIMPLE_WYSIWYG),
-			//array('id' => 'TinyMce', 'name' => TEXT_TINY_WYSIWYG)
+			array('id' => 'none', 'name' => __define('TEXT_NO_WYSIWYG')),
+			array('id' => 'SimpleHtmlEditor', 'name' => __define('TEXT_SIMPLE_WYSIWYG')),
+			//array('id' => 'TinyMce', 'name' => __define('TEXT_TINY_WYSIWYG'))
 		);
 	}
 
 	function getUploadType() {
 		$data=array();
 		$data[] =  array('id' => 'simple_upload',
-                         'name' => TEXT_SIMPLE_UPLOAD);
+                         'name' => __define('TEXT_SIMPLE_UPLOAD'));
 
 		$data[] =  array('id' => 'flash_upload_10',
-                             'name' => TEXT_FLASH_UPLOAD,
-                             'desc' => TEXT_DESC_FLASH_10);
+                             'name' => __define('TEXT_FLASH_UPLOAD'),
+                             'desc' => __define('TEXT_DESC_FLASH_10'));
 
 		$data[] =  array('id' => 'flash_upload_9',
-                             'name' => TEXT_FLASH_UPLOAD_OLD,
-                             'desc' => TEXT_DESC_FLASH_9);
+                             'name' => __define('TEXT_FLASH_UPLOAD_OLD'),
+                             'desc' => __define('TEXT_DESC_FLASH_9'));
 		return $data;
 	}
 
 	function getSimplePrefix() {
 		$data=array();
 		$data[] =  array('id' => '',
-                         'name' => TEXT_EMPTY_SELECTION);
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
 
 		$data[] =  array('id' => '+',
                              'name' => '+');
@@ -181,7 +169,7 @@ class getAdminDropdownData {
 	function getAdvancedPrefix() {
 		$data=array();
 		$data[] =  array('id' => '',
-                         'name' => TEXT_EMPTY_SELECTION);
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
 
 		$data[] =  array('id' => '+',
                              'name' => '+');
@@ -199,7 +187,7 @@ class getAdminDropdownData {
 	function getFieldTypes() {
 		$data=array();
 		$data[] =  array('id' => '',
-                         'name' => TEXT_EMPTY_SELECTION);
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
 
 		$data[] =  array('id' => 'select',
                              'name' => 'Select Field');
@@ -220,33 +208,30 @@ class getAdminDropdownData {
 	}
 
 
-	function getLanguageNonDefines() {
+	function getLanguageNonDefines()
+    {
 		$data=array();
-		
-		if(is_array($_POST) && array_key_exists('query', $_POST)){
-		
-			if ($_SESSION['debug']) {
-				//            $_SESSION['debug'] = array_unique($_SESSION['debug']);
-				foreach ($_SESSION['debug'] as $key => $val) {
-					if ($val['desc'])
-					$desc = '<br />'.__define('TEXT_NO_TEXT_LANGUAGES').': '.$val['desc'];
-					if ($val)
-					$data[] =  array('id' => $val['name'],
-	                             'name' => $val['name'],
-	                             'desc' => __define('TEXT_INFO_NONDEFINE').   $desc);
-	
-				}
-			}
-		
-		}
-		
+
+        if ($_SESSION['debug']) {
+            //            $_SESSION['debug'] = array_unique($_SESSION['debug']);
+            foreach ($_SESSION['debug'] as $key => $val) {
+                if ($val['desc'])
+                $desc = '<br />'.__define('TEXT_NO_TEXT_LANGUAGES').': '.$val['desc'];
+                if ($val)
+                $data[] =  array('id' => $val['name'],
+                             'name' => $val['name'],
+                             'desc' => __define('TEXT_INFO_NONDEFINE').   $desc);
+
+            }
+        }
+
 		return $data;
 	}
 
 	function getShippingType() {
 		$data=array();
 		$data[] =  array('id' => '',
-                         'name' => TEXT_EMPTY_SELECTION);
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
 
 		$data[] =  array('id' => 'item',
                              'name' => 'item');
@@ -259,12 +244,11 @@ class getAdminDropdownData {
 
 	function getGender() {
 		$data=array();
-		$data[] =  array('id' => 'm',
-                             'name' => TEXT_MALE);
-		$data[] =  array('id' => 'f',
-                             'name' => TEXT_FEMALE);
-		$data[] =  array('id' => 'c',
-                             'name' => TEXT_COMPANY);
+		$data[] =  array('id' => 'm',   'name' => __define('TEXT_MALE'));
+		$data[] =  array('id' => 'f',   'name' => __define('TEXT_FEMALE'));
+        $data[] =  array('id' => 'n',   'name' => __define('TEXT_NEUTRAL_SALUTATION'));
+        $data[] =  array('id' => 'z',   'name' => __define('TEXT_NOT_SPECIFIED'));
+		$data[] =  array('id' => 'c',   'name' => __define('TEXT_COMPANY'));
 		return $data;
 	}
 
@@ -308,10 +292,10 @@ class getAdminDropdownData {
                              'desc' => __define('DESC_MANUFACTURER_IMAGE'));
 		$data[] =  array('id' => 'content', // old manufacturers
                              'name' => __define('TEXT_CONTENT_IMAGE'),
-                             'desc' => __define('DESC_CONTENT_IMAGE'));		
-		
+                             'desc' => __define('DESC_CONTENT_IMAGE'));
+
 		($plugin_code = $xtPlugin->PluginCode(__CLASS__.':getImageClasses')) ? eval($plugin_code) : false;
-		
+
 		return $data;
 	}
 
@@ -319,21 +303,21 @@ class getAdminDropdownData {
 		global $xtPlugin;
 			require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.ImageTypes.php';
 		$it = new ImageTypes();
-		$it->url_data[get_data] = 1;
+		$it->url_data['get_data'] = 1;
 		$it->position = 'admin';
 		$it = $it->_get();
-		
+
 		$data=array();
 			$data[] =  array('id' => '',
-	                         'name' => TEXT_EMPTY_SELECTION);
+	                         'name' => __define('TEXT_EMPTY_SELECTION'));
 		foreach ($it->data as $k => $v) {
-			$data[] = array ('id' => $v[folder],
-				'name' => $v[folder],
-				'desc' => $v[height] . 'x' . $v[width]);
+			$data[] = array ('id' => $v['folder'],
+				'name' => $v['folder'],
+				'desc' => $v['height'] . 'x' . $v['width']);
 		}
-		
+
 		($plugin_code = $xtPlugin->PluginCode(__CLASS__.':getImageTypes')) ? eval($plugin_code) : false;
-		
+
 		return $data;
 	}
 
@@ -425,7 +409,7 @@ class getAdminDropdownData {
 		$data=array();
 
 		$data[] =  array('id' => '',
-                         'name' => TEXT_EMPTY_SELECTION);
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
 
 		$data[] =  array('id' => 'sort',
                              'name' => __define('TEXT_SORTORDER'));
@@ -449,14 +433,14 @@ class getAdminDropdownData {
 
 
 	}
-	
+
 	function getManufacturersSort() {
-	
+
 		$data=array();
-	
+
 		$data[] =  array('id' => '',
-	                         'name' => TEXT_EMPTY_SELECTION);
-	
+	                         'name' => __define('TEXT_EMPTY_SELECTION'));
+
 		$data[] =  array('id' => 'sort',
 	                             'name' => __define('TEXT_SORTORDER'));
 
@@ -464,214 +448,193 @@ class getAdminDropdownData {
 	                             'name' => __define('TEXT_PRODUCTS_NAME'));
 		$data[] =  array('id' => 'price',
 	                             'name' => __define('TEXT_PRODUCTS_PRICE'));
-	
+
 		$data[] =  array('id' => 'date',
 	                             'name' => __define('TEXT_DATE_ADDED'));
 		$data[] =  array('id' => 'order',
 	                             'name' => __define('TEXT_PRODUCTS_ORDERED'));
 		return $data;
-	
-	
-	}	
+
+
+	}
 
 	function getManufacturers () {
-		
+
 		//$data=array(array('id'=>1,'name'=>'test'));
-	        $data = array();	
-		if(is_array($_POST) && array_key_exists('query', $_POST))
-                {
-		
-			$m = new manufacturer();
-			
-			$data[] =  array('id' => '',
-	                         'name' => TEXT_EMPTY_SELECTION);
-	
-			$_data = $m->getManufacturerList('admin');
-			foreach ($_data as $mdata) {
-				$data[] =  array('id' => $mdata['manufacturers_id'],
-	                             'name' => $mdata['manufacturers_name']);
-	
-			}
-		
-		}
+        $data = array();
+
+        $m = new manufacturer();
+
+        $data[] =  array('id' => '',
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
+
+        $_data = $m->getManufacturerList('admin');
+        foreach ($_data as $mdata) {
+            $data[] =  array('id' => $mdata['manufacturers_id'],
+                             'name' => $mdata['manufacturers_name']);
+
+        }
+
 		return $data;
-		
+
 	}
-	
+
 	function getStatusProduct () {
-		$data = array();	
-		$data[]=array('id'=>'','name'=>TEXT_ALL_PRODUCTS);
-		$data[]=array('id'=>'1','name'=>TEXT_ENABLED_PRODUCTS);
-		$data[]=array('id'=>'-1','name'=>TEXT_DISABLED_PRODUCTS);
+		$data = array();
+		$data[]=array('id'=>'','name'=>__define('TEXT_ALL_PRODUCTS'));
+		$data[]=array('id'=>'1','name'=>__define('TEXT_ENABLED_PRODUCTS'));
+		$data[]=array('id'=>'-1','name'=>__define('TEXT_DISABLED_PRODUCTS'));
 		return $data;
 	}
-	
+
 	function getCategoryCustomLinkType () {
-		$data = array();	
-		$data[]=array('id' => '0','name' => TEXT_EMPTY_SELECTION);
-		$data[]=array('id'=>'product','name'=>TEXT_CATEGORY_CUSTOM_LINK_PRODUCT);
-		$data[]=array('id'=>'category','name'=>TEXT_CATEGORY_CUSTOM_LINK_CATEGORY);
-		$data[]=array('id'=>'content','name'=>TEXT_CATEGORY_CUSTOM_LINK_CONTENT);
-		$data[]=array('id'=>'custom','name'=>TEXT_CATEGORY_CUSTOM_LINK_CUSTOM_LINK);
-		$data[]=array('id'=>'plugin','name'=>TEXT_CATEGORY_CUSTOM_LINK_PLUGIN_PAGE);
+		$data = array();
+		$data[]=array('id' => '0','name' => __define('TEXT_EMPTY_SELECTION'));
+		$data[]=array('id'=>'product','name'=>__define('TEXT_CATEGORY_CUSTOM_LINK_PRODUCT'));
+		$data[]=array('id'=>'category','name'=>__define('TEXT_CATEGORY_CUSTOM_LINK_CATEGORY'));
+		$data[]=array('id'=>'content','name'=>__define('TEXT_CATEGORY_CUSTOM_LINK_CONTENT'));
+		$data[]=array('id'=>'custom','name'=>__define('TEXT_CATEGORY_CUSTOM_LINK_CUSTOM_LINK'));
+		$data[]=array('id'=>'plugin','name'=>__define('TEXT_CATEGORY_CUSTOM_LINK_PLUGIN_PAGE'));
 		return $data;
 	}
-	
+
 	function getSeoUrlLinkType () {
-		$data = array();	
-		$data[]=array('id' => '0','name' => TEXT_EMPTY_SELECTION);
-		$data[]=array('id'=>'1','name'=>TEXT_PRODUCT);
-		$data[]=array('id'=>'2','name'=>TEXT_CATEGORY);
-		$data[]=array('id'=>'3','name'=>TEXT_CONTENT);
-		$data[]=array('id'=>'2','name'=>TEXT_CUSTOM_LINK);
-		$data[]=array('id'=>'4','name'=>TEXT_MANUFACTURER);
-		$data[]=array('id'=>'1000','name'=>TEXT_PLUGIN_PAGE);
+		$data = array();
+		$data[]=array('id' => '0','name' => __define('TEXT_EMPTY_SELECTION'));
+		$data[]=array('id'=>'1','name'=>__define('TEXT_PRODUCT'));
+		$data[]=array('id'=>'2','name'=>__define('TEXT_CATEGORY'));
+		$data[]=array('id'=>'3','name'=>__define('TEXT_CONTENT'));
+		$data[]=array('id'=>'2','name'=>__define('TEXT_CUSTOM_LINK'));
+		$data[]=array('id'=>'4','name'=>__define('TEXT_MANUFACTURER'));
+		$data[]=array('id'=>'1000','name'=>__define('TEXT_PLUGIN_PAGE'));
 		return $data;
 	}
-	
+
 	function getMasterSlaveProduct () {
-		$data = array();	
-		$data[]=array('id' => '0','name' => TEXT_EMPTY_SELECTION);
-		$data[]=array('id'=> '1','name'=> TEXT_FILTER_MASTER_PRODUCTS);
-		$data[]=array('id'=> '2','name'=> TEXT_FILTER_SLAVE_PRODUCTS);
-		$data[]=array('id'=> '3','name'=> TEXT_FILTER_MASTER_SLAVE_PRODUCTS);
+		$data = array();
+		$data[]=array('id' => '0','name' => __define('TEXT_EMPTY_SELECTION'));
+		$data[]=array('id'=> '1','name'=> __define('TEXT_FILTER_MASTER_PRODUCTS'));
+		$data[]=array('id'=> '2','name'=> __define('TEXT_FILTER_SLAVE_PRODUCTS'));
+		$data[]=array('id'=> '3','name'=> __define('TEXT_FILTER_MASTER_SLAVE_PRODUCTS'));
 		return $data;
 	}
-	
+
 	function getCatTree () {
 
 		$data = array();
-		
-		if(is_array($_POST) && array_key_exists('query', $_POST)){
-		
-			require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.category.php';
-			$c = new category();			
-			$data[] =  array('id' => '',
-	                         'name' => TEXT_EMPTY_SELECTION);		
-			
-			$_data = $c->getAllCategoriesList ($data_array = '', $parent_id = '0', $spacer = ' ');
-			foreach ($_data as $cdata) {
-				$data[] =  array('id' => $cdata['categories_id'],
-	                             'name' => $cdata['categories_name']);
-	
-			}
-		
-		}
+
+        require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.category.php';
+        $c = new category();
+        $data[] =  array('id' => '',
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
+
+        $_data = $c->getAllCategoriesList ($data_array = '', $parent_id = '0', $spacer = ' ');
+        foreach ($_data as $cdata) {
+            $data[] =  array('id' => $cdata['categories_id'],
+                             'name' => $cdata['categories_name']);
+
+        }
 
 		return $data;
 	}
 
 	function getCustomersStatus() {
-		
+
 		$data = array();
-		
-		if(is_array($_POST) && array_key_exists('query', $_POST)){
-		
-			global $customers_status;
-			$data[] =  array('id' => '',
-	                         'name' => TEXT_EMPTY_SELECTION);
-	
-			$list = $customers_status->_getStatusList('admin');
-	
-			foreach ($list as $ldata) {
-				$data[] =  array('id' => $ldata['id'],
-	                             'name' => $ldata['text']);
-			}
-		
-		}
-		
+
+        global $customers_status;
+        $data[] =  array('id' => '',
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
+
+        $list = $customers_status->_getStatusList('admin');
+
+        foreach ($list as $ldata) {
+            $data[] =  array('id' => $ldata['id'],
+                             'name' => $ldata['text']);
+        }
+
 		return $data;
-
-
 	}
 
     /**
     * get Tax Zones
-    * 
+    *
     */
 	function getTaxZones(){
 
 		$data = array();
-		
-			if(is_array($_POST) && array_key_exists('query', $_POST)){
-			require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.system_status.php';
-			$s_status = new system_status();
-			$data[] =  array('id' => '',
-	                         'name' => TEXT_EMPTY_SELECTION);
-	
-			$_data = $s_status->values['zone'];
-	
-			foreach ($_data as $zdata) {
-				$data[] =  array('id' => $zdata['id'],
-	                             'name' => $zdata['name']);
-			}
-		
-		}
+
+
+        require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.system_status.php';
+        $s_status = new system_status();
+        $data[] =  array('id' => '',
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
+
+        $_data = $s_status->values['zone'];
+
+        foreach ($_data as $zdata) {
+            $data[] =  array('id' => $zdata['id'],
+                             'name' => $zdata['name']);
+        }
+
 		return $data;
 	}
-    
+
     /**
     * get Tax + Shipping zones
-    * 
+    *
     */
     function getTaxShippingZones(){
         global $db;
-        
+
         $data = array();
-        
-            if(is_array($_POST) && array_key_exists('query', $_POST)){
-            require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.system_status.php';
-            $s_status = new system_status();
-            $data[] =  array('id' => '',
-                             'name' => TEXT_EMPTY_SELECTION);
-    
-            $_data = $s_status->values['zone'];
-    
-            foreach ($_data as $zdata) {
-                $data[] =  array('id' => $zdata['id'],
-                                 'name' => $zdata['name']);
-            }
-            $rs = $db->Execute("SELECT zone_name,zone_id FROM ".TABLE_SHIPPING_ZONES);
-            if ($rs->RecordCount()>0) {
-               while (!$rs->EOF) {
-                   $data[] =  array('id' => '9999'.$rs->fields['zone_id'],
-                                 'name' => $rs->fields['zone_name'].' ('.TEXT_SHIPPING_ZONE.')');
-                   $rs->MoveNext();
-               } 
-            }
-            // query for shipping zones
-        
+
+        require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.system_status.php';
+        $s_status = new system_status();
+        $data[] =  array('id' => '',
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
+
+        $_data = $s_status->values['zone'];
+
+        foreach ($_data as $zdata) {
+            $data[] =  array('id' => $zdata['id'],
+                             'name' => $zdata['name']);
         }
+        $rs = $db->Execute("SELECT zone_name,zone_id FROM ".TABLE_SHIPPING_ZONES);
+        if ($rs->RecordCount()>0) {
+           while (!$rs->EOF) {
+               $data[] =  array('id' => '9999'.$rs->fields['zone_id'],
+                             'name' => $rs->fields['zone_name'].' ('.__define('TEXT_SHIPPING_ZONE').')');
+               $rs->MoveNext();
+           }
+        }
+        // query for shipping zones
+
         return $data;
     }
 
 	function getShippingTime(){
-		
+
 		$data = array();
 
-		if(is_array($_POST) && array_key_exists('query', $_POST)){
-		
-			require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.system_status.php';
-			$s_status = new system_status();
-	
-			$_data = $s_status->values['shipping_status'];
-			$data[] =  array('id' => '',
-	                         'name' => TEXT_EMPTY_SELECTION);
-	
-			foreach ($_data as $zdata) {
-				$data[] =  array('id' => $zdata['id'],
-	                             'name' => $zdata['name']);
-			}
-		
-		}
+        require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.system_status.php';
+        $s_status = new system_status();
+
+        $_data = $s_status->values['shipping_status'];
+        $data[] =  array('id' => '',
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
+
+        foreach ($_data as $zdata) {
+            $data[] =  array('id' => $zdata['id'],
+                             'name' => $zdata['name']);
+        }
+
 		return $data;
-
-
 	}
-	
+
 	function getShippingMethods() {
 		global $db,$language;
-		
+
 		$rs = $db->Execute("SELECT * FROM ".TABLE_SHIPPING." s, ".TABLE_SHIPPING_DESCRIPTION." sd WHERE s.shipping_id=sd.shipping_id and sd.language_code='".$language->code."'");
 		$data = array();
 		if ($rs->RecordCount() > 0) {
@@ -682,9 +645,9 @@ class getAdminDropdownData {
 				$rs->MoveNext();
 			}
 		}
-		return $data;	
-	} 
-	
+		return $data;
+	}
+
 	function getShippingMethodsCodes() {
 		global $db,$language;
 
@@ -705,7 +668,7 @@ class getAdminDropdownData {
 
 	function getPaymentMethods() {
 		global $db,$language;
-		
+
 		$rs = $db->Execute("SELECT distinct p.payment_code, p.payment_id  FROM ".TABLE_PAYMENT." p, ".TABLE_PAYMENT_DESCRIPTION." pd WHERE p.payment_id=pd.payment_id and pd.language_code='".$language->code."' AND pd.payment_description_store_id = 1");
 		$data = array();
 		if ($rs->RecordCount() > 0) {
@@ -717,7 +680,7 @@ class getAdminDropdownData {
 				$rs->MoveNext();
 			}
 		}
-		return $data;	
+		return $data;
 	}
 
 	function getPaymentMethodsCodes() {
@@ -748,87 +711,74 @@ class getAdminDropdownData {
 	function getOrderStatus(){
 
 		$data = array();
-		
-		if(is_array($_POST) && array_key_exists('query', $_POST)){
-			require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.system_status.php';
-			$s_status = new system_status();
-	
-			$_data = $s_status->values['order_status'];
-			$data[] =  array('id' => '',
-	                         'name' => TEXT_EMPTY_SELECTION);
-	
-			foreach ($_data as $zdata) {
-				$data[] =  array('id' => $zdata['id'],
-	                             'name' => $zdata['name']);
-			}
-		
-		}
+
+        require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.system_status.php';
+        $s_status = new system_status();
+
+        $_data = $s_status->values['order_status'];
+        $data[] =  array('id' => '',
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
+
+        foreach ($_data as $zdata) {
+            $data[] =  array('id' => $zdata['id'],
+                             'name' => $zdata['name']);
+        }
+
 		return $data;
-
-
 	}
 
 	function getPermissionAreas(){
 
 		$data = array();
-		
-		if(is_array($_POST) && array_key_exists('query', $_POST)){
-			require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.acl_area.php';
-			$area = new acl_area();
-			$_data = $area->_getAreaList();
-	
-			foreach ($_data as $adata) {
-				$data[] =  array('id' => $adata['area_id'],
-	                             'name' => $adata['area_name'],
-	                             'desc' => $adata['area_description']);
-			}
-		}
-		
+
+        require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.acl_area.php';
+        $area = new acl_area();
+        $_data = $area->_getAreaList();
+
+        foreach ($_data as $adata) {
+            $data[] =  array('id' => $adata['area_id'],
+                             'name' => $adata['area_name'],
+                             'desc' => $adata['area_description']);
+        }
+
 		return $data;
-
-
 	}
 
 	function getACLGroupList(){
 
 		$data = array();
-		
-		if(is_array($_POST) && array_key_exists('query', $_POST)){
-			require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.acl_groups.php';
-			$group = new acl_groups();
-	
-			$_data = $group->_getGroupList();
-			$data[] =  array('id' => '',
-	                         'name' => TEXT_EMPTY_SELECTION);
-	
-			foreach ($_data as $gdata) {
-				$data[] =  array('id' => $gdata['group_id'],
-	                             'name' => $gdata['name']);
-			}
-		}
+
+        require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.acl_groups.php';
+        $group = new acl_groups();
+
+        $_data = $group->_getGroupList();
+        $data[] =  array('id' => '',
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
+
+        foreach ($_data as $gdata) {
+            $data[] =  array('id' => $gdata['group_id'],
+                             'name' => $gdata['name']);
+        }
+
 		return $data;
-
-
 	}
 
 	function getTaxClasses(){
 
 		$data = array();
-		
-		if(is_array($_POST) && array_key_exists('query', $_POST)){
-			require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.tax_class.php';
-			$t = new tax_class();
-			$_data = $t->_getTaxClassList();
-			$data[] =  array('id' => '',
-	                         'name' => TEXT_EMPTY_SELECTION);
-	
-			foreach ($_data as $tdata) {
-				$data[] =  array('id' => $tdata['tax_class_id'],
-	                             'name' => $tdata['tax_class_title']);
-			}
-		}
-		return $data;
 
+        require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.tax_class.php';
+        $t = new tax_class();
+        $_data = $t->_getTaxClassList();
+        $data[] =  array('id' => '',
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
+
+        foreach ($_data as $tdata) {
+            $data[] =  array('id' => $tdata['tax_class_id'],
+                             'name' => $tdata['tax_class_title']);
+        }
+
+		return $data;
 	}
 
 	function getTaxRatesCalculationBase(){
@@ -836,13 +786,13 @@ class getAdminDropdownData {
 		$data = array(
 			array(
 				'id' => 'b2c_eu',
-				'name' => TEXT_TAX_CALCULATION_BASE_B2C_EU),
+				'name' => __define('TEXT_TAX_CALCULATION_BASE_B2C_EU')),
 			array(
 				'id' => 'shipping_address',
-				'name' => TEXT_TAX_CALCULATION_BASE_SHIPPING_ADDRESS),
+				'name' => __define('TEXT_TAX_CALCULATION_BASE_SHIPPING_ADDRESS')),
 			array(
 				'id' => 'payment_address',
-				'name' => TEXT_TAX_CALCULATION_BASE_PAYMENT_ADDRESS)
+				'name' => __define('TEXT_TAX_CALCULATION_BASE_PAYMENT_ADDRESS'))
 		);
 
 		return $data;
@@ -882,37 +832,32 @@ class getAdminDropdownData {
 	function getStores($current_store_id){
 		global $store_handler, $xtPlugin;
 		$data = array();
-		
-		if(is_array($_POST) && array_key_exists('query', $_POST)){
-		
-			$_data = $store_handler->getStores();
-			
-			($plugin_code = $xtPlugin->PluginCode(__CLASS__.':getStores')) ? eval($plugin_code) : false;
-			
-			$data[] =  array('id' => '',
-	                         'name' => TEXT_EMPTY_SELECTION);
-	
-			foreach ($_data as $sdata) {
-			    if (($current_store_id!='') && ($current_store_id==$sdata['id'])){
-			        continue;
-			    }else{
-			        $data[] =  array('id' => $sdata['id'],
-                                 'name' => $sdata['text']);
-			    }
-				
-			}
-		
-		}
+
+        $_data = $store_handler->getStores();
+
+        ($plugin_code = $xtPlugin->PluginCode(__CLASS__.':getStores')) ? eval($plugin_code) : false;
+
+        $data[] =  array('id' => '',
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
+
+        foreach ($_data as $sdata) {
+            if (($current_store_id!='') && ($current_store_id==$sdata['id'])){
+                continue;
+            }else{
+                $data[] =  array('id' => $sdata['id'],
+                             'name' => $sdata['text']);
+            }
+
+        }
 		
 		return $data;
-
 	}
 
 	function getSortDefaults () {
 		$data=array();
 					
 		$data[] =  array('id' => '',
-                         'name' => TEXT_EMPTY_SELECTION);
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
 
 		for ($i=0; $i <= 10; $i++) {
 			$data[] =  array('id' => $i*10,
@@ -925,21 +870,20 @@ class getAdminDropdownData {
 		$data=array();
 		
 		$data[] =  array('id' => '',
-                         'name' => TEXT_EMPTY_SELECTION);		
-		
-		if(is_array($_POST) && array_key_exists('query', $_POST)){				
-			if ($dir = opendir(_SRV_WEBROOT.'templates/')) {
-	
-				while (($tpl = readdir($dir)) !== false) {
-					if (is_dir(_SRV_WEBROOT.'templates/'.$tpl) and (strstr($tpl, '.')==false) and (strstr($tpl, '__')==false) and ($tpl != ".") and ($tpl != "..")) {
-						$data[] =  array('id' => $tpl,
-			                             'name' => $tpl);
-					}
-				}
-	
-			closedir($dir);
-			}
-		}
+                         'name' => __define('TEXT_EMPTY_SELECTION'));		
+
+        if ($dir = opendir(_SRV_WEBROOT.'templates/')) {
+
+            while (($tpl = readdir($dir)) !== false) {
+                if (is_dir(_SRV_WEBROOT.'templates/'.$tpl) and (strstr($tpl, '.')==false) and (strstr($tpl, '__')==false) and ($tpl != ".") and ($tpl != "..")) {
+                    $data[] =  array('id' => $tpl,
+                                     'name' => $tpl);
+                }
+            }
+
+            closedir($dir);
+        }
+
 		return $data;
 	}
 
@@ -948,59 +892,55 @@ class getAdminDropdownData {
 		
 		$files=array();
 		$file_default = array();
-		
-		if(is_array($_POST) && array_key_exists('query', $_POST))
-		{
-			$dirs = array();
-			if($plugin_path==false)
-			{
-			    $dirs[_SYSTEM_TEMPLATE] = _SRV_WEBROOT.'templates/'._SYSTEM_TEMPLATE.'/'.$path;
-			    if($store_id)
+
+        $dirs = array();
+        if($plugin_path==false)
+        {
+            $dirs[constant('_SYSTEM_TEMPLATE')] = _SRV_WEBROOT.'templates/'.constant('_SYSTEM_TEMPLATE').'/'.$path;
+            if($store_id)
+            {
+                $tableExists = $db->GetOne("SELECT 1 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA='" . _SYSTEM_DATABASE_DATABASE . "' AND TABLE_NAME='" . TABLE_CONFIGURATION_MULTI.$store_id . "'");
+                if($tableExists)
                 {
-                    $tableExists = $db->GetOne("SELECT 1 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA='" . _SYSTEM_DATABASE_DATABASE . "' AND TABLE_NAME='" . TABLE_CONFIGURATION_MULTI.$store_id . "'");
-                    if($tableExists)
+                    $store_template = $db->GetOne("SELECT config_value FROM ".TABLE_CONFIGURATION_MULTI.$store_id." WHERE config_key='_STORE_DEFAULT_TEMPLATE'");
+                    if(!empty($store_template) && $store_template != constant('_SYSTEM_TEMPLATE'))
                     {
-                        $store_template = $db->GetOne("SELECT config_value FROM ".TABLE_CONFIGURATION_MULTI.$store_id." WHERE config_key='_STORE_DEFAULT_TEMPLATE'");
-                        if(!empty($store_template) && $store_template != _SYSTEM_TEMPLATE)
-                        {
-                            $dirs[$store_template] = _SRV_WEBROOT.'templates/'.$store_template.'/'.$path;
-                        }
+                        $dirs[$store_template] = _SRV_WEBROOT.'templates/'.$store_template.'/'.$path;
                     }
                 }
-			}else{
-                $dirs['plugins'] = _SRV_WEBROOT.'plugins/'.$path;
-			}
-	
-			//		if (!is_dir($dir)) return $path;
-            foreach($dirs as $dir_name => $dir)
-            {
-                if(is_dir($dir))
-                {
-			$d = dir($dir);
-                    while ($name = $d->read())
-                    {
-                        if (!preg_match('/\.(' . $filetype . ')$/', $name))
-                        {
-                            continue;
-                        }
-				
-                        //$size = filesize($dir . $name);
-                        //$lastmod = filemtime($dir . $name);
-				$files[] = array('id' => $name,
-                            'name' => $dir_name.' / '.$name);
-			}
-			$d->close();
-                }
             }
-			if (!$add_default) return $files;
-	
-			// add default (value is empty)
-			$file_default[]= array('id' => '',
-		                     'name'=> __define('TEXT_DEFAULT_TEMPLATE'));
-		}
-		
-			return array_merge($file_default, $files);
-		
+        }else{
+            $dirs['plugins'] = _SRV_WEBROOT.'plugins/'.$path;
+        }
+
+        //		if (!is_dir($dir)) return $path;
+        foreach($dirs as $dir_name => $dir)
+        {
+            if(is_dir($dir))
+            {
+        $d = dir($dir);
+                while ($name = $d->read())
+                {
+                    if (!preg_match('/\.(' . $filetype . ')$/', $name))
+                    {
+                        continue;
+                    }
+
+                    //$size = filesize($dir . $name);
+                    //$lastmod = filemtime($dir . $name);
+            $files[] = array('id' => $name,
+                        'name' => $dir_name.' / '.$name);
+        }
+        $d->close();
+            }
+        }
+        if (!$add_default) return $files;
+
+        // add default (value is empty)
+        $file_default[]= array('id' => '',
+                         'name'=> __define('TEXT_DEFAULT_TEMPLATE'));
+
+        return array_merge($file_default, $files);
 	}
 	
 	
@@ -1008,30 +948,31 @@ class getAdminDropdownData {
 		$path = 'media/lang/';
 		
 	
-			$dir = _SRV_WEBROOT.$path;
-			
-	
-			//		if (!is_dir($dir)) return $path;
-			$d = dir($dir);
-			while($name = $d->read()){
-				if(!preg_match('/\.(xml)$/', $name)) continue;
-				
-				if (!strstr($name,'_content')) {
-					
-				//$xml = $this->xmlToArray($dir.$name);
-					
-				$xml = file_get_contents($dir.$name);
-				$xml = XML_unserialize($xml);	
-				//__debug($xml);
-				
-				$size = filesize($dir.$name);
-				$lastmod = filemtime($dir.$name);
-				$files[] = array('id' => $name,
-			                     'name'=>$xml['xtcommerce_language']['name']. ' ('.$xml['xtcommerce_language']['code'].')');
-				}
-			}
-			$d->close();
-			if (!$add_default) return $files;
+        $dir = _SRV_WEBROOT.$path;
+
+        $files = [];
+
+        //		if (!is_dir($dir)) return $path;
+        $d = dir($dir);
+        while($name = $d->read()){
+            if(!preg_match('/\.(xml)$/', $name)) continue;
+
+            if (!strstr($name,'_content')) {
+
+            //$xml = $this->xmlToArray($dir.$name);
+
+            $xml = file_get_contents($dir.$name);
+            $xml = XML_unserialize($xml);
+            //__debug($xml);
+
+            $size = filesize($dir.$name);
+            $lastmod = filemtime($dir.$name);
+            $files[] = array('id' => $name,
+                             'name'=>$xml['xtcommerce_language']['name']. ' ('.$xml['xtcommerce_language']['code'].')');
+            }
+        }
+        $d->close();
+        return $files;
 
 	}
 
@@ -1071,52 +1012,42 @@ class getAdminDropdownData {
 		
 		$data = array();
 
-		if(is_array($_POST) && array_key_exists('query', $_POST)){		
-		
-			require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.content.php';
-			$c = new content();
-			$_data = $c->getSystemHooks();
-			$data=array();
-			$data[] =  array('id' => '',
-	                         'name' => TEXT_EMPTY_SELECTION);
-	
-			foreach ($_data as $cdata) {
-				$data[] =  array('id' => $cdata['id'],
-	                             'name' => $cdata['text']);
-			}
-		
-		}
+        require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.content.php';
+        $c = new content();
+        $_data = $c->getSystemHooks();
+        $data=array();
+        $data[] =  array('id' => '',
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
+
+        foreach ($_data as $cdata) {
+            $data[] =  array('id' => $cdata['id'],
+                             'name' => $cdata['text']);
+        }
 		
 		return $data;
-
 	}
 
 	function getContentForms() {
 
 		$files = array();
-		
-		if(is_array($_POST) && array_key_exists('query', $_POST)){
-		
-			$dir = _SRV_WEBROOT.'xtCore/forms/';
 
-			$files[] =  array('id' => '',
-	                         'name' => TEXT_EMPTY_SELECTION);
-	
-	
-			//		if (!is_dir($dir)) return $path;
-			$d = dir($dir);
-			while($name = $d->read()){
-				if(!preg_match('/\.(php)$/', $name)) continue;
-				$size = filesize($dir.$name);
-				$lastmod = filemtime($dir.$name);
-				$files[] = array('id' => $name,
-			                     'name'=>$name);
-			}
-		
-		}
-		
+        $dir = _SRV_WEBROOT.'xtCore/forms/';
+
+        $files[] =  array('id' => '',
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
+
+
+        //		if (!is_dir($dir)) return $path;
+        $d = dir($dir);
+        while($name = $d->read()){
+            if(!preg_match('/\.(php)$/', $name)) continue;
+            $size = filesize($dir.$name);
+            $lastmod = filemtime($dir.$name);
+            $files[] = array('id' => $name,
+                             'name'=>$name);
+        }
+
 		return $files;
-
 	}
 
 	function getStoreLogo() {
@@ -1124,7 +1055,7 @@ class getAdminDropdownData {
 		$d = dir($dir);
 		$data=array();
 		$files[] =  array('id' => '',
-                         'name' => TEXT_EMPTY_SELECTION);
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
 
 		while($name = $d->read()){
 			if(!preg_match('/\.(gif|jpg|png)$/', $name)) continue;
@@ -1134,29 +1065,24 @@ class getAdminDropdownData {
 		                     'name'=>$name);
 		}
 		return $files;
-
 	}
 
 	function getContentList() {
 
 		$data = array();
-		
-		if(is_array($_POST) && array_key_exists('query', $_POST)){
-		
-			require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.content.php';
-			$c = new content();
-			$_data = $c->contentList();
-			$data[] =  array('id' => '',
-	                         'name' => TEXT_EMPTY_SELECTION);
-	
-			foreach ($_data as $cdata) {
-				$data[] =  array('id' => $cdata['id'],
-	                             'name' => $cdata['text']);
-			}
-		
-		}
-		return $data;
 
+        require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.content.php';
+        $c = new content();
+        $_data = $c->contentList();
+        $data[] =  array('id' => '',
+                         'name' => __define('TEXT_EMPTY_SELECTION'));
+
+        foreach ($_data as $cdata) {
+            $data[] =  array('id' => $cdata['id'],
+                             'name' => $cdata['text']);
+        }
+
+		return $data;
 	}
 
 	function matrixSort(&$matrix,$sortKey,$sort = 'ASC') {
@@ -1176,7 +1102,6 @@ class getAdminDropdownData {
 		}
 
 		return $ArrayNew;
-
 	}
 
 	function getMailTypes() {
@@ -1195,16 +1120,14 @@ class getAdminDropdownData {
         
        $data=array();
         $data[] =  array('id' => '0',
-                             'name' => TEXT_EMPTY_SELECTION);
+                             'name' => __define('TEXT_EMPTY_SELECTION'));
         $data[] =  array('id' => '1',
                              'name' => __define('TEXT_PAYMENT_COST_DISCOUNT_PERCENT'));
         $data[] =  array('id' => '2',
                              'name' => __define('TEXT_PAYMENT_COST_ADD'));
         $data[] =  array('id' => '3',
                              'name' => __define('TEXT_PAYMENT_COST_ADD_PERCENT'));
-        return $data; 
-        
-        
+        return $data;
     }
     
     function getExportTpls(){
@@ -1238,5 +1161,3 @@ class getAdminDropdownData {
         return $FilesArray;
     }
 }
-
-?>

@@ -302,6 +302,9 @@ class customer extends check_fields{
             $data['default_address']['customers_dob'] = date('d.m.Y', strtotime($dob));
         }
 
+        if(empty($data["default_address"]["customers_federal_state_code"]))
+            $data["default_address"]["customers_federal_state_code"] = $data["default_address"]['customers_federal_state_code'.$data["default_address"]["customers_country_code"]];
+
 		if(is_array($data['cust_info'])){
 
             /**

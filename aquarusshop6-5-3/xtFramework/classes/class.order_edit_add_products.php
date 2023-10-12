@@ -95,6 +95,10 @@ class order_edit_add_products extends product {
                         {
                             Ext.MessageBox.alert('Error', r.msg);
                         }
+                        if(r.success && r.msg)
+                        {
+                            Ext.MessageBox.alert('".TEXT_PRODUCT.' '.TEXT_ADDED.'. '.TEXT_ALERT."', r.msg);
+                        }
                         order_edit_add_productsds.reload();
                         //contentTabs.getActiveTab().getUpdater().refresh();
                         contentTabs.getActiveTab().load('order_edit.php?pg=overview&parentNode=node_order&gridHandle=ordergridForm&edit_id='+r.orders_id);
@@ -311,8 +315,14 @@ class order_edit_add_products extends product {
                 }
             }
 
+            global $info;
+
             // order speichern
             $order_edit_controller->setOrder($order);
+            foreach ($info->info_data["info"] as $i)
+            {
+                $result->msg .= $i['info_message'].'<br />';
+            }
 
             $result->success = true;
             $result->orders_id = $oId;

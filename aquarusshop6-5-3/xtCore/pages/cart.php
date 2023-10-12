@@ -34,8 +34,8 @@ $no_index_tag = true;
 if(!empty($_SESSION['selected_payment_discount']) || !empty($_SESSION['selected_payment']))
 {
     unset($_SESSION['selected_payment']);
-    unset($_SESSION['selected_payment_discount']);
-    if (is_object(sessionCart())) sessionCart()->_refresh();
+    unset( $_SESSION['selected_payment_discount']);
+    if (is_object($_SESSION['cart'])) sessionCart()->_refresh();  // passion-d
 }
 
 ($plugin_code = $xtPlugin->PluginCode('module_cart.php:cart_top')) ? eval($plugin_code) : false;

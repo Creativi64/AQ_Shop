@@ -31,6 +31,8 @@ if(!defined('TABLE_MEDIA_DOWNLOAD_IP'))
 	define('TABLE_MEDIA_DOWNLOAD_IP', 'xt_media_download_ip');
 
 ($plugin_code = $xtPlugin->PluginCode('module_product.php:top')) ? eval($plugin_code) : false;
+    if(isset($plugin_return_value))
+        return $plugin_return_value;
 
 if (!$p_info->is_product) {
 	if (_SYSTEM_MOD_REWRITE_404 == 'true') header("HTTP/1.0 404 Not Found");

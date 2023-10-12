@@ -157,7 +157,7 @@ class plugin_hookpoints extends plugin{
 		$id = (int)$id;
 		if (!is_int($id)) return false;
 		
-		if(_SYSTEM_USE_DB_HOOKS=='false'){
+		if(!_SYSTEM_USE_DB_HOOKS){
 			if($status != 1){
 				$xtPlugin->_deleteHookFiles(trim($id));
 			}else{

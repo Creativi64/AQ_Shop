@@ -52,20 +52,28 @@ class cart {
     var $total_discount;
     var $cart_total_full_for_customers_discount = 0;
 
-    function __construct() {
+    function __construct($refresh = false) {
 		global $xtPlugin;
 
 		($plugin_code = $xtPlugin->PluginCode('class.cart.php:cart_top')) ? eval($plugin_code) : false;
 		if(isset($plugin_return_value))
 		return $plugin_return_value;
 
-		$this->_refresh();
+		if($refresh) $this->_refresh(); // passion-d
 
 	}
 
 	function _refresh(){
 		global $xtPlugin, $price, $tax, $currency, $customers_status;
-		
+
+        /*
+        if(empty($_REQUEST['refreshCounter'])) $_REQUEST['refreshCounter'] = 1;
+            else $_REQUEST['refreshCounter'] = $_REQUEST['refreshCounter'] + 1;
+
+        $ex = new Exception('aeaserfaew');
+        error_log('## refreshCounter '.$_REQUEST['refreshCounter'] ."\n". $ex->getTraceAsString());
+        */
+
 		($plugin_code = $xtPlugin->PluginCode('class.cart.php:_refresh_top')) ? eval($plugin_code) : false;
 		if(isset($plugin_return_value))
 		return $plugin_return_value;
@@ -741,7 +749,7 @@ class cart {
             // save regular price, replace plain_otax with discount price
 
 
-                if($order_edit_controller && !$order_edit_controller->isActive())
+                if(($order_edit_controller && $order_edit_controller->isActive()) || USER_POSITION == 'store')
                 {
                     $value['products_price']['plain_otax'] = $price->_getPriceDiscount($value['products_price']['plain_otax'],$discount);
                 }
@@ -749,7 +757,9 @@ class cart {
 
 			// Calc Price
 			// dev7 $value['products_price_otax'] = $value['products_price']['plain_otax'];
-            $value['products_price_otax'] = round($value['products_price']['plain_otax'],6 );
+            $precision = 6;
+            if($order_edit_controller->isActive()) $precision = 3;
+            $value['products_price_otax'] = round($value['products_price']['plain_otax'],$precision );
 			$value['products_final_price_otax'] = $value['products_price_otax'] * $value['products_quantity'];
 			$value['products_final_price_otax'] = $value['products_final_price_otax'] + (isset($value['add_single_price']) ? $value['add_single_price'] : 0);
 
@@ -799,15 +809,18 @@ class cart {
             // Calc Tax
             if($customers_status->customers_status_show_price_tax=='1'){
             	$value['products_tax_value'] = $products_tax;
-            	$value['products_tax'] = round($value['products_price'] - $price->_removeTax($value['products_price'], $products_tax), 6);
-            	$value['products_tax_single'] = round($price->_calcTax($value['add_single_price'], $products_tax), 6);
-            	$value['products_final_tax'] = $value['products_final_price'] - $price->_removeTax($value['products_final_price'], $products_tax);
+            	//$value['products_tax'] = round($value['products_price'] - $price->_removeTax($value['products_price'], $products_tax), 2);
+                //$value['products_tax_single'] = round($price->_calcTax($value['add_single_price'], $products_tax), 2);
+                // juli 2023
+                $value['products_tax'] = round($value['products_price'] - $value["products_price_otax"], 2);
+                $value['products_tax_single'] = round($value['products_price'] - $value["products_price_otax"], 2);
+            	$value['products_final_tax'] = $value['products_tax_single'] * $value['products_quantity'];;
             }elseif( $customers_status->customers_status_add_tax_ot=='1'){
             	$value['products_tax_value'] = $products_tax;
-            	$value['products_tax'] = round($price->_calcTax($value['products_price_otax'], $products_tax),6);
-            	$value['products_tax_single'] = round($price->_calcTax($value['add_single_price'], $products_tax),6);
+            	$value['products_tax'] = round($price->_calcTax($value['products_price_otax'], $products_tax),2);
+            	$value['products_tax_single'] = round($price->_calcTax($value['add_single_price'], $products_tax),2);
             	$value['products_final_tax'] = $value['products_tax'] * $value['products_quantity'];
-            	$value['products_final_tax'] = $value['products_final_tax'] + $value['products_tax_single'];
+            	//$value['products_final_tax'] = $value['products_final_tax'] + $value['products_tax_single'];
             }else{
             	$value['products_tax'] = 0;
             	$value['products_final_tax'] = 0;

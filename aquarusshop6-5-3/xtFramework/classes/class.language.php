@@ -137,7 +137,7 @@ class language extends language_content{
 		}
 	}
 
-    function getLanguageSwitchLinks($languages = array()) {
+    function getLanguageSwitchLinks($languages = array(), $store_hreflang_def = '') {
         global $db,$page,$xtLink, $xtPlugin, $store_handler;
 
         $xt_langs = $this->_getLanguageList('store');
@@ -246,6 +246,27 @@ class language extends language_content{
                 }
                 break;
             case 'index':
+
+
+                /**
+                 *
+                 skype april 23
+                 ums 100% richtig zu haben müsste man quasi in allen sprachen das gleiche haben, also
+
+                auf EN Seite:
+
+                <link rel="alternate" hreflang="de" href="https://www.xtc-shop.de/" />
+                <link rel="alternate" hreflang="en" href="https://www.xtc-shop.de/en/index" />
+                <link rel="alternate" hreflang="x-default" href="https://www.xtc-shop.de/" />
+
+                auf DE Seite
+
+                <link rel="alternate" hreflang="de" href="https://www.xtc-shop.de/" />
+                <link rel="alternate" hreflang="en" href="https://www.xtc-shop.de/en/index" />
+                <link rel="alternate" hreflang="x-default" href="https://www.xtc-shop.de/" />
+
+                 *
+                 */
                 if(!is_array($languages) || count($languages)==0)
                 {
                     $languages = array();
@@ -256,13 +277,20 @@ class language extends language_content{
                 }
                 foreach ($languages as $l)
                 {
-                    $link_array = array(
-                        'page' => 'index',
-                        'lang_code' => $l,
-                        //'keep_lang' => true
-                    );
-                    $url = $xtLink->_link($link_array);
-                    if (_SYSTEM_SEO_URL_LANG_BASED != 'true')
+                    if($l == $store_hreflang_def)
+                    {
+                        $url = $xtLink->_index(['seo_url' => $l.'/index']);
+                    }
+                    else {
+                        $link_array = array(
+                            'page' => 'index',
+                            'lang_code' => $l,
+                            'keep_lang' => true,
+                            'seo_url' => _SYSTEM_SEO_URL_LANG_BASED == 'true' ? $l.'/index' : ''
+                        );
+                        $url = $xtLink->_link($link_array);
+                    }
+                    if (_SYSTEM_SEO_URL_LANG_BASED != 'true' && $store_hreflang_def != $l)
                     {
                         $url .= '?language='.$l;
                     }

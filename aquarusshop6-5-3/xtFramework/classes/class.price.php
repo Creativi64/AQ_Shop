@@ -283,6 +283,14 @@ class price {
 	function _Format($data) {
 		global $xtPlugin, $currency;
 
+        /**
+        static $format_counter;
+        if(!$format_counter) $format_counter = 0;
+        $format_counter++;
+        $ex = new Exception('aeaserfaew');
+        error_log('## format_counter '.$format_counter."\n". $ex->getTraceAsString());
+         */
+
 		($plugin_code = $xtPlugin->PluginCode('class.price.php:_Format_top')) ? eval($plugin_code) : false;
 		if(isset($plugin_return_value))
 		return $plugin_return_value;

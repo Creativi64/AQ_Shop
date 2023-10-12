@@ -55,3 +55,24 @@ function remove_utf8_bom($text)
     $text = preg_replace("/^$bom/", '', $text);
     return $text;
 }
+
+function html_purify($s)
+{
+    static $_purifier = null;
+    if(is_null($_purifier))
+    {
+        $config = HTMLPurifier_Config::createDefault();
+        $config->set('HTML.Allowed', '');
+        $config->set('Cache.SerializerPath', _SRV_WEBROOT.'templates_c');
+        $_purifier = new HTMLPurifier($config);
+    }
+    return $_purifier->purify($s);
+}
+
+function export_purify($s)
+{
+    $s = html_purify($s);
+    $s = str_replace(['"', "\t", "\n"], '', $s);
+    $s = str_replace(['|', "/"], '', $s);
+    return $s;
+}

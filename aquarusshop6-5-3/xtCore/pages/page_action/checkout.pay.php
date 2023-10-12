@@ -71,5 +71,5 @@ if (isset($payment_module_data->post_form)) {
     $payment_module_data->pspRedirect();
     $PSP_TARGET = $payment_module_data->TARGET_URL;
     $PSP_PARAMS = $payment_module_data->TARGET_PARAMS;
-    $checkout_data = array_merge($checkout_data,array('psp_target'=>$PSP_TARGET,'psp_params'=>$PSP_PARAMS,'psp_form'=>'1'));
+    $checkout_data = array_merge($checkout_data ?: [], array('psp_target'=>$PSP_TARGET,'psp_params'=>$PSP_PARAMS,'psp_form'=>'1'));
 }

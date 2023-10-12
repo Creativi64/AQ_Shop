@@ -68,6 +68,13 @@
         {form type=form role="form" name=shipping action='checkout' method=post conn=SSL}
         {form type=hidden name=action value=shipping}
 
+        {if !count($shipping_data) && count($shipping_errors)}
+            <div class="alert alert-warning " role="alert">
+                <b>{txt key=TEXT_SHIPPING_NOT_POSSIBLE} {txt key=TEXT_PLEASE_CHECK_CART}</b><br />
+                {shipping_errors errors=$shipping_errors html=li unique_only=1}
+            </div>
+        {/if}
+
         <ul class="list-group">
 		    {foreach name=aussen item=sdata from=$shipping_data}
 			    <li class="list-group-item clearfix cursor-pointer">{$sdata.shipping}</li>
