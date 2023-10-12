@@ -331,8 +331,6 @@ class customers_status extends xt_backend_cls{
 
 		}
 
-        if(!is_numeric($data["customers_discount"])) $data["customers_discount"] = '';
-
 		$oC = new adminDB_DataSave(TABLE_CUSTOMERS_STATUS, $data, false, __CLASS__);
 		$objC = $oC->saveDataSet();
 

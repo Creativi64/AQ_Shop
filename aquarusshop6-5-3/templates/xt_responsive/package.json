@@ -1,6 +1,6 @@
 {
   "name": "xt_responsive",
-  "version": "6.5.0.0",
+  "version": "6.5.4.0",
   "author": "xt:Commerce",
   "dependencies": {
     "@sweetalert2/theme-bootstrap-4": "^4.0.1",

@@ -124,11 +124,11 @@
         </div>
         {if $show_federal_states eq 1}
         <div id="federals" class="form-group" >
-            {foreach item='federal_states' from=$country_data}
-            {if $federal_states.federal_states}
-            <div class="federals-states {$federal_states.id}" style="display:none">
+            {foreach item='country' from=$country_data}
+            {if $country.federal_states}
+            <div class="federals-states {$country.countries_iso_code_2}" data-country="{$country.countries_iso_code_2}" style="display:none">
                 <label for="default_address_customers_federal_state_code">{txt key=TEXT_FEDERAL_STATES}*</label><br />
-                {form params='id="customers_federal_state_code"' type=select name='customers_federal_state_code' value=$federal_states.federal_states default=$customers_federal_state_code}
+                {form params='class="customers_federal_state_code"' type=select name='customers_federal_state_code' value=$country.federal_states default=$customers_federal_state_code}
             </div>
             {/if}
             {/foreach}
@@ -205,14 +205,16 @@
         var dobClicked = false;
         var dobPreselect = {/literal}new Date({$dobPreselect}){literal};
         document.addEventListener("DOMContentLoaded",function(event){
+
+            document.getElementById('federals').querySelectorAll("select[name=customers_federal_state_code]").forEach((inp) => {
+                inp.name = inp.name + inp.closest('.federals-states').dataset.country;
+            })
+
  			$('#countries').change(function(){
  				var selected_country = $('#countries option:selected').val();
                 $('.federals-states').css({'display':'none'});
-				if($('.'+selected_country).length != 0){
+				if($('.federals-states.'+selected_country).length != 0){
                     $('.federals-states.'+selected_country).css({'display':'block'});
-                    var selectedFederalStateValue  = $('.federals-states.'+selected_country + ' select option[selected=selected]').val();
-                    if (typeof selectedFederalStateValue == 'undefined') selectedFederalStateValue = 1;
-                    $('.federals-states.'+selected_country + ' select').val( selectedFederalStateValue );
                 }
                 else {
                     $('.federals-states select').val('');

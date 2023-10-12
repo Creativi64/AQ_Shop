@@ -30,7 +30,7 @@
 
                     <div class="form-group">
                         <label for="password">{txt key=text_password}*</label>
-                        {form id=password type=password name=password maxlength='30'}
+                        {form id=password type=password name=password}
                     </div>
 
                     <p class="required pull-left">{txt key=TEXT_MUST}</p>
@@ -91,18 +91,21 @@
                             <!--div class="col col-md-3 bold">{txt key=TEXT_ACCOUNT}{if $smarty.const._STORE_ALLOW_GUEST_ORDERS != 'true'}<span class="required">*</span>{/if}</div-->
                             <div class="col col-md-12">
 
-                                <div class="input-group">
-                                    <!-- remember: wenn checkbox.name=guest-account nicht angehakt, wird der input nicht gesendet, also haben wir in customer niemals guest-account!=register, also auch niemals guest-account=guest -->
-                                    <input type="checkbox" value="register" id="accountType" name="guest-account" class="guest-account checkbox-inline"style="vertical-align:text-top" {$account_type_checked}/>
-                                    <label for="accountType" class="checkbox-inline" style="display:table-cell">{txt key=TEXT_I_WANT_TO_REGISTER}{if $smarty.const._STORE_ALLOW_GUEST_ORDERS != 'true'}*{/if}</label>
-                                </div>
-
-                                <p class="visible-register-account help-block" style="font-size:90%">
-                                    {if $smarty.const._STORE_ALLOW_GUEST_ORDERS != 'true'}{txt key=ERROR_ACCEPT_ACOUNT_CREATION}<br />{/if}
-                                    {txt key=TEXT_TXT_NEW_CUSTOMER}
-                                </p>
                                 {if $smarty.const._STORE_ALLOW_GUEST_ORDERS == 'true'}
-                                <p class="visible-register-guest help-block" style="font-size:90%">{txt key=TEXT_TXT_GUEST}{if $smarty.const._STORE_ACCOUNT_COMPANY_VAT_CHECK == 'true'}&nbsp;{txt key=TEXT_NO_VAT_ALLOWED_WITH_GUEST}{/if}</p>
+                                    <div class="input-group">
+                                        <!-- remember: wenn checkbox.name=guest-account nicht angehakt, wird der input nicht gesendet, also haben wir in customer niemals guest-account!=register, also auch niemals guest-account=guest -->
+                                        <input type="checkbox" value="register" id="accountType" name="guest-account" class="guest-account checkbox-inline"style="vertical-align:text-top" {$account_type_checked}/>
+                                        <label for="accountType" class="checkbox-inline" style="display:table-cell">{txt key=TEXT_I_WANT_TO_REGISTER}{if $smarty.const._STORE_ALLOW_GUEST_ORDERS != 'true'}*{/if}</label>
+                                    </div>
+
+
+                                    <p class="visible-register-account help-block" style="font-size:90%">
+                                        {if $smarty.const._STORE_ALLOW_GUEST_ORDERS != 'true'}{txt key=ERROR_ACCEPT_ACOUNT_CREATION}<br />{/if}
+                                        {txt key=TEXT_TXT_NEW_CUSTOMER}
+                                    </p>
+                                    {if $smarty.const._STORE_ALLOW_GUEST_ORDERS == 'true'}
+                                    <p class="visible-register-guest help-block" style="font-size:90%">{txt key=TEXT_TXT_GUEST}{if $smarty.const._STORE_ACCOUNT_COMPANY_VAT_CHECK == 'true'}&nbsp;{txt key=TEXT_NO_VAT_ALLOWED_WITH_GUEST}{/if}</p>
+                                    {/if}
                                 {/if}
                             </div>
                         </div>
@@ -301,12 +304,12 @@
                             {if $show_federal_states eq 1}
                                 <div id="federals" class="form-group row">
 
-                                    {foreach item='federal_states' from=$country_data}
-                                    {if $federal_states.federal_states}
-                                    <div class="form-group federals-states {$federal_states.id}" style="display:none">
+                                    {foreach item='country' from=$country_data}
+                                    {if $country.federal_states}
+                                    <div class="form-group federals-states {$country.countries_iso_code_2}" data-country="{$country.countries_iso_code_2}" style="display:none">
                                         <label for="default_address_customers_federal_state_code" class="col col-md-3">{txt key=TEXT_FEDERAL_STATES}*</label>
                                         <div class="col col-md-9">
-                                            {form params='id="default_address_customers_federal_state_code"' class="form-control" type=select name='default_address[customers_federal_state_code]' value=$federal_states.federal_states default=$default_address.customers_federal_state_code}
+                                            {form params='id="default_address_customers_federal_state_code"' class="form-control" type=select name='default_address[customers_federal_state_code]' value=$country.federal_states default=$default_address.customers_federal_state_code}
                                         </div>
                                     </div>
                                     {/if}
@@ -457,16 +460,15 @@
                             });
                             accountTypeInput.dispatchEvent(accountTypeChangeEvent);
 
-
+                            document.getElementById('federals').querySelectorAll("select[name*=customers_federal_state_code]").forEach((inp) => {
+                                inp.name = "default_address[customers_federal_state_code" + inp.closest('.federals-states').dataset.country + "]";
+                            })
 
                             $('#countries').change(function() {
                                 var selected_country = $('#countries option:selected').val();
                                 $('.federals-states').css( { 'display':'none' } );
                                 if($('.'+selected_country).length != 0) {
                                     $('.federals-states.'+selected_country).css({ 'display':'block' });
-                                    var selectedFederalStateValue  = $('.federals-states.'+selected_country + ' select option[selected=selected]').val();
-                                    if (typeof selectedFederalStateValue == 'undefined') selectedFederalStateValue = 1;
-                                    $('.federals-states.'+selected_country + ' select').val( selectedFederalStateValue );
                                 }
                                 else {
                                     $('.federals-states select').val('');

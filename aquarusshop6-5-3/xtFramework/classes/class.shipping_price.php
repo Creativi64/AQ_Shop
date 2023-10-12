@@ -130,14 +130,34 @@ class shipping_price extends xt_backend_cls {
 	function _set($data, $set_type='edit'){
 		global $db,$language,$filter;
 
+		$obj = new stdClass;
+
+		// check if zone and country is populated
+		if (
+            ($data['shipping_geo_zone']!='' && $data['shipping_geo_zone']!='0')
+            &&
+            ($data['shipping_country_code']!='' && $data['shipping_country_code']!='0')
+        ) {
+			$obj->failed = true;
+			return $obj;
+		}
+
+
 		 if($set_type == 'new'){
 		 	$data['shipping_id'] = $this->url_data['shipping_id'];
 		 }
 
+        $obj = new stdClass;
+
+        if (!empty($data["shipping_geo_zone"]) && !empty($data["shipping_country_code"])){
+            $obj->success = false;
+            $obj->error_message = __text('ERROR_SHIPPING_COUNTRY_OR_ZONE_ONLY');
+            return $obj;
+        }
+
 		if($set_type=='edit')
 		$data['shipping_price'] = $this->build_price($data['shipping_id'], $data['shipping_price'], '', 'save');
 
-		 $obj = new stdClass;
 		 $o = new adminDB_DataSave($this->_table, $data, false, __CLASS__);
 		 $obj = $o->saveDataSet();
 

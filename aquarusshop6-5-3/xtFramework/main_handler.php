@@ -231,7 +231,7 @@ if($_SYSTEM_INSTALL_SUCCESS == true && !defined('XT_WIZARD_STARTED') && USER_POS
     {
         $_SESSION['cart'] = new cart();
     }
-    else $_SESSION['cart']->_refresh();
+    else $_SESSION['cart']->_refresh();  // passion-d
 }
 
 if (!empty($current_product_id))

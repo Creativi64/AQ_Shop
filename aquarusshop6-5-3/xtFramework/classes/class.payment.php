@@ -276,7 +276,8 @@ class payment extends xt_backend_cls {
 					if (file_exists($class_path . $class_file)) {
 						require_once($class_path.$class_file);
 						$plugin_payment_data = new $value['payment_code']();
-						$data[$value['payment_code']] = array_merge($data[$value['payment_code']], $plugin_payment_data->data);
+                        if(is_array($plugin_payment_data->data))
+						    $data[$value['payment_code']] = array_merge($data[$value['payment_code']], $plugin_payment_data->data);
 					}
 					($plugin_code = $xtPlugin->PluginCode('class.payment.php:_buildData_data')) ? eval($plugin_code) : false;
 				}
@@ -478,7 +479,9 @@ class payment extends xt_backend_cls {
             return $payment_price;
         }
 
-        if (isset($_SESSION['selected_payment_discount'][$data['payment_code']])) unset($_SESSION['selected_payment_discount'][$data['payment_code']]);
+        if (isset($_SESSION['selected_payment_discount'][$data['payment_code']])) {
+            unset($_SESSION['selected_payment_discount'][$data['payment_code']]);
+        }
 		if($data['costs']['0']['payment_price']!=0){
 
 
@@ -565,7 +568,7 @@ class payment extends xt_backend_cls {
 
                 ($plugin_code = $xtPlugin->PluginCode('class.payment.php:getConfigHeaderData_foreach_store_while_top')) ? eval($plugin_code) : false;
 
-				$required = true;
+				$required = false;
 				if ($record->fields['config_value'] == 'true' || $record->fields['config_value'] == 'false') {
 					$type = 'truefalse';
 				}

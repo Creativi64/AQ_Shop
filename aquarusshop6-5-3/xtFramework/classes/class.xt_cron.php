@@ -161,7 +161,7 @@ class xt_cron extends xt_backend_cls
         global $db, $language, $filter;
 
         // calc next run time in saving
-        if($data['active_status'] == true)
+        if(array_key_exists('active_status', $data) && $data['active_status'] == true)
         	$data = $this->calc_next_run($data, true);
         else $data['next_run_date'] = '';
 

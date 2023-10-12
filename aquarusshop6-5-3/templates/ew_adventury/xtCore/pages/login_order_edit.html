@@ -11,7 +11,7 @@
 			{form id=customers_id type=hidden name=customers_id value=$userId}
 
 			<label for="password">{txt key=text_password_admin}</label>
-			{form id=password type=password name=password maxlength='30'}
+			{form id=password type=password name=password}
 
 			<p class="right"><a href="{link page='customer' paction='password_reset' conn=SSL}">{txt key=text_link_lostpassword}</a></p>
 			<p class="right">{css_button text=$smarty.const.BUTTON_LOGIN type='form'}</p>

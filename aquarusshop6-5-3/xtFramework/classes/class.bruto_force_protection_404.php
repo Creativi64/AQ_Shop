@@ -54,7 +54,11 @@ class bruto_force_protection_404 extends xt_backend_cls{
 	function escalateFailedPageLoad($fail_type='customers_404') {
 		global $db,$filter;
 		
-		$ip = $this->getCustomerIP();
+		$ip = self::getCustomerIP();
+        if(!filter_var($ip, FILTER_VALIDATE_IP))
+        {
+            exit();
+        }
 		
 		// email address allready added ?
 		$rs = "SELECT * FROM ".$this->_table." WHERE ip=? and fail_type=? and last_try >= NOW()-".$this->check_time*60;
@@ -108,8 +112,12 @@ class bruto_force_protection_404 extends xt_backend_cls{
 	 */
 	function _isLocked() {
 		global $db,$filter;
-		
-		$ip = $this->getCustomerIP();
+
+        $ip = self::getCustomerIP();
+        if(!filter_var($ip, FILTER_VALIDATE_IP))
+        {
+            exit();
+        }
 
 		$rs = "SELECT * FROM ".$this->_table." WHERE ip=? and lock_until >= NOW()";
 		$rs = $db->Execute($rs, array($ip));
@@ -188,15 +196,24 @@ class bruto_force_protection_404 extends xt_backend_cls{
 		);
 
 	}
-	
-	function getCustomerIP(){
-		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-		    $ip = $_SERVER['HTTP_CLIENT_IP'];
-		} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-		    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		} else {
-		    $ip = $_SERVER['REMOTE_ADDR'];
-		}
-		return $ip;
-	}
+
+    static function getCustomerIP()
+    {
+        // PEKKA in https://stackoverflow.com/questions/7623187/will-the-value-of-a-set-serverhttp-client-ip-be-an-empty-string
+        $ip = '';
+        if (!empty( $_SERVER['REMOTE_ADDR']))
+        {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        else if (!empty($_SERVER['HTTP_CLIENT_IP']))
+        {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        }
+        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+        {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        }
+        return $ip;
+    }
+
 }

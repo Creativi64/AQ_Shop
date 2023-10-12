@@ -431,6 +431,7 @@ class admin_order_edit extends order_templates {
 		if(count($data)>0){
 			foreach ($data as $key => $oh) {
 				// fix for order - edit (nl2br dosn't work)
+                if(empty($data[$key]['callback_id'])) $data[$key]['callback_id'] = '';
                 $data[$key]['comments'] = str_replace(array("\r\n","\n","\r"),'<br />', $data[$key]['comments']);
 				$data[$key]['orders_status'] = $system_status->values['order_status'][$oh['orders_status_id']]['name'];
 			}
@@ -696,7 +697,7 @@ class admin_order_edit extends order_templates {
             ->setAutoLoad(false);
         $overviewPanel->setRenderTo(PhpExt_Javascript::variable("Ext.get('overviewContainer".$this->oID."')"));
         $top = (count($extraButtonPanels) + 1) * 35;
-        $overviewPanel->setCssStyle("position:relative; top:${top}px; margin-bottom:${top}px");
+        $overviewPanel->setCssStyle("position:relative; top:{$top}px; margin-bottom:{$top}px");
 			
         $js .= PhpExt_Ext::onReady(
 					PhpExt_Javascript::stm("var orderdata = ".PhpExt_Javascript::jsonEncode($this->getOrderData()).""),

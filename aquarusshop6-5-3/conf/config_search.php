@@ -31,6 +31,8 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 define('_SYSTEM_SEARCH_SPLIT', true);
 
 // Zeichenketten kürzer als SEARCH_MIN_LENGTH werden von der Suche prinzipiell ausgeschlossen
+// mit _SYSTEM_SEARCH_SPLIT = true werden Einzelzeichenketten aus der Suche entfernt
+// mit _SYSTEM_SEARCH_SPLIT = false wird die Gesamtlänge bewertet
 define('SEARCH_MIN_LENGTH', 3);
 
 // Sortierung der Ergebnisse

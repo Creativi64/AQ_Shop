@@ -27,7 +27,7 @@
 
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
-global $xtLink, $xtPlugin, $category, $manufacturer;
+global $xtLink, $xtPlugin, $category, $manufacturer, $page;
 
 $page_data = '';
 if (empty($current_category_id)) {

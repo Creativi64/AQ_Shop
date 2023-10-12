@@ -174,9 +174,16 @@ class language_content extends xt_backend_cls
             }
             $systemPart = substr($line, 0, $delimiterPos);
             $value = substr($line, $delimiterPos+1);
-            list($plugin, $class, $key, $flags) = explode('.', $systemPart);
-            $flags = explode('&', $flags);
-            $force_override = in_array('readonly', $flags); // ja, genau dann erlauben wir überschreiben
+            $parts = explode('.', $systemPart);
+            $force_override = false;
+            if(count($parts) <=3)
+                list($plugin, $class, $key) = $parts;
+            else
+            {
+                list($plugin, $class, $key, $flags) = $parts;
+                $flags = explode('&', $flags);
+                $force_override = in_array('readonly', $flags); // ja, genau dann erlauben wir überschreiben
+            }
 
             if($class == 'wizard') continue;
 
@@ -243,16 +250,11 @@ class language_content extends xt_backend_cls
         $lines = [];
         $rs = $this->getMissingKeys($code);
 
-        if ($rs->RecordCount() > 0)
+        foreach ($rs as $key => $data)
         {
-            while (!$rs->EOF)
-            {
-                $line = $this->getYmlLine($rs->fields, false);
-                $lines[] = $line . $rs->fields['language_key']. "\n";
-                $rs->MoveNext();
-            }
+            $line = $this->getYmlLine($data, false);
+            $lines[] = $line . "\n";
         }
-        $rs->Close();
 
         $lines = array_unique($lines);
 
@@ -396,17 +398,19 @@ class language_content extends xt_backend_cls
                     // missing keys
                     $rs = $this->getMissingKeys($code);
 
-                    if ($rs->RecordCount() > 0)
+                    foreach ($rs as $key => $data)
                     {
-                        fputs($fp, '## missing keys for language '.$code."\n");
-                        while (!$rs->EOF)
-                        {
-                            $line = $this->getYmlLine($rs->fields);
-                            fputs($fp, $line);
-                            $rs->MoveNext();
-                        }
+                        $line = $this->getYmlLine($data);
+                        fputs($fp, $line);
                     }
-                    $rs->Close();
+
+                    fputs($fp, '## missing keys for language '.$code."\n");
+                    foreach ($rs as $key => $data)
+                    {
+                        $line = $this->getYmlLine($data);
+                        fputs($fp, $line);
+                    }
+
                     break;
                 case 'lang_class_problems':
                     fputs($fp, '## Alle keys die Klasse both sind und darüber hinaus auch noch store oder admin haben. Oder sogar beides. Sprache: '.$code."\n");
@@ -454,8 +458,11 @@ class language_content extends xt_backend_cls
     }
 
     /**
+     * vergleiche alle existierenden keys mit denen für gegebene Sprache
+     * die in gegebener Sprache nicht vorhandenen keys werden zurückgegeben
+     *
      * @param $code
-     * @return ADORecordSet|ADORecordSet_array|ADORecordSet_empty|bool|null
+     * @return array
      */
     function getMissingKeys($code, $throw_ex = false)
     {
@@ -464,22 +471,30 @@ class language_content extends xt_backend_cls
         GLOBAL $ADODB_THROW_EXCEPTIONS;
         $ADODB_THROW_EXCEPTIONS = true;
 
-        $sql = "SELECT lc1.language_key, lc1.class, lc1.plugin_key
-                        FROM
-                        (SELECT language_key,class, plugin_key, language_value FROM ".TABLE_LANGUAGE_CONTENT." GROUP BY language_key, class, plugin_key) lc1
-                        LEFT JOIN ".TABLE_LANGUAGE_CONTENT." lc2 ON lc1.language_key = lc2.language_key and lc1.class = lc2.class and lc2.language_code = ?
-                        WHERE lc1.class != 'wizard' AND (lc2.language_key IS NULL OR lc1.language_key = lc1.language_value) ORDER BY lc1.class, lc1.language_key";
-        $rs = new ADORecordSet_empty();
-        try
+        $all_keys_data = [];
+        $all_keys = $db->GetArray("SELECT * FROM ".TABLE_LANGUAGE_CONTENT. " WHERE `class`!= 'wizard' GROUP BY language_key");
+        foreach($all_keys as $key)
         {
-            $rs = $db->Execute($sql, array($code));
-        }
-        catch (Exception $e)
-        {
-            if($throw_ex) throw $e;
+            $all_keys_data[$key['language_key']] = $key;
         }
 
-        return $rs;
+        $all_keys_lang_data = [];
+        $all_keys_lang = $db->GetArray("SELECT * FROM ".TABLE_LANGUAGE_CONTENT. " WHERE language_code = ? and `class`!= 'wizard'  GROUP BY language_key", [$code]);
+        foreach($all_keys_lang as $key)
+        {
+            $all_keys_lang_data[$key['language_key']] = $key;
+        }
+
+        $diff = [];
+        foreach($all_keys_data as $key => $data)
+        {
+            if(!array_key_exists($key, $all_keys_lang_data))
+            {
+                $diff[$key] = $data;
+            }
+        }
+
+        return $diff;
     }
 
     /**
@@ -516,11 +531,11 @@ class language_content extends xt_backend_cls
 
     private function getYmlLine($data, $addNewLine = true)
     {
-        $string = str_replace(chr(13), " ", $data['language_value']);
+        $string = str_replace(chr(13), " ", $data['language_value'] ?: "");
         $string = preg_replace('/[\r\t\n]/', '', $string);
         $key = $data['plugin_key'];
         if ($key == 'NULL') $key = '';
-        $readonly = $data['readonly'] == 1 ? '.readonly' : '';
+        $readonly = array_key_exists('readonly', $data) && $data['readonly'] == 1 ? '.readonly' : '';
         $line = $key . '.' . $data['class'] . '.' . $data['language_key'] . $readonly . '=' . $string;
         if($addNewLine) $line .= "\n";
 

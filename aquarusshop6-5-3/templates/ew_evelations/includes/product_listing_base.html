@@ -48,8 +48,8 @@
                                 {if isset($current_manufacturer_id)}{form type=hidden name=mnf value=$current_manufacturer_id}{/if}
                                 {form class="form-control" type=select name=sorting value=$sort_dropdown.options default=$sort_default onchange='this.form.submit();'}
                                 {*if $smarty.const._STORE_STOCK_CHECK_DISPLAY == 'true'}
-                                <input class="" type="checkbox" name="withStockOnly" {if $smarty.session.session_withStockOnly}checked="checked"{/if} onchange="this.form.submit();"> nur mit Bestand
-                                <input class="" type="hidden" name="session_withStockOnly" value="{$smarty.session.session_withStockOnly}">
+                                    <input class="" type="checkbox" name="withStockOnly" {if $smarty.session.session_withStockOnly}checked="checked"{/if} onchange="document.getElementById('session_withStockOnly').remove(); this.form.submit();"> {txt key=TEXT_ONLY_PRODUCT_WITH_STOCK}
+                                    <input class="" type="hidden" name="session_withStockOnly" value="{$smarty.session.session_withStockOnly}" id="session_withStockOnly">
                                 {/if*}
                             </div>
                             {if $MANUFACTURER_DROPDOWN && $MANUFACTURER_DROPDOWN.options}

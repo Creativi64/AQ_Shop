@@ -136,7 +136,7 @@ class plugin extends xt_backend_cls
             $plg_sql = array(
                 'install' => $data['db_install'],
                 'uninstall' => $data['db_uninstall'],
-                'version' => $input_data['version']
+                'version' => $filter->_filter($data['plugin_version'])//$input_data['version']
             );
             $db->AutoExecute(TABLE_PLUGIN_SQL, $plg_sql, 'UPDATE', "plugin_id = '" . (int)$pluginId . "'");
         }
@@ -878,19 +878,19 @@ class plugin extends xt_backend_cls
             {
                 $update_script = $plugin['db_update']['update'];
 
-                if (is_array($update_script["0"]))  // more than one script to execute
+                if (is_array($update_script[0]))  // more than one script to execute
                 {
 
                     foreach ($update_script as $ar)
                     {
                         $up_v = $ar["version"];//$this->adaptPluginUpdateVersion($ar["version"]);
-                        $db_update_script[$up_v] = array("version" => $ar["version"], "to_version" => $ar["to_version"], "code" => $ar["code"], "messages" => $ar["messages"]);
+                        $db_update_script[$up_v] = array("version" => $ar["version"], "to_version" => $ar["to_version"], "code" => $ar["code"], "messages" => array_key_exists('messages', $ar) ? $ar["messages"] : []);
                     }
                 }
                 else if(!empty($update_script["version"]))
                 {
                     $up_v = $update_script["version"];//$this->adaptPluginUpdateVersion($update_script["version"]);
-                    $db_update_script[$up_v] = array("version" => $update_script["version"], "to_version" => $update_script["to_version"], "code" => $update_script["code"], "messages" => $update_script["messages"]);
+                    $db_update_script[$up_v] = array("version" => $update_script["version"], "to_version" => $update_script["to_version"], "code" => $update_script["code"], "messages" =>  array_key_exists('messages', $update_script) ? $update_script["messages"] : [] );
                 }
 
                 if(count($db_update_script))
@@ -980,8 +980,8 @@ class plugin extends xt_backend_cls
 
             $output .= '<ul class="stack">';
             // php code
-            if (array_key_exists('plugin_code', $plugin)
-                && array_key_exists('code', $plugin['plugin_code'])
+            if (is_array($plugin) && array_key_exists('plugin_code', $plugin)
+                && is_array($plugin['plugin_code']) && array_key_exists('code', $plugin['plugin_code'])
                 && is_array($plugin['plugin_code']['code']))
             {
                 $this->debug_output .= $this->CheckForRemovedHooks($plugin['plugin_code']['code'], $product_id, $_plugin_code);
@@ -1337,32 +1337,35 @@ class plugin extends xt_backend_cls
                 }
             }
             //set order status for new orders
-            foreach ($stores as $sdata)
+            if($add_status_new)
             {
-
-                $rs = $db->Execute("SELECT config_value FROM " . TABLE_CONFIGURATION_MULTI . (int)$sdata['id'] . " where config_key = '_STORE_DEFAULT_ORDER_STATUS'");
-                if ($rs->RecordCount() > 0)
+                foreach ($stores as $sdata)
                 {
-                    $o_status = $rs->fields['config_value'];
+
+                    $rs = $db->Execute("SELECT config_value FROM " . TABLE_CONFIGURATION_MULTI . (int)$sdata['id'] . " where config_key = '_STORE_DEFAULT_ORDER_STATUS'");
+                    if ($rs->RecordCount() > 0)
+                    {
+                        $o_status = $rs->fields['config_value'];
+                    }
+                    else
+                    {
+                        $o_status = 16;
+                    }
+
+                    $val = array();
+                    $val['key'] = strtoupper($_plugin_code) . '_ORDER_STATUS_NEW';
+                    $val['value'] = $o_status;
+
+                    $val['group_id'] = 0;
+                    $val['sort_order'] = (int)0;
+
+                    $val['type'] = 'dropdown';
+                    $val['url'] = 'status:order_status';
+                    $val['shop_id'] = $sdata['id'];
+                    $this->debug_output .= $this->_addStoreConfig($val, $payment_id, $sdata['id'], 'payment');
+                    $val['en']['title'] = 'New Order Status';
+                    $this->debug_output .= $this->_addLangContentModule($_plugin_code, $val);
                 }
-                else
-                {
-                    $o_status = 16;
-                }
-
-                $val = array();
-                $val['key'] = strtoupper($_plugin_code) . '_ORDER_STATUS_NEW';
-                $val['value'] = $o_status;
-
-                $val['group_id'] = 0;
-                $val['sort_order'] = (int)0;
-
-                $val['type'] = 'dropdown';
-                $val['url'] = 'status:order_status';
-                $val['shop_id'] = $sdata['id'];
-                $this->debug_output .= $this->_addStoreConfig($val, $payment_id, $sdata['id'], 'payment');
-                $val['en']['title'] = 'New Order Status';
-                $this->debug_output .= $this->_addLangContentModule($_plugin_code, $val);
             }
         }
 

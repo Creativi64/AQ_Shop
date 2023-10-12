@@ -154,13 +154,12 @@ if ($request['get']) {
 		case "gender":
 			$result = $dropdown->getGender();
 			break;
-                case "gender1":
-                        $result[]  =  array('id' => '',
-                         'name' => TEXT_EMPTY_SELECTION);
+        case "gender1":
+            $result[]  =  array('id' => '', 'name' => TEXT_EMPTY_SELECTION);
 			$result2 = $dropdown->getGender();
-                        foreach($result2 as $res){
-                            $result[] = $res;
-                        }
+            foreach($result2 as $res){
+                $result[] = $res;
+            }
 			break;
 		case "address_types":
 			$result = $dropdown->getAddressTypes();
@@ -607,7 +606,7 @@ if (isset($_POST['query']) && $_POST['query']!='') {
 		}
 	}
 	
-	$result = array_values($result);
+	$result = is_array($result) ? array_values($result) : [];
 	if (empty($result)) {
 		$result = $copy;
 	}
@@ -617,4 +616,7 @@ $obj = new stdClass();
 $obj->totalCount = is_array($result) ? count($result) : 0;
 $obj->topics = $result;
 header('Content-Type: application/json; charset='._SYSTEM_CHARSET);
+header('Cache-Control: public, max-age=100');
+//header('Expires: Thu, 19 Nov 2081 08:52:00 GMT');
+header('Pragma: cache');
 echo json_encode($obj);

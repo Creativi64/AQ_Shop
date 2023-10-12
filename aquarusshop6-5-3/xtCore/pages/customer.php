@@ -209,6 +209,9 @@ if(isset($page->page_action) && $page->page_action != ''){
 				$data_array = $_POST;
 				$data_array['customers_id'] = $_SESSION['registered_customer'];
                 if(empty($address_book_id)) $data_array['old_address_class'] = '';
+
+                if(empty($data['customers_federal_state_code']))
+                    $data_array['customers_federal_state_code'] = $data_array['customers_federal_state_code'.$data_array["customers_country_code"]];
 				
 				($plugin_code = $xtPlugin->PluginCode('module_customer.php:edit_address_update_data')) ? eval($plugin_code) : false;
 
@@ -346,10 +349,12 @@ if(isset($page->page_action) && $page->page_action != ''){
 
 			$del_data = $_SESSION['customer']->_deleteAddressData($address_book_id, $_SESSION['registered_customer']);
 
-				$tmp_link  = $xtLink->_link(array('page'=>'customer', 'paction'=>'address_overview'));
-				$info->_addInfoSession($del_data['message'],$del_data['message_type']);
-				($plugin_code = $xtPlugin->PluginCode('module_customer.php:delete_address_link_target')) ? eval($plugin_code) : false;
-				$xtLink->_redirect($tmp_link);
+            sessionCustomer()->_customer($_SESSION['registered_customer']);
+
+            $tmp_link  = $xtLink->_link(array('page'=>'customer', 'paction'=>'address_overview'));
+            $info->_addInfoSession($del_data['message'],$del_data['message_type']);
+            ($plugin_code = $xtPlugin->PluginCode('module_customer.php:delete_address_link_target')) ? eval($plugin_code) : false;
+            $xtLink->_redirect($tmp_link);
 
 			break;
 
@@ -579,7 +584,7 @@ if(isset($page->page_action) && $page->page_action != ''){
 							sessionCustomer()->_customer($record->fields['customers_id']);
 							$customers_status->_getStatus($record->fields['customers_status']);				
 
-							$_SESSION['cart']->_restore();
+							sessionCart()->_restore();
 							
 							if ($_SESSION['cart']->content_count > 0) {
 								$info->_addInfoSession(TEXT_LOGIN_CART_MERGED, 'warning');

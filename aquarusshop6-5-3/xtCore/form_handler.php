@@ -97,7 +97,7 @@ if (isset ($_POST['action']) || isset ($_GET['action'])) {
                 $data_array['qty'] = -$data_array['qty'];
             }
 
-            $cart_product = $_SESSION['cart']->_addCart($data_array);
+            $cart_product = sessionCart()->_addCart($data_array);
 			if($cart_product)
 			{
 			    $info->_addInfoSession(sprintf(SUCCESS_PRODUCT_ADDED, $cart_product->data['products_name']),'success');
@@ -117,7 +117,7 @@ if (isset ($_POST['action']) || isset ($_GET['action'])) {
 			($plugin_code = $xtPlugin->PluginCode('form_handler.php:add_product_bottom')) ? eval($plugin_code) : false;
             if($cart_product)
             {
-                $_SESSION['cart']->_refresh();
+                sessionCart()->_refresh();
             }
 			$xtLink->_redirect($xtLink->_link($link_array));
 
@@ -130,8 +130,8 @@ if (isset ($_POST['action']) || isset ($_GET['action'])) {
                 $data_array['cart_delete'] = array();
 
 			for ($i = 0, $n = sizeof($data_array['cart_delete']); $i < $n; $i++) {
-                if(array_key_exists($data_array['cart_delete'][$i], $_SESSION["cart"]->content))
-				    $_SESSION['cart']->_deleteContent($data_array['cart_delete'][$i]);
+                if(array_key_exists($data_array['cart_delete'][$i], sessionCart()->content))
+                    sessionCart()->_deleteContent($data_array['cart_delete'][$i]);
 			}
 
 			if(!is_data($data_array['products_key']))
@@ -143,8 +143,8 @@ if (isset ($_POST['action']) || isset ($_GET['action'])) {
 
 					if(!in_array($data_array['products_key'][$i], $data_array['cart_delete'])){
 						$data = array('products_key'=>$data_array['products_key'][$i], 'qty'=>$data_array['qty'][$i]);
-						if(array_key_exists($data['products_key'], $_SESSION['cart']->content))
-						    $_SESSION['cart']->_updateCart($data);
+						if(array_key_exists($data['products_key'], sessionCart()->content))
+                            sessionCart()->_updateCart($data);
 					}
 
 			}
@@ -152,14 +152,14 @@ if (isset ($_POST['action']) || isset ($_GET['action'])) {
 
 			$link_array = array('page'=>$page->page_name);
 			($plugin_code = $xtPlugin->PluginCode('form_handler.php:update_product_bottom')) ? eval($plugin_code) : false;
-            $_SESSION['cart']->_refresh();
+            sessionCart()->_refresh();
 			//$xtLink->_redirect($xtLink->_link($link_array));
 
 		break;
 
 		case 'select_address' :
 			($plugin_code = $xtPlugin->PluginCode('form_handler.php:select_address_top')) ? eval($plugin_code) : false;
-			$_SESSION['customer']->_setAdress($data_array['adID'],$data_array['adType']);
+			sessionCustomer()->_setAdress($data_array['adID'],$data_array['adType']);
 
 			if($data_array['adType']=='payment')
 			unset($_SESSION['selected_payment']);

@@ -62,7 +62,7 @@ class search_query extends getProductSQL_query
         foreach ($split_keywords_raw as $key => $val)
         {
             $val = trim($val);
-            if (empty($val) || mb_strlen($val, 'utf-8') < SEARCH_MIN_LENGTH)
+            if (_SYSTEM_SEARCH_SPLIT == 'true' && (empty($val) || mb_strlen($val, 'utf-8') < SEARCH_MIN_LENGTH))
             {
                 continue;
             }
@@ -83,7 +83,11 @@ class search_query extends getProductSQL_query
             // $split_keywords = array( $data['keywords'] );
         }
 
-        if(count($split_keywords))
+        if (!_SYSTEM_SEARCH_SPLIT && (empty($split_keywords[0]) || mb_strlen($split_keywords[0], 'utf-8') < SEARCH_MIN_LENGTH) )
+        {
+            $this->setSQL_WHERE(" AND 1=0");
+        }
+        else if(count($split_keywords))
         {
             $pname_like = array();
             $pkeywords_like = array();

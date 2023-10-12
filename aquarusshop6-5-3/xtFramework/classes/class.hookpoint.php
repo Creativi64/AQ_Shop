@@ -110,11 +110,11 @@ class hookpoint {
 					return false;
 				}
 
-	    } elseif ((defined('_SYSTEM_USE_DB_HOOKS') &&_SYSTEM_USE_DB_HOOKS == 'true') || $hook=='_pre_include') {
+	    } elseif ( _SYSTEM_USE_DB_HOOKS || $hook=='_pre_include') {
 
 			if (in_array($hook,$this->ActiveHooks)) {
 
-				if (defined('_PRELOAD_PLG_HOOK_CODE') && _PRELOAD_PLG_HOOK_CODE==true) {
+				if (defined('_PRELOAD_PLG_HOOK_CODE') && _PRELOAD_PLG_HOOK_CODE) {
 
             if (isset($this->hookCodePreloaded[$hook]) && is_array($this->hookCodePreloaded[$hook])) {
               $code='';
@@ -148,7 +148,7 @@ class hookpoint {
 				}
 			}
 			}
-		}elseif(defined('_SYSTEM_USE_DB_HOOKS') && _SYSTEM_USE_DB_HOOKS != 'true'){
+		}elseif(!_SYSTEM_USE_DB_HOOKS){
 
 			if (in_array($hook,$this->ActiveHooks)) {
 
@@ -206,7 +206,7 @@ class hookpoint {
 	}
 
 	function _createHookDir($hook){
-		if (_SYSTEM_USE_DB_HOOKS == 'true') return false;
+		if (_SYSTEM_USE_DB_HOOKS) return false;
 		$hook = $this->filterHook($hook);
 
 		if(!$this->_checkHookDir($hook)){
@@ -217,7 +217,7 @@ class hookpoint {
 
 	function _createHookFiles($hook, $id=''){
 		global $db;
-		if (_SYSTEM_USE_DB_HOOKS == 'true') return false;
+		if (_SYSTEM_USE_DB_HOOKS) return false;
 
 		$record = $db->Execute(
 			"SELECT pc.plugin_id, pc.code, pc.sortorder  FROM " . TABLE_PLUGIN_CODE . " pc INNER JOIN " . TABLE_PLUGIN_PRODUCTS . " pp ON pc.plugin_id = pp.plugin_id WHERE pc.hook = ? AND pc.code_status = 1 and  pp.plugin_status = 1",
@@ -277,7 +277,7 @@ class hookpoint {
 	}
 
 	function _createHookFile($hook, $data, $file=''){
-		if (_SYSTEM_USE_DB_HOOKS == 'true') return false;
+		if (_SYSTEM_USE_DB_HOOKS) return false;
 
 		$hook = $this->filterHook($hook);
 
@@ -295,7 +295,7 @@ class hookpoint {
 	}
 
     function _createHookFileXML($hook, $data, $file=''){
-		if (_SYSTEM_USE_DB_HOOKS == 'true') return false;
+		if (_SYSTEM_USE_DB_HOOKS) return false;
         if($this->save_xml_files != true) {
           return;
         }
@@ -324,7 +324,7 @@ class hookpoint {
     }
 
 	function _checkHook($hook){
-		if (_SYSTEM_USE_DB_HOOKS == 'true') return false;
+		if (_SYSTEM_USE_DB_HOOKS) return false;
 
 		if(!$this->_checkHookDir($hook)){
 			$this->_createHookDir($hook);

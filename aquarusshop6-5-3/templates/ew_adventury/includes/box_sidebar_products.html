@@ -3,7 +3,7 @@
         {if $_show_more_link == 'true' && ($_show_page_link == 'true' || $_show_page_link == 1)}
             <a href="{link page=$code conn=SSL}">
         {/if}
-        {$headline}
+        {$heading_text}
         {if $code == 'xt_last_viewed_products'}
             {$smarty.const.XT_LAST_VIEWED_PRODUCTS_TITEL}
         {/if}
@@ -14,7 +14,8 @@
     {hook key=box_sidebar_products_product_top module_data=$module_data}
     {include file="$selected_template/xtCore/pages/product_listing/product_listing_slider_single.html"
         code=$code
-        headline=$headline
+        headline=$heading_text
+        heading_text=$heading_text
         product_listing=$product_listing
     }
     {hook key=box_sidebar_products_product_bottom module_data=$module_data}

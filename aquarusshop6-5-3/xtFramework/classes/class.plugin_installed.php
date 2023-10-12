@@ -377,7 +377,7 @@ class plugin_installed extends plugin{
 
         ($plugin_code = $xtPlugin->PluginCode('class.plugin_installed.php:_set_top')) ? eval($plugin_code) : false;
 
-		if(_SYSTEM_USE_DB_HOOKS=='false'){
+		if(!_SYSTEM_USE_DB_HOOKS){
 
 			if(!$data['plugin_status'] || $data['plugin_status']!='1'){
 				$xtPlugin->_MultiDeleteHookFiles($data['plugin_id']);
@@ -463,7 +463,7 @@ class plugin_installed extends plugin{
 		if (!is_int($id)) return false;
 		
 		
-		if(_SYSTEM_USE_DB_HOOKS=='false'){
+		if(!_SYSTEM_USE_DB_HOOKS){
 				$xtPlugin->_MultiDeleteHookFiles($id);
 			if($status=='1'){
 				$xtPlugin->_MultiCreateHookFiles($id);

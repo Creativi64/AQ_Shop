@@ -31,8 +31,6 @@ define('DB_ERROR_LOG_TRACE', true); // trace sql errors
 define('DB_ERROR_MIN_MAIL_TIME', 60); // selbe sql-Fehlerstelle max alles x Sekunden per mail senden (xtcommerce-errorhandler.inc.php)
 define('DB_ERROR_SEND_MAIL', true); // sollen überhaupt sql-Fehlermeldungen gesendet werden
 
-//define('XT_WIZARD_STARTED','false');
-
 /**
  * please note:
  *
@@ -121,4 +119,16 @@ define('__DEBUG_OUT_FILE', '_debug.log');
 
 define('_KP_LOG', false);
 define('_MOLLIE_LOG', false);
+
 define('PAYPAL_CHECKOUT_DEBUG', false);
+
+define('UNZER_DEBUG', false);
+define('UNZER_DEBUG_LOG_RAW_CALLBACK_DATA', false);
+define('UNZER_DEBUG_PRINT_TRACE', false);
+
+define('ZAVER_DEBUG', false);
+define('ZAVER_DEBUG_CURL', false);
+define('ZAVER_DEBUG_LOG_RAW_CALLBACK_DATA', false);
+define('ZAVER_DEBUG_LOG_RAW_RESPONSE_BODY', false);
+define('ZAVER_DEBUG_PRINT_TRACE', false);
+

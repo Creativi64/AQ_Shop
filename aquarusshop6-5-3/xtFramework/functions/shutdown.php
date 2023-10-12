@@ -99,7 +99,7 @@ if(!function_exists('xt_error_handler'))
                 }
 
                 global $db;
-                if(method_exists($db, 'Close'))
+                if($db && method_exists($db, 'Close'))
                 {
                     $db->Close();
                 }

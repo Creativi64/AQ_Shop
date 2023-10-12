@@ -313,6 +313,8 @@ class order_edit_products extends product{
 
     public function removeOrderItem($data)
     {
+        global $db, $xtPlugin;
+
         $result = new stdClass();
         $result->success = false;
 
@@ -326,9 +328,14 @@ class order_edit_products extends product{
             $cart = new cart();
             $_SESSION['cart'] = $cart;
 
+            $delete_pId = $db->GetOne("SELECT products_id FROM ".TABLE_ORDERS_PRODUCTS." WHERE orders_products_id = ?", [$_REQUEST['orders_products_id'] ]);
+
             foreach($order->order_products as $p)
             {
-                if ($p['orders_products_id'] == $_REQUEST['orders_products_id'] ) continue;
+                if ($p['orders_products_id'] == $_REQUEST['orders_products_id'])
+                {
+                    continue;
+                }
                 $_SESSION['cart']->_addCart( array(
                     'product' => $p['products_id'],
                     'qty' => $p['products_quantity'],
@@ -362,6 +369,7 @@ class order_edit_products extends product{
 
             $result->success = true;
 
+            ($plugin_code = $xtPlugin->PluginCode('class.order_edit_products.php:removeOrderItem_bottom')) ? eval($plugin_code) : false;
         }
         return json_encode($result);
     }

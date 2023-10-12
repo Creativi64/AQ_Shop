@@ -30,8 +30,9 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 class checkout_base {
 
     public $shipping_to = ['zones' => [], 'countries' => []];
+    public array $shipping_errors = [];
 
-	function __construct(){
+    function __construct(){
 		global $xtPlugin;
 
 		($plugin_code = $xtPlugin->PluginCode('class.checkout.php:checkout_top')) ? eval($plugin_code) : false;
@@ -50,6 +51,8 @@ class checkout_base {
 		$contents = $this->_getShipping();
 
 		$content_count = count($contents);
+
+        $data = [];
 
 		if(is_data($contents)){
             foreach($contents as $key => $value) {
@@ -76,9 +79,10 @@ class checkout_base {
 
 				$data[$value['shipping_code']] = array('shipping' => $tmp_data);
 			}
-		($plugin_code = $xtPlugin->PluginCode('class.checkout.php:_selectShipping_bottom')) ? eval($plugin_code) : false;
-		return $data;
+		    ($plugin_code = $xtPlugin->PluginCode('class.checkout.php:_selectShipping_bottom')) ? eval($plugin_code) : false;
 		}
+
+        return $data;
 	}
 
 	function _getShipping(){
@@ -91,6 +95,7 @@ class checkout_base {
 		$shipping = new shipping();
 		$shipping->_shipping();
 		$shipping_data = $shipping->shipping_data;
+        $this->shipping_errors = $shipping->shipping_errors;
 
         $this->shipping_to = $shipping->shipping_to;
 
@@ -122,6 +127,8 @@ class checkout_base {
 		$contents = $this->_getPayment();
 
 		$content_count = count($contents);
+
+        $data = [];
 
 		if(is_data($contents)){
             foreach($contents as $key => $value) {

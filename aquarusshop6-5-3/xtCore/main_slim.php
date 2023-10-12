@@ -26,7 +26,7 @@
  */
 
 define('_VALID_CALL','true');
-define('USER_POSITION', 'store');
+if (!defined('USER_POSITION')) define('USER_POSITION', 'store');
 define('MAIN_SLIM', true);
 
 
@@ -39,8 +39,8 @@ $sys_dir = $script_name;
 $sys_dir = substr($sys_dir, 0, strripos($sys_dir, '/')+1);
 $sys_dir = str_replace('export/', '', $sys_dir);
 
-define('_SRV_WEBROOT',$root_dir);
-define('_SRV_WEB', $sys_dir);
+if (!defined('_SRV_WEBROOT')) define('_SRV_WEBROOT',$root_dir);
+if (!defined('_SRV_WEB')) define('_SRV_WEB', $sys_dir);
 
 define('_SYSTEM_SQLLOG','false');
 
@@ -62,14 +62,14 @@ if (count($_GET)>0) {
 // Load Config Files
 //--------------------------------------------------------------------------------------
 
-include _SRV_WEBROOT.'conf/config.php';
-include _SRV_WEBROOT."conf/config_extended.php";
-include _SRV_WEBROOT.'conf/config_charsets.php';
-include _SRV_WEBROOT.'conf/database.php';
-include _SRV_WEBROOT.'conf/paths.php';
-include _SRV_WEBROOT.'conf/config_caches.php';
-include _SRV_WEBROOT.'versioninfo.php';
-include _SRV_WEBROOT."conf/debug.php";
+include_once _SRV_WEBROOT.'conf/config.php';
+include_once _SRV_WEBROOT."conf/config_extended.php";
+include_once _SRV_WEBROOT.'conf/config_charsets.php';
+include_once _SRV_WEBROOT.'conf/database.php';
+include_once _SRV_WEBROOT.'conf/paths.php';
+include_once _SRV_WEBROOT.'conf/config_caches.php';
+include_once _SRV_WEBROOT.'versioninfo.php';
+include_once _SRV_WEBROOT."conf/debug.php";
 include_once _SRV_WEBROOT.'conf/config_security.php';
 
 // see logging config in conf/debug.php

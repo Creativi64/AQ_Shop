@@ -50,6 +50,20 @@
 				{$order_data.payment_info}
 			</div><!-- .box -->
 			{/if}
+
+			{if $order_data.bank_details}
+			<div class="well">
+				<p class="headline-underline">{txt key='TEXT_BANK_DETAILS'}</p>
+				{foreach from=$order_data.bank_details item=bd}
+					{txt key='TEXT_BAD_ACCOUNT_NAME'}: {$bd.bad_account_name}<br />
+					{txt key='TEXT_BAD_BANK_IDENTIFIER_CODE'}: {$bd.bad_bank_identifier_code}<br />
+					{if $bd.bad_due_date}{txt key='TEXT_BAD_DUE_DATE'}: {$bd.bad_due_date}<br />{/if}
+					{txt key='TEXT_BAD_INTERNATIONAL_BANK_ACCOUNT_NUMBER'}: {$bd.bad_international_bank_account_number}<br />
+					{txt key='TEXT_BAD_REFERENCE_NUMBER'}: {$bd.bad_reference_number}
+				{/foreach}
+			</div>
+			{/if}
+
 			{if $order_data.comments!=''}
 			<div class="well">
 				<p class="headline">{txt key=TEXT_ORDER_COMMENTS}</p>
@@ -123,11 +137,6 @@
 						{/if}
 						{hook key=account_history_info_bundle}
 						{hook key=account_history_info_xt_options pid=$data.products_id}
-						{if $data.products_short_description}
-						<p class="product-description text-muted">{$data.products_short_description|strip_tags|truncate:100:'...'} (<a href="{$data.products_link}">{txt key=TEXT_MORE}</a>)</p>
-						{elseif $data.products_description}
-						<p class="product-description text-muted">{$data.products_description|strip_tags|truncate:100:'...'} (<a href="{$data.products_link}">{txt key=TEXT_MORE}</a>)</p>
-						{/if}
 						<ul class="label-list fixed-padding">
 							{if $data.products_information}<li><span class="badge">{$data.products_information|replace:'<tr class="contentrow1">':''|replace:'<tr class="contentrow2">':''|replace:'<td>':''|replace:'<td class="left" colspan="4">':''|replace:'</td>':''|replace:'</tr>':''}</span></li>{/if}
 							{if $data.products_model!=''}<li><span class="badge">{txt key=TEXT_PRODUCTS_MODEL} {$data.products_model}</span></li>{/if}

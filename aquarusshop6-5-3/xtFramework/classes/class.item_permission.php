@@ -87,7 +87,7 @@ class item_permission {
 
 	}
 
-	function _setSimplePermissionID($master_value=0, $set_value, $master_key='categories_id', $set_key='categories_id', $get_table=TABLE_CATEGORIES, $set_table=TABLE_CATEGORIES, $link_table=TABLE_PRODUCTS_TO_CATEGORIES){
+	function _setSimplePermissionID($master_value, $set_value, $master_key='categories_id', $set_key='categories_id', $get_table=TABLE_CATEGORIES, $set_table=TABLE_CATEGORIES, $link_table=TABLE_PRODUCTS_TO_CATEGORIES){
 		global $db;
 
 		if($master_value==0){

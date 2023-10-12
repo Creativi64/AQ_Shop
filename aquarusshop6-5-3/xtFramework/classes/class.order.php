@@ -719,7 +719,7 @@ class order extends xt_backend_cls {
 
 	}
 
-	function _saveDownloadData($data, $add_type = 'insert',$orders_products_id){
+	function _saveDownloadData($data, $add_type, $orders_products_id){
 		global $xtPlugin, $db;
 		$data = array_merge($data,array('orders_products_id'=>$orders_products_id));
 		$insert_data = $this->_buildDownloadData($data);
@@ -1039,6 +1039,13 @@ class order extends xt_backend_cls {
 				$record->fields['products_final_tax'] = $price->_Format(array('price'=>$_final_tax, 'format'=>true, 'format_type'=>'default'));
 				
 				$record->fields['add_single_tax'] = $price->_Format(array('price'=>$_tax_single, 'format'=>true, 'format_type'=>'default'));
+
+                $record->fields["products_price_before_discount"] = false;
+                if((float)$record->fields["products_discount"] > 0)
+                {
+                    $products_price_before_discount = $record->fields["products_price"]["plain"] * 100 / (100 - (float)$record->fields["products_discount"]);
+                    $record->fields["products_price_before_discount"] = $price->_StyleFormat($products_price_before_discount);
+                }
 
                 $record->fields['cart_product'] = [];
                 $arr = unserialize($record->fields['products_data']);
@@ -1748,7 +1755,7 @@ class order extends xt_backend_cls {
 	 * @param int $status
 	 * @param string $comments
 	 */
-	function _sendStatusMail($status,$comments,$extra_assign = array(),$status_id, $customers_status) {
+	function _sendStatusMail($status, $comments, $extra_assign, $status_id, $customers_status) {
 		global $xtPlugin, $db,$store_handler;
 
 		($plugin_code = $xtPlugin->PluginCode('class.orders.php:_sendStatusMail_top')) ? eval($plugin_code) : false;
@@ -1989,7 +1996,7 @@ class order extends xt_backend_cls {
 
 	function _get($oID = 0)
 	{
-		global $xtPlugin, $db, $language, $store_handler;
+		global $xtPlugin, $db, $language, $store_handler, $price, $system_status;
 
 		if ($this->position !== 'admin') return false;
 
@@ -2101,28 +2108,21 @@ class order extends xt_backend_cls {
 					$where .= ' LIMIT '.$this->sql_limit.'';
 				}
 
-				$record = $db->Execute("SELECT ".TABLE_ORDERS.".orders_id FROM ".TABLE_ORDERS." ".$ad_table_str." WHERE ".TABLE_ORDERS.".orders_id != 0 ".$where);
+				$record = $db->Execute("SELECT ".TABLE_ORDERS.".* FROM ".TABLE_ORDERS." ".$ad_table_str." WHERE ".TABLE_ORDERS.".orders_id != 0 ".$where);
 				if ($record->RecordCount() > 0)
 				{
 					while( ! $record->EOF)
 					{
-						$_data = $this->_buildData($record->fields['orders_id']);
+						// $_data = $this->_buildData($record->fields['orders_id']);
+                        // _buildData dauert zu lange
+                        $_data['order_data'] = $record->fields;
+                        $_data['order_data']['orders_status'] = $system_status->values['order_status'][$record->fields['orders_status']]['name'];
+                        $_data['order_data']['date_purchased_plain'] = $record->fields['date_purchased'];
 
-						$sql = "SELECT o.orders_source_external_id, os.source_name, CONCAT(acl.firstname, ' ', acl.lastname) AS order_edit_acl_user FROM ".TABLE_ORDERS
-							.' o LEFT OUTER JOIN '.TABLE_ORDERS_SOURCE.' os ON o.source_id = os.source_id LEFT OUTER JOIN '
-							.TABLE_ADMIN_ACL_AREA_USER.' acl ON o.order_edit_acl_user = acl.user_id WHERE o.orders_id = ?';
-						$sr = $db->Execute($sql, array($_data['order_data']['orders_id']));
-						if ( ! $sr->RecordCount()) {
-							$sName = '';
-							$eId = '';
-							$acl_user = '';
-						} else {
-							$sName = (isset($sr->fields['source_name']) && defined('TEXT_'.$fields['source_name']))
-								? __text('TEXT_'.$fields['source_name'])
-								: $sr->fields['source_name'];
-							$eId = $sr->fields['orders_source_external_id'];
-							$acl_user = trim($sr->fields['order_edit_acl_user']);
-						}
+                        // order total wird nun separat berechnet
+                        $order_products = $this->_getOrderProductData($_data['order_data']['orders_id'], $_data['order_data']);
+                        $order_total_data = $this->_getOrderTotalData($_data['order_data']['orders_id'], $_data['order_data']);
+                        $total = $this->_getTotal($order_products, $order_total_data, $_data['order_data']);
 
 						$tmp_data = array(
 							'orders_id' => $_data['order_data']['orders_id'],
@@ -2131,7 +2131,7 @@ class order extends xt_backend_cls {
 							'billing_firstname' => $_data['order_data']['billing_firstname'],
 							'billing_lastname' => $_data['order_data']['billing_lastname'],
 							'store_data' => $store_handler->getStoreName($_data['order_data']['shop_id']),
-							'order_total' => $_data['order_total']['total']['formated'],
+							'order_total' => $price->_StyleFormat($total["total"]["plain"]), //$_data['order_total']['total']['formated'],
 							'payment' => $_data['order_data']['payment_code'],
 							'orders_source' => $sName,
 							'orders_source_external' => $eId,
@@ -2139,6 +2139,22 @@ class order extends xt_backend_cls {
 						
 						if (_SYSTEM_ORDER_EDIT_SHOW_ORDER_EDITOR_COLUMN === 'true')
 						{
+                            $sql = "SELECT o.orders_source_external_id, os.source_name, CONCAT(acl.firstname, ' ', acl.lastname) AS order_edit_acl_user FROM ".TABLE_ORDERS
+                                .' o LEFT OUTER JOIN '.TABLE_ORDERS_SOURCE.' os ON o.source_id = os.source_id LEFT OUTER JOIN '
+                                .TABLE_ADMIN_ACL_AREA_USER.' acl ON o.order_edit_acl_user = acl.user_id WHERE o.orders_id = ?';
+                            $sr = $db->Execute($sql, array($_data['order_data']['orders_id']));
+                            if ( ! $sr->RecordCount()) {
+                                $sName = '';
+                                $eId = '';
+                                $acl_user = '';
+                            } else {
+                                $sName = (isset($sr->fields['source_name']) && defined('TEXT_'.$fields['source_name']))
+                                    ? __text('TEXT_'.$fields['source_name'])
+                                    : $sr->fields['source_name'];
+                                $eId = $sr->fields['orders_source_external_id'];
+                                $acl_user = trim($sr->fields['order_edit_acl_user']);
+                            }
+
 							$tmp_data['order_edit_acl_user'] = $acl_user;
 						}
 

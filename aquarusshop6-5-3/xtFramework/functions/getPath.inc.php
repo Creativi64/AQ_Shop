@@ -28,7 +28,7 @@
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 // returns Path with first existence of file;
 
-function _getPath($path_array, $root_path=_SRV_WEBROOT, $file, $type='root'){
+function _getPath($path_array, $root_path =_SRV_WEBROOT, $file = 'gimme-a-file' , $type='root'){
 
 	foreach ($path_array as $key => $val) {
 		if (file_exists($root_path . $val . $file)) {
@@ -42,5 +42,3 @@ function _getPath($path_array, $root_path=_SRV_WEBROOT, $file, $type='root'){
 		}
 	}
 }
-
-?>

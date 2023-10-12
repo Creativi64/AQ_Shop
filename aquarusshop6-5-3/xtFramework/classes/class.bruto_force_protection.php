@@ -96,7 +96,8 @@ class bruto_force_protection extends xt_backend_cls{
 	 *
 	 * @param int $id
 	 */
-	function _lockID($id) {
+	function _lockID($id)
+    {
 		global $db,$logHandler;
 		$id = (int)$id;
         $qry="UPDATE ".TABLE_FAILED_LOGIN." set lock_until=DATE_ADD(NOW(), INTERVAL ".$this->lock_time." MINUTE) WHERE fail_id=?";
@@ -105,15 +106,17 @@ class bruto_force_protection extends xt_backend_cls{
 		$query = "SELECT * FROM ".TABLE_FAILED_LOGIN." WHERE fail_id=?";
 		$rs = $db->Execute($query, array($id));
 
-		if($_SERVER["HTTP_X_FORWARDED_FOR"]){
-			$customers_ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
-		}else{
-			$customers_ip = $_SERVER["REMOTE_ADDR"];
-		}
+        $log_data = [];
+        $customers_ip = bruto_force_protection_404::getCustomerIP();
+        if(!filter_var($customers_ip, FILTER_VALIDATE_IP))
+        {
+            // exit(); // oder log
+            $log_data['intruder_ip_spoofed'] = $customers_ip;
+            $customers_ip = '-1';
+        }
 
-		$log_data = array();
 		$log_data['locked_lookup'] = $rs->fields['lookup'];
-		$log_data['intrudor_ip'] = $customers_ip;
+		$log_data['intruder_ip'] = $customers_ip;
 		$logHandler->_addLog('intrusion','customers_login','0',$log_data);
 
 	}

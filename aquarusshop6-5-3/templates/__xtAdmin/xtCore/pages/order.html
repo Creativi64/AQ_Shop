@@ -129,7 +129,7 @@
 							<td>{$data.products_quantity}</td>
 							<td><a href="{$data.cart_product.products_link}" onclick="navigator.clipboard.writeText(this.href); this.classList.add(`blink-fast`); return false" style="font-size: 1.2em;color:inherit"><i ext:qtip="{txt key=TEXT_COPY_ADDRESS}"  class="far fa-clipboard"></i></a>&nbsp;&nbsp;<a href="{$data.cart_product.products_link}" target="_blank" style="color:inherit">{$data.products_name}</a></td>
 							<td>{$data.products_model}</td>
-							<td>{$data.products_price.formated}</td>
+							<td>{$data.products_price.formated}{if $data.products_price_before_discount}<br /><span class="price-old">{$data.products_price_before_discount}</span>{/if}</td>
 							<td>{if $data.products_discount>0}{$data.products_discount}
 								%{else}0 %{/if}</td>
 							<td><span class="right">{$data.products_final_price.data.PRICE.formated}</span></td>
