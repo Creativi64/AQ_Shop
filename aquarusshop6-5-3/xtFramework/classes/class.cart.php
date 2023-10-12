@@ -482,7 +482,7 @@ class cart {
 		if(isset($plugin_return_value))
 		return $plugin_return_value;
 
-		// __debug($data);
+		//__debug($data);
 		if (isset($_SESSION['selected_shipping'])) unset($_SESSION['selected_shipping']);
 		if (is_array($this->content[$data['products_key']])) $data = array_merge($this->content[$data['products_key']], $data);
 		$data['qty'] = $this->_filter_qty($data['qty']);

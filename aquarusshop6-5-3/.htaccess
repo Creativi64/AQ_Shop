@@ -15,7 +15,7 @@ DirectoryIndex index.php
 
     # für einige hoster wird eine RewriteBase benötigt
     # z.B. 1&1 Ionos, DomainFactory, united-domains
-    #RewriteBase /
+    RewriteBase /
 
     ## https erzwingen
     #RewriteCond %{HTTPS} !=on

@@ -2,7 +2,7 @@
 <xtcommerceplugin>
 
   <code>xt_bank_details</code>
-  <version>5.1.2</version>
+  <version>5.2.0</version>
   <type>payment</type>
   
   <minimum_store_version>6.2.2</minimum_store_version>
@@ -42,6 +42,15 @@
                 include _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_bank_details/hooks/class.orders.php__sendOrderMail_top.php';
                 ]]></phpcode>
             <order>0</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>account_history_info_main_table_top</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT. _SRV_WEB_PLUGINS.'xt_bank_details/hooks/account_history_info_main_table_top.php';
+                ]]></phpcode>
+            <order>-1</order>
             <active>1</active>
         </code>
 

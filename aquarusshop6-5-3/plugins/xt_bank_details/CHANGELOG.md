@@ -1,3 +1,6 @@
+## [5.2.0]
+- Anzeige Bankdaten in Bestellübersicht
+
 ## [5.1.2]
 - Anzeige des Rechungsstellers in der E-Mail überarbeitet
 

@@ -123,12 +123,10 @@ class cross_selling_products extends product {
 		}else{
 		
 			$sql_where = " products_id!=".(int)$this->url_data['products_id'];
-	
-					
-			if(XT_MASTER_SLAVE_ACTIVE==1 && XT_CROSS_SELLING_USE_SLAVES!=1){
-				
+
+			if(isset($xtPlugin->active_modules['xt_master_slave']) && XT_MASTER_SLAVE_ACTIVE==1 && XT_CROSS_SELLING_USE_SLAVES!=1)
+            {
 				$sql_where .= " and (products_master_model = '' or products_master_model IS NULL)";
-				
 			}				
 			
 			if ($this->url_data['query']) {

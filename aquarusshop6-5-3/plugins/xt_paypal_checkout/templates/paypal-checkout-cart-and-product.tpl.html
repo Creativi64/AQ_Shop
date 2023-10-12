@@ -25,11 +25,11 @@
 
 <div class="clearfix"></div>
 
-{include file="./paypal-checkout-script-tag.tpl.html"}
+{*include file="./paypal-checkout-script-tag.tpl.html"*}
 
 <script>
 
-document.addEventListener('DOMContentLoaded', function ()
+document.addEventListener('PayPalSdkLoaded', function ()
 {
     try {
         console.log("paypal-checkout-cart-and-product.tpl.html position:{$requested_position}");

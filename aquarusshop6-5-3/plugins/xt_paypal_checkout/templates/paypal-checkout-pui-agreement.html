@@ -8,18 +8,19 @@
         {
             cb.setAttribute('required', 'required');
         }
-        const form = document.getElementById('checkout-form');
+        const form = ppcGetCheckoutForm();
         if(form)
         {
             form.addEventListener('submit', function(event)
             {
                 ppcWaitModal();
                 setTimeout(function () {
-                    document.getElementById("ppc_oops").style.display = "block"
+                    const oops = document.getElementById("ppc_oops");
+                    if(oops) oops.style.display = "block"
                 }, 4000);
             });
         }
     });
 </script>
 
-{include file="./paypal-checkout-script-tag.tpl.html"}
+{*include file="./paypal-checkout-script-tag.tpl.html"*}

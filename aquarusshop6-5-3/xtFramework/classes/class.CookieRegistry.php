@@ -165,6 +165,7 @@ class CookieRegistry
 
     public static function getCookieAllowed($type)
     {
+
         if($type === CookieType::FUNCTIONAL)
             return true;
         if(!self::hasConsentCookie())
@@ -173,9 +174,16 @@ class CookieRegistry
         static $_cookie_consent = 0;
         if($_cookie_consent === 0)
         {
+            //$_cookie_consent = self::_instance()->_request_cookies[self::COOKIE_CONSENT_COOKIE_NAME];
+            //$_cookie_consent = json_decode(base64_decode($_cookie_consent));
+            
+
             $_cookie_consent = self::_instance()->_request_cookies[self::COOKIE_CONSENT_COOKIE_NAME];
-            $_cookie_consent = json_decode(base64_decode($_cookie_consent));
+            $_cookie_consent = json_decode( html_entity_decode( stripslashes ($_cookie_consent ) ));
         }
+
+       
+
 
         if(empty($_cookie_consent) || empty($_cookie_consent->$type))
             return false;

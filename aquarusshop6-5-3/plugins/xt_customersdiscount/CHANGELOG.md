@@ -1,3 +1,9 @@
+## [5.2.2]
+- FIX sofortige Übernahme des Rabatts ohne Seiten-Reload
+
+## [5.2.1]
+- FIX Anpassung DB-Spalte customers_discount für ältere Installationen
+
 ## [5.2.0]
 - addCart/updateCarte/deleteCart beschleunigen
 

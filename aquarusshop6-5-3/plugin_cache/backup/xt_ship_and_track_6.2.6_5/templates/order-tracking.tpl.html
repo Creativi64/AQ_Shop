@@ -1,8 +1,0 @@
-{if !empty($tracking_infos)}
-<div class="well">
-	<p class="headline-underline">{txt key=TEXT_TRACKING}</p>
-	{foreach item=tracking_info from=$tracking_infos}
-        {$tracking_info.shipper_name} {if !$tracking_info.tracking_code}- n/a{else}<a target="_blank" href="{$tracking_info.shipper_tracking_url}">{$tracking_info.tracking_code}</a>{/if}<br />
-    {/foreach}
-</div><!-- .box -->
-{/if}

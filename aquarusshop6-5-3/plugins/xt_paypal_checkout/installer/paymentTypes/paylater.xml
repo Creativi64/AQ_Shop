@@ -22,6 +22,20 @@
     <configuration_payment>
 
         <config>
+            <key>PAYLATER_ORDER_STATUS_NEW</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>16</value>
+            <sort_order>4</sort_order>
+            <de>
+                <title><![CDATA[New Order Status]]></title>
+            </de>
+            <en>
+                <title><![CDATA[New Order Status]]></title>
+            </en>
+        </config>
+
+        <config>
             <key>PAYLATER_ORDER_STATUS_CREATED</key>
             <type>dropdown</type>
             <url>status:order_status</url>

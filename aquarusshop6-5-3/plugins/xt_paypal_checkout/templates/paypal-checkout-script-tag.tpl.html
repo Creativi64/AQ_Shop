@@ -9,6 +9,69 @@
             }
 
     </script>
-    <script src="https://www.paypal.com/sdk/js?{$query_params}" {$script_params} defer></script>
+
+    <script type="application/json" fncls="fnparams-dede7cc5-15fd-4c75-a9f4-36c430ee3a99">
+        {
+            "f":"{$fraudnet_session_identifier}",
+            "s":"{$source_website_identifier}",
+            "sandbox":{$sandbox}
+        }
+    </script>
+    <noscript>
+        <img src="https://c.paypal.com/v1/r/d/b/ns?f={$fraudnet_session_identifier}&s={$source_website_identifier}&js=0&r=1" />
+    </noscript>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function ()
+        {
+            try {
+                console.log("ppcp display.php DOMContentLoaded. injecting sdk script");
+
+                const paypal_script = "https://www.paypal.com/sdk/js?{$query_params}";
+                let script = document.createElement("script");
+                script.setAttribute("src", paypal_script);
+                script.setAttribute("data-partner-attribution-id", "{$partner_attribution_id}");
+                script.setAttribute("data-client-token", "{$client_token}");
+                document.head.appendChild(script);
+
+                // fraunet nachladen
+                const fraudnet_script = "https://c.paypal.com/da/r/fb.js";
+                script = document.createElement("script");
+                script.setAttribute("src", fraudnet_script);
+                document.head.appendChild(script);
+
+                const ppcpSetTimeout = 50;
+                const ppcpMaxTimeout = 10000;
+                let ppcpWaited = 0;
+                checkPaypalAvailable();
+
+                function checkPaypalAvailable()
+                {
+                    ppcpWaited += ppcpSetTimeout;
+                    if(ppcpWaited >= ppcpMaxTimeout)
+                    {
+                        console.warn("waited for paypal sdk " + ppcpWaited + " ms so far. ABORTING");
+                        return;
+                    }
+                    if (typeof window.paypal === "object")
+                    {
+                        console.info("paypal sdk loaded after " + ppcpWaited + " ms. emitting event PayPalSdkLoaded");
+                        const event = new Event("PayPalSdkLoaded");
+                        document.dispatchEvent(event);
+                    }
+                    else {
+                        console.debug("waiting for paypal sdk " + ppcpWaited + " ms so far");
+                        setTimeout(checkPaypalAvailable, ppcpSetTimeout);
+                    }
+                }
+            }
+            catch(e)
+            {
+                console.log(e);
+            }
+        });
+    </script>
+
     {assign var=ppcp_script_tag_rendered value=1 scope="global"}
 {/if}

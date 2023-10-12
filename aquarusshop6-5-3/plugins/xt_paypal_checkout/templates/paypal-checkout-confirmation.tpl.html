@@ -26,7 +26,7 @@
     }
 </style>
 
-{include file="./paypal-checkout-script-tag.tpl.html"}
+{*include file="./paypal-checkout-script-tag.tpl.html"*}
 
 <script>
 
@@ -40,6 +40,15 @@ document.addEventListener('DOMContentLoaded', function ()
             console.log('ppcFix_button_changed_html failed', e);
         }
         ppcRemoveSubmitButton();
+    }
+    catch(e)
+    {
+        console.log(e);
+    }
+});
+document.addEventListener('PayPalSdkLoaded', function ()
+{
+    try {
         enablePaypalButton('{$foundingSource}','{$requested_position}');
     }
     catch(e)

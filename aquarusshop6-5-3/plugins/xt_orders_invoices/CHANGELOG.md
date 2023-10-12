@@ -1,6 +1,11 @@
+## [6.0.19]
+- Template in plugins/xt_orders_invoices/installer/tpl/tpl_invoice.html angepasst für xt_product_options  
+  muss manuell übernommen werden, 3 Zeilen ab Zeile 167
+
 ## [6.0.18]
 - FIX PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in /plugins/xt_product_options/classes/class.xt_product_options.php:478  
   Anpassung für xt_product_options
+- Template in plugins/xt_orders_invoices/installer/tpl/tpl_invoice.html angepasst für xt_product_options
 
 ## [6.0.17]
 - Rechnungsmail nicht versenden, wenn Trigger-Status bereits gesetzt wurde 

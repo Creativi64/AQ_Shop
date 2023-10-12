@@ -17,7 +17,8 @@ function xt_cookie_consent_accept(acceptAll, lifeTime, secure)
 
     let cookie = {'max-age': lifeTime, 'SameSite' : 'Strict' }
     if (secure) cookie.secure = true;
-    xtSetCookie(COOKIE_CONSENT_COOKIE_NAME, btoa(JSON.stringify(data)), cookie);
+    //xtSetCookie(COOKIE_CONSENT_COOKIE_NAME, btoa(JSON.stringify(data)), cookie);
+    xtSetCookie(COOKIE_CONSENT_COOKIE_NAME, JSON.stringify(data), cookie);
     $('#cookie-consent').hide();
     processCookieConsentInitFunctions();
     //setTimeout(function() {window.location.reload()}, 100);

@@ -164,6 +164,9 @@
             <tr class="{if $smarty.foreach.products.last}last {/if} item">
                 <td>{$product.products_model}</td>
                 <td class="name">{$product.products_name}
+                    {foreach item=option from=$product.products_info_data.options}
+                        <br/>{$option.option_group_name}: {$option.option_value_name}
+                    {/foreach}
                     {if $product.serial_number}<br />{txt key=TEXT_SERIAL_NUMBER} {$product.serial_number}{/if}
                 </td>
 

@@ -868,7 +868,7 @@ class xt_orders_invoices
         $item['invoice_comment'] = $this->url_data['comment'];
         $item['invoice_status'] = 1;
 
-        if (count($orderData['order_total_data'])) {
+        if (is_array($orderData['order_total_data']) && count($orderData['order_total_data'])) {
             foreach ($orderData['order_total_data'] as $subPrice) {
                 if ($subPrice['orders_total_key'] == 'shipping') {
                     $item['invoice_shipping_price'] = (float) $subPrice['orders_total_final_price']['plain_otax'];
@@ -1006,7 +1006,7 @@ class xt_orders_invoices
 
             if(USER_POSITION=='admin')
             {
-                $cleanProduct->buildData('price');
+                $cleanProduct->buildData('default');
                 //error_log('after build data');
             }
             $cleanPrice = false;
@@ -1084,6 +1084,14 @@ class xt_orders_invoices
 
             if(array_key_exists('xt_product_options', $xtPlugin->active_modules) && constant('XT_PRODUCT_OPTIONS_ACTIVE')=='true'){
 
+
+                $products_data = unserialize($value["products_data"]);
+                if($products_data && $products_data['options'])
+                {
+                    $product['products_info_data']['options'] = $products_data['options'];
+                }
+
+                /*
                 require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_product_options/classes/class.xt_product_options.php';
                 $temp_prod = product::getProduct($product['products_id']);
                 if(!is_array($temp_prod->data) || empty($temp_prod->data))
@@ -1092,6 +1100,7 @@ class xt_orders_invoices
 
                 $xt_po->load_product_options();
                 $product['products_information'] = $xt_po->option_data;
+                */
             }
 
             $product['serial_number'] = false;
@@ -1233,7 +1242,7 @@ class xt_orders_invoices
 
                 if ($v['bad_tech_issuer'] == 'xt_paypal_plus')
                 {
-                    $ca = sprintf(TEXT_PPP_PUI_SUCCESS_CLAIM_ASSIGN, $config['_store_shopowner_company']);
+                    $ca = sprintf(TEXT_PPP_PUI_SUCCESS_CLAIM_ASSIGN_2, $config['_store_shopowner_company']);
                     $s .= "
                         $ca
                     ";

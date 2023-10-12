@@ -2,7 +2,7 @@
 <xtcommerceplugin>
 
     <code>xt_cross_selling</code>
-    <version>5.3.1</version>
+    <version>5.3.2</version>
     <type>core</type>
 
     <minimum_store_version>6.2.2</minimum_store_version>
