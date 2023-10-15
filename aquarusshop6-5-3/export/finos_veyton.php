@@ -2087,7 +2087,7 @@ function update_order()
       "function" => "setOrderStatus",
       "paras" => array(
         "user" => "finosScript",
-        "pass"=> "SuperKarl123!",
+        "pass"=> "vx#Ne/x5u!Q5YS225H$",
         "order_id" => $order_id,
         "new_status_id" => $status,
         "comments" => $comments,
