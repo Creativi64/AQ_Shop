@@ -2,10 +2,10 @@
 <xtcommerceplugin>
 
     <code>xt_master_slave</code>
-    <version>6.4.4</version>
+    <version>6.4.8</version>
     <type>core</type>
     
-    <minimum_store_version>6.4.3</minimum_store_version>
+    <minimum_store_version>6.5.4</minimum_store_version>
 
     <developer>xt:Commerce</developer>
     <url>https://www.xt-commerce.com</url>
@@ -28,6 +28,12 @@
     <db_uninstall><![CDATA[include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/installer/uninstall.php';]]></db_uninstall>
 
     <plugin_code>
+        <code>
+            <hook>class.order_edit_products.php:removeOrderItem_bottom</hook>
+            <phpcode><![CDATA[include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.order_edit_products.php_removeOrderItem_bottom.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
         <code>
             <hook>class.product.php:buildData_top</hook>
             <phpcode><![CDATA[include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.product.php_buildData_top.php';]]></phpcode>
@@ -125,7 +131,7 @@
         </code>
         <code>
             <hook>styles.php:bottom</hook>
-            <phpcode><![CDATA[include _SRV_WEBROOT.'plugins/xt_master_slave/hooks/styles.phpbottom.php';]]></phpcode>
+            <phpcode><![CDATA[include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/styles.phpbottom.php';]]></phpcode>
             <order>1</order>
             <active>1</active>
         </code>
@@ -233,6 +239,27 @@
         <code>
             <hook>ejsadmin.php:more_js</hook>
             <phpcode><![CDATA[include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/ejsadmin.php_more_js.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.plugin_installed.php:_set_bottom</hook>
+            <phpcode><![CDATA[include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.plugin_installed.php__set_bottom.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.product.php:_copy_bottom</hook>
+            <phpcode><![CDATA[include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.product.php__copy_bottom.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.product.php:_delete_top</hook>
+            <phpcode><![CDATA[include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.product.php__delete_top.php';]]></phpcode>
             <order>1</order>
             <active>1</active>
         </code>
@@ -485,6 +512,19 @@
             <en>
                 <title><![CDATA[Main product:<br/>Sum variants quantities for graduated price]]></title>
             </en></config>
+
+        <config>
+            <key>XT_MASTER_SLAVE_FIX_QUANTITIES</key>
+            <sort_order>110</sort_order>
+            <type>status</type>
+            <value>1</value>
+            <de>
+                <title><![CDATA[Beim Speichern Bestände Hauptartikel neu berechnen (Plugin muss bereits aktiviert sein)]]></title>
+            </de>
+            <en>
+                <title><![CDATA[On save recalculate main products stocks (plugin needs to be activate first)]]></title>
+            </en>
+        </config>
 
 
     </configuration>
@@ -776,6 +816,16 @@
             <version>6.4.3</version>
             <to_version>6.4.4</to_version>
             <code><![CDATA[include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/installer/updates/6.4.3_6.4.4.php';]]></code>
+        </update>
+        <update>
+            <version>6.4.4</version>
+            <to_version>6.4.5</to_version>
+            <code><![CDATA[include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/installer/updates/6.4.4_6.4.5.php';]]></code>
+        </update>
+        <update>
+            <version>6.4.6</version>
+            <to_version>6.4.7</to_version>
+            <code><![CDATA[include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/installer/updates/6.4.6_6.4.7.php';]]></code>
         </update>
 
     </db_update>

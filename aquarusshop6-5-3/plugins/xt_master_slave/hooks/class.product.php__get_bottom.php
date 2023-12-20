@@ -17,6 +17,13 @@ else if($this->url_data["get_data"] == 'true')
         if($p['products_master_flag'] != '0') $variant_product_id = $p['products_id'];
         else if(!empty($p['products_master_model']))
         {
+            $variant_product_id = $db->GetOne("SELECT p2.products_id FROM ".TABLE_PRODUCTS." p1
+                INNER JOIN ".TABLE_PRODUCTS." p2 ON p2.products_model = p1.products_master_model
+                WHERE p2.products_master_model > '' AND p1.products_id = ? ", [$p['products_id']]);
+
+            if(empty($variant_product_id)) $variant_product_id = 0;
+
+
             $variant_product_id = $db->GetOne("SELECT IFNULL( (SELECT p2.products_id FROM ".TABLE_PRODUCTS." p1
                 INNER JOIN ".TABLE_PRODUCTS." p2 ON p2.products_model = p1.products_master_model
                 WHERE p2.products_master_model > '' AND p1.products_id = ?), 0) ", [$p['products_id']]);

@@ -227,7 +227,9 @@ if (isset($xtPlugin->active_modules['xt_master_slave']))
             $xtLink->_redirect($link);
         }
 
-        $redirect = (!isset($p_info)) && $page->page_name === 'product'
+        //$redirect = (!isset($p_info)) && $page->page_name === 'product'
+        // durch getProduct in cart:558, konnte man keine andere variante mehr wählen wenn schon ein im cart lag
+        $redirect = $page->page_name === 'product'
             && !$ms_cart_refresh
             && is_countable($msp->possibleProducts) && count($msp->possibleProducts) == 1
             //&& count($msp->possibleProducts_primary) != 1
@@ -235,6 +237,7 @@ if (isset($xtPlugin->active_modules['xt_master_slave']))
             && $_SESSION['ms_slave_open_master'] != true
             && (!isset($_POST['action']) || $_POST['action'] != "add_product")
             && (empty($this->data['products_master_model']) || count($msp->allProduct_ids)>1) // nicht umleiten, wenn nur ein slave vorhanden (unnötiger 302 bei direktaufruf)
+            && (empty($first_key) || $first_key != $current_product_id )// redirect schleife bei nur einer variante durch getProduct in zb last_viewd_products
         ;
 
         unset($_SESSION['ms_slave_redirect']);
@@ -255,7 +258,7 @@ if (isset($xtPlugin->active_modules['xt_master_slave']))
 
             $first_data = $msp->possibleProducts[$first_key];
 
-            if ($first_data['products_id'] != $this->pID)
+            if (is_array($first_data) && $first_data['products_id'] != $this->pID) // is_array($first_data) : first_data is eine id, zb wenn  master und nur eine variante ohne Eigenschaften aurosan
             {
                 $link_array = array('page' => 'product', 'type' => 'product', 'name' => $first_data['products_name'], 'params' =>'info='.$first_data['products_id'], 'seo_url' => $first_data['url_text']);
                 $link = $xtLink->_link($link_array);

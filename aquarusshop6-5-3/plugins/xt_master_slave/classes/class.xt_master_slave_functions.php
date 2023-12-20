@@ -114,7 +114,7 @@ class xt_master_slave_functions extends xt_backend_cls
             }
         }
         else {
-            if(is_countable($tmp_msp->possibleProducts) && count($msp->possibleProducts) > 0)
+            if(is_countable($msp->possibleProducts) && count($msp->possibleProducts) > 0)
             {
                 $slaves = $msp->possibleProducts;
             }
@@ -825,11 +825,30 @@ FROM   " . TABLE_PRODUCTS . " p
     {
         global $db;
 
-        $main_products_quantity = $db->GetOne('SELECT SUM(products_quantity) FROM '.TABLE_PRODUCTS.' WHERE products_master_model = ?', [$main_products_model]);
+        $main_products_quantity = $db->GetOne('SELECT SUM(products_quantity) FROM '.TABLE_PRODUCTS.' WHERE products_master_model = ? and products_quantity > 0', [$main_products_model]);
         $db->Execute('UPDATE '.TABLE_PRODUCTS.' SET products_quantity = ? WHERE products_model = ?', [$main_products_quantity, $main_products_model]);
 
         $main_products_ordered = $db->GetOne('SELECT SUM(products_ordered) FROM '.TABLE_PRODUCTS.' WHERE products_master_model = ?', [$main_products_model]);
         $db->Execute('UPDATE '.TABLE_PRODUCTS.' SET products_ordered = ? WHERE products_model = ?', [$main_products_ordered, $main_products_model]);
+
+        $main_products_transactions = $db->GetOne('SELECT SUM(products_transactions) FROM '.TABLE_PRODUCTS.' WHERE products_master_model = ?', [$main_products_model]);
+        $db->Execute('UPDATE '.TABLE_PRODUCTS.' SET products_transactions = ? WHERE products_model = ?', [$main_products_transactions, $main_products_model]);
+    }
+
+    public static function fixMasterStocks()
+    {
+        global $db;
+
+        $master_models = $db->GetArray('SELECT products_model FROM '.TABLE_PRODUCTS.' WHERE products_master_flag = 1');
+        foreach($master_models as $mm)
+        {
+            $master_products_quantity = $db->GetOne('SELECT SUM(products_quantity) FROM '.TABLE_PRODUCTS.' WHERE products_master_model = ? and products_quantity > 0', [$mm['products_model']]);
+            $db->Execute('UPDATE '.TABLE_PRODUCTS.' SET products_quantity = ? WHERE products_model = ?', [$master_products_quantity, $mm['products_model']]);
+
+            $master_products_ordered = $db->GetOne('SELECT SUM(products_ordered) FROM '.TABLE_PRODUCTS.' WHERE products_master_model = ?', [$mm['products_model']]);
+            $db->Execute('UPDATE '.TABLE_PRODUCTS.' SET products_ordered = ? WHERE products_model = ?', [$master_products_ordered, $mm['products_model']]);
+        }
+
     }
 
 }

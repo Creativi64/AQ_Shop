@@ -25,9 +25,11 @@
  #########################################################################
  */
 
+require_once _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/classes/class.xt_master_slave_functions.php';
+
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
-class xt_master_slave
+class xt_master_slave extends xt_backend_cls
 {
 
     public $_table = TABLE_PRODUCTS_ATTRIBUTES;
@@ -86,6 +88,12 @@ class xt_master_slave
         $params['display_statusFalseBtn'] = true;
         $params['display_searchPanel'] = true;
 
+        $js = 'ms_fix_quantities("' .__text('XT_MASTER_SLAVE_TEXT_FIX_QUANTITIES'). '?");';
+        $UserButtons['fix_ms_quantities'] = array('text'=>__text('XT_MASTER_SLAVE_TEXT_FIX_QUANTITIES'), 'style'=>'', 'font-icon'=>'ms_fix_quantities', 'acl'=>'edit', 'stm' => $js);
+        $params['display_fix_ms_quantitiesBtn'] = true;
+
+        $params['UserButtons']      = $UserButtons;
+
         ($plugin_code = $xtPlugin->PluginCode('class.xt_master_slave.php:_getParams_bottom')) ? eval($plugin_code) : false;
 
         if (!$this->url_data['edit_id'] && !$this->url_data['new']) {
@@ -108,6 +116,8 @@ class xt_master_slave
 
         if ($where != '') $where = 'and (' . $where . ')';
 
+        $data = null;
+
         $record = $db->CacheExecute("SELECT  DISTINCT attributes_id FROM " . $this->_table . " WHERE attributes_id>0 " . $where);
         if ($record->RecordCount() > 0) {
 
@@ -122,7 +132,7 @@ class xt_master_slave
         return $data;
     }
 
-    function _get($ID = 0)
+    function _get($id = 0)
     {
         global $xtPlugin, $db, $language;
 
@@ -130,12 +140,12 @@ class xt_master_slave
 
         $obj = new stdClass;
 
-        if ($ID === 'new') {
+        if ($id === 'new') {
             $obj = $this->_set(array(), 'new');
-            $ID = $obj->new_id;
+            $id = $obj->new_id;
         }
         
-        if ( ! $ID && ! isset($this->sql_limit))
+        if ( ! $id && ! isset($this->sql_limit))
         	$this->sql_limit = "0,100";
 
         if(!empty($_REQUEST['limit']) && isset($_REQUEST['start']))
@@ -201,9 +211,9 @@ class xt_master_slave
                 }
             }
 
-        } elseif ($ID) {
+        } elseif ($id) {
 
-            $data = $table_data->getData($ID);
+            $data = $table_data->getData($id);
         } else {
             $data = $table_data->getHeader();
             $data[0]['tmpl'] = '';
@@ -318,7 +328,6 @@ class xt_master_slave
         $db->CacheExecute("DELETE FROM " . $this->_table . " WHERE " . $this->_master_key . " = ?",array($id));
         if ($this->_table_lang !== null)
             $db->CacheExecute("DELETE FROM " . $this->_table_lang . " WHERE " . $this->_master_key . " = ?",array($id));
-
     }
 
     function getAllAttributesList($data_array = '', $parent_id = '0', $spacer = '')
@@ -372,7 +381,6 @@ class xt_master_slave
                 $tmp_data = array();
                 $tmp_data = $record->fields;
 
-                $tmp_data['attributes_name'] = $tmp_data['attributes_name'];
                 $tmp_data['text'] = $tmp_data['attributes_name'];
                 $tmp_data['id'] = $tmp_data[$this->_master_key];
 
@@ -410,7 +418,7 @@ class xt_master_slave
 
         if (is_array($_REQUEST)) {
             $data[] = array('id' => '',
-                'name' => TEXT_EMPTY_SELECTION,
+                'name' => __text('TEXT_EMPTY_SELECTION'),
                 'desc' => '');
 
             $_data = $this->getAllParentAttributesList();
@@ -462,7 +470,6 @@ class xt_master_slave
                 $tmp_data = array();
                 $tmp_data = $record->fields;
 
-                $tmp_data['attributes_templates_name'] = $tmp_data['attributes_templates_name'];
                 $tmp_data['id'] = $tmp_data['attributes_templates_id'];
 
                 $data_array[] = $tmp_data;
@@ -493,7 +500,7 @@ class xt_master_slave
             $query = "" . $this->sql_products->getSQL_query("p.products_id, p.products_model as name, pd.products_name") . "";
 
             $data[] = array('id' => '',
-                'name' => TEXT_EMPTY_SELECTION,
+                'name' => __text('TEXT_EMPTY_SELECTION'),
                 'desc' => '');
 
 
@@ -517,6 +524,17 @@ class xt_master_slave
         } else {
             return $data;
         }
+    }
+
+    public function be_fixMasterStocks()
+    {
+        xt_master_slave_functions::fixMasterStocks();
+
+        $r = new stdClass();
+        $r->msg = 'ok';
+        $r->success = true;
+
+        return json_encode($r);
     }
 
 }

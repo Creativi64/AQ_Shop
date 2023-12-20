@@ -7,6 +7,10 @@ li.ppcp-message {list-style-type: none}
 
 #checkout #checkout-payment .list-group .list-group-item #xt_paypal_checkout_pui input {display:inline-block}
 
+#checkout-confirmation .payment-address.ppcp-express a {
+    display: inline-block;
+}
+
 .ppcp-has-error { border: 2px solid #d9534f !important; }
 
 @-moz-keyframes spin_ppcp_spinner { 100% { -moz-transform: rotate(360deg); } }

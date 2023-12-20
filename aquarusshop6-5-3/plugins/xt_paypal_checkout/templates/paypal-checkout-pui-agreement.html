@@ -13,11 +13,15 @@
         {
             form.addEventListener('submit', function(event)
             {
-                ppcWaitModal();
-                setTimeout(function () {
-                    const oops = document.getElementById("ppc_oops");
-                    if(oops) oops.style.display = "block"
-                }, 4000);
+                if(xtSimpleCheckForm_ppc(form))
+                {
+                    ppcWaitModal() ;
+                    setTimeout(function () {
+                        const oops = document.getElementById("ppc_oops");
+                        if(oops) oops.style.display = "block"
+                    }, 4000);
+                }
+                else event.preventDefault();
             });
         }
     });

@@ -28,11 +28,11 @@
 {*include file="./paypal-checkout-script-tag.tpl.html"*}
 
 <script>
-
+console.log('adding event listener PayPalSdkLoaded');
 document.addEventListener('PayPalSdkLoaded', function ()
 {
     try {
-        console.log("paypal-checkout-cart-and-product.tpl.html position:{$requested_position}");
+        console.log("paypal-checkout-cart-and-product: position:{$requested_position}");
         renderAllEligibleButtonsCart("{$requested_position}");
     }
     catch(e)

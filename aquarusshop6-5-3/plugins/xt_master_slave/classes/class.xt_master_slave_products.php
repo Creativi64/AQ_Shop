@@ -1122,25 +1122,25 @@ class master_slave_products
             {
                 if(empty($option['selected'])){
                     foreach($option['data'] as $k2 => $optionData){
-                        if($optionData['id'] != 0 && !in_array($optionData['id'], $this->possibleValues)){
+                        if($optionData['id'] != 0 && (empty($this->possibleValues) || !in_array($optionData['id'], $this->possibleValues))){
                             $mergedOptions_arr[$k]['data'][$k2]['disabled'] = true;
                         }
                     }
                 }
             }
 
-
             // Wenn ich gerade dabei bin besorgen wir noch schnell die URL des Masters, dann können wir einen "Auswahl zurücksetzen" - Button einfügen.
             global $store_handler;
-            $jw_master_pid = $db->GetOne("select products_id from ".TABLE_PRODUCTS." where products_model = '".$this->master_model."'");
+            $jw_master_pid = $db->GetOne("select products_id from ".TABLE_PRODUCTS." where products_model = ?", [$this->master_model]);
             // Einzelartikel abfangen
             if($jw_master_pid != '' && $_SESSION['selected_language'] != ''){
-                $jw_master_url = $db->GetOne("select `url_text` from `".TABLE_SEO_URL."` where `link_type` = 1 and `link_id` = '".$jw_master_pid."' and `language_code` = '".$_SESSION['selected_language']."' and `store_id` = ".$store_handler->shop_id);
+                $jw_master_url = $db->GetOne("select `url_text` from `".TABLE_SEO_URL."` where `link_type` = 1 and `link_id` = ? and `language_code` = ? and `store_id` = ?",
+                [$jw_master_pid, $_SESSION['selected_language'], $store_handler->shop_id]);
                 $this->products_master_url = _SYSTEM_BASE_URL."/".$jw_master_url;
             }else{
                 //error_log("MasterSlave: Master:".$this->master_model." Store: ".$store_handler->shop_id, 0);
             }
-            // Ende Fix, nur noch eine Änderung in Zeile 1141
+            // Ende Fix
 
             global $master_slave_error;
 
@@ -1150,7 +1150,7 @@ class master_slave_products
 				'options' => $mergedOptions_arr,
 				'pID' => $this->pID,
 				'error_message' => $master_slave_error,
-				'ms_allow_add_cart' => $selectedCount == count($mergedOptions_arr) ? true : false
+				'ms_allow_add_cart' => is_array($mergedOptions_arr) && $selectedCount == count($mergedOptions_arr) ? true : false
 			);
 			unset($_SESSION['master_slave_error']);
 			$tpl = _getSingleValue(array('value' => 'products_option_template', 'table' => TABLE_PRODUCTS, 'key' => 'products_model', 'key_val' => $this->master_model));
@@ -1486,7 +1486,7 @@ class master_slave_products
 
         $filterList = xt_master_slave_functions::getOverrideSetting(XT_MASTER_SLAVE_FILTERLIST_ON_SELECTION, 'ms_filter_slave_list', $this->pID);
 
-		if($filterList && count($this->possibleProducts)>1)
+		if($filterList && is_array($this->possibleProducts) && count($this->possibleProducts)>1)
 		{
 			foreach($this->possibleProducts as $ps)
 			{
@@ -1496,13 +1496,14 @@ class master_slave_products
 			}
 		}
 		else {
-            if(count($this->allProduct_ids)>1)
+            $foreach_products = [];
+            if(is_array($this->allProduct_ids) && count($this->allProduct_ids)>1)
                 $foreach_products = $this->allProduct_ids;
             else
             {
-                if(array_key_exists(0, $this->possibleProducts))
+                if(is_array($this->possibleProducts) && array_key_exists(0, $this->possibleProducts))
                     $foreach_products = $this->possibleProducts; // [0=>artike1, 1 => artikel2]
-                else
+                else if(is_array($this->possibleProducts))
                     $foreach_products = array_keys($this->possibleProducts); // [artikelID1 => artikel1, artikelID5 => artikel2]
             }
             foreach($foreach_products as $ps_id)
@@ -1513,7 +1514,7 @@ class master_slave_products
 		}
 		$this->flag_processingProductList = false;
 
-        if($filterList != 1 && count($all_p)>1)
+        if($filterList != 1 && is_array($all_p) && count($all_p)>1)
         {
             usort($all_p, function ($a, $b) {
                 if ($a['products_master_slave_order'] == $b['products_master_slave_order'])

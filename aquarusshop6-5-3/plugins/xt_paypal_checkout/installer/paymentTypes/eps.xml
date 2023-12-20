@@ -32,6 +32,20 @@
         </config>
 
         <config>
+            <key>EPS_ORDER_PROCESS_TRIGGER</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>17</value>
+            <sort_order>5</sort_order>
+            <en>
+                <title><![CDATA[order_process trigger]]></title>
+            </en>
+            <de>
+                <title><![CDATA[Trigger Bestellprozess (order_process)]]></title>
+            </de>
+        </config>
+
+        <config>
             <key>EPS_ORDER_STATUS_CREATED</key>
             <type>dropdown</type>
             <url>status:order_status</url>

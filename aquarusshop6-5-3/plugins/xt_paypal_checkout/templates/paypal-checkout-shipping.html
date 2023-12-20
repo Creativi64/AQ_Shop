@@ -10,11 +10,11 @@
 		<div class="col col-sm-4 col-md-3">
 			<div class="well shipping-address address">
 				<p class="headline-underline clearfix">{txt key=TEXT_SHIPPING_ADDRESS}</p>
+
 				{if $shipping_address.allow_change == true && $shipping_address.address_class=='shipping'}
 				<p class="right"><a class="highlight" href="{link page='customer' paction='edit_address' params='adType=shipping&abID' params_value=$shipping_address.address_book_id conn=SSL}">{txt key=TEXT_EDIT}</a></p>
-				
-
 				{/if}
+
 				{if $shipping_address.customers_company}<p>{$shipping_address.customers_company}</p>{/if}
 				<p>{$shipping_address.customers_firstname} {$shipping_address.customers_lastname}</p>
 				<p>{$shipping_address.customers_street_address}</p>
@@ -23,25 +23,12 @@
 				<p>{$shipping_address.customers_postcode} {$shipping_address.customers_city}</p>
 				<p>{$shipping_address.customers_country}</p>
 				<p><br /></p>
-				{if $shipping_address.allow_change == true && FALSE}
-				{txt key=TEXT_SELECT_SHIPPING_ADDRESS}
-				{form type=form name=shipping_address action='dynamic' link_params='page_action=shipping' method=post conn=SSL}
-				{form type=select name=adID value=$address_data params='onchange="this.form.submit();"'}
-				{form type=hidden name=adType value=shipping}
-				{form type=hidden name=action value=select_address}
-				{form type=formend}
-				{if $add_new_address eq 1 &&  FALSE}
-				<p>{txt key=TEXT_NEW_SHIPPING_ADDRESS}</p>
-				<p class="right"><a class="highlight" href="{link page='customer' paction='edit_address' params='adType=shipping' conn=SSL}">{txt key=BUTTON_ADD_ADDRESS}</a></p>
-				{/if}
-				{/if}
+
 			</div><!-- .box -->
 			{if $shipping_data|count neq 0}
-			<div class="well payment-address address">
+			<div class="well payment-address address ppcp-express">
 				<p class="headline-underline">{txt key=TEXT_PAYMENT_ADDRESS}</p>
-				{if false && $payment_address.allow_change == true && $payment_address.address_class=='payment'}
-				<p class="right"><a class="highlight" href="{link page='customer' paction='edit_address' params='adType=payment&abID' params_value=$payment_address.address_book_id conn=SSL}">{txt key=TEXT_EDIT}</a></p>
-				{/if}
+
 				{if $payment_address.customers_company}<p>{$payment_address.customers_company}</p>{/if}
 				<p>{$payment_address.customers_firstname} {$payment_address.customers_lastname}</p>
 				<p>{$payment_address.customers_street_address}</p>
@@ -49,6 +36,9 @@
 				{if $payment_address.customers_suburb}<p>{$payment_address.customers_suburb}</p>{/if}
 				<p>{$payment_address.customers_postcode} {$payment_address.customers_city}</p>
 				<p>{$payment_address.customers_country}</p>
+                {if $payment_address.allow_change == true }
+                    <p class=""><a class="highlight" href="{link page='customer' paction='edit_address' params='adType=payment&abID' params_value=$payment_address.address_book_id conn=SSL}">{txt key=TEXT_EDIT}</a></p>
+                {/if}
 				<p><br /></p>
                 {if $smarty.session.customer->customer_info.account_type == 0}
 				{txt key=TEXT_SELECT_PAYMENT_ADDRESS}
@@ -58,13 +48,10 @@
 				{form type=hidden name=action value=select_address}
 				{form type=formend}
                 {/if}
-				{if false && $smarty.session.customer->customer_info.account_type == 0}
-				<p>{txt key=TEXT_NEW_PAYMENT_ADDRESS}</p>
-				<p class="right"><a class="highlight" href="{link page='customer' paction='edit_address' params='adType=payment' conn=SSL}">{txt key=BUTTON_ADD_ADDRESS}</a></p>
-				{/if}
+
 			</div>
 			{/if}
-		</div>	
+		</div>
 
 		{if $shipping_data|count eq 0 && $smarty.session.cart->type != 'virtual'}
 		<div class="col col-sm-8 col-md-9">

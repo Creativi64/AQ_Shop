@@ -2,6 +2,16 @@
 <xtcommerceplugin>
 	<language_content>
 <phrase>
+	<key>XT_MASTER_SLAVE_TEXT_FIX_QUANTITIES</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Fix quantities]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Stückzahlen bereinigen]]></value>
+	</de>
+</phrase>
+<phrase>
 	<key>TEXT_SUM_QUANTITY_FOR_GRADUATED_PRICE</key>
 	<class>admin</class>
 	<en>

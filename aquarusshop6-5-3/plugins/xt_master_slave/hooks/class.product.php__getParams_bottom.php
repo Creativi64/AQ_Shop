@@ -18,7 +18,7 @@ $is_variant_product = (bool) $db->GetOne("SELECT IFNULL( (SELECT 1 FROM ".TABLE_
 // oder ist das eine Produktvariante ? dabei id des Hauptprodukts ermitteln
 $variant_product_id = $db->GetOne("SELECT IFNULL( (SELECT p2.products_id FROM ".TABLE_PRODUCTS." p1
         INNER JOIN ".TABLE_PRODUCTS." p2 ON p2.products_model = p1.products_master_model
-        WHERE p2.products_master_model > '' AND p1.products_id = ?), 0) ", [$this->url_data['edit_id']]);
+        WHERE p2.products_master_model > '' AND p2.products_model > '' AND p1.products_id = ?), 0) ", [$this->url_data['edit_id']]);
 
 
 if(!$is_variant_product)

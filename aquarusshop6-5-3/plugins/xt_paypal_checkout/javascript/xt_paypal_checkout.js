@@ -193,8 +193,35 @@ function enablePaypalButton(fundingSource,position)
                                 const valid = xtSimpleCheckForm_ppc(form, false);
                                 if (valid) {
                                     actions.enable();
+                                    box.classList.remove("xt-form-error");
                                 } else {
                                     actions.disable();
+                                }
+
+                            });
+                        });
+                    }
+
+                },
+                onClick: function (data, actions) {
+                    console.log('ppcp onClick');
+
+                    let form = ppcGetCheckoutForm();
+
+                    if (form) {
+                        const valid = xtSimpleCheckForm_ppc(form, true, true);
+                        if (!valid) {
+                            actions.reject();
+                        }
+                        let cbox = form.querySelectorAll("input[type=checkbox]");
+                        cbox.forEach(box => {
+                            box.addEventListener('change', function (event) {
+                                const valid = xtSimpleCheckForm_ppc(form, false);
+                                if (valid) {
+                                    actions.resolve();
+                                    box.classList.remove("xt-form-error");
+                                } else {
+                                    actions.reject();
                                 }
 
                             });
@@ -309,6 +336,7 @@ function ppcGetShippingOptions(data, actions)
             url,
             {
                 method: 'POST',
+                redirect: "error",
                 body: JSON.stringify({oderID:data.orderID, shipping_address:data.shipping_address, operation: operation})
             }
         ).then((response) => {
@@ -318,12 +346,23 @@ function ppcGetShippingOptions(data, actions)
         }).then((response) => {
             console.log('zurück von shippingOptions.php',  response);
             if(response && response.error)
-                return actions.reject();
+            {
+                // response.error wird imo zZ nicht verwendet
+                // wäre eine ander mgl zb für class.cart.php:_getContent_bottom und änderungen im cart
+                // fangen wir zZ über redirect-error
+                actions.reject();
+                window.location.href = window.XT.baseUrl + '?page=cart';
+            }
             previousCountryCode = data.shipping_address.country_code;
             return actions.resolve();
         }).catch(reason => {
             console.error(reason);
             actions.reject();
+            // shippingOptions nur bei express
+            // wenn der reason ein redirect ist gehen wir in den cart
+            // bestimmt hat sich irgend etwas im cart geändert
+            // siehe class.cart.php:_getContent_bottom
+            window.location.href = window.XT.baseUrl + '?page=cart';
         });
     }
     return actions.resolve();
@@ -342,7 +381,7 @@ function ppcCreateOrder(data, actions, button_container_selector)
 
     const form =  ppcGetCheckoutForm();
     let valid = true;
-    if(form) valid = xtSimpleCheckForm_ppc(form);
+    if(form) valid = xtSimpleCheckForm_ppc(form, true, true);
 
     let isExpress = false;
     let url = baseUrl + '?page=PAYPAL_CHECKOUT_ORDER_CREATE';
@@ -425,8 +464,8 @@ function ppcCreateOrder(data, actions, button_container_selector)
             return resJson.data.id;
         }).catch((error) => {
             console.log(error, isExpress);
-            if(!isExpress) window.location.href = window.XT.baseUrl + '?page=checkout&page_action=payment&error=ERROR_PAYMENT';
-            else if (page !='product') window.location.href = window.XT.baseUrl + '?page=cart&error=ERROR_PAYMENT';
+            if(!isExpress) window.location.href = window.XT.baseUrl + '?page=cart';
+            else if (page !='product') window.location.href = window.XT.baseUrl + '?page=cart';
             else if (page =='product') location.reload();
         });
     }
@@ -436,6 +475,8 @@ function ppcCreateOrder(data, actions, button_container_selector)
 function ppcOnApprove(data, actions)
 {
     console.log({'fnc': 'ppcOnApprove', 'data': data, 'actions': actions});
+
+    ppcWaitModal();
 
     const form = ppcGetCheckoutForm();
 
@@ -451,7 +492,8 @@ function ppcOnApprove(data, actions)
         url,
         {
             method: 'POST',
-            body: formData
+            body: formData,
+            redirect: "error"
         }
     ).then(function(response) {
         console.log(response);
@@ -471,7 +513,7 @@ function ppcOnApprove(data, actions)
     }).catch((error) => {
         ppcWaitModal(close);
         console.log(error);
-        window.location.href = window.XT.baseUrl + '?page=checkout&page_action=payment&error=ERROR_PAYMENT'
+        window.location.href = window.XT.baseUrl + '?page=cart'
     });
 }
 function ppcOnApproveCart(data, actions)
@@ -681,11 +723,12 @@ function ppcFix_button_changed_html(selector) {
 }
 
 if(typeof xtSimpleCheckForm_ppc != 'function'){
-    window.xtSimpleCheckForm_ppc = function(form, scrollTo)
+    window.xtSimpleCheckForm_ppc = function(form, scrollTo, showTermsWarning)
     {
         var errorElements = [];
 
         if(scrollTo !== true && scrollTo !== false) scrollTo = true;
+        if(showTermsWarning !== true && showTermsWarning !== false) showTermsWarning = false;
 
 
         form.querySelectorAll('input[type=checkbox].xt-form-required').forEach(function(el){
@@ -709,12 +752,25 @@ if(typeof xtSimpleCheckForm_ppc != 'function'){
         {
             errorElements.forEach(function(el){
                 el.classList.add('xt-form-error');
+                if(el.name == 'conditions_accepted' && showTermsWarning)
+                {
+                    let div = document.getElementById('TEXT_ERROR_CONDITIONS_ACCEPTED');
+                    if(div)
+                        div.style.display = 'block';
+                }
             });
             if(scrollTo && !ppcIsInViewport(errorElements[0])) {
                 errorElements[0].closest('form').scrollIntoView({
                     behavior: 'smooth'
                 });
             }
+            // evelations button reaktivieren
+            setTimeout(function() {
+                form.querySelectorAll("[data-loading]").forEach((el) => {
+                    el.removeAttribute('data-loading');
+                    el.removeAttribute('disabled');
+                });
+            }, 1000);
             return false;
         }
 
@@ -727,7 +783,12 @@ function ppcGetCheckoutForm()
     let xt_form = document.getElementById("checkout-form");
     if(!xt_form) xt_form = document.getElementById("checkout_form");
     if(!xt_form) xt_form = document.getElementById("formCard"); // danke dafür ador, hauptsache eigene id's
-    if(!xt_form) console.warn('ES WURDE KEINE form[id=checkout_form] bzw form[id=checkout-form]');
+    if(!xt_form) {
+        let inp = document.querySelector('input[type=hidden][name=action][value=process]');
+        if(inp)
+            xt_form = inp.parentElement;
+    }
+    if(!xt_form) console.warn('ES WURDE KEIN FORMULAR GEFUNDEN. form[id=checkout_form] bzw form[id=checkout-form] oder input[type=hidden][name=action][value=process]');
     return xt_form;
 }
 

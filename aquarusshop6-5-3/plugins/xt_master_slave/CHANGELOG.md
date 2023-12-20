@@ -1,3 +1,22 @@
+## [6.4.8]
+- FIX redirect-Schleife bei nur einer Variante durch getProduct in zB last_viewed_products
+- Artikel kopieren/ löschen berechnet Bestand neu
+- FIX  updater 6.4.7  Call to undefined method xt_master_slave_functions::fixMasterStocks()
+
+## [6.4.7]
+- FIX PHP Fatal error: Uncaught TypeError: count(): Argument #1 ($value) must be of type Countable|array, null given in /usr/www/users/ybadmin/shop/plugins/xt_master_slave/classes/class.xt_master_slave_products.php:1489
+- neue Plugin-Option *Beim Speichern Bestände Hauptartikel neu berechnen* 
+- *Beim Speichern Bestände Hauptartikel neu berechnen* im Menüpunkt *Artikelvarianten*
+- verschiedene Anpassungen für PHP 8
+
+## [6.4.6]
+- FIX Anpassung Berechnung Hauptartikel-Stückzahlen bei Verwendung von order_edit  
+  (benötigt xt 6.5.4)
+
+## [6.4.5]
+- Berechnung der Stückzahl ignoriert nun negative Werte an den Varianten
+  zB drei Varianten mit Stückzahlen -100 10 20 => 30 statt früher -70 
+
 ## [6.4.4]
 - FIX Entfernen von Attributen wird nicht übernommen LVO-519-96385
 - Beim Speichern einer Variante wird Stückzahl des Hauptartikels berechnet und gespeichert

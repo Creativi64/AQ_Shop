@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-10-08 01:15:17
+/* Smarty version 4.3.2, created on 2023-12-20 20:51:52
   from '/homepages/2/d41324517/htdocs/aquarusshop6-5-3/templates/xt_responsive_AQ/index.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '4.3.0',
-  'unifunc' => 'content_6521e685803c60_14494348',
+  'version' => '4.3.2',
+  'unifunc' => 'content_658345d8cb21d5_70947895',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '66823906cfbeaac4e9cf2696928704c14c0310da' => 
     array (
       0 => '/homepages/2/d41324517/htdocs/aquarusshop6-5-3/templates/xt_responsive_AQ/index.html',
-      1 => 1691797583,
+      1 => 1697144019,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:xtCore/pages/navigation/breadcrumb.html' => 1,
   ),
 ),false)) {
-function content_6521e685803c60_14494348 (Smarty_Internal_Template $_smarty_tpl) {
+function content_658345d8cb21d5_70947895 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.hook.php','function'=>'smarty_function_hook',),1=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.box.php','function'=>'smarty_function_box',),2=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.link.php','function'=>'smarty_function_link',),3=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.txt.php','function'=>'smarty_function_txt',),4=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.box_cache.php','function'=>'smarty_function_box_cache',),5=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.cronjob.php','function'=>'smarty_function_cronjob',),));
 if ($_smarty_tpl->tpl_vars['page']->value == 'index' || $_smarty_tpl->tpl_vars['page']->value == 'product' || $_smarty_tpl->tpl_vars['page']->value == 'cart' || $_GET['page_action'] == 'login' || $_GET['page_action'] == 'order_info') {?>
     <?php $_smarty_tpl->_assignInScope('show_index_boxes', "false");

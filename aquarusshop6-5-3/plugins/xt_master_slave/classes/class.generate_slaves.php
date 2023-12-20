@@ -76,7 +76,7 @@ class generate_slaves extends xt_backend_cls {
 		$params['gridType'] = 'EditGrid';
 
 		$params['master_key']     = $this->_master_key;
-        $pageSize = (int)_SYSTEM_ADMIN_PAGE_SIZE_SLAVE_PRODUCT;
+        $pageSize = defined('_SYSTEM_ADMIN_PAGE_SIZE_SLAVE_PRODUCT') ? (int)_SYSTEM_ADMIN_PAGE_SIZE_SLAVE_PRODUCT : 500;
         if($pageSize && is_int($pageSize))
             $params['PageSize'] = $pageSize;
         else

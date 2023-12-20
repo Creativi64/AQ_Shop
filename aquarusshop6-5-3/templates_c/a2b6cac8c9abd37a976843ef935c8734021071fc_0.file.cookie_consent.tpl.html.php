@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-10-08 01:15:17
+/* Smarty version 4.3.2, created on 2023-12-20 20:51:53
   from '/homepages/2/d41324517/htdocs/aquarusshop6-5-3/plugins/xt_cookie_consent/templates/cookie_consent.tpl.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '4.3.0',
-  'unifunc' => 'content_6521e685bcc460_60591176',
+  'version' => '4.3.2',
+  'unifunc' => 'content_658345d9002950_99625880',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a2b6cac8c9abd37a976843ef935c8734021071fc' => 
     array (
       0 => '/homepages/2/d41324517/htdocs/aquarusshop6-5-3/plugins/xt_cookie_consent/templates/cookie_consent.tpl.html',
-      1 => 1687171152,
+      1 => 1697144041,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6521e685bcc460_60591176 (Smarty_Internal_Template $_smarty_tpl) {
+function content_658345d9002950_99625880 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
     <div id="cookie-consent" class="coc-<?php echo $_smarty_tpl->tpl_vars['theme_id']->value;?>
 " style="display:none">

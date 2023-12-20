@@ -1,3 +1,85 @@
+## [3.4.0]
+- FiX Format der an PP übertragenen Telefonnummer prüfen
+
+## [3.4.0]
+- FIX überarbeiteter Umgang mit APM's (Sofort, Giro, EPS)
+  Bestellung wird nun (wieder) in XT gespeichert, bevor zum Zahlungsdienstleister geleitet wird
+- Änderungen betreffend den Umgang mit Beständen bei APM-Zahlungen (eingeführt mit 3.2.6)
+- Admin Detailansicht Bestellung, Übersicht Bestellstatus-Änderungen  
+  für den Trigger order_process nun auch Anzeige des Status der Transaktion (Zahlung)  
+  
+  vorher  
+    order 4KK311737K603063G status COMPLETED. payment transaction 8PJ73808SN474922B  
+  jetzt  
+    order 4KK311737K603063G status COMPLETED. payment transaction 8PJ73808SN474922B COMPLETED  
+  oder auch
+    order 4KK311737K603063G status COMPLETED. payment transaction 8PJ73808SN474922B DENIED  
+  DENIED, also Zahlung abgelehnt. Daher empfehlen wir in den Einstellungen der Zahlungsweisen  
+  den Trigger order_process einem Status wie 'In Bearbeitung' zuzuordnen, nicht 'Zahlung erhalten' oä  
+  
+  wird im Bestellprozess (order_process) für den Zahlungsstatus etwas anders als COMPLETED ermittelt,  
+  wird dies an der Bestellung geloggt und der Kunde zur Auswahl der Zahlungsweise zurückgeleitet
+    
+- FIX Express Checkout berücksichtigt für Versandarten gesperrte Zahlungsweisen (idF also xt_paypal_checkout_paypal)
+- FIX für Versandarten gesperrte Zahlungsweisen konnten dazu führen, dass Express-Checkout nicht angezeigt wird
+- FIX Fehler im Installer in sofort.xml
+- FIX Für Standard-Kreditkarte (zb in CH, Belgien, ...) muss die Button-Farbe auf weiß oder schwarz gesetzt werden  
+  Advanced KK nur in bestimmten Ländern https://developer.paypal.com/docs/checkout/advanced/
+
+
+## [3.3.3]
+- weiteres Mapping an der Zahlungsweisen
+  für den Bestellstatus-Auslöser (Trigger) *order_process* kann nun ein separater Wert gewählt werden
+- IPN CHECKOUT.ORDER.APPROVED wird für PayPal-Express nicht verarbeitet
+  für APM und PUI wird die IPN verarbeitet
+  aber es wird kein xt-Statusupdate durchgeführt, sondern lediglich ein Log-Eintrag gesetzt
+
+## [3.3.2]
+- FIX Bestellkommentar wird im Express Checkout nicht gespeichert
+
+## [3.3.1]
+- FIX IPN für APM's (Sofort etc) und PUI (Rechnungskauf) werden ignoriert 
+
+## [3.3.0]
+- Unterstützung Kommastellen im Warenkorb  
+  zB xt-Warenkorb 'Stoff Anzahl 3,5 Meter' wird an Paypal übertragen als '1 mal 3,5 Meter Stoff'
+
+## [3.2.6]
+- Checkout Flow geändert, um Probleme mit Lagerbeständen zu vermeiden  
+  ORDER_COMPLETE_ON_PAYMENT_APPROVAL Bestellungen (APM's und PUI) werden nun nicht innerhalb des Flows angelegt und dann aktualisiert,  
+  sondern nur noch einmalig angelegt
+  Bestellungen mit ORDER_COMPLETE_ON_PAYMENT_APPROVAL haben in PayPal daher keine xt-Bestellnummer
+
+## [3.2.5]
+- FIX  *The specified processing_instruction is not supported for the given payment_source*  
+  bei Verwendung Kreditkarte
+- javascript angepasst zur Erkennung von checkout-Formularen 
+  (keine Bestellung nach Klick auf *Zahlen* im Paypal-Fenster)
+
+## [3.2.4]
+- angepasste Kreditkarten-Zahlung für Käufer aus AT/CH
+  für Käufer aus AT/CH wird der Standard-KK-Button verwendet
+
+## [3.2.3]
+- FIX  Telefonnummern mit Leer- oder Sonderzeichen liefern den Fehler INVALID_PARAMETER_SYNTAX
+
+## [3.2.2]
+- FIX  Land wird nicht übergeben bei Express
+
+## [3.2.1]
+- FIX  *Kauf auf Rechnung* und *Später bezahlen* NO_PAYMENT_SOURCE_PROVIDED
+- Anpassung für IPN bei *Kauf auf Rechnung*
+
+## [3.2.0]
+- angepasste Kreditkarten-Zahlung für Händler aus AT/CH  
+  für xt-Händler aus AT/CH wird der Standard-KK-Button verwendet
+- FIX KK-3DS-Auswertung
+- FIX APM's werden nicht im Checkout angezeigt (zB Giropay, Sofort)
+- FIX bei Express-Bestellung fehlt die Artikelliste in PayPal
+- FIX nach Express-Bestellung und nachfolgendem Standard-Checkout ist Änderung der Lieferadresse nicht möglich
+- Express-Checkout: Änderung der Rechnungsadresse nun möglich auf xt-Bestätigungsseite
+- Backend Bestellübersicht: Express-Bestellungen sind mit dem PayPal-Symbol und einem kleinen x gekennzeichnet
+
 ## [3.1.7]
 - Js-Ladevorgang/ Templates überarbeitet  
   PayPal SDK sollte nun nur einmal geladen werden  

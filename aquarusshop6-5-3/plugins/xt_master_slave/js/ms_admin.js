@@ -133,3 +133,35 @@ function toogleMsMasterAttributes(form, enable)
         console.error(e);
     }
 }
+
+function ms_fix_quantities(title)
+{
+    if(!title) title = 'losjez';
+    Ext.Msg.show({
+        title: title,
+        buttons: Ext.Msg.YESNO,
+        fn: function(btn, text){
+            if (btn == 'yes')
+            {
+                var mask = new Ext.LoadMask(Ext.getBody(), {msg: 'Moment...'});
+                mask.show();
+
+                var conn = new Ext.data.Connection();
+                conn.request({
+                    url: 'adminHandler.php?plugin=xt_master_slave&load_section=xt_master_slave&pg=be_fixMasterStocks&sec=' + csrf_key,
+                    method: 'POST',
+                    params: {},
+                    error: function (responseObject) {
+                        mask.hide();
+                    },
+                    success: function (responseObject) {
+                        mask.hide();
+                    }
+                });
+
+            }
+        },
+        icon: Ext.MessageBox.QUESTION
+    });
+}
+

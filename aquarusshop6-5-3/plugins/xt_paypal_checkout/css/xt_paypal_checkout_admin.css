@@ -19,3 +19,8 @@ input[name*=XT_PAYPAL_CHECKOUT_MERCHANT_ID]
     pointer-events: none !important;
 }
 
+.pppc_express_marker {
+    display: inline-block;
+    font-size: 0.8em;
+    margin-left: -10px;
+}
