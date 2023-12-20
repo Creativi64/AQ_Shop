@@ -30,6 +30,8 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 if (is_object($_SESSION['cart']) && count($_SESSION['cart']->show_content) > 0)
 {
 	include_once 'xtFramework/classes/class.countries.php';
+
+    global $xtPlugin;
 	
 	$tpl = 'shipping_cost.html';
 
@@ -80,6 +82,8 @@ if (is_object($_SESSION['cart']) && count($_SESSION['cart']->show_content) > 0)
         $selected_shipping_code = key($shipping_data);
         $cost = $shipping_data[$selected_shipping_code]["shipping_price"]["formated"];
     }
+
+    ($plugin_code = $xtPlugin->PluginCode('box_shipping_cost:tpl_data')) ? eval($plugin_code) : false;
 	
 	$tpl_data['count_countries'] = $count_countries;
 	$tpl_data['count_shipping'] = $count_shipping;
@@ -87,6 +91,7 @@ if (is_object($_SESSION['cart']) && count($_SESSION['cart']->show_content) > 0)
 	$tpl_data['coupons_shipping'] = $shipping_data;
 	$tpl_data['selected_coupons_shipping'] = $selected_shipping_code;
 	$tpl_data['selected_country'] = $selected_country_code;
+    $tpl_data['selected_country_zone_id'] = $selected_country['zone_id'];
 	$tpl_data['cost'] = $cost;
 	
 	$show_box = true;

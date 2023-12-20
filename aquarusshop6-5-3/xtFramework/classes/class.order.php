@@ -2124,39 +2124,36 @@ class order extends xt_backend_cls {
                         $order_total_data = $this->_getOrderTotalData($_data['order_data']['orders_id'], $_data['order_data']);
                         $total = $this->_getTotal($order_products, $order_total_data, $_data['order_data']);
 
-						$tmp_data = array(
-							'orders_id' => $_data['order_data']['orders_id'],
-							'order_purchased' => $_data['order_data']['date_purchased_plain'],
-							'orders_status' => $_data['order_data']['orders_status'],
-							'billing_firstname' => $_data['order_data']['billing_firstname'],
-							'billing_lastname' => $_data['order_data']['billing_lastname'],
-							'store_data' => $store_handler->getStoreName($_data['order_data']['shop_id']),
-							'order_total' => $price->_StyleFormat($total["total"]["plain"]), //$_data['order_total']['total']['formated'],
-							'payment' => $_data['order_data']['payment_code'],
-							'orders_source' => $sName,
-							'orders_source_external' => $eId,
-						);
-						
-						if (_SYSTEM_ORDER_EDIT_SHOW_ORDER_EDITOR_COLUMN === 'true')
-						{
-                            $sql = "SELECT o.orders_source_external_id, os.source_name, CONCAT(acl.firstname, ' ', acl.lastname) AS order_edit_acl_user FROM ".TABLE_ORDERS
-                                .' o LEFT OUTER JOIN '.TABLE_ORDERS_SOURCE.' os ON o.source_id = os.source_id LEFT OUTER JOIN '
-                                .TABLE_ADMIN_ACL_AREA_USER.' acl ON o.order_edit_acl_user = acl.user_id WHERE o.orders_id = ?';
-                            $sr = $db->Execute($sql, array($_data['order_data']['orders_id']));
-                            if ( ! $sr->RecordCount()) {
-                                $sName = '';
-                                $eId = '';
-                                $acl_user = '';
-                            } else {
-                                $sName = (isset($sr->fields['source_name']) && defined('TEXT_'.$fields['source_name']))
-                                    ? __text('TEXT_'.$fields['source_name'])
-                                    : $sr->fields['source_name'];
-                                $eId = $sr->fields['orders_source_external_id'];
-                                $acl_user = trim($sr->fields['order_edit_acl_user']);
-                            }
+                        $sName = '';
+                        $acl_user = '';
+                        $eId = '';
 
-							$tmp_data['order_edit_acl_user'] = $acl_user;
-						}
+                        $sql = "SELECT o.orders_source_external_id, os.source_name, CONCAT(acl.firstname, ' ', acl.lastname) AS order_edit_acl_user FROM ".TABLE_ORDERS
+                            .' o LEFT OUTER JOIN '.TABLE_ORDERS_SOURCE.' os ON o.source_id = os.source_id LEFT OUTER JOIN '
+                            .TABLE_ADMIN_ACL_AREA_USER.' acl ON o.order_edit_acl_user = acl.user_id WHERE o.orders_id = ?';
+                        $sr = $db->Execute($sql, array($_data['order_data']['orders_id']));
+                        if ( $sr->RecordCount())
+                        {
+                            $sName = (isset($sr->fields['source_name']) && defined('TEXT_'.$fields['source_name']))
+                                ? __text('TEXT_'.$fields['source_name'])
+                                : $sr->fields['source_name'];
+                            $eId = $sr->fields['orders_source_external_id'];
+                            $acl_user = trim($sr->fields['order_edit_acl_user']);
+                        }
+
+                        $tmp_data = array(
+                            'orders_id' => $_data['order_data']['orders_id'],
+                            'order_purchased' => $_data['order_data']['date_purchased_plain'],
+                            'orders_status' => $_data['order_data']['orders_status'],
+                            'billing_firstname' => $_data['order_data']['billing_firstname'],
+                            'billing_lastname' => $_data['order_data']['billing_lastname'],
+                            'store_data' => $store_handler->getStoreName($_data['order_data']['shop_id']),
+                            'order_total' => $price->_StyleFormat_admin($total["total"]["plain"], $_data['order_data']['currency_code']),
+                            'payment' => $_data['order_data']['payment_code'],
+                            'orders_source' => $sName,
+                            'orders_source_external' => $eId,
+                            'order_edit_acl_user' => $acl_user
+                        );
 
                         ($plugin_code = $xtPlugin->PluginCode(__CLASS__.':_get_order_list_while_tmp_data')) ? eval($plugin_code) : false;
 

@@ -546,6 +546,27 @@ class price {
 		return trim($Fprice);
 	}
 
+    function _StyleFormat_admin($price, $currency_code = '')
+    {
+        global $currency;
+        static $currencies = [];
+
+        $curr =  $currency;
+
+        if($currency_code)
+        {
+            if(empty($currencies[$currency_code]))
+                $currencies[$currency_code] = new currency($currency_code);
+            $curr = $currencies[$currency_code];
+        }
+
+        $Fprice = number_Format($price, $currency->decimals, $currency->dec_point, $currency->thousands_sep);
+		$prefix = trim($curr->prefix);
+		$prefix = !empty($prefix) ? $curr->prefix.' ' : '';
+		$Fprice = $prefix.' '.$Fprice.' '.$curr->suffix;
+		return trim($Fprice);
+	}
+
 	function buildPriceData($price, $tax_class_id = 0, $curr = true) {
 	    global $tax;
 

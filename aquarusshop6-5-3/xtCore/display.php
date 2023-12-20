@@ -31,6 +31,7 @@ global $page, $language, $xtPlugin, $logHandler, $xtMinify;
 
 if ($page->page_name=='404') header('HTTP/1.0 404 Not Found');
 header('Content-Type: text/html; charset='._SYSTEM_CHARSET);
+header('X-Frame-Options: DENY');
 ($plugin_code = $xtPlugin->PluginCode('display.php:header')) ? eval($plugin_code) : false;
 
 CookieRegistry::sendCookies();

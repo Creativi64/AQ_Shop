@@ -29,15 +29,23 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
 global $xtPlugin, $xtLink;
 
+/** @var $params array */
+/** @var $manufacturer manufacturer */
+
 if($params['order_by'])
 	$order_by = $params['order_by'];
 else 	
 	$order_by = 'm.manufacturers_name';
 
-$manufacturers_list = $manufacturer->getManufacturerList('default','box', $order_by);
+$type = 'default';
+$position = 'box';
+
+($plugin_code = $xtPlugin->PluginCode('box_manufacturer:getManufacturerList')) ? eval($plugin_code) : false;
+
+$manufacturers_list = $manufacturer->getManufacturerList($type,$position, $order_by);
 
 
-if($manufacturers_list!=false){
+if($manufacturers_list){
 	$tpl_data = array('_manufacturers'=> $manufacturers_list);
 	if(isset($xtPlugin->active_modules['xt_manufacturer_listing']))
     {
@@ -47,4 +55,3 @@ if($manufacturers_list!=false){
 }else{
 	$show_box = false;
 }
-?>

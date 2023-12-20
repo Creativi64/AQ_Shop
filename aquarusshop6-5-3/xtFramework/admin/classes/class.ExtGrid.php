@@ -540,7 +540,7 @@ class ExtGrid extends ExtEditForm{
             PhpExt_Javascript::stm(PhpExt_QuickTips::init()),
 
             PhpExt_Javascript::stm( '
-    	    Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
+    	    Ext.state.Manager.setProvider(new Ext.state.LocalStorageProvider({}));
     	    '),
 
             $this->checkColumn->getJavascript(false, "checkColumn"),

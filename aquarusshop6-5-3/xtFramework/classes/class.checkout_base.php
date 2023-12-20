@@ -235,11 +235,25 @@ class checkout_base {
     {
         global $xtPlugin, $xtLink, $info, $currency, $store_handler, $customers_status, $system_status, $db, $filter;
 
+        // sanitize input
+        $selected_payment = $check_payment = $_POST['selected_payment'];
+        if (strpos($check_payment,':')) {
+            $check_payment = explode(':',$check_payment);
+            $check_payment = $check_payment[0];
+        }
+        $arr = $db->GetArray('SELECT payment_code FROM '.TABLE_PAYMENT.' WHERE status = 1 ');
+        $payment_codes = [];
+        foreach ($arr as $s)
+        {
+            $payment_codes[] = $s['payment_code'];
+        }
+        if(!in_array($check_payment, $payment_codes)) $selected_payment = '';
+
         ($plugin_code = $xtPlugin->PluginCode('module_checkout.php:checkout_payment_top')) ? eval($plugin_code) : false;
 
         $tmp_payment_data = $this->_getPayment();
 
-        $_payment = $_POST['selected_payment'];
+        $_payment = $selected_payment;
         if (strpos($_payment,':')) {
             $_payments = explode(':',$_payment);
             $_payment = $_payments[0];
@@ -286,7 +300,7 @@ class checkout_base {
             $_SESSION['cart']->_addSubContent($payment_data_array);
         }
 
-        $this->_setPayment($_POST['selected_payment']);
+        $this->_setPayment($selected_payment);
 
         if(is_data($_POST['conditions_accepted']) && $_POST['conditions_accepted'] == 'on'){
             $_SESSION['conditions_accepted'] = 'true';

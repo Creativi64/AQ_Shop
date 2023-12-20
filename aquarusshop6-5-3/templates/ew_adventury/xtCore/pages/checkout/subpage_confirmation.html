@@ -96,7 +96,7 @@
             {content cont_id=3 is_id='false'}
             <p class="checkbox">
                 <label>
-                    {form type=checkbox name=conditions_accepted}
+                    {form type=checkbox name=conditions_accepted class="xt-form-required"}
                     {txt key=TEXT_TERMSANDCOND_CONFIRMATION_5} <a href="{$_content_3.content_link}" target="_blank">{txt key=TEXT_TERMSANDCOND_CONFIRMATION_2}</a>{txt key=TEXT_DOT}
                 </label>
             </p>
@@ -107,7 +107,7 @@
             {if $show_digital_checkbox eq 'true'}
             <p class="checkbox">
                 <label>
-                    {form type=checkbox name=withdrawal_reject_accepted}
+                    {form type=checkbox name=withdrawal_reject_accepted class="xt-form-required"}
                     {txt key=TEXT_DIGITALCOND_CHECK}
                 </label>
             </p>

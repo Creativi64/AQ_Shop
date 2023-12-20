@@ -79,8 +79,8 @@ class content extends xt_backend_cls {
 	function getPath ($coID, $path = array()) {
 		$path[]= $coID ;
 		$parentID = $this->getParentID($coID);
-		if ($parentID != 0)
-		$path = $this->getPath($parentID, $path);
+		if ($parentID != 0 && $parentID != $coID /*fehklonfig*/)
+		    $path = $this->getPath($parentID, $path);
 		return $path;
 	}
 

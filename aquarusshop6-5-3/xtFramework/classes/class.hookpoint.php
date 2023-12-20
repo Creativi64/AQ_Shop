@@ -86,78 +86,83 @@ class hookpoint {
 
 
 	// Experimental Hooks
-	function PluginCode($hook,$plugin_code='') {
-		global $InputFilter, $db;
+    function PluginCode($hook,$plugin_code='') {
+        global $InputFilter, $db;
 
-		if (!$this->active || (defined('XT_WIZARD_STARTED') && XT_WIZARD_STARTED===true)) {
-			return false;
-		} elseif($hook == 'admin_dropdown.php:dropdown'){
-				$add_to_sql='';
-				if ($plugin_code!='') $add_to_sql=" and pc.plugin_code='".$plugin_code."'";
-				$record = $db->CacheExecute(
-					"SELECT pc.code FROM " . TABLE_PLUGIN_CODE . " pc INNER JOIN " . TABLE_PLUGIN_PRODUCTS . " pp ON pc.plugin_id = pp.plugin_id WHERE pc.hook = ?  and  pp.plugin_status = 1 ".$add_to_sql,
-					array($hook)
-				);
-
-				if($record->RecordCount() > 0){
-					$code = '';
-					while(!$record->EOF){
-						$code .= $record->fields['code'];
-						$record->MoveNext();
-					}$record->Close();
-					return stripslashes($code);
-				}else{
-					return false;
-				}
-
-	    } elseif ( _SYSTEM_USE_DB_HOOKS || $hook=='_pre_include') {
-
-			if (in_array($hook,$this->ActiveHooks)) {
-
-				if (defined('_PRELOAD_PLG_HOOK_CODE') && _PRELOAD_PLG_HOOK_CODE) {
-
-            if (isset($this->hookCodePreloaded[$hook]) && is_array($this->hookCodePreloaded[$hook])) {
-              $code='';
-              foreach ($this->hookCodePreloaded[$hook] as $arr) {
-                $code.=$arr['code'];
-
-              }
-              return stripslashes($code);
-            }
+        if (!$this->active || (defined('XT_WIZARD_STARTED') && XT_WIZARD_STARTED===true))
+        {
             return false;
+        }
+        elseif($hook == 'admin_dropdown.php:dropdown')
+        {
+            $add_to_sql='';
+            if ($plugin_code!='') $add_to_sql=" and pc.plugin_code='".$plugin_code."'";
+            $record = $db->CacheExecute(
+                "SELECT pc.code FROM " . TABLE_PLUGIN_CODE . " pc INNER JOIN " . TABLE_PLUGIN_PRODUCTS . " pp ON pc.plugin_id = pp.plugin_id WHERE pc.hook = ?  and  pp.plugin_status = 1 ".$add_to_sql,
+                array($hook)
+            );
 
-        } else {
+            if($record->RecordCount() > 0){
+                $code = '';
+                while(!$record->EOF){
+                    $code .= $record->fields['code'];
+                    $record->MoveNext();
+                }$record->Close();
+                return stripslashes($code);
+            }else{
+                return false;
+            }
+
+        }
+        elseif ( _SYSTEM_USE_DB_HOOKS || $hook=='_pre_include')
+        {
+            if (in_array($hook,$this->ActiveHooks)) {
+
+                if (defined('_PRELOAD_PLG_HOOK_CODE') && _PRELOAD_PLG_HOOK_CODE) {
+
+                    if (isset($this->hookCodePreloaded[$hook]) && is_array($this->hookCodePreloaded[$hook])) {
+                        $code='';
+                        foreach ($this->hookCodePreloaded[$hook] as $arr) {
+                            $code.=$arr['code'];
+
+                        }
+                        return stripslashes($code);
+                    }
+                    return false;
+
+                } else {
 
 
-				$record = $db->CacheExecute(
-						"SELECT pc.code FROM " . TABLE_PLUGIN_CODE . " pc WHERE pc.hook = ? AND pc.code_status = 1 and pc.plugin_status = 1 order by pc.sortorder",
-						array($hook)
-				);
+                    $record = $db->CacheExecute(
+                        "SELECT pc.code FROM " . TABLE_PLUGIN_CODE . " pc WHERE pc.hook = ? AND pc.code_status = 1 and pc.plugin_status = 1 order by pc.sortorder",
+                        array($hook)
+                    );
 
 
-				if($record->RecordCount() > 0){
-					while(!$record->EOF){
-						if (!isset($code)) $code ='';
-						$code .= $record->fields['code'];
-						$record->MoveNext();
-					}$record->Close();
+                    if($record->RecordCount() > 0){
+                        while(!$record->EOF){
+                            if (!isset($code)) $code ='';
+                            $code .= $record->fields['code'];
+                            $record->MoveNext();
+                        }$record->Close();
 
-					return stripslashes($code);
-				}else{
-					return false;
-				}
-			}
-			}
-		}elseif(!_SYSTEM_USE_DB_HOOKS){
+                        return stripslashes($code);
+                    }else{
+                        return false;
+                    }
+                }
+            }
+        }
+        elseif(!_SYSTEM_USE_DB_HOOKS){
 
-			if (in_array($hook,$this->ActiveHooks)) {
+            if (in_array($hook,$this->ActiveHooks)) {
 
-				$this->_checkHook($hook);
-				$hook = $this->filterHook($hook);
-				return $this->_loadData($this->hook_dir .$hook.'/');
-			}
-		}
-	}
+                $this->_checkHook($hook);
+                $hook = $this->filterHook($hook);
+                return $this->_loadData($this->hook_dir .$hook.'/');
+            }
+        }
+    }
 
 	function _loadData($path){
 

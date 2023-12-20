@@ -131,7 +131,7 @@ $a = !isset($_SESSION['registered_customer']) ?: $_SESSION['registered_customer'
 if ($display_output) {
     global $xtPlugin;
     $template = new Template();
-    $tpl_data = array('content'=> !empty($page_data) ? $page_data : 'empty page_data',
+    $tpl_data = array('content'=> !empty($page_data) ? $page_data : '<script>console.log("empty page_data")</script>',
         'message'=>$message_data,
         'account'=>$account,
         'guest_account' => $guest_account,

@@ -101,6 +101,7 @@ class acl_area extends acl{
 		global $db,$language,$filter;
 
 		 $obj = new stdClass;
+         if(empty($data['area_name'])) $data['area_name'] = 'NEW';
 		 $o = new adminDB_DataSave($this->_table, $data, false, __CLASS__);
 		 $obj = $o->saveDataSet();
 

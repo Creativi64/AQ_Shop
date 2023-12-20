@@ -97,6 +97,7 @@ include('css/css_flags.php');
 <script type="text/javascript" src="../xtFramework/library/ext_plugin/ext-checkboxfield.js"></script>
 <script type="text/javascript" src="../xtFramework/library/ext_plugin/ext-helptreenodeui.js"></script>
 <script type="text/javascript" src="../xtFramework/library/ext_plugin/ext-lovcombo2.js"></script>
+<script type="text/javascript" src="../xtFramework/library/ext_plugin/ext-LocalStorageProvider.js"></script>
 <link rel="stylesheet" type="text/css" href="../xtFramework/library/ext/ux/view/chooser.css" />
 <script type="text/javascript" src="../xtFramework/library/ext/ux/view/chooser.js"></script>
     <script type="text/javascript" >

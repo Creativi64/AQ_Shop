@@ -1,2 +1,2 @@
 <?php
-define('_SYSTEM_VERSION','6.5.4');
+define('_SYSTEM_VERSION','6.5.5');
