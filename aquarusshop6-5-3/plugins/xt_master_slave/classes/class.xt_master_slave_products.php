@@ -121,7 +121,7 @@ class master_slave_products
 			$link_array = array('page'=> 'product', 'type'=>'product', 'name'=>$p_info->data['products_name'], 'id'=>$p_info->data['products_id'],'seo_url'=>$p_info->data['url_text']);
 		} //, 'params'=>'action_ms=1');
 
-		$xtLink->_redirect($xtLink->_link($link_array));
+		$xtLink->_redirect($xtLink->_link($link_array), xt_master_slave_functions::getRedirectCode());
 	}
 
 

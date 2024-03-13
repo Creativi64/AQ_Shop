@@ -2,7 +2,7 @@
 <xtcommerceplugin>
 
     <code>xt_master_slave</code>
-    <version>6.4.8</version>
+    <version>6.4.9</version>
     <type>core</type>
     
     <minimum_store_version>6.5.4</minimum_store_version>
@@ -490,6 +490,7 @@
             <en>
                 <title><![CDATA[On generation:<br/>variants inherit images]]></title>
             </en></config>
+
         <config>
             <key>XT_MASTER_SLAVE_GENERATION_SET_USE_MASTER_IMAGE</key>
             <sort_order>105</sort_order>
@@ -500,7 +501,9 @@
             </de>
             <en>
                 <title><![CDATA[On generation: set variants flag 'Load main Image of variant product']]></title>
-            </en></config>
+            </en>
+        </config>
+
         <config>
             <key>XT_MASTER_SLAVE_SUM_SLAVE_QUANTITY_FOR_GRADUATED_PRICE</key>
             <sort_order>110</sort_order>
@@ -511,11 +514,25 @@
             </de>
             <en>
                 <title><![CDATA[Main product:<br/>Sum variants quantities for graduated price]]></title>
-            </en></config>
+            </en>
+        </config>
+
+        <config>
+            <key>XT_MASTER_SLAVE_301_REDIRECTS</key>
+            <sort_order>115</sort_order>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title><![CDATA[301 Umleitungen statt 302]]></title>
+            </de>
+            <en>
+                <title><![CDATA[301 redirects instead 302]]></title>
+            </en>
+        </config>
 
         <config>
             <key>XT_MASTER_SLAVE_FIX_QUANTITIES</key>
-            <sort_order>110</sort_order>
+            <sort_order>120</sort_order>
             <type>status</type>
             <value>1</value>
             <de>

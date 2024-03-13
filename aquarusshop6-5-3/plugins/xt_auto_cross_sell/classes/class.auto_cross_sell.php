@@ -42,7 +42,7 @@ class auto_cross_sell extends getProductSQL_query {
         $this->setSQL_WHERE(" AND aop.products_id IN (".implode(',',$products_ids).") and aop.products_id!=bop.products_id and aop.orders_id = bop.orders_id ");
     }
 
-    function getSQL_query($sql_cols = 'DISTINCT p.products_id, p.*,pd.* ', $filter_type='string')
+    function getSQL_query($sql_cols = 'DISTINCT p.products_id', $filter_type='string')
     {
         return parent::getSQL_query($sql_cols, $filter_type);
     }
@@ -70,9 +70,6 @@ class auto_cross_sell extends getProductSQL_query {
         $this->reset();
         $this->setSQL_TABLE(" ".TABLE_ORDERS_PRODUCTS." aop, ".TABLE_PRODUCTS." p ", true);
         $this->setFilter('AutoCrossSell', $products_id ? $products_id : $cart_product_ids, 'and', 'array');
-        $this->setFilter('Language');
-        $this->setSQL_SORT("Rand()");
-        $this->setSQL_LIMIT("0,".$limit);
 
         $exclude_sql = '';
         $params = [];
@@ -90,21 +87,21 @@ class auto_cross_sell extends getProductSQL_query {
 
         ($plugin_code = $xtPlugin->PluginCode('class.auto_cross_sell.php:listing')) ? eval($plugin_code) : false;
 
-        $rs = $db->CacheExecute($query, $params);
-        if (!$rs || $rs->RecordCount()==0) return false;
+        $rs = $db->CacheGetArray($query, $params);
+        if (!$rs || !is_array($rs) || !count($rs)) return false;
+
+        $rs = array_column($rs, 'products_id');
+        $rs = array_diff($rs, $cart_product_ids);
+        if(count($rs) > $limit)
+            $rs_keys = array_rand($rs, $limit);
 
         $size = 'default';
         $module_content = [];
-        while (!$rs->EOF)
+        foreach ($rs_keys as $key)
         {
-            $product = new product(0,$size);
-            $product->pID = $rs->fields['products_id'];
-            $product->data = $rs->fields;
-            $product->buildData($size);
+            $product = product::getProduct($rs[$key],$size);
             $module_content[] = $product->data;
-            $rs->MoveNext();
         }
-        $rs->Close();
 
         return $module_content;
     }

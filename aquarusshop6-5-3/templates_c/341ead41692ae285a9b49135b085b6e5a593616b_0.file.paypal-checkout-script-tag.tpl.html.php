@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-10-08 01:15:17
+/* Smarty version 4.3.2, created on 2024-03-13 17:39:34
   from '/homepages/2/d41324517/htdocs/aquarusshop6-5-3/plugins/xt_paypal_checkout/templates/paypal-checkout-script-tag.tpl.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '4.3.0',
-  'unifunc' => 'content_6521e685b25182_11345450',
+  'version' => '4.3.2',
+  'unifunc' => 'content_65f1d6c6a6c548_01406727',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '341ead41692ae285a9b49135b085b6e5a593616b' => 
     array (
       0 => '/homepages/2/d41324517/htdocs/aquarusshop6-5-3/plugins/xt_paypal_checkout/templates/paypal-checkout-script-tag.tpl.html',
-      1 => 1696720402,
+      1 => 1710347938,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,13 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6521e685b25182_11345450 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65f1d6c6a6c548_01406727 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.txt.php','function'=>'smarty_function_txt',),));
 if (!$_smarty_tpl->tpl_vars['ppcp_script_tag_rendered']->value) {?>
     <?php echo '<script'; ?>
 >
+
+        console.log('paypal-checkout-script-tag setting ppcp constants');
 
         window.paypal_checkout_constant =
             {
@@ -32,6 +35,10 @@ if (!$_smarty_tpl->tpl_vars['ppcp_script_tag_rendered']->value) {?>
                 BUTTON_COLOR: "<?php echo $_smarty_tpl->tpl_vars['button_color']->value;?>
 ",
                 BUTTON_SHAPE: "<?php echo $_smarty_tpl->tpl_vars['button_shape']->value;?>
+",
+                version: "<?php echo $_smarty_tpl->tpl_vars['plugin_version']->value;?>
+",
+                TEXT_ERROR_CONDITIONS_ACCEPTED: "<?php echo smarty_function_txt(array('key'=>ERROR_CONDITIONS_ACCEPTED),$_smarty_tpl);?>
 "
             }
 
@@ -62,6 +69,24 @@ if (!$_smarty_tpl->tpl_vars['ppcp_script_tag_rendered']->value) {?>
         document.addEventListener('DOMContentLoaded', function ()
         {
             try {
+                const terms_cb = document.querySelector('input[type=checkbox][name=conditions_accepted]');
+                if(terms_cb)
+                {
+                    let div = document.createElement('div');
+                    div.innerText = window.paypal_checkout_constant.TEXT_ERROR_CONDITIONS_ACCEPTED;
+                    div.id = 'TEXT_ERROR_CONDITIONS_ACCEPTED';
+                    div.classList.add('alert', 'alert-danger');
+                    div.style.display = 'none';
+                    terms_cb.closest("div").prepend(div);
+
+                    terms_cb.addEventListener('change', (e) => {
+                        if (e.currentTarget.checked) {
+                            document.getElementById('TEXT_ERROR_CONDITIONS_ACCEPTED').style.display = 'none';
+                        } else {
+                            document.getElementById('TEXT_ERROR_CONDITIONS_ACCEPTED').style.display = 'block';
+                        }
+                    })
+                }
                 console.log("ppcp display.php DOMContentLoaded. injecting sdk script");
 
                 const paypal_script = "https://www.paypal.com/sdk/js?<?php echo $_smarty_tpl->tpl_vars['query_params']->value;?>
@@ -110,6 +135,7 @@ if (!$_smarty_tpl->tpl_vars['ppcp_script_tag_rendered']->value) {?>
                 console.log(e);
             }
         });
+
     <?php echo '</script'; ?>
 >
 

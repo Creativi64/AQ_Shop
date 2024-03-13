@@ -5,9 +5,14 @@ document.addEventListener('PayPalSdkLoaded', function ()
 {
     console.log('paypal-checkout-confirmation-card-standard: processing event PayPalSdkLoaded')
     try {
-        ppcRemoveBackButton();
+        //ppcRemoveBackButton();
         ppcRemoveSubmitButton();
         enablePaypalButton("card", 'checkout')
+        document.getElementById('paypal_button_container_checkout').style.width = "";
+
+        form.querySelectorAll('a[href*="checkout/payment"]').forEach(
+            element => element.style.marginBottom = '15px'
+        );
     }
     catch(e)
     {
@@ -17,3 +22,17 @@ document.addEventListener('PayPalSdkLoaded', function ()
 </script>
 
 {include file="./paypal-checkout-wait-modal.tpl.html"}
+
+<style>
+    @media screen and (min-width: 761px) {
+        #paypal_button_container_checkout {
+            width: 85%;
+        }
+    }
+
+    @media screen and (max-width: 760px) {
+        #paypal_button_container_checkout {
+            width: 100%;
+        }
+    }
+</style>

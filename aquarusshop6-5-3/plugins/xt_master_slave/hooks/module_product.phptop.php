@@ -30,7 +30,7 @@ if (false && XT_MASTER_SLAVE_ACTIVE == '1' && $current_product_id)
         {
             $link_array = array('page'=> 'product', 'type'=>'product', 'name'=>$master_product['products_name'], 'id'=>$master_product['products_id'],'seo_url'=>$master_product['url_text']);
             $tmp_link  = $xtLink->_link($link_array);
-            $xtLink->_redirect($tmp_link);
+            $xtLink->_redirect($tmp_link, xt_master_slave_functions::getRedirectCode());
         }
 
 

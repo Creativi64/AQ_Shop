@@ -2,7 +2,7 @@
 <xtcommerceplugin>
 
     <code>xt_paypal_checkout</code>
-    <version>3.4.1</version>
+    <version>3.4.4</version>
     <type>payments</type>
 
     <title>PayPal Checkout</title>

@@ -851,4 +851,18 @@ FROM   " . TABLE_PRODUCTS . " p
 
     }
 
+    public static function use301redirects($store_id = false)
+    {
+        global $db, $store_handler;
+        $query = "SELECT config_value FROM ".TABLE_PLUGIN_CONFIGURATION." WHERE config_key = 'XT_MASTER_SLAVE_301_REDIRECTS' AND shop_id = ? ";
+        $r = $db->GetOne($query, [$store_id ?: $store_handler->shop_id]);
+
+        return $r == 1;
+    }
+
+    public static function getRedirectCode($store_id = false)
+    {
+        return self::use301redirects($store_id) == true ? '301' : '302';
+    }
+
 }

@@ -93,7 +93,7 @@ if (isset($xtPlugin->active_modules['xt_master_slave']))
 
             $_SESSION['ms_slave_open_master'] = true;
             //error_log('redir 2');
-            $xtLink->_redirect($link);
+            $xtLink->_redirect($link, xt_master_slave_functions::getRedirectCode());
         }
 
         if($_POST['ms_attribute_id'])
@@ -224,7 +224,7 @@ if (isset($xtPlugin->active_modules['xt_master_slave']))
             $link = $xtLink->_link($link_array);
             $_SESSION['ms_slave_redirect'] = $m_data_id;
             //error_log('redir 2');
-            $xtLink->_redirect($link);
+            $xtLink->_redirect($link, xt_master_slave_functions::getRedirectCode());
         }
 
         //$redirect = (!isset($p_info)) && $page->page_name === 'product'
@@ -239,6 +239,24 @@ if (isset($xtPlugin->active_modules['xt_master_slave']))
             && (empty($this->data['products_master_model']) || count($msp->allProduct_ids)>1) // nicht umleiten, wenn nur ein slave vorhanden (unnötiger 302 bei direktaufruf)
             && (empty($first_key) || $first_key != $current_product_id )// redirect schleife bei nur einer variante durch getProduct in zb last_viewd_products
         ;
+
+        if($_REQUEST['ms_dbg'] ==1)
+        {
+            echo '<pre>';
+            print_r(
+                [
+                    $page->page_name === 'product',
+                    !$ms_cart_refresh,
+                    is_countable($msp->possibleProducts) && count($msp->possibleProducts) == 1, is_countable($msp->possibleProducts), count($msp->possibleProducts), $msp->possibleProducts,
+                    //&& count($msp->possibleProducts_primary) != 1
+                    $_SESSION['ms_slave_redirect'] != $m_data_id,
+                    $_SESSION['ms_slave_open_master'] != true,
+                    (!isset($_POST['action']) || $_POST['action'] != "add_product"),
+                    (empty($this->data['products_master_model']) || count($msp->allProduct_ids) > 1),
+                    (empty($first_key) || $first_key != $current_product_id)
+                ]);
+            echo '</pre>';
+        }
 
         unset($_SESSION['ms_slave_redirect']);
         unset($_SESSION['ms_slave_open_master']);
@@ -264,7 +282,7 @@ if (isset($xtPlugin->active_modules['xt_master_slave']))
                 $link = $xtLink->_link($link_array);
                 $_SESSION['ms_slave_redirect'] = true;
                 //error_log('redir 3');
-                $xtLink->_redirect($link);
+                $xtLink->_redirect($link, xt_master_slave_functions::getRedirectCode());
             }
         }
     }

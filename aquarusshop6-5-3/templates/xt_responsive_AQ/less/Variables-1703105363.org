@@ -1,0 +1,296 @@
+//                  _       _     _
+// /\   /\__ _ _ __(_) __ _| |__ | | ___  ___
+// \ \ / / _` | '__| |/ _` | '_ \| |/ _ \/ __|
+//  \ V / (_| | |  | | (_| | |_) | |  __/\__ \
+//   \_/ \__,_|_|  |_|\__,_|_.__/|_|\___||___/
+//
+
+/**
+* LAYOUT
+*/
+//#{"tab":"theme_other"}
+@ew-global-min-width: 320px;
+
+/**
+* COLORS
+*/
+//#{"tab":"theme_colors"}
+@body-bg: #FFF;
+@brand-primary: #005799;
+@brand-secondary: #994200;
+@gray-light-borders: lighten(#000, 88%);
+@text-color: @gray;
+@headings-color: @gray-dark;
+@text-muted: lighten(#000, 60%);
+@product-listing-title-color: @text-color;
+@special-price-color: @brand-danger;
+
+/**
+* TYPOGRAPHY
+*/
+// size global
+//#{"tab":"theme_typography"}
+@font-size-base: 16px;
+@font-size-middle: 14px;
+@font-size-small: 12px;
+@line-height-middle: @line-height-small;
+
+// size headings
+@font-size-h1: ceil((@font-size-base * 1.85));
+@font-size-h2: @font-size-h1;
+@font-size-h3: ceil((@font-size-base * 1.3));
+@font-size-h4: @font-size-base;
+@font-size-h5: @font-size-h4;
+@font-size-h6: @font-size-h5;
+
+// font-weight
+@ew-bold-font-weight: normal;
+@headings-font-weight: @ew-bold-font-weight;
+@alert-link-font-weight: @ew-bold-font-weight;
+@alert-link-font-weight: @ew-bold-font-weight;
+@badge-font-weight: @ew-bold-font-weight;
+@close-font-weight: @ew-bold-font-weight;
+
+/**
+* WEBFONT
+*/
+// fontawesome
+@fa-font-path: "../../../components/fontawesome/fonts";
+@directional-fa-icon-right: chevron-circle-right;
+@directional-fa-icon-left: chevron-circle-right;
+@directional-fa-icon-up: chevron-circle-up;
+@directional-fa-icon-down: chevron-circle-down;
+@directional-fa-icon-close: times-circle;
+@directional-fa-icon-default-color: @brand-primary;
+// glyphicons
+@icon-font-path: "../../../components/bootstrap/dist/fonts/";
+// PT sans
+@web-font-path: "../fonts/PT-Sans";
+@ew-font-family-regular: "pt_sansregular", Helvetica, Arial, sans-serif;
+@font-family-sans-serif: @ew-font-family-regular;
+@ew-font-family-bold: "pt_sansbold", Helvetica, Arial, sans-serif;
+@headings-font-family: @ew-font-family-bold;
+
+/**
+* FORMS
+*/
+//#{"tab":"theme_forms"}
+@input-border-focus: @brand-primary;
+@ew-required-color: red;
+@input-border: @gray-light-borders;
+
+/**
+* NAVBAR/MAIN NAVIGATION
+*/
+//#{"tab":"theme_navigation"}
+@navbar-height: 60px;
+@grid-float-breakpoint: @screen-md-min;
+@navbar-default-color: #FFF;
+@navbar-default-link-color: @navbar-default-color;
+@navbar-default-link-hover-color: @navbar-default-link-color;
+@navbar-default-link-disabled-color: lighten(@navbar-default-bg, 20%);
+@navbar-default-link-active-color: @navbar-default-link-color;
+@navbar-default-bg: @brand-secondary;
+@navbar-default-link-hover-bg: darken(@navbar-default-bg, 5%);
+@navbar-default-link-active-bg: @brand-primary;
+@navbar-default-link-disabled-bg: @navbar-default-bg;
+@navbar-default-border: darken(@navbar-default-bg, 5%);
+@navbar-default-toggle-border-color: @navbar-default-bg;
+@navbar-default-toggle-hover-bg: @navbar-default-link-hover-bg;
+@navbar-default-toggle-icon-bar-bg: @navbar-default-link-color;
+@navbar-small-inner-spacing: 3px;
+@navbar-margin-bottom: @grid-gutter-width;
+
+@navbar-default-mega-color: @gray-light;
+@navbar-default-mega-link-color: @gray;
+@navbar-default-mega-link-hover-color: @link-color;
+@navbar-default-mega-heading-color: @gray-dark;
+@navbar-default-mega-heading-hover-color: @link-color;
+@navbar-default-mega-background: #FFF;
+@navbar-default-mega-divider-color: #FFF;
+
+/**
+* META NAVIGATION
+*/
+@meta-navigation-background: @gray-lighter;
+@meta-navigation-color: @gray-light;
+@meta-navigation-hover-color: @link-color;
+@meta-navigation-font-size: @font-size-base;
+@meta-navigation-padding-horizontal: ceil(@font-size-middle * .7);
+@meta-navigation-padding-vertical: ceil(@font-size-middle * .5);
+
+/**
+* SIDEBAR
+*/
+@ew-sidebar-horizontal-padding: (@grid-gutter-width / 2);
+@ew-sidebar-vertical-padding: @navbar-padding-vertical;
+
+// SIDEBAR CATEGORIES NAVIGATION
+@ew-box-categories-horizontal-padding: @ew-sidebar-horizontal-padding;
+@ew-box-categories-vertical-padding: @ew-sidebar-vertical-padding;
+@ew-box-categories-levels: 20;
+@ew-box-categories-heading-color: @navbar-default-color;
+@ew-box-categories-heading-background: @navbar-default-bg;
+@ew-box-categories-color: @gray;
+@ew-box-categories-font-size: @font-size-base;
+@ew-box-categories-background: @gray-lighter;
+@ew-box-categories-color-active: @navbar-default-link-active-color;
+@ew-box-categories-background-active: @navbar-default-link-active-bg;
+@ew-box-categories-border: 0 none;
+@ew-box-categories-subs-border: 1px solid darken(@ew-box-categories-background, 10%);
+@ew-box-categories-subs-color: @link-color;
+@ew-box-categories-subs-font-size: @font-size-middle;
+@ew-box-categories-subs-background: lighten(@ew-box-categories-background, 3%);
+
+/**
+* ZINDEX
+**/
+//#{"tab":"theme_other"}
+@zindex-base: 1;
+@zindex-extra: @zindex-tooltip + 1;
+
+/**
+* MODAL
+*/
+@modal-backdrop-bg: #000;
+@modal-backdrop-opacity: .66;
+
+/**
+* BORDER RADIUS
+*/
+@border-radius-base: 0;
+@border-radius-small: 0;
+@border-radius-large: 0;
+@badge-border-radius: @border-radius-large;
+
+/**
+* PRIMARY STYLE
+**/
+// Alerts
+@state-primary-text: @brand-primary;
+@state-primary-bg: lighten(@state-primary-text, 65%);
+@state-primary-border: darken(spin(@state-primary-bg, -10), 7%);
+@alert-primary-bg: @state-primary-bg;
+@alert-primary-text: @state-primary-text;
+@alert-primary-border: @state-primary-border;
+
+// Progress Bars
+@progress-bar-primary-bg: @brand-primary;
+
+/**
+* SECONDARY STYLE
+**/
+// Buttons
+//#{"tab":"theme_buttons"}
+@btn-default-color: @gray;
+@btn-default-bg: @gray-lighter;
+@btn-default-border: @gray-lighter;
+@btn-secondary-color: #FFF;
+@btn-secondary-bg: @brand-secondary;
+@btn-secondary-border: darken(@btn-secondary-bg, 5%);
+@btn-cart-color: #FFF;
+@btn-cart-bg: #13AE58;
+@btn-cart-border: darken(@btn-cart-bg, 5%);
+
+// Labels
+//#{"tab":"theme_other"}
+@label-secondary-bg: @brand-secondary;
+
+// Alerts
+@state-secondary-text: @brand-secondary;
+@state-secondary-bg: lighten(@state-secondary-text, 65%);
+@state-secondary-border: darken(spin(@state-secondary-bg, -10), 7%);
+@alert-secondary-bg: @state-secondary-bg;
+@alert-secondary-text: @state-secondary-text;
+@alert-secondary-border: @state-secondary-border;
+
+// Progress Bars
+@progress-bar-secondary-bg: @brand-secondary;
+
+// Panels
+@panel-default-border: @gray-light-borders;
+@panel-inner-border: @panel-default-border;
+@panel-secondary-text: #FFF;
+@panel-secondary-border: @brand-secondary;
+@panel-secondary-heading-bg: @brand-secondary;
+@panel-heading-padding-sidebar: @nav-link-padding;
+@panel-body-padding: (@grid-gutter-width + floor(@grid-gutter-width / 3));
+
+// Pictures
+@listing-image-minheight: (@listing-noimage-size * 2);
+@listing-noimage-size: @grid-gutter-width;
+@listing-noimage-color: @gray-light-borders;
+
+/**
+* CART BAR XS
+*/
+@cartbar-background-color: @btn-cart-bg;
+@cartbar-color: @btn-cart-color;
+
+/**
+* REVIEW STARS
+*/
+@reviews-icon-size: @font-size-base;
+@reviews-icon-background: #FFF;
+@reviews-icon-inactive: star;
+@reviews-icon-active: star;
+@reviews-icon-inactive-color: #A6A6A6;
+@reviews-icon-active-color: #FFCB2E;
+@reviews-icon-horizontal-spacing: 1px;
+
+/**
+* LightGallery
+*/
+@lg-background-color: @body-bg;
+@lg-elements-background-color: @gray-lighter;
+@lg-elements-color: lighten(@gray-dark, 4%);
+
+/**
+* FOOTER
+*/
+@footer-background: @brand-secondary;
+@footer-heading-color: #FFF;
+@footer-heading-border: 1px solid lighten(@footer-background, 10%);
+@footer-text-color: lighten(@footer-background, 40%);
+@footer-link-color: lighten(@footer-text-color, 15%);
+@footer-link-hover-color: lighten(@footer-link-color, 25%);
+@footer-copyright-color: @footer-text-color;
+@footer-copyright-font-size: @font-size-middle;
+@footer-border: 1px solid darken(@footer-background, 15%);
+
+/**
+* CAROUSEL
+*/
+@ew-carousel-border-radius: @border-radius-base;
+@ew-carousel-background: @gray-lighter;
+@ew-carousel-icon-width: (@panel-body-padding - 4px);
+@ew-carousel-icon-height: @ew-carousel-icon-width;
+@ew-carousel-icon-size: floor(@ew-carousel-icon-width / 3);
+@ew-carousel-icon-right: chevron-right;
+@ew-carousel-icon-left: chevron-left;
+@ew-carousel-icon-background: @gray;
+@ew-carousel-icon-color: #FFF;
+@ew-carousel-icon-border: 1px solid darken(@ew-carousel-icon-background, 10%);
+@ew-carousel-icon-loading: spinner;
+@ew-carousel-icon-loading-color: @gray-lighter;
+// teaser slideshow
+@ew-carousel-teaser-icon-background: @brand-primary;
+@ew-carousel-teaser-icon-color: #FFF;
+@ew-carousel-teaser-icon-border: 1px solid @ew-carousel-teaser-icon-background;
+
+/**
+* WELLS
+*/
+@well-bg: lighten(@gray-base, 97%);
+@well-border: @gray-light-borders;
+@well-border-setting: 1px solid @well-border;
+@well-shadow: none;
+@well-padding: 19px;
+@well-padding-lg: 24px;
+@well-padding-sm: 9px;
+
+// payment logos
+@payment-logo-spacing: 4px;
+@payment-logos-bottom-spacing: (@line-height-computed - (@payment-logo-spacing * 2));
+
+

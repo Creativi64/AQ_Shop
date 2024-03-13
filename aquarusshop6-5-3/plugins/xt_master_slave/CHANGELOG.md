@@ -1,3 +1,6 @@
+## [6.4.9]
+- Plugin-Option '301 Umleitungen statt 302'
+
 ## [6.4.8]
 - FIX redirect-Schleife bei nur einer Variante durch getProduct in zB last_viewed_products
 - Artikel kopieren/ löschen berechnet Bestand neu

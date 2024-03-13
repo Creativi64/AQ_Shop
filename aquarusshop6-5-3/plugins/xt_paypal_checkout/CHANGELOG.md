@@ -1,5 +1,16 @@
-## [3.4.0]
-- FiX Format der an PP übertragenen Telefonnummer prüfen
+## [3.4.4]
+- FIX it_CH ist als locale für PayPal nicht bekannt
+- Webhook-Validierung eingebaut, nicht aktiviert
+
+## [3.4.3]
+- FIX Rechnungskauf xt-Bestellnummer nicht in PayPal sichtbar
+- FIX E-Mail 'Hinweise zum Rechnungskauf' wird mehrfach gesendet
+
+## [3.4.2]
+- FIX Rechnungskauf Meldung 'must not be null', Telefonfilter löscht zu viel
+
+## [3.4.1]
+- FIX Format der an PP übertragenen Telefonnummer prüfen
 
 ## [3.4.0]
 - FIX überarbeiteter Umgang mit APM's (Sofort, Giro, EPS)
