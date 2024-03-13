@@ -6,7 +6,7 @@ global $customers_status, $price;
 
 if (!empty($customers_status->customers_discount))
 {
-    //$_SESSION['cart']->_refresh();
+    $_SESSION['cart']->_refresh();
     $total_cart = $_SESSION['cart']->cart_total_full_for_customers_discount; //$_SESSION['cart']->content_total['plain']; //$_SESSION['cart']->cart_total_full;
 
     if (strstr($customers_status->customers_discount, '#'))

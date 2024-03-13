@@ -34,6 +34,9 @@
 	<ru>
 		<value><![CDATA[Уровень скидки]]></value>
 	</ru>
+	<tw>
+		<value><![CDATA[折扣層級]]></value>
+	</tw>
 </phrase>
 <phrase>
 	<key>TEXT_CUSTOMERS_DISCOUNT_FLAG</key>
@@ -68,6 +71,9 @@
 	<ru>
 		<value><![CDATA[Скидка на продукцию]]></value>
 	</ru>
+	<tw>
+		<value><![CDATA[商品折扣]]></value>
+	</tw>
 </phrase>
 <phrase>
 	<key>TEXT_CUSTOMERS_STATUS_DISCOUNT</key>
@@ -102,6 +108,9 @@
 	<ru>
 		<value><![CDATA[Уровень скидки]]></value>
 	</ru>
+	<tw>
+		<value><![CDATA[折扣層級]]></value>
+	</tw>
 </phrase>
 <phrase>
 	<key>TEXT_CUSTOMERS_STATUS_DISCOUNT_FLAG</key>
@@ -136,6 +145,9 @@
 	<ru>
 		<value><![CDATA[Скидка на продукты]]></value>
 	</ru>
+	<tw>
+		<value><![CDATA[商品折扣]]></value>
+	</tw>
 </phrase>
 <phrase>
 	<key>TEXT_GROUP_DISCOUNT_ALLOWED</key>

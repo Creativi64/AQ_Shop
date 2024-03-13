@@ -11,7 +11,7 @@ global $customers_status, $page, $calcMsPrice;
 /** @var $products_price float */
 /** @var $cheapest_price_otax float */
 
-if ($customers_status->customers_status_discount_flag=='1' && $this->data['group_discount_allowed'] && !XtCustomersDiscount_orderEditActive())
+if ($customers_status->customers_status_discount_flag=='1' && $this->data['group_discount_allowed'] /*&& !XtCustomersDiscount_orderEditActive()*/)
 {
     $this->data['customer_group_discount'] = is_numeric($_SESSION['customer_group_discount']) ? $_SESSION['customer_group_discount'] : 0;
 

@@ -1,3 +1,7 @@
+## [5.2.3]
+- FIX sofortige Übernahme des Rabatts ohne Seiten-Reload
+- Anpassung für order-edit
+
 ## [5.2.2]
 - FIX sofortige Übernahme des Rabatts ohne Seiten-Reload
 

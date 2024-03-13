@@ -2,10 +2,10 @@
 <xtcommerceplugin>
 
   <code>xt_customersdiscount</code>
-  <version>5.2.2</version>
+  <version>5.2.3</version>
   <type>core</type>
   
-  <minimum_store_version>6.5.3</minimum_store_version>
+  <minimum_store_version>6.5.6</minimum_store_version>
   
   <developer>xt:Commerce</developer>
   <url>https://www.xt-commerce.com</url>
