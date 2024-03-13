@@ -214,38 +214,12 @@ class order_edit_add_products extends product {
             $cart = new cart();
             $_SESSION['cart'] = $cart;
 
-
-
-
-            $priceOverride = $_SESSION['order_edit_priceOverride'];
-            if(!$priceOverride)
-            {
-                $priceOverride = array();
-            }
-            else if (!$priceOverride[$order->oID])
-            {
-                $priceOverride[$order->oID] = array();
-            }
-            if ($order->order_products)
+            if (FALSE && is_array($order->order_products))
             {
                 foreach($order->order_products as $p)
                 {
-                    $priceOverride[$order->oID][$p['products_id']] = $p['products_price']['plain_otax'];
+                    $order_edit_controller::setPriceOverride($order->oID, $p['products_id'], $p['products_price']['plain_otax']);
                 }
-            }
-
-            $_SESSION['order_edit_priceOverride'] = $priceOverride;
-
-
-
-            $priceOverride = $_SESSION['order_edit_priceOverride'];
-            if(!$priceOverride)
-            {
-                $priceOverride = array();
-            }
-            else if (!$priceOverride[$oId])
-            {
-                $priceOverride[$oId] = array();
             }
 
             $op_price = $data['products_order_price'];
@@ -255,6 +229,7 @@ class order_edit_add_products extends product {
                 $tax_rate = $tax->data[$add_product->data["products_tax_class_id"]];
                 $op_price = $op_price / (1 + $tax_rate / 100);
             }
+            $order_edit_controller::setPriceOverride($oId, $opId, $op_price);
 
             // haben wir einen prozentgutschein an der order ?
             if(order_edit_controller::isCouponPluginActive())
@@ -270,9 +245,6 @@ class order_edit_add_products extends product {
                     }
                 }
             }
-
-            $priceOverride[$oId][$opId] = $op_price;
-            $_SESSION['order_edit_priceOverride'] = $priceOverride;
 
             // vorhandene hinzufügen
             if ($order->order_products)

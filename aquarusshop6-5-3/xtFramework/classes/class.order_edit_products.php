@@ -214,15 +214,6 @@ class order_edit_products extends product{
             global $order_edit_controller, $tax;
             $order = $order_edit_controller->getOrder();
 
-            $priceOverride = $_SESSION['order_edit_priceOverride'];
-            if(!$priceOverride)
-            {
-                $priceOverride = array();
-            }
-            else if (!$priceOverride[$oId])
-            {
-                $priceOverride[$oId] = array();
-            }
             $p = $order_edit_controller->getOrderProduct($opId);
 
             // m�ssen wir kundengruppe beachten wg show-tax?
@@ -232,8 +223,8 @@ class order_edit_products extends product{
                 $data['products_order_price'] = $data['products_order_price'] / (1 + $tax->data[$p['products_tax_class']] / 100);
             }
 
-            $priceOverride[$oId][$opId] = $data['products_order_price'];
-            $_SESSION['order_edit_priceOverride'] = $priceOverride;
+
+            $order_edit_controller::setPriceOverride($oId,$opId, $data['products_order_price']);
 
             $cart = new cart();
             $_SESSION['cart'] = $cart;

@@ -49,7 +49,7 @@ if(preg_match('/files/', $_REQUEST['type'])){
 	$accept = '.zip,.pdf';
 }else{
 	$data_type = 'images';
-    $accept = '.jpeg,.jpg,.gif,.png';
+    $accept = '.jpeg,.jpg,.gif,.png,.webp';
 }
 
 $mft = new MediaFileTypes();

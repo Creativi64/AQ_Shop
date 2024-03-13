@@ -129,6 +129,19 @@ class image extends MediaFileTypes{
 				return false;
 			}
 		}
+        $ext = 'webp';
+        if ($exif_it == IMAGETYPE_WEBP)
+        {
+            $image_source = imagecreatefromwebp($this->resource);
+            if (!$image_source)
+            {
+                $msg = "$this->filename : Expected file type not found [$ext].";
+                $this->error = $msg;
+                error_log($msg);
+                return false;
+            }
+        }
+
 
 		if (!$image_source)
 		{
@@ -228,6 +241,9 @@ class image extends MediaFileTypes{
 		else if ($exif_it == IMAGETYPE_GIF) {
 			imagegif($image_thumbnail,$this->target_dir.$this->image_name);
 		}
+        else if ($exif_it == IMAGETYPE_WEBP) {
+            imagewebp($image_thumbnail,$this->target_dir.$this->image_name);
+        }
 
         ($plugin_code = $xtPlugin->PluginCode(__CLASS__.':createThumbnail_before_destroy')) ? eval($plugin_code) : false;
 

@@ -2080,14 +2080,32 @@ class ExtFunctions {
         // todo: check decimal places
         $changeRenderer = PhpExt_Javascript::functionDef(
             "change",
-            "var decimal_places = 2;" .
-            "tmp_value = parseFloat(val).toFixed(decimal_places);" .
-            "if (val > 0) {" .
-            "   return '<span style=\"color:green;\">' + tmp_value + '</span>';" .
-            "} else if(val < 0) {" .
-            "   return '<span style=\"color:red;\">' + tmp_value + '</span>';" .
-            "} return val;",
-            array("val")
+            "var decimal_places = 2; \n
+            let price_special = false;
+            let price_group = false;
+            if (sb.json && sb.json.products_price)
+            {
+                val = sb.json.products_price.price_db;
+                price_special = sb.json.products_price.price_special ? parseFloat(sb.json.products_price.price_special).toFixed(decimal_places) : false;
+                price_group = sb.json.products_price.price_group ? parseFloat(sb.json.products_price.price_special).toFixed(decimal_places) : false;
+            }
+            console.log(val, column,sb);\n" .
+            "tmp_value = parseFloat(val).toFixed(decimal_places);\n" .
+            "if (val > 0) {\n" .
+            "   let r = '';
+                if (price_special) 
+                {
+                    let price_special_txt = \"". HEADING_PRODUCT_SP_PRICE. "\" + ' ' + price_special;
+                    r = '<span class=\"products_special_price\" qtip=\"' + price_special_txt + '\">&nbsp;</span>';
+                }
+                if (price_group) r += '<span class=\"products_group_price\" qtip=\"".HEADING_PRODUCT_PRICE."\">&nbsp;</span>';
+                return r + '<span style=\"color:green;\">' + tmp_value + '</span>';\n" .
+            "} else if(val < 0) {\n" .
+            "   let r = '';
+                if (price_special) r = '<span class=\"products_special_price\">&nbsp;</span>';
+                return r + '<span style=\"color:red;\">' + tmp_value + '</span>';\n" .
+            "} return val;\n",
+            array("val", 'column', 'sb')
         );
         return $changeRenderer;
     }

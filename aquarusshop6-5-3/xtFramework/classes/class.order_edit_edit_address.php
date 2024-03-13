@@ -489,6 +489,7 @@ class order_edit_edit_address extends xt_backend_cls {
         global $db, $order_edit_controller;
         $order = $order_edit_controller->getOrder();
 
+        /*
         $priceOverride = $_SESSION['order_edit_priceOverride'];
         if(!$priceOverride)
         {
@@ -507,7 +508,7 @@ class order_edit_edit_address extends xt_backend_cls {
         }
         
         $_SESSION['order_edit_priceOverride'] = $priceOverride;
-        
+        */
         $cart = new cart();
         $_SESSION['cart'] = $cart;
 

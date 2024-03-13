@@ -132,17 +132,6 @@ class shipping_price extends xt_backend_cls {
 
 		$obj = new stdClass;
 
-		// check if zone and country is populated
-		if (
-            ($data['shipping_geo_zone']!='' && $data['shipping_geo_zone']!='0')
-            &&
-            ($data['shipping_country_code']!='' && $data['shipping_country_code']!='0')
-        ) {
-			$obj->failed = true;
-			return $obj;
-		}
-
-
 		 if($set_type == 'new'){
 		 	$data['shipping_id'] = $this->url_data['shipping_id'];
 		 }

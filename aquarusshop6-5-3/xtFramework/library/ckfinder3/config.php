@@ -88,12 +88,18 @@ $config['backends'][] = array(
 
 $config['defaultResourceTypes'] = '';
 
+global $db;
+$allowed_extensions = 'bmp,gif,jpeg,jpg,png';
+$webp_enabled = $db->GetOne('SELECT 1 FROM '. TABLE_MEDIA_FILE_TYPES . " where file_ext = 'webp' AND file_type = 'images' ");
+if($webp_enabled)
+    $allowed_extensions = 'bmp,gif,jpeg,jpg,png,webp';
+
 $config['resourceTypes'][] = array(
 		'name'              => 'originals',
 		'directory'         => 'images/org',
         'label'             => 'media/images/org',
 		'maxSize'           => 0,
-		'allowedExtensions' => 'bmp,gif,jpeg,jpg,png',
+		'allowedExtensions' => $allowed_extensions,
 		'deniedExtensions'  => '',
 		'backend'           => 'default'
 );
@@ -102,7 +108,7 @@ $config['resourceTypes'][] = array(
     'name'              => 'category',
     'directory'         => 'images/category',
     'maxSize'           => 0,
-    'allowedExtensions' => 'bmp,gif,jpeg,jpg,png',
+    'allowedExtensions' => $allowed_extensions,
     'deniedExtensions'  => '',
     'backend'           => 'default'
 );
@@ -111,7 +117,7 @@ $config['resourceTypes'][] = array(
 		'name'              => 'content',
 		'directory'         => 'images/content',
 		'maxSize'           => 0,
-		'allowedExtensions' => 'bmp,gif,jpeg,jpg,png',
+		'allowedExtensions' => $allowed_extensions,
 		'deniedExtensions'  => '',
 		'backend'           => 'default'
 );
@@ -120,7 +126,7 @@ $config['resourceTypes'][] = array(
 		'name'              => 'manufacturer',
 		'directory'         => 'images/manufacturer',
 		'maxSize'           => 0,
-		'allowedExtensions' => 'bmp,gif,jpeg,jpg,png',
+		'allowedExtensions' => $allowed_extensions,
 		'deniedExtensions'  => '',
 		'backend'           => 'default'
 );
@@ -138,7 +144,7 @@ $config['resourceTypes'][] = array(
 		'name'              => 'product info',
 		'directory'         => 'images/info',
 		'maxSize'           => 0,
-		'allowedExtensions' => 'bmp,gif,jpeg,jpg,png',
+		'allowedExtensions' => $allowed_extensions,
 		'deniedExtensions'  => '',
 		'backend'           => 'default'
 );

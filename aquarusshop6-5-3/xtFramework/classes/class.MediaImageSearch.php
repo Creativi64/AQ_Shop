@@ -115,8 +115,14 @@ class MediaImageSearch extends MediaImages {
 		$searchQry = '';
         $search_data = trim($search_data);
 
-        if (preg_match('/^[0-9 ]+$/', $search_data)) {
-            return array_filter(explode(' ', $search_data));
+        if (preg_match('/^###/', $search_data))
+        {
+            $search_data = str_replace('###', '', $search_data);
+            if (preg_match('/^[0-9 ]+$/', $search_data))
+            {
+                // nur nach ids_suchen
+                return array_filter(explode(' ', $search_data));
+            }
         }
 
 		$searchArray = array($this->_table.'.file', $this->_table_lang.'.media_name', $this->_table_lang.'.media_description');

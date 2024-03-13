@@ -574,7 +574,7 @@ class shipping extends xt_backend_cls {
                         $new_cost[] = $value;
                         $hasCostForCountry = true;
                     }else{
-                        unset($new_cost);
+                        $new_cost = [];
                         break;
                     }
                 }
@@ -590,7 +590,7 @@ class shipping extends xt_backend_cls {
                     if($value['shipping_allowed']=='1'){
                         $new_cost[] = $value;
                     }else{
-                        unset($new_cost);
+                        $new_cost = [];
                         break;
                     }
                 }
@@ -629,7 +629,7 @@ class shipping extends xt_backend_cls {
 				if($value['shipping_allowed']=='1'){
 					$new_cost[] = $value;
 				}else{
-					unset($new_cost);
+                    $new_cost = [];
 					unset($data);
 					break;	
 				}
@@ -761,7 +761,7 @@ class shipping extends xt_backend_cls {
 					$data['item_price'] = true;
 					$new_cost[] = $value;
 				}else{
-					unset($new_cost);
+                    $new_cost = [];;
 					unset($data);
 					break;
 				}

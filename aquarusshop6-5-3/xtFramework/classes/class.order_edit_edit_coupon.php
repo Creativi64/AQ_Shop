@@ -290,6 +290,7 @@ class order_edit_edit_coupon extends xt_backend_cls {
 
             $order = $order_edit_controller->getOrder();
 
+            /*
             $priceOverride = $_SESSION['order_edit_priceOverride'];
             if(!$priceOverride)
             {
@@ -308,6 +309,7 @@ class order_edit_edit_coupon extends xt_backend_cls {
             }
             
             $_SESSION['order_edit_priceOverride'] = $priceOverride;
+            */
 
             $cart = new cart();
             $_SESSION['cart'] = $cart;

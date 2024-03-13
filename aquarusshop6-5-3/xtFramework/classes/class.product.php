@@ -469,29 +469,25 @@ class product  extends xt_backend_cls{
 
         $orderId = $order_edit_controller->_orders_id;
 
-        $priceOverride = [];
-        if(array_key_exists('order_edit_priceOverride', $_SESSION) &&
-            is_array($_SESSION['order_edit_priceOverride']) &&
-            array_key_exists($orderId, $_SESSION['order_edit_priceOverride']))
-                $priceOverride =  $_SESSION['order_edit_priceOverride'][$orderId];
-        if (array_key_exists($this->pID, $priceOverride)
+		($plugin_code = $xtPlugin->PluginCode('class.product.php:_getPrice_price')) ? eval($plugin_code) : false;
+
+        $priceOverride = $order_edit_controller::getPriceOverride($orderId, $this->pID);
+        if ($priceOverride
             && !in_array($_REQUEST['pg'], ['calculateGraduatedPrice'], 'overview')
-            && !in_array($_REQUEST['load_section'], ['order_edit_edit_paymentShipping'])
+            //&& !in_array($_REQUEST['load_section'], ['order_edit_edit_paymentShipping'])
         )
         {
             if(is_array($products_price))
-			{
+            {
                 $original_products_price_otax = $products_price['original_price_otax'];
             }
             else $original_products_price_otax = $products_price;
 
-			$new_price = $priceOverride[$this->pID];
+            $new_price = $priceOverride;
 
             $format_type = 'default';
             $products_price = $new_price;
-		}
-
-		($plugin_code = $xtPlugin->PluginCode('class.product.php:_getPrice_price')) ? eval($plugin_code) : false;
+        }
 
 		// Check Currency
         $isOrderEditProduct = isset($_POST['plugin']) && $_POST['plugin'] == 'order_edit'
@@ -1694,7 +1690,7 @@ class product  extends xt_backend_cls{
 
 
 	function _get($ID=0){
-		global $xtPlugin, $language,$store_handler;
+		global $xtPlugin, $language,$store_handler, $db, $customers_status, $price;
 
 		if ($this->position != 'admin') return false;
 
@@ -1749,6 +1745,10 @@ class product  extends xt_backend_cls{
 
 			$sql_where .= " ".TABLE_PRODUCTS.".products_id IN (".implode(',', $p_search_result).")";
 		}
+        else if($this->url_data['get_data'] && $this->url_data['query'] && empty($search_result))
+        {
+            $sql_where .= " 0 = 1";
+        }
 
 		$sort_join_table = false;
 		$sort_table = $this->_table;
@@ -1912,6 +1912,30 @@ class product  extends xt_backend_cls{
 		}
 		
 		($plugin_code = $xtPlugin->PluginCode('class.product.php:_get_bottom')) ? eval($plugin_code) : false;
+        if ($this->url_data['get_data'] && is_array($data))
+        {
+            foreach ($data as $k => &$v)
+            {
+                $cgs = $customers_status->_getStatusList();
+                $cgs = array_merge([['id' => 'all']], $cgs);
+                $p = new stdClass();
+                $p->price_db = $v['products_price'];
+                $ps = $db->GetOne('SELECT specials_price from '.TABLE_PRODUCTS_PRICE_SPECIAL.' where now() >= date_available and date_expired >= now() and status = 1 AND products_id = ?', [$v['products_id']]);
+                if(is_numeric($ps) && _SYSTEM_USE_PRICE == 'true')
+                {
+                    $ps = $this->build_price($data[$key]['products_id'], $ps, $data[$key]['products_tax_class_id']);
+                }
+                $p->price_special = $ps;
+
+                $p->price_group = false;
+                foreach ($cgs as $cg)
+                {
+                    $gp = $db->GetOne('SELECT price from '.TABLE_PRODUCTS_PRICE_GROUP.$cg['id'].' where products_id = ? LIMIT 1', [$v['products_id']]);
+                    if($gp) $p->price_group = true;
+                }
+                $v['products_price'] = $p;
+            }
+        }
 
 		if($data_count!=0 || !$data_count)
 		$count_data = $data_count;

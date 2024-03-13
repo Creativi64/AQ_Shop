@@ -49,6 +49,16 @@ if(!function_exists('xt_shutdown_function'))
                 fclose($fp);
                 $buffer = str_replace('[ERR_MSG]', $msg, $buffer);
                 $buffer = str_replace('[BG_COLOR]', '#f5cbbe', $buffer);
+
+                global $store_handler;
+
+                if($store_handler)
+                {
+                    $buffer = str_replace('[STORE_ID]', $store_handler->shop_id, $buffer);
+                    if((int)$store_handler->store_count > 1)
+                        error_log("Previous error occurred in shop ". $store_handler->shop_id);
+                }
+
                 if(!headers_sent())
                 {
                     header($_SERVER["SERVER_PROTOCOL"] . ' 503 Service Temporarily Unavailable');
@@ -91,6 +101,15 @@ if(!function_exists('xt_error_handler'))
                     fclose($fp);
                     $buffer = str_replace('[ERR_MSG]', $msg, $buffer);
                     $buffer = str_replace('[BG_COLOR]', '#f5cbbe', $buffer);
+
+                    global $store_handler;
+                    if($store_handler)
+                    {
+                        $buffer = str_replace('[STORE_ID]', $store_handler->shop_id, $buffer);
+                        if((int)$store_handler->store_count > 1)
+                            error_log("Previous error occurred in shop ". $store_handler->shop_id);
+                    }
+
                     $die_msg = $buffer;
                 }
                 else

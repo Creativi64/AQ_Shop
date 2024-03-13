@@ -138,6 +138,58 @@ class order_edit_controller
         return self::$_active;
     }
 
+    /**
+     * @return void
+     */
+    public static function setPriceOverride($order_id, $product_id, $products_price_otax)
+    {
+        if(!is_array($_SESSION['order_edit_priceOverride']))
+            $_SESSION['order_edit_priceOverride'] = [];
+        if(!is_array($_SESSION['order_edit_priceOverride'][$order_id]))
+            $_SESSION['order_edit_priceOverride'][$order_id] = [];
+
+        $_SESSION['order_edit_priceOverride'][$order_id][$product_id] = $products_price_otax;
+    }
+
+    /**
+     * @param $order_id
+     * @param $products_id
+     * @return array|false
+     */
+    public static function getPriceOverride($order_id, $products_id)
+    {
+        $priceOverride = $_SESSION['order_edit_priceOverride'];
+
+        if(!is_array($priceOverride))
+        {
+            $priceOverride = [];
+        }
+        if (!$priceOverride[$order_id])
+        {
+            $priceOverride[$order_id] = [];
+        }
+
+        if (is_numeric($priceOverride[$order_id][$products_id]))
+        {
+            return $priceOverride[$order_id][$products_id];
+        }
+
+        return false;
+    }
+
+    public static function emptyPriceOverride($order_id = 0)
+    {
+
+        if ($order_id && is_array($_SESSION['order_edit_priceOverride']) && $_SESSION['order_edit_priceOverride'][$order_id])
+        {
+            unset($_SESSION['order_edit_priceOverride'][$order_id]);
+            return;
+        }
+
+        $_SESSION['order_edit_priceOverride'] = [];
+
+    }
+
     public function getOrder($keep_store_id = true)
     {
         if (empty($this->_order))
@@ -167,7 +219,7 @@ class order_edit_controller
                 $priceOverride[$this->_orders_id][$p['products_id']] = $p['products_price']['plain_otax'];
             }
         }
-        $_SESSION['order_edit_priceOverride'] = $priceOverride;
+        //$_SESSION['order_edit_priceOverride'] = $priceOverride;
 
         return $this->_order;
     }
@@ -291,7 +343,7 @@ class order_edit_controller
             return $r;
         }
         $couponsActive = self::isCouponPluginActive();
-        if ($couponsActive)
+        if ($couponsActive )
         {
             $r = self::processCoupon($order, $mode, $coupon_code);
             if ($r->errors || $r->couponRemoved)
@@ -499,14 +551,19 @@ class order_edit_controller
                 {
                     $coupon = new xt_coupons();
                     $cpic = $coupon->_get_coupon_products_in_cart($arr_coupon["coupon_id"]);
+
                     foreach($order->order_products as $p)
                     {
                         if(!in_array($p["products_id"], $cpic['all']) && !array_key_exists($p["products_id"], $cpic['found']))
                             continue;
-                        $ovr = (100 * $_SESSION['order_edit_priceOverride'][$order->oID][$p['products_id']])
+
+                        
+                        $ovr = (100 * self::getPriceOverride($order->oID, $p['products_id'])      )
                             / (100-$arr_coupon['coupon_percent']);
-                        $_SESSION['order_edit_priceOverride'][$order->oID][$p['products_id']] = $ovr;
+                        self::setPriceOverride($order->oID, $p['products_id'], $ovr);
+                        //$_SESSION['order_edit_priceOverride'][$order->oID][$p['products_id']] = $ovr;
                     }
+                    
                 }
             }
 
@@ -534,7 +591,7 @@ class order_edit_controller
 
         if(!order_edit_controller::isCouponPluginActive()) return $result;
 
-        sessionCart()->_refresh();
+        // sessionCart()->_refresh(); // refresh gibts doch schon eher ?!!
 
         $couponCode2Apply = null;
         $tmpOci = false;
@@ -608,14 +665,15 @@ class order_edit_controller
                         $coupon_product_discount = $xt_coupons->coupon_product_percent($p,1,$arr_coupon);
                         $discount += $coupon_product_discount;
                         $new_price = $xt_coupons->coupon_product_price($p,1,$arr_coupon);
-                        $priceOverride[$order->oID][$p['products_id']] = $new_price["plain_otax"];
+                        self::setPriceOverride($order->oID, $p['products_id'], $new_price["plain_otax"]);
+                        //$priceOverride[$order->oID][$p['products_id']] = $new_price["plain_otax"];
 
                     }
                 }
 
                 $_SESSION['cart']->total_discount =$discount;
                 $_SESSION['cart']->discount =true;
-                $_SESSION['order_edit_priceOverride'] = $priceOverride;
+                //$_SESSION['order_edit_priceOverride'] = $priceOverride;
 
             }
             if($couponApplied)
