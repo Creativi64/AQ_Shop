@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-10-08 04:18:33
+/* Smarty version 4.3.2, created on 2024-03-20 20:20:36
   from '/homepages/2/d41324517/htdocs/aquarusshop6-5-3/templates/xt_responsive_AQ/xtCore/pages/login.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '4.3.0',
-  'unifunc' => 'content_65221179ce1b29_70871972',
+  'version' => '4.3.2',
+  'unifunc' => 'content_65fb3704011ae8_74556807',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9bc6a2805513a7488221c8870855d36926879513' => 
     array (
       0 => '/homepages/2/d41324517/htdocs/aquarusshop6-5-3/templates/xt_responsive_AQ/xtCore/pages/login.html',
-      1 => 1691797589,
+      1 => 1697144119,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_65221179ce1b29_70871972 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65fb3704011ae8_74556807 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.link.php','function'=>'smarty_function_link',),1=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.txt.php','function'=>'smarty_function_txt',),2=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.hook.php','function'=>'smarty_function_hook',),3=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.form.php','function'=>'smarty_function_form',),4=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.content.php','function'=>'smarty_function_content',),));
 ?>
 
@@ -674,7 +674,7 @@ echo smarty_function_txt(array('key'=>TEXT_DOT),$_smarty_tpl);?>
                                     maxDate:  new Date(<?php echo $_smarty_tpl->tpl_vars['max_date']->value;?>
 ),
                                     useCurrent: false,
-                                    format: '<?php echo mb_strtoupper((defined('_STORE_ACCOUNT_DOB_FORMAT') ? constant('_STORE_ACCOUNT_DOB_FORMAT') : null) ?? '', 'UTF-8');?>
+                                    format: '<?php echo mb_strtoupper((string) (defined('_STORE_ACCOUNT_DOB_FORMAT') ? constant('_STORE_ACCOUNT_DOB_FORMAT') : null) ?? '', 'UTF-8');?>
 ',
                                     locale: '<?php if ($_smarty_tpl->tpl_vars['language']->value == "de") {?>de<?php } else { ?>en<?php }?>'
                                 }).on('dp.show', function()

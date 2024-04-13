@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.0, created on 2023-10-10 00:10:39
+/* Smarty version 4.3.2, created on 2024-03-22 03:16:54
   from '/homepages/2/d41324517/htdocs/aquarusshop6-5-3/templates/xt_responsive_AQ/xtCore/pages/account.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '4.3.0',
-  'unifunc' => 'content_65247a5fd4a156_87070036',
+  'version' => '4.3.2',
+  'unifunc' => 'content_65fcea16589952_94916835',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '19cd5933796af2b72b522753f92e345967f2b11f' => 
     array (
       0 => '/homepages/2/d41324517/htdocs/aquarusshop6-5-3/templates/xt_responsive_AQ/xtCore/pages/account.html',
-      1 => 1691797589,
+      1 => 1697144119,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:xtCore/pages/order_history_block.html' => 1,
   ),
 ),false)) {
-function content_65247a5fd4a156_87070036 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65fcea16589952_94916835 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.txt.php','function'=>'smarty_function_txt',),1=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.link.php','function'=>'smarty_function_link',),2=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.hook.php','function'=>'smarty_function_hook',),));
 ?>
 <h1><?php echo smarty_function_txt(array('key'=>TEXT_PAGE_TITLE_ACCOUNT),$_smarty_tpl);?>

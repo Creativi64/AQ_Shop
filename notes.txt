@@ -8,3 +8,4 @@ Einstellungen->Konfiguration->Sonstiges im Feld Brutto-Admin
 Man kann Im XT Commerece Unterschiedliche/mehrere Shops Anlegen das bestimmt die shop ID
 
 DAS PLUGIN xt_serials MUSS INSTALLIERT SEIN
+

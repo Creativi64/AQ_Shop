@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-03-13 17:39:33
+/* Smarty version 4.3.2, created on 2024-03-20 20:16:35
   from '/homepages/2/d41324517/htdocs/aquarusshop6-5-3/templates/xt_responsive_AQ/index.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_65f1d6c59d3e88_74762294',
+  'unifunc' => 'content_65fb3613a607d7_74348281',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:xtCore/pages/navigation/breadcrumb.html' => 1,
   ),
 ),false)) {
-function content_65f1d6c59d3e88_74762294 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65fb3613a607d7_74348281 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.hook.php','function'=>'smarty_function_hook',),1=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.box.php','function'=>'smarty_function_box',),2=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.link.php','function'=>'smarty_function_link',),3=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.txt.php','function'=>'smarty_function_txt',),4=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.box_cache.php','function'=>'smarty_function_box_cache',),5=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.cronjob.php','function'=>'smarty_function_cronjob',),));
 if ($_smarty_tpl->tpl_vars['page']->value == 'index' || $_smarty_tpl->tpl_vars['page']->value == 'product' || $_smarty_tpl->tpl_vars['page']->value == 'cart' || $_GET['page_action'] == 'login' || $_GET['page_action'] == 'order_info') {?>
     <?php $_smarty_tpl->_assignInScope('show_index_boxes', "false");

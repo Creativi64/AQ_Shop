@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-03-13 17:39:33
+/* Smarty version 4.3.2, created on 2024-03-20 20:16:35
   from '/homepages/2/d41324517/htdocs/aquarusshop6-5-3/templates/xt_responsive_AQ/xtCore/boxes/box_payment_logos.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_65f1d6c5cde7c6_90806067',
+  'unifunc' => 'content_65fb3613b810a0_82393533',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,9 +20,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_65f1d6c5cde7c6_90806067 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65fb3613b810a0_82393533 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/homepages/2/d41324517/htdocs/aquarusshop6-5-3/xtFramework/library/smarty/xt_plugins/function.txt.php','function'=>'smarty_function_txt',),));
-$_smarty_tpl->compiled->nocache_hash = '61079424665f1d6c5c85bb7_62247143';
+$_smarty_tpl->compiled->nocache_hash = '116015541265fb3613b76b17_83656677';
 ?>
 
 
