@@ -5,47 +5,46 @@ license: xt:Commerce 6 - Single License
 mailaddress: einkauf@aquarus.net
 maxproducts: 0
 maxstores: 1
-maxversion: 653
+maxversion: 656
 name: Daniela Kreuzer
 project: xt:Commerce 6
 updatesuntil: 2024-06-19 10:03:18
 versiontype: PRO
 
 ------ LICENSE FILE DATA -------
-27U85X4XvfofcXwDCNPyOwe+jmDI35pt
-bPR3XAPmM7uqUOEy3SnpijU7B9DRcKkr
-ppq9CxMOxc1naoZTqXB25Gwo7Ccf+t6C
-fqquKe+bmsauplQBhibn1QolCeAMqJ9C
-pC0VY4wdRdoXVK4nwl89/g7O4/W7fGrr
-X9oi731Dhz+ctIOK96J2VVISbzumm+Y2
-Bx8v4l/he8UGULVp104mK9XWMGUiyn5n
-M7aQgSZFgUaQtjMQULhehfwsVYOcGaDb
-Vlzgqd2hl6HHXJQ4kKK+PbmXMxSJv0Tl
-Kpor4Dx9YjrJBdJB02hn9fyH+QpoEuiz
-uArLq/FBMOLQRZ5R5J67mxXfJa/e9Q0/
-Qonam0Tvsq4eOZWXTQD7r+YHsgt6xOz+
-TTwX6TlqAYRY+gXBbk8lbIfcusyZB8kc
-h3Mn3X8VywE3aOZW2MbyiZcGuD0OOWtn
-82lw6xYuRj73ve35umW7csY8E+uE/P+9
-VEoLZrheHVRmdAlG/W98m9k+Ko4ZhmJa
-cWrK5V1hCW26vaTziEJo4YYE23NkmuIm
-54kIKWZCJmngB9AQ9s1TsO9oIy5FIq6o
-MA9Y75dgeX6OHzyHaRxtF1qxC9FuXIr1
-e5ljC6EEKZVbEWFZ+VNhJhW8Rwyv8acX
-X7AnpjkuP/NQt5267mOa4SdwQIiYefeT
-OhVNJ0xwAG8As1NIXP8lHsBc8TaovVt/
-g+zKcc0ZWElThWYNVeS3DKU9lNv6Z3Yf
-ThrrilbmTVFJROgyVDiw5sN1pwUpjysp
-aqEPFgRRZh0wZ52+ym/FOd/wTKyuDnRu
-wTFXJUAwGc5V/FRNJZHgPfKrnvMFCSfm
-NHa1mfOFM+HrSPBe5DnSTZ2oQ4nEE5Bs
-yBJgrCcJjOYheZd0dlZ6sHhgrs9xzhxK
-dg4vWhwqIN2PQTORP4YjFlVGmSgc78Y1
-uIeEe7cvgS864TshUXdQLT5XsmiCVQhm
-TLpp6Lzs9FG67AhQ0euHjevHJObwlFVR
-VS3ngwi3FWe30l70MCtiP117HQF1C+Lg
-++HSU8GwKNGECapZuD2FxbPVCeBb8IOn
-dwGJhdk8apQzdOUJkHvY+KVC72UepOWq
-1GbIMlWpGfd3yyahfNS66DukZwVTmKi+
-gR3T/ba/L2KiCj6dJXYEUtCeuMc=
+1TX14X57YWwM0vQF03z9iw0xbvrKX29X
+Q2JinxMDllVszm0SSLsckiBOUhCn08js
+6B7EGcKAMd84Km39ZoNqxQrk5/+dwHL3
+6Qi3RoVKLWdIkoawpJ3fInK+4TqfzJcQ
+3UArMnZp3916b6NeTGWkcg7/pXJXXNHt
+Szn8LKZ3TbP2DDFrMJw4kL7SCBJvny4X
+vf3KXK7+vpjuCQBVmF2kVvkG7tAD4KIo
+POPuofo9bEx8SJah7DsMQX98szuaes7M
+cATWz5nsrxd7zEgpYNryipENSLsXVyKl
+kDA5RPqLDgl2LX2NComPFHXyRGAGTl+r
+RLk1Sh4BU9w2lQMi6g7rBPguOd2zrJaK
+wexBW2FxdFSxnc+LrFCCuSenCIc9zsmf
+lMBy8i8ACVFjbRMsOl15txBs6f1uqvNF
+o8sC0pbGcnTH+oq0CPLhLei91b+hLUVb
+HhMJq1yTUdjpNg3vx/baiDKK207kPRMy
+SlginOne/k6uMPBUUQ2zRm95bjTmHk9R
+Tsl1GzAPcL2AKrPaNjg7yDi/oHcK++hS
+olvUO1yllUyOInQEUxWyqdI0QTJvdj+b
+W/5Qz6Q4UljfPA/i84ckeQ/XsYGbkqUK
+k0URHm5qQSzRh8KWnCt95Ysn7Xn3c90g
+0ITb/ivQw+MbX5O1TIA2QMN/jsQ3Ni7u
+zaIg086cJ/6pK6AHlp0hnFpLBP6WnSfJ
+o0sBEFgfog6y20jJRfNxZEFYHb7dxD1H
+PlJAicn/Z5VwGoda04XOhpdNybWai5L1
+UIAg8ua3uVV335tQ8M2fg7QmmMz6hBsN
+2gcP0oekz+nD6TPdl7uNgl5EvhBss6ic
+U3zfF2J7/XDu8NspHQ+yIRwJzBY1tMl3
+2ts44nHLjMfbEC9Y8WZrJTbeG1EG752j
+KPweIMYmEkeBJqwuIvsjxLDEBIw0Fsg2
+Ld2899oSR8EhCDcrcY3+GLwZTvpSukf8
+Maq7Er/YDvIUe2y+2A/Chn80KUqALMyN
+u8DLVMWbaV6DZRs5CE7QjOYygvEJn/0F
+++Pg8TGV0yS2wgRy+33H1lELy31+GfEk
+A0c0b1SIyn+MeyV0gkgI4rHx22LvZXZT
+x1wvp32nJsF/AT==
 --------------------------------
