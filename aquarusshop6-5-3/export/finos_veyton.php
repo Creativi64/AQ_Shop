@@ -1182,7 +1182,7 @@ function save_products_stockings ()
 
 
        $sql_data_array = array('products_quantity'         => $products_quantity,
-                               'products_status  '         => $products_status,
+                               //'products_status  '         => $products_status,
                                'products_shippingtime'     => $products_shippingtime);
 
       if ($exists==0)        // Neuanlage
