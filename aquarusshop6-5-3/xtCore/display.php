@@ -51,6 +51,7 @@ if(defined("_STORE_META_DOCTYPE_HTML") && strtolower(_STORE_META_DOCTYPE_HTML) =
 }
 ?>
 <head>
+<meta name="google-site-verification" content="WAaUjV53OYsKXE-TgfamecXP_dG0LzlsJlJh1ykd_74" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <base href="<?php echo _SYSTEM_BASE_URL . _SRV_WEB; ?>" />
 <?php
