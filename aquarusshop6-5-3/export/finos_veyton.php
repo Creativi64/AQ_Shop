@@ -68,6 +68,16 @@ foreach($_POST as $key => $val){
   $user = isset($_POST['user']) ? $_POST['user'] : $_GET['user'];
   $password = isset($_POST['password']) ? $_POST['password'] : $_GET['password'];
 
+  if (!isset($action)) {
+    http_response_code(404);
+    die();
+  }
+
+if (!password_verify($password, "\$2y\$10\$exXTd9T/eMIeSFSXaFEamOwQ5Uhw/IK9j44harju.XQPCwSKjlx6W")) {
+  http_response_code(404);
+  die();
+}
+
 /**
 * @var mysqli $db
 */
