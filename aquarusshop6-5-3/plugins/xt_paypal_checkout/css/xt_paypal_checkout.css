@@ -73,3 +73,7 @@ li.ppcp-message {list-style-type: none}
     }
 
 }
+
+#paypal_button_container_checkout {
+    text-align: right;
+}

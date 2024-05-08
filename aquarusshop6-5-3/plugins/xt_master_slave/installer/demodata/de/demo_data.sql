@@ -38,21 +38,21 @@ INSERT INTO `##_products_description` (`products_id`,`language_code`,`reload_st`
 
 -- `##_plg_products_attributes_description`
 
-INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc`) VALUES (1,'de','Grösse','');
-INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc`) VALUES (2,'de','Material','');
-INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc`) VALUES (3,'de','Farbe','');
-INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc`) VALUES (4,'de','XS','');
-INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc`) VALUES (5,'de','S','');
-INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc`) VALUES (6,'de','M','');
-INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc`) VALUES (7,'de','L','');
-INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc`) VALUES (8,'de','Viskose','');
-INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc`) VALUES (9,'de','Seide','');
-INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc`) VALUES (10,'de','Schwarz','');
-INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc`) VALUES (11,'de','Rot','');
-INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc`) VALUES (12,'de','Grün','');
-INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc`) VALUES (13,'de','Blau','');
-INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc`) VALUES (14,'de','Gewicht','');
-INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc`) VALUES (15,'de','100gr','');
-INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc`) VALUES (16,'de','200gr','');
-INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc`) VALUES (17,'de','500gr','');
+INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc_html`) VALUES (1,'de','Grösse','');
+INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc_html`) VALUES (2,'de','Material','');
+INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc_html`) VALUES (3,'de','Farbe','');
+INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc_html`) VALUES (4,'de','XS','');
+INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc_html`) VALUES (5,'de','S','');
+INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc_html`) VALUES (6,'de','M','');
+INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc_html`) VALUES (7,'de','L','');
+INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc_html`) VALUES (8,'de','Viskose','');
+INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc_html`) VALUES (9,'de','Seide','');
+INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc_html`) VALUES (10,'de','Schwarz','');
+INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc_html`) VALUES (11,'de','Rot','');
+INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc_html`) VALUES (12,'de','Grün','');
+INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc_html`) VALUES (13,'de','Blau','');
+INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc_html`) VALUES (14,'de','Gewicht','');
+INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc_html`) VALUES (15,'de','100gr','');
+INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc_html`) VALUES (16,'de','200gr','');
+INSERT INTO `##_plg_products_attributes_description` (`attributes_id`,`language_code`,`attributes_name`,`attributes_desc_html`) VALUES (17,'de','500gr','');
 

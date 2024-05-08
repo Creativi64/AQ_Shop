@@ -1,18 +1,4 @@
 {if !$ppcp_script_tag_rendered}
-    <script>
-
-        console.log('paypal-checkout-script-tag setting ppcp constants');
-
-        window.paypal_checkout_constant =
-            {
-                BUTTON_SIZE: {$button_size|intval},
-                BUTTON_COLOR: "{$button_color}",
-                BUTTON_SHAPE: "{$button_shape}",
-                version: "{$plugin_version}",
-                TEXT_ERROR_CONDITIONS_ACCEPTED: "{txt key=ERROR_CONDITIONS_ACCEPTED}"
-            }
-
-    </script>
 
     <script type="application/json" fncls="fnparams-dede7cc5-15fd-4c75-a9f4-36c430ee3a99">
         {
@@ -27,6 +13,54 @@
 
     <script>
 
+        console.log('paypal-checkout-script-tag setting ppcp constants');
+
+        window.paypal_checkout_constant =
+            {
+                BUTTON_SIZE: {$button_size|intval},
+                BUTTON_COLOR: "{$button_color}",
+                BUTTON_SHAPE: "{$button_shape}",
+                BUTTON_TYPE_AP: "{$button_type_ap}",
+                version: "{$plugin_version}",
+                language: "{$lng}",
+                currency: "{$currency}",
+                TEXT_ERROR_CONDITIONS_ACCEPTED: "{txt key=ERROR_CONDITIONS_ACCEPTED}",
+                TEXT_SHIPPING_COSTS: "{txt key=TEXT_SHIPPING_COSTS}",
+                WARNING_NO_SHIPPING_FOR_ZONE: "{txt key=WARNING_NO_SHIPPING_FOR_ZONE}",
+                PPCP_SESSION_ID: "{$ppcp_session_id}"
+            }
+
+        let billingContact_ap = {$billingContact_ap};
+        let shippingContact_ap = {$shippingContact_ap};
+        let currentCountryCode_ap = "{$country}";
+        let currentTotal_ap = 0;
+        let totalLabel_ap = "{$totalLabel}";
+        let subTotalLabel_ap = "{$subTotalLabel}";
+
+        const ppcpSetTimeout = 50;
+        const ppcpMaxTimeout = 10000;
+        let ppcpWaited = 0;
+        async function checkPaypalScriptLoaded()
+        {
+            ppcpWaited += ppcpSetTimeout;
+            if(ppcpWaited >= ppcpMaxTimeout)
+            {
+                console.warn("waited for paypal sdk " + ppcpWaited + " ms so far. ABORTING");
+                return;
+            }
+            if (typeof window.paypal === "object")
+            {
+                console.info("paypal sdk loaded after " + ppcpWaited + " ms. emitting event PayPalSdkLoaded");
+                const event = new Event("PayPalSdkLoaded");
+                document.dispatchEvent(event);
+            }
+            else {
+                console.debug("waiting for paypal sdk " + ppcpWaited + " ms so far");
+                setTimeout(checkPaypalScriptLoaded, ppcpSetTimeout);
+            }
+        }
+
+        console.log("script tag. adding DOMContentLoaded listener");
         document.addEventListener('DOMContentLoaded', function ()
         {
             try {
@@ -57,36 +91,19 @@
                 script.setAttribute("data-client-token", "{$client_token}");
                 document.head.appendChild(script);
 
-                // fraunet nachladen
+                // applepay laden
+                const apple_script = "https://applepay.cdn-apple.com/jsapi/v1/apple-pay-sdk.js";
+                script = document.createElement("script");
+                script.setAttribute("src", apple_script);
+                document.head.appendChild(script);
+
+                // fraudnet nachladen
                 const fraudnet_script = "https://c.paypal.com/da/r/fb.js";
                 script = document.createElement("script");
                 script.setAttribute("src", fraudnet_script);
                 document.head.appendChild(script);
 
-                const ppcpSetTimeout = 50;
-                const ppcpMaxTimeout = 10000;
-                let ppcpWaited = 0;
-                checkPaypalAvailable();
-
-                function checkPaypalAvailable()
-                {
-                    ppcpWaited += ppcpSetTimeout;
-                    if(ppcpWaited >= ppcpMaxTimeout)
-                    {
-                        console.warn("waited for paypal sdk " + ppcpWaited + " ms so far. ABORTING");
-                        return;
-                    }
-                    if (typeof window.paypal === "object")
-                    {
-                        console.info("paypal sdk loaded after " + ppcpWaited + " ms. emitting event PayPalSdkLoaded");
-                        const event = new Event("PayPalSdkLoaded");
-                        document.dispatchEvent(event);
-                    }
-                    else {
-                        console.debug("waiting for paypal sdk " + ppcpWaited + " ms so far");
-                        setTimeout(checkPaypalAvailable, ppcpSetTimeout);
-                    }
-                }
+                checkPaypalScriptLoaded();
             }
             catch(e)
             {

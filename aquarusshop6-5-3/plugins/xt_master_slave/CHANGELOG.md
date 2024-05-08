@@ -1,3 +1,6 @@
+## [6.5.0]
+- Beschreibung der Attribute jetzt HTML-Feld mit Editor
+
 ## [6.4.9]
 - Plugin-Option '301 Umleitungen statt 302'
 

@@ -2,7 +2,7 @@
 <xtcommerceplugin>
 
     <code>xt_master_slave</code>
-    <version>6.4.9</version>
+    <version>6.5.0</version>
     <type>core</type>
     
     <minimum_store_version>6.5.4</minimum_store_version>
@@ -843,6 +843,11 @@
             <version>6.4.6</version>
             <to_version>6.4.7</to_version>
             <code><![CDATA[include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/installer/updates/6.4.6_6.4.7.php';]]></code>
+        </update>
+        <update>
+            <version>6.4.9</version>
+            <to_version>6.4.10</to_version>
+            <code><![CDATA[include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/installer/updates/6.4.9_6.4.10.php';]]></code>
         </update>
 
     </db_update>

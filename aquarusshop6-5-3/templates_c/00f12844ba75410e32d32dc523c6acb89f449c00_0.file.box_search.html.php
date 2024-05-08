@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-04-20 11:58:26
+/* Smarty version 4.3.2, created on 2024-05-08 17:56:07
   from '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes/box_search.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_662391c2c8a1c6_80093153',
+  'unifunc' => 'content_663ba097bc7e69_26368709',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_662391c2c8a1c6_80093153 (Smarty_Internal_Template $_smarty_tpl) {
+function content_663ba097bc7e69_26368709 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/homepages/2/d41324517/htdocs/aquarus_shop/xtFramework/library/smarty/xt_plugins/function.form.php','function'=>'smarty_function_form',),1=>array('file'=>'/homepages/2/d41324517/htdocs/aquarus_shop/xtFramework/library/smarty/xt_plugins/function.txt.php','function'=>'smarty_function_txt',),));
 ?>
 <div class="box-search">

@@ -24,6 +24,27 @@
             width: 600px;
         }
     }
+
+    apple-pay-button {
+        --apple-pay-button-width: 100%;
+        --apple-pay-button-height: 36px;
+        #--apple-pay-button-border-radius: 5px;
+        #--apple-pay-button-padding: 5px 0px;
+    }
+
+    form#checkout_form .xt-form-required.xt-form-error::before,
+    form#checkout-form .xt-form-required.xt-form-error::before
+    {
+        content: "*";
+        color: darkred;
+        margin-left: -10px;
+        font-size: 1.2em;
+        display: inline-block;
+        line-height: 1px;
+    }
+
+
+
 </style>
 
 {*include file="./paypal-checkout-script-tag.tpl.html"*}
@@ -49,7 +70,8 @@ document.addEventListener('DOMContentLoaded', function ()
 document.addEventListener('PayPalSdkLoaded', function ()
 {
     try {
-        enablePaypalButton('{$foundingSource}','{$requested_position}');
+        if('{$foundingSource}' === 'applepay') setupApplepay();
+        else enablePaypalButton('{$foundingSource}','{$requested_position}');
     }
     catch(e)
     {

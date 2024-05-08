@@ -14,9 +14,24 @@ function enableFoundingSources()
             paypal.getFundingSources().forEach(function (fundingSource) {
                 console.log(fundingSource, paypal.isFundingEligible(fundingSource));
 
-                if (paypal.isFundingEligible(fundingSource)) {
+                if (paypal.isFundingEligible(fundingSource))
+                {
+                    let isApplepay = false;
+                    let isApplepayAvail = false;
+                    if(fundingSource === 'applepay')
+                    {
+                        isApplepay = true;
+                        if (!window.ApplePaySession) {
+                            console.log("This device does not support Apple Pay");
+                        } else if (!ApplePaySession.canMakePayments()) {
+                            console.log("This device, although an Apple device, is not capable of making Apple Pay payments");
+                        }
+                        else
+                            isApplepayAvail = true;
+
+                    }
                     let me = document.getElementById("xt_paypal_checkout_" + fundingSource);
-                    if (me) {
+                    if (me && (!isApplepay || isApplepayAvail)) {
                         let parent = me.closest(".list-group-item");
                         if (parent) {
                             parent.style.display = "block";
@@ -320,7 +335,7 @@ function renderAllEligibleButtonsCart(position)
 function ppcGetShippingOptions(data, actions)
 {
     console.log(data, actions);
-    console.log("previous country " + previousCountryCode, "current country" + data.shipping_address.country_code);
+    console.log("previous country " + previousCountryCode, "current country " + data.shipping_address.country_code);
 
     if(data.shipping_address.country_code != previousCountryCode || previousCountryCode == "")
     {
@@ -340,11 +355,11 @@ function ppcGetShippingOptions(data, actions)
                 body: JSON.stringify({oderID:data.orderID, shipping_address:data.shipping_address, operation: operation})
             }
         ).then((response) => {
-            console.log('fast zurück von shippingOptions.php',  response);
+            console.log('fast zurück von PAYPAL_CHECKOUT_GET_SHIPPING_OPTIONS',  response);
             let json = response.json();
             return json;
         }).then((response) => {
-            console.log('zurück von shippingOptions.php',  response);
+            console.log('zurück von PAYPAL_CHECKOUT_GET_SHIPPING_OPTIONS',  response);
             if(response && response.error)
             {
                 // response.error wird imo zZ nicht verwendet
@@ -356,7 +371,7 @@ function ppcGetShippingOptions(data, actions)
             previousCountryCode = data.shipping_address.country_code;
             return actions.resolve();
         }).catch(reason => {
-            console.error(reason);
+            console.error('error in PAYPAL_CHECKOUT_GET_SHIPPING_OPTIONS', reason);
             actions.reject();
             // shippingOptions nur bei express
             // wenn der reason ein redirect ist gehen wir in den cart
@@ -404,7 +419,7 @@ function ppcCreateOrder(data, actions, button_container_selector)
             const page = window.XT.page.page_name;
 
             isExpress = true;
-            formData.append('ppcp_express_checkout', 'true');
+            formData.append('ppcp_express_checkout', 'true');// apple_pay_checkout  ppcp_express_checkout
 
             // check if cart or product
             const form = document.getElementById('main_product_form');
@@ -448,6 +463,17 @@ function ppcCreateOrder(data, actions, button_container_selector)
             formData.delete('action');
         }
 
+        if(data && data.shippingContact_ap)
+        {
+            formData.append('shippingContact_ap', JSON.stringify(data.shippingContact_ap));
+        }
+
+        if(data && data.billingContact_ap)
+        {
+            formData.append('billingContact_ap', JSON.stringify(data.billingContact_ap));
+        }
+
+
         return fetch(
             url,
             {
@@ -471,6 +497,33 @@ function ppcCreateOrder(data, actions, button_container_selector)
     }
 }
 
+function ppcCaptureOrder(ppcp_order_id)
+{
+    console.log({'fnc': 'ppcCaptureOrder', 'ppcp_order_id': ppcp_order_id});
+
+    ppcWaitModal();
+
+    let url = baseUrl + '?page=PAYPAL_CHECKOUT_ORDER_CAPTURE';
+
+    return fetch(
+        url,
+        {
+            method: 'POST',
+            body: { ppcp_order_id: ppcp_order_id},
+            redirect: "error"
+        }
+    ).then(function (response) {
+        console.log(response);
+        ppcWaitModal('hide');
+        return response.json();
+    }).then(function (resJson) {
+        console.log(resJson);
+        return resJson.id;
+    }).catch((error) => {
+        console.log('ppcCaptureOrder error', error);
+    });
+
+}
 
 function ppcOnApprove(data, actions)
 {
@@ -800,4 +853,381 @@ function ppcIsInViewport(element) {
         rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
+}
+
+async function ppcp_log_js(fnc, data)
+{
+    let url = baseUrl + '?page=PAYPAL_CHECKOUT_LOG';
+
+    return fetch(
+        url,
+        {
+            method: 'POST',
+            redirect: "error",
+            body: JSON.stringify({ ppcp_session_id: paypal_checkout_constant.PPCP_SESSION_ID, fnc: fnc, data: data })
+        }
+    ).then((response) => { })
+        .catch(error => {
+        console.error('PAYPAL_CHECKOUT_LOG error.', error);
+    });
+}
+
+/****
+ *
+ *      APPLE PAY
+ * */
+let getShippingOptions_ap = countryCode =>
+{
+    console.log('getShippingOptions_ap', "current country ap " + currentCountryCode_ap, "new country ap " + countryCode);
+
+    let url = baseUrl + '?page=PAYPAL_CHECKOUT_GET_SHIPPING_OPTIONS_AP';
+
+    return fetch(
+        url,
+        {
+            method: 'POST',
+            redirect: "error",
+            body: JSON.stringify({ country_code:countryCode })
+        }
+    ).then((response) => {
+        console.log('fast zurück von PAYPAL_CHECKOUT_GET_SHIPPING_OPTIONS_AP',  response);
+        return response.json();
+    }).then(function (resJson) {
+        console.log(resJson);
+        return resJson;
+    }).catch(error => {
+        console.error('PAYPAL_CHECKOUT_GET_SHIPPING_OPTIONS_AP error. returning empty array', error);
+        ppcp_log_js('error getShippingOptions_ap', error);
+        return [];
+    });
+}
+
+let setShippingMethod_ap = (countryCode, shippingCode) =>
+{
+    console.log('setShippingMethod_ap', "shippingCode " + shippingCode + ". countryCode " +countryCode);
+
+    let url = baseUrl + '?page=PAYPAL_CHECKOUT_SET_SHIPPING_METHOD_AP';
+
+    return fetch(
+        url,
+        {
+            method: 'POST',
+            redirect: "error",
+            body: JSON.stringify({
+                country_code: countryCode,
+                shipping_code: shippingCode
+            })
+        }
+    ).then((response) => {
+        console.log('fast zurück von PAYPAL_CHECKOUT_SET_SHIPPING_METHOD_AP',  response);
+        return response.json();
+    }).then(function (resJson) {
+        console.log(resJson);
+        return resJson;
+    }).catch(error => {
+        console.error('PAYPAL_CHECKOUT_SET_SHIPPING_METHOD_AP error. returning empty array', error);
+        return [];
+    });
+}
+
+let check_applepay = async () => {
+    return new Promise((resolve, reject) => {
+        let error_message = "";
+        if (!window.ApplePaySession) {
+            error_message = "This device does not support Apple Pay";
+        } else
+        if (!ApplePaySession.canMakePayments()) {
+            error_message = "This device, although an Apple device, is not capable of making Apple Pay payments";
+        }
+        if (error_message !== "") {
+            reject(error_message);
+        } else {
+            resolve();
+        }
+    });
+};
+
+async function setupApplepay(appendToContainer)
+{
+    let container = appendToContainer || "paypal_button_container_checkout";
+    check_applepay()
+        .then(() => {
+            const applepay = paypal.Applepay();
+
+            applepay.config()
+                .then(async applePayConfig => {
+                    console.log(applePayConfig);
+                    if (applePayConfig.isEligible) {
+
+                        let appleButton = document.createElement('apple-pay-button');
+                        appleButton.setAttribute('id', 'btn-apple-pay');
+                        appleButton.setAttribute('buttonstyle', paypal_checkout_constant.BUTTON_TYPE_AP); // TODO  payment config
+                        appleButton.setAttribute('type', 'buy');
+                        appleButton.setAttribute('locale', paypal_checkout_constant.language);
+
+                        document.getElementById(container).appendChild(appleButton);
+
+                        let shippingResult = await getShippingOptions_ap(currentCountryCode_ap);
+                        currentTotal_ap = shippingResult.newTotal;
+                        console.log('applepay shippings', shippingResult);
+
+                        appleButton.addEventListener('click', e => {
+
+                            let xt_form = ppcGetCheckoutForm();
+
+                            if(xtSimpleCheckForm_ppc(xt_form, true, true)) {
+
+
+                                const paymentRequest = {
+                                    countryCode: applePayConfig.countryCode,
+                                    merchantCapabilities: applePayConfig.merchantCapabilities,
+                                    supportedNetworks: applePayConfig.supportedNetworks,
+                                    currencyCode: applePayConfig.currencyCode,
+
+                                    billingContact: billingContact_ap,
+                                    shippingContact: shippingContact_ap,
+                                    shippingContactEditingMode: 'available', //storePickup
+
+                                    requiredShippingContactFields: ["name", "phone", "postalAddress"],
+                                    requiredBillingContactFields: ["name", /*"phone",*/ "postalAddress", "email"],
+
+                                    lineItems: [
+                                        {
+                                            label: subTotalLabel_ap,
+                                            type: "final",
+                                            amount: shippingResult.newSubtotal
+                                        },
+                                        {
+                                            label: paypal_checkout_constant.TEXT_SHIPPING_COSTS + " " + shippingResult.shipping_label,
+                                            type: "final",
+                                            amount: shippingResult.shipping_price
+                                        }
+                                    ],
+
+
+                                    total: {
+                                        label: totalLabel_ap,
+                                        type: "final",
+                                        amount: shippingResult.newTotal
+                                    },
+                                    shippingMethods: shippingResult.shippings
+                                };
+
+
+                                const session = new ApplePaySession(4, paymentRequest);
+
+
+                                console.log('apple pay session created', session);
+
+
+                                session.oncouponcodechanged = (event) => {
+                                    console.log('on coupon code changed', event);
+                                }
+
+
+                                session.onpaymentmethodselected_DISABLED = (event) => {
+                                    console.log('on payment method selected. zZ machen wir hier nichts', event);
+
+                                    // Define ApplePayPaymentMethodUpdate based on the selected payment method.
+                                    // No updates or errors are needed, pass an empty object.
+                                    // empty object funktioniert leider nicht
+                                    const update = {};
+                                    session.completePaymentMethodSelection(update);
+                                }
+
+                                session.onshippingcontactselected = (event) => {
+
+                                    console.log('applepay on shipping contact selected', event);
+
+                                    // Define ApplePayShippingContactUpdate based on the selected shipping contact.
+                                    if (event.shippingContact.countryCode !== currentCountryCode_ap) {
+                                        // würde uns eigentlich reichen
+                                        // aber die event handler müssen immer ein update object haben
+                                        // und dieses mus ein newTotal lineItem haben
+                                    }
+
+                                    getShippingOptions_ap(event.shippingContact.countryCode)
+                                        .then(shippingResult => {
+
+                                            let type = 'final';
+                                            let errors = [];
+                                            if (shippingResult.shippings.length === 0) {
+                                                type = 'pending';
+                                                errors = [new ApplePayError("shippingContactInvalid", "country", paypal_checkout_constant.WARNING_NO_SHIPPING_FOR_ZONE)];
+                                            }
+
+                                            if (shippingResult.success) {
+                                                const update = {
+                                                    newTotal: {
+                                                        label: totalLabel_ap,
+                                                        type: type,
+                                                        amount: shippingResult.newTotal,
+                                                    },
+                                                    newShippingMethods: shippingResult.shippings,
+
+                                                    errors: errors
+
+                                                };
+                                                session.completeShippingContactSelection(update);
+                                                currentCountryCode_ap = event.shippingContact.countryCode;
+                                                currentTotal_ap = shippingResult.newTotal;
+                                            } else {
+                                                throw new Error(shippingResult.msg)
+                                            }
+                                        })
+                                        .catch(error => {
+                                            console.log(' error in onshippingcontactselected while retrieving shipping options', error);
+                                            ppcp_log_js('error onshippingcontactselected > getShippingOptions_ap', error);
+                                        });
+                                }
+
+                                session.onshippingmethodselected = (event) => {
+                                    console.log('applepay on shipping method selected', event);
+                                    // todo hier ansetzen für onepage
+
+                                    setShippingMethod_ap(currentCountryCode_ap, event.shippingMethod.identifier)
+                                        .then(shippingResult => {
+
+                                            if (shippingResult.success) {
+                                                const update = {
+                                                    newTotal: {
+                                                        label: totalLabel_ap,
+                                                        type: "final",
+                                                        amount: shippingResult.newTotal,
+                                                    }
+                                                    //newShippingMethods: shippingResult.shippings
+
+                                                };
+
+                                                session.completeShippingMethodSelection(update);
+                                                currentTotal_ap = shippingResult.newTotal;
+                                            } else {
+                                                throw new Error(shippingResult.msg)
+                                            }
+                                        })
+                                        .catch(error => {
+                                            console.log(' error in onshippingmethodselected while retrieving shipping options', error);
+                                            ppcp_log_js('error onshippingmethodselected > setShippingMethod_ap', error);
+                                        });
+                                }
+
+                                session.onvalidatemerchant = (event) => {
+                                    console.log('on validate merchant', event);
+                                    applepay.validateMerchant({
+                                        validationUrl: event.validationURL,
+                                        displayName: "My Store"
+                                    })
+                                        .then(validateResult => {
+
+                                            console.log('on validate merchant validateResult', validateResult);
+                                            session.completeMerchantValidation(validateResult.merchantSession);
+                                        })
+                                        .catch(validateError => {
+                                            console.error('validateError', validateError);
+                                            ppcp_log_js('error onvalidatemerchant', error);
+                                            session.abort();
+                                        });
+                                };
+
+                                session.onpaymentauthorized = (event) => {
+                                    console.log('on apple payment authorized', event);
+                                    console.log('Your billing address is:', event.payment.billingContact);
+                                    console.log('Your shipping address is:', event.payment.shippingContact);
+                                    // The `billingContact` and `shippingContact` object use the `ApplePayPaymentContact` format.
+                                    // Find more details about this object at this URL:
+                                    // https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypaymentcontact
+                                    ppcCreateOrder({
+                                        billingContact_ap: event.payment.billingContact,
+                                        shippingContact_ap: event.payment.shippingContact
+                                    })
+                                        .then((ppOrderId) => {
+                                            console.log('ppc order created. ppOrderId', ppOrderId);
+                                            applepay.confirmOrder({
+                                                orderId: ppOrderId,
+                                                token: event.payment.token,
+                                                billingContact: event.payment.billingContact,
+                                                shippingContact: event.payment.shippingContact
+                                            })
+                                                .then(confirmResult => {
+                                                    console.log('confirmResult', confirmResult)
+
+                                                    // Submit approval to the server and authorize or capture the order.
+                                                    ppcCaptureOrder(ppOrderId)
+                                                        .then(captureResult => {
+                                                            console.log('ppc capture result applepay. setting ApplePaySession.STATUS_SUCCESS', captureResult);
+
+                                                            session.completePayment(ApplePaySession.STATUS_SUCCESS);
+
+                                                            ppcWaitModal();
+                                                            window.location.href = baseUrl + '?page=checkout&page_action=payment_process'
+                                                        })
+                                                        .catch(captureError => {
+                                                            console.error('ppc error when capture applepay', captureError);
+                                                            session.completePayment(ApplePaySession.STATUS_FAILURE);
+                                                            ppcp_log_js('error when capture applepay. onpaymentauthorized > ppcCreateOrder > confirmOrder > ppcCaptureOrder', captureError);
+                                                        });
+
+                                                })
+                                                .catch(confirmError => {
+                                                    if (confirmError) {
+                                                        console.error('Error confirming order with applepay token', confirmError);
+                                                        session.completePayment(ApplePaySession.STATUS_FAILURE);
+                                                        ppcp_log_js('Error confirming order with applepay token. onpaymentauthorized > ppcCreateOrder > confirmOrder',
+                                                            {
+                                                                error: confirmError, input: {
+                                                                    orderId: ppOrderId,
+                                                                    token: event && event.payment ? event.payment.token : "n/a",
+                                                                    billingContact: event && event.payment ? event.payment.billingContact : "n/a",
+                                                                    shippingContact: event && event.payment ? event.payment.shippingContact : "n/a"
+                                                                }
+                                                            }
+                                                        );
+                                                    }
+                                                });
+
+                                        })
+                                        .catch((error) => {
+                                            console.log('error onpaymentauthorized > ppcCreateOrder', error);
+                                            session.completePayment(ApplePaySession.STATUS_FAILURE);
+                                            ppcp_log_js('error onpaymentauthorized > ppcCreateOrder', error);
+                                        });
+
+                                };
+
+                                session.oncancel = event => {
+                                    console.log('apple pay session canceled', event);
+
+                                    let url = baseUrl + '?page=PAYPAL_CHECKOUT_RESET_ADDRESSES_AP';
+
+                                    return fetch(
+                                        url,
+                                        {
+                                            method: 'POST',
+                                            //redirect: "error",
+                                            body: JSON.stringify({})
+                                        }
+                                    ).then((response) => {
+                                        console.log('fast zurück von PAYPAL_CHECKOUT_RESET_ADDRESSES_AP', response);
+                                        return response.json();
+                                    }).then(function (resJson) {
+                                        console.log(resJson);
+                                        return resJson;
+                                    }).catch(error => {
+                                        console.error('PAYPAL_CHECKOUT_RESET_ADDRESSES_AP error', error);
+                                        return [];
+                                    });
+                                };
+
+                                session.begin();
+                            } // form validated
+                        });
+                    }
+                })
+                .catch(applePayConfigError => {
+                    console.error('Error while fetching Apple Pay configuration.', applePayConfigError);
+                });
+        })
+        .catch(errorMessage => {
+            console.log(errorMessage)
+        })
 }

@@ -1,3 +1,37 @@
+## [3.5.3]
+- Abschaltung SOFORT über Paypal https://www.paypal.com/de/cshelp/article/help1145
+  Die Zahlungsweise xt_paypal_checkout_sofort wird durch das Update entfernt
+- Fehler im Zusammenhang mit ppcp_session_id behoben
+- Apple Pay: Prüfung Pflichtfelder auf confirmation hinzugefügt
+- Installer und 3.5.0 updater aktualisiert um Ausgabe, wenn Apple's association-file nicht kopiert werden konnte
+- css für Safari  form#checkout-form .xt-form-required.xt-form-error  Checkbox wird nicht als Fehler markiert
+
+## [3.5.2]
+- IPN Verarbeitung überarbeitet
+  Wenn refunds in PayPal ausgeführt werden wird die IPN in xt richtig zugeordnet,
+  auch wenn als Rechnungsnummer keine xt-Bestell-ID angegeben wird
+- Logs führen eine ppcp_session_id um js-Log und sdk-Log zu verbinden
+- für Apple Pay wird keine payment_source erzeugt
+- customers_federal_state_code wird nicht an AP gesendet wenn leer (null)
+- requiredBillingContactFields ohne phone
+
+## [3.5.1]
+- javascript server logging xtLogs/xt_paypal_checkout_js.log
+- kleiner fix im logging
+
+## [3.5.0]
+- Apple Pay (für registrierte Kunden)
+- FIX fehlende Währungscodes an den APM-Bestellungen
+
+## [3.4.5]
+- FIX IPN-Validierung
+  - neue Plugin-Option Webhook-ID
+  - wird automatisch beim Onboarding gesetzt
+  - kann beim Speichern der Plugin-Einstellungen automatisch gesetzt werden
+  - kann aus der Ausgabe 'Onboarding Status anzeigen' kopiert werden
+- FIX Statusmapping Rückzahlungen
+  uU wurde der gewählte Status nicht übernommen
+
 ## [3.4.4]
 - FIX it_CH ist als locale für PayPal nicht bekannt
 - Webhook-Validierung eingebaut, nicht aktiviert

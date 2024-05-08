@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_plg_products_attributes_description (
   attributes_id INT NOT NULL,
   language_code char(2) NOT NULL,
   attributes_name varchar(255) default NULL,
-  attributes_desc text,
+  attributes_desc_html text,
   PRIMARY KEY  (attributes_id,language_code)
 ) ENGINE=".DB_STORAGE_ENGINE." DEFAULT CHARSET=utf8;
 ");

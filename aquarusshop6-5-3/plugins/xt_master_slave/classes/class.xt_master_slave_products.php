@@ -1234,7 +1234,7 @@ class master_slave_products
 				}
 				$oData_array[$rows] = array('id' => $odata->fields['attributes_id'],
 					'text' => $odata->fields['attributes_name'],
-					'desc' => $odata->fields['attributes_desc'],
+					'desc' => $odata->fields['attributes_desc_html'],
 					'model'=>$odata->fields['attributes_model'],
 					'image'=>$odata->fields['attributes_image'],
 					'attributes_templates'=>$odata->fields['attributes_templates_name'],
@@ -1269,7 +1269,7 @@ class master_slave_products
                         //$oData_array[$rows]['data'] = array();
 						$oData_array[$rows]['data'][$cols] = array('id' => $vdata->fields['attributes_id'],
 							'text' => $vdata->fields['attributes_name'],
-							'desc' => $vdata->fields['attributes_desc'],
+							'desc' => $vdata->fields['attributes_desc_html'],
 							'text' => $vdata->fields['attributes_name'],
 							'model'=>$vdata->fields['attributes_model'],
 							'image'=>$vdata->fields['attributes_image'],

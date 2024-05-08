@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-04-21 11:39:15
+/* Smarty version 4.3.2, created on 2024-05-08 17:56:12
   from '/homepages/2/d41324517/htdocs/aquarus_shop/plugins/xt_cart_popup/templates/ajax_cart.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_6624dec375cc16_10631441',
+  'unifunc' => 'content_663ba09c366a92_14055769',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6624dec375cc16_10631441 (Smarty_Internal_Template $_smarty_tpl) {
+function content_663ba09c366a92_14055769 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/homepages/2/d41324517/htdocs/aquarus_shop/xtFramework/library/smarty/xt_plugins/function.link.php','function'=>'smarty_function_link',),1=>array('file'=>'/homepages/2/d41324517/htdocs/aquarus_shop/xtFramework/library/smarty/xt_plugins/function.txt.php','function'=>'smarty_function_txt',),));
 ?>
 <div id="xt_cart_popup" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="xt_cart_popup_label" data-ajax-url="<?php echo smarty_function_link(array('page'=>'cart','paction'=>'index'),$_smarty_tpl);?>

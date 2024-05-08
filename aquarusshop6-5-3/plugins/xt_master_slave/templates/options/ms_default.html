@@ -10,7 +10,9 @@
 	<ul>
 	{foreach name=outer item=options_data from=$options}
 <li>
-	<div class="bold">{$options_data.text}: <span class="currentSelectedOptionText">{$options_data.selected}</span></div>
+	<div class="bold">{$options_data.text}: <span class="currentSelectedOptionText">{$options_data.selected}</span>
+		{if $options_data.desc}<br />{$options_data.desc}{/if}
+	</div>
 
 
 	<span>

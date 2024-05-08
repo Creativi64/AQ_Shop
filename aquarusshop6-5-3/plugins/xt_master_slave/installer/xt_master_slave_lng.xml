@@ -72,6 +72,25 @@
 	</de>
 </phrase>
 <phrase>
+	<key>TEXT_ATTRIBUTES_DESC_HTML</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Description]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Beschreibung]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Description]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Description]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Descrizione]]></value>
+	</it>
+</phrase>
+<phrase>
 	<key>HEADING_XT_MASTER_SLAVE</key>
 	<class>admin</class>
 	<en>
