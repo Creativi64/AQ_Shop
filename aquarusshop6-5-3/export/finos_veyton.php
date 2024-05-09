@@ -91,7 +91,7 @@ if (!password_verify($password, "\$2y\$10\$exXTd9T/eMIeSFSXaFEamOwQ5Uhw/IK9j44ha
     */  
   
 
-   // Aktion w�hlen und ausf�hren ---------------------------------------------------------
+   // Aktion wählen und ausführen ---------------------------------------------------------
 
             if ($_SERVER['REQUEST_METHOD']=='POST')
             {
@@ -2108,7 +2108,7 @@ function update_order()
       )
     ));
 
-    $response =  CallAPI('POST','https://www.aquarusshop.de/index.php?page=xt_api',$data);
+    $response =  CallAPI('POST','https://shop.aquarus.net/index.php?page=xt_api',$data);
  
     //  $sql_data_array = array('orders_status' => $status,
     //                          'last_modified' => $btime); // 'now()'
@@ -2256,8 +2256,6 @@ function update_order()
   //Ergebnis als XML ausgeben
    create_xml ($header . $schema . $footer);
 
-
-
 }
  
 // Call xtcommerce api to update order status
@@ -2336,7 +2334,7 @@ function save_seo_url()
          $store_id          = isset($_POST['store_id']) ? $_POST['store_id']:"";
 
          $sql_data_array = array('url_md5'           => $url_md5,
-                                 'url_text'          => $url_text,
+                                 'url_text'          => "",//$url_text,
                                  'language_code'     => $language_code,
                                  'link_type'         => $link_type,
                                  'link_id'           => $link_id,
@@ -2354,13 +2352,13 @@ function save_seo_url()
                                    'link_id'           => $link_id);
 
           $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
-          database_insert(TABLE_SEO_URL, $sql_data_array);
+       //   database_insert(TABLE_SEO_URL, $sql_data_array);
 
 
       }
       elseif ($exists==1)    //Aktualisieren
       {
-          database_insert(TABLE_SEO_URL, $sql_data_array, 'update', 'url_text = \'' . $url_text . '\' and language_code = \'' . $language_code . '\'');
+       //   database_insert(TABLE_SEO_URL, $sql_data_array, 'update', 'url_text = \'' . $url_text . '\' and language_code = \'' . $language_code . '\'');
       }
 
 

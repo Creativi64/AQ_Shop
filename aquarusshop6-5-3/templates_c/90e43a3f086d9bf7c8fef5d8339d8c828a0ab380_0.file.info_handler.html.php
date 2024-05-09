@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-05-08 17:56:11
+/* Smarty version 4.3.2, created on 2024-05-08 20:18:36
   from '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/pages/info_handler.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_663ba09bbac1b6_49429803',
+  'unifunc' => 'content_663bc1fc1348b8_51782403',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_663ba09bbac1b6_49429803 (Smarty_Internal_Template $_smarty_tpl) {
+function content_663bc1fc1348b8_51782403 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['error']->value) {?>
     <div class="alert alert-danger alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
