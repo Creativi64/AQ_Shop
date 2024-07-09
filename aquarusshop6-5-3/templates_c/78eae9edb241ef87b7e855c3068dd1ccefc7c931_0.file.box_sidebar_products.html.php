@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-05-08 20:07:28
+/* Smarty version 4.3.2, created on 2024-07-09 16:23:51
   from '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/includes/box_sidebar_products.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_663bbf60d1bf77_94139581',
+  'unifunc' => 'content_668d47f7e2ded6_33414566',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:includes/product_info_label.html' => 1,
   ),
 ),false)) {
-function content_663bbf60d1bf77_94139581 (Smarty_Internal_Template $_smarty_tpl) {
+function content_668d47f7e2ded6_33414566 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/homepages/2/d41324517/htdocs/aquarus_shop/xtFramework/library/smarty/xt_plugins/function.link.php','function'=>'smarty_function_link',),1=>array('file'=>'/homepages/2/d41324517/htdocs/aquarus_shop/xtFramework/library/smarty/xt_plugins/function.hook.php','function'=>'smarty_function_hook',),2=>array('file'=>'/homepages/2/d41324517/htdocs/aquarus_shop/xtFramework/library/smarty/xt_plugins/function.img.php','function'=>'smarty_function_img',),3=>array('file'=>'/homepages/2/d41324517/htdocs/aquarus_shop/xtFramework/library/smarty/xt_plugins/function.txt.php','function'=>'smarty_function_txt',),4=>array('file'=>'/homepages/2/d41324517/htdocs/aquarus_shop/xtFramework/library/vendor/smarty/smarty/libs/plugins/function.math.php','function'=>'smarty_function_math',),5=>array('file'=>'/homepages/2/d41324517/htdocs/aquarus_shop/xtFramework/library/vendor/smarty/smarty/libs/plugins/modifier.count.php','function'=>'smarty_modifier_count',),));
 $_smarty_tpl->_assignInScope('visible_items', "1");?>
 
@@ -89,6 +89,19 @@ echo htmlspecialchars((string)$_smarty_tpl->tpl_vars['module_data']->value['prod
 } else {
 echo htmlspecialchars((string)$_smarty_tpl->tpl_vars['module_data']->value['products_name'], ENT_QUOTES, 'UTF-8', true);
 }
+$_prefixVariable1=ob_get_clean();
+ob_start();
+if ($_smarty_tpl->tpl_vars['module_data']->value['products_image_data']['copyright_holder']) {
+echo " &copy; ";
+echo (string)$_smarty_tpl->tpl_vars['module_data']->value['products_image_data']['copyright_holder'];
+}
+$_prefixVariable2=ob_get_clean();
+ob_start();
+if ($_smarty_tpl->tpl_vars['module_data']->value['products_image_data']['media_name']) {
+echo htmlspecialchars((string)$_smarty_tpl->tpl_vars['module_data']->value['products_image_data']['media_name'], ENT_QUOTES, 'UTF-8', true);
+} else {
+echo htmlspecialchars((string)$_smarty_tpl->tpl_vars['module_data']->value['products_name'], ENT_QUOTES, 'UTF-8', true);
+}
 $_prefixVariable3=ob_get_clean();
 ob_start();
 if ($_smarty_tpl->tpl_vars['module_data']->value['products_image_data']['copyright_holder']) {
@@ -96,20 +109,7 @@ echo " &copy; ";
 echo (string)$_smarty_tpl->tpl_vars['module_data']->value['products_image_data']['copyright_holder'];
 }
 $_prefixVariable4=ob_get_clean();
-ob_start();
-if ($_smarty_tpl->tpl_vars['module_data']->value['products_image_data']['media_name']) {
-echo htmlspecialchars((string)$_smarty_tpl->tpl_vars['module_data']->value['products_image_data']['media_name'], ENT_QUOTES, 'UTF-8', true);
-} else {
-echo htmlspecialchars((string)$_smarty_tpl->tpl_vars['module_data']->value['products_name'], ENT_QUOTES, 'UTF-8', true);
-}
-$_prefixVariable5=ob_get_clean();
-ob_start();
-if ($_smarty_tpl->tpl_vars['module_data']->value['products_image_data']['copyright_holder']) {
-echo " &copy; ";
-echo (string)$_smarty_tpl->tpl_vars['module_data']->value['products_image_data']['copyright_holder'];
-}
-$_prefixVariable6=ob_get_clean();
-echo smarty_function_img(array('img'=>$_smarty_tpl->tpl_vars['module_data']->value['products_image'],'type'=>'m_info','class'=>"productImageBorder img-responsive",'alt'=>$_prefixVariable3.$_prefixVariable4,'title'=>$_prefixVariable5.$_prefixVariable6),$_smarty_tpl);?>
+echo smarty_function_img(array('img'=>$_smarty_tpl->tpl_vars['module_data']->value['products_image'],'type'=>'m_info','class'=>"productImageBorder img-responsive",'alt'=>$_prefixVariable1.$_prefixVariable2,'title'=>$_prefixVariable3.$_prefixVariable4),$_smarty_tpl);?>
 
                             </a>
                         <?php }?>
