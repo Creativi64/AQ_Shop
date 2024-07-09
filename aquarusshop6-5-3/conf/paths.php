@@ -71,6 +71,6 @@ define('_DIR_INFO', 'info/');
 
 // reload backend when changed
 define('PHP_EXTJS_DOC_ROOT',_SRV_WEBROOT._SRV_WEB_FRAMEWORK.'library/PhpExt');
-define('CK_EDITOR_VERSION','4.14.0');
+define('CK_EDITOR_VERSION','4.24.0-lts');
 define('CK_EDITOR_DISTRIBUTION','full');
 define('CK_EDITOR_SHOW_ON_FOCUS_ONLY', false);
