@@ -6,29 +6,23 @@ let count = 0;
 
 const ppc_button_selector = '#paypal_button_container';
 
-function enableFoundingSources()
-{
-    if (window.paypal && window.paypal.Buttons)
-    {
+function enableFoundingSources() {
+    if (window.paypal && window.paypal.Buttons) {
         try {
             paypal.getFundingSources().forEach(function (fundingSource) {
                 console.log(fundingSource, paypal.isFundingEligible(fundingSource));
 
-                if (paypal.isFundingEligible(fundingSource))
-                {
+                if (paypal.isFundingEligible(fundingSource)) {
                     let isApplepay = false;
                     let isApplepayAvail = false;
-                    if(fundingSource === 'applepay')
-                    {
+                    if (fundingSource === 'applepay') {
                         isApplepay = true;
                         if (!window.ApplePaySession) {
                             console.log("This device does not support Apple Pay");
                         } else if (!ApplePaySession.canMakePayments()) {
                             console.log("This device, although an Apple device, is not capable of making Apple Pay payments");
-                        }
-                        else
+                        } else
                             isApplepayAvail = true;
-
                     }
                     let me = document.getElementById("xt_paypal_checkout_" + fundingSource);
                     if (me && (!isApplepay || isApplepayAvail)) {
@@ -39,28 +33,22 @@ function enableFoundingSources()
                     }
                 }
             });
-        }
-        catch(e)
-        {
+        } catch (e) {
             console.warn('enableFoundingSources: error');
             console.log(e)
         }
-    }
-    else
-    {
+    } else {
         console.warn("paypal checkout no available. could not resolve eligible fundingSource's")
     }
 }
 
 
-function enablePaypalCardForm()
-{
+function enablePaypalCardForm() {
     try {
-        console.log("paypal.HostedFields.isEligible = " + paypal.HostedFields.isEligible());
+        
+        const cardFields = paypal.CardFields({
 
-        const cardFields = paypal.HostedFields.render({
-
-            styles: {
+            style: {
                 'input': {
                     'font-size': '12pt',
                     'color': '#3A3A3A',
@@ -73,101 +61,118 @@ function enablePaypalCardForm()
                     'color': 'green'
                 },
                 '.invalid': {
-                    'color': 'red'
-                }
-            },
-
-            fields: {
-                number: {
-                    selector: '#card_number',
-                    placeholder: "4111 1111 1111 1111"
-                },
-                cvv: {
-                    selector: '#cvv',
-                    placeholder: '•••'
-                },
-
-                expirationDate: {
-                    selector: '#expiration_date',
-                    placeholder: "MM/YY"
+                    'color': 'purple'
                 }
             },
 
             createOrder: (data, actions) => ppcCreateOrder('card_processing', actions),
-            onApprove: (data, actions) => ppcOnApprove(data, actions)
-        }).then((cardFields) => {
+            onApprove: (data, actions) => { console.log(data, actions)},
+            onError: function (err) {
+                console.log(err);
+                if (err.message) alert(err.message);
+                ppcWaitModal('hide');
+                //window.location.href = window.XT.baseUrl + '?page=checkout&page_action=payment&error=ERROR_PAYMENT'
+            }
+        });
+
+        if(cardFields.isEligible()) {
+
+
+            const cardStyle = {
+                'input': {
+                    'font-family': 'courier, monospace',
+                    'padding': '0.5rem 0.75rem'
+                },
+            };
+
+            let cf = cardFields.NumberField({
+                style: cardStyle,
+                placeholder: "4111 1111 1111 1111"
+            }).render("#card_number");
+
+            cardFields.ExpiryField({
+                style: cardStyle,
+                placeholder: "MM/JJ"
+            }).render("#card_expiration_date");
+
+            cardFields.CVVField({
+                style: cardStyle,
+                placeholder: "..."
+            }).render("#card_cvv");
+
+            cardFields.NameField({
+                style: cardStyle,
+                placeholder: "TODO"
+            }).render("#card_holder_name");
+
+
 
             document.getElementById("card_form").addEventListener("submit", (event) => {
                 event.preventDefault();
                 console.log('submitting card form');
 
-                let cardFormValid = true;
-                Object.keys(cardFields._state.fields).forEach(cardField => {
-                    console.log(`key=${cardField}  value=${cardFields._state.fields[cardField]}`);
-                    if(!cardFields._state.fields[cardField].isValid)
+                cardFields.getState().then( data => {
+                    return data.isFormValid;
+                }).then( cardFormValid => {
+
+                    let xt_form = ppcGetCheckoutForm();
+                    let xt_form_valid = xtSimpleCheckForm_ppc(xt_form)
+                    if(cardFormValid && xt_form_valid)
                     {
-                        cardFormValid = false;
-                        cardFields._fields[cardField].containerElement.style.backgroundColor = '#eebaba';
-                        setTimeout(function(div)
-                        {
-                            div.style.backgroundColor = 'unset';
-                        } ,2000, cardFields._fields[cardField].containerElement);
+
+
+                        if (cardFormValid && xt_form_valid) {
+
+                            const errContainer = document.getElementById('card_container_error');
+                            errContainer.innerHTML = '';
+                            errContainer.style.display = 'none';
+
+                            ppcWaitModal();
+                            cardFields
+                                .submit({
+                                    cardholderName: document.getElementById("card_holder_name").value,
+                                    cardNumber: document.getElementById("card_number").value,
+                                })
+                                .then((data) => {
+                                    console.log(data);
+                                    ppcWaitModal();
+                                    xt_form.submit();
+                                })
+                                .catch((err) => {
+                                    ppcWaitModal('hide');
+                                    console.log("Payment could not be processed! " + JSON.stringify(err));
+
+                                    let errorMsg = '';
+                                    err.details.forEach(errDetail => {
+                                        errorMsg += errDetail.description + '. ';
+                                    });
+                                    errContainer.innerHTML += errorMsg;
+                                    errContainer.style.display = 'block';
+                                });
+                        }
                     }
                 });
-
-                let xt_form = ppcGetCheckoutForm();
-
-                if(cardFormValid && xtSimpleCheckForm_ppc(xt_form)) {
-
-                    const errContainer = document.getElementById('card_container_error');
-                    errContainer.innerHTML = '';
-                    errContainer.style.display = 'none';
-
-                    ppcWaitModal();
-                    cardFields
-                        .submit({
-                            cardholderName: document.getElementById("card_holder_name").value,
-                        })
-                        .then((data) => {
-                            console.log(data);
-                            ppcWaitModal();
-                            xt_form.submit();
-                        })
-                        .catch((err) => {
-                            ppcWaitModal('hide');
-                            console.log("Payment could not be processed! " + JSON.stringify(err));
-
-                            let errorMsg = '';
-                            err.details.forEach(errDetail => {
-                                errorMsg += errDetail.description + '. ';
-                            });
-                            errContainer.innerHTML += errorMsg;
-                            errContainer.style.display = 'block';
-                        });
-                }
             });
-        });
-    }
-    catch(e)
-    {
+
+        }
+
+    } catch (e) {
         console.warn('enablePaypalCardForm: error');
         console.log(e);
     }
 }
 
 
-function enablePaypalButton(fundingSource,position)
-{
-    if (window.paypal && window.paypal.Buttons)
-    {
+function enablePaypalButton(fundingSource, position) {
+    if (window.paypal && window.paypal.Buttons) {
+
         console.log('creating button for fundingSource ' + fundingSource, paypal_checkout_constant);
 
-        let selector = ppc_button_selector+'_'+position;
+        let selector = ppc_button_selector + '_' + position;
 
         try {
             ppcFix_button_changed_html(selector);
-        }
-        catch(e){
+        } catch (e) {
             console.log('ppcFix_button_changed_html failed', e);
         }
 
@@ -176,10 +181,11 @@ function enablePaypalButton(fundingSource,position)
 
                 fundingSource: fundingSource,
                 style: {
-                    label: 'pay',
+                    label: 'buynow',
                     height: paypal_checkout_constant.BUTTON_SIZE,    // medium | large | responsive
                     shape: paypal_checkout_constant.BUTTON_SHAPE,      // pill | rect
                     color: paypal_checkout_constant.BUTTON_COLOR,       // gold | blue | silver | white | bla
+                    tagline: false
                 },
                 createOrder: (data, actions) => ppcCreateOrder(data, actions),
                 onApprove: (data, actions) => ppcOnApprove(data, actions),
@@ -245,24 +251,18 @@ function enablePaypalButton(fundingSource,position)
 
                 }
             }).render(selector);
-        }
-        catch (e)
-        {
-            console.warn('enablePaypalButton: error creating paypal button for selector ['+ppc_button_selector + '_' + position+']');
+        } catch (e) {
+            console.warn('enablePaypalButton: error creating paypal button for selector [' + ppc_button_selector + '_' + position + ']');
             console.log(e)
         }
-    }
-    else
-    {
+    } else {
         console.warn('enablePaypalButton: paypal checkout no available. could not create button for fundingSource ' + fundingSource)
     }
 }
 
 
-function renderAllEligibleButtons()
-{
-    if (window.paypal && window.paypal.Buttons)
-    {
+function renderAllEligibleButtons() {
+    if (window.paypal && window.paypal.Buttons) {
 
         paypal.getFundingSources().forEach(function (fundingSource) {
 
@@ -276,7 +276,7 @@ function renderAllEligibleButtons()
                 onError: function (err) {
                     console.log(err);
                     ppcWaitModal('hide');
-                    window.location.href = window.XT.baseUrl + '?page=checkout&page_action=payment&error=ERROR_PAYMENT'
+                    window.location.replace(window.XT.baseUrl + '?page=checkout&page_action=payment&error=ERROR_PAYMENT');
                 },
                 onCancel: function (data) {
                     console.log(data);
@@ -286,18 +286,14 @@ function renderAllEligibleButtons()
 
         });
 
-    }
-    else
-    {
+    } else {
         console.warn('renderAllEligibleButtons: paypal checkout no available');
     }
 }
 
-function renderAllEligibleButtonsCart(position)
-{
+function renderAllEligibleButtonsCart(position) {
     console.log("renderAllEligibleButtonsCart position:" + position);
-    if (window.paypal && window.paypal.Buttons)
-    {
+    if (window.paypal && window.paypal.Buttons) {
         try {
             var button = paypal.Buttons({
 
@@ -308,7 +304,7 @@ function renderAllEligibleButtonsCart(position)
                     height: paypal_checkout_constant.BUTTON_SIZE,    // medium | large | responsive
                     shape: paypal_checkout_constant.BUTTON_SHAPE,      // pill | rect
                     color: paypal_checkout_constant.BUTTON_COLOR,       // gold | blue | silver | white | black
-                    tagline: 'true'
+                    tagline: false
 
                 },
                 createOrder: (data, actions, container) => ppcCreateOrder(data, actions, ppc_button_selector + '_' + position),
@@ -317,32 +313,26 @@ function renderAllEligibleButtonsCart(position)
                     console.log(data);
                     ppcWaitModal('hide');
                 },
-                onShippingChange:  (data, actions) => ppcGetShippingOptions(data, actions),
+                onShippingChange: (data, actions) => ppcGetShippingOptions(data, actions),
             }).render(ppc_button_selector + '_' + position);
-        }
-        catch(e)
-        {
-            console.warn('renderAllEligibleButtonsCart: error creating paypal button for selector ['+ppc_button_selector + '_' + position+']');
+        } catch (e) {
+            console.warn('renderAllEligibleButtonsCart: error creating paypal button for selector [' + ppc_button_selector + '_' + position + ']');
             console.log(e)
         }
-    }
-    else
-    {
+    } else {
         console.warn('window.paypal not available');
     }
 }
 
-function ppcGetShippingOptions(data, actions)
-{
+function ppcGetShippingOptions(data, actions) {
     console.log(data, actions);
     console.log("previous country " + previousCountryCode, "current country " + data.shipping_address.country_code);
 
-    if(data.shipping_address.country_code != previousCountryCode || previousCountryCode == "")
-    {
+    if (data.shipping_address.country_code != previousCountryCode || previousCountryCode == "") {
 
         let url = baseUrl + '?page=PAYPAL_CHECKOUT_GET_SHIPPING_OPTIONS';
 
-        if (count > 0){
+        if (count > 0) {
             operation = "replace"; // zur zeit wird eh immer ge add'ed in shippingOptions.php
         }
         count++;
@@ -352,21 +342,24 @@ function ppcGetShippingOptions(data, actions)
             {
                 method: 'POST',
                 redirect: "error",
-                body: JSON.stringify({oderID:data.orderID, shipping_address:data.shipping_address, operation: operation})
+                body: JSON.stringify({
+                    oderID: data.orderID,
+                    shipping_address: data.shipping_address,
+                    operation: operation
+                })
             }
         ).then((response) => {
-            console.log('fast zurück von PAYPAL_CHECKOUT_GET_SHIPPING_OPTIONS',  response);
+            console.log('fast zurück von PAYPAL_CHECKOUT_GET_SHIPPING_OPTIONS', response);
             let json = response.json();
             return json;
         }).then((response) => {
-            console.log('zurück von PAYPAL_CHECKOUT_GET_SHIPPING_OPTIONS',  response);
-            if(response && response.error)
-            {
+            console.log('zurück von PAYPAL_CHECKOUT_GET_SHIPPING_OPTIONS', response);
+            if (response && response.error) {
                 // response.error wird imo zZ nicht verwendet
                 // wäre eine ander mgl zb für class.cart.php:_getContent_bottom und änderungen im cart
                 // fangen wir zZ über redirect-error
                 actions.reject();
-                window.location.href = window.XT.baseUrl + '?page=cart';
+                window.location.replace(window.XT.baseUrl + '?page=cart');
             }
             previousCountryCode = data.shipping_address.country_code;
             return actions.resolve();
@@ -377,15 +370,14 @@ function ppcGetShippingOptions(data, actions)
             // wenn der reason ein redirect ist gehen wir in den cart
             // bestimmt hat sich irgend etwas im cart geändert
             // siehe class.cart.php:_getContent_bottom
-            window.location.href = window.XT.baseUrl + '?page=cart';
+            window.location.replace(window.XT.baseUrl + '?page=cart');
         });
     }
     return actions.resolve();
 }
 
 
-function ppcCreateOrder(data, actions, button_container_selector)
-{
+function ppcCreateOrder(data, actions, button_container_selector) {
     console.log({'fnc': 'ppcCreateOrder', 'data': data, 'actions': actions, 'container': button_container_selector});
 
     previousCountryCode = "";
@@ -394,27 +386,31 @@ function ppcCreateOrder(data, actions, button_container_selector)
 
     ppcWaitModal();
 
-    const form =  ppcGetCheckoutForm();
+    const form = ppcGetCheckoutForm();
     let valid = true;
-    if(form) valid = xtSimpleCheckForm_ppc(form, true, true);
+    if (form) valid = xtSimpleCheckForm_ppc(form, true, true);
 
     let isExpress = false;
     let url = baseUrl + '?page=PAYPAL_CHECKOUT_ORDER_CREATE';
 
     const page = window.XT.page.page_name;
 
-    if(valid) {
+    if (valid) {
         const formData = new URLSearchParams();
-        if(form) {
+        if (form) {
             for (const pair of new FormData(form)) {
                 formData.append(pair[0], pair[1]);
             }
         }
-        if(data === 'card_processing')
-        {
+        if (data === 'card_processing') {
             formData.append('card_processing', "1");
-        }
-        else if(page !== 'checkout') {
+            let ppcp_agree_save_method = document.getElementById('ppcp_agree_save_payment_method');
+            if(ppcp_agree_save_method && ppcp_agree_save_method.checked)
+            {
+                formData.append('ppcp_agree_save_payment_method', "1");
+            }
+
+        } else if (page !== 'checkout') {
             // ar we in cart / product  => express checkout ?
             const page = window.XT.page.page_name;
 
@@ -423,27 +419,23 @@ function ppcCreateOrder(data, actions, button_container_selector)
 
             // check if cart or product
             const form = document.getElementById('main_product_form');
-            if(!form)
-            {
+            if (!form) {
                 // fallback versuch für artikel seite
                 document.querySelector('form[name=product]');
             }
 
-            if(form) { // products page, append quantity and products_id to request
+            if (form) { // products page, append quantity and products_id to request
 
                 // now check we are not in eg coe_cart_popup. then there no need to add the product to cart
                 // check the pp-container has the product form as parent
                 let add_ADD_PRODUCT_param = true; // weil alles andere Ausnahme sein sollte.... ):
                 const button_container = document.querySelector(button_container_selector);
-                if(button_container)
-                {
+                if (button_container) {
                     // das sollte wohl klappen bis hier
                     // jetzt schauen wir nach dont_add_product_when_paypal_button_is_child_of_one_of_this_containers
                     // definiert in paypal-checkout-cart-and-product_ignored_containers.tpl.html (tpl-überschreibbar)
-                    if(typeof dont_add_product_when_paypal_button_is_child_of_one_of_this_containers != 'undefined')
-                    {
-                        dont_add_product_when_paypal_button_is_child_of_one_of_this_containers.forEach(function (container_selector, index)
-                        {
+                    if (typeof dont_add_product_when_paypal_button_is_child_of_one_of_this_containers != 'undefined') {
+                        dont_add_product_when_paypal_button_is_child_of_one_of_this_containers.forEach(function (container_selector, index) {
                             const container = document.querySelector(container_selector);
                             if (container)
                                 add_ADD_PRODUCT_param = (add_ADD_PRODUCT_param && !container.contains(button_container));
@@ -454,7 +446,7 @@ function ppcCreateOrder(data, actions, button_container_selector)
 
                 console.log("add_ADD_PRODUCT_param => " + add_ADD_PRODUCT_param);
 
-                if(add_ADD_PRODUCT_param) {
+                if (add_ADD_PRODUCT_param) {
                     for (const pair of new FormData(form)) {
                         formData.append(pair[0], pair[1]);
                     }
@@ -463,13 +455,11 @@ function ppcCreateOrder(data, actions, button_container_selector)
             formData.delete('action');
         }
 
-        if(data && data.shippingContact_ap)
-        {
+        if (data && data.shippingContact_ap) {
             formData.append('shippingContact_ap', JSON.stringify(data.shippingContact_ap));
         }
 
-        if(data && data.billingContact_ap)
-        {
+        if (data && data.billingContact_ap) {
             formData.append('billingContact_ap', JSON.stringify(data.billingContact_ap));
         }
 
@@ -487,18 +477,25 @@ function ppcCreateOrder(data, actions, button_container_selector)
             return response.json();
         }).then(function (resJson) {
             console.log(resJson);
+            ppcWaitModal();
+            if(typeof data != 'undefined' && data.paymentSource === "card" && resJson.data.payer_action)
+            {
+                window.location.replace(resJson.data.payer_action);
+            }
+            if (typeof isStandardCard != 'undefined' && isStandardCard)
+                ppcWaitModal('hide');
             return resJson.data.id;
         }).catch((error) => {
             console.log(error, isExpress);
-            if(!isExpress) window.location.href = window.XT.baseUrl + '?page=cart';
-            else if (page !='product') window.location.href = window.XT.baseUrl + '?page=cart';
-            else if (page =='product') location.reload();
+            ppcWaitModal('hide');
+            if (!isExpress) window.location.replace(window.XT.baseUrl + '?page=cart');
+            else if (page != 'product') window.location.replace(window.XT.baseUrl + '?page=cart');
+            else if (page == 'product') location.reload();
         });
     }
 }
 
-function ppcCaptureOrder(ppcp_order_id)
-{
+function ppcCaptureOrder(ppcp_order_id) {
     console.log({'fnc': 'ppcCaptureOrder', 'ppcp_order_id': ppcp_order_id});
 
     ppcWaitModal();
@@ -509,7 +506,7 @@ function ppcCaptureOrder(ppcp_order_id)
         url,
         {
             method: 'POST',
-            body: { ppcp_order_id: ppcp_order_id},
+            body: {ppcp_order_id: ppcp_order_id},
             redirect: "error"
         }
     ).then(function (response) {
@@ -525,8 +522,30 @@ function ppcCaptureOrder(ppcp_order_id)
 
 }
 
-function ppcOnApprove(data, actions)
-{
+function ppcGetOrder(ppcp_order_id) {
+    console.log({'fnc': 'ppcGetOrder', 'ppcp_order_id': ppcp_order_id});
+
+    ppcWaitModal();
+
+    let url = baseUrl + '?page=PAYPAL_CHECKOUT_ORDER_GET&ppcp_order_id=' + ppcp_order_id;
+
+    return fetch(
+        url,
+        {
+            method: 'GET',
+            redirect: "error"
+        }
+    ).then(function (response) {
+        console.log(response);
+        ppcWaitModal('hide');
+        return response.json();
+    }).catch((error) => {
+        console.log('ppcGetOrder error', error);
+    });
+
+}
+
+function ppcOnApprove(data, actions) {
     console.log({'fnc': 'ppcOnApprove', 'data': data, 'actions': actions});
 
     ppcWaitModal();
@@ -535,11 +554,12 @@ function ppcOnApprove(data, actions)
 
     let url = baseUrl + '?page=checkout&page_action=process';
     let formData = new URLSearchParams();
-    if(form) {
+    if (form) {
         for (const pair of new FormData(form)) {
             formData.append(pair[0], pair[1]);
         }
     }
+    formData.delete("page_action");
 
     return fetch(
         url,
@@ -548,13 +568,13 @@ function ppcOnApprove(data, actions)
             body: formData,
             redirect: "error"
         }
-    ).then(function(response) {
+    ).then(function (response) {
         console.log(response);
         if (!response.ok) {
             throw Error(response.statusText);
         }
         return response.json();
-    }).then(function(resJson) {
+    }).then(function (resJson) {
         console.log(resJson);
 
         ppcWaitModal();
@@ -562,59 +582,53 @@ function ppcOnApprove(data, actions)
             document.getElementById("ppc_oops").style.display = "block"
         }, 3000);
 
-        window.location.href = baseUrl + '?page=checkout&page_action=success'
+        window.location.replace(baseUrl + '?page=checkout&page_action=success')
     }).catch((error) => {
         ppcWaitModal(close);
         console.log(error);
-        window.location.href = window.XT.baseUrl + '?page=cart'
+        window.location.replace(window.XT.baseUrl + '?page=cart')
     });
 }
-function ppcOnApproveCart(data, actions)
-{
+
+function ppcOnApproveCart(data, actions) {
     console.log({'fnc': 'ppcOnApproveCart', 'data': data, 'actions': actions});
     ppcWaitModal();
-    window.location.href = baseUrl + '?page=checkout&ppcp_express_checkout=true';
+    window.location.replace(baseUrl + '?page=checkout&ppcp_express_checkout=true');
 }
 
-function ppcSetupPuiForm()
-{
+function ppcSetupPuiForm() {
     let pui_div = document.querySelector("div[id=xt_paypal_checkout_pui]");
-    if(pui_div)
-    {
+    if (pui_div) {
         const regexPrefix = /^[0-9]{0,3}?$/;
-        const regexPhone  = /^[0-9]{0,14}?$/;
-        const regexDate  = /^[1-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
+        const regexPhone = /^[0-9]{0,14}?$/;
+        const regexDate = /^[1-9]{2}\.[0-9]{2}\.[0-9]{4}$/;
 
         let inputPrefix = document.getElementById("paypal_checkout_selection_pui_phoneNumberPrefix");
-        if(inputPrefix)
-        {
-            setInputFilter(inputPrefix, function(value) {
+        if (inputPrefix) {
+            setInputFilter(inputPrefix, function (value) {
                 return regexPrefix.test(value);
             }, "0-9 / min2 / max 3");
         }
 
         let inputPhone = document.getElementById("paypal_checkout_selection_pui_phoneNumber");
-        if(inputPhone)
-        {
-            setInputFilter(inputPhone, function(value) {
+        if (inputPhone) {
+            setInputFilter(inputPhone, function (value) {
                 return regexPhone.test(value);
             }, "0-9 / min3 / max 14");
         }
 
         let inputDate = document.getElementById("paypal_checkout_selection_pui_birthdate");
-        if(inputDate && false)
-        {
-            setInputFilter(inputDate, function(value) {
+        if (inputDate && false) {
+            setInputFilter(inputDate, function (value) {
                 return regexDate.test(value);
             }, "Format 31.01.1980 / 1980-01-31");
         }
 
         let form = pui_div.closest("form");
         if (form) {
-            form.addEventListener('submit', function(event)
-            {
+            form.addEventListener('submit', function (event) {
                 let paypalSelected = form.querySelector("input[value^=xt_paypal_checkout_]:checked");
-                if(paypalSelected) {
+                if (paypalSelected) {
                     event.preventDefault();
                     let puiSelected = form.querySelector("input[value=xt_paypal_checkout_pui]:checked");
                     if (puiSelected) {
@@ -663,7 +677,7 @@ function ppcSetupPuiForm()
                             }, 100);
                         }
                     } else {
-                            form.submit();
+                        form.submit();
                     }
                 }
             });
@@ -671,54 +685,83 @@ function ppcSetupPuiForm()
     }
 }
 
-function ppcRemoveBackButton()
-{
+function ppcRemoveBackButton() {
     try {
         let form = ppcGetCheckoutForm();
-        if(form)
-        {
+        if (form) {
             form.querySelectorAll('a[href*="checkout/payment"]').forEach(
                 element => element.remove()
             );
         }
-    }
-    catch(e)
-    {
+    } catch (e) {
         console.log(e);
     }
 }
 
-function ppcRemoveSubmitButton()
-{
+function ppcRemoveSubmitButton() {
     try {
         let form = ppcGetCheckoutForm();
-        if(form)
-        {
+        if (form) {
             form.querySelectorAll("button:not(.paypal-card-button)").forEach(
                 element => element.remove()
             );
         }
-    }
-    catch(e)
-    {
+    } catch (e) {
         console.log(e);
     }
 }
 
-function ppcWaitModal(close)
-{
+function ppcWaitModal(close) {
     try {
         const modal = document.getElementById('ppc_wait_overlay');
-        if(modal) {
+        if (modal) {
             if (typeof close === 'undefined')
                 modal.classList.remove("hidden");
             else
                 modal.classList.add("hidden");
-        }
-        else console.warn('ES WURDE KEIN ppc_wait_overlay GEFUNDEN');
+        } else console.warn('ES WURDE KEIN ppc_wait_overlay GEFUNDEN');
+    } catch (e) {
+        console.info(e);
     }
-    catch(e)
-    {
+}
+
+function deleteSavedPaymentMethod(paymentToken)
+{
+
+    let url = baseUrl + '?page=PAYPAL_CHECKOUT_DELETE_PAYMENT_TOKEN';
+
+    ppcWaitModal();
+
+    return fetch(
+        url,
+        {
+            method: 'POST',
+            body: JSON.stringify({paymentToken: paymentToken}),
+            redirect: "error"
+        }
+    )
+}
+
+function ppcSavePaymentMethodInfoModal(close) {
+    try {
+        const modal = document.getElementById('ppc_save_payment_method_info_overlay');
+        if (modal) {
+            if (typeof close === 'undefined')
+            {
+                modal.classList.remove("hidden");
+                modal.addEventListener('click', (e) => {
+                    if(e.target === e.currentTarget){
+                        ppcSavePaymentMethodInfoModal(true);
+                    }
+                });
+            }
+            else
+            {
+                modal.classList.add("hidden");
+                modal.removeEventListener('click', e => { })
+            }
+        } else console.warn('ES WURDE KEIN ppc_save_payment_method_info_overlay GEFUNDEN');
+    } catch (e) {
         console.info(e);
     }
 }
@@ -726,11 +769,11 @@ function ppcWaitModal(close)
 
 // Restricts input for the given textbox to the given inputFilter function.
 function setInputFilter(textbox, inputFilter, errMsg) {
-    ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function(event) {
-        textbox.addEventListener(event, function(e) {
+    ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function (event) {
+        textbox.addEventListener(event, function (e) {
             if (inputFilter(this.value)) {
                 // Accepted value
-                if (["keydown","mousedown","focusout"].indexOf(e.type) >= 0){
+                if (["keydown", "mousedown", "focusout"].indexOf(e.type) >= 0) {
                     this.classList.remove("input-error");
                     this.setCustomValidity("");
                 }
@@ -769,60 +812,65 @@ function ppcFix_button_changed_html(selector) {
                 submitButton.parentElement.removeChild(submitButton);
             }
         }
-    }
-    catch(e){
+    } catch (e) {
         console.log(e);
     }
 }
 
-if(typeof xtSimpleCheckForm_ppc != 'function'){
-    window.xtSimpleCheckForm_ppc = function(form, scrollTo, showTermsWarning)
-    {
+if (typeof xtSimpleCheckForm_ppc != 'function') {
+    window.xtSimpleCheckForm_ppc = function (form, scrollTo, showTermsWarning) {
         var errorElements = [];
 
-        if(scrollTo !== true && scrollTo !== false) scrollTo = true;
-        if(showTermsWarning !== true && showTermsWarning !== false) showTermsWarning = false;
+        if (scrollTo !== true && scrollTo !== false) scrollTo = true;
+        if (showTermsWarning !== true && showTermsWarning !== false) showTermsWarning = false;
 
 
-        form.querySelectorAll('input[type=checkbox].xt-form-required').forEach(function(el){
-            if( el.checked !== true) {
+        form.querySelectorAll('input[type=checkbox].xt-form-required').forEach(function (el) {
+            if (el.checked !== true) {
                 errorElements.push(el);
             }
         });
 
-        form.querySelectorAll('input[type=radio].xt-form-required').forEach(function(el){
+        form.querySelectorAll('input[type=radio].xt-form-required').forEach(function (el) {
             //
         });
 
 
-        form.querySelectorAll('input[type=text].xt-form-required').forEach(function(el){
+        form.querySelectorAll('input[type=text].xt-form-required').forEach(function (el) {
             //
         });
 
         // ....
 
-        if(errorElements.length)
-        {
-            errorElements.forEach(function(el){
+        if (errorElements.length) {
+            errorElements.forEach(function (el) {
                 el.classList.add('xt-form-error');
-                if(el.name == 'conditions_accepted' && showTermsWarning)
-                {
+                if (el.name == 'conditions_accepted' && showTermsWarning) {
                     let div = document.getElementById('TEXT_ERROR_CONDITIONS_ACCEPTED');
-                    if(div)
+                    if (div)
                         div.style.display = 'block';
                 }
             });
-            if(scrollTo && !ppcIsInViewport(errorElements[0])) {
+            if (scrollTo && !ppcIsInViewport(errorElements[0])) {
                 errorElements[0].closest('form').scrollIntoView({
                     behavior: 'smooth'
                 });
             }
             // evelations button reaktivieren
-            setTimeout(function() {
+            setTimeout(function () {
+                console.log('clearing submit button');
                 form.querySelectorAll("[data-loading]").forEach((el) => {
                     el.removeAttribute('data-loading');
                     el.removeAttribute('disabled');
                 });
+                form = document.getElementById("card_form");
+                if(form)
+                {
+                    form.querySelectorAll("[data-loading]").forEach((el) => {
+                        el.removeAttribute('data-loading');
+                        el.removeAttribute('disabled');
+                    });
+                }
             }, 1000);
             return false;
         }
@@ -831,17 +879,16 @@ if(typeof xtSimpleCheckForm_ppc != 'function'){
     };
 }
 
-function ppcGetCheckoutForm()
-{
+function ppcGetCheckoutForm() {
     let xt_form = document.getElementById("checkout-form");
-    if(!xt_form) xt_form = document.getElementById("checkout_form");
-    if(!xt_form) xt_form = document.getElementById("formCard"); // danke dafür ador, hauptsache eigene id's
-    if(!xt_form) {
+    if (!xt_form) xt_form = document.getElementById("checkout_form");
+    if (!xt_form) xt_form = document.getElementById("formCard"); // danke dafür ador, hauptsache eigene id's
+    if (!xt_form) {
         let inp = document.querySelector('input[type=hidden][name=action][value=process]');
-        if(inp)
+        if (inp)
             xt_form = inp.parentElement;
     }
-    if(!xt_form) console.warn('ES WURDE KEIN FORMULAR GEFUNDEN. form[id=checkout_form] bzw form[id=checkout-form] oder input[type=hidden][name=action][value=process]');
+    if (!xt_form) console.warn('ES WURDE KEIN FORMULAR GEFUNDEN. form[id=checkout_form] bzw form[id=checkout-form] oder input[type=hidden][name=action][value=process]');
     return xt_form;
 }
 
@@ -855,29 +902,42 @@ function ppcIsInViewport(element) {
     );
 }
 
-async function ppcp_log_js(fnc, data)
-{
+let logWorker = null;
+if (window.Worker) {
+    logWorker = new Worker(baseUrl + 'plugins/xt_paypal_checkout/javascript/log-worker.js');
+    console.log(logWorker);
+}
+
+
+
+async function ppcp_log_js(fnc, data) {
+
     let url = baseUrl + '?page=PAYPAL_CHECKOUT_LOG';
 
-    return fetch(
-        url,
-        {
-            method: 'POST',
-            redirect: "error",
-            body: JSON.stringify({ ppcp_session_id: paypal_checkout_constant.PPCP_SESSION_ID, fnc: fnc, data: data })
-        }
-    ).then((response) => { })
-        .catch(error => {
-        console.error('PAYPAL_CHECKOUT_LOG error.', error);
-    });
+    if(window.Worker && logWorker !== null && typeof paypal_checkout_constant !== 'undefined') {
+        logWorker.postMessage({ url: url, ppcp_session_id: paypal_checkout_constant.PPCP_SESSION_ID, fnc:fnc, data:data });
+    }
+    else if(typeof paypal_checkout_constant !== 'undefined')
+    {
+        return fetch(
+            url,
+            {
+                method: 'POST',
+                redirect: "error",
+                body: JSON.stringify({ppcp_session_id: paypal_checkout_constant.PPCP_SESSION_ID, fnc: fnc, data: data})
+            }
+        ).then((response) => { }
+        ).catch(error => {
+                console.error('PAYPAL_CHECKOUT_LOG error.', error);
+        });
+    }
 }
 
 /****
  *
  *      APPLE PAY
  * */
-let getShippingOptions_ap = countryCode =>
-{
+let getShippingOptions_ap = countryCode => {
     console.log('getShippingOptions_ap', "current country ap " + currentCountryCode_ap, "new country ap " + countryCode);
 
     let url = baseUrl + '?page=PAYPAL_CHECKOUT_GET_SHIPPING_OPTIONS_AP';
@@ -887,10 +947,10 @@ let getShippingOptions_ap = countryCode =>
         {
             method: 'POST',
             redirect: "error",
-            body: JSON.stringify({ country_code:countryCode })
+            body: JSON.stringify({country_code: countryCode})
         }
     ).then((response) => {
-        console.log('fast zurück von PAYPAL_CHECKOUT_GET_SHIPPING_OPTIONS_AP',  response);
+        console.log('fast zurück von PAYPAL_CHECKOUT_GET_SHIPPING_OPTIONS_AP', response);
         return response.json();
     }).then(function (resJson) {
         console.log(resJson);
@@ -902,9 +962,8 @@ let getShippingOptions_ap = countryCode =>
     });
 }
 
-let setShippingMethod_ap = (countryCode, shippingCode) =>
-{
-    console.log('setShippingMethod_ap', "shippingCode " + shippingCode + ". countryCode " +countryCode);
+let setShippingMethod_ap = (countryCode, shippingCode) => {
+    console.log('setShippingMethod_ap', "shippingCode " + shippingCode + ". countryCode " + countryCode);
 
     let url = baseUrl + '?page=PAYPAL_CHECKOUT_SET_SHIPPING_METHOD_AP';
 
@@ -919,7 +978,7 @@ let setShippingMethod_ap = (countryCode, shippingCode) =>
             })
         }
     ).then((response) => {
-        console.log('fast zurück von PAYPAL_CHECKOUT_SET_SHIPPING_METHOD_AP',  response);
+        console.log('fast zurück von PAYPAL_CHECKOUT_SET_SHIPPING_METHOD_AP', response);
         return response.json();
     }).then(function (resJson) {
         console.log(resJson);
@@ -935,8 +994,7 @@ let check_applepay = async () => {
         let error_message = "";
         if (!window.ApplePaySession) {
             error_message = "This device does not support Apple Pay";
-        } else
-        if (!ApplePaySession.canMakePayments()) {
+        } else if (!ApplePaySession.canMakePayments()) {
             error_message = "This device, although an Apple device, is not capable of making Apple Pay payments";
         }
         if (error_message !== "") {
@@ -947,8 +1005,7 @@ let check_applepay = async () => {
     });
 };
 
-async function setupApplepay(appendToContainer)
-{
+async function setupApplepay(appendToContainer) {
     let container = appendToContainer || "paypal_button_container_checkout";
     check_applepay()
         .then(() => {
@@ -962,7 +1019,7 @@ async function setupApplepay(appendToContainer)
                         let appleButton = document.createElement('apple-pay-button');
                         appleButton.setAttribute('id', 'btn-apple-pay');
                         appleButton.setAttribute('buttonstyle', paypal_checkout_constant.BUTTON_TYPE_AP); // TODO  payment config
-                        appleButton.setAttribute('type', 'buy');
+                        appleButton.setAttribute('type', 'continue');
                         appleButton.setAttribute('locale', paypal_checkout_constant.language);
 
                         document.getElementById(container).appendChild(appleButton);
@@ -975,8 +1032,7 @@ async function setupApplepay(appendToContainer)
 
                             let xt_form = ppcGetCheckoutForm();
 
-                            if(xtSimpleCheckForm_ppc(xt_form, true, true)) {
-
+                            if (xtSimpleCheckForm_ppc(xt_form, true, true)) {
 
                                 const paymentRequest = {
                                     countryCode: applePayConfig.countryCode,
@@ -1159,7 +1215,7 @@ async function setupApplepay(appendToContainer)
                                                             session.completePayment(ApplePaySession.STATUS_SUCCESS);
 
                                                             ppcWaitModal();
-                                                            window.location.href = baseUrl + '?page=checkout&page_action=payment_process'
+                                                            window.location.replace(baseUrl + '?page=checkout&page_action=payment_process')
                                                         })
                                                         .catch(captureError => {
                                                             console.error('ppc error when capture applepay', captureError);
@@ -1231,3 +1287,230 @@ async function setupApplepay(appendToContainer)
             console.log(errorMessage)
         })
 }
+
+/****
+ *
+ *      GOOGLE PAY
+ * */
+/* Configure your site's support for payment methods supported by the Google Pay */
+const googleBaseRequest = {
+    apiVersion: 2,
+    apiVersionMinor: 0
+};
+
+const googleAllowedCardNetworks = ["AMEX", "DISCOVER", "JCB", "MASTERCARD", "VISA"];
+const googleAllowedCardAuthMethods = [ "PAN_ONLY", "CRYPTOGRAM_3DS"];
+
+let googlePayConfig = null;
+let googlePaymentsClient = null;
+const googlePaymentsEnvironment = window?.paypal_checkout_constant?.googlePaymentsEnvironment || null;
+console.log('googlePaymentsEnvironment', googlePaymentsEnvironment);
+async function setupGooglepay() {
+
+    console.log('setupGooglepay');
+
+    try {
+        googlePayConfig = await paypal.Googlepay().config();
+
+        googlePaymentsClient = getGooglePaymentsClient();
+        if (googlePaymentsClient.isReadyToPay(googlePayConfig)) {
+            addGooglePayButton();
+        }
+    }
+    catch(e){
+       console.log('setupGooglepay', e);
+    }
+}
+
+
+function addGooglePayButton(appendToContainer) {
+
+    console.log('addGooglePayButton')
+
+    try {
+        let container = appendToContainer || "paypal_button_container_checkout";
+
+        const baseCardPaymentMethod = {
+            type: 'CARD',
+            parameters: {
+                allowedAuthMethods: googleAllowedCardAuthMethods,
+                allowedCardNetworks: googleAllowedCardNetworks
+            }
+        };
+
+        const button =
+            googlePaymentsClient.createButton({
+                onClick: onGooglePaymentButtonClicked /* To be defined later */,
+                allowedPaymentMethods: [baseCardPaymentMethod],
+                buttonLocale: paypal_checkout_constant.language_short
+            });
+
+        document.getElementById(container).appendChild(button);
+    }
+    catch(e){
+        console.log('addGooglePayButton', e);
+    }
+}
+
+async function onGooglePaymentButtonClicked()
+{
+    let xt_form = ppcGetCheckoutForm();
+    let xt_form_valid = xtSimpleCheckForm_ppc(xt_form, true, true)
+
+    if(xt_form_valid) {
+        const paymentDataRequest = await getGooglePaymentDataRequest();
+        const paymentsClient = getGooglePaymentsClient();
+
+        paymentsClient.loadPaymentData(paymentDataRequest).then(result => {
+
+            ppcWaitModal();
+            console.log('loadPaymentData.then', result);
+            window.location.replace(baseUrl + '?page=checkout&page_action=payment_process')
+        });
+    }
+}
+
+function onGooglePaymentDataChanged(intermediatePaymentData)
+{
+    console.log('intermediatePaymentData', intermediatePaymentData);
+
+    return new Promise(function(resolve, reject) {
+
+        let shippingAddress = intermediatePaymentData.shippingAddress;
+        let shippingOptionData = intermediatePaymentData.shippingOptionData;
+        let paymentDataRequestUpdate = {};
+
+        if (intermediatePaymentData.callbackTrigger === "INITIALIZE" || intermediatePaymentData.callbackTrigger === "SHIPPING_ADDRESS") {
+            if(shippingAddress.administrativeArea === "NJ") {
+                paymentDataRequestUpdate.error = getGoogleUnserviceableAddressError();
+            }
+            else {
+                paymentDataRequestUpdate.newShippingOptionParameters = getGoogleDefaultShippingOptions();
+                let selectedShippingOptionId = paymentDataRequestUpdate.newShippingOptionParameters.defaultSelectedOptionId;
+                paymentDataRequestUpdate.newTransactionInfo = calculateNewTransactionInfo(selectedShippingOptionId);
+            }
+        }
+        else if (intermediatePaymentData.callbackTrigger === "SHIPPING_OPTION") {
+            paymentDataRequestUpdate.newTransactionInfo = calculateNewTransactionInfo(shippingOptionData.id);
+        }
+
+        resolve(paymentDataRequestUpdate);
+    });
+}
+
+function onGooglePaymentAuthorized(paymentData)
+{
+    console.log('paymentData', paymentData);
+
+    return new Promise(function (resolve, reject) {
+
+        processPayment(paymentData)
+            .then(function (data) {
+                resolve({ transactionState: "SUCCESS" });
+                console.log('processPayment.then');
+            })
+            .catch(function (err) {
+                console.log('paymentData', err);
+                resolve({
+                    transactionState: "ERROR",
+                    error: {
+                        message: err.message,
+                    },
+                });
+            });
+    });
+}
+
+async function processPayment(paymentData)
+{
+    try {
+        let orderId = await ppcCreateOrder();
+
+        const { status } = await paypal.Googlepay().confirmOrder({
+            orderId: orderId,
+            paymentMethodData: paymentData.paymentMethodData,
+        });
+
+        if (status === "APPROVED") {
+            /* Capture the Order */
+            const captureResponse = await ppcCaptureOrder(orderId);
+            const orderResponse = await ppcGetOrder(orderId);
+            if(captureResponse === orderId)
+                return { transactionState: "SUCCESS" };
+            else
+                return {
+                    transactionState: "ERROR",
+                    error: {
+                        message: "createOrderId does not match captureOrderId",
+                    },
+            };
+        }
+        else if (status === "PAYER_ACTION_REQUIRED") {
+            console.log("==== Confirm Payment Completed Payer Action Required =====");
+            paypal
+                .Googlepay()
+                .intiatePayerAction({ orderId: orderId })
+                .then(async () => {
+                    console.log("===== Payer Action Completed ====="); /** GET Order */
+                    const orderResponse = await ppcGetOrder(orderId);
+
+                    console.log("===== 3DS Contingency Result Fetched =====");
+                    console.log(
+                        orderResponse?.payment_source?.google_pay?.card?.authentication_result
+                    );
+                    const captureResponse = await ppcGetOrder(orderId);
+                    if(orderId === orderResponse?.id)
+                        return { transactionState: "SUCCESS" };
+                    else
+                        return {
+                            transactionState: "ERROR",
+                            error: {
+                                message: "createOrderId does not match captureOrderId",
+                            },
+                        };
+                }); }
+        else {
+            return { transactionState: "ERROR" };
+        }
+
+    } catch (err) {
+        return {
+            transactionState: "ERROR",
+            error: {
+                message: err.message,
+            },
+        };
+    }
+}
+
+async function getGooglePaymentDataRequest()
+{
+    const paymentDataRequest = Object.assign({}, googleBaseRequest);
+
+    paymentDataRequest.allowedPaymentMethods    = googlePayConfig.allowedPaymentMethods;
+    paymentDataRequest.merchantInfo             = googlePayConfig.merchantInfo;
+    paymentDataRequest.transactionInfo          = getGoogleTransactionInfo();
+    paymentDataRequest.shippingAddressRequired  = false;
+    paymentDataRequest.callbackIntents          = ["PAYMENT_AUTHORIZATION"];
+
+    return paymentDataRequest;
+}
+
+function getGoogleTransactionInfo(){
+
+    return google_transaction_info;
+}
+
+function getGooglePaymentsClient(environment)
+{
+    let env = environment || googlePaymentsEnvironment;
+
+    return new google.payments.api.PaymentsClient({
+        environment: env,
+        paymentDataCallbacks: {
+            //onPaymentDataChanged: onGooglePaymentDataChanged, // später im cart
+            onPaymentAuthorized: onGooglePaymentAuthorized
+        }
+    });
+}
+

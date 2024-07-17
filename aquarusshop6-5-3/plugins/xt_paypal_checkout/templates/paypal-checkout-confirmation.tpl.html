@@ -71,6 +71,7 @@ document.addEventListener('PayPalSdkLoaded', function ()
 {
     try {
         if('{$foundingSource}' === 'applepay') setupApplepay();
+        if('{$foundingSource}' === 'googlepay') setupGooglepay();
         else enablePaypalButton('{$foundingSource}','{$requested_position}');
     }
     catch(e)
@@ -78,6 +79,8 @@ document.addEventListener('PayPalSdkLoaded', function ()
         console.log(e);
     }
 });
+
+const google_transaction_info = {$google_transaction_info};
 </script>
 
 {include file="./paypal-checkout-wait-modal.tpl.html"}

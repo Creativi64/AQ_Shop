@@ -23,11 +23,13 @@
                 BUTTON_TYPE_AP: "{$button_type_ap}",
                 version: "{$plugin_version}",
                 language: "{$lng}",
+                language_short: "{$lng_short}",
                 currency: "{$currency}",
                 TEXT_ERROR_CONDITIONS_ACCEPTED: "{txt key=ERROR_CONDITIONS_ACCEPTED}",
                 TEXT_SHIPPING_COSTS: "{txt key=TEXT_SHIPPING_COSTS}",
                 WARNING_NO_SHIPPING_FOR_ZONE: "{txt key=WARNING_NO_SHIPPING_FOR_ZONE}",
-                PPCP_SESSION_ID: "{$ppcp_session_id}"
+                PPCP_SESSION_ID: "{$ppcp_session_id}",
+                googlePaymentsEnvironment: "{$googlePaymentsEnvironment}"
             }
 
         let billingContact_ap = {$billingContact_ap};
@@ -63,6 +65,7 @@
         console.log("script tag. adding DOMContentLoaded listener");
         document.addEventListener('DOMContentLoaded', function ()
         {
+            console.log('paypal-checkout-script-tag  DOMContentLoaded')
             try {
                 const terms_cb = document.querySelector('input[type=checkbox][name=conditions_accepted]');
                 if(terms_cb)
@@ -89,9 +92,10 @@
                 script.setAttribute("src", paypal_script);
                 script.setAttribute("data-partner-attribution-id", "{$partner_attribution_id}");
                 script.setAttribute("data-client-token", "{$client_token}");
+                script.setAttribute("data-user-id-token","{$user_token}");
                 document.head.appendChild(script);
 
-                // applepay laden
+                // apple pay laden
                 const apple_script = "https://applepay.cdn-apple.com/jsapi/v1/apple-pay-sdk.js";
                 script = document.createElement("script");
                 script.setAttribute("src", apple_script);
@@ -109,6 +113,17 @@
             {
                 console.log(e);
             }
+        });
+
+        document.addEventListener('PayPalSdkLoaded', function ()
+        {
+            // google pay laden
+            const google_script = "https://pay.google.com/gp/p/js/pay.js";
+            script = document.createElement("script");
+            script.setAttribute("src", google_script);
+            script.setAttribute("async", "");
+            script.setAttribute("onload", "let gpslevent = new Event('GooglePaySdkLoaded'); document.dispatchEvent(gpslevent);");
+            document.head.appendChild(script);
         });
 
     </script>

@@ -1,5 +1,28 @@
+## [3.6.4]
+- FIX array_key_exists() expects parameter 2 to be array in class.paypal_checkout.php:819
+- FIX ppcp_pui_error: Fehler bei Kauf auf Rechnung (PUI)
+
+## [3.6.3]
+- neuer Hookpoint für xt_product_options 6.4.0  
+  xt_paypal_checkout:orderCreate_content_item
+
+## [3.6.2]
+- FIX fehlender Hookpoint-Dateien  
+  class.order.php__buildCustomerDeliveryAddress_top.php  
+  class.order.php__buildCustomerAddress_top.php
+
+## [3.6.1]
+- Abschaltung Giropay über PayPal https://developer.paypal.com/docs/checkout/apm/  
+  Die Zahlungsweise xt_paypal_checkout_giropay wird durch das Update entfernt
+
+## [3.6.0]
+- NEU PayPal Vaulting  
+  https://www.paypal.com/de/brc/article/securely-store-payments
+  https://newsroom.deatch.paypal-corp.com/PayPal-erweitert-Komplettloesung-PayPal-Checkout
+- NEU Google Pay im Checkout
+
 ## [3.5.3]
-- Abschaltung SOFORT über Paypal https://www.paypal.com/de/cshelp/article/help1145
+- Abschaltung SOFORT über PayPal https://www.paypal.com/de/cshelp/article/help1145
   Die Zahlungsweise xt_paypal_checkout_sofort wird durch das Update entfernt
 - Fehler im Zusammenhang mit ppcp_session_id behoben
 - Apple Pay: Prüfung Pflichtfelder auf confirmation hinzugefügt
@@ -20,7 +43,8 @@
 - kleiner fix im logging
 
 ## [3.5.0]
-- Apple Pay (für registrierte Kunden)
+- Apple Pay (für registrierte Kunden)  
+  Einrichtung: https://xtcommerce.atlassian.net/wiki/spaces/MANUAL/pages/2994208879
 - FIX fehlende Währungscodes an den APM-Bestellungen
 
 ## [3.4.5]

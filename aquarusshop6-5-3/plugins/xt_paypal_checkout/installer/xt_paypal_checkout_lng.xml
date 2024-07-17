@@ -531,6 +531,50 @@
         </phrase>
 
         <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_SAVED_PAYMENT</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[Gespeicherte Zahlungsweise]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Saved payment method]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_SAVED_PAYMENT_DELETE</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[Gespeicherte Zahlungsweise entfernen]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Remove saved payment method]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_PPCP_AGREE_SAVE_PAYMENT_METHOD</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[Zahlungsweise speichern]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Save payment method]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_PPCP_SAVE_PAYMENT_METHOD_INFO</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[<p>Speichern Sie die Zahlungsweise für Ihren nächsten Einkauf.<p><p>Beim nächsten Einkauf können Sie direkt im Checkout die gespeicherte Zahlungsmethode ganz einfach auswählen und müssen ihre Zahlungsdaten nicht erneut eingeben.<p><p>Die Details Ihrer Zahlungsweise werden sicher bei PayPal gespeichert.<p>]]></value>
+            </de>
+            <en>
+                <value><![CDATA[<p>Save the payment method for your next purchase.<p><p>The next time you make a purchase, you can easily select the saved payment method directly in the checkout and do not have to enter your payment details again.<p><p>The details of your payment method are stored securely with PayPal.<p>]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
             <key>TEXT_XT_PAYPAL_CHECKOUT_CHOOSE_DIFFERENT_PAYMENT_METHOD</key>
             <class>store</class>
             <de>
@@ -637,6 +681,16 @@
             </de>
             <en>
                 <value><![CDATA[There was a problem confirming the credit card. Please try again with another card or payment method.]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_XT_PAYPAL_CHECKOUT_CARD_ERROR_SWITZERLAND</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Verwenden Sie eine in der Schweiz ausgestellte Kreditkarte? Dann passen Sie bitte Ihre Rechnungsadresse an.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Do you use a credit card issued in Switzerland? Then please adjust your billing address.]]></value>
             </en>
         </phrase>
 

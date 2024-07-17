@@ -77,3 +77,12 @@ li.ppcp-message {list-style-type: none}
 #paypal_button_container_checkout {
     text-align: right;
 }
+
+#paypal_button_container_checkout_wrapper .fa-question-circle {
+    font-size: 1.2em;
+}
+
+#ppc_save_payment_method_info_overlay_body
+{
+    padding: 20px 30px;
+}

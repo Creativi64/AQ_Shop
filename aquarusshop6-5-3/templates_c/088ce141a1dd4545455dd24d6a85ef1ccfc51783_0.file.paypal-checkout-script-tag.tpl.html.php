@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-09 16:21:19
+/* Smarty version 4.3.2, created on 2024-07-17 20:12:10
   from '/homepages/2/d41324517/htdocs/aquarus_shop/plugins/xt_paypal_checkout/templates/paypal-checkout-script-tag.tpl.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_668d475fb38a31_53447435',
+  'unifunc' => 'content_6698097ae26f12_50979086',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '088ce141a1dd4545455dd24d6a85ef1ccfc51783' => 
     array (
       0 => '/homepages/2/d41324517/htdocs/aquarus_shop/plugins/xt_paypal_checkout/templates/paypal-checkout-script-tag.tpl.html',
-      1 => 1715183041,
+      1 => 1721239475,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_668d475fb38a31_53447435 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6698097ae26f12_50979086 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/homepages/2/d41324517/htdocs/aquarus_shop/xtFramework/library/smarty/xt_plugins/function.txt.php','function'=>'smarty_function_txt',),));
 if (!$_smarty_tpl->tpl_vars['ppcp_script_tag_rendered']->value) {?>
 
@@ -61,6 +61,8 @@ if (!$_smarty_tpl->tpl_vars['ppcp_script_tag_rendered']->value) {?>
 ",
                 language: "<?php echo $_smarty_tpl->tpl_vars['lng']->value;?>
 ",
+                language_short: "<?php echo $_smarty_tpl->tpl_vars['lng_short']->value;?>
+",
                 currency: "<?php echo $_smarty_tpl->tpl_vars['currency']->value;?>
 ",
                 TEXT_ERROR_CONDITIONS_ACCEPTED: "<?php echo smarty_function_txt(array('key'=>ERROR_CONDITIONS_ACCEPTED),$_smarty_tpl);?>
@@ -70,6 +72,8 @@ if (!$_smarty_tpl->tpl_vars['ppcp_script_tag_rendered']->value) {?>
                 WARNING_NO_SHIPPING_FOR_ZONE: "<?php echo smarty_function_txt(array('key'=>WARNING_NO_SHIPPING_FOR_ZONE),$_smarty_tpl);?>
 ",
                 PPCP_SESSION_ID: "<?php echo $_smarty_tpl->tpl_vars['ppcp_session_id']->value;?>
+",
+                googlePaymentsEnvironment: "<?php echo $_smarty_tpl->tpl_vars['googlePaymentsEnvironment']->value;?>
 "
             }
 
@@ -111,6 +115,7 @@ if (!$_smarty_tpl->tpl_vars['ppcp_script_tag_rendered']->value) {?>
         console.log("script tag. adding DOMContentLoaded listener");
         document.addEventListener('DOMContentLoaded', function ()
         {
+            console.log('paypal-checkout-script-tag  DOMContentLoaded')
             try {
                 const terms_cb = document.querySelector('input[type=checkbox][name=conditions_accepted]');
                 if(terms_cb)
@@ -140,9 +145,11 @@ if (!$_smarty_tpl->tpl_vars['ppcp_script_tag_rendered']->value) {?>
 ");
                 script.setAttribute("data-client-token", "<?php echo $_smarty_tpl->tpl_vars['client_token']->value;?>
 ");
+                script.setAttribute("data-user-id-token","<?php echo $_smarty_tpl->tpl_vars['user_token']->value;?>
+");
                 document.head.appendChild(script);
 
-                // applepay laden
+                // apple pay laden
                 const apple_script = "https://applepay.cdn-apple.com/jsapi/v1/apple-pay-sdk.js";
                 script = document.createElement("script");
                 script.setAttribute("src", apple_script);
@@ -160,6 +167,17 @@ if (!$_smarty_tpl->tpl_vars['ppcp_script_tag_rendered']->value) {?>
             {
                 console.log(e);
             }
+        });
+
+        document.addEventListener('PayPalSdkLoaded', function ()
+        {
+            // google pay laden
+            const google_script = "https://pay.google.com/gp/p/js/pay.js";
+            script = document.createElement("script");
+            script.setAttribute("src", google_script);
+            script.setAttribute("async", "");
+            script.setAttribute("onload", "let gpslevent = new Event('GooglePaySdkLoaded'); document.dispatchEvent(gpslevent);");
+            document.head.appendChild(script);
         });
 
     <?php echo '</script'; ?>

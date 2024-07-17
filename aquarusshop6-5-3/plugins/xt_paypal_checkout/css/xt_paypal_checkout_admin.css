@@ -24,3 +24,7 @@ input[name*=XT_PAYPAL_CHECKOUT_MERCHANT_ID]
     font-size: 0.8em;
     margin-left: -10px;
 }
+
+td div[class$=col_order_payment] {
+    text-align: center;
+}
