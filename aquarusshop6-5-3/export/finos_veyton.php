@@ -82,7 +82,7 @@ if (!password_verify($password, "\$2y\$10\$exXTd9T/eMIeSFSXaFEamOwQ5Uhw/IK9j44ha
 * @var mysqli $db
 */
   
-  $db= mysqli_connect($MySQL_Host,$MySQL_User,$MySQL_Passw,$MySQL_DB);
+  // $db= mysqli_connect($MySQL_Host,$MySQL_User,$MySQL_Passw,$MySQL_DB);
   //$db= mysqli_connect('127.0.0.1','root','', 'dbs11250703',3306);
     /*
     echo "$MySQL_Host";
@@ -309,6 +309,144 @@ if (!password_verify($password, "\$2y\$10\$exXTd9T/eMIeSFSXaFEamOwQ5Uhw/IK9j44ha
                               XML f�r die R�ckgabe an Finos generieren
 ********************************************************************************************* */
 
+function GetValues($fielnName, $existing, $default = null) {
+  $postValue = isset($_POST[$fielnName]) ? $_POST[$fielnName]: null;
+  $dbValue = isset($existing->{$fielnName}) ? $existing->{$fielnName}: null;
+  return ($postValue!=null) ? $postValue : (($dbValue!=null) ? $dbValue : $default);
+}
+
+function GetLocalizedValue($fielnName, $existing,$alpha2Code , $default = null) {
+  $postValue = isset($_POST[$fielnName]) ? $_POST[$fielnName]: null;
+  $dbValue = isset($existing->{$fielnName}->{$alpha2Code}) ? $existing->{$fielnName}: null;
+  return ($postValue!=null) ? $postValue : (($dbValue!=null) ? $dbValue : $default);
+}
+
+function GetExistingArticle($productsId){
+  $requestExisitng = json_encode(array(
+    "function" => "getArticle",
+    "paras" => array(
+      "user" => "finosScript",
+      "pass" => "vx#Ne/x5u!Q5YS225H$",
+      "products_id" => $productsId,
+      "indivFieldList" => []
+    )
+  ));
+  
+  $responseExisting = json_decode(CallAPI('POST','https://shop.aquarus.net/index.php?page=xt_api', $requestExisitng));
+  
+  $existing = null;
+  if(isset($responseExisting->{"productsItemExport"})) {
+    $existing = $responseExisting->{"productsItemExport"};
+  }
+  
+  return $existing; 
+}
+
+function UpdateArticleFromPost($products_id){
+  $existing = GetExistingArticle($products_id);
+    
+  $data = json_encode(array(
+    "function" => "setArticle",
+    "paras" => array(
+      "user" => "finosScript",
+      "pass" => "vx#Ne/x5u!Q5YS225H$",
+      "productItem" => array(
+        "products_id" => GetValues("products_id", $existing),
+        "external_id" =>  GetValues("external_id",$existing),
+        "permission_id" => GetValues("permission_id",$existing),
+        "products_owner" => 1,
+        "products_ean" => GetValues("products_ean",$existing),
+        "products_quantity" => GetValues("products_quantity",$existing),
+        "products_average_quantity" => GetValues("products_average_quantity",$existing),
+        "products_shippingtime" => GetValues("products_shippingtime",$existing),
+        "products_model" => GetValues("products_model",$existing),
+        "price_flag_graduated_all" => GetValues("price_flag_graduated_all",$existing),
+        "price_flag_graduated_1" => GetValues("price_flag_graduated_1",$existing),
+        "price_flag_graduated_2" => GetValues("price_flag_graduated_2",$existing),
+        "price_flag_graduated_3" => GetValues("price_flag_graduated_3",$existing),
+        "products_sort" => GetValues("products_sort",$existing),
+        "products_option_master_price" => GetValues("products_option_master_price",$existing),
+        "ekomi_allow" => GetValues("ekomi_allow",$existing),
+        "products_image" => GetValues("products_image",$existing),
+        "products_price" => GetValues("products_price",$existing),
+        "date_added" => GetValues("products_price",$existing, date("Y-m-d H:i:s")) ,
+        "last_modified" => date("Y-m-d H:i:s") ,
+        "date_available" => GetValues("date_available",$existing),
+        "products_weight" => GetValues("products_weight",$existing),
+        "products_status" => GetValues("products_status",$existing),
+        "products_tax_class_id" => GetValues("products_tax_class_id",$existing),
+        "product_template" => GetValues("product_template",$existing),
+        "product_list_template" => GetValues("product_list_template",$existing),
+        "manufacturers_id" => GetValues("manufacturers_id",$existing),
+        "products_ordered" =>  GetValues("products_ordered",$existing),
+        "products_fsk18" => GetValues("products_fsk18",$existing),
+        "products_vpe" => GetValues("products_vpe",$existing),
+        "products_vpe_status" => GetValues("products_vpe_status",$existing),
+        "products_vpe_value" => GetValues("products_vpe_value",$existing),
+        "products_startpage" => GetValues("products_startpage",$existing),
+        "products_startpage_sort" => GetValues("products_startpage_sort",$existing),
+        "products_average_rating" => GetValues("products_average_rating",$existing),
+        "products_rating_count" => GetValues("products_rating_count",$existing),
+        "products_digital" => GetValues("products_digital",$existing),
+        "flag_has_specials" => GetValues("flag_has_specials",$existing),
+        "products_serials" => GetValues("products_serials",$existing),
+        "products_master_flag" => GetValues("products_master_flag",$existing),
+        "products_master_model" => GetValues("products_master_model",$existing),
+        "products_keywords" => array(
+          "de" => GetLocalizedValue("products_keywords",$existing, "de"),
+          "en" => GetLocalizedValue("products_keywords",$existing, "en")
+        ),
+        "products_description" => array(
+          "de" => GetLocalizedValue("products_description",$existing, "de"),
+          "en" => GetLocalizedValue("products_description",$existing, "en")
+        ),
+        "products_short_description" => array(
+          "de" => GetLocalizedValue("products_short_description",$existing, "de"),
+          "en" => GetLocalizedValue("products_short_description",$existing, "en")
+        ),
+        "meta_description" => array(
+          "de" => GetLocalizedValue("meta_description",$existing, "de"),
+          "en" => GetLocalizedValue("meta_description",$existing, "en")
+        ),
+        "meta_title" => array(
+          "de" => GetLocalizedValue("meta_title",$existing, "de"),
+          "en" => GetLocalizedValue("meta_title",$existing, "en")
+        ),
+        "meta_keywords" => array(
+          "de" => GetLocalizedValue("meta_keywords",$existing, "de"),
+          "en" => GetLocalizedValue("meta_keywords",$existing, "en")
+        ),
+        "seo_url" => array(
+          "de" => GetLocalizedValue("seo_url",$existing, "de"),
+          "en" => GetLocalizedValue("seo_url",$existing, "en")
+        ),
+        "url" => array(
+          "de" => GetLocalizedValue("products_url",$existing, "de"),
+          "en" => GetLocalizedValue("products_url",$existing, "en")
+        ),
+        "products_name" => array(
+          "de" => GetLocalizedValue("products_name",$existing, "de"),
+          "en" => GetLocalizedValue("products_name",$existing, "en")
+        ),
+        "products_special_prices" => [],
+        "categories" => [GetValues("categories_id",$existing)],
+        "image_name" => "",
+        "image" => "",
+        "products_prices" => [],
+        "products_cross_sell" => [],
+        "products_images" => [],
+        "products_categories" => [],
+        "products_attributes" => [],
+        "permissionList" => [],
+        "indivFieldsList" => [],
+      )
+    )
+  ));
+  
+  $response = json_decode(CallAPI('POST','https://shop.aquarus.net/index.php?page=xt_api',$data)); 
+    
+  return $response;
+}
 
 function save_products ()
 {
@@ -320,190 +458,20 @@ function save_products ()
   $header = '<?xml version="1.0" encoding="' . CHARSET . '"?>' . "\n" .
             '<STATUS>' . "\n";
 
-                         
     $products_id = isset($_POST['products_id']) ? $_POST['products_id']:"";
-    $categories_id = isset($_POST['categories_id']) ? $_POST['categories_id']:"";
-    $master_link = isset($_POST['master_link']) ? $_POST['master_link']:"";         //1=Haupt-Warengruppe; 0=zus�tzliche Warengruppe
+    
+    $response = UpdateArticleFromPost($products_id); 
 
-
-    $cmd = "select * from " . TABLE_PRODUCTS . " where products_id = '" . $products_id . "'";
-
-    $products_query = mysqli_query($db,$cmd);
-    if ($product = mysqli_fetch_array($products_query, MYSQLI_BOTH))
-    {
-       $exists = 1;     //Produkt ist vorhanden ---------------------------------------
-    }
-    else
-    {
-       $exists = 0;     //Produkt ist nicht vorhanden ---------------------------------
-    }
-
-      //Variablen nur �berschreiben, wenn diese als Parameter �bergeben worden sind
-
-       $external_id                        = isset($_POST['external_id']) ? $_POST['external_id']:"";
-       $permission_id                      = isset($_POST['permission_id']) ? $_POST['permission_id']:"";
-       $products_owner                     = isset($_POST['products_owner']) ? $_POST['products_owner']:"";
-       $products_ean                       = isset($_POST['products_ean']) ? $_POST['products_ean']:"";
-       $products_quantity                  = isset($_POST['products_quantity']) ? $_POST['products_quantity']:"";
-       $products_average_quantity          = isset($_POST['products_average_quantity']) ? $_POST['products_average_quantity']:"";
-       $products_shippingtime              = isset($_POST['products_shippingtime']) ? $_POST['products_shippingtime']:"";
-       $products_model                     = isset($_POST['products_model']) ? $_POST['products_model']:"";
-       $products_master_model              = isset($_POST['products_master_model']) ? $_POST['products_master_model']:"";
-       $products_master_flag               = isset($_POST['products_master_flag']) ? $_POST['products_master_flag']:"";
-       $products_option_template           = isset($_POST['products_option_template']) ? ClearSTANDARTTEMPLATE($_POST['products_option_template']):"";
-       $products_option_list_template      = isset($_POST['products_option_list_template']) ? ClearSTANDARTTEMPLATE($_POST['products_option_list_template']):"";
-       $products_option_master_price       = isset($_POST['products_option_master_price']) ? $_POST['products_option_master_price']:"";
-       $price_flag_graduated_all           = isset($_POST['price_flag_graduated_all']) ? $_POST['price_flag_graduated_all']:"";
-       $price_flag_graduated_1             = isset($_POST['price_flag_graduated_1']) ? $_POST['price_flag_graduated_1']:"";
-       $price_flag_graduated_2             = isset($_POST['price_flag_graduated_2']) ? $_POST['price_flag_graduated_2']:"";
-       $price_flag_graduated_3             = isset($_POST['price_flag_graduated_3']) ? $_POST['price_flag_graduated_3']:"";
-       $price_flag_graduated_4             = isset($_POST['price_flag_graduated_4']) ? $_POST['price_flag_graduated_4']:"";
-       $products_sort                      = isset($_POST['products_sort']) ? $_POST['products_sort']:"";
-       $products_image                     = isset($_POST['products_image']) ? $_POST['products_image']:"";
-       $products_price                     = isset($_POST['products_price']) ? $_POST['products_price']:"";
-       $date_available                     = isset($_POST['date_available']) ? $_POST['date_available']:"";
-       $products_weight                    = isset($_POST['products_weight']) ? $_POST['products_weight']:"";
-       $products_status                    = isset($_POST['products_status']) ? $_POST['products_status']:"";
-       $products_tax_class_id              = isset($_POST['products_tax_class_id']) ? $_POST['products_tax_class_id']:"";
-       $product_template                   = isset($_POST['product_template']) ? ClearSTANDARTTEMPLATE($_POST['product_template']):"";
-       $product_list_template              = isset($_POST['product_list_template']) ? ClearSTANDARTTEMPLATE($_POST['product_list_template']):"";
-       $manufacturers_id                   = isset($_POST['manufacturers_id']) ? $_POST['manufacturers_id']:"";
-       $products_ordered                   = isset($_POST['products_ordered']) ? $_POST['products_ordered']:"";
-       $products_transactions              = isset($_POST['products_transactions']) ? $_POST['products_transactions']:"";
-       $products_fsk18                     = isset($_POST['products_fsk18']) ? $_POST['products_fsk18']:"";
-       $products_vpe                       = isset($_POST['products_vpe']) ? $_POST['products_vpe']:"";
-       $products_vpe_status                = isset($_POST['products_vpe_status']) ? $_POST['products_vpe_status']:"";
-       $products_vpe_value                 = isset($_POST['products_vpe_value']) ? $_POST['products_vpe_value']:"";
-       $products_average_rating            = isset($_POST['products_average_rating']) ? $_POST['products_average_rating']:"";
-       $products_rating_count              = isset($_POST['products_rating_count']) ? $_POST['products_rating_count']:"";
-       $products_digital                   = isset($_POST['products_digital']) ? $_POST['products_digital']:"";
-       $flag_has_specials                  = isset($_POST['flag_has_specials']) ? $_POST['flag_has_specials']:"";
-       $products_serials                   = isset($_POST['products_serials']) ? $_POST['products_serials']:"";
-       $total_downloads                    = isset($_POST['total_downloads']) ? $_POST['total_downloads']:"";
-       $google_product_cat                 = isset($_POST['google_product_cat']) ? $_POST['google_product_cat']:"";
-
-       $products_store_id                = isset($_POST['products_store_id']) ? $_POST['products_store_id']:"";
-       
-
-       $sql_data_array = array('external_id'                     => $external_id,
-                               'permission_id'                   => $permission_id,
-                               'products_owner'                  => $products_owner,
-                               'products_ean'                    => $products_ean,
-                               'products_quantity'               => $products_quantity,
-                               'products_average_quantity'       => $products_average_quantity,
-                               'products_shippingtime'           => $products_shippingtime,
-                               'products_model'                  => $products_model,
-                               'products_master_model'           => $products_master_model,
-                               'products_master_flag'            => $products_master_flag,
-                               'products_option_template'        => $products_option_template,
-                               'products_option_list_template'   => $products_option_list_template,
-                               'products_option_master_price'    => $products_option_master_price,
-                               'price_flag_graduated_all'        => $price_flag_graduated_all,
-                               'price_flag_graduated_1'          => $price_flag_graduated_1,
-                               'price_flag_graduated_2'          => $price_flag_graduated_2,
-                               'price_flag_graduated_3'          => $price_flag_graduated_3,
-                               'price_flag_graduated_4'          => $price_flag_graduated_4,
-                               'products_sort'                   => $products_sort,
-                               'products_image'                  => $products_image,
-                               'products_price'                  => $products_price,
-                               'date_available'                  => $date_available,
-                               'products_weight'                 => $products_weight,
-                               'products_status'                 => $products_status,
-                               'products_tax_class_id'           => $products_tax_class_id,
-                               'product_template'                => $product_template,
-                               'product_list_template'           => $product_list_template,
-                               'manufacturers_id'                => $manufacturers_id,
-                               'products_ordered'                => $products_ordered,
-                               'products_transactions'           => $products_transactions,
-                               'products_fsk18'                  => $products_fsk18,
-                               'products_vpe'                    => $products_vpe,
-                               'products_vpe_status'             => $products_vpe_status,
-                               'products_vpe_value'              => $products_vpe_value,
-                               'products_average_rating'         => $products_average_rating,
-                               'products_rating_count'           => $products_rating_count,
-                               'products_digital'                => $products_digital,
-                               'flag_has_specials'               => $flag_has_specials,
-                               'products_serials'                => $products_serials,
-                               'total_downloads'                 => $total_downloads,
-                               'google_product_cat'              => $google_product_cat,
-                               'last_modified'                   => 'now()');
-
-      if ($exists==0)        // Neuanlage
-      {
-
-          $insert_sql_data = array('date_added'                => 'now()');
-          $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
-
-          database_insert(TABLE_PRODUCTS, $sql_data_array);
-          $products_id = mysqli_insert_id($db);
-
-      }
-      elseif ($exists==1)    //Aktualisieren
-      {
-          database_insert(TABLE_PRODUCTS, $sql_data_array, 'update', 'products_id = \'' . $products_id . '\'');
-      }
-
-
-
-       //Produkt muss in den 'products_to_categories' eingetragen werden -------------------------------------------                                                            $products_store_id
-        mysqli_query($db,"replace into " . TABLE_PRODUCTS_TO_CATEGORIES . " set products_id = '" . $products_id . "', categories_id = '" . $categories_id . "', master_link = '" . $master_link . "', store_id = '" . $products_store_id . "'");
-
-
-       //Beschreibungen und Texte �bernehmen -----------------------------------------------------------------------
-         $products_description_query = mysqli_query($db,"select * from " . TABLE_PRODUCTS_DESCRIPTION . " where products_id = '" . $products_id . "' and language_code = '" . LANG_CODE . "'");
-
-          if ($desc = mysqli_fetch_array($products_description_query, MYSQLI_BOTH))
-          {
-             $exists = 1;
-          }
-          else
-          {
-             $exists = 0;
-          }
-
-
-            // uebergebene Daten einsetzen
-            $products_name                    = isset($_POST['products_name']) ? $_POST['products_name']:"";
-            $products_description             = isset($_POST['products_description']) ? $_POST['products_description']:"";
-            $products_short_description       = isset($_POST['products_short_description']) ? $_POST['products_short_description']:"";
-            $products_keywords                = isset($_POST['products_keywords']) ? $_POST['products_keywords']:"";
-            $products_url                     = isset($_POST['products_url']) ? $_POST['products_url']:"";
-
-            $sql_data_array = array('products_name'                 => $products_name,
-                                    'products_description'          => $products_description,
-                                    'products_short_description'    => $products_short_description,
-                                    'products_keywords'             => $products_keywords,
-                                    'products_url'                  => $products_url,
-                                    'products_store_id'             => $products_store_id);
-
-           if ($exists==0)        // Neuanlage
-           {
-
-             $insert_sql_data = array('products_id'       => $products_id,
-                                      'language_code'     => LANG_CODE);
-             $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
-
-             database_insert(TABLE_PRODUCTS_DESCRIPTION, $sql_data_array);
-
-           }
-           elseif ($exists==1)    //Aktualisieren
-           {
-             database_insert(TABLE_PRODUCTS_DESCRIPTION, $sql_data_array, 'update', 'products_id = \'' . $products_id . '\' and language_code = \'' . LANG_CODE . '\'');
-           }
-
-
-      $schema = '<STATUS_DATA>' . "\n" .
-                '<EXISTS>' . $exists . '</EXISTS>' . "\n" .
-                '<PRODUCTS_ID>' . $products_id . '</PRODUCTS_ID>' . "\n" .
-                '<ERROR>' . '0' . '</ERROR>' . "\n" .
-                '<MESSAGE>' . 'Keine Meldung vorhanden' . '</MESSAGE>' . "\n" .
-                '</STATUS_DATA>' . "\n";
-
+    $schema = '<STATUS_DATA>' . "\n" .
+              '<EXISTS>' . 1 . '</EXISTS>' . "\n" .
+              '<PRODUCTS_ID>' . $response->{"products_id"} . '</PRODUCTS_ID>' . "\n" .
+              '<ERROR>' .  (isset($response) ? "0" : "1") . '</ERROR>' . "\n" .
+              '<MESSAGE>' . 'Keine Meldung vorhanden' . '</MESSAGE>' . "\n" .
+              '</STATUS_DATA>' . "\n";
 
    $footer = '</STATUS>' . "\n";
-
-
-  //Ergebnis als XML ausgeben
+   
+   //Ergebnis als XML ausgeben
    create_xml ($header . $schema . $footer);
 
 }
@@ -2078,21 +2046,7 @@ function update_order()
 
 
      $btime = date('Y-m-d H:i:s', time());
-
-    // $data = '{"function": "setOrderStatus",
-    //     "paras": {
-    //       "user": "finosScript",
-    //       "pass": "SuperKarl123!",
-    //       order_id":"'.$order_id.'",
-    //       "new_status_id":"'.$status.'",
-    //       "comments": "'.  $comments.'",
-    //       "sendmail":1,
-    //       "indivFieldList":[],
-    //       "sendcomments":1,
-    //       "shippings":[]
-    //   }
-    // }';
-    
+  
     $data =  json_encode(array(
       "function" => "setOrderStatus",
       "paras" => array(
@@ -2109,150 +2063,15 @@ function update_order()
     ));
 
     $response =  CallAPI('POST','https://shop.aquarus.net/index.php?page=xt_api',$data);
- 
-    //  $sql_data_array = array('orders_status' => $status,
-    //                          'last_modified' => $btime); // 'now()'
-
-    //  database_insert(TABLE_ORDERS, $sql_data_array, 'update', 'orders_id = \'' . $order_id . '\'');
- 
-      //  $cmd =  "SELECT orders_id, customers_email_address, billing_gender, billing_firstname, billing_lastname, date_purchased, shop_id FROM " . TABLE_ORDERS . " WHERE orders_id = '" . $order_id . "'";
-      //  $result = mysqli_query($db,$cmd) or die(mysqli_error($db));
-      //  $order = mysqli_fetch_array($result, MYSQLI_BOTH);
-
-      //  $cmd =  "SELECT config_value FROM " . TABLE_CONFIGURATION_MULTI . $order['shop_id'] . " WHERE config_key = '_STORE_CONTACT_EMAIL'";
-      //  $result = mysqli_query($db,$cmd) or die(mysqli_error($db));
-      //  $conf_mail = mysqli_fetch_array($result, MYSQLI_BOTH);
-
-      //  $cmd =  "SELECT config_value FROM " . TABLE_CONFIGURATION_MULTI . $order['shop_id'] . " WHERE config_key = '_STORE_NAME'";
-      //  $result = mysqli_query($db,$cmd) or die(mysqli_error($db));
-      //  $conf_store = mysqli_fetch_array($result, MYSQLI_BOTH);
-
-      //  $cmd =  "SELECT config_value FROM " . TABLE_CONFIGURATION_MULTI . $order['shop_id'] . " WHERE config_key = '_STORE_EMAIL_FOOTER_TXT'";
-      //  $result = mysqli_query($db,$cmd) or die(mysqli_error($db));
-      //  $conf_txt = mysqli_fetch_array($result, MYSQLI_BOTH);
-
-
-
-       $notified = 0;
-
-        // switch ($notify)
-        // {
-        //   case 'on':
-        //    //E-Mail an den Kunden senden
-
-           // Durch shop eigenes ersetzen
-
-                // if ($order['billing_gender']=="m")
-                // {
-                //       $anrede = "Sehr geehrter Herr ";
-                // }
-                // else if ($order['billing_gender']=="f")
-                // {
-                //       $anrede = "Sehr geehrte Frau ";
-                // }
-                // else
-                // {
-                //       $anrede = "Hallo ";
-                // }
-
-
-                // if ($order['customers_email_address'] <> "")
-                // {
-
-                //         $mail_absender           = "-f " . $conf_mail['config_value'];
-                //         $mail_absender_storename = $conf_store['config_value'];
-                //         $mail_empfaenger         = $order['customers_email_address'];
-                //         $mail_footer             = $conf_txt['config_value'];
-
-                //         $mail_body = "\n" . $anrede . $order['billing_firstname'] . " " . $order['billing_lastname'] . "," . "\n\n" .
-                //                      "\n" . "Der Status Ihrer Bestellung hat sich ge�ndert." . "\n\n" . "Neuer Status: " . $statustext . "\n\n";
-
-                //                   if ($notify_comment=="on")
-                //                   {
-                //                    $mail_body .= 'Nachricht: ' . $comments . "\n\n" .
-                //                    $mail_footer;
-                //                   }
-                //                   else
-                //                   {
-                //                    $mail_body .= $mail_footer;
-                //                   }
-
-
-                //         $subject = "Ihre Bestellung Nr. " . $order_id;           //subject
-                //         $header = "From: ". $mail_absender_storename . " <" . $mail_absender . ">\r\n";           //optional headerfields
-
-                //       mail($mail_empfaenger, $subject, $mail_body, $header, $mail_absender);
-
-
-          //       }
-
-          //      $schema = '<STATUS_DATA>' . "\n" .
-          //                '<ORDER_ID>' . $order_id . '</ORDER_ID>' . "\n" .
-          //                '<ORDER_STATUS>' . $status . '</ORDER_STATUS>' . "\n" .
-          //                '<MAIL_EMPFAENGER>' . $mail_empfaenger . '</MAIL_EMPFAENGER>' . "\n" .
-          //                '<MAIL_ABSENDER>' . $mail_absender . '</MAIL_ABSENDER>' . "\n" .
-          //                '<MAIL_ABSENDER_STORENAME>' . $mail_absender_storename . '</MAIL_ABSENDER_STORENAME>' . "\n" .
-          //                '<MAIL_FOOTER>' . $mail_footer  . '</MAIL_FOOTER>' . "\n" .
-          //                '<CODE>' . '0' . '</CODE>' . "\n" .
-          //                '<COMMENTS>' . $comments . '</COMMENTS>' . "\n" .
-          //                '<MESSAGE>' . 'Der Bestellstatus wurde erfolgreich fortgeschrieben.' . '</MESSAGE>' . "\n" .
-          //                '</STATUS_DATA>' . "\n";
-
-          //  break;
-
-
-          // case 'off':
-          //  //keine E-Mail versenden
-
-               $schema = '<STATUS_DATA>' . "\n" .
-                         '<ORDER_ID>' . $order_id . '</ORDER_ID>' . "\n" .
-                         '<ORDER_STATUS>' . $status . '</ORDER_STATUS>' . "\n" .
-                         '<CODE>' . '0' . '</CODE>' . "\n" .
-                         '<COMMENTS>' . $comments . '</COMMENTS>' . "\n" .
-                         '<MESSAGE>' . 'Der Bestellstatus wurde erfolgreich fortgeschrieben, keine E-Mail gesendet.'.'</MESSAGE>' . "\n" .
-                         '</STATUS_DATA>' . "\n";
-
-
-      //      break;
-
-      //     default:
-      //      break;
-      //  }
-
-      
-      
-      // $sql = "SELECT * FROM " . TABLE_ORDERS . " WHERE orders_id =".$order_id;
-      
-      // $result = mysqli_query($db,$sql);
-      // $record = mysqli_fetch_array($result, MYSQLI_BOTH);
-      
-      // if (count($record) > 0) {
-      //   $clientId = (int) $record['customers_id'];
-      //   $cutomersStatus = (int) $record['customers_status'];
-      // }
-
-      // Geht nicht
-      // $sent_order_mail  = new order($order_id, $clientId);
-      
-      // $sent_order_mail->_sendStatusMail($status,$comments,array(),$status,$cutomersStatus);
-      
-      // $orders_status_array = array('orders_id'             => $order_id,
-      //                               'orders_status_id'      => $status,
-      //                               'date_added'            => $btime,
-      //                               'customer_notified'     => $notified,
-      //                               'comments'              => $comments,
-      //                               'change_trigger'        => 'AbamSoft Finos',
-      //                               'callback_id'           => '0',
-      //                               'customer_show_comment' => '0',
-      //                               'callback_message'      => $clientId."-".$cutomersStatus);
-      
-      //   database_insert(TABLE_ORDERS_STATUS_HISTORY, $orders_status_array);
-                                      
-
-
-   $footer = '</STATUS>' . "\n";
-
-
+   
+    $schema = '<STATUS_DATA>' . "\n" .
+                '<ORDER_ID>' . $order_id . '</ORDER_ID>' . "\n" .
+                '<ORDER_STATUS>' . $status . '</ORDER_STATUS>' . "\n" .
+                '<CODE>' . '0' . '</CODE>' . "\n" .
+                '<COMMENTS>' . $comments . '</COMMENTS>' . "\n" .
+                '<MESSAGE>' . 'Der Bestellstatus wurde erfolgreich fortgeschrieben, keine E-Mail gesendet.'.'</MESSAGE>' . "\n" .
+                '</STATUS_DATA>' . "\n"; 
+    $footer = '</STATUS>' . "\n";
   //Ergebnis als XML ausgeben
    create_xml ($header . $schema . $footer);
 
@@ -2283,11 +2102,17 @@ function CallAPI($method, $url, $data = false)
    // curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
     //curl_setopt($curl, CURLOPT_USERPWD, "finosScript:Superkarl123!");
 
+        // -----------------------
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        // ---------
+
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-
+    
     $result = curl_exec($curl);
-
+    
+    printf(curl_error($curl));
     curl_close($curl);
 
     return $result;
@@ -2304,67 +2129,70 @@ function save_seo_url()
   $header = '<?xml version="1.0" encoding="' . CHARSET . '"?>' . "\n" .
             '<STATUS>' . "\n";
 
+  $products_id = isset($_POST['link_id']) ? $_POST['link_id']:"";
 
-   $language_code = isset($_POST['language_code']) ? $_POST['language_code']:"";
-   $url_text = isset($_POST['url_text']) ? $_POST['url_text']:"";
+  UpdateArticleFromPost($products_id);
 
-
-        $sql = "select * from " . TABLE_SEO_URL . " where url_text = '" . $url_text . "' and language_code = '" . $language_code . "'";
-
-        $seo_query = mysqli_query($db,$sql);
-        if ($seo = mysqli_fetch_array($seo_query, MYSQLI_BOTH))
-        {
-           $exists = 1;
-        }
-         else
-        {
-           $exists = 0;
-        }
+  // $language_code = isset($_POST['language_code']) ? $_POST['language_code']:"";
+  // $url_text = isset($_POST['url_text']) ? $_POST['url_text']:"";
 
 
-        // Variablen nur �berschreiben, wenn sie als Parameter �bergeben worden sind
-         $url_md5           = isset($_POST['url_md5']) ? $_POST['url_md5']:"";
-         $url_text          = isset($_POST['url_text']) ? $_POST['url_text']:"";
-         $language_code     = isset($_POST['language_code']) ? $_POST['language_code']:"";
-         $link_type         = isset($_POST['link_type']) ? $_POST['link_type']:"";
-         $link_id           = isset($_POST['link_id']) ? $_POST['link_id']:"";
-         $meta_title        = isset($_POST['meta_title']) ? $_POST['meta_title']:"";
-         $meta_description  = isset($_POST['meta_description']) ? $_POST['meta_description']:"";
-         $meta_keywords     = isset($_POST['meta_keywords']) ? $_POST['meta_keywords']:"";
-         $store_id          = isset($_POST['store_id']) ? $_POST['store_id']:"";
+  // $sql = "select * from " . TABLE_SEO_URL . " where url_text = '" . $url_text . "' and language_code = '" . $language_code . "'";
 
-         $sql_data_array = array('url_md5'           => $url_md5,
-                                 'url_text'          => "",//$url_text,
-                                 'language_code'     => $language_code,
-                                 'link_type'         => $link_type,
-                                 'link_id'           => $link_id,
-                                 'meta_title'        => $meta_title,
-                                 'meta_description'  => $meta_description,
-                                 'meta_keywords'     => $meta_keywords,
-                                 'store_id'          => $store_id);
+  // $seo_query = mysqli_query($db,$sql);
+  // if ($seo = mysqli_fetch_array($seo_query, MYSQLI_BOTH))
+  // {
+  //     $exists = 1;
+  // }
+  //   else
+  // {
+  //     $exists = 0;
+  // }
+
+
+  // // Variablen nur �berschreiben, wenn sie als Parameter �bergeben worden sind
+  //   $url_md5           = isset($_POST['url_md5']) ? $_POST['url_md5']:"";
+  //   $url_text          = isset($_POST['url_text']) ? $_POST['url_text']:"";
+  //   $language_code     = isset($_POST['language_code']) ? $_POST['language_code']:"";
+  //   $link_type         = isset($_POST['link_type']) ? $_POST['link_type']:"";
+  //   $link_id           = isset($_POST['link_id']) ? $_POST['link_id']:"";
+  //   $meta_title        = isset($_POST['meta_title']) ? $_POST['meta_title']:"";
+  //   $meta_description  = isset($_POST['meta_description']) ? $_POST['meta_description']:"";
+  //   $meta_keywords     = isset($_POST['meta_keywords']) ? $_POST['meta_keywords']:"";
+  //   $store_id          = isset($_POST['store_id']) ? $_POST['store_id']:"";
+
+  //   $sql_data_array = array('url_md5'           => $url_md5,
+  //                           'url_text'          => "",//$url_text,
+  //                           'language_code'     => $language_code,
+  //                           'link_type'         => $link_type,
+  //                           'link_id'           => $link_id,
+  //                           'meta_title'        => $meta_title,
+  //                           'meta_description'  => $meta_description,
+  //                           'meta_keywords'     => $meta_keywords,
+  //                           'store_id'          => $store_id);
 
  
-      if ($exists==0)        // Neuanlage
-      {
+  //     if ($exists==0)        // Neuanlage
+  //     {
 
-          $insert_sql_data = array('language_code'     => $language_code,
-                                   'link_type'         => $link_type,
-                                   'link_id'           => $link_id);
+  //         $insert_sql_data = array('language_code'     => $language_code,
+  //                                  'link_type'         => $link_type,
+  //                                  'link_id'           => $link_id);
 
-          $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
-       //   database_insert(TABLE_SEO_URL, $sql_data_array);
+  //         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+  //      //   database_insert(TABLE_SEO_URL, $sql_data_array);
 
 
-      }
-      elseif ($exists==1)    //Aktualisieren
-      {
-       //   database_insert(TABLE_SEO_URL, $sql_data_array, 'update', 'url_text = \'' . $url_text . '\' and language_code = \'' . $language_code . '\'');
-      }
+  //     }
+  //     elseif ($exists==1)    //Aktualisieren
+  //     {
+  //      //   database_insert(TABLE_SEO_URL, $sql_data_array, 'update', 'url_text = \'' . $url_text . '\' and language_code = \'' . $language_code . '\'');
+  //     }
 
 
     $schema = '<STATUS_DATA>' . "\n" .
-              '<EXISTS>' . $exists . '</EXISTS>' . "\n" .
-              '<URL_TEXT>' . $url_text . '</URL_TEXT>' . "\n" .
+              '<EXISTS>' . 1 . '</EXISTS>' . "\n" .
+              '<URL_TEXT>' . isset($_POST['url_text']) ? $_POST['url_text']:"" . '</URL_TEXT>' . "\n" .
               '<MESSAGE>' . 'Keine Meldung vorhanden' . '</MESSAGE>' . "\n" .
               '</STATUS_DATA>' . "\n";
 
