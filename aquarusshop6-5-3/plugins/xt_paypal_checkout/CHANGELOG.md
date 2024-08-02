@@ -1,3 +1,17 @@
+## [3.7.0]
+- FIX Vaulting  
+  NOT_ENABLED_TO_VAULT_ PAYMENT _SOURCE. The API caller or the merchant on whose behalf the API call  
+  is initiated is not allowed to vault the given source.
+  Es wir nun geprüft, ob Vaulting aktiviert ist, sichtbar im Backend unter PayPal Checkout Signup > Onboarding Status  
+  PAYPAL_WALLET_VAULTING_ADVANCED sollte dort vorhanden sein  
+  Wenn nicht können Sie das Onboarding nochmals durchführen 
+- FIX weitere Anpassung Festwertgutscheine
+
+## [3.6.5]
+- FIX Anpassungen für Gutscheine Festwert/Versand
+- FIX Giropay aus Installer entfernt
+- DEV ppcp_config.php nun unverschlüsselt
+
 ## [3.6.4]
 - FIX array_key_exists() expects parameter 2 to be array in class.paypal_checkout.php:819
 - FIX ppcp_pui_error: Fehler bei Kauf auf Rechnung (PUI)
@@ -20,6 +34,7 @@
   https://www.paypal.com/de/brc/article/securely-store-payments
   https://newsroom.deatch.paypal-corp.com/PayPal-erweitert-Komplettloesung-PayPal-Checkout
 - NEU Google Pay im Checkout
+  Einrichtung: https://xtcommerce.atlassian.net/wiki/spaces/MANUAL/pages/3149168643
 
 ## [3.5.3]
 - Abschaltung SOFORT über PayPal https://www.paypal.com/de/cshelp/article/help1145
@@ -43,7 +58,7 @@
 - kleiner fix im logging
 
 ## [3.5.0]
-- Apple Pay (für registrierte Kunden)  
+- NEU Apple Pay im Checkout
   Einrichtung: https://xtcommerce.atlassian.net/wiki/spaces/MANUAL/pages/2994208879
 - FIX fehlende Währungscodes an den APM-Bestellungen
 

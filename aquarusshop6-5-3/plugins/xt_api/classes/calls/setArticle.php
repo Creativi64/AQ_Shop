@@ -95,6 +95,7 @@ function setArticle($user = '', $pass = '', $ProductItem = '') {
     // ... da $data['products_price'] und $ProductItem['products_price'] manipuliert wird (Bug bei Brutto-Admin Einstellung)
     $productsprice = $data['products_price'];
 
+
     // PRODUCTS_STATUS merken
     // ... da $data['products_status'] manipuliert wird
     $products_status = $data['products_status'];
@@ -263,6 +264,8 @@ function setArticle($user = '', $pass = '', $ProductItem = '') {
         }
     }
 
+    $data['products_price'] = buildPrice($productsprice, $data['products_tax_class_id']);
+
     // Neues product Objekt anlegen
     $productObj = new product;
 
@@ -274,6 +277,7 @@ function setArticle($user = '', $pass = '', $ProductItem = '') {
 
     // _set von product aufrufen und Antwort holen
     $setResp = $productObj->_set($data, $set_type);
+ 
 
     // wenn Produkt Neu angelegt wurde, dann ist neue ID in $setResp["new_id"]
     if ($set_type == "new") {
@@ -725,6 +729,7 @@ function setArticle($user = '', $pass = '', $ProductItem = '') {
 
     // Artikel müssen am Schluss noch mal gespeichert werden, da die SEO-URL erst nach der Kategoriezuweisung gebaut werden kann
     // Dies ist auch bei Updates von Artikeln notwendig, da sich die Hauptkategorie geändert haben kann
+    // 
     $productObj->_set($data, "edit");
 
     // Status muss am Ende gesetzt werden

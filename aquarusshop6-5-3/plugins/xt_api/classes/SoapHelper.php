@@ -794,7 +794,7 @@ class SoapHelper
 
         // 2014-01-16: Garcia: Bugfix: Wenn JSON genutzt wird, dann muss die Konvertierung von base64 zu bytes hier erfolgen
         // Ansonsten erledigt das SOAP Framework das selbst
-        if( XT_SOAP_USE_JSON =='true'){
+        if( XT_API_USE_JSON =='true'){
             $fileBase64 = base64_decode( $fileBase64 );
         }
 
@@ -1327,16 +1327,28 @@ class SoapHelper
      */
     static function getProductID($externalID = '', $productsModel = '', $productID = '')
     {
+        global $db;
         // Wenn alle Parameter leer sind, dann false zurückgeben
         if (trim($externalID) == '' && trim($productsModel) == '' && trim($productID) == '') {
             return false;
         }
+
+        // fix #312
+        
+        if ($productID) {
+            $rs = $db->GetOne("SELECT products_id FROM ".TABLE_PRODUCTS." WHERE products_id=?",array($productID));
+            if ($rs) {
+                return $productID;
+            }
+        }
+        
+
         // wenn externalID gefüllt
         if ($externalID) {
 
             $externalID = str_replace("'", "''", $externalID);
 
-            global $db;
+        
             // Produkt ID anhand von external_id ermittlen aus Tabelle TABLE_PRODUCTS
             $sql = "select products_id from " . TABLE_PRODUCTS . " where external_id = '" . $externalID . "'";
             // Ersten Treffer in $productID

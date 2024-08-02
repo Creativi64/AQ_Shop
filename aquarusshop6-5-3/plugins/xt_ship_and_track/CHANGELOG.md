@@ -1,3 +1,6 @@
+## [6.2.10]
+- FIX undefined function _get() Beim Hinzufügen eines Trackings
+
 ## [6.2.9]
 - Aktualisierung der Tracking-Url Post CH
 

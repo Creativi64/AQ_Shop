@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-17 20:12:10
+/* Smarty version 4.3.2, created on 2024-08-02 22:56:57
   from '/homepages/2/d41324517/htdocs/aquarus_shop/plugins/xt_recaptcha/templates/g-recaptcha-inv.tpl.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_6698097aec6eb5_49105089',
+  'unifunc' => 'content_66ad48198cd467_49017573',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6698097aec6eb5_49105089 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66ad48198cd467_49017573 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
 >
     var recaptchaSubmit = function(token) {

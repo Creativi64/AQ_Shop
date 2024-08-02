@@ -2,7 +2,7 @@
 <xtcommerceplugin>
 
     <code>xt_ship_and_track</code>
-    <version>6.2.9</version>
+    <version>6.2.10</version>
     <type>shipping</type>
 
     <minimum_store_version>6.2.2</minimum_store_version>

@@ -40,7 +40,7 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
  * @return string
  */
 function getArticle($user = '', $pass = '', $products_id = -1, $external_id = '', $indivFieldsList) {
-    global $store_handler;
+    global $store_handler,$xtPlugin;
     
     // hat user Zugriff?
     $hasAccess = SoapHelper::secured($user, $pass);
@@ -479,6 +479,7 @@ function getArticle($user = '', $pass = '', $products_id = -1, $external_id = ''
     $articleItem["products_cross_sell"] = $products_cross_sell;
     
     // TABLE_PRODUCTS_TO_ATTRIBUTES Daten mappen 
+    if (isset($xtPlugin->active_modules['xt_master_slave'])) {
     $products_attributes_idsList = array();
     
     $paRS = $db->Execute("SELECT * FROM " . TABLE_PRODUCTS_TO_ATTRIBUTES . " WHERE products_id=" . $products_id );
@@ -499,7 +500,7 @@ function getArticle($user = '', $pass = '', $products_id = -1, $external_id = ''
     }             
     // Einmappen
     $articleItem["products_attributes"] = $products_attributes_idsList;
-    
+    }
     
     //
     // xt_products_permission Daten mappen 

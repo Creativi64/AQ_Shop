@@ -2,7 +2,7 @@
 <xtcommerceplugin>
 
     <title>xt:Commerce API</title>
-    <version>6.0.16</version>
+    <version>6.0.19</version>
     <code>xt_api</code>
     <type>API</type>
 
@@ -41,7 +41,7 @@
         <code>
             <hook>class.language.php:_getLanguagelist_qry</hook>
             <phpcode>
-                <![CDATA[ require_once _SRV_WEBROOT.'plugins/xt_api/hooks/class.language.php__getLanguagelist_qry.php'; ]]>
+                <![CDATA[ require _SRV_WEBROOT.'plugins/xt_api/hooks/class.language.php__getLanguagelist_qry.php'; ]]>
             </phpcode>
             <order>1</order>
             <active>1</active>

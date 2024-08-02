@@ -716,16 +716,6 @@
             </de>
         </phrase>
         <phrase>
-            <key>XT_PAYPAL_CHECKOUT_GIROPAY_ORDER_STATUS_NEW_TITLE</key>
-            <class>admin</class>
-            <en>
-                <value><![CDATA[New Order Status]]></value>
-            </en>
-            <de>
-                <value><![CDATA[New Order Status]]></value>
-            </de>
-        </phrase>
-        <phrase>
             <key>XT_PAYPAL_CHECKOUT_PAYLATER_ORDER_STATUS_NEW_TITLE</key>
             <class>admin</class>
             <en>
@@ -756,16 +746,6 @@
             </de>
         </phrase>
         <phrase>
-            <key>XT_PAYPAL_CHECKOUT_SOFORT_ORDER_STATUS_NEW_TITLE</key>
-            <class>admin</class>
-            <en>
-                <value><![CDATA[New Order Status]]></value>
-            </en>
-            <de>
-                <value><![CDATA[New Order Status]]></value>
-            </de>
-        </phrase>
-        <phrase>
             <key>XT_PAYPAL_CHECKOUT_PAYPAL_ORDER_STATUS_NEW_TITLE</key>
             <class>admin</class>
             <en>
@@ -775,12 +755,6 @@
                 <value><![CDATA[New Order Status]]></value>
             </de>
         </phrase>
-
-
-
-
-
-
 
 
 

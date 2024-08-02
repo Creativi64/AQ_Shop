@@ -102,7 +102,7 @@ function enablePaypalCardForm() {
 
             cardFields.NameField({
                 style: cardStyle,
-                placeholder: "TODO"
+                placeholder: "..."
             }).render("#card_holder_name");
 
 
@@ -328,7 +328,8 @@ function ppcGetShippingOptions(data, actions) {
     console.log(data, actions);
     console.log("previous country " + previousCountryCode, "current country " + data.shipping_address.country_code);
 
-    if (data.shipping_address.country_code != previousCountryCode || previousCountryCode == "") {
+    // ja einfach immer, entweder land hat sich geändert oder die versand-id
+    if (true || data.shipping_address.country_code != previousCountryCode || previousCountryCode == "") {
 
         let url = baseUrl + '?page=PAYPAL_CHECKOUT_GET_SHIPPING_OPTIONS';
 
@@ -345,6 +346,7 @@ function ppcGetShippingOptions(data, actions) {
                 body: JSON.stringify({
                     oderID: data.orderID,
                     shipping_address: data.shipping_address,
+                    selected_shipping_option:  data.selected_shipping_option,
                     operation: operation
                 })
             }

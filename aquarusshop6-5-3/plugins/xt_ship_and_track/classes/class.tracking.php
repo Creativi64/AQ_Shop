@@ -32,7 +32,7 @@ require_once _SRV_WEBROOT . _SRV_WEB_PLUGINS. 'xt_ship_and_track/classes/constan
 /**
  * Logik, DB-Zugriff, Tools
  */
-class tracking
+class tracking extends xt_backend_cls
 {
     protected function setTracking($orders_id, $shipperId, $trackinCodes, $sendMail, $statusId = 0)
     {

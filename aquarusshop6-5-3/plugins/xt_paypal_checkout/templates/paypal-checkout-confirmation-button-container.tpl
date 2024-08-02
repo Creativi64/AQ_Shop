@@ -3,7 +3,7 @@
 
 </div>
 <div class="clearfix"></div>
-{if $smarty.session.selected_payment == 'xt_paypal_checkout_paypal'}
+{if $smarty.session.selected_payment == 'xt_paypal_checkout_paypal' && $smarty.session.PAYPAL_WALLET_VAULTING_ADVANCED_available}
 <div class="pull-right">
         <input type="checkbox" id="ppcp_agree_save_payment_method" name="ppcp_agree_save_payment_method">
         <label for="ppcp_agree_save_payment_method">{txt key="TEXT_PPCP_AGREE_SAVE_PAYMENT_METHOD"}&nbsp;&nbsp;</label><i class="fa fa-question-circle" aria-hidden="true" onclick="ppcSavePaymentMethodInfoModal()"></i>

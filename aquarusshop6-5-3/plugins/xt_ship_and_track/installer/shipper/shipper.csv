@@ -1,5 +1,5 @@
 dhl;DHL;https://nolp.dhl.de/nextt-online-public/set_identcodes.do?lang=de&idc=[TRACKING_CODE]
-dpd;DPD;https://extranet.dpd.de/cgi-bin/delistrack?typ=1&lang=de&pknr=[TRACKING_CODE]
+dpd;DPD;https://tracking.dpd.de/status/de_DE/parcel/[TRACKING_CODE]
 fedex;FedEx;https://www.fedex.com/fedextrack/?tracknumbers=[TRACKING_CODE]
 gls;GLS;https://gls-group.eu/DE/de/paketverfolgung?txtAction=71000&match=[TRACKING_CODE]
 go;GO!;https://order.general-overnight.com/ax4/control/customer_service?hash=&land=de&shId=[TRACKING_CODE]

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.3.2, created on 2024-07-17 20:12:10
+/* Smarty version 4.3.2, created on 2024-08-02 22:58:55
   from '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/includes/product_info_label.html' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.3.2',
-  'unifunc' => 'content_6698097a9b6903_98707611',
+  'unifunc' => 'content_66ad488f0e2e80_00272224',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6698097a9b6903_98707611 (Smarty_Internal_Template $_smarty_tpl) {
+function content_66ad488f0e2e80_00272224 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="product-info-label pos-<?php echo $_smarty_tpl->tpl_vars['position']->value;?>
 ">
     <?php if ($_smarty_tpl->tpl_vars['isSpecial']->value == 1) {?>

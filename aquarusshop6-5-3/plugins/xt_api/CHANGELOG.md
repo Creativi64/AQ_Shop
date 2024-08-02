@@ -1,3 +1,14 @@
+## [6.0.19]
+- include_once in hook, segfault error on some environments
+
+## [6.0.18]
+- fix #311 double saving (1x net 1x gross) of prices on setArticle
+- fix #312 allowing change of products_model when product updates via products_id on setArticle
+- fix #180 error on getArticle when master_slave plugin is not activated
+
+## [6.0.17]
+- bugfix in setArticleFiles when api is in JSON mode, file upload was broken
+
 ## [6.0.16]
 - Support for Sort & LIKE filter in getArticles
 

@@ -1,73 +1,60 @@
-<?php //ICB0 74:0 81:9fa 82:10ca                                              ?><?php //002cd
-if(extension_loaded('ionCube Loader')){die('The file '.__FILE__." is corrupted.\n");}echo("\nScript error: the ".(($cli=(php_sapi_name()=='cli')) ?'ionCube':'<a href="https://www.ioncube.com">ionCube</a>')." Loader for PHP needs to be installed.\n\nThe ionCube Loader is the industry standard PHP extension for running protected PHP code,\nand can usually be added easily to a PHP installation.\n\nFor Loaders please visit".($cli?":\n\nhttps://get-loader.ioncube.com\n\nFor":' <a href="https://get-loader.ioncube.com">get-loader.ioncube.com</a> and for')." an instructional video please see".($cli?":\n\nhttp://ioncu.be/LV\n\n":' <a href="http://ioncu.be/LV">http://ioncu.be/LV</a> ')."\n\n");exit(199);
-?>
-HR+cPqym+hbo6T++h8HlchyKRPkY6NNivU6Wo/BOFYw5/XRgjb0Pll0bbopfXmnO9ylBhuzZwjUs
-Zlx5jGLktZ330CokbnNBOtmiPcRXc9TtGMH6+lwv3NpMHdqrYV9rUlycddjiNkdvuN50Z5YDAjAC
-d9YU5sK9tbBCIsJK9z/rfDLlA+YfE0VVv8Y1IwZweXR265PB65qwMNQPcQ+YlWNce7w9606IaMzi
-VtzqrRBprcMU7MUI1kJUEqLBT//2Y8Ymm7NSKO03DeCeI58w3/X5rCha8ccBugSV/bPG8XyTYN6n
-83yXYSTrWp2B1VrvabU8MfAtWaQvBDC08K1lKUveNDBL8FzzWvKAraUTWYLaziQTq9OmaUqOf9bY
-0KRR4p//C293GZzAoi91qDNauKCD/NGj6c1ADaaPNx1k4vucPlUNlf6JGKKf22LlC5gbnZEhIbff
-Qp9EVN6W0o2qDsW8shlB0HlJjPH0MRY3Ug83fK0pN3NWffhYoaQVd/2GtBKpLzUkxUyG9Ke3s4Yk
-dZczH4bWoSRwhO8dqVySDMTll53wncV87gkeW8670GlWZuxDwtaMWLl8Vj7zzMqMHvIPB8OiWbx4
-wEWbRz3Gzp0pZscAAmfzjqOhXsrAUO8BMa9xB9bEYxkpzLkoABXx2Yk3L/0ZchyAAhpvzqgaTgNb
-Dxw+Qnc4fJtngAsaZBxBvAUlJIVAHE6vvQpfYGWl2yWfb8e63YuzyqjWS7XHPd6H0/+3vCxJlOj6
-LZ9LYcCMTXBdK/AgdbxRZg7bp6YVccXzc5V53Lv8rfBbub4neZYn9dZYMELzflPk72yYKRWe9gwC
-eJ2rZ+gqsJzpHR0Pur4L42IXLQVpOwVts4tDsnUSlPRN4/if5V74zoO9PsrVpIUx4WzR2LXsQ5e3
-3qsRdd/44rHiZJLdGOoL5DEXHzAIBVW05IJqiGuffu/AAg/pnjGNFigVcniBWuisZoQcFHVTWimw
-OxJ2Es6LmpVXtpWmDiGiLuUB4KZPXmvGNWD2choLYMAdOnhLysTo4+Qcsx05E8DqyMSC+P2AHcYw
-5FfykAX5QHvYL/krAsaKgQpDTJj0wWD7q0T0jQf4mKLSUo+p2AwxOfNGkUUypBvoBEN69OJXxmtU
-zT0nHB9VDphxPafCB6wPzHfUz0RnR2sA9+VLl7EY46ryANHEqJS+fDnU3WUNtPE/tVRQYDCWmc3G
-YZgvDOEVzbMtC8YPij2fwN/kJX+zLOaQdGzo7lVaOjVAvyVGyw3IXok4Z0npLW3itCEaHu/tLHyY
-uD3hF/nqI40MA0RLTLlS60wyY9M2UxHLvB7YBSCpyAYegtHrTp+Q06IYZjpMBNnYa9rfXSMRip4x
-NdP6Z+gpqsmEsPM3yuzGjjrkJLILsbiLmxo5ag7H64f396l7bKh3JkV7clEVoFPYx81ptSAPxpFN
-GP+eLd3qIX2eQ7Fx38mpDncAtp17bRjb3/u5jyiWsJ8NQKd8VaMmc6zDNDv/mOGjXmGvmEp3XxUk
-zXldsS6/cPwKxWea/c2MbHsn1+jwDsTJhOTFUwpb+VuaBYXMDYoc3i8DeMABT/2XLseTnTVXioK0
-VjAcTOsFcHCTucDFzyU2CmaGJgukMVADTKqwtid6o06CPWioR1+J+H1akYVkvBJVK1fv3pOqZBw+
-cxSXTckhSq+EPTgD8ofNl3H4PqibjaLq1BWO5SmhZTTeNLAcA+uc25ifm7NjMCLcpy/Muq+sz/Vl
-KOnDVxRhXT2Lnv3iBwnazE4uFqyIECl/2JBHo91QRGSZ+YKJyD0EfS3zzQO==
-HR+cPuyrf0O00HqfUemn9VqATKkCfefFIKaiN+WSIENijULbdfTVUbu580/N046QqMJZ3oAlApBt
-gjgQD22RuoIksQ/uc1iH5BDEdms91gyOUstZ7NyQHW7GhuoyEpQNVklLqoisfQgk+9LBKePZsIN4
-d9whtUsnaMQ7sRubbeWqUEWp7nCkIsH3aHMQliPxf53EizFitTzE2VQKFcS3MFw+8LNUYCI4pbFb
-SW+mPhZhSBIFb7kqiYQvpiNdi1dHag6O0djTuBFMjSlFvqLubRRFBjY6ey8kXN0vSA1Mop3XyKgp
-IGYs9FnQMa+w6UDnTWwyiGMo5XbnpLmBApwv7qSPydWc0+ydz75AdMTW6Dpi1Lg3Ghqoy8s7Bxna
-0BTHXc1c7eBRjfbCUzhlY5tTd10jTZ4xEA0mdcGr1zwusG+8NfgttwGtjRQqTjNQw1Sbxmo+zjMV
-xWC29FsE1NWk9wLrdx+I21Ejb2zP0bqD4yKmVjxccD3/QA2n5BZNSSfx3nErCS8rKdXPqR/bIEYs
-vIG0KWsKgktxJnpDqqAz4LjsrOK9Y1lHsWdNoiycxTl1KZEaZYH99XgttRNWNMWj7Mcn87hBhuF/
-t3C7/KhDtV93gWHqAnrmI9hTkWW8dAK6BXGfDp2hBRMlXC30j2bAMP5roYWUw6u80q7bCAnI84JM
-8NsKnsBFOfOwB2348AT5iunr4K0E+A37byly2/nPa+zfuXxKBRHpB9bPuwVpMq6dQn4fJwmxcGA9
-3D88nFAnVyHzMf61K0mI43JLkjhhC6DACFK26/z2pFBIiu+LzcJ5yDPD1uHvNGiY6fqY6KbisDlC
-z+pv8Ig6tOo7X7vMQP1gBR8f43PllFSYaep4BLgoymFN8WNXvSxETlda5UG16I0VIp1L19kUUGQu
-DjKniGhIG9BZQcml9eF+XWHsaQ6PpmLZBNvabPBrVpklWo/lZNNv2ZeE9fnN/55tBsT4XbUJfuOh
-et4AuAZPEocjbzW1Nkom1cH+itCZm5qIBf7ccmSKsoOFO5Q/5A2GTUfv4C8s6Eg+7NFIo1aPKrWC
-cwNWwPK7/0lk7YE66A5HIDHv5qYbOtnct9b81nhbVbgmW2o/s8HeHxF2Opi1Vft9biVh7Sy2dt13
-Nd3WtHriAtSUzWAaPeugpeJFHiPVkm2FTd0iZatcipjeKCEH76BEzQpLd2dwLlWUwH6t7lFczumG
-WRosuBbDjGR0+d/9cZ0mXgjKdL27Fd0BJUML7mt4rcTkV5RnYek3EY6WRWKkTYfTI0ZtyCGW8ZVJ
-cm6mpqRMHIKnE1jOagJmXLX2MYnXO7nwxDUWcbaUKrzTKdHfQ2BvEM7xCUsPqFJoFICtoFAPvF4q
-yRuTkk5LOQq7MJltioL0xGX2kx/lVQniHIrFiu6LfP/m4hqMA8AQ/rPTdtmNo6jMO2IOGWWa9j4E
-Vmqfqdl3ZX+4CZ0qjhw2hyvcCYauuyar8dwSufW9sNb5SSk/lL9yx7RBU285Wbm3rznO4JZmE0FR
-QNCv5sd6tY7O86ofPwXaBW9XJmqJD6Z+0nqKCgA04Qvsa5CRaCaK99sQu7hkcRa7L9lUvWMQzLUI
-gPsX52WkA0B59BEAAWC6MJ2Jj2pyJgYPaDDtVINnDfwnJJkjwhV2/deuj2c4TURYD2OPBg3g7QrS
-J3VEW1Qsg7hjRYa+96UrSCiw3uSnK0YG9tvYKmqYURmvlk0l=
-HR+cPofrNbkvmAAStSpBU8tiofCnnbD3c8jhc76DJODHtrQcZxAwwS12gprQYWjtnC2Xm1fMT88G
-BcYgZW6Rqin7KpFFJ2qitbtgaPiOQfKtVcfSTbLe4mKwQbJXUuO8AcB0d/AHlBVpaZ/ahDXGByFg
-HChnJNUL1oBTNKUVL4h+8xLN31DOZilZSn+SVfz7E2zrVs+hVu/0e1igDY3W/KYaJIz62eV4l3E0
-UHIm6LnHsiAGqErlHcuQ6zKY28ISEcD54eftd16knU1FLonLkKsQu2Om1n8HVxQUUS3abhmn1cbS
-YcL38l5u9sUNMhDQnHQmzD1wii5rHE4nNhlPLrIkFc1SeJ3VxGBX6k3dWsgiftq7uKTdtw39d4wY
-f1qbxpI46UqYmfBiOmSw9GjFujY0H4AxRO1SIGTRdpfYIiZ8f9UJdVnhnplPy407wHSOC0B/e11o
-mPUlVAWF42JqJQ1jj/j1wTmhpHMPYxe4afmISyZBkzIgJ0GEBVrjUvkmCfTcLRuGKuT2u2NM+x0O
-FQJ6RSZWblB8dWrkzTt0s6ZLFWlvbRS7FOIHOMmeREHjhb2i5H12JgQUA9Eqr0d12cb0e2ofAr2y
-ublXLzGfOK1tjllB9AVb/20XhOSjhwrRscjTgmbIn1hHJhl256t9Y7e/4Zr69mtn5FISb1umFzvz
-ZS8ZU4OmPGvEApUHbpXH0Zfhud/yi7Ope4AdO/tlCN5/x7eDSsS3q44tWx5fSlq6lJMzBumGERMF
-qdb0b2zJm12GStmu+LL0KKF+3vtJFwyGBV/fdZK0KBre7wnTuIamZPtHjeu3Vqf/iIeV4QMu8EID
-H1jJRwwB9BCalEIlfohvkP0oY7jX2JC0qlEttnUx2AgER5znP/WbonY2Svpj3LjS8PVyyBbzWhHt
-y+rfhOerG42S3QSLqYHPN9R7p8jTkw2QH4lSZxXLNhP+qvREJ/y1VKeKC9/MW5WsJmJxnwmgXbi+
-OYcONc1iCkcJjhrf9N0r9Wla+ck0g/1w+NfBw4BmCPz+T7ucpAFO4K2nQdh1wbcC3D7DbBG/3d58
-g9JsgPtc5g7vEtybByk4/ZkTsawRl99rpGbzWPPcK0afjLxaTS+OOrHA04/44aJf1vWcmR8I3XLU
-m3Rej7D/Czyd3xCIajCX90fp/raeGRvkMGGBbiDAmoM1Jm9Y87cywLqtCCnrawSePeeML87FLmMl
-d46WqfUNFyNtv7IxiaYU/mZcfHSn+eC6I416AT+jBq0+7IqW0S7NBpeI+ltJWCzHuqf8btxBnTAi
-MRs0P1DAWZ1kD/8oifXaCJBMKjgRH28gMvlo8hWEiDhY4OnZDsgjAl4b8pGrtVYM/2dmCdKxp+n0
-Hm5mQm82zlkQgDkF514Xa9p4/lrCpbNUQ4kH7WGwCXj1zejZXZy6WZwgkqUsjbB9W1ERYG0bYYU+
-ryvG9tCfzw0+Nk9eDztmK/0E3R+gFtOi2DTSOC4t59pc6GMaKZFF0D1FmgGKZMNeFq+YgN7niK8f
-Ejkc0FpdL1sYJ9I3bWPKWAcvkGSxtt52QbdkCr8uMCstqqatxPuu6HOBLGRc0dL3lHoTegbtJidn
-4Ny0bbeE7tZkGnH9AMc9cftmdANjUdEBS6TkpuA/gf3PTV5g/Ww/NtDggOaBZ/qRk0xdEXKgaAnL
-9WSkIXIPLRjLKEi/Yg0mvpHeQ/nlXq2AtHd24H2cJy1Xom==
+<?php
+
+// bei Bedarf kopieren nach conf/ppcp_config.php und dort bearbeiten
+// wird automatisch eingebunden, wenn in vorhanden in conf/
+
+defined('_VALID_CALL') or die('Direct Access is not allowed.');
+
+// auf diesen Seiten die PayPal SDK nicht laden, array
+// bezieht sich auf global $page->name
+define('PPCP_DONT_LOAD_SDK_PAGES',  ['categorie','content','manufacturers','index','404','manufacturers_categories','inquiry']);
+
+// hier kann eigene Logik untergebracht werden für ob/wo/wann die PayPal js SDK geladen werden soll
+/**
+ * @return bool
+ */
+/*
+function do_render_ppcp_sdk_code($render_ppcp_sdk_code)
+{
+    return $render_ppcp_sdk_code;
+}
+*/
+
+// 'Später Zahlen' Ratenrechner ausblenden (reduziert Größe der zu ladenden SDK)
+//define('PPCP_DONT_LOAD_SDK_COMPONENT_MESSAGES', false);
+
+// für diesen Seiten wird kein snapshot auf der index.php gesetzt
+// fest definiert und immer berücksichtigt sind['PAYPAL_CHECKOUT_GET_SHIPPING_OPTIONS', 'PAYPAL_CHECKOUT_ORDER_CREATE']
+//define('PPCP_NO_SNAPSHOT_PAGES', false);
+
+// Validierung der Webhooks aktivieren
+// define('PPCP_VERIFY_WEBHOOK', true);
+
+
+/**
+ *  folgende Einstellungen nur für Entwicklung und Tests
+ */
+
+// overcapture testen
+// führt dazu, dass nach Express der autorisierte Betrag erhöht
+// damit ist ein neue Autorisierung erforderlich
+//define('PPCP_TEST_OVER_CAPTURE', false);
+
+// Standard-KK vs hosted-fields
+// serverseitig wird über die ppcp capabilities geprüft ob CUSTOM_CARD_PROCESSING enabled ist
+// allerdings liefert pp für Kunden aus AT/CH keine caps, siehe Backend > Einstellung > PayPal Checkout Signup > Onboarding Status anzeigen
+// hosted-fields für einfaches Kreditkarten-Formular nicht mgl für AT/CH, Standard-KK wird angezeigt
+// für Tests auf true setzen, um Standard-KK anzuzeigen, ohne hosted-fields Komponente
+//define('PPCP_HOSTED_FIELDS_NOT_AVAILABLE', false);
+
+// Land für Standard-KK
+// mit welchen Länderteil der locale soll die PP-js-SDK geladen werden, wenn Sprache de/fr/it
+// ergibt zb fr_CH oder de_CH
+// mit dem CH-Teil wird bestimmt welches Land vorausgewählt ist bei Standard-KK
+//define('PPCP_LOCALES_COUNTRY', 'CH');
+
+// Webhook-Daten werden geloggt in xt_paypal_checkout.log
+// define('PPCP_LOG_WEBHOOK', true);
+
+// Webhooks nicht verarbeiten
+// define('PPCP_DO_NOT_PROCESS_WEBHOOK', false);
