@@ -2106,8 +2106,8 @@ function CallAPI($method, $url, $data = false)
     //curl_setopt($curl, CURLOPT_USERPWD, "finosScript:Superkarl123!");
 
         // -----------------------
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        // curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        // curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         // ---------
 
     curl_setopt($curl, CURLOPT_URL, $url);
@@ -2135,64 +2135,7 @@ function save_seo_url()
   $products_id = isset($_POST['link_id']) ? $_POST['link_id']:"";
 
   UpdateArticleFromPost($products_id);
-
-  // $language_code = isset($_POST['language_code']) ? $_POST['language_code']:"";
-  // $url_text = isset($_POST['url_text']) ? $_POST['url_text']:"";
-
-
-  // $sql = "select * from " . TABLE_SEO_URL . " where url_text = '" . $url_text . "' and language_code = '" . $language_code . "'";
-
-  // $seo_query = mysqli_query($db,$sql);
-  // if ($seo = mysqli_fetch_array($seo_query, MYSQLI_BOTH))
-  // {
-  //     $exists = 1;
-  // }
-  //   else
-  // {
-  //     $exists = 0;
-  // }
-
-
-  // // Variablen nur �berschreiben, wenn sie als Parameter �bergeben worden sind
-  //   $url_md5           = isset($_POST['url_md5']) ? $_POST['url_md5']:"";
-  //   $url_text          = isset($_POST['url_text']) ? $_POST['url_text']:"";
-  //   $language_code     = isset($_POST['language_code']) ? $_POST['language_code']:"";
-  //   $link_type         = isset($_POST['link_type']) ? $_POST['link_type']:"";
-  //   $link_id           = isset($_POST['link_id']) ? $_POST['link_id']:"";
-  //   $meta_title        = isset($_POST['meta_title']) ? $_POST['meta_title']:"";
-  //   $meta_description  = isset($_POST['meta_description']) ? $_POST['meta_description']:"";
-  //   $meta_keywords     = isset($_POST['meta_keywords']) ? $_POST['meta_keywords']:"";
-  //   $store_id          = isset($_POST['store_id']) ? $_POST['store_id']:"";
-
-  //   $sql_data_array = array('url_md5'           => $url_md5,
-  //                           'url_text'          => "",//$url_text,
-  //                           'language_code'     => $language_code,
-  //                           'link_type'         => $link_type,
-  //                           'link_id'           => $link_id,
-  //                           'meta_title'        => $meta_title,
-  //                           'meta_description'  => $meta_description,
-  //                           'meta_keywords'     => $meta_keywords,
-  //                           'store_id'          => $store_id);
-
  
-  //     if ($exists==0)        // Neuanlage
-  //     {
-
-  //         $insert_sql_data = array('language_code'     => $language_code,
-  //                                  'link_type'         => $link_type,
-  //                                  'link_id'           => $link_id);
-
-  //         $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
-  //      //   database_insert(TABLE_SEO_URL, $sql_data_array);
-
-
-  //     }
-  //     elseif ($exists==1)    //Aktualisieren
-  //     {
-  //      //   database_insert(TABLE_SEO_URL, $sql_data_array, 'update', 'url_text = \'' . $url_text . '\' and language_code = \'' . $language_code . '\'');
-  //     }
-
-
     $schema = "<STATUS_DATA>" . "\n" .
               "<EXISTS>" . 1 . "</EXISTS>" . "\n" .
               "<URL_TEXT>" . (isset($_POST['url_text']) ? $_POST['url_text']: "") . "</URL_TEXT>" . "\n" .
