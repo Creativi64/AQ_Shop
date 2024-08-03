@@ -27,6 +27,8 @@
 
 include_once '../xtFramework/admin/main.php';
 
+global $xtc_acl, $xtPlugin, $logHandler;
+
 if (!$xtc_acl->isLoggedIn()) {
     die('login required');
 }
@@ -40,14 +42,14 @@ if (CSRF_PROTECTION!='false')
 if( isset($_GET['load_section']) && (!isset($_GET['parentNode']))   ){
 
     foreach($_SESSION as $key =>$value){
-        if(strpos($key, "filter") === 0){ //field name starts with 'filter'
+        if(str_starts_with($key, "filter")){ //field name starts with 'filter'
             unset($_SESSION[$key]);
         }
     }
 }
 
 
-if(isset($_REQUEST['filter_form'])){
+if(array_value($_REQUEST,'filter_form')){
 
     // new style from xt5
     $filter_key = 'filters_'.$_REQUEST['filter'];
@@ -214,7 +216,7 @@ if ($_POST && isset($_GET['save'])) {
     //Echo '({"data":'.json_encode($_POST).',"success": true, "waitMsg": "SAVED.."})';
     die;
 }
-if ($link_params && (isset($_GET['save_all'])) || $link_params['new_data'] != '' || $link_params['edit_data'] != '') {
+if ($link_params && (isset($_GET['save_all'])) || array_value($link_params,'new_data', '') != '' || array_value($link_params, 'edit_data', '') != '') {
     $obj = $form_grid->saveClassAllData($link_params);
     header('Content-Type: application/json; charset='._SYSTEM_CHARSET);
     echo json_encode($obj);

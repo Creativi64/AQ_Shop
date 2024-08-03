@@ -1,3 +1,7 @@
+{if $OLD_PRICE.plain}
 <span class="price-new"><i class="mdi mdi-sale"></i> {$SPECIAL_PRICE.formated}</span>
 <span class="price-discount">-{math equation="round(100-y/x*100,1)" x=$OLD_PRICE.plain y=$SPECIAL_PRICE.plain}%</span>
 <span class="price-old text-muted">{txt key=TEXT_RRP} {$OLD_PRICE.formated}</span>
+{else}{* 0 euro *}
+<span class="price-new">{$SPECIAL_PRICE.formated}</span>
+{/if}

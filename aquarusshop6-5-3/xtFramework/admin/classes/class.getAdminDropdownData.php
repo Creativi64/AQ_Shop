@@ -132,10 +132,8 @@ class getAdminDropdownData {
 	public function getWYSIWYG()
 	{
 		return array(
-			array('id' => 'ckeditor', 'name' => 'CKEditor'),
-			array('id' => 'none', 'name' => __define('TEXT_NO_WYSIWYG')),
-			array('id' => 'SimpleHtmlEditor', 'name' => __define('TEXT_SIMPLE_WYSIWYG')),
-			//array('id' => 'TinyMce', 'name' => __define('TEXT_TINY_WYSIWYG'))
+            array('id' => 'froala', 'name' => 'Froala'),
+			array('id' => 'none', 'name' => __define('TEXT_NO_WYSIWYG'))
 		);
 	}
 

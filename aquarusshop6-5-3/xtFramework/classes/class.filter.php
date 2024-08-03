@@ -93,6 +93,7 @@ class filter{
 			{
 				$var = rawurldecode($var); // using rawdecode instead decode to allow +
                 $var =$this->_purifier->purify($var);
+                $var = str_replace(['&amp;'], ['&'], $var);
 			}
 
             $var = htmlspecialchars($var, ENT_COMPAT, 'UTF-8');

@@ -1,10 +1,9 @@
-Hallo {$order_data.billing_firstname} {$order_data.billing_lastname},
+Ihre Rechnung
 
-vielen Dank für Ihren Einkauf!
+Hallo {$data.invoice.invoice_fullname},
 
-Beigef&uuml;gt ist Ihre Rechnung für die Bestellung #{$data.invoice.orders_id}
+noch einmal vielen Dank für Ihre Bestellung {$data.invoice.orders_id}.
 
-Mit freundlichen Grüßen,
-{$data.config._STORE_NAME}
+Als Anhang unsere Rechnung {$data.invoice.invoice_number}.
 
 {$_system_footer_text}

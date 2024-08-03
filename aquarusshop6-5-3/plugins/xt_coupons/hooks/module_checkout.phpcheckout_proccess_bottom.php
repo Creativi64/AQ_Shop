@@ -2,9 +2,11 @@
 
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
-global $price, $db;
+global $price, $db, $tax;
 
 require_once(_SRV_WEBROOT . _SRV_WEB_FRAMEWORK . 'admin/classes/class.adminDB_DataSave.php');
+
+/** @var  $order order */
 
 $arr_coupon = $_SESSION['sess_coupon'];
 if (is_array($arr_coupon)) {
@@ -19,6 +21,11 @@ if (is_array($arr_coupon)) {
 
     if ($arr_coupon['coupon_amount'] > 0) {
         $data['redeem_amount'] = $arr_coupon['coupon_amount'];
+        $products_tax = $tax->data[$arr_coupon["coupon_tax_class"]];
+        if($products_tax)
+        {
+            $data['redeem_amount'] = $price->_AddTax($data['redeem_amount'], $products_tax);
+        }
     }
     else if($arr_coupon['coupon_percent'] > 0)
     {

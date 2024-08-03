@@ -41,9 +41,11 @@ class MediaData extends MediaFileTypes
     protected $_gallery_master_key = 'mg_id';
     protected $_table_media_to_gallery = TABLE_MEDIA_TO_MEDIA_GALLERY;
     protected $_table_media_link = TABLE_MEDIA_LINK;
+    public string $class = '';
 
     function __construct ()
     {
+        parent::__construct();
         $this->class = 'default';
     }
 

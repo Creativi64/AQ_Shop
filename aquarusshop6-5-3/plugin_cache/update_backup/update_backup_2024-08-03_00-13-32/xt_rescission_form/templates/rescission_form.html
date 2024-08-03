@@ -1,0 +1,177 @@
+<div id="xt_rescission_form">
+    <h1>{txt key=TEXT_RESCISSION_FORM}</h1>
+    {$message}
+    {if $show_form eq 'true'}
+        <p class="alert alert-info"><i class="fa fa-info-circle"></i> {txt key=TEXT_RESCISSION_FORM_INTRO}</p>
+    {/if}
+    {include file="xtCore/pages/content.html"}
+    {if $show_form eq 'true'}
+        {form class="form-horizontal" type=form name=login action='dynamic' link_params=getParams method=post conn=SSL}
+        {form type=hidden name=action value=send}
+
+        <fieldset>
+            <div class="form-group">
+                <label class="col-sm-3" for="product_numbers">{txt key=TEXT_PRODUCT_NUMBERS}*</label>
+                <div class="col-sm-9">
+                    {form class="form-control" id=product_numbers type=textarea name=product_numbers params='cols="50" rows="4"' value=$product_numbers}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" for="order_date">{txt key=TEXT_ORDER_DATE}*</label>
+                <div class="col-sm-9">
+                    {form id=order_date type=text name=order_date params='maxlength="40"' value=$order_date}
+                    {literal}
+                    <script>
+                        $(function(){
+                        if (typeof $.fn.datetimepicker === 'function') {
+                            $('#order_date').datetimepicker({
+                                    minDate: "2017-01-01",
+                                format: "DD.MM.YYYY",
+                                locale: '{/literal}{$language}{literal}'
+                            });
+                            }});
+                    </script>
+                    {/literal}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" for="recieved_date">{txt key=TEXT_RECIEVED_DATE}</label>
+                <div class="col-sm-9">
+                    {form id=recieved_date type=text name=recieved_date params='maxlength="40"' value=$recieved_date}
+                    {literal}
+                    <script>
+                        $(function(){
+                        if (typeof $.fn.datetimepicker === 'function') {
+                            $('#recieved_date').datetimepicker({
+                                    minDate: "2017-01-01",
+                                format: "DD.MM.YYYY",
+                                locale: '{/literal}{$language}{literal}'
+                            });
+                            }});
+                    </script>
+                    {/literal}
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>{txt key=TEXT_HEADING_CUSTOMER_NAME}</legend>
+            <div class="form-group">
+                <label class="col-sm-3" for="gender">{txt key=TEXT_GENDER}*</label>
+                <div class="col-sm-9">
+                    <select id="gender" name="gender" style="float:right">
+                        <option value="{txt key=TEXT_FEMALE}">{txt key=TEXT_FEMALE}</option>
+                        <option value="{txt key=TEXT_MALE}">{txt key=TEXT_MALE}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" for="firstname">{txt key=TEXT_FIRSTNAME}*</label>
+                <div class="col-sm-9">
+                    {form id=firstname type=text name=firstname params='maxlength="40"' value=$firstname}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" for="lastname">{txt key=TEXT_LASTNAME}*</label>
+                <div class="col-sm-9">
+                    {form id=lastname type=text name=lastname params='maxlength="40"' value=$lastname}
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>{txt key=TEXT_HEADING_CUSTOMER_ADDRESS}</legend>
+            <div class="form-group">
+                <label class="col-sm-3" for="street">{txt key=TEXT_STREET}*</label>
+                <div class="col-sm-9">
+                    {form id=street type=text name=street params='maxlength="40"' value=$street}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" for="city">{txt key=TEXT_CITY}*</label>
+                <div class="col-sm-9">
+                    {form id=city type=text name=city params='maxlength="40"' value=$city}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" for="country">{txt key=TEXT_COUNTRY}*</label>
+                <div class="col-sm-9">
+                    {form params='id="country" style="float:right""' type=select name=country value=$country_data default=$smarty.const._STORE_COUNTRY}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" for="email_address">{txt key=TEXT_EMAIL}*</label>
+                <div class="col-sm-9">
+                    {form id=email_address type=text name=email_address params='maxlength="40"' value=$email_address}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" for="client_number">{txt key=TEXT_CLIENT_NUMBER}{if $smarty.const.XT_RESCISSION_FORM_CLIENT_NO_REQUIRED=='true'}*{/if}</label>
+                <div class="col-sm-9">
+                    {form id=client_number type=text name=client_number params='maxlength="40"' value=$client_number}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" for="invoice_number">{txt key=TEXT_INVOICE_NUMBER}{if $smarty.const.XT_RESCISSION_FORM_INVOICE_NO_REQUIRED=='true'}*{/if}</label>
+                <div class="col-sm-9">
+                    {form id=invoice_number type=text name=invoice_number params='maxlength="40"' value=$invoice_number}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" for="customer_message">{txt key=TEXT_MESSAGE}</label>
+                <div class="col-sm-9">
+                    {form class="form-control" id=customer_message type=textarea name=customer_message params='cols="50" rows="4"' value=$customer_message}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" for="revocation_date">{txt key=TEXT_REVOCATION_DATE}*</label>
+                <div class="col-sm-9">
+                    {form id=revocation_date type=text name=revocation_date params='maxlength="40"' value=$revocation_date}
+                    {literal}
+                    <script>
+                        $(function(){
+                        if (typeof $.fn.datetimepicker === 'function') {
+                            $('#revocation_date').datetimepicker({
+                                minDate: "2017-01-01",
+                                format: "DD.MM.YYYY",
+                                locale: '{/literal}{$language}{literal}'
+                            });
+                        }});
+                    </script>
+                    {/literal}
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            {if $smarty.const._STORE_CAPTCHA == 'ReCaptcha'}
+                <div class="form-group">
+                    <label class="col-sm-3" for="captcha_code"></label>
+                    <div class="col-sm-9 recaptcha-wrapper">
+                    </div>
+                </div>
+            {else if $smarty.const._STORE_CAPTCHA == 'Standard'}
+                <div class="form-group">
+                    <label class="col-sm-3" for="captcha_code">{txt key=TEXT_CAPTCHA}*</label>
+                    <div class="col-sm-9">
+                        <p id="captcha-img"><img src="{$captcha_link}" alt="{txt key=TEXT_CAPTCHA}" class="img-responsive img-thumbnail" /></p>
+                        {form id=captcha_code type=text name=captcha params='maxlength="30"'}
+                    </div>
+                </div>
+            {/if}
+            <div class="form-group">
+                <div class="col-sm-9 col-sm-offset-3">
+                    <p class="pull-right">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                            {txt key=BUTTON_SUBMIT}
+                        </button>
+                    </p>
+                    <p class="required">{txt key=TEXT_MUST}</p>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </fieldset>
+
+        {form type=formend}
+    {/if}
+</div><!-- #xt_rescission_form -->

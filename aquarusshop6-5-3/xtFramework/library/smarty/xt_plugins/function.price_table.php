@@ -30,7 +30,8 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 function smarty_function_price_table($params, & $smarty) {
 	global $xtPlugin,$p_info,$price, $tax;
 
-	if ((int)$params['pid'] > 0) {
+    $tmp_p = false;
+	if (array_key_exists('pid', $params) && (int)$params['pid'] > 0) {
 		$tmp_p = product::getProduct($params['pid']);
 	}
 	
@@ -39,10 +40,10 @@ function smarty_function_price_table($params, & $smarty) {
 		
     $price_matrix = array();
 		
-	if (is_object($p_info) && is_array($p_info->data['group_price']['prices'])) {
+	if (is_object($p_info) && array_key_exists('group_price', $p_info->data) && is_array($p_info->data['group_price']['prices'])) {
 		$price_matrix = $p_info->data['group_price']['prices'];
 	}
-	if (is_object($p_info) && is_array($tmp_p->data['group_price']['prices'])) {
+	if (is_object($tmp_p) && array_key_exists('group_price', $tmp_p->data) && is_array($tmp_p->data['group_price']['prices'])) {
 		$price_matrix = $tmp_p->data['group_price']['prices'];
 	}
 

@@ -16,7 +16,7 @@
         {/if}
         {if $show_company eq 1}
         <div class="form-group">
-            <label for="customers_company">{txt key=TEXT_COMPANY_NAME}{if _STORE_COMPANY_MIN_LENGTH > 0 && version_compare(_SYSTEM_VERSION, '4.2.0', '>=')}*{/if}</label>
+            <label for="customers_company">{txt key=TEXT_COMPANY_NAME}{if _STORE_COMPANY_MIN_LENGTH > 0}*{/if}</label>
             {form id=customers_company type=text name=customers_company value=$customers_company}
         </div>
         <div class="form-group">
@@ -61,20 +61,18 @@
     <fieldset>
         <legend>{txt key=TEXT_ADDRESS}</legend>
 
-        {if version_compare(_SYSTEM_VERSION, '6.3.2','>=')}
-            {hook key=account_tpl_edit_address_address_top}
-        {/if}
+        {hook key=account_tpl_edit_address_address_top}
 
         <div class="form-group">
             <label for="customers_street_address">{txt key=TEXT_STREET}*</label>
             {form id=customers_street_address type=text name=customers_street_address value=$customers_street_address}
         </div>
-        {if version_compare(_SYSTEM_VERSION, '5.1.0', '>=')}
-            <div class="form-group">
-                <label for="customers_address_addition">{txt key=TEXT_ADDRESS_ADDITION}</label>
-                {form id=customers_address_addition type=text name=customers_address_addition value=$customers_address_addition}
-            </div>
-        {/if}
+
+        <div class="form-group">
+            <label for="customers_address_addition">{txt key=TEXT_ADDRESS_ADDITION}</label>
+            {form id=customers_address_addition type=text name=customers_address_addition value=$customers_address_addition}
+        </div>
+
         {if $show_suburb eq 1}
         <div class="form-group">
             <label for="customers_suburb">{txt key=TEXT_SUBURB}</label>
@@ -82,7 +80,7 @@
         </div>
         {/if}
         <div class="form-group">
-            <label for="customers_postcode">{txt key=TEXT_CODE}*</label>
+            <label for="customers_postcode">{txt key=TEXT_CUSTOMERS_POSTCODE}*</label>
             {form id=customers_postcode type=text name=customers_postcode value=$customers_postcode}
         </div>
         <div class="form-group">
@@ -121,18 +119,18 @@
                     value="{$customers_phone}"
             />
         </div>
-		{if version_compare(_SYSTEM_VERSION, '4.1.10', '>=')}
-            <div class="form-group">
-                <label for="customers_mobile_phone">{txt key=TEXT_MOBILE_PHONE}{if _STORE_MOBILE_PHONE_MIN_LENGTH > 0}*{/if}</label>
-                <input type="tel"
-                        id="customers_mobile_phone"
-                        name="customers_mobile_phone"
-                        value="{$customers_mobile_phone}"
-                />
-            </div>
-		{/if}
+
         <div class="form-group">
-            <label for="customers_fax">{txt key=TEXT_FAX}{if _STORE_FAX_MIN_LENGTH > 0 && version_compare(_SYSTEM_VERSION, '4.2.0', '>=')}*{/if}</label>
+            <label for="customers_mobile_phone">{txt key=TEXT_MOBILE_PHONE}{if _STORE_MOBILE_PHONE_MIN_LENGTH > 0}*{/if}</label>
+            <input type="tel"
+                    id="customers_mobile_phone"
+                    name="customers_mobile_phone"
+                    value="{$customers_mobile_phone}"
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="customers_fax">{txt key=TEXT_FAX}{if _STORE_FAX_MIN_LENGTH > 0}*{/if}</label>
             <input type="tel"
                     id="customers_fax"
                     name="customers_fax"

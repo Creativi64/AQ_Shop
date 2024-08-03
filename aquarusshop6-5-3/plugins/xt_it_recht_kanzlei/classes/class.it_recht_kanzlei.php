@@ -35,7 +35,7 @@ class it_recht_kanzlei
     public $local_user_auth_token = '';
     public $local_supported_rechtstext_types = array('agb', 'datenschutz', 'widerruf', 'impressum');	// change to shop's requirements / supported legal texts, according to specification
 
-    public $local_supported_rechtstext_languages = array('de');			    // only change when told to do so
+    public $local_supported_rechtstext_languages = array('de', 'en');			    // only change when told to do so
     public $local_supported_actions = array('push');						// only change when told to do so
 
     public $local_rechtstext_pdf_required = array('agb' => false);			// true or false (set to true for each rechtstext type where you require a pdf-file) -  change to shop's requirements / supported legal texts, according to specification

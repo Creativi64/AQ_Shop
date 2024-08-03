@@ -22,9 +22,9 @@
             {if $shipping_desc}
                 <p class="shipping-desc" style="display:none;padding-left: 25px;">
                     {$shipping_desc}
-                    {if version_compare(_SYSTEM_VERSION, '6.3.2','>=')}
-                        <span>{hook key=shipping_default_shipping_desc}</span>
-                    {/if}
+
+                    <span>{hook key=shipping_default_shipping_desc}</span>
+
                 </p>
             {/if}
 	</div><!-- .box .box-white .box-hover -->

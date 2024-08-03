@@ -118,7 +118,7 @@ class xt_2fa
      */
     private function validateLogin($secret='',$code='') {
 
-        $ga = new \RobThree\Auth\TwoFactorAuth(null,6,30,'sha1');
+        $ga = new \RobThree\Auth\TwoFactorAuth(null,6,30,\RobThree\Auth\Algorithm::Sha1);
 
         if ($ga->verifyCode($secret, $code, 2)) {
             return true;
@@ -134,7 +134,7 @@ class xt_2fa
     public function checkAuthCode() {
         global $db;
 
-        $ga = new \RobThree\Auth\TwoFactorAuth(null,6,30,'sha1');
+        $ga = new \RobThree\Auth\TwoFactorAuth(null,6,30,\RobThree\Auth\Algorithm::Sha1);
 
         if (isset($this->url_data['twofa_secret']) && isset($this->url_data['twofa_verify_code'])) {
             $secret = $this->url_data['twofa_secret'];
@@ -233,7 +233,7 @@ class xt_2fa
 
             $html_output='<p>'.TEXT_2FA_SCAN_CODE_DESC.'</p>';
 
-            $ga = new \RobThree\Auth\TwoFactorAuth(null,6,30,'sha1');
+            $ga = new \RobThree\Auth\TwoFactorAuth(null,6,30,\RobThree\Auth\Algorithm::Sha1);
 
             if (!isset($_SESSION['admin_user']['plg_2fa_auth_secret_'.$user_id])) {
                 $secret = $ga->createSecret();

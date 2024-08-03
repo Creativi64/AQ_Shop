@@ -374,7 +374,7 @@
 .admin.TEXT_CUSTOMERS_STATUS_NAME=customer status name
 .admin.TEXT_CUSTOMERS_STATUS_SELECT=customer status
 .admin.TEXT_CUSTOMERS_STATUS_SHOW_PRICE=show pricing
-.admin.TEXT_CUSTOMERS_STATUS_SHOW_PRICE_TAX=price incl VAT
+.admin.TEXT_CUSTOMERS_STATUS_SHOW_PRICE_TAX=show price incl VAT
 .admin.TEXT_CUSTOMERS_STATUS_TAX_RATES_CALCULATION_BASE=Tax rates calculated based on
 .admin.TEXT_CUSTOMERS_STATUS_TEMPLATE=shop template
 .admin.TEXT_CUSTOMERS_STREET_ADDRESS=street address
@@ -1555,6 +1555,8 @@
 .store.TEXT_PRIVACY_TEXT_INFO_2=note
 .store.TEXT_RESCISSION_CONFIRMATION_4=Please note our
 .store.TEXT_TERMSANDCOND_CONFIRMATION_5=Es gelten unsere
+.store.TEXT_PLEASE_CHECK_CART=Please check your shopping cart.
+.store.TEXT_SHIPPING_NOT_POSSIBLE=Shopping not possible.
 .store.TEXT_GENDER_ERROR=Invalid value for salutation
 .store.TEXT_NO_SHIPPING_PRICE_SET=No shipping
 .store.CANCEL_PAYMENT=Payment canceled

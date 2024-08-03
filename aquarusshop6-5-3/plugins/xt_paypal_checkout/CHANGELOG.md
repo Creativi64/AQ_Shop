@@ -1,12 +1,3 @@
-## [3.7.0]
-- FIX Vaulting  
-  NOT_ENABLED_TO_VAULT_ PAYMENT _SOURCE. The API caller or the merchant on whose behalf the API call  
-  is initiated is not allowed to vault the given source.
-  Es wir nun geprüft, ob Vaulting aktiviert ist, sichtbar im Backend unter PayPal Checkout Signup > Onboarding Status  
-  PAYPAL_WALLET_VAULTING_ADVANCED sollte dort vorhanden sein  
-  Wenn nicht können Sie das Onboarding nochmals durchführen 
-- FIX weitere Anpassung Festwertgutscheine
-
 ## [3.6.5]
 - FIX Anpassungen für Gutscheine Festwert/Versand
 - FIX Giropay aus Installer entfernt

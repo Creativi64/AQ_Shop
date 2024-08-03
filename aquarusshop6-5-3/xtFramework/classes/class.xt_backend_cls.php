@@ -39,6 +39,15 @@ class xt_backend_cls
     public $_AdminHandler;
     public $sql_search;
 
+    public $perm_array = [];
+
+    public item_permission $permission;
+
+    function __construct()
+    {
+        $this->permission = new item_permission();
+    }
+
     /**
      * default setPosition function
      *

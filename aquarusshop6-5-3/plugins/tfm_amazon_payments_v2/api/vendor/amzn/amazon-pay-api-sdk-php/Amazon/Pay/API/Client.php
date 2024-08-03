@@ -6,11 +6,13 @@
     use phpseclib3\Crypt\RSA;
 
     require_once 'ClientInterface.php';
+    require_once 'ReportingClientInterface.php';
     require_once 'HttpCurl.php';
  
-    class Client implements ClientInterface
+    class Client implements ClientInterface, ReportingClientInterface
     {
-        const SDK_VERSION = '2.5.1';
+        const SDK_VERSION = '2.6.2';
+        const SDK_LANGUAGE = 'PHP';
         const HASH_ALGORITHM = 'sha256';
         const API_VERSION = 'v2';
         
@@ -94,7 +96,7 @@
                     } else {
                         $apiEndpointUrl  = $this->apiServiceUrls[$this->regionMappings[$region]];
                     }
-                    if($this->isEnvSpecificPublicKeyId($this->config['public_key_id'])){
+                    if($this->isEnvSpecificPublicKeyId()){
                         return 'https://' . $apiEndpointUrl . '/';
                     } 
                     return 'https://' . $apiEndpointUrl . '/' . $modePath . '/';
@@ -107,7 +109,7 @@
         }
         
         // Method used to validate whether PublicKeyId starts with prefix LIVE or SANDBOX
-        private function isEnvSpecificPublicKeyId($publicKeyId) {
+        private function isEnvSpecificPublicKeyId() {
             return $this->startsWith($this->config['public_key_id'], 'LIVE') || $this->startsWith($this->config['public_key_id'], 'SANDBOX');
         }
 
@@ -149,13 +151,13 @@
             $sortedCanonicalArray = array();
             foreach ($canonicalArray as $key => $val) {
                 if (is_array($val)) {
-                    foreach ($this->subArrays($val, "$key") as $newKey => $subVal) {
-                        $sortedCanonicalArray["$newKey"] = $subVal;
+                    foreach ($this->subArrays($val, $key) as $newKey => $subVal) {
+                        $sortedCanonicalArray[$newKey] = $subVal;
                     }
                 }
                 else if ((is_null($val)) || ($val === '')) {}
                 else {
-                    $sortedCanonicalArray["$key"] = $val;
+                    $sortedCanonicalArray[$key] = $val;
                 }
             }
             ksort($sortedCanonicalArray);
@@ -163,12 +165,12 @@
             return $sortedCanonicalArray;
         }
 
-        /* subArrays - helper function used to break out arays in an array */
-        private function subArrays($parameters, $catagory)
+        /* subArrays - helper function used to break out arrays in an array */
+        private function subArrays($parameters, $category)
         {
             $categoryIndex = 0;
             $newParameters = array();
-            $categoryString = "$catagory.";
+            $categoryString = "$category.";
             foreach ($parameters as $value) {
                 $categoryIndex++;
                 $newParameters[$categoryString . $categoryIndex] = $value;
@@ -186,7 +188,7 @@
             return $this->getParametersAsString($sortedRequestParameters);
         }
 
-        /* Convert paremeters to Url encoded query string */
+        /* Convert parameters to Url encoded query string */
         private function getParametersAsString(array $parameters)
         {
             $queryParameters = array();
@@ -220,7 +222,7 @@
             foreach ($headers as $key => $val) {
                 if ((is_null($val)) || ($val === '')) {}
                 else {
-                    $sortedCanonicalArray[strtolower("$key")] = $val;
+                    $sortedCanonicalArray[strtolower($key)] = $val;
                 }
             }
             ksort($sortedCanonicalArray);
@@ -238,9 +240,7 @@
                 $parameters[] = $key;
             }
             ksort($parameters);
-            $headerNames = implode(';', $parameters);
-
-            return $headerNames;
+            return implode(';', $parameters);
         }
 
         /* getHost
@@ -302,7 +302,7 @@
         }
 
         /* stringFromArray - helper function used to check if parameters is an array. 
-        *  If it is array it returns all the values as a string
+        *  If it is an array it returns all the values as a string
         *  Otherwise it returns parameters
         */
         private function stringFromArray($parameters)
@@ -316,7 +316,7 @@
         }
 
         /* Create the User Agent Header sent with the POST request */
-        /* Protected because of PSP module usaged */
+        /* Protected because of PSP module usage */
         protected function constructUserAgentHeader()
         {
             return 'amazon-pay-api-sdk-php/' . self::SDK_VERSION . ' ('
@@ -358,9 +358,24 @@
                 'x-amz-pay-host' => $this->getHost($request_uri),
                 'x-amz-pay-date' => $timeStamp,
                 'x-amz-pay-region' => $this->config['region'],
+                'x-amz-pay-sdk-type' => self::SDK_LANGUAGE,
+                'x-amz-pay-sdk-version' => self::SDK_VERSION,
+                'x-amz-pay-language-version' => PHP_VERSION,
                 'authorization' => $this->getAlgorithm() . " PublicKeyId=" . $public_key_id . ", " . $signedHeaders,
                 'user-agent' => $this->constructUserAgentHeader()
             );
+
+            if(isset($this->config['integrator_id'])){
+                $headerArray['x-amz-pay-integrator-id'] = $this->config['integrator_id'];
+            }
+
+            if(isset($this->config['integrator_version'])){
+                $headerArray['x-amz-pay-integrator-version'] = $this->config['integrator_version'];
+            }
+
+            if(isset($this->config['platform_version'])){
+                $headerArray['x-amz-pay-platform-version'] = $this->config['platform_version'];
+            }
 
             ksort($headerArray);
             foreach ($headerArray as $key => $value) {
@@ -472,7 +487,7 @@
             if (is_array($payload)) {
 
                 // json_encode will fail if non-UTF-8 encodings are present, need to convert them to UTF-8
-                array_walk_recursive($payload, function (&$item, $key) {
+                array_walk_recursive($payload, function (&$item) {
                     if (is_string($item) && mb_detect_encoding($item, 'UTF-8', true) === false) {
                         $item = utf8_encode($item);
                     }
@@ -503,8 +518,7 @@
             }
 
             $httpCurlRequest = new HttpCurl(isset($this->config['proxy']) ? $this->config['proxy'] : []);
-            $response = $httpCurlRequest->invokeCurl($method, $url, $payload, $postSignedHeaders);
-            return $response;
+            return $httpCurlRequest->invokeCurl($method, $url, $payload, $postSignedHeaders);
         }
 
         /* Setter for sandbox
@@ -648,6 +662,56 @@
             return $this->apiCall('GET', self::API_VERSION . '/refunds/' . $refundId, null, $headers);
         }
 
-    }
-?>
+        // ----------------------------------- CV2 REPORTING APIS -----------------------------------
+ 
+ 
+        public function getReports($queryParameters = null, $headers = null)
+        {
+            return $this->apiCall('GET', self::API_VERSION . '/reports', null, $headers, $queryParameters);
+        }
+ 
+ 
+        public function getReportById($reportId, $headers = null)
+        {
+            return $this->apiCall('GET', self::API_VERSION . '/reports/' . $reportId, null, $headers);
+        }
+ 
+ 
+        public function getReportDocument($reportDocumentId, $headers = null)
+        {
+            return $this->apiCall('GET', self::API_VERSION . '/report-documents/' . $reportDocumentId, null, $headers);
+        }
+ 
+ 
+        public function getReportSchedules($reportTypes = null, $headers = null)
+        {
+            $queryParameters = array('reportTypes' => $reportTypes);
+            return $this->apiCall('GET', self::API_VERSION . '/report-schedules', null, $headers, $queryParameters);
+        }
+ 
+ 
+        public function getReportScheduleById($reportScheduleId, $headers = null)
+        {
+            return $this->apiCall('GET', self::API_VERSION . '/report-schedules/' . $reportScheduleId, null, $headers);
+        }
+ 
+ 
+        public function createReport($requestPayload, $headers = null)
+        {
+            return $this->apiCall('POST', self::API_VERSION . '/reports' , $requestPayload, $headers);
+        }
+ 
+ 
+        public function createReportSchedule($requestPayload, $headers = null)
+        {
+            return $this->apiCall('POST', self::API_VERSION . '/report-schedules' , $requestPayload, $headers);
+        }
+ 
+ 
+        public function cancelReportSchedule($reportScheduleId, $headers = null) 
+        {
+            return $this->apiCall('DELETE', self::API_VERSION . '/report-schedules/' . $reportScheduleId, null, $headers);
+        }
 
+
+    }

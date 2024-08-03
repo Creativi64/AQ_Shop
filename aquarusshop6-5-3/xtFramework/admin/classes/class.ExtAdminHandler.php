@@ -240,7 +240,7 @@ class ExtAdminHandler extends ExtGrid {
 			else
 			{
                 $obj = new stdClass();
-                $id = preg_split('/,/', $ids);
+                $id = explode(',', $ids);
                 for ($i = 0; $i < count($id); $i++)
                 {
                     if ($id[$i])
@@ -309,7 +309,7 @@ class ExtAdminHandler extends ExtGrid {
 			// task
 			$this->_setTaskData('new', $id);
 
-		} elseif ($this->url_data['pg'] == 'overview' || $this->url_data['pg'] == '') {
+		} elseif ($this->url_data['pg'] ?? '' == 'overview' || ($this->url_data['pg'] ?? '') == '') {
 			$data = $this->class->_get();
 
 			if ($data->totalCount > $params['PageSize'] && count($data->data) > $params['PageSize']) {
@@ -367,11 +367,11 @@ class ExtAdminHandler extends ExtGrid {
         if(isset($plugin_return_value))
             return $plugin_return_value;
 				
-		if (($this->edit_id || $this->new || $this->url_data['pg'] == 'edit')) {
+		if (($this->edit_id || $this->new || array_value($this->url_data, 'pg') == 'edit')) {
 			//if (($this->edit_id || $this->new) && (!$this->url_data['pg'] || $this->url_data['pg'] == 'edit')) {
 			$this->setSetting('FormLabelPos', 'left');
 			$return = $this->displayEditFormJS($this->edit_id);
-		} elseif($this->url_data['pg'] != 'overview' && $this->url_data['pg'] != '') {
+		} elseif(array_value($this->url_data, 'pg') != 'overview' && array_value($this->url_data, 'pg') != '') {
 			$fc = $this->url_data['pg'];
 			$return = $this->class->$fc($this->url_data); // display function from class
             // TODO aufpassen / prüfen

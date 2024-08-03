@@ -77,7 +77,7 @@ class FormFilter{
      */
     public static function setTxt_XT5($field, $type)
     {
-        $ses_value = $_SESSION['filters_'.$type][$field];
+        $ses_value = $_SESSION['filters_'.$type][$field] ?? null;
         return self::isSetTxtValue($ses_value);
     }
 

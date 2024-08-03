@@ -66,6 +66,9 @@ Namespace for this package is Amazon\Pay\API so that there are no conflicts with
         'sandbox'       => true,               // true (Sandbox) or false (Production) boolean
         'region'        => 'us',                // Must be one of: 'us', 'eu', 'jp'
         'algorithm'     => 'AMZN-PAY-RSASSA-PSS-V2'  //Amazon Signing Algorithm, Optional: uses AMZN-PAY-RSASSA-PSS if not specified
+        'integrator_id'      => 'AXXXXXXXXXXXXX',   // (optional) Solution Provider Platform Id in Amz UID Format
+        'integrator_version' => '1.2.3',            // (optional) Solution Provider Plugin Version in Semantic Versioning Format
+        'platform_version'   => '0.0.4'            // (optional) Solution Provider Platform Version in Semantic Versioning Format
     );
 ```
 If you have created environment specific keys (i.e Public Key Starts with LIVE or SANDBOX) in Seller Central, then use those PublicKeyId & PrivateKey. In this case, there is no need to pass the Sandbox parameter to the ApiConfiguration.
@@ -87,6 +90,9 @@ If you have want to enable proxy support, you can set it in the $amazonpay_confi
         'sandbox'       => true,               // true (Sandbox) or false (Production) boolean
         'region'        => 'us',               // Must be one of: 'us', 'eu', 'jp'
         'algorithm'     => 'AMZN-PAY-RSASSA-PSS-V2',  //Amazon Signing Algorithm, Optional: uses AMZN-PAY-RSASSA-PSS if not specified
+        'integrator_id'      => 'AXXXXXXXXXXXXX',   // (optional) Solution Provider Platform Id in Amz UID Format
+        'integrator_version' => '1.2.3',            // (optional) Solution Provider Plugin Version in Semantic Versioning Format
+        'platform_version'   => '0.0.4',            // (optional) Solution Provider Platform Version in Semantic Versioning Format
         'proxy' => [
             'host' => 'proxy_host',
             'port' => 'proxy_port',
@@ -286,6 +292,9 @@ An alternate way to do Step 2 would be to use PHP arrays and programmatically ge
         'region'        => 'US',
         'sandbox'       => true,
         'algorithm'     => 'AMZN-PAY-RSASSA-PSS-V2',
+        'integrator_id'      => 'AXXXXXXXXXXXXX',   // (optional) Solution Provider Platform Id in Amz UID Format
+        'integrator_version' => '1.2.3',            // (optional) Solution Provider Plugin Version in Semantic Versioning Format
+        'platform_version'   => '0.0.4'            // (optional) Solution Provider Platform Version in Semantic Versioning Format
     );
     $payload = array(
         'webCheckoutDetails' => array(
@@ -326,6 +335,9 @@ An alternate way to do Step 2 would be to use PHP arrays and programmatically ge
         'region'        => 'US',
         'sandbox'       => true,
         'algorithm'     => 'AMZN-PAY-RSASSA-PSS-V2',
+        'integrator_id'      => 'AXXXXXXXXXXXXX',   // (optional) Solution Provider Platform Id in Amz UID Format
+        'integrator_version' => '1.2.3',            // (optional) Solution Provider Plugin Version in Semantic Versioning Format
+        'platform_version'   => '0.0.4'            // (optional) Solution Provider Platform Version in Semantic Versioning Format
     );
     $payload = array(
         'webCheckoutDetails' => array(
@@ -366,6 +378,9 @@ An alternate way to do Step 2 would be to use PHP arrays and programmatically ge
         'region'        => 'US',
         'sandbox'       => true,
         'algorithm'     => 'AMZN-PAY-RSASSA-PSS-V2',
+        'integrator_id'      => 'AXXXXXXXXXXXXX',   // (optional) Solution Provider Platform Id in Amz UID Format
+        'integrator_version' => '1.2.3',            // (optional) Solution Provider Plugin Version in Semantic Versioning Format
+        'platform_version'   => '0.0.4'            // (optional) Solution Provider Platform Version in Semantic Versioning Format
     );
 
     try {
@@ -417,6 +432,9 @@ An alternate way to do Step 2 would be to use PHP arrays and programmatically ge
         'region'        => 'US',
         'sandbox'       => true,
         'algorithm'     => 'AMZN-PAY-RSASSA-PSS-V2',
+        'integrator_id'      => 'AXXXXXXXXXXXXX',   // (optional) Solution Provider Platform Id in Amz UID Format
+        'integrator_version' => '1.2.3',            // (optional) Solution Provider Plugin Version in Semantic Versioning Format
+        'platform_version'   => '0.0.4'            // (optional) Solution Provider Platform Version in Semantic Versioning Format
     );
 
     $payload = array(
@@ -466,6 +484,9 @@ An alternate way to do Step 2 would be to use PHP arrays and programmatically ge
         'region'        => 'US',
         'sandbox'       => true,
         'algorithm'     => 'AMZN-PAY-RSASSA-PSS-V2',
+        'integrator_id'      => 'AXXXXXXXXXXXXX',   // (optional) Solution Provider Platform Id in Amz UID Format
+        'integrator_version' => '1.2.3',            // (optional) Solution Provider Plugin Version in Semantic Versioning Format
+        'platform_version'   => '0.0.4'            // (optional) Solution Provider Platform Version in Semantic Versioning Format
     );
 
     $payload = array(
@@ -631,4 +652,295 @@ Example call to createSignature function with values:
 
     $client = new Client($amazonpay_config);
     $signedInput = $client->createSignature($method, $url, $requestParameters, $pre_signed_headers, $payload, '20180326T203730Z');
+```
+
+#  Reporting APIs code samples
+
+## Amazon Checkout v2 Reporting APIs - GetReport API
+
+```php
+    <?php
+    include 'vendor/autoload.php';
+
+    $amazonpay_config = array(
+        'public_key_id' => 'MY_PUBLIC_KEY_ID',
+        'private_key'   => 'keys/private.pem',
+        'region'        => 'US',
+        'sandbox'       => false
+    );
+
+    $requestPayload = array(
+        'reportTypes' => '_GET_FLAT_FILE_OFFAMAZONPAYMENTS_ORDER_REFERENCE_DATA_',
+        'processingStatuses' => 'COMPLETED',
+        'pageSize' => '10'
+    );
+
+    try {
+        $client = new Amazon\Pay\API\Client($amazonpay_config);
+        $result = $client->getReports($requestPayload);
+
+        if ($result['status'] === 200) {
+            // success
+            $response = $result['response'];
+            echo $response;
+        } else {
+            // check the error
+            echo 'status=' . $result['status'] . '; response=' . $result['response'] . "\n";
+        }
+        } catch (\Exception $e) {
+            // handle the exception
+            echo $e . "\n";
+        }
+    ?>
+```
+
+
+## Amazon Checkout v2 Reporting APIs - GetReportById API
+
+```php
+    <?php
+    include 'vendor/autoload.php';
+
+    $amazonpay_config = array(
+        'public_key_id' => 'MY_PUBLIC_KEY_ID',
+        'private_key'   => 'keys/private.pem',
+        'region'        => 'US',
+        'sandbox'       => true
+    );
+
+    try {
+        $reportId = "1234567890";
+        $client = new Amazon\Pay\API\Client($amazonpay_config);
+        $result = $client->getReportById($reportId);
+
+        if ($result['status'] === 200) {
+            // success
+            $response = $result['response'];
+            echo $response;
+        } else {
+            // check the error
+            echo 'status=' . $result['status'] . '; response=' . $result['response'] . "\n";
+        }
+        } catch (\Exception $e) {
+            // handle the exception
+            echo $e . "\n";
+        }
+    ?>
+```
+
+
+## Amazon Checkout v2 Reporting APIs - GetReportDocument API
+
+```php
+    <?php
+    include 'vendor/autoload.php';
+
+    $amazonpay_config = array(
+        'public_key_id' => 'MY_PUBLIC_KEY_ID',
+        'private_key'   => 'keys/private.pem',
+        'region'        => 'US',
+        'sandbox'       => true
+    );
+
+    try {
+        $reportDocumentId = "amzn1.tortuga.0.000000000-0000-0000-0000-000000000000.00000000000000";
+        $client = new Amazon\Pay\API\Client($amazonpay_config);
+        $result = $client->getReportDocument($reportDocumentId);
+
+        if ($result['status'] === 200) {
+            // success
+            $response = $result['response'];
+            echo $response;
+        } else {
+            // check the error
+            echo 'status=' . $result['status'] . '; response=' . $result['response'] . "\n";
+        }
+        } catch (\Exception $e) {
+            // handle the exception
+            echo $e . "\n";
+        }
+    ?>
+```
+
+
+## Amazon Checkout v2 Reporting APIs - GetReportSchedules API
+
+```php
+    <?php
+    include 'vendor/autoload.php';
+
+    $amazonpay_config = array(
+        'public_key_id' => 'MY_PUBLIC_KEY_ID',
+        'private_key'   => 'keys/private.pem',
+        'region'        => 'US',
+        'sandbox'       => true
+    );
+
+    try {
+        $reportTypes = "_GET_FLAT_FILE_OFFAMAZONPAYMENTS_ORDER_REFERENCE_DATA_,_GET_FLAT_FILE_OFFAMAZONPAYMENTS_BILLING_AGREEMENT_DATA_";
+        $client = new Amazon\Pay\API\Client($amazonpay_config);
+        $result = $client->getReportSchedules($reportTypes);
+
+        if ($result['status'] === 200) {
+            // success
+            $response = $result['response'];
+            echo $response;
+        } else {
+            // check the error
+            echo 'status=' . $result['status'] . '; response=' . $result['response'] . "\n";
+        }
+        } catch (\Exception $e) {
+            // handle the exception
+            echo $e . "\n";
+        }
+    ?>
+```
+
+
+## Amazon Checkout v2 Reporting APIs - GetReportScheduleById API
+
+```php
+    <?php
+    include 'vendor/autoload.php';
+
+    $amazonpay_config = array(
+        'public_key_id' => 'MY_PUBLIC_KEY_ID',
+        'private_key'   => 'keys/private.pem',
+        'region'        => 'US',
+        'sandbox'       => true
+    );
+
+    try {
+        $reportScheduleId = "1234567890";
+        $client = new Amazon\Pay\API\Client($amazonpay_config);
+        $result = $client->getReportScheduleById($reportScheduleId);
+
+        if ($result['status'] === 200) {
+            // success
+            $response = $result['response'];
+            echo $response;
+        } else {
+            // check the error
+            echo 'status=' . $result['status'] . '; response=' . $result['response'] . "\n";
+        }
+        } catch (\Exception $e) {
+            // handle the exception
+            echo $e . "\n";
+        }
+    ?>
+```
+
+
+## Amazon Checkout v2 Reporting APIs - CreateReport API
+
+```php
+    <?php
+    include 'vendor/autoload.php';
+
+    $amazonpay_config = array(
+        'public_key_id' => 'MY_PUBLIC_KEY_ID',
+        'private_key'   => 'keys/private.pem',
+        'region'        => 'US',
+        'sandbox'       => true
+    );
+
+    $headers = array('x-amz-pay-Idempotency-Key' => uniqid());
+
+    try {
+        $requestPayload = array(
+            'reportType' => '_GET_FLAT_FILE_OFFAMAZONPAYMENTS_AUTHORIZATION_DATA_',
+            'startTime' => '20221114T074550Z',
+            'endTime' => '20221114T074550Z'
+        );
+        $client = new Amazon\Pay\API\Client($amazonpay_config);
+        $result = $client->createReport($requestPayload);
+
+        if ($result['status'] === 200) {
+            // success
+            $response = $result['response'];
+            echo $response;
+        } else {
+            // check the error
+            echo 'status=' . $result['status'] . '; response=' . $result['response'] . "\n";
+        }
+        } catch (\Exception $e) {
+            // handle the exception
+            echo $e . "\n";
+        }
+    ?>
+```
+
+
+## Amazon Checkout v2 Reporting APIs - CreateReportSchedule API
+
+```php
+    <?php
+    include 'vendor/autoload.php';
+
+    $amazonpay_config = array(
+        'public_key_id' => 'MY_PUBLIC_KEY_ID',
+        'private_key'   => 'keys/private.pem',
+        'region'        => 'US',
+        'sandbox'       => true
+    );
+
+    $headers = array('x-amz-pay-Idempotency-Key' => uniqid());
+
+    try {
+        $requestPayload = array(
+            'reportType' => '_GET_FLAT_FILE_OFFAMAZONPAYMENTS_ORDER_REFERENCE_DATA_',
+            'scheduleFrequency' => 'P1D',
+            'nextReportCreationTime' => '20221114T074550Z',
+            'deleteExistingSchedule' => false
+        );
+        $client = new Amazon\Pay\API\Client($amazonpay_config);
+        $result = $client->createReportSchedule($requestPayload);
+
+        if ($result['status'] === 200) {
+            // success
+            $response = $result['response'];
+            echo $response;
+        } else {
+            // check the error
+            echo 'status=' . $result['status'] . '; response=' . $result['response'] . "\n";
+        }
+        } catch (\Exception $e) {
+            // handle the exception
+            echo $e . "\n";
+        }
+    ?>
+```
+
+
+## Amazon Checkout v2 Reporting APIs - CancelReportSchedule API
+
+```php
+    <?php
+    include 'vendor/autoload.php';
+
+    $amazonpay_config = array(
+        'public_key_id' => 'MY_PUBLIC_KEY_ID',
+        'private_key'   => 'keys/private.pem',
+        'region'        => 'US',
+        'sandbox'       => true
+    );
+
+    try {
+        $reportScheduleId = "1234567890";
+        $client = new Amazon\Pay\API\Client($amazonpay_config);
+        $result = $client->cancelReportSchedule($reportScheduleId);
+
+        if ($result['status'] === 200) {
+            // success
+            $response = $result['response'];
+            echo $response;
+        } else {
+            // check the error
+            echo 'status=' . $result['status'] . '; response=' . $result['response'] . "\n";
+        }
+        } catch (\Exception $e) {
+            // handle the exception
+            echo $e . "\n";
+        }
+    ?>
 ```

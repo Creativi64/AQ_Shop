@@ -132,7 +132,7 @@ define('TABLE_SEARCH', $DB_PREFIX.'search');
 define('TABLE_SALES_STATS', $DB_PREFIX.'sales_stats');
 
 define('_SYSTEM_DEMO_MODE','false');
-define('_SYSTEM_EXTENSION_WHITELIST','jpg,gif,png,jpeg,zip,exe,gz,pdf,doc,xls,rar,dmg,mp3,mp4,ogg,3gp,aac');
+define('_SYSTEM_EXTENSION_WHITELIST','jpg,gif,png,jpeg,zip,exe,gz,pdf,doc,xls,rar,dmg,mp3,mp4,ogg,3gp,aac,webp');
 
 define('_SYSTEM_ALLOWED_MAINFILES','index.php,captcha.php,cronjob.php'); 
 

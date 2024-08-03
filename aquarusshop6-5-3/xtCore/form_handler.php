@@ -59,32 +59,6 @@ if (isset ($_POST['action']) || isset ($_GET['action'])) {
 
 		break;
 
-		case 'change_lang______DISABLED' :
-			if($language->_checkStore($data_array['new_lang'], $store_handler->shop_id)==true)
-			$_SESSION['selected_language'] = $data_array['new_lang'];
-
-			if($page->loaded_page == 'xtCore/pages/index.php' && $page->page_name == 'content')
-			{
-				$l = $xtLink->_link(array('conn'=>'SSL'));
-				$l = str_replace('/index.php','', $l);
-				$l = str_replace('/index','', $l);
-				$xtLink->_redirect($l);
-			}
-
-			$link_array = array('page'=>$page->page_name, 'paction'=>$page->page_action,'params'=>$xtLink->_getParams(array('action', 'new_lang')), 'lang_code' => $data_array['new_lang']);
-
-            if (($page->page_name == 'checkout' || $page->page_name == 'customer' ) && _SYSTEM_SSL == true) {
-                $link_array['conn']='SSL';
-            }
-            ($plugin_code = $xtPlugin->PluginCode('form_handler.php:change_lang_bottom')) ? eval($plugin_code) : false;
-
-			$l = $xtLink->_link($link_array);
-			$l = str_replace('/index.php','', $l);
-			$l = str_replace('/index','', $l);
-			$xtLink->_redirect($l);
-
-		break;
-
 		case 'add_product' :
 			// für mgl iterationen in form_handler.php:add_product_top damit customers_discount form_handler.php:add_product_bottom greift
             $cart_product_group_discount_allowed = false;

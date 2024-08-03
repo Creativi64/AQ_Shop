@@ -163,7 +163,7 @@ class ExtFunctions {
         $this->setPermission();
 
         $this->header = array();
-        if (is_array($this->params['header']))
+        if ($this->params && is_array($this->params['header']))
             $this->header = $this->params['header'];
 
         if (!isset($this->params['languageTab']))
@@ -177,7 +177,7 @@ class ExtFunctions {
 
     /**
      * @param $key
-     * @return bool|array
+     * @return mixed
      */
     function getSetting ($key) {
         if (isset($this->params[$key]))
@@ -240,7 +240,7 @@ class ExtFunctions {
         $this->tmpData[$key] = $val;
 
         if ($key == 'obj_data') {
-            if ($val->totalCount == "0" && $this->url_data['get_data'] == 'true') {
+            if ($val->totalCount == "0" && array_value($this->url_data,'get_data') == 'true') {
                 $val->data = array();
             }
             $this->_setData('data', $val->data[0]);
@@ -335,7 +335,7 @@ class ExtFunctions {
 
                 if($this->getSetting('display_'.$key.'Btn')==true){
 
-                    if(!$val['acl'])
+                    if(!array_value($val, 'acl'))
                         $this->Permission['check_'.$key] = true;
                     else
                         $this->Permission['check_'.$key] = $xtc_acl->checkPermission($this->code, $val['acl']);
@@ -711,6 +711,8 @@ class ExtFunctions {
             */
 
     function processImage () {
+
+        if(!array_value($_REQUEST, 'currentType')) return '';
         // quick bugfix ($this->url_data['currentType'] is override by $this->class)
         $this->url_data['currentType'] = $_REQUEST['currentType'];
 
@@ -745,6 +747,7 @@ class ExtFunctions {
 
     function unlinkImage ()
     {
+        if(!array_value($_REQUEST, 'currentType')) return '';
         // quick bugfix ($this->url_data['currentType'] is override by $this->class)
         $this->url_data['currentType'] = $_REQUEST['currentType'];
 
@@ -777,6 +780,8 @@ class ExtFunctions {
     }
 
     function importImage () {
+
+        if(!array_value($_REQUEST, 'currentType')) return '';
 
         // quick bugfix ($this->url_data['currentType'] is override by $this->class)
         $this->url_data['currentType'] = $_REQUEST['currentType'];
@@ -833,7 +838,7 @@ class ExtFunctions {
 
     		 	var conn = new Ext.data.Connection();
                  conn.request({
-                 url: '".$this->getSetting('sort_url')."currentType=".$this->url_data['currentType']."&link_id=".$this->url_data['link_id']."&pos=".$pos."',
+                 url: '".$this->getSetting('sort_url')."currentType=".$this->url_data['currentType']."&link_id=".array_value($this->url_data,'link_id', 'no_link_id')."&pos=".$pos."',
                  method:'POST',
                  params: {'m_ids': record_ids},
                  success: function(responseObject) {
@@ -852,6 +857,9 @@ class ExtFunctions {
 
     function _SubmitSort2($pos = 'up')
     {
+        $master_item_id = array_key_exists('resort_key', $this->params) &&
+            array_key_exists($this->params['resort_key'], $this->url_data) ?
+            $this->url_data[$this->params['resort_key']] : 0;
         $renderer = PhpExt_Javascript::functionDef('sort2_'.$pos.'', "
         //console.log(btn);
 		 	if(btn == 'yes') {
@@ -866,7 +874,7 @@ class ExtFunctions {
 
     		 	var conn = new Ext.data.Connection();
                  conn.request({
-                 url: '".$this->getSetting('sort_url')."master_item_id=".$this->url_data[$this->params['resort_key']]."&pos=".$pos."',
+                 url: '".$this->getSetting('sort_url')."master_item_id=".$master_item_id."&pos=".$pos."',
                  method:'POST',
                  params: {'m_ids': record_ids },
                  success: function(responseObject) {
@@ -2085,7 +2093,10 @@ class ExtFunctions {
             let price_group = false;
             if (sb.json && sb.json.products_price)
             {
-                val = sb.json.products_price.price_db;
+                if (!isNaN(sb.json.products_price.price_db))
+                    val = sb.json.products_price.price_db;
+                else
+                    val = sb.json.products_price
                 price_special = sb.json.products_price.price_special ? parseFloat(sb.json.products_price.price_special).toFixed(decimal_places) : false;
                 price_group = sb.json.products_price.price_group ? parseFloat(sb.json.products_price.price_special).toFixed(decimal_places) : false;
             }
@@ -2667,11 +2678,19 @@ TAG
         $arr_tmp = array_filter(explode('&', $new_url));
         $arr_new_url = array();
         foreach($arr_tmp as $item) {
-            list($new_url_k, $new_url_v) = explode('=', $item, 2);
+
+            $a = explode('=', $item, 2);
+            if(count($a) < 2)
+            {
+                continue;
+            }
+            $new_url_k = $a[0];
+            $new_url_v = $a[1];
+
             $arr_new_url[$new_url_k] = $new_url_v;
         }
         unset($arr_tmp);
-        if($arr_new_url['pg'] != 'overview' && $arr_new_url['pg'] != '') {
+        if(array_key_exists('pg', $arr_new_url) && $arr_new_url['pg'] != 'overview' && $arr_new_url['pg'] != '') {
             // es wird z.B. ein Treepanel zur�ckgeliefert in einem tab
             $jsTab = new PhpExt_Panel();
             $jsTab->setTitle(__define($title))
@@ -3049,34 +3068,44 @@ TAG
             {
                 // file upload button
 
-                if (constant("_SYSTEM_UPLOAD_TYPE") === 'simple_upload')
+                if(defined("_SYSTEM_UPLOAD_TYPE"))
                 {
-                    $getUploadFn = 'getSimpleUpload';
-                }
-                elseif (constant("_SYSTEM_UPLOAD_TYPE") === 'flash_upload_10')
-                {
-                    $getUploadFn = 'getSwfUpload';
-                }
-                elseif (constant("_SYSTEM_UPLOAD_TYPE") === 'ckfinder_upload')
-                {
-                    $getUploadFn = 'getCKFinderUpload';
+                    if (constant("_SYSTEM_UPLOAD_TYPE") === 'simple_upload')
+                    {
+                        $getUploadFn = 'getSimpleUpload';
+                    }
+                    elseif (constant("_SYSTEM_UPLOAD_TYPE") === 'flash_upload_10')
+                    {
+                        $getUploadFn = 'getSwfUpload';
+                    }
+                    elseif (constant("_SYSTEM_UPLOAD_TYPE") === 'ckfinder_upload')
+                    {
+                        $getUploadFn = 'getCKFinderUpload';
+                    }
+                    else
+                    {
+                        $getUploadFn = 'getUploadPanel';
+                    }
                 }
                 else
                 {
                     $getUploadFn = 'getUploadPanel';
                 }
 
-                $name = 'namenotdefined';
-                $file->addTextItem(
-                    'image_fileupload',
-                    __define('BUTTON_UPLOAD_FILES'),
-                    'image_fileupload x-menu-item',
-                    new PhpExt_Handler(
-                        PhpExt_Javascript::stm(
-                            $this->_window($this->$getUploadFn($name, 'files')).'new_window.show();'
+                if(method_exists($this,$getUploadFn))
+                {
+                    $name = 'namenotdefined';
+                    $file->addTextItem(
+                        'image_fileupload',
+                        __define('BUTTON_UPLOAD_FILES'),
+                        'image_fileupload x-menu-item',
+                        new PhpExt_Handler(
+                            PhpExt_Javascript::stm(
+                                $this->_window($this->$getUploadFn($name, 'files')) . 'new_window.show();'
+                            )
                         )
-                    )
-                );
+                    );
+                }
             }
 
             $file->addTextItem('', '');
@@ -3152,7 +3181,7 @@ TAG
                     if($type=='button'){
 
                         $icon = '';
-                        if ($val['font-icon']) $icon = '<i class="'.$val['font-icon'].' icon-toolbar-menu"></i>';
+                        if (array_value($val,'font-icon')) $icon = '<i class="'.$val['font-icon'].' icon-toolbar-menu"></i>';
 
 
                         $btn = $obj->addButton($val['style'], $icon.$text, $this->getSetting('icons_path').$val['icon'], new PhpExt_Handler(PhpExt_Javascript::stm($val['stm'])));

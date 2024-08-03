@@ -40,7 +40,7 @@ class info{
 
 		if (isset($_SESSION['info_handler'])){
 			$this->info_data = $_SESSION['info_handler']['data'];
-			$this->_showInfo($_SESSION['info_handler']['store']);
+			$this->_showInfo($_SESSION['info_handler']['pos']);
 			unset($_SESSION['info_handler']);
 		}
 
@@ -127,10 +127,10 @@ class info{
 		}
 
 		$tpl_data = array(
-			'error'=>$this->info_data['error'],
-			'warning'=>$this->info_data['warning'],
-			'success'=>$this->info_data['success'],
-			'info'=>$this->info_data['info']
+			'error'     => $this->info_data['error'] ?? [],
+			'warning'   => $this->info_data['warning'] ?? [],
+			'success'   => $this->info_data['success'] ?? [],
+			'info'      => $this->info_data['info'] ?? []
 		);
 		$tpl = 'info_handler.html';
 		($plugin_code = $xtPlugin->PluginCode('class.info_handler.php:_showInfo_tpl_data')) ? eval($plugin_code) : false;

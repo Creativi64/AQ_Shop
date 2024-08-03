@@ -377,7 +377,7 @@
 .admin.TEXT_CUSTOMERS_STATUS_NAME=Kundengruppen Name
 .admin.TEXT_CUSTOMERS_STATUS_SELECT=Kundengruppe
 .admin.TEXT_CUSTOMERS_STATUS_SHOW_PRICE=Preisanzeige
-.admin.TEXT_CUSTOMERS_STATUS_SHOW_PRICE_TAX=Preis incl USt
+.admin.TEXT_CUSTOMERS_STATUS_SHOW_PRICE_TAX=Preisanzeige incl USt
 .admin.TEXT_CUSTOMERS_STATUS_TAX_RATES_CALCULATION_BASE=Basis der Berechnung des Steuersatzes
 .admin.TEXT_CUSTOMERS_STATUS_TEMPLATE=Shop Template
 .admin.TEXT_CUSTOMERS_STREET_ADDRESS=Strasse
@@ -1476,7 +1476,6 @@
 .both.TEXT_DOWNLOAD_DSGVO_REPORT=DS-GVO Report
 .both.TEXT_DOWNLOAD_REENABLED=Downloadversuche wurden zurückgesetzt
 .both.TEXT_EDIT=Bearbeiten
-.both.TEXT_ELFUNDS_TEXT_BOTTOM=Jetzt kostenloses elefunds Profil anlegen und soziales Engagement zeigen!
 .both.TEXT_EMAIL=E-Mail-Adresse
 .both.TEXT_FEDERAL_STATES=Bundesländer
 .both.TEXT_FEMALE=Frau
@@ -1573,6 +1572,8 @@
 .store.TEXT_PRIVACY_TEXT_INFO_2=zur Kenntnis genommen
 .store.TEXT_RESCISSION_CONFIRMATION_4=Bitte beachten Sie unser
 .store.TEXT_TERMSANDCOND_CONFIRMATION_5=Es gelten unsere
+.store.TEXT_PLEASE_CHECK_CART=Bitte überprüfen Sie Ihren Warenkorb.
+.store.TEXT_SHIPPING_NOT_POSSIBLE=Versand nicht möglich.
 .store.TEXT_GENDER_ERROR=Ungültiger Wert für Anrede
 .store.TEXT_CUSTOMER_GUEST=Gast
 .store.TEXT_NO_SHIPPING_PRICE_SET=Kein Versand

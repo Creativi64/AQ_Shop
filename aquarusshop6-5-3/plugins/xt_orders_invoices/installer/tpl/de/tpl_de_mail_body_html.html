@@ -3,11 +3,13 @@
 <table class="email-content" cellpadding="0" cellspacing="0" width="660" style="font: 12px Arial, Helvetica, sans-serif;color: #484848;">
 	<tr>
 		<td>
-			<h1 style="font-size:14px;">Hallo  {$data.invoice.invoice_fullname},</h1>
-			<p>vielen Dank für Ihren Einkauf!
+			<h1 style="font-size:14px;">Ihre Rechnung</h1>
+			<p>Hallo {$data.invoice.invoice_fullname},<br />
+			<br />
+			noch einmal vielen Dank für Ihre Bestellung {$data.invoice.orders_id}.
                         <br />
                         <br />
-				Beigef&uuml;gt ist Ihre Rechnung für die Bestellung #{$data.invoice.orders_id}<br />
+				Als Anhang unsere Rechnung {$data.invoice.invoice_number}.<br />
                          <br />
                        </p>
 		</td>

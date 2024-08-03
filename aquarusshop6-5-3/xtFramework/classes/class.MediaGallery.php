@@ -34,6 +34,10 @@ class MediaGallery extends recursive
     protected $_table_lang = null;
     protected $_lang_field = null;
     protected $_table_media_to_gallery = null;
+    public string $_master_key;
+    public string $_default_language_code;
+    public mixed $position;
+    public bool $admin = false;
 
     function __construct ()
     {

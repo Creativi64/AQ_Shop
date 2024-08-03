@@ -117,16 +117,8 @@ class grid_orders {
                             AND o.orders_status IN ('".$select_ids."')
                             GROUP BY shopid");
 
-        $data['sales'] = $rs->fields['sales'];
-        $data['orders'] = $rs->fields['orders'];  
-            if (!isset($rs->fields['sales']))
-            {
-                $data['sales'] = 0;
-            }
-            if (!isset($rs->fields['orders']))
-            {
-                $data['orders'] = 0;
-            }
+        $data['sales'] = $rs->fields['sales'] ?? 0;
+        $data['orders'] = $rs->fields['orders'] ?? 0;
 
         $data['sales'] = round($data['sales'], 2);
         }
@@ -151,7 +143,7 @@ class grid_orders {
                             WHERE products_owner = '".$shopid."'  GROUP BY products_owner");
 
         $data = array();
-        $data['products'] = $rs->fields['amount'];
+        $data['products'] = $rs->fields['amount'] ?? 0;
         return $data;
     }
 

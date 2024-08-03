@@ -45,8 +45,9 @@ class payment extends xt_backend_cls {
 
 	protected $_table_seo = NULL;
 	protected $_master_key = 'payment_id';
+    public payment_query $sql_payment;
 
-	function __construct() {
+    function __construct() {
 		global $xtPlugin;
 
 		$this->getPermission();
@@ -262,10 +263,10 @@ class payment extends xt_backend_cls {
 						'payment_icon' => $value['payment_icon'],
 						'payment_tax_class' => $value['payment_tax_class'],
 						'payment_price' => $payment_price,
-						'payment_cost_discount'=>$payment_price['payment_cost_discount'],
+						'payment_cost_discount'=>$payment_price['payment_cost_discount'] ?? 0,
 						'payment_type' => 'payment',
 						'payment_tpl' => $value['payment_tpl'],
-						'payment_selected' => $_SESSION['selected_payment'],
+						'payment_selected' => $_SESSION['selected_payment'] ?? '',
 						'payment_cost_info'=>$value['payment_cost_info'],
 						'sort_order'=>$value['sort_order']
 					);
@@ -302,15 +303,17 @@ class payment extends xt_backend_cls {
         if(isset($plugin_return_value))
         return $plugin_return_value;
         
-        if(!is_data($data)) return false;
+        if(!is_data($data)) return $data;
 
-        $check_array = explode(',',$_SESSION['customer']->customer_info['payment_unallowed']);        
+        $check_array = [];
+        if(array_key_exists('payment_unallowed', $_SESSION['customer']->customer_info))
+            $check_array = explode(',',$_SESSION['customer']->customer_info['payment_unallowed'] ?: "");
         if(in_array($data['payment_code'], $check_array)){
         	unset($data);    	
         }
 
         ($plugin_code = $xtPlugin->PluginCode('class.payment.php:_filterCustomer_bottom')) ? eval($plugin_code) : false;
-        return $data; 
+        return $data ?? [];
         
     }		
 	
@@ -330,7 +333,7 @@ class payment extends xt_backend_cls {
             }
 
             if (!is_data($data) || !is_data($data['costs'])) {
-                return false;
+                return $data;
             }
 
             $countriesCosts = $zonesCosts = array();
@@ -352,7 +355,7 @@ class payment extends xt_backend_cls {
             }
 
             ($plugin_code = $xtPlugin->PluginCode('class.payment.php:_filterGeoZone_bottom')) ? eval($plugin_code) : false;
-            return $data;
+            return $data ?? [];
         }
 
 	/**
@@ -368,9 +371,9 @@ class payment extends xt_backend_cls {
 		if(isset($plugin_return_value))
 		return $plugin_return_value;
 
-		if(!is_data($data)) return false;
+		if(!is_data($data)) return $data;
 
-		if(!is_data($data['costs'])) return false;
+		if(!is_data($data['costs'])) return $data;
 
 		$check_content = $data['costs'];
         $new_cost = array();
@@ -399,7 +402,7 @@ class payment extends xt_backend_cls {
 		}
 
 		($plugin_code = $xtPlugin->PluginCode('class.payment.php:_filterGeoZone_bottom')) ? eval($plugin_code) : false;
-		return $data;
+		return $data ?? [];
 	}
 
 	/**
@@ -437,7 +440,7 @@ class payment extends xt_backend_cls {
 			}
 		}
 
-		$data['costs'] = $new_cost;
+		$data['costs'] = $new_cost ?? [];
 
 		$data_count = is_array($data['costs']) ? count($data['costs']) : 0;
 
@@ -447,7 +450,7 @@ class payment extends xt_backend_cls {
 
 		($plugin_code = $xtPlugin->PluginCode('class.payment.php:_filterPrice_bottom')) ? eval($plugin_code) : false;
 
-		return $data;
+		return $data ?? [];
 	}
 
 	function _calcPrice($data){
@@ -457,7 +460,7 @@ class payment extends xt_backend_cls {
 		if(isset($plugin_return_value))
 		return $plugin_return_value;
 
-		if(is_array($data['costs']))
+		if(array_value($data,'costs'))
         {// country wiegt mehr als zone / sort by country desc
             usort($data['costs'], function ($a, $b) {
                 if ($a['payment_country_code'] == $b['payment_country_code'])

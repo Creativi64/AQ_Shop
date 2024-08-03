@@ -2,10 +2,10 @@
 <xtcommerceplugin>
 
     <code>ew_evelations_plugin</code>
-    <version>6.5.0.1</version>
+    <version>6.6.0.0</version>
     <type>template</type>
 
-    <minimum_store_version>6.5.0</minimum_store_version>
+    <minimum_store_version>6.6.0</minimum_store_version>
 
     <developer>xt:Commerce</developer>
   	<url>https://www.xt-commerce.com</url>

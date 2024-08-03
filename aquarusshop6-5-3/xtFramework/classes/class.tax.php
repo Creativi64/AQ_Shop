@@ -34,6 +34,7 @@ class tax extends xt_backend_cls{
 	protected $_table_seo = null;
 	protected $_master_key = 'tax_rates_id';
     public $country_code, $zone_id, $zone_id_digital;
+    public array $data;
 
     /**
      * tax constructor.

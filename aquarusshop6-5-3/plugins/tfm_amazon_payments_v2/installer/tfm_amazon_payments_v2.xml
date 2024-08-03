@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xtcommerceplugin>
     <title>4tfm Amazon Pay Checkout v2</title>
-    <version>3.1.1</version>
+    <version>4.0.1</version>
     <code>tfm_amazon_payments_v2</code>
     <url>https://www.4tfm.de</url>
     <developer>4tfm</developer>
@@ -473,6 +473,17 @@
             </en>
             <de>
                 <title>aktiviere Error Log</title>
+            </de>
+        </config>
+        <config>
+            <key>AMAZON_APB</key>
+            <type>hidden</type>
+            <value>1</value>
+            <en>
+                <title>activate APB</title>
+            </en>
+            <de>
+                <title>aktiviere APB</title>
             </de>
         </config>
 <!--

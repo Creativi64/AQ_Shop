@@ -160,7 +160,7 @@
                         <li><span class="badge">{$product.products_quantity} {if $product.products_unit_name}{$product.products_unit_name}{else}{txt key=TEXT_QTY}{/if}</span></li>
                         {if $product.products_information}<li><span class="badge">{$product.products_information|replace:'<tr class="contentrow1">':''|replace:'<tr class="contentrow2">':''|replace:'<td>':''|replace:'<td class="left" colspan="4">':''|replace:'</td>':''|replace:'</tr>':''}</span></li>{/if}
                         {if $product.products_model!=''}<li><span class="badge">{txt key=TEXT_PRODUCTS_MODEL} {$product.products_model}</span></li>{/if}
-                        {if $product.products_weight > 0}<li><span class="badge">{include file="$selected_template/includes/products_weight_wrap.html" products_weight=$product.products_weight type="tpl_include"}</span></li>{/if}
+                        {if $product.products_weight > 0}<li><span class="badge">{include file="includes/products_weight_wrap.html" products_weight=$product.products_weight type="tpl_include"}</span></li>{/if}
 
                         {if $product.shipping_status_data.name}<li><span class="badge">{txt nkey=TEXT_SHIPPING_STATUS} {$product.shipping_status_data.name}</span></li>{/if}
                         {if $product.base_price}<li><span class="badge">{$product.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$product.base_price.vpe.name}</span></li>{/if}

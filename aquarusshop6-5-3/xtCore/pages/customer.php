@@ -472,7 +472,7 @@ if(isset($page->page_action) && $page->page_action != ''){
 				$customer_data = sessionCustomer()->_registerCustomer($_POST);
 			}
 
-			if($customer_data['success']==true){
+			if($customer_data['success'] ?? false){
 				$_SESSION['cart']->_restore();
 				($plugin_code = $xtPlugin->PluginCode('module_customer.php:register_success')) ? eval($plugin_code) : false;
 
@@ -485,14 +485,14 @@ if(isset($page->page_action) && $page->page_action != ''){
 				$xtLink->_redirect($tmp_link);
 			}
 
-			$phone_refix = '';
+            $phone_prefix = '';
             if (_STORE_SHOW_PHONE_PREFIX=='true')
             {
                 $phone_prefix = $countries->_buildCountriesPhonePrefix(true,'store');
             }
 			
             // in case selected country is empty, use default country instead
-            $selected_country = $default_country = $customer_data['customers_country_code'];
+            $selected_country = $default_country = $customer_data['customers_country_code'] ?? '';
             if ($selected_country == '') {
                 $selected_country = $default_country = _STORE_COUNTRY;
                 if(isset($_SESSION['geoip_country']) && !empty($_SESSION['geoip_country'])
@@ -520,7 +520,8 @@ if(isset($page->page_action) && $page->page_action != ''){
 									   'selected_country' => $selected_country,
 									   'default_country' => $default_country,
                                         'currency' => $currency->code,
-                                        'account_type_checked' => !empty($_POST["guest-account"]) ? 'checked="checked"' : ""
+                                        'account_type_checked' => !empty($_POST["guest-account"]) ? 'checked="checked"' : "",
+                'default_address' => []
 
 			);
 
@@ -578,7 +579,10 @@ if(isset($page->page_action) && $page->page_action != ''){
                             
                             // switch to other language if needed
                             $language->_getLanguage($record->fields['customers_default_language']);
-                            $_SESSION['selected_language'] = $record->fields['customers_default_language'];
+                            $cust_lang = $record->fields['customers_default_language'];
+                            if(!$language->_checkStore($cust_lang))
+                                $cust_lang = _STORE_LANGUAGE;
+                            $_SESSION['selected_language'] = $cust_lang;
                 
 							$_SESSION['registered_customer'] = $record->fields['customers_id'];
 							sessionCustomer()->_customer($record->fields['customers_id']);
@@ -664,7 +668,7 @@ if(isset($page->page_action) && $page->page_action != ''){
 			$tpl_data = array_merge($tpl_data, $customer_tpl_data, $customer_data);
 			$tpl = '/'._SRV_WEB_CORE.'pages/login.html';
 
-			if ($_REQUEST['sr'])
+			if ($_REQUEST['sr'] ?? false)
 			{
 				$payLoad = order_edit_tools::parseSignedRequest($_REQUEST['sr'], _SYSTEM_SECURITY_KEY);
 				if ( ! $payLoad || ! $payLoad['adminUser'] || ! is_array($payLoad['adminUser']) || ! $payLoad['adminUser']['user_id'] || ! $payLoad['userEmail'])

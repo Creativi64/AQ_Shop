@@ -27,6 +27,8 @@
 
 include_once '../xtFramework/admin/main.php';
 
+global $xtc_acl;
+
 if (!$xtc_acl->isLoggedIn()) {
 	die('login required');
 }
@@ -34,7 +36,7 @@ if (!$xtc_acl->isLoggedIn()) {
 include (_SRV_WEBROOT_ADMIN.'page_includes.php');
 
 
-if($_GET['action'] && $_GET['action']=='saveHistory'){
+if(array_value($_GET,'action') == 'saveHistory'){
 
 	$tmp_oid = (int) $_POST['edit_id'];
 	$obj = new stdClass;
@@ -299,6 +301,45 @@ class admin_order_edit extends order_templates {
         }
         $order_data['order_total']['total_weight'] = $total_weight;
 
+        $order_data['coupon_info'] = false;
+        global $db, $order_edit_controller;
+        if(class_exists('xt_coupons') && $order_edit_controller)
+        {
+            $order_edit_edit_coupon = new order_edit_edit_coupon();
+
+            $couponCode = $current_couponCode_show = '';
+            $couponId = (int)$db->GetOne(
+                "SELECT `coupon_id` FROM `" . DB_PREFIX . "_coupons_redeem` WHERE `order_id` = ?",
+                array($order->oID)
+            );
+            if ($couponId)
+            {
+                $couponCode = $db->GetOne(
+                    "SELECT `coupon_code` FROM `" . DB_PREFIX . "_coupons` WHERE `coupon_id` = ?",
+                    array($couponId)
+                );
+
+                $oci = $order_edit_controller->getCouponForOrder($order->oID);
+                if ($oci->isToken)
+                {
+                    $couponCode = $oci->xt_coupon_token['coupon_token_code'];
+                }
+                $table_data = new adminDB_DataRead(TABLE_COUPONS, TABLE_COUPONS_DESCRIPTION, null, 'coupon_id', '', '1', '', '');
+                $dbdata = $table_data->getData($couponId);
+                if (is_array($dbdata))
+                {
+                    $descData = $order_edit_edit_coupon->getCouponDescription($dbdata[0]);
+                    $current_couponCode_show = $couponCode . '  (' . $descData['name'] . ')';
+
+                    $order_data['coupon_info'] = [
+                        'current_coupon_code' => $couponCode,
+                        'current_coupon_code_show' => $current_couponCode_show
+                    ];
+                }
+            }
+
+        }
+
         ($plugin_code = $xtPlugin->PluginCode(__CLASS__.'_'.__FUNCTION__.':this_order_data')) ? eval($plugin_code) : false;
 
 		$this->order_data = $order_data;
@@ -393,7 +434,7 @@ class admin_order_edit extends order_templates {
 		$this->orderData = $order_data;
 
 		$cust_status = new customers_status();
-		$this->order_data['order_customer']['customers_status_name'] = $cust_status->getGroupName($this->order_data['order_customer']['customers_status']);
+		$this->order_data['order_customer']['customers_status_name'] = array_value($this->order_data['order_customer'], 'customers_status') ? $cust_status->getGroupName($this->order_data['order_customer']['customers_status']) : 'group-not-exists';
 		$this->order_data['order_data']['customers_status_name'] = $cust_status->getGroupName($order_data['order_data']['customers_status']);
 
         ($plugin_code = $xtPlugin->PluginCode(__CLASS__.'_'.__FUNCTION__.':bottom')) ? eval($plugin_code) : false;
@@ -509,7 +550,7 @@ class admin_order_edit extends order_templates {
 		$Panel->addItem(PhpExt_Form_TextArea::createTextArea('order_comments', __define('TEXT_ORDER_COMMENTS'))->setWidth(500));
 
 		$Panel->addItem(PhpExt_Form_Hidden::createHidden('edit_id', $this->oID));
-		$Panel->addItem(PhpExt_Form_Hidden::createHidden('actual_status', $this->orderData['orders_status']));
+		$Panel->addItem(PhpExt_Form_Hidden::createHidden('actual_status', $this->orderData['orders_status'] ?? 0));
 
 		$eF = new ExtFunctions();
 		$combo = $eF->_comboBox('order_status', __define('TEXT_ORDER_STATUS'), 'DropdownData.php?systemstatus=order_status');

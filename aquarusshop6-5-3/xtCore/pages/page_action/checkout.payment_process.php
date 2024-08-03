@@ -85,7 +85,7 @@ unset($_SESSION['last_order_id']);
 unset($_SESSION['selected_shipping']);
 unset($_SESSION['selected_payment']);
 unset($_SESSION['conditions_accepted']);
-$_SESSION['cart']->_resetCart();
+sessionCart()->_resetCart();
 //CORE-424
 //last article bug - find a better solution.
 unset($_SESSION['info_handler']);

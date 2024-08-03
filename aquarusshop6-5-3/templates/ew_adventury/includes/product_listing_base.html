@@ -31,11 +31,7 @@
                     {if $manufacturer.MANUFACTURER.manufacturers_image}<div class="manufacturers-image float-right">{img img=$manufacturer.MANUFACTURER.manufacturers_image type=m_org class="img-responsive"}</div>{/if}
 
                     {if $smarty.get.page == 'search'}
-                        {if version_compare(_SYSTEM_VERSION, '5.0.0', '>=')}
-                            {include file="$selected_template/xtCore/pages/search.html" included=true type="tpl_include"}
-                        {else}
-                            {include file="/xtCore/pages/search.html" included=true type="tpl_include"}
-                        {/if}
+                        {include file="xtCore/pages/search.html" included=true type="tpl_include"}
                     {/if}
 
                     {if $PRODUCTS_DROPDOWN}{$PRODUCTS_DROPDOWN}{/if}
@@ -93,10 +89,10 @@
                             {foreach name=listing item=module_data from=$product_listing}
                                 <div class="col col-ms-6 col-sm-6 col-md-4 {if $smarty.foreach.listing.first} col-first{elseif $smarty.foreach.listing.last} col-last{/if}">
                                     <div class="listing-switch-area listing-switch-area-{$wanted} wanted">
-                                        {include file="$selected_template/includes/panel_product_listing.html" listing_version=$wanted}
+                                        {include file="includes/panel_product_listing.html" listing_version=$wanted}
                                     </div>
                                     <div class="listing-switch-area listing-switch-area-{$available} available">
-                                        {include file="$selected_template/includes/panel_product_listing.html" listing_version=$available}
+                                        {include file="includes/panel_product_listing.html" listing_version=$available}
                                     </div>
                                 </div><!-- .col -->
                             {/foreach}

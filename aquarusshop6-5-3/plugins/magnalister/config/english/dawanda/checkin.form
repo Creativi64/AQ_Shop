@@ -1,0 +1,92 @@
+{
+   "checkin":{
+      "headline":"Settings for Item listing",
+      "fields":{
+         "status":{
+            "label":"Statusfilter",
+            "key":"_#_platform_#_.checkin.status",
+            "type":"checkbox",
+            "values":{
+               "val":"use only active Items"
+            },
+            "default":{
+               "val":false
+            }
+         },
+         "lang":{
+            "label":"Product Description",
+            "key":"_#_platform_#_.lang",
+            "type":"extern",
+            "cssClasses":[
+               "valignmid"
+            ],
+            "procFunc":"DawandaConfigure::languageMatching",
+            "params":[
+
+            ]
+         },
+         "quantity":{
+            "label":"Item Quantity",
+            "desc":"Define, how many items are available by default. You can adjust the quantity for each item during the adjustment retroactively. \n\t\t\t\t\t<br\/><br\/>\n\t\t\t\t\tTo avoid over-sales, you can set the value <br \/>\n\t\t\t\t\t<strong>\"Take Less value from Shop Stock, Activate\"<\/strong> activate.<br \/><br \/>\n\t\t\t\t\t<strong>Example:<\/strong>value \"2\" sets.Results -> Shop Stock: 10 -> eBay Stock: 8",
+            "key":"_#_platform_#_.quantity.type",
+            "type":"selection",
+            "values":{
+               "stock":"use stock quantity from shop",
+               "stocksub":"use stock quantity from shop, less the value from the right field",
+               "lump":"fix-rate (from right field)"
+            },
+            "default":"stock",
+            "morefields":{
+               "quantity":{
+                  "key":"_#_platform_#_.quantity.value",
+                  "type":"text",
+                  "default":1,
+                  "verify":"int",
+                  "cssClasses":[
+                     "autoWidth"
+                  ]
+               }
+            }
+         },
+         "leadtimetoship":{
+            "label":"Shipping:",
+            "key":"_#_platform_#_.checkin.leadtimetoship",
+            "type":"selection",
+            "values":[
+
+            ]
+         },
+         "leadtimetoshipmatching":{
+            "label":"Handling Time Matching",
+            "desc":"<b>Lieferzeit Matching:<\/b><br \/>\n\t\t\t\t\tDie Lieferzeiten im Web-Shop k&ouml;nnen &uuml;ber das \"Lieferzeit Matching\" mit den DaWanda Lieferzeiten verkn&uuml;pft werden.\n\t\t\t\t\tW&auml;hlen Sie in den Spalten \"Lieferzeit Shop\", und unter \"Lieferzeit DaWanda\" die Zeiten aus, die Sie &uuml;bereinbringen wollen.\n\t\t\t\t\tBeim Hochladen von Artikeln wird dann die im Shop hinterlegte Lieferzeit zu DaWanda &uuml;bermittelt.<br \/><br \/>\n\t\t\t\t\t<b>\"Lieferzeit Matching bevorzugen\":<\/b><br \/>\n\t\t\t\t\tWenn Sie diese Funktion aktivieren, &uuml;bermittelt magnalister die gematchten Lieferzeiten.\n\t\t\t\t\tSollten Sie eine Lieferzeit nicht gematcht haben, wird der Wert aus dem Men&uuml;punkt \"Lieferzeit in Tagen\" verwendet.<br \/><br \/>\n\t\t\t\t\t<b>Abweichende Lieferzeiten:<\/b><br \/>\n\t\t\t\t\tSollten Sie unter \"Produkte vorbereiten\" > \"Neue Produkte erstellen\",\n\t\t\t\t\toder unter \"Hochladen\" die Lieferzeiten abweichend anpassen, werden diese verwendet, solange die Vorbereitung nicht ge&auml;ndert wird.",
+            "key":"_#_platform_#_.leadtimetoshipmatching.values",
+            "type":"extern",
+            "cssClasses":[
+               "valignmid"
+            ],
+            "procFunc":"DawandaConfigure::leadTimeToShipMatching",
+            "params":[
+
+            ],
+            "morefields":{
+               "quantity":{
+                  "key":"_#_platform_#_.leadtimetoshipmatching.prefer",
+                  "type":"checkbox",
+                  "values":{
+                     "val":"Prefer Handling Time Matching"
+                  },
+                  "default":{
+                     "val":false
+                  }
+               }
+            }
+         },
+         "mfn":{
+            "label":"Default Manufacturer",
+            "desc":"Use this, if there is no Manufacturer defined for the product.",
+            "key":"_#_platform_#_.checkin.manufacturerfallback",
+            "type":"text"
+         }
+      }
+   }
+}

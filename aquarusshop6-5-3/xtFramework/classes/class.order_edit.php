@@ -176,7 +176,7 @@ class order_edit {
             $pnl->getJavascript(false, "oeMenubar")
         );
 */
-        switch ($_REQUEST['openRemoteWindow']) {
+        switch (array_value($_REQUEST, 'openRemoteWindow')) {
             case 'addProducts':
                 $js .= PhpExt_Ext::onReady(
                     $js_add

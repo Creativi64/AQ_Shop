@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+
+    <code>xt_cashondelivery</code>
+    <version>1.0.1</version>
+    <type>payment</type>
+
+    <developer>xt:Commerce</developer>
+    <url>https://www.xt-commerce.com</url>
+
+    <title>Cash on delivery (Nachnahme)</title>
+    <description>COD Module</description>
+    <icon>xt-commerce_logo.jpg</icon>
+
+    <payment>
+        <payment_code>xt_cashondelivery</payment_code>
+        <payment_dir>xt_cashondelivery</payment_dir>
+        <payment_icon></payment_icon>
+        <payment_tpl></payment_tpl>
+        <de>
+            <title>Nachnahme</title>
+            <description></description>
+        </de>
+        <en>
+            <title>Cash on delivery</title>
+            <description></description>
+        </en>
+        <es>
+            <title>Reembolso</title>
+            <description></description>
+        </es>
+        <bp>
+            <title>Reembolso</title>
+            <description></description>
+        </bp>
+        <tw>
+            <title>貨到付款</title>
+            <description></description>
+        </tw>
+        <cn>
+            <title>货到付款</title>
+            <description></description>
+        </cn>
+        <jp>
+            <title>代金引換払い</title>
+            <description></description>
+        </jp>
+    </payment>
+
+	<db_install><![CDATA[include_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_cashondelivery/installer/install.php';]]></db_install>
+
+</xtcommerceplugin> 

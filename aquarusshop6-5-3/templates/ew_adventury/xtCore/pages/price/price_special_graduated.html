@@ -1,11 +1,3 @@
-{if version_compare(_SYSTEM_VERSION, '5.0.0', '>=')}
-    <span class="price-old">{txt key=TEXT_RRP} {$OLD_PRICE.formated}</span>
-    <span class="price-new">{$CHEAPEST_PRICE.formated} - {$PRODUCTS_PRICE.formated}</span>
-{else}
-    {if $PRICE!=''}
-        {$TEXT_FROM} {$PRICE}
-    {else}
-        <span class="price-old">{$TEXT_MSRP} {$OLD_PRICE}</span>
-        <span class="price-new">{$TEXT_YOUR_PRICE} {$SPECIAL_PRICE}</span>
-    {/if}
-{/if}
+
+<span class="price-old">{txt key=TEXT_RRP} {$OLD_PRICE.formated}</span>
+<span class="price-new">{$CHEAPEST_PRICE.formated} - {$PRODUCTS_PRICE.formated}</span>

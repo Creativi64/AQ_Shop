@@ -62,6 +62,7 @@ include (_SRV_WEBROOT_ADMIN.'page_includes.php');
 		if (class_exists($class)) {
 		$md = new $class;
 		$md->url_data = $_REQUEST;
+        $md->setClass($_POST["currentType"]);
 		$obj = $md->Upload($filename);
 
 		

@@ -1,17 +1,17 @@
 [
     {
         "name": "amzn/amazon-pay-api-sdk-php",
-        "version": "2.5.1",
-        "version_normalized": "2.5.1.0",
+        "version": "2.6.2",
+        "version_normalized": "2.6.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/amzn/amazon-pay-api-sdk-php.git",
-            "reference": "80d0c7aefa9901f7d073ca7b38ddc5e3af60a2ff"
+            "reference": "4583b7320e96e18fe32bef1830d7a968c0cebf49"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/amzn/amazon-pay-api-sdk-php/zipball/80d0c7aefa9901f7d073ca7b38ddc5e3af60a2ff",
-            "reference": "80d0c7aefa9901f7d073ca7b38ddc5e3af60a2ff",
+            "url": "https://api.github.com/repos/amzn/amazon-pay-api-sdk-php/zipball/4583b7320e96e18fe32bef1830d7a968c0cebf49",
+            "reference": "4583b7320e96e18fe32bef1830d7a968c0cebf49",
             "shasum": ""
         },
         "require": {
@@ -22,7 +22,7 @@
         "require-dev": {
             "phpunit/phpunit": "^4"
         },
-        "time": "2023-01-25T11:05:32+00:00",
+        "time": "2023-06-29T07:33:20+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -165,17 +165,17 @@
     },
     {
         "name": "phpseclib/phpseclib",
-        "version": "3.0.18",
-        "version_normalized": "3.0.18.0",
+        "version": "3.0.21",
+        "version_normalized": "3.0.21.0",
         "source": {
             "type": "git",
             "url": "https://github.com/phpseclib/phpseclib.git",
-            "reference": "f28693d38ba21bb0d9f0c411ee5dae2b178201da"
+            "reference": "4580645d3fc05c189024eb3b834c6c1e4f0f30a1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/f28693d38ba21bb0d9f0c411ee5dae2b178201da",
-            "reference": "f28693d38ba21bb0d9f0c411ee5dae2b178201da",
+            "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/4580645d3fc05c189024eb3b834c6c1e4f0f30a1",
+            "reference": "4580645d3fc05c189024eb3b834c6c1e4f0f30a1",
             "shasum": ""
         },
         "require": {
@@ -193,7 +193,7 @@
             "ext-mcrypt": "Install the Mcrypt extension in order to speed up a few other cryptographic operations.",
             "ext-openssl": "Install the OpenSSL extension in order to speed up a wide variety of cryptographic operations."
         },
-        "time": "2022-12-17T18:26:50+00:00",
+        "time": "2023-07-09T15:24:48+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

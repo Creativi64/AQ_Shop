@@ -102,7 +102,7 @@ function enablePaypalCardForm() {
 
             cardFields.NameField({
                 style: cardStyle,
-                placeholder: "..."
+                placeholder: "TODO"
             }).render("#card_holder_name");
 
 

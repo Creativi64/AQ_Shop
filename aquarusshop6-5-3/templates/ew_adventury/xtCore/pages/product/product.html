@@ -1,5 +1,5 @@
-<div id="product" class="detail" {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemscope itemtype="http://schema.org/Product"{/if}>
-    {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')}<span class="hidden" itemprop="url">{$products_link}</span>{/if}
+<div id="product" class="detail"itemscope itemtype="http://schema.org/Product">
+    <span class="hidden" itemprop="url">{$products_link}</span>
 
     <div class="container">
 
@@ -37,15 +37,15 @@
                 <br />
             </div>
             <div class="col col-xs-12 col-md-5">
-                <div class="lightgallery product-images" {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemscope itemtype="http://schema.org/ImageGallery"{/if}>
+                <div class="lightgallery product-images" itemscope itemtype="http://schema.org/ImageGallery">
                     {if !$products_image || $products_image == 'product:noimage.gif'}
                         <span class="vertical-helper image-link no-image">{img img='no_image.png' type=t_img class="productImageBorder img-responsive" alt=$products_name|escape:"html"}</span>
                         {hook key=tpl_product_no_img module_data=$product}
                     {else}
                         <div class="image product-image center">
-                            <figure {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject"{/if}>
-                                <a name="product_images" href="{img img=$products_image type=m_org path_only=true}" {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="contentUrl"{/if} class="image-link img-responsiv" data-type="main">
-                                    <img src="{img img=$products_image type=m_org path_only=true}" alt="{if $products_image_data.media_name}{$products_image_data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $products_image_data.copyright_holder} &copy; {$products_image_data.copyright_holder}{/if}" title="{if $products_image_data.media_name}{$products_image_data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $products_image_data.copyright_holder} &copy; {$products_image_data.copyright_holder}{/if}" {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="thumbnail"{/if} class="img-responsive image-link">
+                            <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                                <a name="product_images" href="{img img=$products_image type=m_org path_only=true}" itemprop="contentUrl" class="image-link img-responsiv" data-type="main">
+                                    <img src="{img img=$products_image type=m_info path_only=true}" alt="{if !empty($products_image_data.media_name)}{$products_image_data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $products_image_data.copyright_holder} &copy; {$products_image_data.copyright_holder}{/if}" title="{if !empty($products_image_data.media_name)}{$products_image_data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $products_image_data.copyright_holder} &copy; {$products_image_data.copyright_holder}{/if}" class="img-responsive image-link">
                                 </a>
                                 {if $products_image_data.copyright_holder}
                                     <span class="copyright text-small">&copy; {$products_image_data.copyright_holder}</span>
@@ -58,9 +58,9 @@
                         <div class="more-images row listing hidden-affix">
                             {foreach name=aussen item=img_data from=$more_images key=index}
                                 {if $smarty.foreach.aussen.index != 0}
-                                    <figure {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject"{/if} class="col section col-md-3 col-xs-2">
-                                        <a href="{img img=$img_data.file type=m_org path_only=true}" class="vertical-helper image-link text-center" {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="contentUrl"{/if}>
-                                            <img src="{img img=$img_data.file type=m_ewadventuryinfo path_only=true}" alt="{if $img_data.data.media_name}{$img_data.data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $img_data.data.copyright_holder} &copy; {$img_data.data.copyright_holder}{/if}" title="{if $img_data.data.media_name}{$img_data.data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $img_data.data.copyright_holder} &copy; {$img_data.data.copyright_holder}{/if}"  {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="thumbnail"{/if} class="productImageBorder img-responsive">
+                                    <figureitemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="col section col-md-3 col-xs-2">
+                                        <a href="{img img=$img_data.file type=m_org path_only=true}" class="vertical-helper image-link text-center" itemprop="contentUrl">
+                                            <img src="{img img=$img_data.file type=m_ewadventuryinfo path_only=true}" alt="{if !empty($img_data.data.media_name)}{$img_data.data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $img_data.data.copyright_holder} &copy; {$img_data.data.copyright_holder}{/if}" title="{if !empty($img_data.data.media_name)}{$img_data.data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $img_data.data.copyright_holder} &copy; {$img_data.data.copyright_holder}{/if}" class="productImageBorder img-responsive">
                                         </a>
                                     </figure>
                                 {/if}
@@ -75,16 +75,16 @@
                 {if $products_model!=''}
                     <p class="label label-primary">{txt key=TEXT_PRODUCTS_MODEL} {$products_model}</p>
                 {/if}
-                <h1 id="product-name" class="text-uppercase hidden-xs hidden-sm" {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="name"{/if}>{$products_name}</h1>
+                <h1 id="product-name" class="text-uppercase hidden-xs hidden-sm" itemprop="name">{$products_name}</h1>
                 {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $products_price.formated neq ''}
-                    {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')}
+
                         <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                             <span class="hidden" itemprop="url">{$products_link}</span>
                             <span class="hidden" itemprop="priceCurrency">{$smarty.const._STORE_CURRENCY}</span>
                             <span class="hidden" itemprop="price">{$products_price.plain|string_format:"%.2f"}</span>
                             <span class="hidden" itemprop="itemCondition">{if $products_condition}{$products_condition}{else}new{/if}</span>
                         </div>
-                    {/if}
+
 
                     <p class="product-price this">{$products_price.formated}</p>
 
@@ -101,24 +101,18 @@
                 {/if}
                 <hr />
                 {if $products_weight > 0}
-                    {if version_compare(_SYSTEM_VERSION, '5.0.0', '>=')}
-                        <p class="product-weight">{include file="$selected_template/includes/products_weight_wrap.html" products_weight=$products_weight type="tpl_include"}</p>
-                    {else}
-                        <p class="product-weight">{txt key=TEXT_PRODUCTS_WEIGHT} {$products_weight|number_format:2:",":"."} KG</p>
-                    {/if}
+
+                    <p class="product-weight">{include file="includes/products_weight_wrap.html" products_weight=$products_weight type="tpl_include"}</p>
+
                 {/if}
                 {if $show_stock}
                     <p class="product-stock text-muted">{txt key=TEXT_STOCK} {$products_quantity|round} {if $products_unit_name}{$products_unit_name}{/if}</p>
                 {/if}
-                {if version_compare(_SYSTEM_VERSION, '6.2.1', '>=')}
-                    {if $shipping_status_data.name}
-                        <p class="product-shipping-status">{txt key=TEXT_SHIPPING_STATUS} {$shipping_status_data.name}</p>
-                    {/if}
-                {else}
-                    {if $shipping_status}
-                        <p class="product-shipping-status">{txt key=TEXT_SHIPPING_STATUS} {$shipping_status}</p>
-                    {/if}
+
+                {if $shipping_status_data.name}
+                    <p class="product-shipping-status">{txt key=TEXT_SHIPPING_STATUS} {$shipping_status_data.name}</p>
                 {/if}
+
                 {if $stock_image}
                     <p class="product-stock-image">{img img=$stock_image.image type=t_img_stockrules}</p>
                     <p class="product-stock-name"><i class="mdi mdi-truck-delivery"></i> {$stock_image.name}</p>
@@ -138,12 +132,12 @@
                                     class="img-responsive mnf-logo pull-right"
                                 >
                             {/if}
-                            <span class="{if $manufacturer.manufacturers_image}hidden{/if}" {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="brand"{/if}>{$manufacturer.manufacturers_name|escape:'html'}</span>
+                            <span class="{if $manufacturer.manufacturers_image}hidden{/if}" itemprop="brand">{$manufacturer.manufacturers_name|escape:'html'}</span>
                         {if $manufacturer.link}</a>{/if}
                     </p>
                 {/if}
                 {if $review_stars_rating}
-                    <div class="left" {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} {if $products_rating_count} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{/if}{/if}>
+                    <div class="left" {if $products_rating_count} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{/if}>
                         <div class="product-reviews cursor-pointer popover-trigger" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="{txt key=TEXT_XT_REVIEWS_INFO}"
                             data-content="{if $products_rating_count}{$products_rating_count} {txt key=TEXT_XT_REVIEWS_INFO} {txt key=TEXT_EW_ADVENTURY_POPOVER_RATING_AVERAGE} {math equation='(x-1) / 100 * y' x=$review_stars_rating y=5 format='%.1f'} {txt key=TEXT_PAGINATION_FROM} 5 {txt key=TEXT_EW_ADVENTURY_POPOVER_RATING_STAR}.{else}{txt key=TEXT_XT_REVIEWS_NO_REVIEWS}.{/if}"
                             onclick="document.location.href='{$link_reviews_list}'">
@@ -151,9 +145,9 @@
                                 <div class="reviews_rating_dark" style="width:{$review_stars_rating}%"></div>
                             </div>
                         </div><br />
-                        <span class="products_rating_count text-muted"><small><span {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} {if $products_rating_count}itemprop="ratingValue"{/if}{/if}>{math equation='(x-1) / 100 * y' x=$review_stars_rating y=5 format='%.1f'}</span> {txt key=TEXT_PAGINATION_FROM} 5 {txt key=TEXT_EW_ADVENTURY_POPOVER_RATING_STAR}</small></span>{if $products_rating_count}
-                        <span {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="itemreviewed"{/if} class="hidden">{$products_name}</span>
-                        <span {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="ratingCount"{/if} class="hidden">{if $products_rating_count}{$products_rating_count}{else}0{/if}</span>{/if}
+                        <span class="products_rating_count text-muted"><small><span {if $products_rating_count}itemprop="ratingValue"{/if}>{math equation='(x-1) / 100 * y' x=$review_stars_rating y=5 format='%.1f'}</span> {txt key=TEXT_PAGINATION_FROM} 5 {txt key=TEXT_EW_ADVENTURY_POPOVER_RATING_STAR}</small></span>{if $products_rating_count}
+                        <span itemprop="itemreviewed" class="hidden">{$products_name}</span>
+                        <span itemprop="ratingCount" class="hidden">{if $products_rating_count}{$products_rating_count}{else}0{/if}</span>{/if}
                     </div>
                 {/if}
 
@@ -183,11 +177,7 @@
                     {form type=form name=product id="main_product_form" action='dynamic' link_params=getParams method=post class="form-inline" role="form"}
                     {form type=hidden name=action value=add_product}
                     {form type=hidden name=product value=$products_id}
-                    {if version_compare(_SYSTEM_VERSION, '5.1.3', '>=')}
-                        {form type=hidden name=gotoCart value=$smarty.const._STORE_GOTO_CART_DIRECTLY}
-                    {else}
-                        {form type=hidden name=gotoCart value='1'}
-                    {/if}
+                    {form type=hidden name=gotoCart value=$smarty.const._STORE_GOTO_CART_DIRECTLY}
                     {$products_information}
                     <div class="add-to-cart form-inline">
                         <div class="form-group">
@@ -252,26 +242,11 @@
     <div id="pcontent">
         <div class="container">
 
-            {if version_compare(_SYSTEM_VERSION, '6.3.2', '>=')}
-                <div id="productlist" class="textstyles">
-                    {hook key=product_info_tpl_productlist}
-                </div>
-            {else}
-                {if ($products_master_flag == 1 || $products_master_model != '') &&
-                    ($smarty.const._PLUGIN_MASTER_SLAVE_SHOW_SLAVE_LIST == 'true' || $smarty.const._PLUGIN_MASTER_SLAVE_SHOW_SLAVE_LIST == 1)}
-                    <div id="pcontent-part-productlist" class="pcontent-part"
-                        data-orientation-nav-url="{$products_link}#pcontent-part-productlist"
-                        data-orientation-nav-classes="move"
-                        data-orientation-nav-icon="<i class='mdi mdi-settings'></i>"
-                        data-orientation-nav-label="{txt key=TEXT_PRODUCT_OPTIONS}"
-                    >
-                        <h2 class="breaking-headline">{txt key=TEXT_PRODUCT_OPTIONS}</h2>
-                        <div id="productlist" class="textstyles">
-                            {hook key=product_info_tpl_productlist}
-                        </div>
-                    </div>
-                {/if}
-            {/if}
+
+            <div id="productlist" class="textstyles">
+                {hook key=product_info_tpl_productlist}
+            </div>
+
 
             {hook key=product_info_tpl}
 
@@ -285,7 +260,7 @@
                     <h2 class="breaking-headline">{txt key=TEXT_PRODUCTS_DESCRIPTION}</h2>
                     <div id="description" class="textstyles text-word-wrap">
                         <p class="headline">{$products_name}</p>
-                        <div {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="description"{/if}>{$products_description}</div>
+                        <div itemprop="description">{$products_description}</div>
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -301,14 +276,6 @@
                     <h2 class="breaking-headline"><span style="display:none;">{math equation='(x-1) / 100 * y' x=$review_stars_rating y=5 format='%.1f'}</span><span>{if $products_rating_count}{$products_rating_count}{else}0{/if}</span> {txt key=TEXT_XT_REVIEWS_INFO}</h2>
                     <div id="reviews" class="textstyles">
                         {hook key=product_info_tpl_reviews}
-                        {if version_compare(_SYSTEM_VERSION, '4.1.0', '<=') && $products_rating_count == 0}
-                            <p>
-                                <a href="{$link_reviews_write}" class="btn btn-primary pull-right" rel="nofollow">
-                                    <i class="mdi mdi-pencil"></i> {txt key=TEXT_XT_REVIEWS_WRITE}
-                                </a>
-                            </p>
-                            <div class="clearfix"></div>
-                        {/if}
                     </div>
                 </div>
             {/if}
@@ -322,7 +289,7 @@
                 >
                     <h2 class="breaking-headline">{txt key=TEXT_DOWNLOADS}</h2>
                     <div id="files" >
-                        {include file="$selected_template/xtCore/pages/files/product_public_files.html"}
+                        {include file="xtCore/pages/files/product_public_files.html"}
                     </div>
                 </div>
             {/if}

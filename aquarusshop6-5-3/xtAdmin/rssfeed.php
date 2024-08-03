@@ -35,7 +35,7 @@ $topp = $rss->getTopPluginsFeed ( 5 );
 
 ?>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 <link rel="stylesheet" type="text/css" href="css/admin.css" />
 <link rel="stylesheet" type="text/css" href="css/icons.css" />
 <style type="text/css">
@@ -181,14 +181,14 @@ if(version_compare(phpversion(), $recommended_min_version, '<'))
     echo '<div class="error">' . sprintf ( TEXT_RECOMMENDED_PHP_VERSION, $php_version ) . '</div>';
 }
 
-if ($json_response['message']!='') {
+if (array_value($json_response,'message')!='') {
 	echo '<div class="error">Updatecheck: ' . $json_response['message'].'</div>';
 } else {
-    if ($json_response ['core_not_actual'] == 1) {
+    if (array_value($json_response ,'core_not_actual') == 1) {
          $target_version = $json_response['actual_version'];
         echo '<div class="error">' . sprintf ( TEXT_UPDATE_YES, _SYSTEM_VERSION, $target_version );
-        if ($response ['update_link'] != '') {
-            echo ' <a href="' . $response ['update_link'] . '" target="_blank">Link</a>';
+        if (array_value($json_response ,'update_link') != '') {
+            echo ' <a href="' . $json_response ['update_link'] . '" target="_blank">Link</a>';
         }
         echo '</div>';
     } else {
@@ -198,7 +198,7 @@ if ($json_response['message']!='') {
     if (is_array($json_response['plugins']) && count ( $json_response['plugins'] ) > 0) {
         echo "<br>";
         foreach ( $json_response['plugins'] as $key => $val ) {
-            echo '<div class="error">' . TEXT_UPDATE_PLUGIN_LOCAL_VERSION . '<br>' . $val['code'] . ':' . $json_response ['plugins'] [$val['code']] . ' ' . TEXT_PLUGINVERSION_AVAILABLE . ' ' . $val['version'];
+            echo '<div class="error">' . TEXT_UPDATE_PLUGIN_LOCAL_VERSION . '<br>' . $val['code'] . ':' .  ' ' . TEXT_PLUGINVERSION_AVAILABLE . ' ' . $val['version'];
 
             if (isset ( $val['url'] )) {
                 echo '<a href="' . $val['url'] . '" target="_blank"> [Link]</a>';

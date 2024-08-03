@@ -1,0 +1,52 @@
+{
+	"prepare": {
+		"fields": {
+			"imagepath": {
+				"label": "Bildpfad",
+				"key": "hitmeister.imagepath",
+				"type": "text",
+				"expertsetting": true
+			},
+			"condition": {
+				"label": "Zustand",
+				"key": "hitmeister.itemcondition",
+				"type": "selection",
+				"values": null
+			},
+			"handlingtime": {
+				"label": "Bearbeitungszeit",
+				"desc": "Voreinstellung f&uuml;r die Bearbeitungszeit. Diese kann bei Artikel-Vorbereitung noch angepa&szlig;t werden.",
+				"key": "hitmeister.handlingtime",
+				"type": "text",
+				"default": "1",
+				"verify": "int",
+				"cssClasses": ["autoWidth"],
+                                "rightlabel": " Werktage"
+			},
+			"shippinggroup": {
+				"label": "Verk&auml;ufer-Versandgruppe",
+				"key": "hitmeister.shippinggroup",
+				"type": "selection",
+				"values": null,
+				"desc": "Die _#_platformName_#_-Verk&auml;ufer-Versandgruppen enthalten Angaben zum Versand."
+			},
+			"location": {
+				"label": "Artikel wird versandt aus",
+				"key": "hitmeister.itemcountry",
+				"type": "selection",
+				"values": null,
+				"desc": "Bitte w&auml;hlen Sie aus welchem Land Sie versenden. Im Normalfall ist es das Land in dem Ihr Shop liegt."
+			},
+			"itemsPerPage": {
+				"label": "Ergebnisse",
+				"desc": "Hier k&ouml;nnen Sie festlegen, wie viele Produkte pro Seite beim Multimatching angezeigt werden sollen. <br\/>Je h&ouml;her die Anzahl, desto h&ouml;her auch die Ladezeit (bei 50 Ergebnissen ca. 30 Sekunden).",
+				"rightlabel": "pro Seite beim Multimatching",
+				"cssClasses": ["autoWidth"],
+				"key": "hitmeister.multimatching.itemsperpage",
+				"type": "text",
+				"default": "10",
+				"verify": "int"
+			}
+		}
+	}
+}

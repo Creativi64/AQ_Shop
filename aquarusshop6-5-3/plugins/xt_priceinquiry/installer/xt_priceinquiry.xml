@@ -2,10 +2,10 @@
 <xtcommerceplugin>
 
   <code>xt_priceinquiry</code>
-  <version>5.0.4</version>
+  <version>5.0.5</version>
   <type>marketing</type>
 
-  <minimum_store_version>6.2.2</minimum_store_version>
+  <minimum_store_version>6.6.0</minimum_store_version>
 
   <developer>xt:Commerce</developer>
   <url>https://www.xt-commerce.com</url>

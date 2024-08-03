@@ -2,10 +2,10 @@
 <xtcommerceplugin>
 
   <code>xt_2fa</code>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <type>core</type>
   
-  <minimum_store_version>6.2.2</minimum_store_version>
+  <minimum_store_version>6.5.4</minimum_store_version>
   
   <developer>xt:Commerce</developer>
   <url>https://www.xt-commerce.com</url>

@@ -1,0 +1,77 @@
+{if $_categories}
+    {foreach key=k name=a item=i from=$_categories}
+        <li id="cid-{$i.categories_id}" class="level-{$i.level} lang-{$language}{if $i.active == 1} active current{/if}{if $smarty.foreach.a.first} first{/if}{if $smarty.foreach.a.last} last{/if}{if $i.sub} dropdown{/if}">
+            <a href="{$i.categories_link}" class="dropdown-linker visible-xs-inline-block btn btn-primary"{if $i.sub} data-toggle="dropdown"{/if}>
+            	{if $i.sub}
+            	    <i class="toggle-button down fa fa-angle-down"></i>
+                    <i class="toggle-button up fa fa-angle-up"></i>
+            	{else}
+                    <i class="link-button fa fa-angle-right"></i>
+            	{/if}
+            </a>
+            <a 
+            	{if defined('CONFIG_EW_EVELATIONS_PLUGIN_MEGANAV') && $smarty.const.CONFIG_EW_EVELATIONS_PLUGIN_MEGANAV|trim == '1' && $i.sub} 
+            		class="hidden-xs dropdown-toggle ripple mega-menu-trigger" href="javascript:void(0);" data-megamenu="{$i.categories_id}-mega-content"
+            	{else} 
+            		class="hidden-xs dropdown-toggle ripple" href="{$i.categories_link}"{if $i.sub} data-toggle="dropdown"{/if}
+            	{/if}>
+            	{$i.categories_name|escape:'html'}{if $i.sub} <b class="caret"></b>{/if}
+            </a>
+            <a class="visible-xs ripple nav-name" href="{$i.categories_link}">{$i.categories_name|escape:'html'}</a>
+            <div class="clearfix visible-xs"></div>
+            {if defined('CONFIG_EW_EVELATIONS_PLUGIN_MEGANAV') && $smarty.const.CONFIG_EW_EVELATIONS_PLUGIN_MEGANAV|trim == '1' && $i.sub}
+            	<div id="{$i.categories_id}-mega-content" class="hidden">
+	            	<div class="mega-headline">
+	            		<div class="container">
+	            			<div class="cursor-pointer pull-right mega-close"><i class="fa fa-times"></i></div>
+	            			<a href="{$i.categories_link}" title="{$i.categories_name|escape:'html'}">{txt key=TEXT_EW_EVELATIONS_MAINCAT_TITLE} "{$i.categories_name|escape:'html'}" <i class="fa fa-angle-right"></i></a>
+	            		</div>
+	            	</div>
+	            	<div class="container">
+	            		<div class="row">
+	            			<div class="col col-md-3 col-sm-4 mega-left">
+	            				<p class="h4 text-muted text-uppercase">{txt key=TEXT_HEADING_MORE_CATEGORIES}</p>
+								{assign var="count" value=0}
+                                <ul>
+                                {foreach key=k1 name=a1 item=i1 from=$i.sub}
+									{if $count < 10}
+				                        <li><a href="{$i1.categories_link}" class="ripple h5 text-primary">{$i1.categories_name|escape:'html'}</a></li>
+                                    {/if}
+									{assign var="count" value=$count+1}
+                                {/foreach}
+                                </ul>
+								{if $count >= 11}
+                                    <hr />
+                                    <p><a href="{$i.categories_link}"><small>{txt key=TEXT_EW_EVELATIONS_ALL_CATEOGIRES} <i class="fa fa-angle-right"></i></small></a></p>
+								{/if}
+	            			</div>
+	            			<div class="col col-md-9 col-sm-8 mega-right">
+				                {if $i.categories_image}
+                                    <p><a href="{$i.categories_link}">{img class="img-responsive img-thumbnail ripple" img=$i.categories_image type=m_org alt=$i.categories_name|escape:'html' title=$i.categories_name|escape:'html'}</a></p>
+				                {/if}
+				                {if $i.categories_heading_title|strip_tags|trim != ''}
+								    <p class="h3 text-uppercase">{$i.categories_heading_title}</p>
+								{else}
+								    <p class="h3 text-uppercase">{$i.categories_name}</p>
+								{/if}
+								{if $i.categories_description|trim != ''}
+								    <p class="text-muted">{$i.categories_description|strip_tags|truncate:300:'...'}</p>
+								{/if} 
+	            				<p><a href="{$i.categories_link}" title="{$i.categories_name|escape:'html'}">{txt key=TEXT_MORE_DETAILS}</a></p>
+	            			</div>
+	            		</div>
+	            	</div>
+            	</div>
+            {/if}
+            {if $i.sub}
+                <ul class="dropdown-menu {if defined('CONFIG_EW_EVELATIONS_PLUGIN_MEGANAV') && $smarty.const.CONFIG_EW_EVELATIONS_PLUGIN_MEGANAV|trim == '1'}hidden-sm hidden-md hidden-lg{/if}">
+                    {foreach key=k1 name=a1 item=i1 from=$i.sub}
+                        <li><a href="{$i1.categories_link}" class="ripple">{$i1.categories_name|escape:'html'}</a></li>
+                    {/foreach}
+                    <li class="divider hidden-xs"></li>
+                    <li class="hidden-xs"><a class="dropdown-header" href="{$i.categories_link}" title="{txt key=TEXT_EW_EVELATIONS_MAINCAT_TITLE}"><span class="text-uppercase text-primary">{$i.categories_name|escape:'html'}</span></a></li>
+                </ul>
+            {/if}
+        </li>
+    {/foreach}
+{/if}

@@ -42,6 +42,10 @@ class adminDB_DataRead {
     protected $_sort_order;
 
     var $_total_count = 0;
+    /**
+     * @var mixed|string
+     */
+    public mixed $_filterData;
 
     function __construct($table, $table_lang = '', $table_seo = '', $master_key = '', $master_qry='', $master_limit='', $perm_data='', $filter_data = '', $sort_order='',$store_lang_field='') {
 

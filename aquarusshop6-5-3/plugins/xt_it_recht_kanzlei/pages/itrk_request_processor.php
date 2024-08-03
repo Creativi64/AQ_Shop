@@ -61,6 +61,10 @@ if (ITRK_ACTIVATED)
         if ($itrk->test_with_local_xml_file !== true)
         {
             $xml = @simplexml_load_string($post_xml);
+            if(!$xml)
+            {
+                $xml = @simplexml_load_string(html_entity_decode($post_xml));
+            }
         }
         else
         {

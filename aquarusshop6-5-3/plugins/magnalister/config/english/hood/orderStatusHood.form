@@ -1,0 +1,48 @@
+{
+    "orderSyncState": {
+        "fields": {
+            "sendmail": {
+                "label": "E-Mail Versand",
+                "desc": "Wenn Sie diese Option aktivieren wird der K&auml;ufer durch Hood per E-Mal &uuml;ber die Status&auml;nderung informiert.",
+                "key": "_#_platform_#_.orderstatus.sendmail",
+                "type": "checkbox",
+                "values": {
+                    "val": "versenden"
+                },
+                "default": {
+                    "val": false
+                }
+            },
+            "cancelstatusnostock": {
+                "label": "Cancel (undeliverable)",
+                "desc": "Reason for cancellation: the item is undeliverable or out of stock.<br />Choose the according status from this dropdown tab (adjustable in your shop system). This status will show in your customer’s Hood account.<br />The order status change will be activated if you change the status of your shop product. magnalister synchronizes the changed status automatically with Hood.de.",
+                "key": "_#_platform_#_.orderstatus.canceled.nostock",                
+                "type": "selection",
+                "values": null             
+            },
+            "cancelstatusdefect": {
+                "label": " Cancel (item is faulty or defect)",
+                "desc": "Reason for cancellation: The item is faulty or defect.<br />Choose the according status from this dropdown tab (adjustable in your shop system). This status will show in your customer’s Hood account.<br />The order status change will be activated if you change the status of your shop product. magnalister synchronizes the changed status automatically with Hood.de.",
+                "key": "_#_platform_#_.orderstatus.canceled.defect",              
+               "type": "selection",
+               "values": null             
+            },
+             "cancelstatusrevoked": {
+                "label": "Cancel (via customer)",
+                "desc": "Reason for cancellation: The customer cancelled the item or does not want to buy it anymore.<br />Choose the according status from this dropdown tab (adjustable in your shop system). This status will show in your customer’s Hood account.<br />The order status change will be activated if you change the status of your shop product. magnalister synchronizes the changed status automatically with Hood.de.",
+                "key": "_#_platform_#_.orderstatus.canceled.revoked",
+                "type": "selection",
+                "values": null
+                            
+            },
+            "cancelstatusnopayment": {
+                "label": "Cancel (Customer hasn’t paid)",
+                "desc": "Reason for cancellation: The customer does not pay for the item.<br />Choose the according status from this dropdown tab (adjustable in your shop system). This status will show in your customer’s Hood account.<br />The order status change will be activated if you change the status of your shop product. magnalister synchronizes the changed status automatically with Hood.de.",
+                "key": "_#_platform_#_.orderstatus.canceled.nopayment",
+                "type": "selection",
+                "values": null
+                            
+            }
+        }
+    }
+}

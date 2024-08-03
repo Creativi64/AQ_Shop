@@ -34,12 +34,19 @@ class email_to_media extends product {
 	protected $_table_seo = null;
 	public $_master_key = 'ml_id';
     protected $_icons_path = "images/icons/";
+    public string $indexID;
+    public string $getTreeUrl;
+    private string $getSaveUrl;
+    public mixed $pED;
 
     function __construct() {
        $this->indexID = time().'-Mail2Med';
 
-       $this->getTreeUrl = 'adminHandler.php?load_section=email_to_media&sec='. $_SESSION['admin_user']['admin_key'].'&pg=getNode&';
-       $this->getSaveUrl = 'adminHandler.php?load_section=email_to_media&sec='. $_SESSION['admin_user']['admin_key'].'&pg=setData&';
+       if(USER_POSITION == 'admin')
+       {
+           $this->getTreeUrl = 'adminHandler.php?load_section=email_to_media&sec=' . $_SESSION['admin_user']['admin_key'] . '&pg=getNode&';
+           $this->getSaveUrl = 'adminHandler.php?load_section=email_to_media&sec=' . $_SESSION['admin_user']['admin_key'] . '&pg=setData&';
+       }
     }
 
 	function setEmailId ($id) {

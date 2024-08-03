@@ -2,7 +2,7 @@
 <xtcommerceplugin>
 
   <code>xt_dsgvo_shippingcheckbox</code>
-  <version>6.0.6</version>
+  <version>6.0.7</version>
   <type>dsgvo</type>
   
   <minimum_store_version>6.2.2</minimum_store_version>
@@ -25,13 +25,13 @@
     <to_version>6.0.3</to_version>
     <code><![CDATA[
 
-    if (!this->_FieldExists('dsgvo_shipping_status',TABLE_SHIPPING)) {
+    if (!$this->_FieldExists('dsgvo_shipping_status',TABLE_SHIPPING)) {
       $db->Execute("ALTER TABLE ".TABLE_SHIPPING." ADD `dsgvo_shipping_status` INT( 1 ) NOT NULL DEFAULT '1';");
     }
-    if (!this->_FieldExists('dsgvo_shipping_required_status',TABLE_SHIPPING)) {
+    if (!$this->_FieldExists('dsgvo_shipping_required_status',TABLE_SHIPPING)) {
       $db->Execute("ALTER TABLE ".TABLE_SHIPPING." ADD `dsgvo_shipping_required_status` INT( 1 ) NOT NULL DEFAULT '0';");
     }
-    if (!this->_FieldExists('dsgvo_shipping_optin',TABLE_ORDERS)) {
+    if (!$this->_FieldExists('dsgvo_shipping_optin',TABLE_ORDERS)) {
       $db->Execute("ALTER TABLE ".TABLE_ORDERS." ADD `dsgvo_shipping_optin` INT( 1 ) NOT NULL DEFAULT '0';");
     }
 

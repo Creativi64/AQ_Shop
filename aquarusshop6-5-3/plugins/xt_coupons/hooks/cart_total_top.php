@@ -69,10 +69,10 @@ if ( ! empty($_SESSION['sess_coupon']) && is_array($_SESSION['sess_coupon'])) {
 				
 				$tpl_data['currency'] = $currency->code;
 				
-				$tpl_data['new_total'] = $currency->code.' '.number_format($new_amount, 2, ',', ' ');
+				$tpl_data['new_total'] = $price->_StyleFormat($new_amount);
 				$coupon_hash = md5($_SESSION['sess_coupon'][$key]);
 				$tpl_data['remove_coupon_link'] = $xtLink->_link(array('page' => 'cart', 'params' => 'remove_coupon='.$coupon_hash));
-				$tpl_data['coupon_total_before_discount'] = $currency->code.' '.number_format($coupon_total_before_discount, 2, ',', ' ');
+				$tpl_data['coupon_total_before_discount'] = $price->_StyleFormat($coupon_total_before_discount);
 		        $plugin_template = new Template();
 		        $plugin_template->getTemplatePath($tpl, 'xt_coupons', '', 'plugin');
 		        echo ($plugin_template->getTemplate('', $tpl, $tpl_data));

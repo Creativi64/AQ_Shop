@@ -45,6 +45,7 @@ class shipping extends xt_backend_cls {
 	protected $_table_seo = NULL;
 	protected $_master_key = 'shipping_id';
     public $shipping_errors = [];
+    public shipping_query $sql_shipping;
 
     function __construct() {
 		global $xtPlugin;
@@ -95,34 +96,34 @@ class shipping extends xt_backend_cls {
 			$this->lang = $language->code;
 		}
 
-		if(is_data($data['customer_shipping_address'])){
+		if(isset($data['customer_shipping_address'])){
 			$this->shipping_address = $data['customer_shipping_address'];
 		}else{
-			$this->shipping_address = $_SESSION['customer']->customer_shipping_address;
+			$this->shipping_address = sessionCustomer()->customer_shipping_address;
 		}
 
-		if(is_data($data['products'])){
+		if(isset($data['products'])){
 			$this->products = $data['products'];
 		}else{
-			$this->products = $_SESSION['cart']->show_content;
+			$this->products = sessionCart()->show_content;
 		}
 
-		if(is_data($data['weight'])){
+		if(isset($data['weight'])){
 			$this->weight = $data['weight'];
 		}else{
-			$this->weight = $_SESSION['cart']->content_weight_physical;
+			$this->weight = sessionCart()->content_weight_physical;
 		}
 
-		if(is_data($data['count'])){
+		if(isset($data['count'])){
 			$this->count = $data['count'];
 		}else{
-			$this->count = $_SESSION['cart']->content_count;
+			$this->count = sessionCart()->content_count;
 		}
 
-		if(is_data($data['total'])){
+		if(isset($data['total'])){
 			$this->total = $data['total'];
 		}else{
-			$this->total = $_SESSION['cart']->content_total_physical;
+			$this->total = sessionCart()->content_total_physical;
 		}
 
 		if(!empty($data['customers_status_id'])){
@@ -276,7 +277,7 @@ class shipping extends xt_backend_cls {
 
 				$value = $this->_filterCustomer($value);
 
-                if ($value['use_shipping_zone']==0) {
+                if (array_key_exists('use_shipping_zone', $value) && $value['use_shipping_zone']==0) {
                     $value = $this->_filterZone($value);    
                 }   else {
                     $value = $this->_filterShippingZone($value);
@@ -284,15 +285,16 @@ class shipping extends xt_backend_cls {
 				
 				$value = $this->_filterCountry($value);
 
-				if($value['shipping_type']=='weight'){
+
+				if(is_array($value) && array_key_exists('shipping_type', $value) && $value['shipping_type']=='weight'){
 					$value = $this->_filterWeight($value);
 				}
 
-				if($value['shipping_type']=='price'){
+				if(is_array($value) && array_key_exists('shipping_type', $value) && $value['shipping_type']=='price'){
 					$value = $this->_filterPrice($value);
 				}
 
-				if($value['shipping_type']=='item'){
+				if(is_array($value) && array_key_exists('shipping_type', $value) && $value['shipping_type']=='item'){
 					$value = $this->_filterItem($value);				
 				}
 
@@ -313,7 +315,7 @@ class shipping extends xt_backend_cls {
 						'shipping_price' => $shipping_price,
 						'shipping_type' => 'shipping',
 						'shipping_tpl' => $value['shipping_tpl'],
-						'shipping_selected' => $_SESSION['selected_shipping']
+						'shipping_selected' => $_SESSION['selected_shipping'] ?? ''
 					);
 
 					$class_path = _SRV_WEBROOT._SRV_WEB_PLUGINS.$value['shipping_dir'].'/classes/';
@@ -350,7 +352,7 @@ class shipping extends xt_backend_cls {
         
         if(!is_data($data)) return false;
 
-        $check_array = explode(',',$_SESSION['customer']->customer_info['shipping_unallowed']);        
+        $check_array = explode(',',sessionCustomer()->customer_info['shipping_unallowed'] ?? '');
         if(in_array($data['shipping_code'], $check_array)){
         	unset($data);    	
         }
@@ -513,7 +515,7 @@ class shipping extends xt_backend_cls {
 
         foreach($check_content as $key => $value) {
 
-			$value['shipping_country_code'] = strtoupper($value['shipping_country_code']);
+			$value['shipping_country_code'] = strtoupper($value['shipping_country_code'] ?? '');
 
 			$this->shipping_address['customers_country_code'] = strtoupper($this->shipping_address['customers_country_code']);
 
@@ -663,7 +665,7 @@ class shipping extends xt_backend_cls {
 		
 		($plugin_code = $xtPlugin->PluginCode('class.shipping.php:_filterWeight_bottom')) ? eval($plugin_code) : false;
 
-		return $data;
+		return $data ?? [];
 	}
 
     /**
@@ -728,7 +730,7 @@ class shipping extends xt_backend_cls {
 		
 		($plugin_code = $xtPlugin->PluginCode('class.shipping.php:_filterPrice_bottom')) ? eval($plugin_code) : false;
 
-		return $data;
+		return $data ?? [];
 	}
 
     /**
@@ -780,7 +782,7 @@ class shipping extends xt_backend_cls {
 		
 		($plugin_code = $xtPlugin->PluginCode('class.shipping.php:_filterItem_bottom')) ? eval($plugin_code) : false;
 
-		return $data;
+		return $data ?? [];
 	}
 
 
@@ -871,6 +873,7 @@ class shipping extends xt_backend_cls {
 
 		$shipping_price = $data['costs']['0']['shipping_price'];
 
+        $qty = '';
 		if($data['shipping_type'] == 'item' && $data['item_price'] == true){
 			$qty = $this->count;
 		}

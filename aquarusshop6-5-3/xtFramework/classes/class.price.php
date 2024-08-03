@@ -30,8 +30,11 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 class price {
 
     var $force_currency;
+    public mixed $price_group;
+    public mixed $p_group;
+    public mixed $master_price_group;
 
-	function __construct($price_group, $master_price_group, $force_currency = '')
+    function __construct($price_group, $master_price_group, $force_currency = '')
 	{
 		global $xtPlugin, $order_edit_controller;
 
@@ -66,7 +69,7 @@ class price {
 		if(isset($plugin_return_value))
 		return $plugin_return_value;
 
-		$products_tax = $tax->data[$data['tax_class']];
+		$products_tax = $tax->data[$data['tax_class']] ?? 0;
 
 		if ($customers_status->customers_status_show_price_tax == '0')
 		$products_tax = '';

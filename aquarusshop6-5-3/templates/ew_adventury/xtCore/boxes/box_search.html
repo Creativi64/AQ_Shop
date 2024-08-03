@@ -7,16 +7,14 @@
 
 <!-- Rich Snippet Search Data -->
 <script type="application/ld+json">
-/* <![CDATA[ {literal} */
 {
     "@context": "http://schema.org",
     "@type": "WebSite",
-    "url": "{/literal}http://{$smarty.server.SERVER_NAME}{literal}",
+    "url": "https://{$smarty.server.SERVER_NAME}",
     "potentialAction": {
         "@type": "SearchAction",
-        "target": "{/literal}http://{$smarty.server.SERVER_NAME}{literal}/search?page=search&page_action=query&desc=on&sdesc=on&keywords={search_term_string}",
+        "target": "https://{$smarty.server.SERVER_NAME}/search?page=search&page_action=query&desc=on&sdesc=on&keywords={search_term_string}",
         "query-input": "required name=search_term_string"
     }
 }
-/* {/literal} ]]> */
 </script>

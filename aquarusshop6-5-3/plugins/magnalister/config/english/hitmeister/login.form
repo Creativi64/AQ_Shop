@@ -1,0 +1,38 @@
+{
+	"login": {
+		"headline": "Zugangsdaten",
+		"fields": [{
+			"label": "ClientKey",
+			"desc": "",
+			"key": "hitmeister.clientkey",
+			"type": "text"
+		}, {
+			"label": "SecretKey",
+			"key": "hitmeister.secretkey",
+			"type": "password",
+			"settings": {
+				"save": false
+			}
+		}]
+	}
+    "sites": {
+        "headline": "Country Setting",
+        "fields": {
+            "site": {
+                "label": "Kaufland Site
+                "desc": "Kaufland country page to list on",
+                "key": "hitmeister.site",
+                "type": "selection",
+                "submit": "Access.Site",
+                "values": null
+            }, 
+            "currency": {
+                "label": "Currency",
+                "desc": "The currency in which items are listed on Kaufland, depending on the Kaufland country page",
+                "key": "hitmeister.currency.key",
+                "type": "selection",
+                "values": null
+            }
+        }
+    }
+}

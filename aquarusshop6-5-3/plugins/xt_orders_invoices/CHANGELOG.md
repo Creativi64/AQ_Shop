@@ -1,3 +1,7 @@
+## [6.1.0]
+- Anpassung für Smarty 5
+- xt min Version 6.6
+
 ## [6.0.19]
 - Template in plugins/xt_orders_invoices/installer/tpl/tpl_invoice.html angepasst für xt_product_options  
   muss manuell übernommen werden, 3 Zeilen ab Zeile 167

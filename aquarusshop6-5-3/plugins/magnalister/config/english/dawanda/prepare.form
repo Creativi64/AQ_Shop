@@ -1,0 +1,44 @@
+{
+   "prepare":{
+      "headline":"Item Preparation",
+      "fields":{
+         "filter":{
+            "label":"Status filter",
+            "key":"_#_platform_#_.prepare.status",
+            "type":"checkbox",
+            "values":{
+               "val":"use only active Items"
+            },
+            "default":{
+               "val":false
+            }
+         },
+         "manufacturerfilter":{
+            "label":"Manufacturer filter",
+            "key":"_#_platform_#_.filter.manufacturer",
+            "type":"multicheckbox",
+            "desc":"The selected manufacturers will <b>not be shown<\/b> in the module views.",
+            "default":[
+
+            ],
+            "expertsetting":true
+         },
+         "producttype":{
+            "label":"Item type",
+            "key":"_#_platform_#_.prepare.producttype",
+            "type":"selection",
+            "values":[
+
+            ]
+         },
+         "returnpolicy":{
+            "label":"Return policy",
+            "key":"_#_platform_#_.prepare.returnpolicy",
+            "type":"selection",
+            "values":[
+
+            ]
+         }
+      }
+   }
+}

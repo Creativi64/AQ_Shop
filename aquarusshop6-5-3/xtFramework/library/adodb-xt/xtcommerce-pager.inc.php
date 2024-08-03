@@ -26,8 +26,10 @@
  */
 
 class xtcommerce_Pager extends ADODB_Pager {
-	
-	/**
+    public string $param;
+    public string $seo_link;
+
+    /**
 	 *
 	 * @param unknown $db        	
 	 * @param unknown $sql        	

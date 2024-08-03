@@ -1,0 +1,14 @@
+{
+  "shipping": {
+    "headline": "Versand",
+    "fields": {
+      "shippinglabel": {
+        "label": "Standard-Versandaufkleber",
+        "desc": "Description about shipping label usage.",
+        "key": "_#_platform_#_.shippinglabel",
+        "type": "selection",
+        "value": null
+      }
+    }
+  }
+}

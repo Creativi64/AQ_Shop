@@ -38,9 +38,17 @@ class content extends xt_backend_cls {
 	public $store_field_exists = false;
 	public $_store_field = 'content_store_id';
     public $data = [];
+    public $level = [];
+    /**
+     * @var array|mixed
+     */
+    public mixed $BLOCKS;
 
     function __construct($cID=0) {
 		global $xtPlugin, $db, $customers_status, $store_handler,$current_content_id;
+
+        parent::__construct();
+
 		($plugin_code = $xtPlugin->PluginCode('class.content:content_top')) ? eval($plugin_code) : false;
 		if(isset($plugin_return_value))
 		return $plugin_return_value;
@@ -538,7 +546,8 @@ class content extends xt_backend_cls {
             {
                 $this->data['content_image'] = 'noimage.gif';
             }
-            $shop_content_data['content_image'] = __CLASS__ . ':' . $this->data['content_image'];
+            if(array_key_exists('content_image', $this->data))
+                $shop_content_data['content_image'] = __CLASS__ . ':' . $this->data['content_image'];
 
             global $mediaImages, $mediaFiles;
             if (!is_object($mediaImages))

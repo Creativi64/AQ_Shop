@@ -1,0 +1,21 @@
+
+{foreach key=$k item=$v from=$view_items.order_lines name=list_data}
+
+    {if $v.type == 'shipping_fee'}
+        {assign var="name" value=$smarty.const.TEXT_SHIPPING}
+    {elseif  $v.type == 'payment_fee'}
+        {assign var="name" value=$smarty.const.TEXT_PAYMENT}
+    {elseif  $v.type == 'discount'}
+        {assign var="name" value=$smarty.const.TEXT_COUPON_HEADLINE}
+    {elseif  $v.type == 'physical' || $v.type == 'digital'}
+        {assign var="name" value=$v.quantity|cat:" x "|cat:$v.name}
+    {else}
+        {assign var="name" value=$v.quantity|cat:" x "|cat:$v.name}
+        {hook key="kp-details-overview-orderline-name"}
+    {/if}
+
+    {include file="./accordion.tpl.html" v=$v name=$name type="order_lines" c=$k+1}
+
+{/foreach}
+
+{include file="./data_table.tpl.html" data=$view_items.data kp_order_ref=$view_items.data.klarna_reference}

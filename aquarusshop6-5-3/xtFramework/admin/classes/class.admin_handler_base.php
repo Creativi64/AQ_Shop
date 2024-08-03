@@ -459,7 +459,7 @@ END;
                                     createNode: function(attr) { 
                                     try
                                     {
-                                        console.log('create node');
+                                        //console.log('create node');
                                         attr.uiProvider = Tree.HelpTreeNodeUI;
                                         return Ext.tree.TreeLoader.prototype.createNode.call(this, attr);
                                     }

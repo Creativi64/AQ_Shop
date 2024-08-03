@@ -1,0 +1,14 @@
+{
+  "shipping": {
+    "headline": "Shipping",
+    "fields": {
+      "shippinglabel": {
+        "label": "Default Shipping Label",
+        "desc": "Description about shipping label usage.",
+        "key": "_#_platform_#_.shippinglabel",
+        "type": "selection",
+        "value": null
+      }
+    }
+  }
+}

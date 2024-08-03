@@ -37,8 +37,13 @@ class manufacturer extends xt_backend_cls {
 	protected $_table_seo = TABLE_SEO_URL;
 	public $store_field_exists = false;
 	public $_store_field = 'manufacturers_store_id';
+    /**
+     * @var int|mixed
+     */
+    public mixed $mnf_id;
+    public getManufacturerSQL_query $sql_manufacturer;
 
-	public function __construct($mnf_id = 0)
+    public function __construct($mnf_id = 0)
 	{
 		global $xtPlugin;
 
@@ -267,6 +272,16 @@ class manufacturer extends xt_backend_cls {
 			'type'	=> 'dropdown',	// you can modyfy the auto type
 			'url'	=> 'DropdownData.php?get=manufacturers_sort'
 		);
+
+		$header['compliance_country_code'] = array(
+			'type'	=> 'dropdown',	// you can modyfy the auto type
+			'url'	=> 'DropdownData.php?get=countries'
+		);
+
+		$header['compliance_responsible_country_code'] = array(
+			'type'	=> 'dropdown',	// you can modyfy the auto type
+			'url'	=> 'DropdownData.php?get=countries'
+		);
 		
 		($plugin_code = $xtPlugin->PluginCode('class.manufacturer.php:_getParams_data')) ? eval($plugin_code) : false;
 
@@ -277,10 +292,32 @@ class manufacturer extends xt_backend_cls {
 		$extF = new ExtFunctions();
 		$mjs = $extF->_MultiButton_stm('BUTTON_START_SEO', 'doMnfSeo');
 
+		$groupingPosition = 'GPSR_TAB';
+        $grouping['compliance_name'] = array('position' => $groupingPosition);
+        $grouping['compliance_email'] = array('position' => $groupingPosition);
+        $grouping['compliance_address_1'] = array('position' => $groupingPosition);
+        $grouping['compliance_address_2'] = array('position' => $groupingPosition);
+        $grouping['compliance_zip_code'] = array('position' => $groupingPosition);
+        $grouping['compliance_city'] = array('position' => $groupingPosition);
+        $grouping['compliance_country_code'] = array('position' => $groupingPosition);
+        $grouping['compliance_phone'] = array('position' => $groupingPosition);
+
+        $groupingPosition = 'GPSR_RESPONSIBLE_TAB';
+        $grouping['compliance_responsible_name'] = array('position' => $groupingPosition);
+        $grouping['compliance_responsible_email'] = array('position' => $groupingPosition);
+        $grouping['compliance_responsible_responsible_address_1'] = array('position' => $groupingPosition);
+        $grouping['compliance_responsible_address_2'] = array('position' => $groupingPosition);
+        $grouping['compliance_responsible_zip_code'] = array('position' => $groupingPosition);
+        $grouping['compliance_responsible_city'] = array('position' => $groupingPosition);
+        $grouping['compliance_responsible_country_code'] = array('position' => $groupingPosition);
+        $grouping['compliance_responsible_phone'] = array('position' => $groupingPosition);
+
+
 		$params['display_MnfSeoMn'] = true;
 		
 
 		$params['header']	= $header;
+		$params['grouping'] = $grouping;
 		$params['master_key']	= $this->_master_key;
 		$params['default_sort']	= $this->_master_key;
 		//$params['path']	= "manufacturers/";

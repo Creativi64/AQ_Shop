@@ -29,7 +29,14 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
 class MediaFiles extends MediaData {
 
+    public string $urlPath;
+    public mixed $UploadExt;
+    public string $type;
+
     function __construct() {
+
+        parent::__construct();
+
 		$this->type = 'files';
 		
         $types = $this->getFileExt($this->type);       	
@@ -43,7 +50,6 @@ class MediaFiles extends MediaData {
 	function Upload ($filename) {
         $upload_good = false;
         $filename = $this->setExtensiontolower($filename);
-        if(!$this->class)
         $this->setClass($this->url_data['currentType']);        
         
         $obj = new stdClass;

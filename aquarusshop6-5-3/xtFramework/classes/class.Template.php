@@ -25,9 +25,11 @@
  #########################################################################
  */
 
+use Smarty\Smarty;
+
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
-include_once (_SRV_WEBROOT._SRV_WEB_FRAMEWORK.'library/smarty/xt_plugins/smarty_internal_compile_include_xt.php');
+
 
 class Template {
 	var $template_path;
@@ -46,6 +48,11 @@ class Template {
      * @var Smarty
      */
     var $content_smarty;
+
+    function __construct()
+    {
+
+    }
 
     function _setTemplate($tpl_name=''){
 		global $customers_status;
@@ -66,6 +73,59 @@ class Template {
 	function setTplRootPath($path){
 		$this->tpl_root_path = $this->cleanPath($path);
 	}
+
+    public static function addPluginsDir(Smarty $smarty, $plugins_dir) {
+
+        foreach ((array)$plugins_dir as $v) {
+            $path = $smarty->_realpath(rtrim($v ?? '', '/\\') . DIRECTORY_SEPARATOR, true);
+            self::loadPluginsFromDir($smarty, $path);
+        }
+
+        return $smarty;
+    }
+
+    public static function loadPluginsFromDir(Smarty $smarty, string $path) {
+
+        foreach([
+                    'function',
+                    'modifier',
+                    'block',
+                    'compiler',
+                    'prefilter',
+                    'postfilter',
+                    'outputfilter',
+                ] as $type) {
+            foreach (glob($path  . $type . '.?*.php') as $filename) {
+                $pluginName = self::getPluginNameFromFilename($filename);
+                if ($pluginName !== null) {
+                    require_once $filename;
+                    $functionOrClassName = 'smarty_' . $type . '_' . $pluginName;
+                    if (function_exists($functionOrClassName) || class_exists($functionOrClassName)) {
+                        $smarty->registerPlugin($type, $pluginName, $functionOrClassName, true, []);
+                    }
+                }
+            }
+        }
+
+        $type = 'resource';
+        foreach (glob($path  . $type . '.?*.php') as $filename) {
+            $pluginName = self::getPluginNameFromFilename($filename);
+            if ($pluginName !== null) {
+                require_once $filename;
+                if (class_exists($className = 'smarty_' . $type . '_' . $pluginName)) {
+                    $smarty->registerResource($pluginName, new $className());
+                }
+            }
+        }
+
+    }
+
+    private static function getPluginNameFromFilename($filename) {
+        if (!preg_match('/.*\.([a-z_A-Z0-9]+)\.php$/',$filename,$matches)) {
+            return null;
+        }
+        return $matches[1];
+    }
 
     function getTemplate ($global_smarty,$template,$assignArray,$assign_to = false, $use_cache = false) {
         global $current_category_id, $xtPlugin, $language,$page,$currency, $_cache_id_settings, $tpl_replace_paths;
@@ -110,12 +170,17 @@ class Template {
             if (!is_object($this->content_smarty) || USER_POSITION == 'admin' || isset($is_cronjob_processing))
             {
                 $this->content_smarty = new Smarty();
+                $this->content_smarty->muteUndefinedOrNullWarnings();
+            }
+
+            if(USER_POSITION == 'admin' || isset($is_cronjob_processing))
+            {
                 $this->content_smarty->setCaching(Smarty::CACHING_OFF);
             }
-            else if((SMARTY_USE_CACHE == 'true' && $use_cache !== false) || $use_cache === true)
+            else if(SMARTY_USE_CACHE == 'true' && $use_cache !== false)
             {
                 $cache_id = $this->getTemplateCacheID($template);
-                $this->content_smarty->setCaching(Smarty::CACHING_LIFETIME_SAVED);
+                $this->content_smarty->setCaching(Smarty::CACHING_LIFETIME_CURRENT);
                 $this->content_smarty->setCacheLifetime(SMARTY_CACHE_LIFETIME);
             }
             else {
@@ -124,20 +189,37 @@ class Template {
 
             $this->content_smarty->setErrorReporting(E_ALL & ~E_NOTICE);
 
-            if(SMARTY_USE_COMPILE_CHECK === false)
-                    $this->content_smarty->setCompileCheck(Smarty::COMPILECHECK_OFF);
+            if(SMARTY_USE_COMPILE_CHECK == true)
+                    $this->content_smarty->setCompileCheck(Smarty::COMPILECHECK_ON);
+            else
+                $this->content_smarty->setCompileCheck(Smarty::COMPILECHECK_OFF);
 
 			if($this->check_int=='chkint' || !$this->check_int)
             {
 			    $this->getTemplatePath($template, '', '', 'default', 'chkint');
             }
 
+            if(empty($this->content_smarty->getFunctionHandler('txt')))
+            {
+                self::addPluginsDir($this->content_smarty, _SRV_WEBROOT . 'xtFramework/library/smarty/xt_plugins');
+                /**
+                 *    WildcardExtension um die PHP-Funktionen in smarty 5 zu reaktivieren
+                 */
+                $this->content_smarty->addExtension(new WildcardExtension());
+
+                /**      TEST TAG ÜBERSCHREIBUNG
+                 *       WIRD zZ NICHT VERWENDET
+                 *
+                 * require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'library/smarty/xt_plugins/IncludeXtTag.php';
+                 * $this->content_smarty->registerPlugin(Smarty::PLUGIN_COMPILER, 'include_xt', 'Smarty\Compile\Tag\IncludeXtTag');
+                 */
+            }
 
 			$tmp_tpl_path = $this->tpl_path;
 			$tmp_tpl_root_path = $this->tpl_root_path;
 
 			$content_smarty = $this->content_smarty;
-            $content_smarty->compile_dir = _SRV_WEBROOT.'templates_c';
+            $content_smarty->setCompileDir(_SRV_WEBROOT.'templates_c');
 
             $template_dirs = array( 'store' => './'._SRV_WEB_TEMPLATES._STORE_TEMPLATE.'/', 'system' => './'._SRV_WEB_TEMPLATES._SYSTEM_TEMPLATE.'/');
             foreach($template_dirs as $k => $tpl_dir)
@@ -148,7 +230,6 @@ class Template {
                 }
             }
 
-			$content_smarty->addPluginsDir(array(_SRV_WEBROOT.'xtFramework/library/smarty/xt_plugins'));
 
 			$content_smarty->assign('language', $language->code);
 			$content_smarty->assign('tpl_path', $tmp_tpl_path);
@@ -170,16 +251,9 @@ class Template {
 		    $content_smarty->assign('tpl_path_system', _SRV_WEBROOT._SRV_WEB_TEMPLATES.$this->system_template.'/');
 			$content_smarty->assign('selected_template', $this->selected_template);
             $content_smarty->assign('is_pro_version', $is_pro_version);
-            $content_smarty->assignGlobal('activeModules', array_keys($xtPlugin->active_modules));
+            $content_smarty->assign('activeModules', array_keys($xtPlugin->active_modules));
 
             ($plugin_code = $xtPlugin->PluginCode('class.template:getTemplate_assign_default')) ? eval($plugin_code) : false;
-
-            // mobile assigns
-            if (isset($_SESSION['isMobile']) or isset($_SESSION['isTablet']))
-            {
-                $content_smarty->assign('language_count', count($language->_getLanguageList()));
-                $content_smarty->assign('currency_count', count($currency->_getCurrencyList()));
-            }
 
             if (is_array($assignArray))
             {
@@ -196,7 +270,7 @@ class Template {
             {
                 ($plugin_code = $xtPlugin->PluginCode('class.template:getTemplate_load_smartyfilter')) ? eval($plugin_code) : false;
                 $this->registerOutputFilter();
-                $content_smarty->loadFilter('output', 'note');
+                $content_smarty->registerFilter(Smarty::FILTER_OUTPUT, 'smarty_outputfilter_note');
             }
 
             $template = $tmp_tpl_root_path.$template;
@@ -521,7 +595,7 @@ class Template {
     {
         if(!function_exists('smarty_outputfilter_note'))
         {
-            function smarty_outputfilter_note($tpl_output, Smarty_Internal_Template $smarty)
+            function smarty_outputfilter_note($tpl_output, \Smarty\Template $smarty)
             {
 
                 global $xtPlugin, $p_cop, $is_pro_version;
@@ -558,6 +632,17 @@ class Template {
         }
     }
 
+
+}
+
+class WildcardExtension extends \Smarty\Extension\Base {
+
+    public function getModifierCallback(string $modifierName) {
+        if (is_callable($modifierName)) {
+            return $modifierName;
+        }
+        return null;
+    }
 
 }
 

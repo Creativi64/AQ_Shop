@@ -27,13 +27,15 @@
 
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
+#[AllowDynamicProperties]
 class item_permission {
 
 	protected $_data;
 	public $_table;
 	public $_where;
+    public mixed $position;
 
-	function __construct($data = '') {
+    function __construct($data = '') {
 	    global $store_handler;
 
 	    if ($store_handler->store_count==1 && isset($data['shop_perm'])) {

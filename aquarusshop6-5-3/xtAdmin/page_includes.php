@@ -77,7 +77,7 @@ include_once 'PhpExt/Form/FieldSet.php';
 include_once 'PhpExt/Form/TextField.php';
 include_once 'PhpExt/Form/TimeField.php';
 include_once 'PhpExt/Form/HtmlEditor.php';
-include_once 'PhpExt/Form/CKEditor.php';
+include_once 'PhpExt/Form/FroalaEditor.php';
 include_once 'PhpExt/Form/DateField.php';
 include_once 'PhpExt/Form/Hidden.php';
 include_once 'PhpExt/Form/NumberField.php';

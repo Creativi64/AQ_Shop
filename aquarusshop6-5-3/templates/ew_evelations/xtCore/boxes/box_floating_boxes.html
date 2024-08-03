@@ -1,4 +1,4 @@
-{if $smarty.const.CONFIG_EW_EVELATIONS_PLUGIN_SIDEBUTTONS == 1 && $smarty.get.page != 'checkout'}
+{if $smarty.const.CONFIG_EW_EVELATIONS_PLUGIN_SIDEBUTTONS == 1 && (!isset($smarty.get.page) || $smarty.get.page != 'checkout')}
     <div id="floating-box-container" class="hidden-xs">
         {box name=language}
         <div class="custom-floating-boxes"><!-- dynamic added by javascript --></div>

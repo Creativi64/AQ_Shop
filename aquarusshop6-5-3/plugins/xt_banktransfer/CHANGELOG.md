@@ -1,3 +1,10 @@
+## [5.1.0]
+- Anpassung für Smarty 5
+- xt min Version 6.6
+
+## [5.0.11]
+- neuer Hookpoint class.xt_banktransfer.php:setAccountData_bottom'
+
 ## [5.0.10]
 - Fix Fehler im Backend: Kunden > Bankverbindungen anzeigen (Anpassung für php8)
 

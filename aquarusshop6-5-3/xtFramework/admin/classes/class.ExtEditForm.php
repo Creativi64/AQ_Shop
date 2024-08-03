@@ -149,14 +149,15 @@ class ExtEditForm extends ExtFunctions {
                     $header_data2['text'] = constant(str_replace("_STORE".$store_id,"",$header_data['text']));
 
                 $fField = $this->_switchFormField($header_data2, $val);
-                if ($this->url_data['currentType']=='category'){
-                    $this->url_data['edit_id'] = $this->url_data['currentId'];
+                if (array_value($this->url_data, 'currentType') =='category'){
+                    $this->url_data['edit_id'] = $this->url_data['currentId'] ?? 0;
                 }
                 $ffield_header_id = $this->code.'_'.$header_data['name'].$this->url_data['edit_id'];
                 if (isset($this->url_data['store_id'])) {
                     $ffield_header_id .= "_" . $this->url_data['store_id'];
                 }
                 $fField->setId($ffield_header_id);
+                if($header_data2['type'] == "htmleditor") $fField->setCssClass("xtclass-".$this->code);
 
                 if(constant("_SYSTEM_METATAGS_WORDS_COUNTER") == 'true' && $this->url_data['load_section']!='configuration'){
                     if(strpos(strtolower($header_data['name']),'meta_')!==false){
@@ -360,7 +361,7 @@ class ExtEditForm extends ExtFunctions {
 	            }
 	        }
 
-            if (is_array($addon) && is_array($addon[0]))
+            if (is_array($addon) && is_array($addon[0] ?? 'not-array'))
 			foreach ($addon[0] as $nr => $addon_data) {
 				$tabPanel->addItem($addon_data);
 			}
@@ -757,7 +758,7 @@ class ExtEditForm extends ExtFunctions {
         }
 
         if (empty($pos))
-            return $this->tmpData[$key];
+            return $this->tmpData[$key] ?? [];
 
         return $this->tmpData[$key][$pos];
     }
@@ -893,9 +894,10 @@ class ExtEditForm extends ExtFunctions {
     				$data->setCssClass('TinyMce');
 					break;
 
-				}elseif($editor=='ckeditor') {
+                }elseif($editor=='froala'){  
+                
+                    $data = PhpExt_Form_FroalaEditor::createFroalaEditor($label, $name);  
 
-                    $data = PhpExt_Form_CKEditor::createCKEditor($label, $name);
                     if (isset($line_data['height'])) {
                         $data->setHeight($line_data['height']);
                     } else {
@@ -906,10 +908,8 @@ class ExtEditForm extends ExtFunctions {
                     } else {
                         $data->setWidth('70%');
                     }
-                    if (isset($line_data['required'])) {
-                        $line_data['required'] = '';
-                    }
                     break;
+
                 }else{
 
 					$data = PhpExt_Form_TextArea::createTextArea($label, $name);
@@ -1066,24 +1066,24 @@ class ExtEditForm extends ExtFunctions {
 		////////////////////////////////////////////////////////////////////////
 		// field validation
 		// readonly
-		if ($line_data['readonly'] && !$this->getSetting('edit_masterkey')) {
+		if (array_value($line_data,'readonly') && !$this->getSetting('edit_masterkey')) {
 			$data->setReadOnly(true);
 		}
-        if ($line_data['disabled'] && !$this->getSetting('edit_masterkey')) {
+        if (array_value($line_data,'disabled') && !$this->getSetting('edit_masterkey')) {
             $data->setDisabled(true);
         }
 		// minimum
-		if ($line_data['min']) {
+		if (array_value($line_data,'min')) {
 			$data->setMinLength($line_data['min']);
 			$data->setMinLengthText(__define("ERROR_MIN"));
 		}
 		// maximum
-		if ($line_data['max']) {
+		if (array_value($line_data,'max')) {
 			$data->setMaxLength($line_data['max']);
 			$data->setMaxLengthText(__define("ERROR_MAX"));
 		}
 		// required
-		if ($line_data['required']) {
+		if (array_value($line_data,'required')) {
 			$data->setAllowBlank(false);
 			$data->setBlankText(__define("ERROR_BLANK"));
 		}

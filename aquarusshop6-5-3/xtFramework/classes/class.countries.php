@@ -40,7 +40,7 @@ class countries extends xt_backend_cls{
 	protected $_master_key = 'countries_iso_code_2';
 
 
-	function __construct($status=true,$list_type=''){
+    function __construct($status=true,$list_type=''){
 		global $xtPlugin;
 		
 		($plugin_code = $xtPlugin->PluginCode(__CLASS__.'countries_top')) ? eval($plugin_code) : false;

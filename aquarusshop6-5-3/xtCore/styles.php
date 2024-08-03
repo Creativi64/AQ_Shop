@@ -27,13 +27,20 @@
 
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
+global $xtMinify, $xtPlugin;
+
 if(file_exists(_SRV_WEBROOT._SRV_WEB_TEMPLATES._STORE_TEMPLATE.'/css/stylesheet.css'))
-$xtMinify->add_resource(_SRV_WEB_TEMPLATES._STORE_TEMPLATE.'/css/stylesheet.css',50);
+    $xtMinify->add_resource(_SRV_WEB_TEMPLATES._STORE_TEMPLATE.'/css/stylesheet.css',50);
 else
     $xtMinify->add_resource(_SRV_WEB_TEMPLATES._SYSTEM_TEMPLATE.'/css/stylesheet.css',50);
 
-//TODO auto add script at this hook
-($plugin_code = $xtPlugin->PluginCode('styles.php:top')) ? eval($plugin_code) : false;
-// <link rel="stylesheet" type="text/css" href="<?php echo _SYSTEM_BASE_URL._SRV_WEB._SRV_WEB_TEMPLATES._STORE_TEMPLATE.'/css/stylesheet.css'; " />
-($plugin_code = $xtPlugin->PluginCode('styles.php:bottom')) ? eval($plugin_code) : false;
+include_once _SRV_WEBROOT.'conf/config_froala.php';
+
+if(!defined('FROALA_CDN_VERSION')) define('FROALA_CDN_VERSION', 'latest');
 ?>
+
+<link href="https://cdn.jsdelivr.net/npm/froala-editor@<?php echo FROALA_CDN_VERSION; ?>/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+
+<?php
+($plugin_code = $xtPlugin->PluginCode('styles.php:top')) ? eval($plugin_code) : false;
+($plugin_code = $xtPlugin->PluginCode('styles.php:bottom')) ? eval($plugin_code) : false;

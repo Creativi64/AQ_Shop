@@ -4,15 +4,15 @@
     $page == 'cart' OR
     $page == 'checkout' OR
     $page == '404' OR
-    $smarty.get.page_action == 'login' OR
-    $smarty.get.page_action == 'order_info'
+    (isset($smarty.get.page_action) && $smarty.get.page_action == 'login') OR
+    (isset($smarty.get.page_action) && $smarty.get.page_action == 'order_info')
 }
     {assign var="show_index_boxes" value="false"}
 {else}
     {assign var="show_index_boxes" value="true"}
 {/if}
 {hook key=index_top}
-<div id="site-wrap" class="{$page}-wrap{if $page != 'index'} subpage-wrap{/if}{if $smarty.get.page_action} {$smarty.get.page_action}-action-wrap{/if} shop{$smarty.const.EW_EVELATIONS_SHOP_ID}">
+<div id="site-wrap" class="{$page}-wrap{if $page != 'index'} subpage-wrap{/if}{if isset($smarty.get.page_action)} {$smarty.get.page_action}-action-wrap{/if} shop{$smarty.const.EW_EVELATIONS_SHOP_ID}">
     {if !isset($smarty.get.viewport) || $smarty.get.viewport != 'modal'}
         <div id="header">
             <div class="header-bg">
@@ -97,7 +97,7 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right nav-button-cart hidden-xs">
                             <li>
-                                <a href="{link page='cart'}" class="btn btn-default button-cart text-default {if $smarty.get.page == 'cart'} active{/if}">
+                                <a href="{link page='cart'}" class="btn btn-default button-cart text-default {if isset($smarty.get.page) && $smarty.get.page == 'cart'} active{/if}">
                                     <span class="sr-only">{txt key=TEXT_CART}</span>
                                     <i class="fa fa-2x fa-shopping-cart"></i>
                                 </a>
@@ -122,7 +122,7 @@
                 {hook key=container_top}
 
                 {if $page != 'index' && $page != '404' && $page != 'checkout'}
-                    {include file="$selected_template/xtCore/pages/navigation/breadcrumb.html" type="tpl_include"}
+                    {include file="xtCore/pages/navigation/breadcrumb.html" type="tpl_include"}
                 {/if}
 
                 {hook key=ew_evelations_teaser}
@@ -182,20 +182,20 @@
             <div class="container" id="footer-accordion" role="tablist" aria-multiselectable="true">
                 <div class="row footer-top">
                     <div class="col col-sm-4 col-1">
-                        {include file="$selected_template/includes/box_cache_wrap.html" name=footer_contact htmlonly=1 type="tpl_include"}
+                        {include file="includes/box_cache_wrap.html" name=footer_contact htmlonly=1 type="tpl_include"}
                     </div>
                     <div class="col col-sm-4 col-1">
                         {hook key=ew_evelations_footer_info}
-                        {include file="$selected_template/includes/box_cache_wrap.html" name=footer_left htmlonly=1 type="tpl_include"}
+                        {include file="includes/box_cache_wrap.html" name=footer_left htmlonly=1 type="tpl_include"}
                     </div>
                     <div class="col col-sm-4 col-2">
                         {hook key=ew_evelations_footer_content}
-                        {include file="$selected_template/includes/box_cache_wrap.html" name=footer_right htmlonly=1 type="tpl_include"}
+                        {include file="includes/box_cache_wrap.html" name=footer_right htmlonly=1 type="tpl_include"}
                     </div>
                 </div>
                 <div class="row footer-bottom">
                     <div class="col col-sm-4 col-1">
-                        {include file="$selected_template/includes/box_cache_wrap.html" name=manufacturers htmlonly=0 order_by='m.manufacturers_name' type="tpl_include"}
+                        {include file="includes/box_cache_wrap.html" name=manufacturers htmlonly=0 order_by='m.manufacturers_name' type="tpl_include"}
                     </div>
                     <div class="col col-sm-4 col-2">
                         {box name=currency}
@@ -204,7 +204,7 @@
                         {box name=language}
                     </div>
                     <div class="col col-sm-4 col-3">
-                        {include file="$selected_template/includes/box_cache_wrap.html" name=payment_logos htmlonly=0 type="tpl_include"}
+                        {include file="includes/box_cache_wrap.html" name=payment_logos htmlonly=0 type="tpl_include"}
                         {box name=trusted_shops_ratings}
                         {box name=trusted_shops_seal}
                         {box name=trusted_shops_video}
@@ -264,7 +264,7 @@
             <button type="button" class="close"><i class="fa fa-times-circle-o"></i></button>
             <div class="form-group">
                 <div class="input-group input-group-lg panel-shadow">
-                    <input class="form-control" type="search" id="keywords" name="keywords" placeholder="{txt key=TEXT_ENTER_SEARCH_TERM}" value="{$smarty.get.keywords|strip_tags}" />
+                    <input class="form-control" type="search" id="keywords" name="keywords" placeholder="{txt key=TEXT_ENTER_SEARCH_TERM}" value="{if isset($smarty.get.keywords)}{$smarty.get.keywords|strip_tags}{/if}" />
                     <span class="input-group-btn">
                         <button type="submit" class="btn btn-default">
                             <span class="glyphicon glyphicon-search"></span>
@@ -281,7 +281,7 @@
         {* <!-- Docked Sidenavigation --> *}
         {box name=floating_boxes htmlonly=1}
 
-        {include file="$selected_template/includes/box_cronjob_wrap.html" name=manufacturers htmlonly=0 type="tpl_include"}
+        {include file="includes/box_cronjob_wrap.html" name=manufacturers htmlonly=0 type="tpl_include"}
 
     {else}
         {$content}

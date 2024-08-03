@@ -1,0 +1,101 @@
+<style>
+    .card_container {
+        border-radius: 5px;
+        background-color: #FFFFFF;
+        /*padding: 20px;*/
+        padding-bottom: 35px;
+        /*max-width: 760px;*/
+        width: 100%;
+        margin: -20px auto 0 auto;
+    }
+    #card_form .card_field{
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+        height:40px;
+        background:white;
+        font-size:14px;
+        color:#3a3a3a;
+        font-family:helvetica, tahoma, calibri, sans-serif;
+    }
+    #card_form input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+        height:40px;
+        background:white;
+        font-size:14px;
+        color:#3a3a3a;
+        font-family:monospace, sans-serif;
+    }
+    #card_container_error { display: none}
+
+    @media screen and (max-width: 420px) {
+        .card_holder_name {
+            display: none;
+        }
+
+        .card_holder_name_xs {
+            display: block;
+        }
+    }
+    @media screen and (min-width: 421px) {
+        .card_holder_name {
+            display: block;
+        }
+
+        .card_holder_name_xs {
+            display: none;
+        }
+    }
+</style>
+
+<div class="card_container clear">
+    <div id="card_container_error" class="alert alert-danger alert-dismissible"></div>
+    <form id="card_form">
+
+        <label for="card_number">{txt key=TEXT_XT_PAYPAL_CHECKOUT_CARD_NUMBER}</label>
+        <div id="card_number" class="card_field"></div>
+
+        <div style="display: flex; flex-direction: row;">
+            <div style="min-width:150px; max-width:150px">
+                <label for="expiration_date">{txt key=TEXT_XT_PAYPAL_CHECKOUT_EXPIRATION_DATE}</label>
+                <div id="expiration_date" class="card_field number"></div>
+            </div>
+            <div style="margin-left: 10px; min-width:65px; max-width:65px ">
+                <label for="cvv">{txt key=TEXT_XT_PAYPAL_CHECKOUT_CVV}</label>
+                <div id="cvv" class="card_field number"></div>
+            </div>
+            <div class="card_holder_name" style="margin-left: 10px; width:100%">
+                <label for="card_holder">{txt key=TEXT_XT_PAYPAL_CHECKOUT_CARD_HOLDER}</label>
+                <input type="text" id="card_holder_name" class="card_field" value="{$card_holder}">
+            </div>
+        </div>
+
+        <div class="card_holder_name_xs" style="width:100%">
+            <label for="card_holder">{txt key=TEXT_XT_PAYPAL_CHECKOUT_CARD_HOLDER}</label>
+            <input type="text" id="card_holder_name" class="card_field" value="{$card_holder}">
+        </div>
+
+        <a href="{link page='checkout' paction='payment' conn=SSL}" class="btn btn-default pull-left">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            {txt key=BUTTON_BACK}
+        </a>
+        <button value="submit" id="submit" class="btn paypal-card-button btn-success preloader pull-right">
+            <span class="glyphicon glyphicon-flag"></span>
+            {txt key="BUTTON_CONFIRM_ORDER"}
+        </button>
+    </form>
+</div>
+
+

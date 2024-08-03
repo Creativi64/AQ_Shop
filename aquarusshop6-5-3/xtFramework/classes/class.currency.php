@@ -27,6 +27,7 @@
 
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
+#[AllowDynamicProperties]
 class currency extends xt_backend_cls{
 
 	public $default_currency = _STORE_CURRENCY;
@@ -36,7 +37,7 @@ class currency extends xt_backend_cls{
 	protected $_table_seo = null;
 	protected $_master_key = 'currencies_id';
 
-	function __construct($code = ''){
+    function __construct($code = ''){
 		global $xtPlugin, $store_handler;
 
 		($plugin_code = $xtPlugin->PluginCode('class.currency.php:currency_top')) ? eval($plugin_code) : false;
@@ -81,6 +82,8 @@ class currency extends xt_backend_cls{
 
 	function _getCurrencyList($list_type = 'store',$index=''){
 		global $xtPlugin, $db, $store_handler;
+
+        $data = [];
 
 		($plugin_code = $xtPlugin->PluginCode('class.currency.php:_getCurrencyList_top')) ? eval($plugin_code) : false;
 		if(isset($plugin_return_value))

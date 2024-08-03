@@ -27,6 +27,8 @@
 
 include '../xtFramework/admin/main.php';
 
+global $xtc_acl, $store_handler, $xtPlugin;
+
 if (!$xtc_acl->isLoggedIn()) {
     header('location: login.php');
     exit;
@@ -34,6 +36,11 @@ if (!$xtc_acl->isLoggedIn()) {
 
 $store_handler->checkAdminSSL();
 $store_handler->redirectAdminSSL();
+
+include_once _SRV_WEBROOT.'conf/config_froala.php';
+
+if(!defined('FROALA_CDN_VERSION')) define('FROALA_CDN_VERSION', 'latest');
+
 
 ?><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "https://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -50,13 +57,13 @@ $store_handler->redirectAdminSSL();
 <link rel="stylesheet" href="../xtFramework/library/amcharts/css/style.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="../xtFramework/library/jquery-admin/ui/base-xt/jquery-ui-1.9.2.custom.css" type="text/css">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" href="../xtFramework/library/vendor/alexanderpoellmann/paymentfont/css/paymentfont.min.css" type="text/css">
 <link rel="stylesheet" type="text/css" href="css/admin.css" />
 <link rel="stylesheet" type="text/css" href="css/icons.css" />
 
-
+<link href="https://cdn.jsdelivr.net/npm/froala-editor@<?php echo FROALA_CDN_VERSION; ?>/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
 
 <?php
 include('css/css_flags.php');
@@ -113,19 +120,9 @@ if($language->code == 'de')
     <script type="text/javascript" src="../xtFramework/library/ext_plugin/ext-lang-de.js"></script>
     <?php
 }
-
-$ext_ux_ckeditor = "Ext.ux.CKEditor.js";
-if (defined('CK_EDITOR_SHOW_ON_FOCUS_ONLY') && constant('CK_EDITOR_SHOW_ON_FOCUS_ONLY') == true)
-{
-    $ext_ux_ckeditor = "Ext.ux.CKEditor_onfocus.js";
-}
 ?>
-<script src="//cdn.ckeditor.com/<?php echo CK_EDITOR_VERSION.'/'.CK_EDITOR_DISTRIBUTION; ?>/ckeditor.js"></script>
+
 <script type="text/javascript" src="../xtFramework/library/ckfinder3/ckfinder.js"></script>
-<script type="text/javascript">
-	CKFinder.setupCKEditor(null, '../xtFramework/library/ckfinder3/');
-</script>
-<script type="text/javascript" src="../xtFramework/library/ext/ux/<?= $ext_ux_ckeditor ?>"></script>
 
 <script type="text/javascript" src="../xtFramework/library/ext/ux/Ext.ux.BrowseButton.js"></script>
 <script type="text/javascript" src="../xtFramework/library/ext/ux/TabCloseMenu.js"></script>
@@ -137,6 +134,23 @@ if (defined('CK_EDITOR_SHOW_ON_FOCUS_ONLY') && constant('CK_EDITOR_SHOW_ON_FOCUS
 <script type="text/javascript" src="../xtFramework/library/jquery-admin/jquery.form.min.js"></script>
 <script type="text/javascript" src="../xtFramework/library/ext/ux/form/Ext.ux.Amchart.js"></script>
 <?php
+$froala_load_on_focus_only = false;
+if(defined('FROALA_LOAD_ON_FOCUS_ONLY') && FROALA_LOAD_ON_FOCUS_ONLY)  // kommt aus conf/config_froala.php, siehe oben beim css
+    $froala_load_on_focus_only = true;
+
+echo '<script> 
+const froalaLanguage = "'.$language->code.'";
+let froalaLoadOnFocusOnly = '.($froala_load_on_focus_only ? 'true' :  'false').' ;
+
+</script>';
+
+echo '<link href="https://cdn.jsdelivr.net/npm/froala-editor@'.FROALA_CDN_VERSION.'/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />';
+echo '<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@'.FROALA_CDN_VERSION.'/js/froala_editor.pkgd.min.js"></script>';
+
+echo '<script type="text/javascript" src="../xtFramework/library/ext/ux/Ext.ux.FroalaEditor.js?v='.time().'"></script>';
+$froala_language_file = $language->code == 'en' ? 'en_gb' : $language->code;
+echo '<script type="text/javascript" src="../xtFramework/library/ext/ux/froala_languages/'.$froala_language_file.'.js"></script>';
+
 ($plugin_code = $xtPlugin->PluginCode('ejsadmin.php:more_js')) ? eval($plugin_code) : false;
 ?>
 

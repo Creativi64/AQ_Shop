@@ -27,19 +27,27 @@
 
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
+#[AllowDynamicProperties]
 class customers_status extends xt_backend_cls{
 
 	//var $default_status = _STORE_CUSTOMERS_STATUS_ID_GUEST;
 
-	protected $_table = TABLE_CUSTOMERS_STATUS;
+    public $customers_status_show_price_tax;
+    protected $_table = TABLE_CUSTOMERS_STATUS;
 	protected $_table_lang = TABLE_CUSTOMERS_STATUS_DESCRIPTION;
 	protected $_table_seo = null;
 	protected $_master_key = 'customers_status_id';
 
 	public $customers_status_show_price, $customers_fsk18,
         $customers_fsk18_display,$customers_status_template;
+    protected $default_status;
+    /**
+     * @var array|array[]
+     */
 
-	function __construct($c_status = '')
+    public $master_id = 0;
+
+    function __construct($c_status = '')
 	{
 		global $db, $xtPlugin, $order_edit_controller;
 
@@ -59,7 +67,7 @@ class customers_status extends xt_backend_cls{
 		$this->getPermission();
 
 		if(isset($_SESSION['customer']->customers_id)&&$_SESSION['customer']->customers_id!=0){
-			$c_status = $_SESSION['customer']->customer_info['customers_status'];
+			$c_status = $_SESSION['customer']->customer_info['customers_status'] ?? 0;
 		}else{
 			if ($c_status!='') {
 				$c_status = (int)$c_status;
@@ -68,9 +76,7 @@ class customers_status extends xt_backend_cls{
 			}
 		}
 
-		if($this->_checkStore($c_status, 'store')){
-			$c_status = $c_status;
-		}else{
+		if(!$this->_checkStore($c_status, 'store')){
 			$c_status = $this->default_status;
 		}
 
@@ -122,6 +128,7 @@ class customers_status extends xt_backend_cls{
 
         $data = [];
 
+        $table = $where = '';
 		if($list_type=='store'){
 			$table = $this->permission->_table;
 			$where = $this->permission->_where;
@@ -276,14 +283,14 @@ class customers_status extends xt_backend_cls{
 		return $params;
 	}
 
-	function _get($ID = 0) {
+	function _get($id = 0) {
 		global $xtPlugin, $db, $language;
 		$obj = new stdClass;
 		if ($this->position != 'admin') return false;
 
-		if ($ID === 'new') {
+		if ($id === 'new') {
 			$obj = $this->_set(array(), 'new');
-			$ID = $obj->new_id;
+			$id = $obj->new_id;
 		}
 
 		$table_data = new adminDB_DataRead($this->_table, $this->_table_lang, $this->_table_seo, $this->_master_key, '', '', $this->perm_array);
@@ -299,8 +306,8 @@ class customers_status extends xt_backend_cls{
                 }
             }
 
-		}elseif($ID){
-			$data = $table_data->getData($ID);
+		}elseif($id){
+			$data = $table_data->getData($id);
 			$data[0]['shop_permission_info']=_getPermissionInfo();
 		}else{
 			$data = $table_data->getHeader();

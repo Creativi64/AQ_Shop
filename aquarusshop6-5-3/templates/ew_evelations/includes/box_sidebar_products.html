@@ -36,7 +36,7 @@
                         <p class="product-name title"><a href="{$module_data.products_link}">{$module_data.products_name}</a></p>
                         {if defined('CONFIG_EW_EVELATIONS_PLUGIN_LISTING_NORATING') && $smarty.const.CONFIG_EW_EVELATIONS_PLUGIN_LISTING_NORATING|trim == '1'}
                         {else}
-                            {if $module_data.review_stars_rating}
+                            {if isset($module_data.review_stars_rating)}
                                 <div class="product-reviews cursor-pointer" title="{math equation='(x-1) / 100 * y' x=$module_data.review_stars_rating y=5 format='%.1f'} / 5" onclick="document.location.href='{$module_data.link_reviews_list}'">
                                     <div class="reviews_rating_light">
                                         <div class="reviews_rating_dark" style="width:{$module_data.review_stars_rating}%"></div>

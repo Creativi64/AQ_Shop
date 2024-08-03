@@ -47,6 +47,7 @@ require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'functions/get_array_with_keys.php'
 require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'functions/evaluate_smarty.php';
 require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'functions/session_vars.php';
 require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'functions/checkHTTPS.php';
+require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'functions/array_value.inc.php';
 
 if(USER_POSITION=='admin'){
 require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'functions/get_table_fields.inc.php';

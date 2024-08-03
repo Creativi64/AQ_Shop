@@ -118,10 +118,10 @@ class system_status extends xt_backend_cls {
 		return $ArrayNew;
 	}
 
-	function _getSingle($seach_type, $serach_key, $serach_value, $return_value='all'){
-		$content_data = $this->values[$seach_type];
+	function _getSingle($search_type, $search_key, $search_value, $return_value='all'){
+		$content_data = $this->values[$search_type];
         foreach($content_data as $key => $value) {
-			if($value[$serach_key]==$serach_value){
+			if(array_key_exists($search_key, $value) && $value[$search_key]==$search_value){
 				if($return_value!='all'){
 				 	return	$value[$return_value];
 				}else{

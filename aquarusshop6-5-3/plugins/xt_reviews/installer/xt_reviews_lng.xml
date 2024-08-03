@@ -244,9 +244,6 @@
 	<ru>
 		<value><![CDATA[Пожалуйста, напишите свой отзыв]]></value>
 	</ru>
-	<tw>
-		<value><![CDATA[撰寫你的評論]]></value>
-	</tw>
 </phrase>
 <phrase>
 	<key>TEXT_TOP_RATED_PRODUCTS</key>
@@ -291,9 +288,6 @@
 	<ru>
 		<value><![CDATA[Автор]]></value>
 	</ru>
-	<tw>
-		<value><![CDATA[評論人：]]></value>
-	</tw>
 </phrase>
 <phrase>
 	<key>TEXT_XT_REVIEWS_ERROR_LOGIN</key>
@@ -328,9 +322,6 @@
 	<ru>
 		<value><![CDATA[Для того, чтобы написать рецензию, Вы должны быть авторизованы.]]></value>
 	</ru>
-	<tw>
-		<value><![CDATA[請登入會員以撰寫評論]]></value>
-	</tw>
 </phrase>
 <phrase>
 	<key>TEXT_XT_REVIEWS_HEADING_REVIEWS</key>
@@ -365,9 +356,6 @@
 	<ru>
 		<value><![CDATA[Рецензии]]></value>
 	</ru>
-	<tw>
-		<value><![CDATA[評論]]></value>
-	</tw>
 </phrase>
 <phrase>
 	<key>TEXT_XT_REVIEWS_INFO</key>
@@ -402,9 +390,6 @@
 	<ru>
 		<value><![CDATA[Рецензии]]></value>
 	</ru>
-	<tw>
-		<value><![CDATA[評論內容]]></value>
-	</tw>
 </phrase>
 <phrase>
 	<key>TEXT_XT_REVIEWS_NO_REVIEWS</key>
@@ -439,9 +424,6 @@
 	<ru>
 		<value><![CDATA[Пока нет рецензий]]></value>
 	</ru>
-	<tw>
-		<value><![CDATA[本商品尚未有任何評論]]></value>
-	</tw>
 </phrase>
 <phrase>
 	<key>TEXT_XT_REVIEWS_PRODUCT</key>
@@ -476,9 +458,6 @@
 	<ru>
 		<value><![CDATA[Продукт]]></value>
 	</ru>
-	<tw>
-		<value><![CDATA[商品]]></value>
-	</tw>
 </phrase>
 <phrase>
 	<key>TEXT_XT_REVIEWS_RATE_DESC</key>
@@ -513,9 +492,6 @@
 	<ru>
 		<value><![CDATA[Ваша оценка]]></value>
 	</ru>
-	<tw>
-		<value><![CDATA[你的評價]]></value>
-	</tw>
 </phrase>
 <phrase>
 	<key>TEXT_XT_REVIEWS_RATING_DESC</key>
@@ -550,9 +526,6 @@
 	<ru>
 		<value><![CDATA[Оцените этот продукт по пятибалльной шкале, где \"5\" - лучшая оценка.]]></value>
 	</ru>
-	<tw>
-		<value><![CDATA[評價文章 - 1至5顆星（5顆星=最好的評價）]]></value>
-	</tw>
 </phrase>
 <phrase>
 	<key>TEXT_XT_REVIEWS_SHOW</key>
@@ -601,9 +574,6 @@
 	<ru>
 		<value><![CDATA[Текст рецензии]]></value>
 	</ru>
-	<tw>
-		<value><![CDATA[您的評論文本]]></value>
-	</tw>
 </phrase>
 <phrase>
 	<key>TEXT_XT_REVIEWS_TITLE_DESC</key>
@@ -638,9 +608,6 @@
 	<ru>
 		<value><![CDATA[Заголовок рецензии]]></value>
 	</ru>
-	<tw>
-		<value><![CDATA[您的評論標題]]></value>
-	</tw>
 </phrase>
 <phrase>
 	<key>TEXT_XT_REVIEWS_WRITE</key>
@@ -675,9 +642,6 @@
 	<ru>
 		<value><![CDATA[Написать рецензию]]></value>
 	</ru>
-	<tw>
-		<value><![CDATA[撰寫評論]]></value>
-	</tw>
 </phrase>
 <phrase>
 	<key>XT_REVIEWS_ADD_SUCCESS</key>

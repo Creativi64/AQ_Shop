@@ -1,0 +1,43 @@
+{if $data}
+    <div id="ew_adventury_teaser">
+        <div class="{if $compactTeaser}container compact-teaser{else}full-teaser{/if}">
+            <div class="carousel-outer-wrap">
+                <div class="picture-slider owl">
+                    <div class="pictureCarousel pictureCarousel-{$slider_id}"
+                        data-slide-speed="{$slide_speed}"
+                        data-pagination-speed="{$pagination_speed}"
+                        data-auto-play="{$auto_play_speed}"
+                    >
+                        {foreach name=loop key=key item=item from=$data}
+                            {if $item.image}
+                                <div class="image image-{$key}{if !$smarty.foreach.loop.first} hidden{/if}">
+                                    {if $item.show_text}
+                                        <div class="carousel-caption hidden-sm hidden-xs">
+                                            <p class="h2">
+                                                {if $item.link}
+                                                    <a href="{$item.link}">{$item.heading}</a>
+                                                {else}
+                                                    {$item.heading}
+                                                {/if}
+                                            </p>
+                                            {if $item.short_content}
+                                                <div class="desc">{$item.short_content}</div>
+                                            {/if}
+                                        </div>
+                                    {/if}
+                                    {if $item.link}<a href="{$item.link}">{/if}
+                                        <img alt="{$item.heading|escape:'html'}"
+                                            src="{img img=$item.image type=m_org path_only=true}"
+                                            data-src="{img img=$item.image type=m_org path_only=true}"
+                                            class="img-responsive lazyOwl"
+                                        >
+                                    {if $item.link}</a>{/if}
+                                </div><!-- .image -->
+                            {/if}
+                        {/foreach}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{/if}

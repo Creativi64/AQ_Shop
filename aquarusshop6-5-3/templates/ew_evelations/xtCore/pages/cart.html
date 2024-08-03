@@ -67,9 +67,9 @@
                 <p class="product-description text-muted hidden-xs">{$data.products_description|strip_tags|truncate:100:'...'} [<a href="{$data.products_link}">{txt key=TEXT_MORE}</a>]</p>
                 {/if}
                 <ul class="label-list fixed-padding">
-                    {if $data.products_information}<li><span class="badge">{$data.products_information|replace:'<tr class="contentrow1">':''|replace:'<tr class="contentrow2">':''|replace:'<td>':''|replace:'<td class="left" colspan="4">':''|replace:'</td>':''|replace:'</tr>':''}</span></li>{/if}
+                    {if isset($data.products_information) && $data.products_information}<li><span class="badge">{$data.products_information|replace:'<tr class="contentrow1">':''|replace:'<tr class="contentrow2">':''|replace:'<td>':''|replace:'<td class="left" colspan="4">':''|replace:'</td>':''|replace:'</tr>':''}</span></li>{/if}
                     {if $data.products_model!=''}<li><span class="badge">{txt key=TEXT_PRODUCTS_MODEL} {$data.products_model}</span></li>{/if}
-                    {if $data.products_weight > 0}<li><span class="badge">{include file="$selected_template/includes/products_weight_wrap.html" products_weight=$data.products_weight type="tpl_include"}</span></li>{/if}
+                    {if $data.products_weight > 0}<li><span class="badge">{include file="includes/products_weight_wrap.html" products_weight=$data.products_weight type="tpl_include"}</span></li>{/if}
                     {if $data.shipping_status}<li><span class="badge">{txt key=TEXT_SHIPPING_STATUS} {$data.shipping_status}</span></li>{/if}
                 </ul>
                 {if $data.date_available!=''}
@@ -171,7 +171,7 @@
                 {txt key=TEXT_PRODUCTS_WEIGHT}
             </div>
             <div class="col  col-xs-5 col-sm-2">
-                {include file="$selected_template/includes/products_weight_wrap.html" products_weight=$cart_total_weight label='false' type="tpl_include"}
+                {include file="includes/products_weight_wrap.html" products_weight=$cart_total_weight label='false' type="tpl_include"}
             </div>
         </div>
         {/if}

@@ -42,6 +42,13 @@ class category extends xt_backend_cls {
     public $store_field_exists = false;
     public $_store_field = 'categories_store_id';
     public $loadMoreImages = false;
+    /**
+     * @var array|bool|mixed
+     */
+    public mixed $data;
+    public int $deepest_level_display;
+    public string $categories_filter;
+    public getCategorySQL_query $sql_categories;
 
 
     function __construct($catID = 0) {
@@ -196,6 +203,7 @@ class category extends xt_backend_cls {
         		WHERE  c.parent_id =? ".$add_where.$add_store_f.$grouping."
         		ORDER BY c.sort_order, cd.categories_name";
 
+        $data = [];
         $record = $db->Execute($query, array($catID));
         if($record->RecordCount() > 0){
             while(!$record->EOF){
@@ -219,7 +227,7 @@ class category extends xt_backend_cls {
             }
             $record->Close();
 
-            for($h=0; $data[$h]; $h++) {
+            for($h=0; isset($data[$h]); $h++) {
                 $data[$h]["categories_name"] = $data[$h]["categories_name"]." (id:".$data[$h]["categories_id"].")";
                 // nested_set anzeigen
                 //$data[$h]["categories_name"] = $data[$h]["categories_name"]." (id:".$data[$h]["categories_id"]." &nbsp; ".$data[$h]["categories_left"]."/".$data[$h]["categories_right"]." )";

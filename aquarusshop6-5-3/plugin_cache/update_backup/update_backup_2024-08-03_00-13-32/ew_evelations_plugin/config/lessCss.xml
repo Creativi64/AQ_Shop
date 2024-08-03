@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf8"?>
+<less>
+    <config>
+        <parseLess>true</parseLess>
+        <useLessCache>true</useLessCache>
+        <compressCss>false</compressCss>
+        <parsePluginSettings>true</parsePluginSettings>
+        <memoryLimitInMegabyte>256</memoryLimitInMegabyte>
+        <maxExecutionTimeInSeconds>300</maxExecutionTimeInSeconds>
+    </config>
+    <files>
+        <path>
+            <absoluteServerPath>EW_EVELATIONS_PLUGIN_ROOT_DIR/assets/init.less</absoluteServerPath>
+            <relativePathFromOutputFile>../EW_EVELATIONS_PLUGIN_RELATIVE_DIR/assets/</relativePathFromOutputFile>
+        </path>
+        <path>
+            <absoluteServerPath>EW_EVELATIONS_PLUGIN_ROOT_DIR/assets/components/bootstrap/less/bootstrap.less</absoluteServerPath>
+            <relativePathFromOutputFile>../EW_EVELATIONS_PLUGIN_RELATIVE_DIR/assets/components/bootstrap/less/</relativePathFromOutputFile>
+        </path>
+        <path>
+            <absoluteServerPath>EW_EVELATIONS_PLUGIN_ROOT_DIR/assets/components/animate-me.less/animate-me.dev.less</absoluteServerPath>
+            <relativePathFromOutputFile>../EW_EVELATIONS_PLUGIN_RELATIVE_DIR/assets/components/animate-me.less/</relativePathFromOutputFile>
+        </path>
+        <path>
+            <absoluteServerPath>EW_EVELATIONS_PLUGIN_ROOT_DIR/assets/breakpoint-ms.less</absoluteServerPath>
+            <relativePathFromOutputFile>../EW_EVELATIONS_PLUGIN_RELATIVE_DIR/assets/</relativePathFromOutputFile>
+        </path>
+        <path>
+            <absoluteServerPath>EW_EVELATIONS_TEMPLATE_ROOT_DIR/css/helper.less</absoluteServerPath>
+            <relativePathFromOutputFile>../EW_EVELATIONS_TEMPLATE_RELATIVE_DIR/css/</relativePathFromOutputFile>
+        </path>
+        <path>
+            <absoluteServerPath>EW_EVELATIONS_TEMPLATE_ROOT_DIR/css/template.less</absoluteServerPath>
+            <relativePathFromOutputFile>../EW_EVELATIONS_TEMPLATE_RELATIVE_DIR/css/</relativePathFromOutputFile>
+        </path>
+    </files>
+</less>
