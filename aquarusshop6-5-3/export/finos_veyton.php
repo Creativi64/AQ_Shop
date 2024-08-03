@@ -330,9 +330,10 @@ function GetValues($fielnName, $existing, $default = null) {
 # return ($postValue!=null) ? $postValue : (($dbValue!=null) ? $dbValue : $default);
 }
 
-function GetLocalizedValue($fielnName, $existing,$alpha2Code , $default = null) {
+function GetLocalizedValue($fielnName, $existing, $alpha2Code , $default = null) {
   $postValue = isset($_POST[$fielnName]) ? $_POST[$fielnName]: null;
   $dbValue = isset($existing->{$fielnName}->{$alpha2Code}) ? $existing->{$fielnName}->{$alpha2Code}: null;
+ 
   return ($postValue!=null) ? $postValue : (($dbValue!=null) ? $dbValue : $default);
 }
 
@@ -343,6 +344,7 @@ function GetExistingArticle($productsId){
       "user" => "finosScript",
       "pass" => "vx#Ne/x5u!Q5YS225H$",
       "products_id" => $productsId,
+      "external_id" => "",
       "indivFieldList" => []
     )
   ));
@@ -359,7 +361,7 @@ function GetExistingArticle($productsId){
 
 function UpdateArticleFromPost($products_id){
   $existing = GetExistingArticle($products_id);
-  
+
   $data = json_encode(array(
     "function" => "setArticle",
     "paras" => array(
@@ -459,7 +461,7 @@ function UpdateArticleFromPost($products_id){
   ));
   
   $response = json_decode(CallAPI('POST','https://shop.aquarus.net/index.php?page=xt_api',$data)); 
-    
+
   return $response;
 }
 
