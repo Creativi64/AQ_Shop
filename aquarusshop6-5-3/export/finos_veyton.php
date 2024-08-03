@@ -82,7 +82,10 @@ if (!password_verify($password, "\$2y\$10\$exXTd9T/eMIeSFSXaFEamOwQ5Uhw/IK9j44ha
 * @var mysqli $db
 */
   
-  // $db= mysqli_connect($MySQL_Host,$MySQL_User,$MySQL_Passw,$MySQL_DB);
+  // COMMENT IN AFTER TESTING
+
+
+ $db= mysqli_connect($MySQL_Host,$MySQL_User,$MySQL_Passw,$MySQL_DB);
   //$db= mysqli_connect('127.0.0.1','root','', 'dbs11250703',3306);
     /*
     echo "$MySQL_Host";
@@ -464,7 +467,7 @@ function save_products ()
 
     $schema = '<STATUS_DATA>' . "\n" .
               '<EXISTS>' . 1 . '</EXISTS>' . "\n" .
-              '<PRODUCTS_ID>' . $response->{"products_id"} . '</PRODUCTS_ID>' . "\n" .
+              '<PRODUCTS_ID>' . ($response->{"products_id"}) . '</PRODUCTS_ID>' . "\n" .
               '<ERROR>' .  (isset($response) ? "0" : "1") . '</ERROR>' . "\n" .
               '<MESSAGE>' . 'Keine Meldung vorhanden' . '</MESSAGE>' . "\n" .
               '</STATUS_DATA>' . "\n";
@@ -590,7 +593,7 @@ function save_products_defaultimage ()
 	$products_image        = isset($_POST['products_image']) ? $_POST['products_image']:"";
 
 
-	$sql_data_array = array('products_image'         => $products_image);
+	$sql_data_array = array('products_image' => $products_image);
 
 
 	if ($exists==0)        // Neuanlage
@@ -2190,15 +2193,13 @@ function save_seo_url()
   //     }
 
 
-    $schema = '<STATUS_DATA>' . "\n" .
-              '<EXISTS>' . 1 . '</EXISTS>' . "\n" .
-              '<URL_TEXT>' . isset($_POST['url_text']) ? $_POST['url_text']:"" . '</URL_TEXT>' . "\n" .
-              '<MESSAGE>' . 'Keine Meldung vorhanden' . '</MESSAGE>' . "\n" .
-              '</STATUS_DATA>' . "\n";
-
+    $schema = "<STATUS_DATA>" . "\n" .
+              "<EXISTS>" . 1 . "</EXISTS>" . "\n" .
+              "<URL_TEXT>" . (isset($_POST['url_text']) ? $_POST['url_text']: "") . "</URL_TEXT>" . "\n" .
+              "<MESSAGE>" . "Keine Meldung vorhanden" . "</MESSAGE>" . "\n" .
+              "</STATUS_DATA>" . "\n";
 
     $footer = '</STATUS>' . "\n";
-
   //Ergebnis als XML ausgeben
    create_xml ($header . $schema . $footer);
 
