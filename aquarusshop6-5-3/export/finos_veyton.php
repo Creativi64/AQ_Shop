@@ -314,13 +314,25 @@ if (!password_verify($password, "\$2y\$10\$exXTd9T/eMIeSFSXaFEamOwQ5Uhw/IK9j44ha
 
 function GetValues($fielnName, $existing, $default = null) {
   $postValue = isset($_POST[$fielnName]) ? $_POST[$fielnName]: null;
+  
   $dbValue = isset($existing->{$fielnName}) ? $existing->{$fielnName}: null;
-  return ($postValue!=null) ? $postValue : (($dbValue!=null) ? $dbValue : $default);
+  
+  if($postValue==null) {
+    if($dbValue==null) {
+      return $default;
+    } else {
+      return $dbValue;
+    }
+  } else {
+    return $postValue;
+  }
+
+# return ($postValue!=null) ? $postValue : (($dbValue!=null) ? $dbValue : $default);
 }
 
 function GetLocalizedValue($fielnName, $existing,$alpha2Code , $default = null) {
   $postValue = isset($_POST[$fielnName]) ? $_POST[$fielnName]: null;
-  $dbValue = isset($existing->{$fielnName}->{$alpha2Code}) ? $existing->{$fielnName}: null;
+  $dbValue = isset($existing->{$fielnName}->{$alpha2Code}) ? $existing->{$fielnName}->{$alpha2Code}: null;
   return ($postValue!=null) ? $postValue : (($dbValue!=null) ? $dbValue : $default);
 }
 
@@ -347,14 +359,14 @@ function GetExistingArticle($productsId){
 
 function UpdateArticleFromPost($products_id){
   $existing = GetExistingArticle($products_id);
-    
+  
   $data = json_encode(array(
     "function" => "setArticle",
     "paras" => array(
       "user" => "finosScript",
       "pass" => "vx#Ne/x5u!Q5YS225H$",
       "productItem" => array(
-        "products_id" => GetValues("products_id", $existing),
+        "products_id" => GetValues("products_id", $existing, $products_id),
         "external_id" =>  GetValues("external_id",$existing),
         "permission_id" => GetValues("permission_id",$existing),
         "products_owner" => 1,
@@ -464,7 +476,7 @@ function save_products ()
     $products_id = isset($_POST['products_id']) ? $_POST['products_id']:"";
     
     $response = UpdateArticleFromPost($products_id); 
-
+ 
     $schema = '<STATUS_DATA>' . "\n" .
               '<EXISTS>' . 1 . '</EXISTS>' . "\n" .
               '<PRODUCTS_ID>' . ($response->{"products_id"}) . '</PRODUCTS_ID>' . "\n" .
