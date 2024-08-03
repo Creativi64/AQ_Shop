@@ -82,7 +82,7 @@ if (class_exists('ew_adventury\plugin') && ew_adventury_plugin::status()) {
                 array(
                     'data'          => $dataFormatted,
                     'compactTeaser' => ew_adventury_plugin::isCompactTeaser(),
-                    'navItemWidth' => ((int)($elementCount = is_countable($dataFormatted) && count($dataFormatted)) > 1) ? ew_evelations_plugin::floorPrecision(100 / $elementCount, 2) . '%' : null,
+                    'navItemWidth' => ((int)($elementCount = is_countable($dataFormatted) && count($dataFormatted)) > 1) ? ew_adventury_plugin::floorPrecision(100 / $elementCount, 2) . '%' : null,
                 )
             );
 

@@ -7,7 +7,9 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'tubalmartin\\CssMin\\' => array($vendorDir . '/tubalmartin/cssmin/src'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Svg\\' => array($vendorDir . '/phenx/php-svg-lib/src/Svg'),
+    'Smarty\\' => array($vendorDir . '/smarty/smarty/src'),
     'Sabberworm\\CSS\\' => array($vendorDir . '/sabberworm/php-css-parser/src'),
     'RobThree\\Auth\\' => array($vendorDir . '/robthree/twofactorauth/lib'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/src'),
@@ -24,6 +26,7 @@ return array(
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
     'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
+    'FroalaEditor\\' => array($vendorDir . '/froala/wysiwyg-editor-php-sdk/lib/FroalaEditor'),
     'FontLib\\' => array($vendorDir . '/phenx/php-font-lib/src/FontLib'),
     'Dompdf\\' => array($vendorDir . '/dompdf/dompdf/src'),
 );

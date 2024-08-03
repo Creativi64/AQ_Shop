@@ -38,7 +38,7 @@ if (in_array($table, $to_filter)) {
 	if(isset($_GET['parentNode'])) {
 		$catst = explode("catst_",$_GET['parentNode']);
 		$store_cat_id = '';
-		if ($catst[1]) 
+		if (array_value($catst,1))
 			$store_cat_id = 'catst_'.$catst[1];
 		$panelId  .=$store_cat_id;
 	}

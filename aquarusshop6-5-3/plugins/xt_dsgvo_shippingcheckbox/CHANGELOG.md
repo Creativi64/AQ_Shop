@@ -1,3 +1,6 @@
+## [6.0.7]
+- Updater Fix
+
 ## [6.0.6]
 - Sprachtexte
 - Template-Anpassung

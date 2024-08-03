@@ -30,8 +30,8 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 function smarty_function_content($params, & $smarty) {
 	global $_content, $xtPlugin;
 
-	$block = (int) $params['block_id'];
-	$cont = (int) $params['cont_id'];
+	$block = array_key_exists('block_id', $params) ? (int) $params['block_id'] : '';
+	$cont  = array_key_exists('cont_id', $params)  ? (int) $params['cont_id']  : '';
 
 	$nested = false;
 	if ($params['levels'] =='nested') {

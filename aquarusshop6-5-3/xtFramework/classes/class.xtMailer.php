@@ -25,6 +25,8 @@
  #########################################################################
  */
 
+use Smarty\Smarty;
+
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
 class xtMailer extends \PHPMailer\PHPMailer\PHPMailer {
@@ -116,17 +118,15 @@ class xtMailer extends \PHPMailer\PHPMailer\PHPMailer {
         	}
         }
         
-		$this->Template = new Smarty;
+		$this->Template = new Smarty();
 
 		$this->Template->force_compile = true;
 
         $this->Template->setCaching(Smarty::CACHING_OFF);
 
-		$this->Template->compile_dir = _SRV_WEBROOT.'templates_c';
-		
-		$this->Template->addPluginsDir(array(
-                _SRV_WEBROOT.'xtFramework/library/smarty/xt_plugins')
-        );
+		$this->Template->setCompileDir(_SRV_WEBROOT.'templates_c');
+
+        Template::addPluginsDir($this->Template, _SRV_WEBROOT.'xtFramework/library/smarty/xt_plugins');
 
 		$this->mail_type = $mail_type;
 

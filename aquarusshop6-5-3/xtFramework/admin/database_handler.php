@@ -27,7 +27,7 @@
 
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
-function& xt_adodb_mysqli_factory($driver)
+function xt_adodb_mysqli_factory($driver)
 {
     if ($driver !== 'mysqli') return false;
 

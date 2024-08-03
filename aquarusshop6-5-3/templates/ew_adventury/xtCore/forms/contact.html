@@ -1,6 +1,6 @@
 <div id="contact">
     {$message}
-    {include file="$selected_template/xtCore/pages/content.html"}
+    {include file="xtCore/pages/content.html"}
     {if $show_form eq 'true'}
         <p class="alert alert-info"><i class="mdi mdi-information-outline"></i> {txt key=TEXT_CONTACT_INTRO}</p>
     {/if}
@@ -51,14 +51,14 @@
                     <input type="tel" id="telefone" name="telefone" maxlength="32" value="{$telefone}" />
                 </div>
             </div>
-            {if version_compare(_SYSTEM_VERSION, '4.1.10', '>=')}
+
             <div class="form-group">
                 <label class="col-sm-3" for="mobile_phone">{txt key=TEXT_MOBILE_PHONE}</label>
                 <div class="col-sm-9">
                     <input type="tel" id="mobile_phone" name="mobile_phone" maxlength="32" value="{$mobile_phone}" />
                 </div>
             </div>
-            {/if}
+
             <div class="form-group">
                 <label class="col-sm-3" for="order_id">{txt key=TEXT_ORDER_NUMBER}</label>
                 <div class="col-sm-9">
@@ -72,13 +72,13 @@
                 </div>
             </div>
 
-            {if version_compare(_SYSTEM_VERSION, '5.1.3', '>=')}
-                {if $smarty.const._STORE_CAPTCHA == 'ReCaptcha'}
-                    {assign var='recaptcha' value=true}
-                {else}
-                    {assign var='recaptcha' value=false}
-                {/if}
+
+            {if $smarty.const._STORE_CAPTCHA == 'ReCaptcha'}
+                {assign var='recaptcha' value=true}
+            {else}
+                {assign var='recaptcha' value=false}
             {/if}
+
             {if $recaptcha eq 'true' || $recaptcha == true}
                 <div class="form-group">
                     <label class="col-sm-3" for="captcha_code">{txt key=TEXT_CAPTCHA}*</label>
@@ -99,34 +99,34 @@
                 </div>
             {/if}
 
-            {if version_compare(_SYSTEM_VERSION, '5.0.0', '>=')}
+
+            <div class="form-group">
+                <div class="col-sm-3">&nbsp;</div>
+                <div class="col-sm-9">
+                    <div class="checkbox">
+                        <label>{form type=checkbox name=contact_opt_in value=1 params='required'} {txt key=TEXT_CONTACT_OPT_IN}</label>
+                    </div>
+                </div>
+            </div>
+            {if $show_privacy eq 1}
+                {content cont_id=2 is_id='false'}
                 <div class="form-group">
                     <div class="col-sm-3">&nbsp;</div>
                     <div class="col-sm-9">
-                        <div class="checkbox">
-                            <label>{form type=checkbox name=contact_opt_in value=1 params='required'} {txt key=TEXT_CONTACT_OPT_IN}</label>
-                        </div>
+                        {if $show_privacy_type eq 1}
+                            <div class="checkbox">
+                                <label>
+                                    {form type=checkbox name=privacy value=1}
+                                    {txt key=TEXT_PRIVACY_TEXT_INFO_1} <a href="{$privacy_link}" target="_blank">{txt key=TEXT_PRIVACY_TEXT}</a> {txt key=TEXT_PRIVACY_TEXT_INFO_2}{txt key=TEXT_DOT}
+                                </label>
+                            </div>
+                        {else}
+                            <p>{txt key=TEXT_PRIVACY_TEXT_INFO} <a href="{$privacy_link}" target="_blank">{txt key=TEXT_PRIVACY_TEXT}</a>{txt key=TEXT_DOT}</p>
+                        {/if}
                     </div>
                 </div>
-                {if $show_privacy eq 1}
-                    {content cont_id=2 is_id='false'}
-                    <div class="form-group">
-                        <div class="col-sm-3">&nbsp;</div>
-                        <div class="col-sm-9">
-                            {if $show_privacy_type eq 1}
-                                <div class="checkbox">
-                                    <label>
-										{form type=checkbox name=privacy value=1}
-										{txt key=TEXT_PRIVACY_TEXT_INFO_1} <a href="{$privacy_link}" target="_blank">{txt key=TEXT_PRIVACY_TEXT}</a> {txt key=TEXT_PRIVACY_TEXT_INFO_2}{txt key=TEXT_DOT}
-                                    </label>
-                                </div>
-                            {else}
-                                <p>{txt key=TEXT_PRIVACY_TEXT_INFO} <a href="{$privacy_link}" target="_blank">{txt key=TEXT_PRIVACY_TEXT}</a>{txt key=TEXT_DOT}</p>
-                            {/if}
-                        </div>
-                    </div>
-                {/if}
             {/if}
+
             <div class="form-group">
                 <div class="col-sm-9 col-sm-offset-3">
                     <p>

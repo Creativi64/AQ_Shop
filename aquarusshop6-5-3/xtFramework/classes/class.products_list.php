@@ -30,7 +30,13 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 class products_list {
 
 	// constructor load
-	function __construct($catID = 0) {
+    /**
+     * @var int|mixed
+     */
+    public mixed $current_categorey_id;
+    public getProductSQL_query $sql_products;
+
+    function __construct($catID = 0) {
 		$this->current_categorey_id = $catID;
 		$this->sql_products = new getProductSQL_query();
 	}

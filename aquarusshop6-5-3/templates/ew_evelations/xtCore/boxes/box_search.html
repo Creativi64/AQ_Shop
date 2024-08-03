@@ -5,7 +5,7 @@
     {form type=hidden name=desc value="on"}
     {form type=hidden name=sdesc value="on"}
     <div class="form-group">
-        <input type="search" id="ew-search-input" name="keywords" class="form-control keywords" value="{$smarty.get.keywords|strip_tags}" placeholder="{$smarty.const.TEXT_ENTER_SEARCH_TERM}" />
+        <input type="search" id="ew-search-input" name="keywords" class="form-control keywords" value="{if isset($smarty.get.keywords)}{$smarty.get.keywords|strip_tags}{/if}" placeholder="{$smarty.const.TEXT_ENTER_SEARCH_TERM}" />
     </div>
     <div class="btn-group">
         <button type="submit" class="submit-button btn preloader img-circle">
@@ -20,12 +20,12 @@
 <script type="application/ld+json">
 /* <![CDATA[ {literal} */
 {
-    "@context": "http://schema.org",
+    "@context": "https://schema.org",
     "@type": "WebSite",
-    "url": "{/literal}http://{$smarty.server.SERVER_NAME}{literal}",
+    "url": "{/literal}https://{$smarty.server.SERVER_NAME}{literal}",
     "potentialAction": {
         "@type": "SearchAction",
-        "target": "{/literal}http://{$smarty.server.SERVER_NAME}{literal}/search?page=search&page_action=query&desc=on&sdesc=on&keywords={search_term_string}",
+        "target": "{/literal}https://{$smarty.server.SERVER_NAME}{literal}/search?page=search&page_action=query&desc=on&sdesc=on&keywords={search_term_string}",
         "query-input": "required name=search_term_string"
     }
 }

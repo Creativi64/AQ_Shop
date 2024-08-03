@@ -28,7 +28,7 @@
 {if $order_data}
     <br />
     <p class="h3">{txt key=TEXT_ACCOUNT_ORDERS} {if $order_data} & {txt key=TEXT_ACCOUNT_DOWNLOADS}{/if}</p>
-    {include file="$selected_template/xtCore/pages/order_history_block.html" type="tpl_include"}
+    {include file="xtCore/pages/order_history_block.html" type="tpl_include"}
 {/if}
 
 {if $download_flag == true}

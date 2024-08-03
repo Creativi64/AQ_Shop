@@ -3,7 +3,7 @@
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
 /** @var $smarty Smarty */
-$bd_order_data = $smarty->_getSmartyObj()->getTemplateVars('order_data');
+$bd_order_data = $smarty->getTemplateVars('order_data');
 if($bd_order_data && is_array($bd_order_data['bank_details']) && count($bd_order_data['bank_details']))
 {
     $tpl_bd = 'account_history_info_main_table_top.tpl.html';

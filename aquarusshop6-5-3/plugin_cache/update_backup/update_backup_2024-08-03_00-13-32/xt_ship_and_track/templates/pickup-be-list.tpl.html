@@ -1,0 +1,2 @@
+{if $pickupTime.earliest!=$pickupTime.latest}&#9788; {/if}{$pickupTime.earliest|date_format:"%Y-%m-%d %H:%M"}
+{if $pickupTime.earliest!=$pickupTime.latest}<br />&#9790; {$pickupTime.latest|date_format:"%Y-%m-%d %H:%M"}{/if}

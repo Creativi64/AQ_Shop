@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_BAD_BANK_DETAILS_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Id]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Id]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_BAD_ORDERS_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[orders id]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestell-ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_BAD_ACCOUNT_NAME</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[account holder name]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zahlungsempfänger]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_BAD_BANK_IDENTIFIER_CODE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[BIC]]></value>
+	</en>
+	<de>
+		<value><![CDATA[BIC]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_BAD_DUE_DATE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[payment due date]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zahlungsziel]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_BAD_INTERNATIONAL_BANK_ACCOUNT_NUMBER</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[IBAN]]></value>
+	</en>
+	<de>
+		<value><![CDATA[IBAN]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_BAD_REFERENCE_NUMBER</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[reference]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Referenz]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_BANK_DETAILS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Bank details]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bankdetails]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_BANK_DETAILS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Bank details]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bank details]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_BANK_DETAILS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Bank details]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bank details]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

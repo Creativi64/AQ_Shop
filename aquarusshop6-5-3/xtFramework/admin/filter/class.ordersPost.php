@@ -31,18 +31,18 @@ require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK."admin/filter/class.formFilter.php"
 
 $ad_table = [];
 
-if($_SESSION['filters_order']['filter_order_status_id'] != ""){
+if($_SESSION['filters_order']['filter_order_status_id'] ?? '' != ""){
     
     $where_ar[] =" orders_status in (".$_SESSION['filters_order']['filter_order_status_id'].")";
 }
 
-if( $_SESSION['filters_order']['filter_order_shop_id'] != ""){
+if( $_SESSION['filters_order']['filter_order_shop_id'] ?? '' != ""){
     
     $where_ar[] =" shop_id in (".$_SESSION['filters_order']['filter_order_shop_id'].")";
 }
 
 //payment way
-if($_SESSION['filters_order']['filter_payment_way_id'] != ""){
+if($_SESSION['filters_order']['filter_payment_way_id'] ?? '' != ""){
     
     $payments = explode(',',$_SESSION['filters_order']['filter_payment_way_id']);
     $payments = array_filter($payments);
@@ -84,7 +84,7 @@ if($_SESSION['filters_order']['filter_payment_way_id'] != ""){
     $where_ar[] = " payment_code in (".implode(",",$data1).")";
 }
 //shipping way
-if($_SESSION['filters_order']['filter_shipping_way_id'] != ""){
+if($_SESSION['filters_order']['filter_shipping_way_id'] ?? ''  != ""){
 
     $data1 = explode(",",$_SESSION['filters_order']['filter_shipping_way_id']);
     foreach($data1 as $val) $data2[] = "'".$val."'";
@@ -158,12 +158,12 @@ if( FormFilter::setTxt_XT5('filter_last_modify_from', 'order')){
  
   
    
-if( ($_SESSION['filters_order']['filter_email'] != "") ){
+if( ($_SESSION['filters_order']['filter_email'] ?? '' != "") ){
 
        $where_ar[] = " customers_email_address = '".$_SESSION['filters_order']['filter_email']."'"; 
 }
 
-if( ($_SESSION['filters_order']['filter_products_model'] != "") ){
+if( ($_SESSION['filters_order']['filter_products_model'] ?? '' != "") ){
 
     $ad_table[] = TABLE_ORDERS_PRODUCTS;
     $where_ar[] = TABLE_ORDERS_PRODUCTS.".products_model = '".$_SESSION['filters_order']['filter_products_model']."' AND ".TABLE_ORDERS_PRODUCTS.".orders_id = ".TABLE_ORDERS.".orders_id ";
@@ -183,7 +183,7 @@ if( FormFilter::setTxt_XT5('filter_phone', 'order')){
     ;
 }
 
-if( $_SESSION['filters_order']['filter_zip'] != "" ){
+if( $_SESSION['filters_order']['filter_zip'] ?? '' != "" ){
 
     $where_ar[] =   "( 
                      delivery_postcode = '".$_SESSION['filters_order']['filter_zip']."' OR 

@@ -30,6 +30,7 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 function _filterText($data, $type='full'){
     global $link_params;
 
+    if(!is_string($data)) return $data;
     if (!isset($link_params['edit_id'])) { // not for edit page
         $_search = array("'", '"');
         $_replace = array("&acute;", '&quot;');

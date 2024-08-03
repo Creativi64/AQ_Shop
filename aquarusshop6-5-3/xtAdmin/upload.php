@@ -27,6 +27,8 @@
 
 include_once '../xtFramework/admin/main.php';
 
+global $xtc_acl, $language;
+
 if (!$xtc_acl->isLoggedIn()) {
 	die('login required');
 }
@@ -55,11 +57,13 @@ if(preg_match('/files/', $_REQUEST['type'])){
 $mft = new MediaFileTypes();
 $types = $mft->getFileExt($check_data_type);
 
-        if($_GET['current_id']!='')
-        $tmp_add .= '&current_id='.(int)$_GET['current_id'];
-        
-        if($_GET['current_sort']!='')
-        $tmp_add .= '&current_sort='.(int)$_GET['current_sort'];
+$tmp_add = '';
+
+if($_GET['current_id']!='')
+$tmp_add .= '&current_id='.(int)$_GET['current_id'];
+
+if($_GET['current_sort']!='')
+$tmp_add .= '&current_sort='.(int)$_GET['current_sort'];
 
 // default upload
 $uploadtype = 'single';
@@ -95,7 +99,7 @@ switch ($uploadtype) {
 			    // DOM element for the form do this: 
 			    var formElement = jQuery('#simpleUploadfile').attr('value'); 
 			 
-			    jQuery('#uploadOutputSingle').html('<img src=\"images/wait.gif\" \/><br \/>".TEXT_UPLOADING."' + formElement);
+			    jQuery('#uploadOutputSingle').html('<img src=\"images/wait.gif\" \/><br \/>".constant('TEXT_UPLOADING')."' + formElement);
 
 
 			    return true; 
@@ -132,9 +136,20 @@ switch ($uploadtype) {
                 
                 '.$link_id.'
 				<input name="file" type="file" accept="'.$accept.'" value="" id="simpleUploadfile" class="upload btn-app btn-block" />
-				<input id="uploadButton" type="submit" value="'.TEXT_UPLOAD_SUBMIT.'" class="btn-sm btn-primary" style="margin-left:10px" onclick="javascript:if(document.getElementById(\'simpleUploadfile\').files.length == 0) return false;">
+				<input id="uploadButton" type="submit" value="'.constant('TEXT_UPLOAD_SUBMIT').'" class="btn-sm btn-primary" style="margin-left:10px" onclick="return checkSimpleUploadFilesLength();">
 			</div>		
-		</form>';
+		</form>
+
+        <script>
+         function checkSimpleUploadFilesLength()
+         {
+             console.log("checkSimpleUploadFilesLength");
+             if(document.getElementById("simpleUploadfile").files.length === 0) 
+                return false;
+         }
+</script>
+     
+';
 		
 		break;
 		
@@ -143,7 +158,7 @@ switch ($uploadtype) {
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="https://www.w3.org/1999/xhtml" >
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="<?php echo $language->code;?>">
 <head>
 <script type="text/javascript"><?php echo $js;?></script>
 

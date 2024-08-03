@@ -50,6 +50,7 @@ class product  extends xt_backend_cls{
 	protected $_table_cat = TABLE_PRODUCTS_TO_CATEGORIES;
 
     public $sql_products;
+    public $curr;
 
     /**
      * @param int $pID
@@ -322,7 +323,7 @@ class product  extends xt_backend_cls{
 			$media_data = $mediaFiles->get_media_data($this->data['products_id'], __CLASS__, 'product', 'info='.$this->data['products_id']);
 			$media_images = $mediaImages->get_media_images($this->data['products_id'], __CLASS__);
 
-			$this->data['more_images'] = $media_images['images'];			
+			$this->data['more_images'] = $media_images['images'] ?? [];
 			$this->data['media_files'] = !empty($media_data) ? $this->_getPermittedMediaData($media_data['files']) : [];
 		}
 		
@@ -1054,7 +1055,7 @@ class product  extends xt_backend_cls{
 
         $csrf_param = '&sec='. $_SESSION['admin_user']['admin_key'];
 		
-		if($this->url_data['new'] == true && !$this->url_data['edit_id'] && !$this->url_data['get_singledata']) {
+		if(($this->url_data['new'] ?? false) && !$this->url_data['edit_id'] && !$this->url_data['get_singledata']) {
 
 			$check_task = new adminTask();
 			$check_task->setClass(__CLASS__);
@@ -1098,7 +1099,7 @@ class product  extends xt_backend_cls{
                     if (_SYSTEM_SHOW_OVERLOAD_MESSAGE=="true") $msg = __text('TEXT_OVERLOAD_PRODUCT_DATA');
                     else $msg ='';
                     $listners = array("select"=>"OverLoadata('reload_st_".$add_to_f.$val['code']."','".$val['code']."','".$store['id']."',
-                                   '".$this->url_data['edit_id']."','".$msg."');");
+                                   '".array_value($this->url_data,'edit_id')."','".$msg."');");
 
                     $header['reload_st_'.$add_to_f.$val['code']] = array('type' => 'dropdown','url'  => 'DropdownData.php?get=stores&current_store_id='.$store['id'],'listner'=>$listners);
                 }else{
@@ -1128,15 +1129,15 @@ class product  extends xt_backend_cls{
 		$params['panelSettings']  = isset($panelSettings) ? $panelSettings : array();
 
 		$store_to_url = '';
-		if ($_GET['parentNode'])
+		if ($_GET['parentNode'] ?? false)
 		{
 			$current_store = explode("catst_",$_GET['parentNode']);
-			if ($current_store[1])
+			if ($current_store[1] ?? false)
 				$store_to_url = '&store_id='.$current_store[1];				
 		}
 
 		$rowActions[] = array('iconCls' => 'move_product', 'qtipIndex' => 'qtip1', 'tooltip' => __text('TEXT_PRODUCTS_TO_CATEGORIES'));
-        if ($this->url_data['edit_id'])
+        if ($this->url_data['edit_id'] ?? false)
 		  $js = "var edit_id = ".$this->url_data['edit_id']."; var edit_name = '".htmlentities($this->url_data['edit_id'])."';\n";
 		else
           $js = "var edit_id = record.id; var edit_name=record.get('products_model');\n";
@@ -1148,7 +1149,7 @@ class product  extends xt_backend_cls{
 
 
 		$rowActions[] = array('iconCls' => 'more_categories', 'qtipIndex' => 'qtip1', 'tooltip' => __text('TEXT_PRODUCTS_TO_MORE_CATEGORIES'));
-        if ($this->url_data['edit_id'])
+        if ($this->url_data['edit_id'] ?? false)
 		  $js = "var edit_id = ".$this->url_data['edit_id']."; var edit_name = '".htmlentities($this->url_data['edit_id'])."';\n";
 		else
           $js = "var edit_id = record.id; var edit_name=record.get('products_model');\n";
@@ -1181,14 +1182,14 @@ class product  extends xt_backend_cls{
 		}$rs->Close();
 		$rowActions[] = array('iconCls' => 'products_media', 'qtipIndex' => 'qtip1', 'tooltip' => __text('TEXT_PRODUCTS_TO_MEDIA'));
 
-        if(empty($this->url_data['edit_id']))
+        if(empty($this->url_data['edit_id']) )  //
         {
             $rowActions[] = array('iconCls' => 'upload_image', 'qtipIndex' => 'qtip1', 'tooltip' => __text('TEXT_CHOOSE_IMAGE'));
-            $u_js = $this->_AdminHandler->UploadImage($this->url_data['edit_id']);
+            $u_js = $this->_AdminHandler->UploadImage();
             $rowActionsFunctions['upload_image'] = $u_js;
         }
 
-		if ($this->url_data['edit_id'])
+		if ($this->url_data['edit_id'] ?? false)
 			$js = "var product_edit_id = ".$this->url_data['edit_id']."; var edit_name = '".htmlentities($this->url_data['edit_id'])."';\n";
 		else
 			$js = "var product_edit_id = record.id; var edit_name=record.get('products_model');\n";
@@ -1199,7 +1200,7 @@ class product  extends xt_backend_cls{
 		
 		// Product stats
 		$rowActions[] = array('iconCls' => 'products_stats', 'qtipIndex' => 'qtip1', 'tooltip' => __text('TEXT_PRODUCTS_STATS'));
-		if ($this->url_data['edit_id'])
+		if ($this->url_data['edit_id'] ?? false)
 			$js = "var product_edit_id = ".$this->url_data['edit_id']."; var edit_name = '".htmlentities($this->url_data['edit_id'])."';\n";
 		else
 			$js = "var product_edit_id = record.id; var edit_name=record.get('products_model');\n";
@@ -1216,7 +1217,7 @@ class product  extends xt_backend_cls{
 		// End product stats
 
 		$rowActions[] = array('iconCls' => 'products_special_price', 'qtipIndex' => 'qtip1', 'tooltip' => __text('TEXT_PRODUCTS_SPECIAL_PRICE'));
-        if ($this->url_data['edit_id'])
+        if ($this->url_data['edit_id'] ?? false)
 		  $js = "var edit_id = ".$this->url_data['edit_id']."; var edit_name = '".htmlentities($this->url_data['edit_id'])."';\n";
 		else
           $js = "var edit_id = record.id; var edit_name=record.get('products_model');\n";
@@ -1226,7 +1227,7 @@ class product  extends xt_backend_cls{
 		$rowActionsFunctions['products_special_price'] = $js;
 
 		$rowActions[] = array('iconCls' => 'products_group_price', 'qtipIndex' => 'qtip1', 'tooltip' => __text('TEXT_PRODUCTS_GROUP_PRICE'));
-        if ($this->url_data['edit_id'])
+        if ($this->url_data['edit_id'] ?? false)
 		  $js = "var edit_id = ".$this->url_data['edit_id']."; var edit_name = '".htmlentities($this->url_data['edit_id'])."';\n";
 		else
           $js = "var edit_id = record.id; var edit_name=record.get('products_model');\n";
@@ -1236,7 +1237,7 @@ class product  extends xt_backend_cls{
 
 
         $rowActions[] = array('iconCls' => 'open_web', 'qtipIndex' => 'qtip1', 'tooltip' => __text('TEXT_OPEN_WEB'));
-        if ($this->url_data['edit_id'] && empty($check_new))
+        if (($this->url_data['edit_id'] ?? false) && empty($check_new))
         {
             $url_text = $db->GetOne("SELECT url_text FROM ".TABLE_SEO_URL." WHERE link_type=1 AND link_id=? AND store_id=? and language_code=?",
                 [$this->url_data['edit_id'], $store_handler->shop_id, $language->code]);
@@ -1257,7 +1258,7 @@ class product  extends xt_backend_cls{
 		
 		$params['menuGroups']			   = isset($menuGroups) ? $menuGroups : array();
 		
-        if ($this->url_data['edit_id'])
+        if ($this->url_data['edit_id'] ?? false)
 		  $js = "var edit_id = ".$this->url_data['edit_id'].";";
 		else
           $js = "var edit_id = record.id;";
@@ -1326,7 +1327,7 @@ class product  extends xt_backend_cls{
 				'flag'=>'multiFlag_copy',
 				'flag_value'=>'true',
 				'page'=>'window',
-				'page_url'=>'adminHandler.php?load_section=ProductToCategories&source_cat='.$this->url_data['catID'].'&editType=copy&pg=getTreePanel',
+				'page_url'=>'adminHandler.php?load_section=ProductToCategories&source_cat='.($this->url_data['catID'] ?? '').'&editType=copy&pg=getTreePanel',
 				'page_title'=>'TEXT_MULTI_COPY'
 			);
 			
@@ -1341,7 +1342,7 @@ class product  extends xt_backend_cls{
 				'flag'=>'multiFlag_move',
 				'flag_value'=>'true',
 				'page'=>'window',
-				'page_url'=>'adminHandler.php?load_section=ProductToCategories&source_cat='.$this->url_data['catID'].'&editType=move&pg=getTreePanel',
+				'page_url'=>'adminHandler.php?load_section=ProductToCategories&source_cat='.($this->url_data['catID'] ?? '').'&editType=move&pg=getTreePanel',
 				'page_title'=>'TEXT_MULTI_MOVE'
 			);
 															
@@ -1356,7 +1357,7 @@ class product  extends xt_backend_cls{
 				'flag'=>'multiFlag_link',
 				'flag_value'=>'true',
 				'page'=>'window',
-				'page_url'=>'adminHandler.php?load_section=ProductToCategories&source_cat='.$this->url_data['catID'].'&editType=link&pg=getTreePanel',
+				'page_url'=>'adminHandler.php?load_section=ProductToCategories&source_cat='.($this->url_data['catID'] ?? '').'&editType=link&pg=getTreePanel',
 				'page_title'=>'TEXT_MULTI_LINK'
 			);
 			$params['display_multi_copyMn']  = true;																										
@@ -1364,7 +1365,7 @@ class product  extends xt_backend_cls{
 			$params['display_multi_linkMn']  = true;
 			
 			$params['menuActions']             = $menuActions;	
-					
+
 		($plugin_code = $xtPlugin->PluginCode('class.product.php:_getParams_bottom')) ? eval($plugin_code) : false;
 		return $params;
 	}
@@ -1704,7 +1705,8 @@ class product  extends xt_backend_cls{
 
 		$sql_where = '';
 
-		if ($this->url_data['get_data'] && $this->url_data['catID']) {
+        $cat_search_result = [];
+		if (($this->url_data['get_data'] ?? false) && $this->url_data['catID']) {
 			$this->url_data['catID'] = str_replace('subcat_','',$this->url_data['catID']);
 			$cat_search_result = $this->_getCategories($this->url_data['catID']);
 
@@ -1714,11 +1716,12 @@ class product  extends xt_backend_cls{
 
 		}
 
-        if($this->url_data['query']) $this->url_data['query'] = trim($this->url_data['query']);
-		if ($this->url_data['get_data'] && $this->url_data['query']) {
+        $search_result = [];
+        if($this->url_data['query'] ?? false) $this->url_data['query'] = trim($this->url_data['query']);
+		if (($this->url_data['get_data'] ?? false) && ($this->url_data['query'] ?? false)) {
 			$tmp_search_result = $this->_getSearchIDs($this->url_data['query']);
 
-			if(is_array($cat_search_result)){
+			if(is_array($cat_search_result) && count($cat_search_result)){
 				foreach ($tmp_search_result as $skey => $sval) {
 					if(in_array($sval, $cat_search_result)){
 						$search_result[] = $sval;
@@ -2115,7 +2118,9 @@ class product  extends xt_backend_cls{
 			$obj->failed = true;
 		}
 
+        $deleteCache = true;
 		($plugin_code = $xtPlugin->PluginCode('class.product.php:_set_bottom')) ? eval($plugin_code) : false;
+        array_map('unlink', glob(_SRV_WEBROOT.'cache/*product.html.php'));
 		return $obj;
 	}
 

@@ -27,6 +27,7 @@
 
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
+#[AllowDynamicProperties]
 class customer extends check_fields{
 
 	public $customers_id;
@@ -74,7 +75,7 @@ class customer extends check_fields{
 		if(!empty($customer_id)){
 			$this->customers_id = $customer_id;
 			$this->customer_info = $this->_buildData($customer_id);
-			$this->customers_status = $this->customer_info['customers_status'];
+			$this->customers_status = $this->customer_info['customers_status'] ?? 0;
 			$this->customer_default_address = $this->_buildAddressData($customer_id, 'default');
 			$this->customer_payment_address = $this->_buildAddressData($customer_id, 'payment');
 			$this->customer_shipping_address = $this->_buildAddressData($customer_id, 'shipping');
@@ -284,7 +285,7 @@ class customer extends check_fields{
 		}
 	}
 
-	function _registerCustomer($data, $register_type='both', $add_type = 'insert', $check_data=true, $login_customer=true){
+	function _registerCustomer(array $data, $register_type='both', $add_type = 'insert', $check_data=true, $login_customer=true){
 		global $db, $xtPlugin, $store_handler, $countries, $xtLink, $info;
 
 		($plugin_code = $xtPlugin->PluginCode('class.customer.php:_registerCustomer_top')) ? eval($plugin_code) : false;
@@ -341,11 +342,11 @@ class customer extends check_fields{
 			$this->_checkCustomerAddressData($data['default_address'], $add_type, $check_data);
 		}
 
-		if(is_array($data['shipping_address'])){
+        if(array_key_exists('shipping_address', $data) && is_array($data['shipping_address'])){
 			$this->_checkCustomerAddressData($data['shipping_address'], $add_type, $check_data);
 		}
 
-		if(is_array($data['payment_address'])){
+		if(array_key_exists('payment_address', $data) && is_array($data['payment_address'])){
 			$this->_checkCustomerAddressData($data['payment_address'], $add_type, $check_data);
 		}
 
@@ -658,7 +659,7 @@ class customer extends check_fields{
 
 
            // var_dump($data); exit();
-            if($data['old_address_class']== 'default' && $data['address_class'] != 'default'){
+            if(array_key_exists('old_address_class', $data) && $data['old_address_class']== 'default' && $data['address_class'] != 'default'){
 				$this->_checkDefaultAddress($data['customers_id'], __text('ERROR_DEFAULT_ADDRESS'));
             }
             // end check date and phone

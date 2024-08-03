@@ -1,0 +1,1 @@
+{$_store_name} | Zahlungshinweise zum Rechnungskauf, Bestellnr. {$order_data.orders_id}

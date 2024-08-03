@@ -1,7 +1,7 @@
-{if (($plugin_status.xt_new_products == 'true' && ($smarty.const.ACTIVATE_XT_NEW_PRODUCTS_PAGE == 'true' || $smarty.const.ACTIVATE_XT_NEW_PRODUCTS_PAGE == 1)) ||
-    ($plugin_status.xt_bestseller_products == 'true' && ($smarty.const.ACTIVATE_XT_BESTSELLER_PRODUCTS_PAGE == 'true' || $smarty.const.ACTIVATE_XT_BESTSELLER_PRODUCTS_PAGE == 1)) ||
-    ($plugin_status.xt_special_products == 'true' && ($smarty.const.ACTIVATE_XT_SPECIAL_PRODUCTS_PAGE == 'true' || $smarty.const.ACTIVATE_XT_SPECIAL_PRODUCTS_PAGE == 1)) ||
-    ($plugin_status.xt_upcoming_products == 'true' && ($smarty.const.ACTIVATE_XT_UPCOMING_PRODUCTS_PAGE == 'true' || $smarty.const.ACTIVATE_XT_UPCOMING_PRODUCTS_PAGE == 1)))}
+{if ((isset($plugin_status.xt_new_products) && $plugin_status.xt_new_products == 'true' && ($smarty.const.ACTIVATE_XT_NEW_PRODUCTS_START_PAGE == 'true' || $smarty.const.ACTIVATE_XT_NEW_PRODUCTS_START_PAGE == 1)) ||
+    (isset($plugin_status.xt_bestseller_products) && $plugin_status.xt_bestseller_products == 'true' && ($smarty.const.ACTIVATE_XT_BESTSELLER_PRODUCTS_START_PAGE == 'true' || $smarty.const.ACTIVATE_XT_BESTSELLER_PRODUCTS_START_PAGE == 1)) ||
+    (isset($plugin_status.xt_special_products) && $plugin_status.xt_special_products == 'true' && ($smarty.const.ACTIVATE_XT_SPECIAL_PRODUCTS_PAGE == 'true' || $smarty.const.ACTIVATE_XT_SPECIAL_PRODUCTS_PAGE == 1)) ||
+    (isset($plugin_status.xt_upcoming_products) && $plugin_status.xt_upcoming_products == 'true' && ($smarty.const.ACTIVATE_XT_UPCOMING_PRODUCTS_PAGE == 'true' || $smarty.const.ACTIVATE_XT_UPCOMING_PRODUCTS_PAGE == 1)))}
     <div id="startpage-bottom">
         <div class="container">
             {if $plugin_status.xt_new_products == 'true' && ($smarty.const.ACTIVATE_XT_NEW_PRODUCTS_PAGE == 'true' || $smarty.const.ACTIVATE_XT_NEW_PRODUCTS_PAGE == 1)}

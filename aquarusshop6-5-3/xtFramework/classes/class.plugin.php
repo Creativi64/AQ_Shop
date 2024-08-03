@@ -2116,7 +2116,7 @@ class plugin extends xt_backend_cls
         }
 
 
-        if (self::ALLOW_ONLINE_UPDATE) {
+        if (self::ALLOW_ONLINE_UPDATE && (!defined('DEVELOPER_MODE') || !DEVELOPER_MODE)) {
             $this->_initiate();
             $error = '';
             $onlinePlugin = $this->getPluginChangeLogInformation($modul);
@@ -2215,7 +2215,7 @@ class plugin extends xt_backend_cls
             $autoUpdatePossible = true;
             $update_type = 'manual';
             // check if plugin is available on update service
-            if (self::ALLOW_ONLINE_UPDATE) {
+            if (self::ALLOW_ONLINE_UPDATE && (!defined('DEVELOPER_MODE') || !DEVELOPER_MODE)) {
                 $this->_initiate();
                 $error = '';
                 $onlinePlugin = $this->getPluginUpdatePackage($modul, $this->getPluginVersion($modul), $error);

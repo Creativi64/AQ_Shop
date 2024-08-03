@@ -29,8 +29,15 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
 class MediaImages extends MediaData {
 	public $response='';
+    public mixed $UploadExt;
+    public string $iconFileNotExists;
+    public string $type;
+    public string $urlPath;
+    public $imageTypes;
 
     function __construct() {
+        parent::__construct();
+        
 		$this->type 		= 'images';
 		$this->path 		= _SRV_WEB_IMAGES.'';
         $this->urlPath      = _SYSTEM_BASE_HTTP. (defined('_SRV_WEB_UPLOAD') ? constant('_SRV_WEB_UPLOAD'):'NODEF__SRV_WEB_UPLOAD');
@@ -203,7 +210,7 @@ class MediaImages extends MediaData {
 	function getCurrentIds () {
 		global $xtPlugin, $db, $language;
 		if(!$this->class)
-        $this->setClass($this->url_data['currentType']);
+            $this->setClass($this->url_data['currentType']);
 		
 		$currentIds = array();
 		if ($mainFile = $this->getMainFile($this->url_data['link_id'], $this->url_data['currentType'])) {

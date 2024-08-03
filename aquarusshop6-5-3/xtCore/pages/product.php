@@ -52,6 +52,7 @@ if (isset($_GET['dl_media'])) {
     $download = new download();
     $download->_deleteOutOfDateLinks();
     $download->servePublicFile($_GET['dl_media']);
+    exit();
 }
 
 ($plugin_code = $xtPlugin->PluginCode('module_product.php:data')) ? eval($plugin_code) : false;
@@ -73,4 +74,4 @@ if ($tpl_data['product_template']!='') {
 $tpl_data['message']= $info->info_content;
 
 ($plugin_code = $xtPlugin->PluginCode('module_product.php:default_tpl_data')) ? eval($plugin_code) : false;
-$page_data = $template->getTemplate('smarty', '/'._SRV_WEB_CORE.'pages/product/'.$tpl, $tpl_data);
+$page_data = $template->getTemplate('smarty', '/'._SRV_WEB_CORE.'pages/product/'.$tpl, $tpl_data, false, true);

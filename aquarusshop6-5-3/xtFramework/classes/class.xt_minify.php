@@ -231,7 +231,7 @@ class xt_minify
     private function serveJS($location) {
         global $store_handler,$xtPlugin;
 
-        if (!is_array($this->resources[$location]['js'])) return;
+        if (!array_value($this->resources[$location], 'js') || !is_array($this->resources[$location]['js'])) return;
         
         $filename = $this->js_file.'_'.$store_handler->shop_id._STORE_TEMPLATE.'_'.$location.'.js';
 		$this->sortResources($this->resources[$location]['js'],'sort_order');

@@ -1,3 +1,6 @@
+## [5.0.5]
+- Länderdropdown bei Preisanfrage
+
 ## [5.0.4]
 - 404 seite bei aufruf der preisanfrage seite für deaktierte produkte
 

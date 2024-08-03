@@ -925,6 +925,14 @@ class themes extends xt_backend_cls {
 
                     $this->msg(__text('TEXT_THEME_GENERATECSS_SUCCESS'));
 
+                    if(file_exists(_SRV_WEBROOT.'plugins/xt_cleancache/classes/class.xt_cleancache.php'))
+                    {
+                        require_once _SRV_WEBROOT.'plugins/xt_cleancache/classes/class.xt_cleancache.php';
+
+                        $cleanCache = new cleancache();
+                        $cleanCache->cleanTemplateCached('all');
+                    }
+
                 } catch (Exception $e)
                 {
                     $this->msg($e->getMessage(), 'error');

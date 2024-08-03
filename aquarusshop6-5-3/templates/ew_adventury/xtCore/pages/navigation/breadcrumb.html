@@ -1,31 +1,31 @@
 <div class="breadcrumb-form hidden-xs">
     <div class="container">
-        <ul class="breadcrumb text-word-wrap" {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemscope itemtype="http://schema.org/BreadcrumbList"{/if}>
+        <ul class="breadcrumb text-word-wrap" itemscope itemtype="http://schema.org/BreadcrumbList">
             {foreach name=aussen key=position item=breadcrumb from=$top_navigation}
                 {strip}
                 {if $smarty.foreach.aussen.first == true}
-                    <li class="home" {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"{/if}>
-                        <a href="{$breadcrumb.url}" title="{$breadcrumb.name|escape:'html'}" class="text-muted" {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="item"{/if}>
+                    <li class="home" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                        <a href="{$breadcrumb.url}" title="{$breadcrumb.name|escape:'html'}" class="text-muted" itemprop="item">
                             <i class="fa fa-home"></i>
-                            <span class="sr-only" {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="name"{/if}>{$breadcrumb.name|escape:"html"}</span>
+                            <span class="sr-only" itemprop="name">{$breadcrumb.name|escape:"html"}</span>
                         </a>
-                        <meta {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="position"{/if} content="{$position+1}" />
+                        <meta itemprop="position" content="{$position+1}" />
                     </li>
                 {elseif $smarty.foreach.aussen.last == false}
-                    <li {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"{/if}>
-                        <a href="{$breadcrumb.url}" title="{$breadcrumb.name|escape:'html'}" {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="item"{/if}>
-                            <span {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="name"{/if} class="hidden">{$breadcrumb.name|strip_tags|escape:"html"|trim}</span>
+                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                        <a href="{$breadcrumb.url}" title="{$breadcrumb.name|escape:'html'}" itemprop="item"}>
+                            <span itemprop="name" class="hidden">{$breadcrumb.name|strip_tags|escape:"html"|trim}</span>
                             {$breadcrumb.name|strip_tags|escape:"html"|trim|truncate:50:" ..."}
                         </a>
-                        <meta {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="position"{/if} content="{$position+1}" />
+                        <meta itemprop="position" content="{$position+1}" />
                     </li>
                 {else}
-                    <li class="active" title="{$breadcrumb.name|escape:'html'}" {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"{/if}>
-                        <a href="{$breadcrumb.url}" class="btn disabled" title="{$breadcrumb.name|escape:'html'}" {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="item"{/if}>
-                            <span {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="name"{/if} class="hidden">{$breadcrumb.name|strip_tags|escape:"html"|trim}</span>
+                    <li class="active" title="{$breadcrumb.name|escape:'html'}" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                        <a href="{$breadcrumb.url}" class="btn disabled" title="{$breadcrumb.name|escape:'html'}" itemprop="item">
+                            <span itemprop="name" class="hidden">{$breadcrumb.name|strip_tags|escape:"html"|trim}</span>
                             {$breadcrumb.name|strip_tags|escape:"html"|trim|truncate:50:" ..."}
                         </a>
-                        <meta {if version_compare(_SYSTEM_VERSION, '6.1.2', '<=')} itemprop="position"{/if} content="{$position+1}" />
+                        <meta itemprop="position" content="{$position+1}" />
                     </li>
                 {/if}
                 {/strip}

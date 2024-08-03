@@ -29,7 +29,7 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 global $page, $currency;
 $currency_list = $currency->_getCurrencyList();
 
-if(count($currency_list) > 1){
+if(is_array($currency_list) && count($currency_list) > 1){
     global $currency;
     $tpl_data = array('currency_data'=>$currency_list, 'selected_currency'=>$currency->code,'page_action'=>$page->page_action);
 	$show_box = true;

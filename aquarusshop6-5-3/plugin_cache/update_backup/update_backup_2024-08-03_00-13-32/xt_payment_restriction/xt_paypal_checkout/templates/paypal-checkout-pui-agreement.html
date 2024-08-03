@@ -1,0 +1,25 @@
+<br/>
+{form type="checkbox" id="paypal_checkout_pui_agreement_accepted" name="paypal_checkout_pui_agreement_accepted" class="xt-form-required"}
+{txt key=TEXT_XT_PAYPAL_CHECKOUT_PUI_AGREEMENT}
+<script>
+    document.addEventListener('DOMContentLoaded', function(e){
+        const cb = document.getElementById('paypal_checkout_pui_agreement_accepted');
+        if(cb)
+        {
+            cb.setAttribute('required', 'required');
+        }
+        const form = document.getElementById('checkout-form');
+        if(form)
+        {
+            form.addEventListener('submit', function(event)
+            {
+                ppcWaitModal();
+                setTimeout(function () {
+                    document.getElementById("ppc_oops").style.display = "block"
+                }, 4000);
+            });
+        }
+    });
+</script>
+
+{include file="./paypal-checkout-script-tag.tpl.html"}

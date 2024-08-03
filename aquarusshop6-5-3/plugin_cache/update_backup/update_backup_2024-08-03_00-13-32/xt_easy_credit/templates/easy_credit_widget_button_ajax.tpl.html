@@ -1,0 +1,24 @@
+
+<div class="box easy-credit-product-widget center small {$css_class}">
+    Sie k&ouml;nnen diesen {$financing_what} auch finanzieren!<br />
+    <a style="color:#009cde" onclick="javascript:getFinancingOptions(); return false;" href="javascript:void(0);">Informationen zu m&ouml;glichen Raten</a>
+</div>
+
+<script type="application/javascript">
+{literal}
+
+    var easy_credit_option_loaded = false;
+    function getFinancingOptions()
+    {
+        if(!easy_credit_option_loaded) // todo
+        {
+            $("#ec_installments_popup").find('.modal-body').load('{/literal}{$options_url}{literal}', function( response, status, xhr )
+            {
+                easy_credit_option_loaded = true;
+            });
+        }
+        $('#ec_installments_popup').modal('show');
+    }
+
+{/literal}
+</script>

@@ -27,6 +27,7 @@
 
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
+#[AllowDynamicProperties]
 class cart {
 
 	var $show_content = array();
@@ -51,6 +52,22 @@ class cart {
 	var $weight = 0;
     var $total_discount;
     var $cart_total_full_for_customers_discount = 0;
+    /**
+     * @var array|mixed
+     */
+    public mixed $content_total_physical = 0;
+    /**
+     * @var mixed|string
+     */
+    public mixed $content_weight_physical = 0;
+    /**
+     * @var array|mixed|string
+     */
+    public mixed $discount = 0;
+    /**
+     * @var array|mixed
+     */
+    public mixed $total_physical = 0;
 
     function __construct($refresh = false) {
 		global $xtPlugin;
@@ -238,6 +255,8 @@ class cart {
 
 		$block = false;
 
+        ($plugin_code = $xtPlugin->PluginCode('class.cart.php:_checkCustomersStatusRange')) ? eval($plugin_code) : false;
+
         // check if min order value has been reached
 		if ($min_order_value>0) {
 			if ($total_value<$min_order_value) {
@@ -277,7 +296,7 @@ class cart {
 	function _addCart($data){
 		global $xtPlugin;
 
-        $data['product'] = (int) $data['product'];
+        $data['product'] = (int) array_value($data ,'product');
         if($data['product'] < 1) return false;
 
 		($plugin_code = $xtPlugin->PluginCode('class.cart.php:_addCart_top')) ? eval($plugin_code) : false;
@@ -362,7 +381,7 @@ class cart {
 	/**
 	 * add product to cart (check for stock etc)
 	 *
-	 * @param int $data
+	 * @param $data array
 	 */
 	private function _addToCart($data){
 		global $xtPlugin, $price, $store_handler, $db,$info,$xtLink;
@@ -375,6 +394,7 @@ class cart {
 		$data['qty'] = $this->_filter_qty($data['qty']);
 		if ($data['qty']<0) $data['qty']=1;
 
+        $cart_product = null;
 		if(!empty($data['product'])){
 			$cart_product = product::getProduct($data['product'], 'default');
 
@@ -383,7 +403,7 @@ class cart {
 			if ( $cart_product->data['products_digital'] ==1) $data['qty']=1;
 		}
 
-		if (USER_POSITION == 'store' && ($cart_product->data['allow_add_cart']===false || $cart_product->is_product===false)) {
+		if (USER_POSITION == 'store' && (!$cart_product|| $cart_product->data['allow_add_cart']===false || $cart_product->is_product===false)) {
 			$info->_addInfoSession(__text('ERROR_NOT_ALLOWED_TO_PURCHASE'),'error');
 			$link_array = array('page'=>'cart');
 			($plugin_code = $xtPlugin->PluginCode('class.cart.php:_addToCart_notallowed')) ? eval($plugin_code) : false;
@@ -406,16 +426,12 @@ class cart {
 			return false;
 		}
 
-		if(!empty($data['shop'])){
-			$data['shop'] = $data['shop'];
-		}else{
+		if(empty($data['shop'])){
 			$data['shop'] = $store_handler->shop_id;
 		}
 
-		if(!empty($data['customer_id'])){
-			$data['customer_id'] = $data['customer_id'];
-		}else{
-			$data['customer_id'] = isset($_SESSION['registered_customer']) ? $_SESSION['registered_customer'] : null;
+		if(empty($data['customer_id'])){
+			$data['customer_id'] = $_SESSION['registered_customer'] ?? null;
 		}
 
 		if(empty($data['products_key']))
@@ -934,11 +950,11 @@ class cart {
 			'products_quantity' => $data['qty'],
 			'products_price' => $data['price'],
 			'products_tax_class' => $data['tax_class'],
-			'products_discount' => $data['dicount'],
+			'products_discount' => $data['discount'] ?? 0,
 			'type' => $data['type'],
 			'status' => $data['status'],
 			'sort_order' => $data['sort_order'],
-			'shop_id' => $data['shop']
+			'shop_id' => $data['shop'] ?? 0
 		);
 
 		($plugin_code = $xtPlugin->PluginCode('class.cart.php:_addSubContent_bottom')) ? eval($plugin_code) : false;
@@ -1021,10 +1037,12 @@ class cart {
 
 			($plugin_code = $xtPlugin->PluginCode('class.cart.php:_getSubContent_data_bottom')) ? eval($plugin_code) : false;
 
+            if(!array_key_exists($value['products_tax_class'], $sub_content_data_tax))
+                $sub_content_data_tax[$value['products_tax_class']] = 0;
 			$sub_content_data_tax[$value['products_tax_class']] += $value['products_final_tax']['plain'];
 			$sub_content_data_total += $value['products_final_price']['plain'];
 			$sub_content_data_total_otax += $value['products_final_price']['plain_otax'];
-			$sub_content_data_weight += $value['products_weight'];
+			$sub_content_data_weight += $value['products_weight'] ?? 0;
 			$sub_content_data_count += $value['products_quantity'];
 		}
 

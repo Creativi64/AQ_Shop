@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>XT_GOOGLE_ANALYTICS_ANON_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Remove last IP octed]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Letzte Stelle in IP entfernen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_GOOGLE_ANALYTICS_ECOM_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Google eCommerce Tracking]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Google eCommerce Tracking]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_GOOGLE_ANALYTICS_UA_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Google UA ID (UA-XXXXXX-XX)]]></value>
+	</en>
+</phrase>
+</language_content>
+</xtcommerceplugin>

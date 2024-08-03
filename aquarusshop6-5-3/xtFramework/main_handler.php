@@ -49,8 +49,11 @@ define('_CUST_STATUS_FSK18_DISPLAY', $customers_status->customers_fsk18_display)
 
 if ($customers_status->customers_status_template != '') {
     define('_STORE_TEMPLATE', $customers_status->customers_status_template);
-} else {
+} else if (!empty(constant("_STORE_DEFAULT_TEMPLATE"))){
     define('_STORE_TEMPLATE', constant("_STORE_DEFAULT_TEMPLATE"));
+}
+else {
+    define('_STORE_TEMPLATE', constant("_SYSTEM_TEMPLATE"));
 }
 $template = new Template();
 

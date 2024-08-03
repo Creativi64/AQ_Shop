@@ -200,10 +200,10 @@ class image extends MediaFileTypes{
 
 		// create new image
 	    if ($this->crop) {
-            $image_thumbnail=imagecreatetruecolor($this->max_width,$this->max_height);
+            $image_thumbnail=imagecreatetruecolor((int)$this->max_width,(int)$this->max_height);
         }
         else {
-            $image_thumbnail=imagecreatetruecolor($thumbnail_width,$thumbnail_height);
+            $image_thumbnail=imagecreatetruecolor((int)$thumbnail_width,(int)$thumbnail_height);
         }
 
         ($plugin_code = $xtPlugin->PluginCode(__CLASS__.':createThumbnail_after_create_image')) ? eval($plugin_code) : false;
@@ -217,11 +217,11 @@ class image extends MediaFileTypes{
                 $image_source,
                 0 - ($thumbnail_width - $this->max_width) / 2, // center image horizontally
                 0 - ($thumbnail_height - $this->max_height) / 2, // center image vertically
-                0, 0,$thumbnail_width,$thumbnail_height,$old_width,$old_height);
+                0, 0,(int)$thumbnail_width,(int)$thumbnail_height,$old_width,$old_height);
         }
         else {
             // resize image wo cropping
-            imagecopyresampled($image_thumbnail,$image_source,0,0,0,0,$thumbnail_width,$thumbnail_height,$old_width,$old_height);
+            imagecopyresampled($image_thumbnail,$image_source,0,0,0,0,(int)$thumbnail_width,(int)$thumbnail_height,(int)$old_width,(int)$old_height);
         }
 
 		// create image in destinaion dir

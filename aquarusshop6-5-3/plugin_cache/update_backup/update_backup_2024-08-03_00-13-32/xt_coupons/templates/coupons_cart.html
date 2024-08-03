@@ -1,0 +1,23 @@
+<p class="headline"
+   data-toggle="collapse"
+   data-target="#order-coupon"
+   aria-expanded="true"
+   aria-controls="order-coupon"
+   style="margin-bottom:0 !important">
+	{txt key=TEXT_COUPON_HEADLINE}
+</p>
+<div id="order-coupon" class="collapse collapse-auto-toggle-xs in">
+
+	<div class="well" style="border-color:#eee; border-top:none">
+	{form type=form name=process action='cart' method=post conn=SSL}
+	{form type=hidden name=special value=coupon}
+	<div class="input-group">
+			<input value="" type="text" class="form-control" name="coupon_code" id="coupon_code" maxlength="20" placeholder="{txt key=TEXT_COUPON_LABEL}">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="submit">{txt key=TEXT_COUPON_BUTTON}</button>
+        </span>
+	</div><!-- /input-group -->
+	{form type=formend}
+	</div>
+
+</div>

@@ -87,7 +87,7 @@ class acl_groups extends acl{
 		  $js = "var edit_id = ".$this->url_data['edit_id'].";";
 		else
          $js = "var edit_id = record.id;";
-        $js .= "addTab('adminHandler.php?load_section=acl_group_to_permission&pg=overview&group_id='+edit_id,'".__text('TEXT_ACL_GROUP_PERMISSIONS')."')";
+        $js .= "addTab('adminHandler.php?load_section=acl_group_to_permission&pg=overview&group_id='+edit_id,'".__text('TEXT_ACL_GROUP_PERMISSIONS')."' + ' ' + edit_id, 'ACL_GROUP_PERMISSIONS_'+ edit_id )"; // FYS-911-48871 id des panel angegeben
 
 		$rowActionsFunctions['acl_group_permissions'] = $js;		
 		

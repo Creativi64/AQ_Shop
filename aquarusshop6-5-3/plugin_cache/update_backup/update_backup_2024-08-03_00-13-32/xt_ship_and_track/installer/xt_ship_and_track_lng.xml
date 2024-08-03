@@ -1,0 +1,1715 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_BULK_GOODS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Bulk goods]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sperrgut]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_CASH_ON_DELIVERY</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Cash on delivery]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Nachnahme]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COLLECT_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Collection date]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Abholdatum]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COLLECT_REQUEST_NO</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Collection request number]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Abholauftragsnr.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COL_HERMES_SETTINGS_HINT_LABEL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Hint]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hinweis]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COL_SHIPCLOUD_SETTINGS_HINT_BANK_ACCOUNT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Bank account COD]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Konto-Verbindung Nachnahme]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COL_SHIPCLOUD_SETTINGS_HINT_CALLBACK</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Webhooks]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Webhooks]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COL_SHIPCLOUD_SETTINGS_HINT_DEFAULT_ADDRESS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Default addresss sender]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Standardadresse Absender]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COL_SHIPCLOUD_SETTINGS_HINT_LABEL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Hint]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hinweis]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COL_SHIPCLOUD_SETTINGS_HINT_RETOURE_ADDRESS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Default address returns]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Standardadresse Retoure]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_DELETING_TRACKING</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Deleting tracking]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Tracking wird gelöscht]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_BULK_GOOD</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Bulk goods]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sperrgut]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_CHECKING_STATUS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Requesting status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Status wird abgerufen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_CHECK_SETTINGS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Check Hermes settings!]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hermes-Enstellungen überprüfen !]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_CREATING_ORDER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Creating Hermes order]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hermes-Auftrag wird angelegt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_DELETING_ORDER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Deleting Hermes order]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hermes-Auftrag wird gelöscht]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_PRINT_SELECTION</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Print selected]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Markierte drucken]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_PWD</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Hermes ProfiPaketService password]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hermes ProfiPaketService Passwort]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_REFRESH</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Reload status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Status neuladen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_REFRESHING</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Refreshing data]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Daten werden abgerufen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_SANDBOX</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Test mode (sandbox)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Testmodus (Sandbox)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_SETTINGS_HINT_TEXT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Please enter your Hermes ProfiPaketService login information. Other credentials (eg myhermes.de) do not work! If you are not a ProfiPaketService user, please contact the Hermes sales department.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte tragen Sie hier Ihre Hermes ProfiPaketService Zugangsdaten ein. Andere Zugänge (z.B. myhermes.de) funktionieren nicht! Falls Sie noch keinen ProfiPaketService Account haben, setzen Sie sich bitte mit dem Hermes Vertrieb in Verbindung.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_USER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Hermes ProfiPaketService user]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hermes ProfiPaketService Nutzer]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PARCEL_CLASS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Parcel class]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Paketklasse]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PICKUP_ASK</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Order pickup?]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Abholung beauftragen?]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PRINT_LABEL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Print label]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Paketschein drucken]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PRINT_LABEL_HERMES</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Print Hermes labels]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hermes-Paketscheine drucken]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_REQUESTING_COLLECT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Requestion collection]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Abholung wird beauftragt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_REQUEST_COLLECT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Request collect]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Abholung beauftragen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SC_PICKUP</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Pickup]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Abholung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SENDING_TRACKING_MAIL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Sending shipping infos]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versandinformationen werden gesendet]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SEND_MAIL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Send Info-Email for customer]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Info-Email an Kunden senden]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_API_KEY_LIVE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[API-Key Live]]></value>
+	</en>
+	<de>
+		<value><![CDATA[API-Key Live]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_API_KEY_SANDBOX</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[API-Key Sandbox]]></value>
+	</en>
+	<de>
+		<value><![CDATA[API-Key Sandbox]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_APPLY_CART_AMOUNT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Apply cart amount]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Warenkorbbetrag übernehmen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_CALLBACK_URL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Shop-URL for notifications]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Shop-URL für Benachrichtigungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_CARRIER_DATA_PACKAGE_TYPES</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Package types]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sendungstypen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_CARRIER_DATA_SERVICES</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Services]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Services]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_CARRIER_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[ID xt]]></value>
+	</en>
+	<de>
+		<value><![CDATA[ID xt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_CARRIER_NAME</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Name]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Name]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_CARRIER_PACKAGE_TYPE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Package type]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sendungstyp]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_CARRIER_SERVICE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Service]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Service]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_CARRIER_STATUS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Status]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_NO_ACTIVE_PACKAGES</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Web hooks help respond automatically to events triggered within shipcloud. Use the displayed callback URL to configure the web hook in your shipcloud account. Do not edit the callback URL manually, changes are not saved.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Konfigurieren Sie die Paketvorlagen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_PACKAGES_HINT_TEXT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[After creating a new package or editing a package, please reload the browser window.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Nach Neuanlage oder Bearbeitung einer Vorlage, laden Sie bitte das Browser-Fenster neu.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_PACKAGE_HEIGHT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Height (cm)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Höhe (cm)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_PACKAGE_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[ID xt]]></value>
+	</en>
+	<de>
+		<value><![CDATA[ID xt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_PACKAGE_LENGTH</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Length (cm)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Länge (cm)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_PACKAGE_STATUS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Status]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_PACKAGE_WEIGHT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Weight (kg)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Gewicht (kg)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_PACKAGE_WIDTH</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Width (cm)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Breite (cm)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_PICKUP</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Pickup]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Abholung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_PICKUP_EARLIEST_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[earliest<br/>Date]]></value>
+	</en>
+	<de>
+		<value><![CDATA[frühestens<br/>Datum]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_PICKUP_EARLIEST_TIME</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[earliest<br/>Time]]></value>
+	</en>
+	<de>
+		<value><![CDATA[frühestens<br/>Uhrzeit]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_PICKUP_LATEST_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[latest<br/>Date]]></value>
+	</en>
+	<de>
+		<value><![CDATA[spätestens<br/>Datum]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_PICKUP_LATEST_TIME</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[latest<br/>Time]]></value>
+	</en>
+	<de>
+		<value><![CDATA[spätestens<br/>Uhrzeit]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_SANDBOX</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Test mode (sandbox)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Testmodus (Sandbox)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_SETTINGS_HINT_BANK_ACCOUNT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Configure the bank account connection to be used for COD payments]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Konfigurieren Sie nachfolgend die Kontoverbindung die für Zahlungen per Nachnahme verwendet werden soll]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_SETTINGS_HINT_CALLBACK</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Web hooks help respond automatically to events triggered within shipcloud. Use the displayed callback URL to configure the web hook in your shipcloud account. Do not edit the callback URL manually, changes are not saved.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Webhooks helfen dabei, automatisch auf Events zu reagieren, die innerhalb von shipcloud ausgelöst werden. Verwenden Sie die dargestellte Callback-URL für die Konfiguration der Webhook in Ihrem shipcloud-Account. Bearbeiten Sie die Callback-URL nicht manuell, Änderungen werden nicht gespeichert.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_SETTINGS_HINT_DEFAULT_ADDRESS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Enter the default sender address]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Geben Sie nachfolgend die Standard-Absenderadresse an]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_SETTINGS_HINT_LABEL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Note]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hinweis]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_SETTINGS_HINT_RETOURE_ADDRESS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Enter the default returns address]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Geben Sie nachfolgend die Standard-Retorenadresse an]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_SETTINGS_HINT_TEXT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Please enter your ShipCloud API data. ...]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte tragen Sie nachfolgend Ihre ShipCloud API-Daten ein. Anlegen unter https://www.shipcloud.io/]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPPERS_PAGE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Tracking webpage]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Webseite zur Sendungsverfolgung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPPER_CODE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Shipper code]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versender-Code]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPPER_ENABLED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[enabled]]></value>
+	</en>
+	<de>
+		<value><![CDATA[aktiv]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPPER_NAME</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Shipper name]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versender-Name]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPPER_TRACKING_URL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Tracking URL]]></value>
+	</en>
+	<de>
+		<value><![CDATA[URL zur Sendungsverfolgung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TRACKING_MAIL_SENT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Shipment information sent]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versandinformationen wurden gesendet]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_HERMES_COLLECT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Collections]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Abholungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_HERMES_SETTINGS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Settings]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Einstellungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[xt order number]]></value>
+	</en>
+	<de>
+		<value><![CDATA[xt-Bestellnummer]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_SHIPCLOUD_CARRIERS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[shipcloud Carriers]]></value>
+	</en>
+	<de>
+		<value><![CDATA[shipcloud Versender]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_SHIPCLOUD_COLLECT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Collections]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Abholungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_SHIPCLOUD_PACKAGES</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[package templates]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Paketvorlagen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_SHIPCLOUD_PACKAGE_TEMPLATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[package template]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Paketvorlage]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_SHIPCLOUD_PACKAGE_TEMPLATES</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[package templates]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Paketvorlagen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_SHIPCLOUD_SETTINGS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Settings]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Einstellungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_SHIPPER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Shipper]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versender]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>BUTTON_SHIPCLOUD_QUOTE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Calculate price]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Preis berechnen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>BUTTON_SHIPCLOUD_SAVE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Save Label]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versandmarke speichern]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_ADD_HERMES_PARCEL</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Create Hermes parcel order]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hermes Paket-Auftrag anlegen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_ADD_TRACKING</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Add shipment number]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sendungsnummern hinzufügen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_AMOUNT_CASH_ON_DELIVERY</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Amount cash on delivery]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Nachnahmebetrag]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_ORDER_NO</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Order number]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Auftragsnummer]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_SHIPPING_ID</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Shipment ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sendungs-ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_STATUS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Status]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SC_CARRIER</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Carrier]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versender]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SC_CARRIER_TRACKING_NO</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Tracking Nr.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Tracking Nr.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SC_CREATED_AT</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Created]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Angelegt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SC_FROM_ADDRESS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Shipper]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Absender]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SC_ID</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Label ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[ID Versandmarke]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SC_LABEL_URL</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Label URL.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[URL Versandmarke]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SC_NOTIFICATION_EMAIL</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Receiver email notification]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Empfänger Email Benachrichtigungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SC_PACKAGES</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Packages]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Pakete]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SC_PRICE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Price]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Preis]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SC_REFERENCE_NUMBER</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Ref nr]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Ref.-nummer]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SC_SERVICE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Service]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Service]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SC_SHIPPER_NOTIFICATION_EMAIL</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Shipper email]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Absender Email für Benachrichtigungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SC_TO_ADDRESS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[TO address]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Empfänger]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SC_TRACKING_URL</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Tracking link]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sendungsverfolgung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SC_XT_ID</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[xt ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[xt ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[shipcloud]]></value>
+	</en>
+	<de>
+		<value><![CDATA[shipcloud]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_ADDITIONAL_SERVICES</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Additional services]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zusätzliche Leistungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_ADVANCE_NOTICE_EMAIL</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Advance notice email]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Vorankündigung Email]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_ADVANCE_NOTICE_SMS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Advance notice SMS]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Vorankündigung SMS]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_AMOUNT_CASH_ON_DELIVERY</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Amount cash on delivery]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Nachnahmebetrag]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_CARE_OF</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[c/o]]></value>
+	</en>
+	<de>
+		<value><![CDATA[c/o]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_CASH_ON_DELIVERY</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[COD Amount]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Nachnahme-Betrag]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_CHOOSE_CARRIER_FIRST</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Please choose carrier first]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte Versender wählen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_CITY</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[City]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Stadt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_COMPANY</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Company]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Firma]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_COUNTRY</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Country]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Land]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_CREATE_LABEL</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Create Shipment Label]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versandmarke erstellen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_DECLARED_VALUE_DHL</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Higher insurance >EUR 500]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Höhere Versicherung >EUR 500]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_DESCRIPTION</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Description of package content]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Beschreibung Inhalt der Sendung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_DIFFERENT_RETOURE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Use different retoure address ?]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Abweichende Retourenadresse ?]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_DROP_AUTHORIZATION_MSG</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Message Drop Authorization]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Nachricht für Abgabe beim Nachbarn]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_EDIT_TO</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[TO address]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Empfänger-Adresse]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_FETCH_CARRIERS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Fetch shipcloud carriers]]></value>
+	</en>
+	<de>
+		<value><![CDATA[shipcloud-Versender laden]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_FIRST_NAME</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[First name]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Vorname]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_FROM_CAREOF</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[c/o]]></value>
+	</en>
+	<de>
+		<value><![CDATA[c/o]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_FROM_CITY</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[City]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Stadt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_FROM_COMPANY</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Company]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Firma]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_FROM_COUNTRY</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Country]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Land]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_FROM_FIRSTNAME</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[First name]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Vorname]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_FROM_HOUSENO</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[House no]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hausnr.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_FROM_LASTNAME</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Last name]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Nachname]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_FROM_PHONE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Phone]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Telefon]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_FROM_STATE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[State/Province]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bundesland/-staat]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_FROM_STREET</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Street]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Strasse]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_FROM_ZIP</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Zip]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PLZ]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_LAST_NAME</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Last name]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Nachname]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_NO_ACTIVE_CARRIER</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[No active carrier available]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kein aktivierte Versender vorhanden]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_ORDER</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Order]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_ORDER_NO</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Order number]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Auftragsnummer]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_OVERRIDE_FROM</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Override default FROM address ?]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Standard Absender-Adresse überschreiben ?]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_PACKAGE_CODE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Shorthand]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kürzel]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_PHONE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Phone]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Telefon]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_RETOURE_CAREOF</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[c/o]]></value>
+	</en>
+	<de>
+		<value><![CDATA[c/o]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_RETOURE_CITY</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[City]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Stadt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_RETOURE_COMPANY</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Company]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Firma]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_RETOURE_COUNTRY</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Country]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Land]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_RETOURE_FIRSTNAME</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[First name]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Vorname]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_RETOURE_FROM</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[FROM retoure]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Absender Retoure]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_RETOURE_HOUSENO</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[House no]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hausnr.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_RETOURE_LASTNAME</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Last name]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Nachname]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_RETOURE_PHONE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Phone]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Telefon]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_RETOURE_STATE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[State/Province]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bundesland/-staat]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_RETOURE_STREET</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Street]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Strasse]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_RETOURE_TO</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[TO retoure]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Empfänger Retoure]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_RETOURE_ZIP</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Zip]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PLZ]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_SATURDAY_DELIVERY</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Saturday delivery]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zustellung Samstag]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_SETTINGS_BANK_ACCOUNT_HOLDER</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Account holder]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kontoinhaber]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_SETTINGS_BANK_ACCOUNT_NUMBER</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[IBAN]]></value>
+	</en>
+	<de>
+		<value><![CDATA[IBAN]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_SETTINGS_BANK_CODE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[BIC]]></value>
+	</en>
+	<de>
+		<value><![CDATA[BIC]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_SETTINGS_BANK_NAME</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Bank name]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bank]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_SHIPPING_ID</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Shipment ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sendungs-ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_STATE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[State]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bundesland]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_STATUS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Status]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_STREET</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Street]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Strasse]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_STREET_NO</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[House no]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hausnr.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPCLOUD_ZIP_CODE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Zip]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PLZ]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIP_AND_TRACK_WAIT</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[One moment please...]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Einen Moment bitte...]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TRACKING</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Shipment tracking]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sendungsverfolgung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TRACKING_CODE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Shipment number]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sendungsnummer]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TRACKING_SHIPPER</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Shipper]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versender]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_HERMES_PARCELS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Hermes parcels]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hermes-Pakete]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_SHIPCLOUD_PARCELS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[shipcloud parcels]]></value>
+	</en>
+	<de>
+		<value><![CDATA[shipcloud-Pakete]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_SHIP_AND_TRACK</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Hermes parcels]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hermes-Sendungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_SHIP_AND_TRACK_SHIPCLOUD</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[shipcloud parcels]]></value>
+	</en>
+	<de>
+		<value><![CDATA[shipcloud-Sendungen]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

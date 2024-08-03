@@ -35,8 +35,14 @@ class hookpoint {
 	public $active_modules = array();
 	public $active_modules_id = array();
 	public $save_xml_files = false;
+    protected bool $active;
+    protected array $ActiveHooks;
+    /**
+     * @var array|mixed
+     */
+    private mixed $hookCodePreloaded;
 
-	function __construct() {
+    function __construct() {
 		global $db, $_SYSTEM_INSTALL_SUCCESS;
 
 		$this->hook_dir = _SRV_WEBROOT._SRV_WEB_PLUGIN_CACHE.'hookpoints/';
@@ -44,7 +50,7 @@ class hookpoint {
 
 		$this->active = true;
 		// load and define configs
-		if ($this->active && $_SYSTEM_INSTALL_SUCCESS == 'true') {
+		if ($_SYSTEM_INSTALL_SUCCESS == 'true') {
 
 			$rs = $db->Execute("SELECT plugin_id,code FROM ".TABLE_PLUGIN_PRODUCTS . " WHERE plugin_status = 1");
 			while(!$rs->EOF){

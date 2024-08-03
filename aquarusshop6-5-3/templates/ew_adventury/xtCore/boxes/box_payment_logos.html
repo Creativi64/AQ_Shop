@@ -1,13 +1,6 @@
 <div class="payment-logos">
     <p class="headline">
-        {if version_compare(_SYSTEM_VERSION, '4.1.0', '<=')}{txt key=TEXT_EW_ADVENTURY_PAYMENTS}{/if}
-        {if version_compare(_SYSTEM_VERSION, '4.1.10', '>=')}
-            {if version_compare(_SYSTEM_VERSION, '6.1.0', '>=')}
-                {txt key=TEXT_PAYMENTS_FEE}
-            {else}
-                {txt key=TEXT_PAYMENTS_FE}
-            {/if}
-        {/if}
+        {txt key=TEXT_PAYMENTS_FEE}
     </p>
     <div class="logos">
         {if (!$is_pro_version || (defined('KLARNA_LOGO_PRO') && $smarty.const.KLARNA_LOGO_PRO === true)) && $smarty.const.KLARNA_LOGO_URL}

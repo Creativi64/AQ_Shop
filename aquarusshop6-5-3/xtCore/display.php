@@ -51,7 +51,6 @@ if(defined("_STORE_META_DOCTYPE_HTML") && strtolower(_STORE_META_DOCTYPE_HTML) =
 }
 ?>
 <head>
-<meta name="google-site-verification" content="WAaUjV53OYsKXE-TgfamecXP_dG0LzlsJlJh1ykd_74" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <base href="<?php echo _SYSTEM_BASE_URL . _SRV_WEB; ?>" />
 <?php
@@ -66,7 +65,7 @@ if(defined("_STORE_META_DOCTYPE_HTML") && strtolower(_STORE_META_DOCTYPE_HTML) =
 
 	include _SRV_WEBROOT._SRV_WEB_CORE.'javascript.php';
     if (file_exists(_SRV_WEBROOT._SRV_WEB_TEMPLATES._STORE_TEMPLATE.'/javascript/js.php'))
-	include _SRV_WEBROOT._SRV_WEB_TEMPLATES._STORE_TEMPLATE.'/javascript/js.php';
+	    include _SRV_WEBROOT._SRV_WEB_TEMPLATES._STORE_TEMPLATE.'/javascript/js.php';
     else
         include _SRV_WEBROOT._SRV_WEB_TEMPLATES._SYSTEM_TEMPLATE.'/javascript/js.php';
 

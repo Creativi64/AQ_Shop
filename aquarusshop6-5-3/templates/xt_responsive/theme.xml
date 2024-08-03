@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xtcommercetheme>
 	<title>xt:Commerce Responsive</title>
-	<version>6.5.4</version>
-	<minimum_store_version>6.5.4</minimum_store_version>
+	<version>6.6.0</version>
+	<minimum_store_version>6.6.0</minimum_store_version>
 	<developer>xt:Commerce</developer>
 	<url>https://www.xt-commerce.com</url>
 	<marketplace_link><![CDATA[https://www.xt-commerce.com]]></marketplace_link>

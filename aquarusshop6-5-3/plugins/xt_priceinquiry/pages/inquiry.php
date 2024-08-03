@@ -106,14 +106,33 @@ if (!$p_info->is_product) {
 
 $brotkrumen->_addItem($xtLink->_link(array('page'=>'inquiry', 'params'=>'info='.$current_product_id)),TEXT_XT_PRICEINQUIRY);
 
+$selected_country = $default_country = $_SESSION['customer']->customer_default_address['customers_country_code'];
+	if ($selected_country == '') {
+        $selected_country = $default_country = _STORE_COUNTRY;
+        if(isset($_SESSION['geoip_country']) && !empty($_SESSION['geoip_country'])
+                    && array_key_exists($_SESSION['geoip_country'], $countries->countries_list))
+            {
+                    $selected_country = $default_country = $_SESSION['geoip_country'];
+            }
+    }
 // customer logged in ?
 if(isset($_SESSION['registered_customer'])) {
 
-	$add_data = array('logged_in'=>'true','firstname'=>$_SESSION['customer']->customer_default_address['customers_firstname'],'lastname'=>$_SESSION['customer']->customer_default_address['customers_lastname'],'company'=>$_SESSION['customer']->customer_default_address['customers_company'],'email_address'=>$_SESSION['customer']->customer_info['customers_email_address']);
+	$add_data = array('logged_in'=>'true',
+		'firstname'=>$_SESSION['customer']->customer_default_address['customers_firstname'],
+		'lastname'=>$_SESSION['customer']->customer_default_address['customers_lastname'],
+		'company'=>$_SESSION['customer']->customer_default_address['customers_company'],
+		'email_address'=>$_SESSION['customer']->customer_info['customers_email_address'],
+		'country_data' => $countries->countries_list_sorted,
+		'selected_country' => $selected_country,
+		'default_country' => $default_country);
 
 
 } else {
-	$add_data = array('logged_in'=>'false');
+	$add_data = array('logged_in'=>'false',
+			'country_data' => $countries->countries_list_sorted,
+			'selected_country' => $selected_country,
+			'default_country' => $default_country);
 }
 
 

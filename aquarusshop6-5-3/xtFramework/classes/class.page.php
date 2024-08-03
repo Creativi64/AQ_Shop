@@ -31,8 +31,20 @@ class page{
 
 	var $default_page = 'index';
 	//var $default_action = 'default';
+    /**
+     * @var false|mixed
+     */
+    public mixed $loaded_page;
+    /**
+     * @var array|int|mixed|string|string[]|null
+     */
+    public mixed $page_name;
+    /**
+     * @var array|int|string|string[]|null
+     */
+    public string|int|array|null $page_action;
 
-	function __construct($data=''){
+    function __construct($data=''){
 		global $xtPlugin, $filter,$xtLink;
 
 		$_page = array_key_exists('page', $data) ? $filter->_filter($data['page'],'pagename') : '';

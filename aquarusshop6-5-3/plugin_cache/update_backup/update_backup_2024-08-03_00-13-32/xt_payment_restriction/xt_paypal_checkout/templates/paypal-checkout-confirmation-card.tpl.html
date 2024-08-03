@@ -1,0 +1,18 @@
+{include file="./paypal-checkout-script-tag.tpl.html"}
+<script>
+
+document.addEventListener('DOMContentLoaded', function ()
+{
+    try {
+        ppcRemoveBackButton();
+        ppcRemoveSubmitButton();
+        enablePaypalCardForm();
+    }
+    catch(e)
+    {
+        console.log(e);
+    }
+});
+</script>
+
+{include file="./paypal-checkout-wait-modal.tpl.html"}

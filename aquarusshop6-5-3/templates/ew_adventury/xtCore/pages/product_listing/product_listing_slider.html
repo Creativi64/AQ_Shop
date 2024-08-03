@@ -2,7 +2,7 @@
     {$categories}
     {if $product_listing}
 
-        {if $manufacturer.MANUFACTURER.manufacturers_image}<div class="pull-right manufacturers-image">{img img=$manufacturer.MANUFACTURER.manufacturers_image type=m_org class="img-responsive"}</div><br />{/if}
+        {if $manufacturer && $manufacturer.MANUFACTURER.manufacturers_image}<div class="pull-right manufacturers-image">{img img=$manufacturer.MANUFACTURER.manufacturers_image type=m_org class="img-responsive"}</div><br />{/if}
 
         {if $PRODUCTS_DROPDOWN}{$PRODUCTS_DROPDOWN}{/if}
         {if $manufacturer && $manufacturer.MANUFACTURER.manufacturers_description|trim != ''}<div class="manufacturers-description text-word-wrap">{$manufacturer.MANUFACTURER.manufacturers_description}</div>{/if}
@@ -18,19 +18,19 @@
         {/if}
 
         {* Master Slave *}
-        {if version_compare(_SYSTEM_VERSION, '6.3.2', '>=')}
-            {if $code}
-                {if $code == 'xt_master_slave'}
-                    <div id="pcontent-part-productlist" class="pcontent-part"
-                        data-orientation-nav-url="{$products_link}#pcontent-part-productlist"
-                        data-orientation-nav-classes="move"
-                        data-orientation-nav-icon="<i class='fa fa-wrench'></i>"
-                        data-orientation-nav-label="{txt key=TEXT_PRODUCT_OPTIONS}"
-                    >
-                    <p class="breaking-headline">{txt key=TEXT_PRODUCT_OPTIONS}</p>
-                {/if}
+
+        {if $code}
+            {if $code == 'xt_master_slave'}
+                <div id="pcontent-part-productlist" class="pcontent-part"
+                    data-orientation-nav-url="{$products_link}#pcontent-part-productlist"
+                    data-orientation-nav-classes="move"
+                    data-orientation-nav-icon="<i class='fa fa-wrench'></i>"
+                    data-orientation-nav-label="{txt key=TEXT_PRODUCT_OPTIONS}"
+                >
+                <p class="breaking-headline">{txt key=TEXT_PRODUCT_OPTIONS}</p>
             {/if}
         {/if}
+
 
         <div class="listing-container">
             <div id="slider-{$unique_carousel_id}" class="slider{if $heading_text} collapse collapse-auto-toggle-xs in{/if}">
@@ -45,7 +45,7 @@
                                 {if $code == 'xt_master_slave' && $smarty.get.page == 'product' && $module_data.products_master_model != '' && $smarty.get.info == $module_data.products_id}ms-selected-listing-product{/if}
                                 wow fadeIn" data-wow-delay="{$animationDelay}ms" data-wow-duration="700ms">
                                 {hook key=product_listing_slider_section_panel_top module_data=$module_data}
-                                {include file="$selected_template/includes/panel_product_listing.html" listing_version="v1"}
+                                {include file="includes/panel_product_listing.html" listing_version="v1"}
                                 {hook key=product_listing_slider_section_panel_bottom module_data=$module_data}
                             </div><!-- .col -->
                         {/foreach}
@@ -55,13 +55,13 @@
         </div>
 
         {* Master Slave *}
-        {if version_compare(_SYSTEM_VERSION, '6.3.2', '>=')}
-            {if $code}
-                {if $code == 'xt_master_slave'}
-                    </div>
-                {/if}
+
+        {if $code}
+            {if $code == 'xt_master_slave'}
+                </div>
             {/if}
         {/if}
+
 
     {else}
         <div class="alert alert-warning">{txt key=TEXT_EW_ADVENTURY_STARTPAGE_TABS_WARNING}</div>
@@ -69,7 +69,7 @@
 
     {$error_listing}
 
-    {if $category_data.categories_description_bottom}
+    {if $category_data && $category_data.categories_description_bottom}
         <div id="categorie-description-bottom" class="textstyles text-word-wrap">{$category_data.categories_description_bottom}</div>
     {/if}
 </div>

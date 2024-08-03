@@ -1,0 +1,104 @@
+{if $payment_name|trim != '' && $payment_code|trim != ''}
+    <div id="{$payment_code}" class="item item-{$payment_code} {if $payment_code == $payment_selected} selected{/if} payment-container"
+        style="{if $payment_code == 'applepay'}display:none{/if}">
+        {if $payment_icon|trim != ''}
+            {img img=$payment_icon type=w_media_payment alt=$payment_name class="icon img-responsive img-thumbnail___ pull-right" style="margin-top:-15px;"}
+        {/if}
+        <header data-toggle="collapse" data-target=".item-{$payment_code} .collapse">
+            <label class="cursor-pointer">
+                <span class="check" style="display:inline-block;width: 25px;">
+                    {if $payment_hidden == true}
+                        {form type=hidden name=selected_payment value="$payment_code"}
+                    {else}
+                        {if $payment_code == $payment_selected}
+                            {form type=radio name=selected_payment value="$payment_code" checked=true style="vertical-align: text-top;"}
+                        {else}
+                            {form type=radio name=selected_payment value="$payment_code" style="vertical-align: text-top;"}
+                        {/if}
+                    {/if}
+                </span>
+                <span class="name payment-name">{$payment_name}</span>&nbsp;{$payment_delete_link}
+                {if $payment_price.formated}
+                    <small class="price">&nbsp;{$payment_price.formated}</small>
+                {/if}
+            </label>
+        </header>
+        {if $payment_desc|trim != ''}
+            <div class="desc collapse{if $payment_code == $payment_selected} in{/if} payment-desc">
+                {$payment_desc}
+            </div>
+        {/if}
+    </div>
+    <script>
+        {
+            {if $payment_code != "xt_paypal_checkout_pui" && !strpos($payment_code,"_vaulted")}
+
+            let me = document.getElementById("{$payment_code}");
+            if (me) {
+                let parent = me.closest(".list-group-item");
+                if (parent) {
+                    parent.style.display = "none";
+                    console.log('hiding {$payment_code}');
+                }
+            }
+
+            {/if}
+            {if $payment_code == "xt_paypal_checkout_googlepay"}
+            document.addEventListener("GooglePaySdkLoaded", e => {
+                try {
+                    paypal.Googlepay().config()
+                        .then(googlePayConfig => {
+                            googlePaymentsClient = getGooglePaymentsClient();
+                            if (googlePaymentsClient.isReadyToPay(googlePayConfig)) {
+                                let me = document.getElementById("{$payment_code}");
+                                if (me) {
+                                    let parent = me.closest(".list-group-item");
+                                    if (parent) {
+                                        parent.style.display = "block";
+                                    }
+                                }
+                            }
+                        });
+                } catch (e) {
+                    console.log(e);
+                }
+            });
+            {/if}
+        }
+    </script>
+{/if}
+{if !$ppcp_payments_page_script_rendered}
+    <script>
+        document.addEventListener('DOMContentLoaded', function ()
+        {
+            document.querySelectorAll('[id$="_vaulted"]').forEach(node => {
+                let link = node.querySelector(".ppcp-delete-payment-token");
+                if(link)
+                {
+                    link.addEventListener("click", ev => {
+
+                        if(confirm("{txt key=TEXT_XT_PAYPAL_CHECKOUT_SAVED_PAYMENT_DELETE}")) {
+                            try {
+                                ppcWaitModal();
+                                deleteSavedPaymentMethod(link.dataset.paymentToken).
+                                then(function (response) {
+                                    console.log(response);
+                                    window.location.reload();
+                                }).catch((error) => {
+                                    console.log('deleteSavedPaymentMethod', error);
+                                });
+                            } catch (e) {
+                                console.log(e);
+                                ppcWaitModal('hide');
+                            }
+                        }
+                    });
+                }
+            })
+        });
+    </script>
+    {include file="./paypal-checkout-wait-modal-simple.tpl.html"}
+
+    {assign var=ppcp_payments_page_script_rendered value=1 scope="global"}
+{/if}
+

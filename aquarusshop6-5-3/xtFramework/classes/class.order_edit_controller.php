@@ -53,6 +53,7 @@ class order_edit_controller
     public $_coupons = array();
 
     protected $_orig_store_id = 0;
+    public $_customer_id = 0;
 
     public static function getInstance()
     {
@@ -74,7 +75,7 @@ class order_edit_controller
         if (
             (isset($_REQUEST['plugin']) && $_REQUEST['plugin'] == 'order_edit' && $_REQUEST['orders_id'])
             ||
-            (isset($_REQUEST['parentNode']) && $_REQUEST['parentNode'] == 'node_order' && $_REQUEST['gridHandle']=='ordergridForm' && $_REQUEST['edit_id'])
+            (isset($_REQUEST['parentNode']) && $_REQUEST['parentNode'] == 'node_order' && array_value($_REQUEST, 'gridHandle')=='ordergridForm' && array_value($_REQUEST, 'edit_id'))
         )
         {
             if ($_REQUEST['edit_id'] && empty($_REQUEST['orders_id']))
@@ -102,10 +103,10 @@ class order_edit_controller
             $this->_customer->customer_payment_address  = $this->getAddressFromOrder('billing');
             // ende fix
 
-            $this->_customers_status_id = $this->_customer->customer_info['customers_status'];
-            $this->_customers_status = new customers_status($this->_customer->customer_info['customers_status']);
+            $this->_customers_status_id = $this->_customer->customer_info['customers_status'] ?? 0;
+            $this->_customers_status = new customers_status($this->_customer->customer_info['customers_status'] ?? 0);
 
-            if ($_REQUEST['products_id'])
+            if (array_value($_REQUEST, 'products_id'))
             {
                 $this->_products_id = (int) $_REQUEST['products_id'];
             }
@@ -118,10 +119,6 @@ class order_edit_controller
             if(!$keep_store_id) $store_handler->shop_id = $this->_orig_store_id;
 
             self::$_active = true;
-        }
-        else if (isset($_REQUEST['parentNode']) && $_REQUEST['parentNode']=='node_order' && $_REQUEST['pg']=='overview' && $_REQUEST['edit_id'])
-        {
-
         }
     }
 
@@ -158,18 +155,14 @@ class order_edit_controller
      */
     public static function getPriceOverride($order_id, $products_id)
     {
-        $priceOverride = $_SESSION['order_edit_priceOverride'];
+        $priceOverride = (array_key_exists('order_edit_priceOverride', $_SESSION) && $_SESSION['order_edit_priceOverride']) ? $_SESSION['order_edit_priceOverride'] : [];
 
-        if(!is_array($priceOverride))
-        {
-            $priceOverride = [];
-        }
-        if (!$priceOverride[$order_id])
+        if (!array_key_exists('order_id', $priceOverride) || !$priceOverride[$order_id])
         {
             $priceOverride[$order_id] = [];
         }
 
-        if (is_numeric($priceOverride[$order_id][$products_id]))
+        if (array_key_exists($products_id, $priceOverride[$order_id]) && is_numeric($priceOverride[$order_id][$products_id]))
         {
             return $priceOverride[$order_id][$products_id];
         }
@@ -265,7 +258,7 @@ class order_edit_controller
             'customers_title' => $this->_orderFields[$prefix.'title'] ,
             'customers_firstname' => $this->_orderFields[$prefix.'firstname'] ,
             'customers_lastname' => $this->_orderFields[$prefix.'lastname'] ,
-            'customers_dob' => $this->_orderFields[$prefix.'dob'] != '',
+            'customers_dob' => $this->_orderFields[$prefix.'dob'] ?? '',
             'customers_street_address' => $this->_orderFields[$prefix.'street_address'] ,
             'customers_address_addition' => $this->_orderFields[$prefix.'address_addition'] ,
             'customers_suburb' => $this->_orderFields[$prefix.'suburb'] ,

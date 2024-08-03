@@ -26,6 +26,8 @@
  */
 
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
+
+global $xtLink, $xtPlugin, $brotkrumen, $info;
   
   if (count($_SESSION['cart']->content)==0) {
         $xtLink->_redirect($xtLink->_link(array('page'=>'cart')));
@@ -68,7 +70,7 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
     }
     */
 
-
+    /** @var  $checkout checkout */
     $p_data = $checkout->_getPayment();
     $payment_info = $p_data[$_SESSION['selected_payment']];
 
@@ -95,7 +97,7 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
     ($plugin_code = $xtPlugin->PluginCode('module_checkout.php:checkout_pre_data')) ? eval($plugin_code) : false;
 
-    if ($payment_module_data->subpayments===true) {
+    if (isset($payment_module_data) && $payment_module_data->subpayments===true) {
         // check if subpayment is allowed
         if (!in_array($_SESSION['selected_payment_sub'],$payment_module_data->allowed_subpayments)) {
             $info->_addInfo(ERROR_NO_PAYMENT_SELECTED);

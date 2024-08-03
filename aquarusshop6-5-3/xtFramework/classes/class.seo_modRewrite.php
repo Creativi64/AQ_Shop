@@ -31,6 +31,8 @@ class seo_modRewrite {
 
     public $activated = _SYSTEM_MOD_REWRITE;
     public $string_glue = '-';
+    public mixed $org_page;
+    public mixed $clean_page;
 
     function _lookUpforUrl() {
         global $xtPlugin,$db,$page_data,$language,$xtLink,$current_product_id,$current_category_id,$current_content_id,$current_manufacturer_id, $store_handler;

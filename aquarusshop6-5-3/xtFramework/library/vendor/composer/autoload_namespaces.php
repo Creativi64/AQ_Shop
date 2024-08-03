@@ -12,4 +12,5 @@ return array(
     'JShrink' => array($vendorDir . '/tedivm/jshrink/src'),
     'JSMin\\' => array($vendorDir . '/mrclay/jsmin-php/src'),
     'HTMLPurifier' => array($vendorDir . '/ezyang/htmlpurifier/library'),
+    'FroalaEditor' => array($vendorDir . '/froala/wysiwyg-editor-php-sdk/lib'),
 );

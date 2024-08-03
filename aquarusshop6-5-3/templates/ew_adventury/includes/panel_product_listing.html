@@ -36,7 +36,7 @@
                         </div>
                     {/if}
                 {else}
-                    {if $module_data.review_stars_rating}
+                    {if isset($module_data.review_stars_rating)}
                         <div class="product-reviews cursor-pointer popover-trigger" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="{txt key=TEXT_XT_REVIEWS_INFO}" data-content="{if $module_data.products_rating_count}{$module_data.products_rating_count} {txt key=TEXT_XT_REVIEWS_INFO} {txt key=TEXT_EW_ADVENTURY_POPOVER_RATING_AVERAGE} {math equation='(x-1) / 100 * y' x=$module_data.review_stars_rating y=5 format='%.1f'} {txt key=TEXT_PAGINATION_FROM} 5 {txt key=TEXT_EW_ADVENTURY_POPOVER_RATING_STAR}.{else}{txt key=TEXT_XT_REVIEWS_NO_REVIEWS}.{/if}" onclick="document.location.href='{$module_data.link_reviews_list}'">
                             <div class="reviews_rating_light">
                                 <div class="reviews_rating_dark" style="width:{$module_data.review_stars_rating}%"></div>
@@ -146,13 +146,7 @@
                             {form type=hidden name=action value=add_product}
                             {form type=hidden name=product value=$module_data.products_id}
                             {form type=hidden name=qty value=1}
-                            {if version_compare(_SYSTEM_VERSION, '5.1.0', '>=')}
-                                {if version_compare(_SYSTEM_VERSION, '5.1.3', '>=')}
-                                    {form type=hidden name=gotoCart value=$smarty.const._STORE_GOTO_CART_DIRECTLY}
-                                {else}
-                                    {form type=hidden name=gotoCart value='1'}
-                                {/if}
-                            {/if}
+                            {form type=hidden name=gotoCart value=$smarty.const._STORE_GOTO_CART_DIRECTLY}
                             <button type="submit" class="btn btn-primary preloader pull-left btn-cart-listing" title="{txt key=BUTTON_ADD_CART}">
                                 <i class="mdi mdi-cart-plus"></i>&nbsp;
                                 {txt key=TEXT_CART}

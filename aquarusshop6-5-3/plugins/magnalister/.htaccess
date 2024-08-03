@@ -1,0 +1,18 @@
+<Files magnalister.php>
+    <IfModule !mod_authz_core.c>
+        Order Deny,Allow
+        Allow from all
+    </IfModule>
+    <IfModule mod_authz_core.c>
+        Require all granted
+    </IfModule>
+</Files>
+<Files magnaCallback.php>
+    <IfModule !mod_authz_core.c>
+        Order Deny,Allow
+        Allow from all
+    </IfModule>
+    <IfModule mod_authz_core.c>
+        Require all granted
+    </IfModule>
+</Files>

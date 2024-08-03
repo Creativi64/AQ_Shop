@@ -480,6 +480,7 @@ class adminDB_DataSave {
         global $filter, $language, $db,$store_handler;
         $obj = new stdClass();
         $obj->success = false;
+        $obj->new_id = 0;
 
 
         $pTblFields = $this->getPrimaryTableFields();
@@ -498,7 +499,7 @@ class adminDB_DataSave {
             $stores = $store_handler->getStores();
             foreach ($stores as $store) {
                 foreach ($language->_getLanguageList() as $langData) {
-                    $cnt = is_array($pTblFields['store'.$store['id']][$langData['code']]) ? count($pTblFields['store'.$store['id']][$langData['code']]) : 0;
+                    $cnt = array_value($pTblFields, 'store'.$store['id']) && array_value($pTblFields['store'.$store['id']], [$langData['code']]) ? count($pTblFields['store'.$store['id']][$langData['code']]) : 0;
                     if (is_array($data) && count($data) != $cnt) {
 
                         //	$data[$langData['code']] = $this->completeDataset($data[$langData['code']]);

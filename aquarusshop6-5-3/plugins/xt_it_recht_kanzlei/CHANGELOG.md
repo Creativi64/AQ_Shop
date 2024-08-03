@@ -1,3 +1,6 @@
+## [5.0.8]
+- Unterstützung für Englisch 
+
 ## [5.0.7]
 - FIX Fehler 'rechtstext_pdf_url invalid' beiim Übertragen der rechsttexte in den Shop
 

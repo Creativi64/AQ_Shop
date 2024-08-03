@@ -162,6 +162,12 @@ function ADODB_Error_Handler($dbms, $fn, $errno, $errmsg, $p1, $p2, &$thisConnec
 		$err_msg       = constant("USER_POSITION") == "admin" ? "<br/><pre>{$errmsg}</pre>" : "";
 		$msg = "DB-Error, check {$log_file_info} for details {$err_msg}";
 
+		global $store_handler;
+		if($store_handler)
+		{
+			$msg = str_replace('[STORE_ID]', $store_handler->shop_id, $msg);
+		}
+
 		if ($adminHandler_expected_content_type == 'json')
 		{
 			$ret = new stdClass();
@@ -179,6 +185,12 @@ function ADODB_Error_Handler($dbms, $fn, $errno, $errmsg, $p1, $p2, &$thisConnec
 				fclose($fp);
 				$buffer = str_replace('[ERR_MSG]', $msg, $buffer);
 				$buffer = str_replace('[BG_COLOR]', '#f5ecbe', $buffer);
+
+				if($store_handler)
+				{
+					$buffer = str_replace('[STORE_ID]', $store_handler->shop_id, $buffer);
+				}
+
 				if(!headers_sent())
 				{
 					header($_SERVER["SERVER_PROTOCOL"] . ' 503 Service Temporarily Unavailable');

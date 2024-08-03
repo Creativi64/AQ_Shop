@@ -97,6 +97,7 @@ class Xtcommerce implements PluginInterface, EventSubscriberInterface {
 
 			$md = new $class;
 			$md->url_data = $_REQUEST;
+            $md->setClass($_GET["currentType"]);
 			$obj = $md->processOnly($filename);
 		}
 	}

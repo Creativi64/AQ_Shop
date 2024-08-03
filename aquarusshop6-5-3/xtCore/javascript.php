@@ -27,7 +27,8 @@
 
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
-global $db, $page, $is_pro_version, $xtLink, $language, $store_handler;
+global $db, $page, $is_pro_version, $xtLink, $language, $store_handler, $xtPlugin;
+
 $type = '';
 if(_STORE_META_DOCTYPE_HTML != "html5"){
     $type = 'type="text/javascript" ';

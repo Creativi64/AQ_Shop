@@ -1,4 +1,4 @@
-{if !isset($disable_content_container) || version_compare(_SYSTEM_VERSION, '5.0.0', '<')}
+{if !isset($disable_content_container)}
     <h1 class="breaking-headline">{$data.content_heading}</h1>
     {if $file}
         {$file}

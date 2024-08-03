@@ -76,7 +76,7 @@ class rssreader
         
         // Sending request to API server
         require_once _SRV_WEBROOT._SRV_WEB_FRAMEWORK.'classes/class.CurlRequest.php';
-        $license_key = $lic_parms['key']['value'];
+        //$license_key = $lic_parms['key']['value'];
     }
 
     /**

@@ -1,3 +1,8 @@
+## [3.6.5]
+- FIX Anpassungen für Gutscheine Festwert/Versand
+- FIX Giropay aus Installer entfernt
+- DEV ppcp_config.php nun unverschlüsselt
+
 ## [3.6.4]
 - FIX array_key_exists() expects parameter 2 to be array in class.paypal_checkout.php:819
 - FIX ppcp_pui_error: Fehler bei Kauf auf Rechnung (PUI)
@@ -20,6 +25,7 @@
   https://www.paypal.com/de/brc/article/securely-store-payments
   https://newsroom.deatch.paypal-corp.com/PayPal-erweitert-Komplettloesung-PayPal-Checkout
 - NEU Google Pay im Checkout
+  Einrichtung: https://xtcommerce.atlassian.net/wiki/spaces/MANUAL/pages/3149168643
 
 ## [3.5.3]
 - Abschaltung SOFORT über PayPal https://www.paypal.com/de/cshelp/article/help1145
@@ -43,7 +49,7 @@
 - kleiner fix im logging
 
 ## [3.5.0]
-- Apple Pay (für registrierte Kunden)  
+- NEU Apple Pay im Checkout
   Einrichtung: https://xtcommerce.atlassian.net/wiki/spaces/MANUAL/pages/2994208879
 - FIX fehlende Währungscodes an den APM-Bestellungen
 

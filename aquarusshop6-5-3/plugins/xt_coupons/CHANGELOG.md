@@ -1,5 +1,14 @@
+## [5.2.23]
+- FIX redeem_amount uU netto
+
+## [5.2.22]
+- PHP Deprecated: Optional parameter
+
+## [5.2.21]
+- FIX Zahlungsart-Rabatt wird bei order-edit nicht übernommen
+
 ## [5.2.20]
-- Fix: Warenkorb ermittlung für mindestebestellwert beachtet nun auch Sonderpreise
+- Fix: Warenkorb ermittlung für Mindestebestellwert beachtet nun auch Sonderpreise
 
 ## [5.2.19]
 - FIX für PHP 8, bei Ermittlung qualifizierter Artikel für den Warenkorb

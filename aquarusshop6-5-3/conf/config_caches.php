@@ -38,21 +38,21 @@ define('_TIME_24_HOURS',(24*3600));
  */
 define('_CACHE_DIR_ADODB', 'cache/adodb/'); // db cache dir relative to _SRV_WEBROOT
 
-define('_CACHETIME_ADODB',0); // db cache time (seconds)
+define('_CACHETIME_ADODB', 120); // db cache time (seconds)
 
 
 /* folgenden Wert nicht ändern, Zeile nicht editieren, wenn Sie nicht absolut genau wissen was Sie tun */
 //define('_DONT_CLEAR_CACHE_ADODB_AUTOMATICALLY', false);
 
-// setzt adodb_cahche_time für die Sprache
-define('_CACHETIME_LANGUAGE_CONTENT',0);
+// setzt separat die _CACHETIME_ADODB für die Sprache
+define('_CACHETIME_LANGUAGE_CONTENT', 120);
 
 define('_CACHETIME_MANUFACTURER_LIST',_TIME_24_HOURS);
 
 /**
  * activate Smarty Template Cache
  */
-define('SMARTY_USE_CACHE','false');
+define('SMARTY_USE_CACHE','true');
 
 /**
  * activate/deactivate Smarty Compile Check
@@ -62,7 +62,7 @@ define('SMARTY_USE_CACHE','false');
  * to speedup page load in production try setting it to FALSE
  *
  */
-define('SMARTY_USE_COMPILE_CHECK', true);
+define('SMARTY_USE_COMPILE_CHECK', false);
 
 /**
  * Smarty Cache Lifetime (secounds)
@@ -124,7 +124,7 @@ if(FLUSH_OPCACHE === true && function_exists('opcache_reset'))
  * 'false' wurde ehemals für kleine Shops empfohlen, wir raten zur Verwendung von Datenbank-Hooks.
  * die korrekte Funktion mit 'false' wird momentan noch getestet
  *
- * Empfohlen: true
+ * Empfohlen: 'true'
  */
 define('_SYSTEM_USE_DB_HOOKS', true);
 
@@ -133,18 +133,18 @@ define('_SYSTEM_USE_DB_HOOKS', true);
  *
  * Standard: false
  */
-define('_USE_CACHE_COUNTRIES', false);
+define('_USE_CACHE_COUNTRIES', true);
 
 /**
  * Mit Einstellung true werden die Sprachvariablen in verschiedene /cache/_cache_xt.language_content.*.ser geschrieben und von dort gelesen
  *
  * Standard: false
  */
-define('_USE_CACHE_LANGUAGE_CONTENT', false);
+define('_USE_CACHE_LANGUAGE_CONTENT', true);
 
 /**
- * Mit Einstellung true werden hookpoint codes vorab geladen, reduziert Datenbanklast bei größerer Plugin-Anzal
- *
- */
+* Mit Einstellung true werden hookpoint codes vorab geladen, reduziert Datenbanklast bei größerer Plugin-Anzal
+*
+*/
 
 define('_PRELOAD_PLG_HOOK_CODE',true);

@@ -1,0 +1,73 @@
+
+{if $conditions_fulfilled}
+
+    {if $payment_code == $payment_selected}
+        <div class="box box-white box-hover">
+            <p class="payment-name">
+                <span style="display:inline-block;width: 25px;">{form type=radio name=selected_payment value=$payment_code checked=true}</span> {$payment_name} {if $payment_price.formated}<span class="normal">({$payment_price.formated})</span>{/if} {if $payment_icon}<span class="float-right">{img img=$payment_icon type=w_media_payment alt=$payment_name}</span>{/if}</p>
+            {if $payment_desc}
+                <p class="payment-desc" style="display:none;padding-left:25px;">{$payment_desc}
+                </p>
+            {/if}
+            <p class="payment-desc ec_customers_dob" style="display:none;padding-left:25px;">
+                <label for="ec_customers_dob" class="">{txt key=TEXT_BIRTHDATE}*</label>
+                {form id=ec_customers_dob type=text name='ec_customers_dob' value=$customers_dob}<br />
+                {form type=checkbox name=zustimmung_accepted} &nbsp;{$text_zustimmung}
+            </p>
+        </div><!-- .box .box-white .box-hover -->
+    {else}
+        <div class="box box-white box-hover">
+            <p class="payment-name">
+                <span style="display:inline-block;width: 25px;">{form type=radio name=selected_payment value=$payment_code}</span> {$payment_name} {if $payment_price.formated}<span class="normal">({$payment_price.formated})</span>{/if} {if $payment_icon}<span class="float-right">{img img=$payment_icon type=w_media_payment alt=$payment_name}</span>{/if}</p>
+            {if $payment_desc}
+                <p class="payment-desc" style="display:none;padding-left:25px;">{$payment_desc}
+                </p>
+            {/if}
+            <p class="payment-desc ec_customers_dob" style="display:none;padding-left:25px;">
+                <label for="ec_customers_dob" class="">{txt key=TEXT_BIRTHDATE}*</label>
+                {form id=ec_customers_dob type=text name='ec_customers_dob' value=$customers_dob}<br />
+                {form type=checkbox name=zustimmung_accepted} &nbsp;{$text_zustimmung}
+            </p>
+        </div><!-- .box .box-white .box-hover -->
+    {/if}
+
+{else}
+    <div class="box box-white box-hover">
+        <p class="payment-name">
+            {$payment_name} {if $payment_price.formated}<span class="normal">({$payment_price.formated})</span>{/if} {if $payment_icon}<span class="float-right">{img img=$payment_icon type=w_media_payment alt=$payment_name}</span>{/if}</p>
+        {if $payment_desc}
+            <p class="payment-desc" style="padding-left:25px;">{$payment_desc}
+            </p>
+        {/if}
+        <p>{$text_not_available}</p>
+    </div><!-- .box .box-white .box-hover -->
+{/if}
+
+{literal}
+<script type="text/javascript">
+    /* <![CDATA[ */
+    var dobClicked = false;
+    var dobPreselect = {/literal}new Date({$dobPreselect}){literal};
+    $(document).ready(function(){
+
+        var dobInput = $('#ec_customers_dob');
+        if (dobInput.length && typeof dobInput.datetimepicker === "function") {
+            dobInput.datetimepicker({
+                minDate: new Date({/literal}{$min_date}{literal}),
+                maxDate:  new Date({/literal}{$max_date}{literal}),
+                useCurrent: false,
+                format: '{/literal}{$smarty.const._STORE_ACCOUNT_DOB_FORMAT|upper}{literal}',
+                locale: '{/literal}{if $federal_states.language_code == "bp"}pt{else}{$federal_states.language_code}{/if}{literal}'
+            }).on('dp.show', function()
+            {
+                if (!dobClicked && dobPreselect!=false){
+                    dobInput.data("DateTimePicker").date( dobPreselect );// set
+                    {/literal}{if $is_new}{literal}dobInput.data("DateTimePicker").date( null ); // and unset to unselect and force user to click{/literal}{/if}{literal}
+                    dobClicked = true;
+                }
+            });
+        }
+    });
+    /* ]]> */
+</script>
+{/literal}

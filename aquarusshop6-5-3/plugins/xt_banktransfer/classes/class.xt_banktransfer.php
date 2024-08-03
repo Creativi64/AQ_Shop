@@ -28,6 +28,8 @@
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
+use Smarty\Smarty;
+
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
 class xt_banktransfer{
@@ -165,19 +167,25 @@ class xt_banktransfer{
 
 
       $smarty = new Smarty();
-      $smarty->compile_dir = _SRV_WEBROOT . 'templates_c';
+      $smarty->setCompileDir(_SRV_WEBROOT . 'templates_c');
       $smarty->assign('data', $data);
 
       
       $tpl_source = $this->getTemplate($rs->fields['language_code']);
       $tpl_trans = $db->GetAssoc("SELECT language_key, language_value FROM ".TABLE_LANGUAGE_CONTENT." WHERE language_code='".$rs->fields['language_code']."' and (class='admin' or class='both')");
       //$tpl_source = preg_replace('/({txt)\s(key=)([A-Z_]+)(\})/e','$tpl_trans["$3"]',$tpl_source);
-      $tpl_source = preg_replace_callback('/({txt)\s(key=)([A-Z_]+)(\})/',function($m){ return $tpl_trans[$m];},$tpl_source);
+      $tpl_source = preg_replace_callback('/({txt)\s(key=)([A-Z_]+)(\})/',function($m) use($tpl_trans){ return $tpl_trans[$m];},$tpl_source);
 
-      
-      $html = $smarty->fetch('eval:' . $tpl_source);
 
-      require_once _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_banktransfer/library/dompdf/dompdf_config.custom.inc.php';
+        try
+        {
+            $html = $smarty->fetch('eval:' . $tpl_source);
+        } catch (\Smarty\Exception $e)
+        {
+            $html = $e->getMessage().'<br><br>'. $e->getTraceAsString();
+        }
+
+        require_once _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_banktransfer/library/dompdf/dompdf_config.custom.inc.php';
       //require_once _SRV_WEBROOT . _SRV_WEB_FRAMEWORK . 'library/dompdf/dompdf_config.inc.php';
 
         $options = new Options(
@@ -289,7 +297,7 @@ class xt_banktransfer{
    * @return array
    */
   function setAccountData($data){
-    global $db, $info;
+    global $db, $info, $xtPlugin;
 
     $error =  false;
 
@@ -317,6 +325,8 @@ class xt_banktransfer{
     }else{
       $db->AutoExecute(TABLE_XT_BANKTRANSFER, $payment_info_array, 'INSERT');
     }
+
+      ($plugin_code = $xtPlugin->PluginCode('class.xt_banktransfer.php:setAccountData_bottom')) ? eval($plugin_code) : false;
 
     $data['success'] = true;
     return $data;

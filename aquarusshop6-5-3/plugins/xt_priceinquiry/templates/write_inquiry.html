@@ -46,6 +46,10 @@
                     {form id=lastname type=text name=lastname size=60 value=$lastname}
                 </div>
                 <div class="form-group">
+                    <label for="customers_country_code">{txt key=TEXT_COUNTRY}*</label>
+                    {form type=select name=customers_country_code value=$country_data default=$selected_country class="form-control"}
+                </div>
+                <div class="form-group">
                     <label for="review_title">{txt key=TEXT_COMPETITOR_PRICE}*</label>
                     {form id=competitor_price type=text name=competitor_price size=60 value=$competitor_price}
                 </div>

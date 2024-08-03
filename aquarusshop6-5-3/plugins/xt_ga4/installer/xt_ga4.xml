@@ -2,8 +2,8 @@
 <xtcommerceplugin>
 
     <code>xt_ga4</code>
-    <version>1.3.1</version>
-    <type>tracking</type>
+    <version>1.3.6</version>
+    <type>google</type>
 
     <developer>xt:Commerce</developer>
     <url>https://www.xt-commerce.com</url>
@@ -16,19 +16,12 @@
     <marketplace_link><![CDATA[https://addons.xt-commerce.com/index.php?page=product&info=834]]></marketplace_link>
     <documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/spaces/MANUAL/pages/2846556161]]></documentation_link>
 
-    <required_plugins>
-        <plugin>
-            <code>xt_cookie_consent</code>
-            <version>1.2.0</version>
-        </plugin>
-    </required_plugins>
-
     <plugin_code>
 
         <code>
             <hook>display.php:content_head</hook>
             <phpcode><![CDATA[
-      if(constant(XT_GA4_ACTIVE)) {
+      if(constant("XT_GA4_ACTIVE")) {
                 require_once _SRV_WEBROOT.'plugins/xt_ga4/classes/class.xt_ga4.php';
                 $ga4 = new xt_ga4();
                 $ga4->_showGlobalTag();
@@ -41,7 +34,7 @@
         <code>
             <hook>display.php:content_top</hook>
             <phpcode><![CDATA[
-      if(constant(XT_GA4_ACTIVE)) {
+      if(constant("XT_GA4_ACTIVE")) {
                 $ga4->_showGTMBodyTag();
       }
             ]]></phpcode>
@@ -108,18 +101,6 @@
             </en>
         </config>
         <config>
-            <key>XT_GA4_DO_NOT_TRACK</key>
-            <type>dropdown</type>
-            <url>conf_truefalse</url>
-            <value>false</value>
-            <de>
-                <title>Do-Not-Track Einstellung beachten</title>
-            </de>
-            <en>
-                <title>Honor Do-Not-Track setting</title>
-            </en>
-        </config>
-        <config>
             <key>XT_GA4_NET_PRICES</key>
             <type>dropdown</type>
             <url>conf_truefalse</url>
@@ -141,6 +122,18 @@
             </de>
             <en>
                 <title>Add Adwords Conversion in dataLayer</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_GA4_USERDATA</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>true</value>
+            <de>
+                <title>user_data im Checkout Flow übertragen</title>
+            </de>
+            <en>
+                <title>Transmit user_data in checkout flow</title>
             </en>
         </config>
         <config>

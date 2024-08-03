@@ -4,6 +4,8 @@
  * Manage html error reporting
  */
 
+global $page;
+
 use ew_adventury\plugin as ew_adventury_plugin;
 
 if (class_exists('ew_adventury\plugin') && ew_adventury_plugin::status()) {

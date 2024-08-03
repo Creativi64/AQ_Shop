@@ -27,6 +27,7 @@
 
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
+#[AllowDynamicProperties]
 class language extends language_content{
 
 	public $default_language = _STORE_LANGUAGE;
@@ -37,9 +38,16 @@ class language extends language_content{
 	protected $_master_key = 'languages_id';
 
 	public $content_language;
+    /**
+     * @var array|array[]
+     */
 
-	function __construct($code = ''){
+    protected $setlocale;
+
+    function __construct($code = ''){
 		global $db, $xtPlugin;
+
+        parent::__construct();
 
 		($plugin_code = $xtPlugin->PluginCode('class.language.php:_language_top')) ? eval($plugin_code) : false;
 		if(isset($plugin_return_value))
@@ -83,9 +91,7 @@ class language extends language_content{
 			}
 		}
 
-		if($this->_checkStore($code, USER_POSITION)){
-			$code = $code;
-		}else{
+		if(!$this->_checkStore($code, USER_POSITION)){
 			$code = $this->default_language;
 		}
         $code = $filter->_filter($code,'lng');
@@ -146,7 +152,6 @@ class language extends language_content{
         switch($page->page_name) {
 
             case 'content';
-                    $links = array();
                     global $current_content_id,$shop_content_data;
                     $query = "SELECT * FROM ".TABLE_SEO_URL." WHERE link_type='3' and link_id=? and store_id=?";
                     $rs = $db->Execute($query, array((int)$current_content_id, $store_handler->shop_id));
@@ -171,7 +176,6 @@ class language extends language_content{
                     break;
             case 'product':
             case 'reviews':
-                $links = array();
                 global $current_product_id,$p_info;
 
                 $query = "SELECT * FROM ".TABLE_SEO_URL." WHERE link_type='1' and link_id=? and store_id=?";
@@ -196,7 +200,6 @@ class language extends language_content{
                 }
                 break;
            case 'categorie':
-                $links = array();
                 global $category, $current_category_id;
 
                 $query = "SELECT * FROM ".TABLE_SEO_URL." WHERE link_type='2' and link_id=? and store_id=?";

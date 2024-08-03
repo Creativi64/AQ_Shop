@@ -24,6 +24,8 @@
  #
  #########################################################################
  */
+
+use Smarty\Smarty;
                         
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
@@ -467,14 +469,14 @@ class xt_orders_invoices
         if ( !$language->_checkLanguageCode($langCode)) $langCode = $language->code;
         
         $smarty = new Smarty();
-        $smarty->compile_dir = _SRV_WEBROOT . 'templates_c';
+        $smarty->setCompileDir(_SRV_WEBROOT . 'templates_c');
         
         $smarty->addTemplateDir('./'._SRV_WEB_TEMPLATES._STORE_TEMPLATE.'/');
         $smarty->addTemplateDir('./'._SRV_WEB_TEMPLATES._SYSTEM_TEMPLATE.'/');
-        
-        $smarty->addPluginsDir(array(
-                _SRV_WEBROOT.'xtFramework/library/smarty/xt_plugins')
-        );
+
+        Template::addPluginsDir($smarty, array(
+            _SRV_WEBROOT.'xtFramework/library/smarty/xt_plugins'));
+
 		
         if ($template_id===false) {
         	$tpl_source = $this->db_get_template($data['invoice']['shop_id'] . '_' . $langCode); 
@@ -526,8 +528,14 @@ class xt_orders_invoices
         $smarty->assign('tpl_path', _SRV_WEBROOT._SRV_WEB_TEMPLATES.$this->selected_template.'/');
         $smarty->assign('tpl_url_path_system', $path_base_url._SRV_WEB._SRV_WEB_TEMPLATES._SYSTEM_TEMPLATE.'/');
         $smarty->assign('tpl_path_system', _SRV_WEBROOT._SRV_WEB_TEMPLATES.$this->system_template.'/');
-        
-        $html = $smarty->fetch('eval:' . $tpl_source);
+
+        try
+        {
+            $html = $smarty->fetch('eval:' . $tpl_source);
+        } catch (\Smarty\Exception $e)
+        {
+            $html = $e->getMessage().'<br><br>'. $e->getTraceAsString();
+        }
 
         require_once _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_orders_invoices/library/dompdf/dompdf_config.custom.inc.php';
         //require_once _SRV_WEBROOT . _SRV_WEB_FRAMEWORK . 'library/dompdf/dompdf_config.inc.php';
@@ -567,7 +575,7 @@ class xt_orders_invoices
     
     private function getPdfFileName($tpldata) {
         $smarty = new Smarty();
-        $smarty->compile_dir = _SRV_WEBROOT . 'templates_c';
+        $smarty->setCompileDir(_SRV_WEBROOT . 'templates_c');
         $smarty->assign('data', $tpldata);
         // create some shortcuts to ease file name definition in backend
         $smarty->assign('orders_id', $tpldata['order']['order_data']['orders_id']);
@@ -1472,19 +1480,26 @@ class xt_orders_invoices
         if(empty($smarty))
         {
             $smarty = new Smarty();
-            $smarty->compile_dir = _SRV_WEBROOT . 'templates_c';
+            $smarty->setCompileDir(_SRV_WEBROOT . 'templates_c');
         }
     	if (!isset($params['var'])) {
     		trigger_error("eval: missing 'var' parameter");
-    		return;
+    		return '';
     	}
     
     	if ($params['var'] == '') {
-    		return;
+    		return '';
     	}
-    
-    	$_contents = $smarty->fetch('string:'.$params['var']);
-    	if (!empty($params['assign'])) {
+
+        try
+        {
+            $_contents = $smarty->fetch('string:' . $params['var']);
+        } catch (\Smarty\Exception $e)
+        {
+            $_contents = $e->getMessage();
+        }
+
+        if (!empty($params['assign'])) {
     		$smarty->assign($params['assign'], $_contents);
     	} else {
     		return $_contents;

@@ -27,6 +27,7 @@
 
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
+#[AllowDynamicProperties]
 class order extends xt_backend_cls {
 
 	public $customer;
@@ -76,6 +77,13 @@ class order extends xt_backend_cls {
             '_cart_discount_exact',
             '_cart_discount_data'
         ];
+    public mixed $data_orders_id;
+    /**
+     * @var bool|int|mixed
+     */
+    public mixed $data_orders_products_id;
+    public mixed $order_total;
+    public mixed $data_orders_total_id = 0;
 
     function __construct($oID=0, $cID=0) {
 		global $db, $xtPlugin;
@@ -89,7 +97,7 @@ class order extends xt_backend_cls {
 			if ($rs->RecordCount()==1) $this->customer = $rs->fields['customers_id'];
 
 		}else{
-			$this->customer = $_SESSION['registered_customer'];
+			$this->customer = $_SESSION['registered_customer'] ?? 0;
 		}
 
 		($plugin_code = $xtPlugin->PluginCode(__CLASS__.':_order_id')) ? eval($plugin_code) : false;
@@ -214,9 +222,9 @@ class order extends xt_backend_cls {
 			$order_data['comments'] = $data['comments'];
 
 			// loginAs modus: hinzufügen des speichernden admins zu order_data
-			if ($_SESSION['orderEditAdminUser'] || $_SESSION['admin_user']['user_id'])
+			if (array_value($_SESSION, 'orderEditAdminUser') || ( array_value($_SESSION, 'admin_user') && array_value($_SESSION['admin_user'], 'user_id') )  )
 			{
-				if ($_SESSION['orderEditAdminUser'])
+				if (array_value($_SESSION, 'orderEditAdminUser'))
 				{
 					$order_data['ORDER_EDIT_ACL_USER'] = $_SESSION['orderEditAdminUser']['user_id'];
 					unset($_SESSION['orderEditAdminUser']);
@@ -227,13 +235,13 @@ class order extends xt_backend_cls {
 				}
 			}
 			//error_log(print_r($_REQUEST,true));
-			if ($_REQUEST['plugin'] === 'order_edit')
+			if (array_value($_REQUEST,'plugin') === 'order_edit')
 			{
-				if ($_REQUEST['load_section'] === 'order_edit_edit_paymentShipping' && $_REQUEST['pg'] === 'apply')
+				if (array_value($_REQUEST,'load_section') === 'order_edit_edit_paymentShipping' && array_value($_REQUEST, 'pg') === 'apply')
 				{
 					$order_data['source_id'] = $this->order_data['source_id'];
 				}
-				elseif ($_REQUEST['load_section'] === 'order_edit_new_order' && $_REQUEST['pg'] === 'openNewOrderTabBackend')
+				elseif (array_value($_REQUEST,'load_section') === 'order_edit_new_order' && array_value($_REQUEST, 'pg') === 'openNewOrderTabBackend')
 				{
 					$order_data['source_id'] = $data['source_id'];
 				}
@@ -265,7 +273,7 @@ class order extends xt_backend_cls {
 		                $this->_deleteOrderProductMedia($data['orders_id']);
 			}
 
-			$p_data = $this->_buildProductData($data['orders_id'], $data['products']);
+			$p_data = $this->_buildProductData($data['orders_id'], $data['products'] ?? []);
 
 			($plugin_code = $xtPlugin->PluginCode('class.order.php:_setOrder_product_bottom')) ? eval($plugin_code) : false;
             foreach($p_data as $key => $value) {
@@ -281,7 +289,7 @@ class order extends xt_backend_cls {
 				$this->_deleteOrderTotal($data['orders_id'], $data['shipping_code']);
 			}
 
-			$total_data =  $this->_buildTotalData($data['orders_id'], $data['total']);
+			$total_data =  $this->_buildTotalData($data['orders_id'], $data['total'] ?? []);
 			if(is_array($total_data)){
                 foreach($total_data as $key => $value) {
 					$this->oID = $data['orders_id'];
@@ -344,6 +352,8 @@ class order extends xt_backend_cls {
 	function _buildCustomerData($customer_id='', $data=''){
 		global $xtPlugin, $db;
 
+        $tmp_data = false;
+
 		($plugin_code = $xtPlugin->PluginCode('class.order.php:_buildCustomerData_top')) ? eval($plugin_code) : false;
 		if(isset($plugin_return_value))
 		return $plugin_return_value;
@@ -359,7 +369,7 @@ class order extends xt_backend_cls {
 		}
 		
 		$customer_array = $c_data;
-		if ($tmp_data->customer_info['customers_id']) {
+		if ($tmp_data && $tmp_data->customer_info && $tmp_data->customer_info['customers_id']) {
 			$default_adress = $tmp_data->_buildAddressData($tmp_data->customer_info['customers_id'],'default');
 			$customer_array['customers_age'] = $default_adress['customers_age'];
 			$customer_array['customers_dob'] = $default_adress['customers_dob'];
@@ -404,7 +414,7 @@ class order extends xt_backend_cls {
 			'billing_city'=>$b_data['customers_city'],
 			'billing_postcode'=>$b_data['customers_postcode'],
 			'billing_zone'=>$b_data['customers_zone'],
-			'billing_zone_code'=>$b_data['customers_zone_code'],
+			'billing_zone_code'=>$b_data['customers_zone_code'] ?? 0,
 			'billing_country'=>$b_data['customers_country'],
 			'billing_country_code'=>$b_data['customers_country_code'],
 			'billing_federal_state_code'=>$b_data['customers_federal_state_code'],
@@ -450,7 +460,7 @@ class order extends xt_backend_cls {
 			'delivery_city'=>$d_data['customers_city'],
 			'delivery_postcode'=>$d_data['customers_postcode'],
 			'delivery_zone'=>$d_data['customers_zone'],
-			'delivery_zone_code'=>$d_data['customers_zone_code'],
+			'delivery_zone_code'=>$d_data['customers_zone_code'] ?? 0,
 			'delivery_country'=>$d_data['customers_country'],
 			'delivery_country_code'=>$d_data['customers_country_code'],
 			'delivery_federal_state_code'=>$d_data['customers_federal_state_code'],
@@ -536,7 +546,7 @@ class order extends xt_backend_cls {
 
 			($plugin_code = $xtPlugin->PluginCode('class.order.php:_buildProductData_data')) ? eval($plugin_code) : false;
 
-            $products_data = unserialize($product_array[$i]["products_data"]);
+            $products_data = unserialize($product_array[$i]["products_data"] ?? '');
             if(empty($products_data)) $products_data = [];
             unset($value['products_info_data']);
             unset($value['products_info_options']);
@@ -669,14 +679,14 @@ class order extends xt_backend_cls {
 		if ($add_type === 'insert')
 		{
 			$insert_record = array('date_purchased' => $db->BindTimeStamp(time()), 'last_modified' => $db->BindTimeStamp(time()));
-			$record = array_merge($insert_record, $data);
+			$record = array_merge($data, $insert_record);
 			$db->AutoExecute(TABLE_ORDERS, $record, 'INSERT');
 			$this->data_orders_id = $db->Insert_ID();
 		}
 		elseif ($add_type === 'update')
 		{
 			$update_record = array('last_modified' => $db->BindTimeStamp(time()));
-			$record = array_merge($update_record, $data);
+			$record = array_merge($data, $update_record);
 			$db->AutoExecute(TABLE_ORDERS, $record, 'UPDATE', 'orders_id='.(int)$data['orders_id']);
 			$this->data_orders_id = $data['orders_id'];
 		}
@@ -919,7 +929,7 @@ class order extends xt_backend_cls {
 				$record->fields['orders_status_id'] = $record->fields['orders_status'];
 
 				$record->fields['orders_status'] = $system_status->values['order_status'][$record->fields['orders_status']]['name'];
-				$record->fields['orders_status_image'] = $system_status->values['order_status'][$record->fields['orders_status']]['image'];
+				$record->fields['orders_status_image'] = $system_status->values['order_status'][$record->fields['orders_status']]['image'] ?? 'ngfc';
 				$record->fields['date_purchased_plain'] = $record->fields['date_purchased'];
 				$record->fields['date_purchased'] = date_short($record->fields['date_purchased']);
 
@@ -1002,7 +1012,7 @@ class order extends xt_backend_cls {
 					$_final_price  = $_price * $record->fields['products_quantity'];
 					$_final_price = $_final_price + $_add_single_price;
 
-                    $_tax = round($_price - $price->_removeTax($_price, $record->fields['products_tax']), 6);
+                    $_tax = round($_price - $price->_removeTax($_price, $record->fields['products_tax']), 2);
 
                     $_final_tax = $_tax * $record->fields['products_quantity'];
                     $_final_tax = $_tax_single + $_final_tax;
@@ -1015,7 +1025,7 @@ class order extends xt_backend_cls {
 					$_add_single_price_otax = $_add_single_price;
 					$_final_price = $_final_price_otax + $_add_single_price;
 
-                    $_tax = round( $price->_AddTax($_price, $record->fields['products_tax']) - $_price, 6);
+                    $_tax = round( $price->_AddTax($_price, $record->fields['products_tax']) - $_price, 2);
 				
 				    $_final_tax = $_tax * $record->fields['products_quantity'];
 				    $_final_tax = $_tax_single + $_final_tax;
@@ -1170,6 +1180,7 @@ class order extends xt_backend_cls {
 		$product_data_total = 0;
 		$product_data_total_otax = 0;
 		$total_otax = 0;
+		$total_taxrate_value = array();
 
         $c_status = new customers_status();
         $c_status->_getStatus($order_data["customers_status"]);
@@ -1178,14 +1189,21 @@ class order extends xt_backend_cls {
             foreach($product_data as $key => $value) {
 
 				($plugin_code = $xtPlugin->PluginCode('class.order.php:_getTotal_content_top')) ? eval($plugin_code) : false;
-		
+
+                if(!array_key_exists($value['products_tax_class'], $product_data_tax))
+                    $product_data_tax[$value['products_tax_class']] = 0;
 				$product_data_tax[$value['products_tax_class']] += $value['products_final_tax']['plain'];
 				$product_data_tax_rate[$value['products_tax_class']] = $value['products_tax_rate'];
 				$product_data_total += $value['products_final_price']['plain'];
 				$product_data_total_otax += $value['products_final_price']['plain_otax'];
 
-				$total_tax[$value['products_tax_class']] += $value['products_final_tax']['plain'];
+                if(!array_key_exists($value['products_tax_class'], $total_tax))
+                    $total_tax[$value['products_tax_class']] = 0;
+                $total_tax[$value['products_tax_class']] += $value['products_final_tax']['plain'];
 				$total_tax_rate[$value['products_tax_class']] = $value['products_tax_rate'];
+                if(!array_key_exists($value['products_tax_class'], $total_taxrate_value))
+                    $total_taxrate_value[$value['products_tax_class']] = 0;
+				$total_taxrate_value[$value['products_tax_class']] += $value['products_final_price']['plain'];
 
 				$tmp_tax = (int)$c_status->customers_status_show_price_tax  == 0 ? 0 : $value['products_final_tax']['plain'];
 				$total_otax += $value['products_final_price']['plain'] - $tmp_tax;
@@ -1202,13 +1220,20 @@ class order extends xt_backend_cls {
 
 				($plugin_code = $xtPlugin->PluginCode('class.order.php:_getTotal_sub_content_top')) ? eval($plugin_code) : false;
 
+                if(!array_key_exists($value['orders_total_tax_class'], $order_total_data_tax))
+                    $order_total_data_tax[$value['orders_total_tax_class']] = 0;
 				$order_total_data_tax[$value['orders_total_tax_class']] += $value['orders_total_final_tax']['plain'];
 				$order_total_data_tax_rate[$value['orders_total_tax_class']] = $value['orders_total_tax_rate'];
 				$order_total_data_total += $value['orders_total_final_price']['plain'];
 				$order_total_data_total_otax += $value['orders_total_final_price']['plain_otax'];
 
+                if(!array_key_exists($value['orders_total_tax_class'], $total_tax))
+                    $total_tax[$value['orders_total_tax_class']] = 0;
 				$total_tax[$value['orders_total_tax_class']] += $value['orders_total_final_tax']['plain'];
 				$total_tax_rate[$value['orders_total_tax_class']] = $value['orders_total_tax_rate'];
+                if(!array_key_exists($value['orders_total_tax_class'], $total_taxrate_value))
+                    $total_taxrate_value[$value['orders_total_tax_class']] = 0;
+				$total_taxrate_value[$value['orders_total_tax_class']] += $value['orders_total_final_price']['plain'];
 								
 				$total_otax += $value['orders_total_final_price']['plain_otax'];
 			}
@@ -1238,41 +1263,67 @@ class order extends xt_backend_cls {
 		$ttax = $total_tax;
 
 		if (is_array($ptax))
-            foreach($ptax as $key => $value) {
-			if ($product_data_tax_rate[$key] != 0)
-			$new_product_data_tax[$key] =  array('tax_value' => $price->_Format(array('price'=>$value, 'format'=>true, 'format_type'=>'default')), 'tax_key'=>round($product_data_tax_rate[$key], $currency->decimals));
-		}
+        {
+            foreach ($ptax as $key => $value)
+            {
+                if (isset($product_data_tax_rate) && $product_data_tax_rate[$key] != 0)
+                {
+                    $new_product_data_tax[$key] = array('tax_value' => $price->_Format(array('price' => $value, 'format' => true, 'format_type' => 'default')), 'tax_key' => round($product_data_tax_rate[$key], $currency->decimals));
+                }
+            }
+        }
 
 		if (is_array($ottax))
-            foreach($ottax as $key => $value) {
-			if ($product_data_tax_rate[$key] != 0)
-			$new_order_total_data_tax[$key] =  array('tax_value' => $price->_Format(array('price'=>$value, 'format'=>true, 'format_type'=>'default')), 'tax_key'=>round($order_total_data_tax_rate[$key], $currency->decimals));
-		}
-		
-		if (is_array($ttax))
-            foreach($ttax as $key => $value) {
-			
-			if ($product_data_tax_rate[$key] != 0)
-			$new_total_tax[$key] =  array('tax_value' => $price->_Format(array('price'=>$value, 'format'=>true, 'format_type'=>'default')), 'tax_key'=>round($total_tax_rate[$key], $currency->decimals));
+        {
+            foreach ($ottax as $key => $value)
+            {
+                if (isset($product_data_tax_rate) && array_value($product_data_tax_rate, $key, 0) != 0)
+                {
+                    $new_order_total_data_tax[$key] = array('tax_value' => $price->_Format(array('price' => $value, 'format' => true, 'format_type' => 'default')), 'tax_key' => round($order_total_data_tax_rate[$key], $currency->decimals));
+                }
+            }
+        }
 
-			if($order_total_data_tax_rate[$key] != 0 && empty($product_data_tax_rate[$key]))
-			$new_total_tax[$key] =  array('tax_value' => $price->_Format(array('price'=>$value, 'format'=>true, 'format_type'=>'default')), 'tax_key'=>round($total_tax_rate[$key], $currency->decimals));
-						
+		if (is_array($ttax))
+        {
+            foreach($ttax as $key => $value)
+            {
+                if (isset($product_data_tax_rate) && array_value($product_data_tax_rate, $key, 0) != 0)
+                {
+                    $new_total_tax[$key] = array('tax_value' => $price->_Format(array('price' => $value, 'format' => true, 'format_type' => 'default')), 'tax_key' => round($total_tax_rate[$key], $currency->decimals));
+                }
+
+                if (isset($order_total_data_tax_rate) && array_value($order_total_data_tax_rate, $key, 0) != 0 && empty($product_data_tax_rate[$key]))
+                {
+                    $new_total_tax[$key] = array('tax_value' => $price->_Format(array('price' => $value, 'format' => true, 'format_type' => 'default')), 'tax_key' => round($total_tax_rate[$key], $currency->decimals));
+                }
+            }
+		}
+
+		if (is_array($total_taxrate_value) && is_array($new_total_tax)){
+			foreach($total_taxrate_value as $key => $value) {
+
+				if ($product_data_tax_rate[$key] != 0)
+				$new_total_tax[$key] = array_merge($new_total_tax[$key],array('gross_value'=>$price->_Format(array('price'=>$value, 'format'=>true, 'format_type'=>'default'))));
+
+				if($order_total_data_tax_rate[$key] != 0 && empty($product_data_tax_rate[$key]))
+				$new_total_tax[$key] =  array_merge($new_total_tax[$key],array('gross_value'=>$price->_Format(array('price'=>$value, 'format'=>true, 'format_type'=>'default'))));
+			}
 		}
 			
 		$data = array(
-			'product_tax' => $new_product_data_tax,
+			'product_tax' => $new_product_data_tax ?? [],
 			'product_total' => $product_data_total,
 			'product_total_otax' => $product_data_total_otax,
-			'product_tax_rate' => $product_data_tax_rate,
-			'data_tax' => $new_order_total_data_tax,
+			'product_tax_rate' => $product_data_tax_rate ?? 0,
+			'data_tax' => $new_order_total_data_tax ?? [],
 			'data_total' => $order_total_data_total,
 			'data_total_otax' => $order_total_data_total_otax,
-			'data_tax_rate' => $order_total_data_tax_rate,
-			'total_tax' => $new_total_tax,
+			'data_tax_rate' => $order_total_data_tax_rate ?? 0,
+			'total_tax' => $new_total_tax ?? [],
 			'total' => $total,
 			'total_otax' => $total_otax,
-			'total_tax_rate' => $total_tax_rate
+			'total_tax_rate' => $total_tax_rate ?? 0
 		);
 		($plugin_code = $xtPlugin->PluginCode('class.order.php:_getTotal_bottom')) ? eval($plugin_code) : false;
 
@@ -1682,7 +1733,7 @@ class order extends xt_backend_cls {
 		);
 
 		// OE-3 erzeugung von order history eintrag verhindern bei add/edit
-		if ($_REQUEST['plugin'] === 'order_edit' && $_REQUEST['load_section'] !== 'order_edit_new_order') {
+		if (array_value($_REQUEST,'plugin') === 'order_edit' && array_value($_REQUEST, 'load_section') !== 'order_edit_new_order') {
 			$data_array = array();
 		}
 
@@ -1692,7 +1743,7 @@ class order extends xt_backend_cls {
 
 		$statusName = $system_status->values['order_status'][$status]['name'];
 
-		if ($system_status->values['order_status'][$data_array['orders_status_id']]['enable_download'])
+		if (array_value($system_status->values['order_status'][$data_array['orders_status_id']], 'enable_download'))
 		{
 			$this->resetDownloadCount();
 		}
@@ -2020,7 +2071,7 @@ class order extends xt_backend_cls {
 			'orders_source_external' => '',
 		);
 		
-		if (_SYSTEM_ORDER_EDIT_SHOW_ORDER_EDITOR_COLUMN === 'true')
+		if (defined('_SYSTEM_ORDER_EDIT_SHOW_ORDER_EDITOR_COLUMN') && _SYSTEM_ORDER_EDIT_SHOW_ORDER_EDITOR_COLUMN === 'true')
 		{
 			$default_array['order_edit_acl_user'] = '';
 		}
@@ -2028,7 +2079,7 @@ class order extends xt_backend_cls {
 		($plugin_code = $xtPlugin->PluginCode(__CLASS__.':_get_top')) ? eval($plugin_code) : false;
 
 		$data = array();
-		if ($this->url_data['get_data'])
+		if (array_value($this->url_data,'get_data'))
 		{
 			if($oID)
 			{
@@ -2098,6 +2149,7 @@ class order extends xt_backend_cls {
                     $ad_table_str = ' , '.implode(', ', $ad_table);
                 }
 
+                $tmp_total_count = 0;
 				if ($this->sql_limit)
 				{
                     $count_query = "SELECT count(".TABLE_ORDERS.".orders_id) FROM ".TABLE_ORDERS." ". $ad_table_str ." WHERE ".TABLE_ORDERS.".orders_id != 0 ".$where;
@@ -2116,7 +2168,7 @@ class order extends xt_backend_cls {
 						// $_data = $this->_buildData($record->fields['orders_id']);
                         // _buildData dauert zu lange
                         $_data['order_data'] = $record->fields;
-                        $_data['order_data']['orders_status'] = $system_status->values['order_status'][$record->fields['orders_status']]['name'];
+                        $_data['order_data']['orders_status'] = empty($record->fields['orders_status']) ? 'status-not exists' : $system_status->values['order_status'][$record->fields['orders_status']]['name'];
                         $_data['order_data']['date_purchased_plain'] = $record->fields['date_purchased'];
 
                         // order total wird nun separat berechnet
@@ -2132,9 +2184,9 @@ class order extends xt_backend_cls {
                             .' o LEFT OUTER JOIN '.TABLE_ORDERS_SOURCE.' os ON o.source_id = os.source_id LEFT OUTER JOIN '
                             .TABLE_ADMIN_ACL_AREA_USER.' acl ON o.order_edit_acl_user = acl.user_id WHERE o.orders_id = ?';
                         $sr = $db->Execute($sql, array($_data['order_data']['orders_id']));
-                        if ( $sr->RecordCount())
+                        if ( $sr->RecordCount() && $sr->fields)
                         {
-                            $sName = (isset($sr->fields['source_name']) && defined('TEXT_'.$fields['source_name']))
+                            $sName = (isset($sr->fields['source_name']) && defined('TEXT_'.$sr->fields['source_name']))
                                 ? __text('TEXT_'.$fields['source_name'])
                                 : $sr->fields['source_name'];
                             $eId = $sr->fields['orders_source_external_id'];
@@ -2173,10 +2225,10 @@ class order extends xt_backend_cls {
 			$data[] = $default_array;
 		}
 
-		$count = ($tmp_total_count) ? $tmp_total_count : count($data);
+		$count = $tmp_total_count ?? count($data);
 
 		// loginAs modus: anzeige des admins der die order bearbeitet hat 1/2
-		if (_SYSTEM_ORDER_EDIT_SHOW_ORDER_EDITOR_COLUMN === 'true') {
+		if (defined('_SYSTEM_ORDER_EDIT_SHOW_ORDER_EDITOR_COLUMN') && _SYSTEM_ORDER_EDIT_SHOW_ORDER_EDITOR_COLUMN === 'true') {
 			$default_array['ORDER_EDIT_ACL_USER'] = '';
 		}
 
@@ -2257,6 +2309,10 @@ class order extends xt_backend_cls {
         reset($system_status->values['stock_rule']);
         //get products_quantity, products_average_quantity
         $rs = $db->Execute("SELECT products_average_quantity, products_quantity FROM ".TABLE_PRODUCTS. " WHERE products_id=? LIMIT 1", array($pid));
+
+        $products_quantity = 0;
+        $products_average_quantity = 0;
+
         if ($rs->RecordCount()>0) {
             $products_quantity = $rs->fields['products_quantity'];
             $products_average_quantity = $rs->fields['products_average_quantity'];

@@ -236,7 +236,7 @@ class checkout_base {
         global $xtPlugin, $xtLink, $info, $currency, $store_handler, $customers_status, $system_status, $db, $filter;
 
         // sanitize input
-        $selected_payment = $check_payment = $_POST['selected_payment'];
+        $selected_payment = $check_payment = $_POST['selected_payment'] ?? '';
         if (strpos($check_payment,':')) {
             $check_payment = explode(':',$check_payment);
             $check_payment = $check_payment[0];
@@ -260,49 +260,58 @@ class checkout_base {
             $_payment_sub = $_payments[1];
         }
 
-        $payment_data = $tmp_payment_data[$_payment];
+        $payment_data = array_value($tmp_payment_data,$_payment);
 
-        $payment_class_path = _SRV_WEBROOT._SRV_WEB_PLUGINS.$payment_data['payment_dir'].'/classes/';
-        $payment_class_file = 'class.'.$payment_data['payment_code'].'.php';
+        if($payment_data)
+        {
+            $payment_class_path = _SRV_WEBROOT . _SRV_WEB_PLUGINS . $payment_data['payment_dir'] . '/classes/';
+            $payment_class_file = 'class.' . $payment_data['payment_code'] . '.php';
 
-        if (file_exists($payment_class_path . $payment_class_file)) {
-            require_once($payment_class_path.$payment_class_file);
-            $payment_module_data = new $payment_data['payment_code']($payment_data);
-        }
-
-
-        ($plugin_code = $xtPlugin->PluginCode('module_checkout.php:checkout_payment_check')) ? eval($plugin_code) : false;
-
-        if($payment_data['payment_price']['plain_otax']){
-            // payment discount ?
-
-            if ($payment_data['payment_price']['discount']==1) {
-
-            } else {
-
-                $payment_data_array = array('customer_id' => $_SESSION['registered_customer'],
-                    'qty' => $payment_data['payment_qty'],
-                    'name' => $payment_data['payment_name'],
-                    'model' => $payment_data['payment_code'],
-                    'key_id' => $payment_data['payment_id'],
-                    'price' => $payment_data['payment_price']['plain_otax'],
-                    'tax_class' => $payment_data['payment_tax_class'],
-                    'sort_order' => $payment_data['payment_sort_order'],
-                    'type' => $payment_data['payment_type']
-                );
+            if (file_exists($payment_class_path . $payment_class_file))
+            {
+                require_once($payment_class_path . $payment_class_file);
+                $payment_module_data = new $payment_data['payment_code']($payment_data);
             }
 
+
+            ($plugin_code = $xtPlugin->PluginCode('module_checkout.php:checkout_payment_check')) ? eval($plugin_code) : false;
+
+            if ($payment_data['payment_price'] && $payment_data['payment_price']['plain_otax'])
+            {
+                // payment discount ?
+
+                if ($payment_data['payment_price']['discount'] == 1)
+                {
+
+                }
+                else
+                {
+
+                    $payment_data_array = array('customer_id' => $_SESSION['registered_customer'],
+                        'qty' => $payment_data['payment_qty'],
+                        'name' => $payment_data['payment_name'],
+                        'model' => $payment_data['payment_code'],
+                        'key_id' => $payment_data['payment_id'],
+                        'price' => $payment_data['payment_price']['plain_otax'],
+                        'tax_class' => $payment_data['payment_tax_class'],
+                        'sort_order' => $payment_data['payment_sort_order'],
+                        'type' => $payment_data['payment_type']
+                    );
+                }
+
+            }
+
+            $_SESSION['cart']->_deleteSubContent('payment');
+            if (!empty($payment_data_array))
+            {
+                ($plugin_code = $xtPlugin->PluginCode('module_checkout.php:checkout_payment_data')) ? eval($plugin_code) : false;
+                $_SESSION['cart']->_addSubContent($payment_data_array);
+            }
+
+            $this->_setPayment($selected_payment);
         }
 
-        $_SESSION['cart']->_deleteSubContent('payment');
-        if(!empty($payment_data_array)){
-            ($plugin_code = $xtPlugin->PluginCode('module_checkout.php:checkout_payment_data')) ? eval($plugin_code) : false;
-            $_SESSION['cart']->_addSubContent($payment_data_array);
-        }
-
-        $this->_setPayment($selected_payment);
-
-        if(is_data($_POST['conditions_accepted']) && $_POST['conditions_accepted'] == 'on'){
+        if(array_value($_POST,'conditions_accepted') == 'on'){
             $_SESSION['conditions_accepted'] = 'true';
         }
         unset($_SESSION['order_comments']);
@@ -394,7 +403,7 @@ class checkout_base {
 
         $allow_tax = $customers_status->customers_status_show_price_tax;
 
-
+        $customers_ip = '';
         if(_SYSTEM_SAVE_IP=='true'){
             if($_SERVER["HTTP_X_FORWARDED_FOR"]){
                 $customers_ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
@@ -499,7 +508,7 @@ class checkout_base {
         unset($_SESSION['selected_payment']);
         unset($_SESSION['conditions_accepted']);
         unset($_SESSION['order_comments']);
-        $_SESSION['cart']->_resetCart();
+        sessionCart()->_resetCart();
         $xtLink->_redirect($tmp_link);
     }
 }

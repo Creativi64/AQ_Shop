@@ -1,0 +1,27 @@
+<div class="row tfoot text-right financing-info">
+    <div class="col col-md-offset-5 col-xs-5 col-md-5">
+        <span class="bold">{txt key=TEXT_EASY_CREDIT_INTEREST}</span>
+    </div>
+    <div class="col col-xs-7 col-md-2">
+        <span class="bold" id="financing-fee">{$financing_interest}</span>
+    </div>
+
+    <div style="height: 0px; clear: both" ></div>
+
+    <div class="col col-md-offset-5 col-xs-5 col-md-5 ">
+        <span class="bold" style="font-size: 1.1em">{txt key=TEXT_FINANCING_TOTAL_INCL_FEE}</span>
+    </div>
+    <div class="col col-xs-7 col-md-2">
+        <span class="bold" id="financing-total" style="font-size: 1.1em">{$financing_total}</span>
+    </div>
+
+    <div style="height: 0px; clear: both"></div>
+
+    <div class="col" style="font-size:0.8em"><br />
+        {$finanzierungPlan}
+    </div>
+    <div class="col" style="font-size:0.8em"><br />
+        <a href="{$urlVorvertraglicheInformationen}" target="_blank">{txt key=TEXT_EASY_CREDIT_VORVERTRAG_INFO}</a>
+    </div>
+
+</div>

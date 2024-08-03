@@ -36,12 +36,16 @@ class xtLink
     var $link_url;
     var $secure_link_url;
     var $_url_query_cache = array();
+    public string $amp=  '&amp;';
+    /**
+     * @var false|mixed
+     */
+    public mixed $show_session_id;
 
     function __construct ()
     {
         global $xtPlugin;
 
-        $this->amp = '&amp;';
         $this->show_session_id = defined('_RMV_SESSION') ? constant('_RMV_SESSION') : false;
 
         ($plugin_code = $xtPlugin->PluginCode('class.link.php:link_top')) ? eval($plugin_code) : false;
@@ -103,7 +107,10 @@ class xtLink
         if (isset($plugin_return_value))
             return $plugin_return_value;
 
-        $is_protocol_given = strpos($data['page'],'http',0) === 0;
+        if(!array_key_exists('page', $data))
+            $data['page'] = "";
+
+        $is_protocol_given = strpos($data['page'] ?: "",'http',0) === 0;
         if($is_protocol_given) return $data['page'];
 
         if (empty($data['default_page'])) {
@@ -354,6 +361,11 @@ class xtLink
         if (isset($plugin_return_value))
             return $plugin_return_value;
 
+        if(!empty($_REQUEST['dbg-redirect']))
+        {
+            $ex = new Exception('ss');
+            error_log($ex->getTraceAsString());
+        }
 
         $url = preg_replace('/[\r\n]+(.*)$/im', '', $url);
 
@@ -575,22 +587,22 @@ class xtLink
         {
             case 'content':
                 $link_type = 3;
-                if(empty($data['id']))
+                if(empty($data['id'] && array_key_exists('coID', $params)))
                     $data['id'] = array_key_exists('coID', $params) ? $params['coID'] : 0;
                 break;
             case 'product':
                 $link_type = 1;
-                if(empty($data['id']))
+                if(empty($data['id']) && array_key_exists('info', $params))
                     $data['id'] = $params['info'];
                 break;
             case 'categorie':
                 $link_type = 2;
-                if(empty($data['id']))
+                if(empty($data['id']) && array_key_exists('cat', $params))
                     $data['id'] = $params['cat'];
                 break;
             case 'manufacturer':
             case 'manufacturers':
-                if(empty($data['id']))
+                if(empty($data['id']) && array_key_exists('mnf', $params))
                     $data['id'] = $params['mnf'];
                 $link_type = 4;
                 break;

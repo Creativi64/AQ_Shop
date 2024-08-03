@@ -17,9 +17,7 @@
                     </a>
                 </p>
             {/if}
-            {if version_compare(_SYSTEM_VERSION, '5.1.0', '>=')}
-                {include file="$selected_template/includes/box_address_class.html" name=address_class htmlonly=1 type="tpl_include"}
-            {/if}
+            {include file="includes/box_address_class.html" name=address_class htmlonly=1 type="tpl_include"}
             {if $addresses.customers_company}
                 <strong>{$addresses.customers_company}</strong><br />
             {/if}

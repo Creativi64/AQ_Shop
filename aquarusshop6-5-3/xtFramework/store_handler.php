@@ -27,7 +27,7 @@
 
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
-global $xtPlugin;
+global $xtPlugin, $db;
 
 $store_handler = new multistore();
 $store_handler->determineStoreId();
@@ -35,14 +35,22 @@ $store_handler->loadStoreConfigMainData(); // backend > shop-einstellungen > xyz
 //$store_handler->getLicenseFileInfo(array('key'));
 
 $lang_code_init = '';
-if(isset($_REQUEST['language']) && $_REQUEST['load_section'] != 'language_sync' ){
-   $_SESSION['selected_language']=$_REQUEST['language']; // xtAdmin
+if(array_value($_REQUEST, 'language') && array_value($_REQUEST, 'load_section') != 'language_sync' )
+{
+    // einfacher pre check
+    $exists = $db->GetOne('select 1 FROM '.TABLE_LANGUAGES. ' WHERE `code` = ?', [$_REQUEST['language']]);
+    if($exists)
+        $_SESSION['selected_language']=$_REQUEST['language']; // xtAdmin
 }
-if(isset($_REQUEST['new_lang'])){
-    $_SESSION['selected_language']=$_REQUEST['new_lang'];
+else if(array_value($_REQUEST, 'new_lang'))
+{
+    // einfacher pre check
+    $exists = $db->GetOne('select 1 FROM '.TABLE_LANGUAGES. ' WHERE `code` = ?', [$_REQUEST['new_lang']]);
+    if($exists)
+        $_SESSION['selected_language']=$_REQUEST['new_lang'];
 }
 
-$language = new language(isset($_SESSION['selected_language']) ? $_SESSION['selected_language'] : '');
+$language = new language( $_SESSION['selected_language'] ?? '');
 $language->_setLocale();
 
 $store_handler->loadConfig();

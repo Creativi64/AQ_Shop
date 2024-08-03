@@ -1,3 +1,6 @@
+## [5.3.0]
+- Anpassungen an Smarty 5 / xt 6.6
+
 ## [5.2.0]
 - Anzeige Bankdaten in Bestellübersicht
 

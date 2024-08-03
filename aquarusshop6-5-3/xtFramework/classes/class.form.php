@@ -317,10 +317,10 @@ class form
 
         $field_data .= '</textarea>';
 
-        if (is_data($fdata['required']))
+        if (array_key_exists('required', $fdata) && is_data($fdata['required']))
             $field_data .= __text('TEXT_FIELD_REQUIRED');
 
-        if (is_data($fdata['note']))
+        if (array_key_exists('note', $fdata) && is_data($fdata['note']))
             $field_data .= ' ' . $fdata['note'];
 
         return $field_data;

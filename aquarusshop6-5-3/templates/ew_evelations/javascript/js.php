@@ -2,8 +2,17 @@
 
 use ew_evelations\plugin as ew_evelations_plugin;
 
-$xtMinify->add_resource(_SRV_WEB_TEMPLATES . _STORE_TEMPLATE . '/javascript/script.js', 100, 'footer');
-$xtMinify->add_resource(_SRV_WEB_TEMPLATES . _STORE_TEMPLATE . '/javascript/affix.js', 110, 'footer');
+global $xtMinify;
+
+if(file_exists(_SRV_WEB_TEMPLATES . _STORE_TEMPLATE . '/javascript/script.js'))
+    $xtMinify->add_resource(_SRV_WEB_TEMPLATES . _STORE_TEMPLATE . '/javascript/script.js', 100, 'footer');
+else
+    $xtMinify->add_resource(_SRV_WEB_TEMPLATES . _SYSTEM_TEMPLATE . '/javascript/script.js', 100, 'footer');
+
+if(file_exists(_SRV_WEB_TEMPLATES . _STORE_TEMPLATE . '/javascript/affix.js'))
+    $xtMinify->add_resource(_SRV_WEB_TEMPLATES . _STORE_TEMPLATE . '/javascript/affix.js', 100, 'footer');
+else
+    $xtMinify->add_resource(_SRV_WEB_TEMPLATES . _SYSTEM_TEMPLATE . '/javascript/affix.js', 100, 'footer');
 
 ?>
 

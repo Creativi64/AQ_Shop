@@ -959,6 +959,16 @@
 	</de>
 </phrase>
 <phrase>
+	<key>TEXT_PPP_PUI_SUCCESS_CLAIM_ASSIGN_2</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[%s has assigned the claim against you to PayPal (Europe) S.à r.l. et Cie, S.C.A. You will only be released from your payment obligation upon payment to PayPal (Europe) S.à r.l. et Cie, S.C.A.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[%s hat die Forderung gegen Sie im Rahmen eines laufenden Factoringvertrages an die PayPal (Europe) S.àr.l. et Cie, S.C.A. abgetreten. Zahlungen mit schuldbefreiender Wirkung können nur an die PayPal (Europe) S.àr.l. et Cie, S.C.A. geleistet werden.]]></value>
+	</de>
+</phrase>
+<phrase>
 	<key>TEXT_XT_ORDERS_INVOICES_CUSTOMER_COMMENTS</key>
 	<class>both</class>
 	<en>

@@ -1,0 +1,59 @@
+{if ! $payment_disabled}
+<!-- payment enabled -->
+{if $payment_name|trim != '' && $payment_code|trim != ''}
+<div class="item item-{$payment_code}{if $payment_code == $payment_selected} selected{/if} payment-container">
+    <img src="https://cdn.klarna.com/1.0/shared/image/generic/badge/de_de/pay_now/standard/pink.svg" alt="Sofort." class="icon img-responsive pull-right" style="border:none; height:30px"/>
+    <header data-toggle="collapse" data-target=".item-{$payment_code} .collapse">
+        <label class="cursor-pointer">
+                    <span class="check">
+                        {if $payment_hidden == true}
+                            {form type=hidden name=selected_payment value=$payment_code}
+                        {else}
+                            {if $payment_code == $payment_selected}
+                                {form type=radio name=selected_payment value=$payment_code checked=true style="vertical-align: text-top;"}
+                            {else}
+                                {form type=radio name=selected_payment value=$payment_code style="vertical-align: text-top;"}
+                            {/if}
+                        {/if}
+                    </span>
+            <span class="name payment-name">{$payment_name}</span>
+            {if $payment_price.formated}
+            <small class="price">&nbsp;{$payment_price.formated}</small>
+            {/if}
+        </label>
+    </header>
+    {if $payment_desc|trim != ''}
+    <div class="desc collapse{if $payment_code == $payment_selected} in{/if} payment-desc">
+        {$payment_desc}
+    </div>
+    {/if}
+</div>
+{/if}
+
+
+{else}
+<!-- payment disabled -->
+
+{if $payment_name|trim != '' && $payment_code|trim != ''}
+<div class="item item-{$payment_code}{if $payment_code == $payment_selected} selected{/if} payment-container">
+    <img src="https://cdn.klarna.com/1.0/shared/image/generic/badge/de_de/pay_now/standard/pink.svg" alt="Sofort." class="icon img-responsive pull-right" style="border:none; height:30px"/>
+    <header data-toggle="collapse" data-target=".item-{$payment_code} .collapse">
+        <label class="cursor-pointer">
+                    <span class="check">
+                    </span>
+            <span class="name payment-name">{$payment_name}</span>
+        </label>
+    </header>
+
+    <div class="desc collapse in payment-desc">
+        {txt key=TEXT_PAYMENT_DISABLING_PRODUCTS} -
+        {foreach item=p from=$payment_disabling_products name=products}
+        {$p.products_name}{if ! $smarty.foreach.products.last && $smarty.foreach.products.total>1}, {/if}
+        {/foreach}
+    </div>
+</div>
+{/if}
+
+{/if}
+
+

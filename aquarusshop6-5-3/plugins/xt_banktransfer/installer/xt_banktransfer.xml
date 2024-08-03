@@ -2,11 +2,10 @@
 <xtcommerceplugin>
 
   <code>xt_banktransfer</code>
-  <version>5.0.10</version>
+  <version>5.1.0</version>
   <type>payment</type>
   
-  <minimum_store_version>6.2.2</minimum_store_version>
-  <store_license_type>PRO</store_license_type>
+  <minimum_store_version>6.6.0</minimum_store_version>
   
   <developer>xt:Commerce</developer>
   <url>https://www.xt-commerce.com</url>

@@ -172,10 +172,19 @@ class configuration extends xt_backend_cls{
 			if ($record->fields['type'] == 'dropdown') {
 				if (strstr($record->fields['url'],'status:')) {
 					$record->fields['url'] = str_replace('status:','',$record->fields['url']);
-					$url = 'DropdownData.php?systemstatus='.$record->fields['url'].'&skip_empty=true&store_id='.$this->url_data['store_id'];
+					$url = 'DropdownData.php?systemstatus=';
 				} else {
-					$url = 'DropdownData.php?get='.$record->fields['url'].'&skip_empty=true&store_id='.$this->url_data['store_id'];
+					$url = 'DropdownData.php?get=';
 				}
+
+                $url .= $record->fields['url'].'&store_id='.$this->url_data['store_id'];
+
+                $dont_skip_empty = ['_STORE_DEFAULT_TEMPLATE'];
+                if(!in_array($record->fields["config_key"], $dont_skip_empty))
+                {
+                    $url .= '&skip_empty=true';
+                }
+
                 $dropdown_width = 400;
 			} else {
 				$url = $record->fields['url'];

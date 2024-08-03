@@ -695,7 +695,7 @@ class xt_coupons
      * @param string $coupon_code  zeichenfolge des Coupon
      * @return  array|false gültig:Array mit den Coupondaten, sonst false
      */
-    function _check_coupon ($coupon_code = '', $pos = 'add_coupon', $cart_products)
+    function _check_coupon ($coupon_code = '', $pos = 'add_coupon', $cart_products = false)
     {
         global $db, $info, $price, $xtPlugin, $currency,$store_handler;
 

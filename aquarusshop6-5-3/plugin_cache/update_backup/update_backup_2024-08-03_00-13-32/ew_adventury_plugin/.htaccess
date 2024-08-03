@@ -1,0 +1,14 @@
+<IfModule mod_authz_core.c>
+    # Apache 2.4
+    <Filesmatch "(\.php|\.tpl|\.phar|composer\.json|composer\.lock|artisan|phpunit.xml)$">
+        # disabled apache 2.4 order deny,allow
+        Require all denied
+    </Filesmatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+    # Apache 2.2
+    <Filesmatch "(\.php|\.tpl|\.phar|composer\.json|composer\.lock|artisan|phpunit.xml)$">
+        Order allow,deny
+        Deny from all
+    </Filesmatch>
+</IfModule>

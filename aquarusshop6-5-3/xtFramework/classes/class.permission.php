@@ -43,8 +43,31 @@ class permission {
 
 	protected $_default_pref = 'perm';
 	protected $_default_table = TABLE_CONTENT_PERMISSION;
+    public mixed $position;
+    /**
+     * @var mixed|string
+     */
+    protected mixed $_simple_table;
+    /**
+     * @var array|mixed|string|null
+     */
+    protected mixed $value_data = [];
+    /**
+     * @var mixed|string
+     */
+    protected mixed $_simple_permissions;
+    /**
+     * @var mixed|string
+     */
+    protected mixed $_simple_permissions_key;
+    /**
+     * @var mixed|string
+     */
+    protected mixed $value_id;
+    public string $_perm_table;
+    public string $_perm_where;
 
-	function __construct($data = '') {
+    function __construct($data = '') {
 
 		  if(!is_array($data)) return false;
 
@@ -282,6 +305,7 @@ class permission {
 	function _getValues($id=''){
 		global $db;
 
+        $value = '';
 		if($this->_value_type)
 		$value = "and ".$this->_master_pref.".type = '".$this->_value_type."'";
 

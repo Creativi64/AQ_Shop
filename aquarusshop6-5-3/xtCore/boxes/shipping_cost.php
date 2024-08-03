@@ -55,12 +55,12 @@ if (is_object($_SESSION['cart']) && count($_SESSION['cart']->show_content) > 0)
 
     $selected_country_code = $countries->default_country;
     $selected_country = $countries->countries_list[$selected_country_code];
-    if($_SESSION["registered_customer"] && !empty(sessionCustomer()->customer_shipping_address['customers_country_code']))
+    if(array_key_exists("registered_customer", $_SESSION) && $_SESSION["registered_customer"] && !empty(sessionCustomer()->customer_shipping_address['customers_country_code']))
     {
         $selected_country_code = sessionCustomer()->customer_shipping_address['customers_country_code'];
         $selected_country = $countries->countries_list[$selected_country_code];
     }
-    if ($_POST["coupons_country"]!='')
+    if (array_key_exists("coupons_country", $_POST) && $_POST["coupons_country"]!='')
     {
         $selected_country_code = $_POST["coupons_country"];
         $selected_country = $countries->countries_list[$_POST["coupons_country"]];
@@ -72,8 +72,8 @@ if (is_object($_SESSION['cart']) && count($_SESSION['cart']->show_content) > 0)
     $shipping_data = $shipping->shipping_data;
     $count_shipping= count($shipping_data);
 
-    $selected_shipping_code = $_POST["coupons_shipping"];
-    if ($selected_shipping_code != '')
+    $selected_shipping_code = $_POST["coupons_shipping"] ?? '';
+    if ($selected_shipping_code != '' && $_SESSION['selected_shipping_costs_country'] == $selected_country)
     {
         $cost = $shipping_data[$_POST["coupons_shipping"]]["shipping_price"]["formated"];
     }
@@ -82,6 +82,8 @@ if (is_object($_SESSION['cart']) && count($_SESSION['cart']->show_content) > 0)
         $selected_shipping_code = key($shipping_data);
         $cost = $shipping_data[$selected_shipping_code]["shipping_price"]["formated"];
     }
+
+    $_SESSION['selected_shipping_costs_country'] = $selected_country;
 
     ($plugin_code = $xtPlugin->PluginCode('box_shipping_cost:tpl_data')) ? eval($plugin_code) : false;
 	

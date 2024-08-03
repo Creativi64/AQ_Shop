@@ -1,0 +1,52 @@
+{
+	"prepare": {
+		"fields": {
+			"imagepath": {
+				"label": "Imagepath",
+				"key": "hitmeister.imagepath",
+				"type": "text",
+				"expertsetting": true
+			},
+			"condition": {
+				"label": "Condition",
+				"key": "hitmeister.itemcondition",
+				"type": "selection",
+				"values": null
+			},
+			"handlingtime": {
+				"label": "Handling Time",
+				"desc": "Voreinstellung f&uuml;r die Bearbeitungszeit. Diese kann bei Artikel-Vorbereitung noch angepa&szlig;t werden.",
+				"key": "hitmeister.handlingtime",
+				"type": "text",
+				"default": "1",
+				"verify": "int",
+				"cssClasses": ["autoWidth"],
+                                "rightlabel": " working days"
+			},
+			"shippinggroup": {
+				"label": "Seller's Shipping Group",
+				"key": "hitmeister.shippinggroup",
+				"type": "selection",
+				"values": null,
+				"desc": "The _#_platformName_#_ Seller's Shipping Group contains shipping information."
+			},
+			"location": {
+				"label": "Items been delivered from",
+				"key": "hitmeister.itemcountry",
+				"type": "selection",
+				"values": null,
+				"desc": "Please select the country your are located at."
+			},
+			"itemsPerPage": {
+				"label": "Results",
+				"desc": "",
+				"rightlabel": "per site at multi-matching",
+				"cssClasses": ["autoWidth"],
+				"key": "hitmeister.multimatching.itemsperpage",
+				"type": "text",
+				"default": "10",
+				"verify": "int"
+			}
+		}
+	}
+}

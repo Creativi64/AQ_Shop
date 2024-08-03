@@ -33,8 +33,20 @@ class meta_tags {
 	public $maxMetaKeyLength = _SYSTEM_METATAGS_MAXLENGTH;
 	public $maxMetaKeyCount = _SYSTEM_METATAGS_MAXCOUNT;
 	public $PageContent = '';
+    /**
+     * @var mixed|string
+     */
+    public mixed $pageTitle;
+    /**
+     * @var array|mixed
+     */
+    public mixed $tags;
+    /**
+     * @var false
+     */
+    public bool $autogenerate;
 
-	function __construct() {
+    function __construct() {
 		global $language,$p_info;
 
 		$this->tags = array ();

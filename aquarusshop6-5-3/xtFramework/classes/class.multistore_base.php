@@ -30,19 +30,19 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 global $language;
 if(!defined('TEXT_NEW_SHOP_BASE_ID'))
 {
-    if($language->code == 'en') $txt = 'based on shop with ID';
+    if($language && $language->code == 'en') $txt = 'based on shop with ID';
     else $txt = 'basierend auf Shop mit ID';
     define('TEXT_NEW_SHOP_BASE_ID', $txt);
 }
 if(!defined('TEXT_NEW_SHOP_BASE_ID_INFO'))
 {
-    if($language->code == 'en') $txt = '';
+    if($language && $language->code == 'en') $txt = '';
     else $txt = '';
     define('TEXT_NEW_SHOP_BASE_ID_INFO', $txt);
 }
 if(!defined('TEXT_NEW_SHOP_BASE_ID_INFO_TEXT'))
 {
-    if($language->code == 'en') $txt = 'A copy is created based on the specified shop. Articles, categories etc. are created as in this shop.';
+    if($language && $language->code == 'en') $txt = 'A copy is created based on the specified shop. Articles, categories etc. are created as in this shop.';
     else $txt = 'basierend auf angegebenem Shop wird eine Kopie erstellt. Artikel, Kategorien etc werden angelegt wie in diesem Shop.';
     define('TEXT_NEW_SHOP_BASE_ID_INFO_TEXT', $txt);
 }
@@ -132,15 +132,19 @@ class multistore_base extends xt_backend_cls
     {
         global $db;
 
-        $admin_ssl = false;
-        $this->determineStoreId();
-        $query = "SELECT shop_ssl FROM " . TABLE_MANDANT_CONFIG . " where shop_id=?";
-        $record = $db->Execute($query, array($this->shop_id));
-        if ($record->RecordCount() == 1 && $record->fields['shop_ssl'] == 1) {
-            $admin_ssl = true;
-        }
+        if(!defined('_SYSTEM_ADMIN_SSL'))
+        {
+            $admin_ssl = false;
+            $this->determineStoreId();
+            $query = "SELECT shop_ssl FROM " . TABLE_MANDANT_CONFIG . " where shop_id=?";
+            $record = $db->Execute($query, array($this->shop_id));
+            if ($record->RecordCount() == 1 && $record->fields['shop_ssl'] == 1)
+            {
+                $admin_ssl = true;
+            }
 
-        define('_SYSTEM_ADMIN_SSL', $admin_ssl);
+            define('_SYSTEM_ADMIN_SSL', $admin_ssl);
+        }
     }
 
     function redirectAdminSSL()

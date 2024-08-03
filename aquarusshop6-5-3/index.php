@@ -137,7 +137,7 @@ if ($display_output) {
         'guest_account' => $guest_account,
         'page'=>$page->page_name,
         'show_index_boxes'=>$show_index_boxes,
-        'registered_customer'=> isset($_SESSION['registered_customer']) ?: $_SESSION['registered_customer'],
+        'registered_customer'=> $_SESSION['registered_customer'] ?? 0,
         'top_navigation'=>$brotkrumen->_output(),
     );
     ($plugin_code = $xtPlugin->PluginCode('index.php:tpl_data')) ? eval($plugin_code) : false;

@@ -233,16 +233,17 @@ if($page->page_action=='success'){
 
 ($plugin_code = $xtPlugin->PluginCode('module_checkout.php:checkout_page_actions')) ? eval($plugin_code) : false;      
 
-if($_GET['error']) {
+if(array_value($_GET,'error')) {
 	$param ='/[^a-zA-Z0-9_-]/';
 	$field=preg_replace($param,'',$_GET['error']);
 	if (defined($field) &&
-        (strpos( $field, 'ERROR_' ) === 0 || strpos( $field, 'TEXT_' ) === 0) )
+        (str_starts_with($field, 'ERROR_') || str_starts_with($field, 'TEXT_')) )
 	$info->_addInfo(constant($field));
 }
 
 $tpl_data = array('message'=>$info->info_content);
 $tpl_data = array_merge($tpl_data, $checkout_data);
+$data = false;
 ($plugin_code = $xtPlugin->PluginCode('module_checkout.php:checkout_data')) ? eval($plugin_code) : false;
 if (isset($_SESSION['cart']->discount))
 {

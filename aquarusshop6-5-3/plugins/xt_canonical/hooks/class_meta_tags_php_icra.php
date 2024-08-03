@@ -31,4 +31,4 @@ include _SRV_WEBROOT.'plugins/xt_canonical/classes/class.xt_canonical.php';
 $can_url = new xt_canonical();
 $canonical_link = $can_url->_getCanonicalUrl($page->page_name);
 if(trim($canonical_link)!='')
-    echo $can_url->_getCanonicalUrl($page->page_name).PHP_EOL;
+    echo $canonical_link.PHP_EOL;

@@ -6,7 +6,7 @@
             </li>
         {else}
             <li>
-                <form name="language" action="{$box_data.link|htmlspecialchars}" method="post">
+                <form name="language" action="{if !empty($box_data.link)}{$box_data.link|htmlspecialchars}{/if}" method="post">
                     <input type="hidden" name="action" value="change_lang" />
                     <button type="submit" name="new_lang" value="{$box_data.code}" title="{$box_data.name}" class="btn-image">
                         {img img=$box_data.image type=w_media_flags alt=$box_data.name}
@@ -23,7 +23,7 @@
         <select name="new_lang" onchange="location.href=this.options[this.selectedIndex].value" class="show-tick form-control">
             {foreach name=aussen item=box_data from=$lang_data}
                 <option data-content="<img src='{img img=$box_data.image type=w_media_flags alt=$box_data.name path_only=true}' alt='' style='vertical-align:middle;' /> <span style='vertical-align:middle;'>{$box_data.name}</span>"
-                        value="{$box_data.link}"
+                        value="{$box_data.link ?? ''}"
                         {if (!$smarty.session.selected_language && $language == $box_data.code) || $smarty.session.selected_language == $box_data.code} selected{/if}
                 >
                     {$box_data.name}

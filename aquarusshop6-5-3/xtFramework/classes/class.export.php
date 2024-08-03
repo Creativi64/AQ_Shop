@@ -28,6 +28,8 @@
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\HandlerStack;
 
+use Smarty\Smarty;
+
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
 class export extends xt_backend_cls
@@ -40,6 +42,7 @@ class export extends xt_backend_cls
     protected $_master_key = 'feed_id';
     protected $_purifier = null;
     protected $logFile = _SRV_WEBROOT . 'xtLogs/export_manager.log';
+    protected Smarty $Template;
 
     function __construct($feed_id = '')
     {
@@ -166,11 +169,11 @@ class export extends xt_backend_cls
         // ok first of all, write a file
         $rs = $db->Execute($selection_query_raw);
 
-        $this->Template = new Smarty;
+        $xt_template = new Template();
+        $xt_template->getTemplate('export', '', []);
+        $this->Template = $xt_template->content_smarty;
 
-        $this->Template->addPluginsDir(array(
-                _SRV_WEBROOT.'xtFramework/library/smarty/xt_plugins')
-        );
+        //Template::addPluginsDir($this->Template, _SRV_WEBROOT.'xtFramework/library/smarty/xt_plugins');
 
         $this->Template->force_compile = true;
 

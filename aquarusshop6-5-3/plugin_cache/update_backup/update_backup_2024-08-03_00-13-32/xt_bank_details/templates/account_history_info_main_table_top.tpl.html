@@ -1,0 +1,10 @@
+
+<div class="well bank-details">
+    <p class="headline-underline">{txt key='TEXT_BANK_DETAILS'}</p>
+
+    {txt key='TEXT_BAD_ACCOUNT_NAME'}:<pre>{$bd.bad_account_name}</pre><br />
+    {txt key='TEXT_BAD_BANK_IDENTIFIER_CODE'}:<pre>{$bd.bad_bank_identifier_code}</pre><br />
+    {if $bd.bad_due_date}{txt key='TEXT_BAD_DUE_DATE'}:<pre>{$bd.bad_due_date}</pre><br />{/if}
+    {txt key='TEXT_BAD_INTERNATIONAL_BANK_ACCOUNT_NUMBER'}:<pre class="iban">{$bd.bad_international_bank_account_number}</pre><br />
+    {txt key='TEXT_BAD_REFERENCE_NUMBER'}:<pre>{$bd.bad_reference_number}</pre><br />
+</div>

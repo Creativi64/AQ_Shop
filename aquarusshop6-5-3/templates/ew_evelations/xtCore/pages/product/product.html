@@ -37,7 +37,7 @@
                         <div class="image product-image img-thumbnail center">
                             <figure>
                                 <a name="product_images" href="{img img=$products_image type=m_org path_only=true}" class="image-link img-responsive" data-type="main">
-                                    <img src="{img img=$products_image type=m_info path_only=true}" alt="{if $products_image_data.media_name}{$products_image_data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $products_image_data.copyright_holder} &copy; {$products_image_data.copyright_holder}{/if}" title="{if $products_image_data.media_name}{$products_image_data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $products_image_data.copyright_holder} &copy; {$products_image_data.copyright_holder}{/if}" class="img-responsive image-link">
+                                    <img src="{img img=$products_image type=m_info path_only=true}" alt="{if !empty($products_image_data.media_name)}{$products_image_data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $products_image_data.copyright_holder} &copy; {$products_image_data.copyright_holder}{/if}" title="{if !empty($products_image_data.media_name)}{$products_image_data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $products_image_data.copyright_holder} &copy; {$products_image_data.copyright_holder}{/if}" class="img-responsive image-link">
                                     {hook key=tpl_product_img module_data=$product}
                                 </a>
                                 {if $products_image_data.copyright_holder}
@@ -52,7 +52,7 @@
                                 {if $smarty.foreach.aussen.index != 0}
                                     <figure class="col section col-md-3 col-xs-2">
                                         <a href="{img img=$img_data.file type=m_org path_only=true}" class="vertical-helper img-thumbnail image-link text-center" itemprop="contentUrl">
-                                            <img src="{img img=$img_data.file type=m_ewevelationsinfo path_only=true}" alt="{if $img_data.data.media_name}{$img_data.data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $img_data.data.copyright_holder} &copy; {$img_data.data.copyright_holder}{/if}" title="{if $img_data.data.media_name}{$img_data.data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $img_data.data.copyright_holder} &copy; {$img_data.data.copyright_holder}{/if}" class="productImageBorder img-responsive">
+                                            <img src="{img img=$img_data.file type=m_ewevelationsinfo path_only=true}" alt="{if !empty($img_data.data.media_name)}{$img_data.data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $img_data.data.copyright_holder} &copy; {$img_data.data.copyright_holder}{/if}" title="{if !empty($img_data.data.media_name)}{$img_data.data.media_name|escape:'html'}{else}{$products_name|escape:'html'}{/if}{if $img_data.data.copyright_holder} &copy; {$img_data.data.copyright_holder}{/if}" class="productImageBorder img-responsive">
                                         </a>
                                     </figure>
                                 {/if}
@@ -156,7 +156,7 @@
                         {/if}
                         {if $products_weight > 0}
                             <hr />
-                            <p class="product-weight">{include file="$selected_template/includes/products_weight_wrap.html" products_weight=$products_weight type="tpl_include"}</p>
+                            <p class="product-weight">{include file="includes/products_weight_wrap.html" products_weight=$products_weight type="tpl_include"}</p>
                         {/if}
                         {if $show_stock}
                             <p class="product-stock text-muted">{txt key=TEXT_STOCK} {$products_quantity|round} {if $products_unit_name}{$products_unit_name}{/if}</p>
@@ -339,7 +339,7 @@
                     >
                         <h2 class="breaking-headline">{txt key=TEXT_DOWNLOADS}</h2>
                         <div id="files" >
-                            {include file="$selected_template/xtCore/pages/files/product_public_files.html"}
+                            {include file="xtCore/pages/files/product_public_files.html"}
                         </div>
                     </div>
                 {/if}

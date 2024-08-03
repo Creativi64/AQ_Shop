@@ -30,8 +30,8 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
 class extJS {
 
-    protected $TMP_JS_String;
-    protected $JS_String;
+    protected $TMP_JS_String = [];
+    protected $JS_String = '';
 
 	function __construct () {
 
@@ -47,6 +47,8 @@ class extJS {
 		$this->_setTMP_JS_String($string, $position);
 	}
 	function _setTMP_JS_String ($string, $position = 0) {
+        if(!array_key_exists($position, $this->TMP_JS_String))
+            $this->TMP_JS_String[$position] = '';
 		$this->TMP_JS_String[$position] .= $string;
 
 	}

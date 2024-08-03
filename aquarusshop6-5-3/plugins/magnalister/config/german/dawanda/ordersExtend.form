@@ -1,0 +1,25 @@
+{
+    "orders": {
+        "headline": "Bestellimport",
+        "fields": {
+            "defaultpayment": {
+                "values": {
+                    "textfield": "Aus Textfeld",
+                    "copy": "_#_platformName_#_ Zahlart &uuml;bernehmen"
+                },
+                "default": "copy"
+            },
+            "importpaidorders": {
+                "label": "Nur bezahlte Bestellungen importieren",
+                "key": "_#_platformName_#_.order.importonlypaid",
+                "type": "radio",
+                "submit": "Orders.ImportOnlyPaid",
+                "values": {
+                    "true": "Ja",
+                    "false": "Nein"
+                },
+                "default": "false"
+            }
+        }
+    }
+}

@@ -1,0 +1,19 @@
+{*include file="./paypal-checkout-script-tag.tpl.html"*}
+<script>
+
+document.addEventListener('PayPalSdkLoaded', function ()
+{
+    console.log('paypal-checkout-confirmation-card: processing event PayPalSdkLoaded')
+    try {
+        ppcRemoveBackButton();
+        ppcRemoveSubmitButton();
+        enablePaypalCardForm();
+    }
+    catch(e)
+    {
+        console.log(e);
+    }
+});
+</script>
+
+{include file="./paypal-checkout-wait-modal.tpl.html"}
