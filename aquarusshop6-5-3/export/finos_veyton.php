@@ -331,10 +331,10 @@ function GetValues($fielnName, $existing, $default = null) {
 }
 
 function GetLocalizedValue($fielnName, $existing, $alpha2Code , $default = null) {
-  $postValue = isset($_POST[$fielnName]) ? $_POST[$fielnName]: null;
+  $postValue = isset($_POST[$fielnName]) ? $_POST[$fielnName] : null;
   $dbValue = isset($existing->{$fielnName}->{$alpha2Code}) ? $existing->{$fielnName}->{$alpha2Code}: null;
  
-  return ($postValue!=null) ? $postValue : (($dbValue!=null) ? $dbValue : $default);
+  return ($postValue!=null) ? $postValue : (($dbValue!=null) ? $dbValue: $default);
 }
 
 function GetExistingArticle($productsId){
@@ -386,7 +386,7 @@ function UpdateArticleFromPost($products_id){
         "ekomi_allow" => GetValues("ekomi_allow",$existing),
         "products_image" => GetValues("products_image",$existing),
         "products_price" => GetValues("products_price",$existing),
-        "date_added" => GetValues("products_price",$existing, date("Y-m-d H:i:s")) ,
+        "date_added" => GetValues("date_added",$existing, date("Y-m-d H:i:s")) ,
         "last_modified" => date("Y-m-d H:i:s") ,
         "date_available" => GetValues("date_available",$existing),
         "products_weight" => GetValues("products_weight",$existing),
@@ -458,7 +458,7 @@ function UpdateArticleFromPost($products_id){
         "indivFieldsList" => [],
       )
     )
-  ));
+      ),JSON_HEX_QUOT |JSON_HEX_APOS);
   
   $response = json_decode(CallAPI('POST','https://shop.aquarus.net/index.php?page=xt_api',$data)); 
 
