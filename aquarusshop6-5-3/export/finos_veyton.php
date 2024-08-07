@@ -358,7 +358,7 @@ function GetExistingArticle($productsId){
   
   return $existing; 
 }
-
+ 
 function UpdateArticleFromPost($products_id){
   $existing = GetExistingArticle($products_id);
 
@@ -464,6 +464,52 @@ function UpdateArticleFromPost($products_id){
 
   return $response;
 }
+
+
+// function GetExistingCategory($categorieId){
+//   $requestExisitng = json_encode(array(
+//     "function" => "getCategory",
+//     "paras" => array(
+//       "user" => "finosScript",
+//       "pass" => "vx#Ne/x5u!Q5YS225H$",
+//       "start" => $categorieId-2,
+//       "blocksize" => 1 ,
+//       "extNumberRange"=>0
+//     )
+//   ));
+  
+//   $responseExisting = json_decode(CallAPI('POST','https://shop.aquarus.net/index.php?page=xt_api', $requestExisitng));
+  
+//   $existing = null;
+//   if(isset($responseExisting->{"result"})) {
+//     $existing = $responseExisting->{"result"};
+//   }
+  
+//   if($existing->{"categories_id"} == $categorieId) {
+//     return $existing;  
+//   }else {
+//     return null;
+//   }
+
+// }
+
+// function UpdateCategoryFromPost($categorieId){
+//   $existing = GetExistingCategory($categorieId);
+
+//   $data = json_encode(array(
+//     "function" => "setCategory",
+//     "paras" => array(
+//       "user" => "finosScript",
+//       "pass" => "vx#Ne/x5u!Q5YS225H$"
+//       )
+//     ));
+
+//   $response = json_decode(CallAPI('POST','https://shop.aquarus.net/index.php?page=xt_api',$data));
+
+//   return $response;
+
+// }
+
 
 function save_products ()
 {
@@ -1698,7 +1744,7 @@ function save_categories_descriptions ()
 * @var mysqli $db
 */
   global $db;
-  
+   
   $header = '<?xml version="1.0" encoding="' . CHARSET . '"?>' . "\n" .
             '<STATUS>' . "\n";
 
@@ -2146,9 +2192,16 @@ function save_seo_url()
   $header = '<?xml version="1.0" encoding="' . CHARSET . '"?>' . "\n" .
             '<STATUS>' . "\n";
 
-  $products_id = isset($_POST['link_id']) ? $_POST['link_id']:"";
+  $products_id = isset($_POST['link_id']) ? $_POST['link_id']:null;
+  $linkId = isset($_POST['link_type']) ? $_POST['link_type']:null;
 
-  UpdateArticleFromPost($products_id);
+  switch ($linkId) {
+    case 1:
+      UpdateArticleFromPost($products_id);
+      break;
+    case 2:
+      break;
+  }
  
     $schema = "<STATUS_DATA>" . "\n" .
               "<EXISTS>" . 1 . "</EXISTS>" . "\n" .
