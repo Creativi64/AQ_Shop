@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-08-03 01:15:03
+/* Smarty version 5.1.0, created on 2024-09-09 19:47:32
   from 'file:includes/product_listing_base.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_66ad687776fba0_49878534',
+  'unifunc' => 'content_66df34b4679ca1_37480412',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:includes/product_info_label.html' => 1,
   ),
 ))) {
-function content_66ad687776fba0_49878534 (\Smarty\Template $_smarty_tpl) {
+function content_66df34b4679ca1_37480412 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/includes';
 ?><div class="product-listing product-listing-<?php echo $_smarty_tpl->getValue('position');
 if ($_smarty_tpl->getValue('listingSwitch') == 1) {?> product-listing-switch<?php }?>">
@@ -126,9 +126,9 @@ $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_
   'iteration' => true,
   'total' => true,
 ));
-$foreach2DoElse = true;
+$foreach1DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('key')->value => $_smarty_tpl->getVariable('module_data')->value) {
-$foreach2DoElse = false;
+$foreach1DoElse = false;
 $_smarty_tpl->tpl_vars['__smarty_foreach_listing']->value['iteration']++;
 $_smarty_tpl->tpl_vars['__smarty_foreach_listing']->value['index']++;
 $_smarty_tpl->tpl_vars['__smarty_foreach_listing']->value['first'] = !$_smarty_tpl->tpl_vars['__smarty_foreach_listing']->value['index'];

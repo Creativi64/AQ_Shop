@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-08-03 01:15:28
+/* Smarty version 5.1.0, created on 2024-09-10 11:50:10
   from 'file:/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/forms/shipping.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_66ad6890addd09_10481182',
+  'unifunc' => 'content_66e01652b3a426_76641311',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_66ad6890addd09_10481182 (\Smarty\Template $_smarty_tpl) {
+function content_66e01652b3a426_76641311 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/forms';
 ?><div id="shipping">
 	<h1><?php echo $_smarty_tpl->getValue('data')['content_heading'];?>

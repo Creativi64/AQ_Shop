@@ -1,0 +1,26 @@
+/* This is a stylesheet */
+
+.social-media-buttons .smb {
+	width: 32px;
+	height: 32px;
+	float: left;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.social-media-buttons .smb:hover {
+	background-position-y: -32px;
+}
+
+.tfm-smb-circle {
+	border-radius: 15px;
+}
+
+.tfm-smb-rounded {
+	border-radius: 5px;
+}
+
+.tfm-smb-dark {
+	background-color: #333333;
+}

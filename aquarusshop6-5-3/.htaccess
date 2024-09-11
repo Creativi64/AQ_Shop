@@ -6,6 +6,11 @@ DirectoryIndex index.php
 #	Header always append X-Frame-Options SAMEORIGIN
 #	Header set X-Content-Type-Options nosniff
 #</IfModule>
+<Limit GET POST>
+order allow,deny
+allow from all
+deny from 52.143.180.0/24
+</Limit>
 
 Header set Access-Control-Allow-Origin "*"
 

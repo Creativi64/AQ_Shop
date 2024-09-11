@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-08-03 01:15:03
+/* Smarty version 5.1.0, created on 2024-09-09 19:47:32
   from 'file:includes/box_sidebar_products.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_66ad6877913b62_53798914',
+  'unifunc' => 'content_66df34b490ecf6_69852583',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:includes/product_info_label.html' => 1,
   ),
 ))) {
-function content_66ad6877913b62_53798914 (\Smarty\Template $_smarty_tpl) {
+function content_66df34b490ecf6_69852583 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/includes';
 $_smarty_tpl->assign('visible_items', "1", false, NULL);?>
 
@@ -53,9 +53,9 @@ $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_
   'iteration' => true,
   'total' => true,
 ));
-$foreach9DoElse = true;
+$foreach2DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('nr')->value => $_smarty_tpl->getVariable('module_data')->value) {
-$foreach9DoElse = false;
+$foreach2DoElse = false;
 $_smarty_tpl->tpl_vars['__smarty_foreach_aussen']->value['iteration']++;
 $_smarty_tpl->tpl_vars['__smarty_foreach_aussen']->value['index']++;
 $_smarty_tpl->tpl_vars['__smarty_foreach_aussen']->value['first'] = !$_smarty_tpl->tpl_vars['__smarty_foreach_aussen']->value['index'];
@@ -89,6 +89,19 @@ echo htmlspecialchars((string)$_smarty_tpl->getValue('module_data')['products_im
 } else {
 echo htmlspecialchars((string)$_smarty_tpl->getValue('module_data')['products_name'], ENT_QUOTES, 'UTF-8', true);
 }
+$_prefixVariable6=ob_get_clean();
+ob_start();
+if ($_smarty_tpl->getValue('module_data')['products_image_data']['copyright_holder']) {
+echo " &copy; ";
+echo (string)$_smarty_tpl->getValue('module_data')['products_image_data']['copyright_holder'];
+}
+$_prefixVariable7=ob_get_clean();
+ob_start();
+if ($_smarty_tpl->getValue('module_data')['products_image_data']['media_name']) {
+echo htmlspecialchars((string)$_smarty_tpl->getValue('module_data')['products_image_data']['media_name'], ENT_QUOTES, 'UTF-8', true);
+} else {
+echo htmlspecialchars((string)$_smarty_tpl->getValue('module_data')['products_name'], ENT_QUOTES, 'UTF-8', true);
+}
 $_prefixVariable8=ob_get_clean();
 ob_start();
 if ($_smarty_tpl->getValue('module_data')['products_image_data']['copyright_holder']) {
@@ -96,20 +109,7 @@ echo " &copy; ";
 echo (string)$_smarty_tpl->getValue('module_data')['products_image_data']['copyright_holder'];
 }
 $_prefixVariable9=ob_get_clean();
-ob_start();
-if ($_smarty_tpl->getValue('module_data')['products_image_data']['media_name']) {
-echo htmlspecialchars((string)$_smarty_tpl->getValue('module_data')['products_image_data']['media_name'], ENT_QUOTES, 'UTF-8', true);
-} else {
-echo htmlspecialchars((string)$_smarty_tpl->getValue('module_data')['products_name'], ENT_QUOTES, 'UTF-8', true);
-}
-$_prefixVariable10=ob_get_clean();
-ob_start();
-if ($_smarty_tpl->getValue('module_data')['products_image_data']['copyright_holder']) {
-echo " &copy; ";
-echo (string)$_smarty_tpl->getValue('module_data')['products_image_data']['copyright_holder'];
-}
-$_prefixVariable11=ob_get_clean();
-echo $_smarty_tpl->getSmarty()->getFunctionHandler('img')->handle(array('img'=>$_smarty_tpl->getValue('module_data')['products_image'],'type'=>'m_info','class'=>"productImageBorder img-responsive",'alt'=>$_prefixVariable8.$_prefixVariable9,'title'=>$_prefixVariable10.$_prefixVariable11), $_smarty_tpl);?>
+echo $_smarty_tpl->getSmarty()->getFunctionHandler('img')->handle(array('img'=>$_smarty_tpl->getValue('module_data')['products_image'],'type'=>'m_info','class'=>"productImageBorder img-responsive",'alt'=>$_prefixVariable6.$_prefixVariable7,'title'=>$_prefixVariable8.$_prefixVariable9), $_smarty_tpl);?>
 
                             </a>
                         <?php }?>

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-08-03 01:15:03
+/* Smarty version 5.1.0, created on 2024-09-09 19:14:52
   from 'file:/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes/box_payment_logos.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_66ad6877a57512_71691377',
+  'unifunc' => 'content_66df2d0ca8cdc0_31547819',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,9 +20,9 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_66ad6877a57512_71691377 (\Smarty\Template $_smarty_tpl) {
+function content_66df2d0ca8cdc0_31547819 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes';
-$_smarty_tpl->getCompiled()->nocache_hash = '22964181566ad6877a4adf6_67371851';
+$_smarty_tpl->getCompiled()->nocache_hash = '11422379766df2d0ca7d0b7_79443489';
 ?>
 
 
@@ -37,9 +37,9 @@ $_smarty_tpl->getCompiled()->nocache_hash = '22964181566ad6877a4adf6_67371851';
             <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('_payment_logos'), 'module_data', false, NULL, 'aussen', array (
 ));
-$foreach12DoElse = true;
+$foreach11DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('module_data')->value) {
-$foreach12DoElse = false;
+$foreach11DoElse = false;
 ?>
                 <?php $_smarty_tpl->assign('image', ((string)$_smarty_tpl->getValue('tpl_path'))."/img/payments/".((string)$_smarty_tpl->getValue('language'))."/".((string)$_smarty_tpl->getValue('module_data')['payment_code']).".png", false, NULL);?>
                 <?php $_smarty_tpl->assign('image_system', ((string)$_smarty_tpl->getValue('tpl_path_system'))."/img/payments/".((string)$_smarty_tpl->getValue('language'))."/".((string)$_smarty_tpl->getValue('module_data')['payment_code']).".png", false, NULL);?>

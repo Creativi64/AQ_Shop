@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-08-03 01:15:25
+/* Smarty version 5.1.0, created on 2024-09-10 10:07:15
   from 'file:/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/forms/contact.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_66ad688d1947c7_69447531',
+  'unifunc' => 'content_66dffe33e09147_32335381',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:xtCore/pages/content.html' => 1,
   ),
 ))) {
-function content_66ad688d1947c7_69447531 (\Smarty\Template $_smarty_tpl) {
+function content_66dffe33e09147_32335381 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/forms';
 ?><div id="contact">
 	<?php echo $_smarty_tpl->getValue('message');?>

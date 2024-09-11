@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-08-03 01:15:03
+/* Smarty version 5.1.0, created on 2024-09-09 19:14:52
   from 'file:/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes/box_search.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_66ad68777dca56_21415415',
+  'unifunc' => 'content_66df2d0c98b3a3_44354484',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_66ad68777dca56_21415415 (\Smarty\Template $_smarty_tpl) {
+function content_66df2d0c98b3a3_44354484 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes';
 ?><div class="box-search">
     <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('form')->handle(array('class'=>"search-box-form",'type'=>'form','name'=>'search_box','action'=>'search','link_params'=>'getParams','method'=>'get','conn'=>'SSL'), $_smarty_tpl);?>
@@ -33,15 +33,15 @@ $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_
 if ((defined('SEARCH_BOX_SEARCH_IN_DESC') ? constant('SEARCH_BOX_SEARCH_IN_DESC') : null)) {
 echo "on";
 }
-$_prefixVariable6=ob_get_clean();
-echo $_smarty_tpl->getSmarty()->getFunctionHandler('form')->handle(array('type'=>'hidden','name'=>'desc','value'=>$_prefixVariable6), $_smarty_tpl);?>
+$_prefixVariable1=ob_get_clean();
+echo $_smarty_tpl->getSmarty()->getFunctionHandler('form')->handle(array('type'=>'hidden','name'=>'desc','value'=>$_prefixVariable1), $_smarty_tpl);?>
 
         <?php ob_start();
 if ((defined('SEARCH_BOX_SEARCH_IN_SDESC') ? constant('SEARCH_BOX_SEARCH_IN_SDESC') : null)) {
 echo "on";
 }
-$_prefixVariable7=ob_get_clean();
-echo $_smarty_tpl->getSmarty()->getFunctionHandler('form')->handle(array('type'=>'hidden','name'=>'sdesc','value'=>$_prefixVariable7), $_smarty_tpl);?>
+$_prefixVariable2=ob_get_clean();
+echo $_smarty_tpl->getSmarty()->getFunctionHandler('form')->handle(array('type'=>'hidden','name'=>'sdesc','value'=>$_prefixVariable2), $_smarty_tpl);?>
 
         <div class="input-group">
             <input type="text" name="keywords" class="form-control keywords" value="<?php echo preg_replace('!<[^>]*?>!', ' ', (string) $_GET['keywords']);?>
