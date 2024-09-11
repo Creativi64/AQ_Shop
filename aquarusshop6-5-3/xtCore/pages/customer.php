@@ -529,7 +529,18 @@ if(isset($page->page_action) && $page->page_action != ''){
 			// login
 			if (isset ($_POST['action']) && $_POST['action']=='login'){
 
-                $email = substr($_POST['email'], 0, 64); // TODO 5.1.0 define a global max length for the failed_login.look_up and customer.email. first is 64 latter 96?
+                $email = substr($_POST['email'], 0, 96);
+
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $info->_addInfo(ERROR_EMAIL_ADDRESS_SYNTAX);
+                    $template = new Template();
+                    $tpl_data = array('message'=>$info->info_content);
+                    $tpl_data = array_merge($tpl_data, $customer_tpl_data, $customer_data);
+                    $tpl = '/'._SRV_WEB_CORE.'pages/login.html';
+                    $page_data = $template->getTemplate('smarty', $tpl, $tpl_data);
+                    break;
+                }
+
 				$password = $_POST['password'];
 
 				$store_sql = " and shop_id = ? ";
@@ -539,16 +550,6 @@ if(isset($page->page_action) && $page->page_action != ''){
 
 				$filter_email = true;
 				($plugin_code = $xtPlugin->PluginCode('module_customer.php:pre_login')) ? eval($plugin_code) : false;
-
-                if ($filter_email && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    $info->_addInfo(ERROR_EMAIL_ADDRESS_SYNTAX);
-                    $template = new Template();
-                    $tpl_data = array('message'=>$info->info_content);
-                    $tpl_data = array_merge($tpl_data, $customer_tpl_data, $customer_data);
-                    $tpl = '/'._SRV_WEB_CORE.'pages/login.html';
-                    $page_data = $template->getTemplate('smarty', $tpl, $tpl_data);
-                    break;
-                }
 
 				// bruto force check
 				if (!$bruto_force->_isLocked($email) || $email=='') {

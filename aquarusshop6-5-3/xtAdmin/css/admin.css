@@ -3001,3 +3001,5 @@ div.products_to_cat_selector ~ ul > li > div > .x-tree-node-anchor {
 	filter: brightness(75%);
 	font-weight: bold;
 }
+
+.x-form-item .fr-checkbox-line label { width: initial }

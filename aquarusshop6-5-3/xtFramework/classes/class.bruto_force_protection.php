@@ -132,6 +132,7 @@ class bruto_force_protection extends xt_backend_cls{
 		global $db,$filter;
 
 		$type = (int)$type;
+        $lookup = filter_var($lookup, FILTER_SANITIZE_EMAIL);
 		$rs = "SELECT * FROM ".TABLE_FAILED_LOGIN." WHERE lookup=? and check_type=? and lock_until >= NOW()";
 		$rs = $db->Execute($rs, array($lookup, $type));
 		if ($rs->RecordCount()==1) {

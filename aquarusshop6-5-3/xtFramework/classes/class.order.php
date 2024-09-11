@@ -1892,48 +1892,86 @@ class order extends xt_backend_cls {
 
 		$js = " function deleteOrder(edit_id,btn){
 	  		var edit_id = edit_id;
-	  		if (btn == 'yes') {
-
+	  		
+	  		var fillup_stock = (btn == 'yes') ? 1 : 0;
+	  	
 	  		var conn = new Ext.data.Connection();
-                 conn.request({
-                 url: 'row_actions.php',
-                 method:'GET',
-                 params: {'orders_id': edit_id,'type': 'delete_order','fillup_stock':'1'},
-                 success: function(responseObject) {
-                        var result = Ext.util.JSON.decode(responseObject.responseText);
-                        var msg = '".__text('TEXT_ORDER_DELETE_SUCCESS')."';
-                        if(typeof(result.msg) != 'undefined' && result.msg.length > 0)
-                        {
-                            msg = result.msg
-                        }
-                 		   orderds.reload();
-                        Ext.MessageBox.alert('Message', msg);
-                           
-                          }
-                 });
-
-			}
-			if (btn == 'no') {
-				var conn = new Ext.data.Connection();
-                 conn.request({
-                 url: 'row_actions.php',
-                 method:'GET',
-                 params: {'orders_id': edit_id,'type': 'delete_order','fillup_stock':'0'},
-                 success: function(responseObject) {
-                        var result = Ext.util.JSON.decode(responseObject.responseText);
-                        var msg = '".__text('TEXT_ORDER_DELETE_SUCCESS')."';
-                        if(typeof(result.msg) != 'undefined' && result.msg.length > 0)
-                        {
-                            msg = result.msg
-                        }
-                 		   orderds.reload();
-                        Ext.MessageBox.alert('Message', msg);
-                          }
-                 });
-			}
+             conn.request({
+             url: 'row_actions.php',
+             method:'GET',
+             params: {'orders_id': edit_id,'type': 'delete_order','fillup_stock':fillup_stock},
+             success: function(responseObject) {
+                    var result = Ext.util.JSON.decode(responseObject.responseText);
+                    var msg = '".__text('TEXT_ORDER_DELETE_SUCCESS')."';
+                    if(typeof(result.msg) != 'undefined' && result.msg.length > 0)
+                    {
+                        msg = result.msg
+                    }
+                    orderds.reload();
+                    Ext.MessageBox.alert('Message', msg);
+                 }
+             });
 		};";
 
 		($plugin_code = $xtPlugin->PluginCode('class.order.php:_getParams_row_actions')) ? eval($plugin_code) : false;
+
+        $js_multiDeleteButton =  "Ext.Msg.show({title:'".__text('TEXT_DELETE_ORDER')."',
+				msg: '".__text('TEXT_DELETE_ORDER_ASK')."',
+				buttons: Ext.Msg.YESNOCANCEL,
+				animEl: 'elId',
+				fn: function(btn){multiDeleteOrder(btn);},
+				icon: Ext.MessageBox.QUESTION
+				});
+
+        function multiDeleteOrder(btn)
+        {
+	  		var records = new Array();
+            records = orderds.getModifiedRecords();
+            var record_ids = [];
+            for (var i = 0; i < records.length; i++) {
+                if (records[i].get('selectedItem'))
+                    record_ids.push( records[i].get('orders_id'));
+            }
+            if (record_ids.length == 0) return;
+	  		
+	  		var fillup_stock = (btn == 'yes') ? 1 : 0;
+	  		
+	  		var lm = new Ext.LoadMask(Ext.getBody(),{msg:'".__define('TEXT_DELETE')." ...'});
+            lm.show();
+	  		
+	  		var conn = new Ext.data.Connection();
+            conn.request({
+                 url: 'adminHandler.php?load_section=order&pg=overview&parentNode=node_order&sec=".$_SESSION['admin_user']['admin_key']."',
+                 method:'POST',
+                 params: {
+                    'multiFlag_unset': true,
+                    'fillup_stock': fillup_stock,
+                    'm_ids': record_ids.toString()
+                 },
+                 success: function(responseObject) {
+                        var result = Ext.util.JSON.decode(responseObject.responseText);
+                        var msg = '".__text('TEXT_ORDER_DELETE_SUCCESS')."';
+                        if(typeof(result.msg) != 'undefined' && result.msg.length > 0)
+                        {
+                            msg = result.msg
+                        }
+                        lm.hide();
+                 		orderds.reload();
+                        Ext.MessageBox.alert('Message', msg);
+                 },
+                 failure: function(a,b)
+                 {
+                    console.log(a,b);
+                    Ext.MessageBox.alert('Error', a.statusText + '<br><br>Check Web Console / php logs');
+                    lm.hide();
+                 }
+            });
+		};";
+
+        $code = 'multiDeleteButton';
+        $multiDeleteButton = array('text' => 'BUTTON_DELETE', 'style'=>'delete', 'icon'=>'delete.png','font-icon'=>'fa fa-trash-alt', 'acl'=>'delete', 'stm' => $js_multiDeleteButton);
+        $params['display_' . $code . 'Btn'] = true;
+        $params['UserButtons'][$code] = $multiDeleteButton;
 		
 		$params['rowActionsJavascript'] = $js;
 		$params['display_deleteBtn'] = false;
@@ -2244,13 +2282,14 @@ class order extends xt_backend_cls {
 	function _unset($id = 0)
 	{
 		global $db, $xtPlugin;
+        $id = (int)$id;
 		if ($id == 0) return false;
 		if ($this->position != 'admin') return false;
-		if (!is_int($id)) return false;
 
 		($plugin_code = $xtPlugin->PluginCode(__CLASS__.':_unset')) ? eval($plugin_code) : false;
 
-		$this->_deleteOrder($id);
+        $fillup_stock = array_key_exists('fillup_stock', $this->url_data) && (bool) $this->url_data['fillup_stock'];
+		$this->_deleteOrder($id, $fillup_stock);
 	}
 
 	

@@ -76,10 +76,13 @@ try
 
     if(!is_dir(_SRV_WEBROOT. $uploadFolder))
     {
-        $created = mkdir(_SRV_WEBROOT. $uploadFolder, 0755);
+        $created = mkdir(_SRV_WEBROOT. $uploadFolder, 0755, true);
         if(!$created)
         {
+            echo ('1) could not create folder '._SRV_WEBROOT. $uploadFolder);
+            error_log('1) froala_upload_image could not create folder '._SRV_WEBROOT. $uploadFolder);
             http_response_code(404);
+            die();
         }
     }
 
@@ -90,17 +93,25 @@ try
 
     if(!is_dir(_SRV_WEBROOT. $uploadFolder))
     {
-        $created = mkdir(_SRV_WEBROOT. $uploadFolder, 0755);
+        $created = mkdir(_SRV_WEBROOT. $uploadFolder, 0755, true);
         if(!$created)
         {
+            echo ('2) could not create folder '._SRV_WEBROOT. $uploadFolder);
+            error_log('2) froala_upload_image could not create folder '._SRV_WEBROOT. $uploadFolder);
             http_response_code(404);
+            die();
         }
     }
     $uploadFolder = '/'.$uploadFolder;
 
-    $response = FroalaEditor_Video::upload($uploadFolder, $defaultUploadOptions);
+    $response = FroalaEditor_Image::upload($uploadFolder, $defaultUploadOptions);
     echo stripslashes(json_encode($response));
 }
 catch (Exception $e) {
-    http_response_code(404);
+    echo '<pre>';
+    print_r($e);
+    echo '</pre>';
+    error_log('froala_upload_image: '.$e->getMessage());
+    http_response_code(503);
 }
+die();

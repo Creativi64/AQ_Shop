@@ -157,7 +157,7 @@ class order_edit_controller
     {
         $priceOverride = (array_key_exists('order_edit_priceOverride', $_SESSION) && $_SESSION['order_edit_priceOverride']) ? $_SESSION['order_edit_priceOverride'] : [];
 
-        if (!array_key_exists('order_id', $priceOverride) || !$priceOverride[$order_id])
+        if (!array_key_exists($order_id, $priceOverride) || !$priceOverride[$order_id])
         {
             $priceOverride[$order_id] = [];
         }

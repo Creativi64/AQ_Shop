@@ -590,8 +590,8 @@ class export extends xt_backend_cls
                 if (isset($plugin_return_value))
                     return $plugin_return_value;
 
-                $data_array['products_description'] = str_replace(array("\r", "\n"), '', $data_array['products_description']);
-                $data_array['products_short_description'] = str_replace(array("\r", "\n"), '', $data_array['products_short_description']);
+                $data_array['products_description'] = str_replace(array("\r", "\n"), ' ', $data_array['products_description']);
+                $data_array['products_short_description'] = str_replace(array("\r", "\n"), ' ', $data_array['products_short_description']);
                 $data_array['products_id'] = $data['products_id'];
                 $data_array['products_description_clean'] = $this->removeHTML($data_array['products_description']);
                 $data_array['products_short_description_clean'] = $this->removeHTML($data_array['products_short_description']);
@@ -771,8 +771,8 @@ class export extends xt_backend_cls
         $string = str_replace(";", ", ", $string);
         $string = str_replace("\"", "'", $string);
         $string = trim($string);
-        $string = preg_replace('/[\r\t\n]/', '', $string);
-        $string = str_replace(array("\r", "\n"), '', $string);
+        $string = preg_replace('/[\r\t\n]/', ' ', $string);
+        $string = str_replace(array("\r", "\n"), ' ', $string);
 
         ($plugin_code = $xtPlugin->PluginCode('class.export.php:removeHTML_bottom')) ? eval($plugin_code) : false;
         if (isset($plugin_return_value))

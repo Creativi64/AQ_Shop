@@ -55,7 +55,7 @@ if(!defined('FROALA_CDN_VERSION')) define('FROALA_CDN_VERSION', 'latest');
 <link rel="stylesheet" type="text/css" href="../xtFramework/library/ext/ux/grid/RowActions.css" />
 <link rel="stylesheet" type="text/css" href="../xtFramework/library/ext/resources/css/Ext.ux.form.IconCombo.css" />
 <link rel="stylesheet" href="../xtFramework/library/amcharts/css/style.css" type="text/css">
-<link rel="stylesheet" type="text/css" href="../xtFramework/library/jquery-admin/ui/base-xt/jquery-ui-1.9.2.custom.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="../xtFramework/library/jquery-admin/ui/base-xt/jquery-ui-1.9.2.custom.css" >
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">

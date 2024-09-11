@@ -95,6 +95,7 @@ function froala_editorInit(sb, ct, position)
                 xtClass: xtClass
             },
 
+            linkAutoPrefix: 'https://',
 
             toolbarButtons: {
                 'moreText': {
@@ -149,7 +150,7 @@ function froala_editorInit(sb, ct, position)
                 }
             },
             key: "2J1B10dA5A5A5D4E4E3E3C-22VKOG1FGULVKHXDXNDXc2a1Kd1SNdF3H3A8A6D4F4D4E3C2A7==",
-            attribution: false
+            attribution: false,
         }
     );
 }

@@ -1419,16 +1419,26 @@ class customer extends check_fields{
 		if(isset($plugin_return_value))
 		return $plugin_return_value;
 
+        $id = (int) $id;
 	    if ($id == 0) return false;
 		if ($this->position != 'admin') return false;
-		$id=(int)$id;
-		if(!is_int($id)) return false;
 
-	    $db->Execute("DELETE FROM ". TABLE_CUSTOMERS ." WHERE ".$this->master_id." = ?", array($id));
-	    $db->Execute("DELETE FROM ". TABLE_CUSTOMERS_ADDRESSES ." WHERE ".$this->master_id." = ?", array($id));
+        $this->deleteCustomer($id);
 
 	    ($plugin_code = $xtPlugin->PluginCode('class.customer.php:_unset_bottom')) ? eval($plugin_code) : false;
+
+        return true;
 	}
+
+    function deleteCustomer($id, $params = [])
+    {
+        global $db, $xtPlugin;
+
+        $db->Execute("DELETE FROM ". TABLE_CUSTOMERS_ADDRESSES ." WHERE ".$this->master_id." = ?", array($id));
+        $db->Execute("DELETE FROM ". TABLE_CUSTOMERS .          " WHERE ".$this->master_id." = ?", array($id));
+
+        ($plugin_code = $xtPlugin->PluginCode('class.customer.php:deleteCustomer_bottom')) ? eval($plugin_code) : false;
+    }
 
 	static function pageCustomerGetDobTplData($pos, $def_dob = 'now', $cust_id = 0)
 	{

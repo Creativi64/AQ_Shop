@@ -55,11 +55,11 @@ class permission {
     /**
      * @var mixed|string
      */
-    protected mixed $_simple_permissions;
+    protected mixed $_simple_permissions = '';
     /**
      * @var mixed|string
      */
-    protected mixed $_simple_permissions_key;
+    protected mixed $_simple_permissions_key = '';
     /**
      * @var mixed|string
      */
