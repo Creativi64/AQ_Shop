@@ -84,7 +84,13 @@
                         <span class="text-small">{txt key=TEXT_PRODUCTS_EAN}:</span>
                         <span class="badge badge-lighter">{$products_ean}</span>
                     </p>
-                {/if} /-->
+                {/if} -->
+                <!-- {if $products_condition_name!=''}
+                    <p class="product-model float-sm-left">
+                        <span class="text-small">{txt key=TEXT_PRODUCTS_CONDITION}:</span>
+                        <span class="badge badge-lighter">{$products_condition_name}</span>
+                    </p>
+                {/if} -->
                 {if $manufacturer.manufacturers_name}
                     <p class="product-manufacturer name">
                         <span class="text-small">{txt key=HEADING_PRODUCTS_MANUFACTURERS}:</span>
@@ -326,6 +332,46 @@
         {/if}
 
         {hook key=product_info_tpl_tab_box_2}
+
+        {if $manufacturer.manufacturer_identification_available || $manufacturer.eu_economic_operator_available}
+            {if $manufacturer.manufacturer_identification_available && $manufacturer.eu_economic_operator_available}
+                {assign var="manufacturer_identification_col" value="6"}
+            {else}
+                {assign var="manufacturer_identification_col" value="12"}
+            {/if}
+            <div id="compliance" class="textstyles text-word-wrap info-panel">
+                <p class="headline"
+                   data-toggle="collapse"
+                   data-target="#compliance-collapse"
+                   aria-expanded="false"
+                   aria-controls="compliance-collapse">
+                    {txt key=TEXT_MANUFACTURER_IDENTIFICATION}
+                </p>
+                <div id="compliance-collapse" class="collapse collapse-auto-toggle">
+                    {if $manufacturer.manufacturer_identification_available}
+                    <div class="col-md-{$manufacturer_identification_col}">
+                        <p class="headline h4">{txt key=TEXT_MANUFACTURER_IDENTIFICATION}</p>
+                        {foreach key=k item=val from=$manufacturer.manufacturer_identification}
+                            {if $val}
+                                {txt key="TEXT_{$k}"}: {$val}<br>
+                            {/if}
+                        {/foreach}
+                    </div>
+                    {/if}
+                    {if $manufacturer.eu_economic_operator_available}
+                    <div class="col-md-{$manufacturer_identification_col}">
+                        <p class="headline h4">{txt key=TEXT_EU_ECONOMIC_OPERATOR}</p>
+                        {foreach key=k item=val from=$manufacturer.eu_economic_operator}
+                            {if $val}
+                                {txt key="TEXT_{$k}"}: {$val}<br>
+                            {/if}
+                        {/foreach}
+                    </div>
+                    {/if}
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        {/if}
 
     </div>
 

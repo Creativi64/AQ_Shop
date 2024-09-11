@@ -1289,7 +1289,7 @@ class customer extends check_fields{
 			}
 			else 
 			{
-			    deleteCustomer(0, 0)
+			    multiDeleteCustomer(0, 0);
 			}
         }
 

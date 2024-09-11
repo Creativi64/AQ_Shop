@@ -72,9 +72,19 @@
             <div id="product-intro" name="product_info" class="col col-xs-12 col-md-7">
                 <div class="clearfix"></div>
                 <hr class="hidden-md hidden-lg" />
+
                 {if $products_model!=''}
                     <p class="label label-primary">{txt key=TEXT_PRODUCTS_MODEL} {$products_model}</p>
                 {/if}
+
+                <!-- {if $products_ean!=''}
+                    <p class="label label-primary">{txt key=TEXT_PRODUCTS_EAN} {$products_ean}</p>
+                {/if} -->
+
+                <!-- {if $products_condition_name!=''}
+                    <p class="label label-primary">{txt key=TEXT_PRODUCTS_CONDITION} {$products_condition_name}</p>
+                {/if} -->
+
                 <h1 id="product-name" class="text-uppercase hidden-xs hidden-sm" itemprop="name">{$products_name}</h1>
                 {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $products_price.formated neq ''}
 
@@ -311,6 +321,46 @@
             {/if}
 
             {hook key=product_info_tpl_tab_box_2}
+
+            {if $manufacturer.manufacturer_identification_available || $manufacturer.eu_economic_operator_available}
+                {if $manufacturer.manufacturer_identification_available && $manufacturer.eu_economic_operator_available}
+                    {assign var="manufacturer_identification_col" value="6"}
+                {else}
+                    {assign var="manufacturer_identification_col" value="12"}
+                {/if}
+                <div id="compliance" class="textstyles text-word-wrap info-panel">
+                    <p class="breaking-headline  cursor-pointer"
+                       data-toggle="collapse"
+                       data-target="#compliance-collapse"
+                       aria-expanded="false"
+                       aria-controls="compliance-collapse">
+                        {txt key=TEXT_MANUFACTURER_IDENTIFICATION}
+                    </p>
+                    <div id="compliance-collapse" class="collapse collapse-auto-toggle">
+                        {if $manufacturer.manufacturer_identification_available}
+                            <div class="col-md-{$manufacturer_identification_col}">
+                                <p class="headline">{txt key=TEXT_MANUFACTURER_IDENTIFICATION}</p>
+                                {foreach key=k item=val from=$manufacturer.manufacturer_identification}
+                                    {if $val}
+                                        {txt key="TEXT_{$k}"}: {$val}<br>
+                                    {/if}
+                                {/foreach}
+                            </div>
+                        {/if}
+                        {if $manufacturer.eu_economic_operator_available}
+                            <div class="col-md-{$manufacturer_identification_col}">
+                                <p class="headline">{txt key=TEXT_EU_ECONOMIC_OPERATOR}</p>
+                                {foreach key=k item=val from=$manufacturer.eu_economic_operator}
+                                    {if $val}
+                                        {txt key="TEXT_{$k}"}: {$val}<br>
+                                    {/if}
+                                {/foreach}
+                            </div>
+                        {/if}
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            {/if}
 
         </div><!-- #pcontent -->
     </div>

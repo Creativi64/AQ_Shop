@@ -247,9 +247,19 @@
                             {if $manufacturer.link}</a>{/if}
                         </p>
                     {/if}
+
                     {if $products_model!=''}
                         <p class="product-model"><strong>{txt key=TEXT_PRODUCTS_MODEL}</strong> {$products_model}</p>
                     {/if}
+
+                    <!-- {if $products_ean!=''}
+                        <p class="product-model"><strong>{txt key=TEXT_PRODUCTS_EAN}</strong> {$products_ean}</p>
+                    {/if} -->
+
+                    <!-- {if $products_condition_name!=''}
+                        <p class="product-model"><strong>{txt key=TEXT_PRODUCTS_CONDITION}</strong> {$products_condition_name}</p>
+                    {/if} -->
+
                     {if $review_stars_rating}
                     <div class="left">
                         <div class="product-reviews cursor-pointer popover-trigger" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="{txt key=TEXT_XT_REVIEWS_INFO}" data-content="{if $products_rating_count}{$products_rating_count} {txt key=TEXT_XT_REVIEWS_INFO} {txt key=TEXT_EW_EVELATIONS_POPOVER_RATING_AVERAGE} {math equation='(x-1) / 100 * y' x=$review_stars_rating y=5 format='%.1f'} {txt key=TEXT_PAGINATION_FROM} 5 {txt key=TEXT_EW_EVELATIONS_POPOVER_RATING_STAR}.{else}{txt key=TEXT_XT_REVIEWS_NO_REVIEWS}.{/if}" onclick="document.location.href='{$link_reviews_list}'">
@@ -359,6 +369,46 @@
                 {/if}
 
                 {hook key=product_info_tpl_tab_box_2}
+
+                {if $manufacturer.manufacturer_identification_available || $manufacturer.eu_economic_operator_available}
+                    {if $manufacturer.manufacturer_identification_available && $manufacturer.eu_economic_operator_available}
+                        {assign var="manufacturer_identification_col" value="6"}
+                    {else}
+                        {assign var="manufacturer_identification_col" value="12"}
+                    {/if}
+                    <div id="compliance" class="textstyles text-word-wrap info-panel">
+                        <p class="breaking-headline cursor-pointer"
+                           data-toggle="collapse"
+                           data-target="#compliance-collapse"
+                           aria-expanded="false"
+                           aria-controls="compliance-collapse">
+                            {txt key=TEXT_MANUFACTURER_IDENTIFICATION}
+                        </p>
+                        <div id="compliance-collapse" class="collapse collapse-auto-toggle">
+                            {if $manufacturer.manufacturer_identification_available}
+                                <div class="col-md-{$manufacturer_identification_col}">
+                                    <p class="headline h4">{txt key=TEXT_MANUFACTURER_IDENTIFICATION}</p>
+                                    {foreach key=k item=val from=$manufacturer.manufacturer_identification}
+                                        {if $val}
+                                            {txt key="TEXT_{$k}"}: {$val}<br>
+                                        {/if}
+                                    {/foreach}
+                                </div>
+                            {/if}
+                            {if $manufacturer.eu_economic_operator_available}
+                                <div class="col-md-{$manufacturer_identification_col}">
+                                    <p class="headline h4">{txt key=TEXT_EU_ECONOMIC_OPERATOR}</p>
+                                    {foreach key=k item=val from=$manufacturer.eu_economic_operator}
+                                        {if $val}
+                                            {txt key="TEXT_{$k}"}: {$val}<br>
+                                        {/if}
+                                    {/foreach}
+                                </div>
+                            {/if}
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                {/if}
 
             </div><!-- #pcontent -->
         </div>

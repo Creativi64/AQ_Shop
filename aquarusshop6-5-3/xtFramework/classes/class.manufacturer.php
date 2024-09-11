@@ -152,7 +152,44 @@ class manufacturer extends xt_backend_cls {
 			global $mediaImages;
 			$media_images = $mediaImages->get_media_images($data['manufacturers_id'], __CLASS__);
 			$data['more_images'] = is_array($media_images) && array_key_exists('images', $media_images) ? $media_images['images'] : [];
-		}else return false;
+            
+            $manufacturer_identification_keys = [
+               'compliance_name',
+               'compliance_email',
+               'compliance_address_1',
+               'compliance_address_2',
+               'compliance_zip_code',
+               'compliance_city',
+               'compliance_country_code',
+               'compliance_phone',
+            ];
+            $data['manufacturer_identification_available'] = false;
+            foreach($manufacturer_identification_keys as $k)
+            {
+                $data['manufacturer_identification'][$k] = $data[$k];
+                if(!empty($data[$k])) $data['manufacturer_identification_available'] = true;
+                unset($data[$k]);
+            }
+
+            $eu_economic_operator_keys = [
+                'compliance_responsible_name',
+                'compliance_responsible_email',
+                'compliance_responsible_address_1',
+                'compliance_responsible_address_2',
+                'compliance_responsible_zip_code',
+                'compliance_responsible_city',
+                'compliance_responsible_country_code',
+                'compliance_responsible_phone'
+            ];
+            $data['eu_economic_operator_available'] = false;
+            foreach($eu_economic_operator_keys as $k)
+            {
+                $data['eu_economic_operator'][$k] = $data[$k];
+                if(!empty($data[$k])) $data['eu_economic_operator_available'] = true;
+                unset($data[$k]);
+            }
+		}
+        else return false;
 		
 		($plugin_code = $xtPlugin->PluginCode('manufacturer:buildData_bottom')) ? eval($plugin_code) : false;
 		return $data;
@@ -292,7 +329,7 @@ class manufacturer extends xt_backend_cls {
 		$extF = new ExtFunctions();
 		$mjs = $extF->_MultiButton_stm('BUTTON_START_SEO', 'doMnfSeo');
 
-		$groupingPosition = 'GPSR_TAB';
+        $groupingPosition = 'MANUFACTURER_IDENTIFICATION';
         $grouping['compliance_name'] = array('position' => $groupingPosition);
         $grouping['compliance_email'] = array('position' => $groupingPosition);
         $grouping['compliance_address_1'] = array('position' => $groupingPosition);
@@ -302,10 +339,10 @@ class manufacturer extends xt_backend_cls {
         $grouping['compliance_country_code'] = array('position' => $groupingPosition);
         $grouping['compliance_phone'] = array('position' => $groupingPosition);
 
-        $groupingPosition = 'GPSR_RESPONSIBLE_TAB';
+        $groupingPosition = 'EU_ECONOMIC_OPERATOR';
         $grouping['compliance_responsible_name'] = array('position' => $groupingPosition);
         $grouping['compliance_responsible_email'] = array('position' => $groupingPosition);
-        $grouping['compliance_responsible_responsible_address_1'] = array('position' => $groupingPosition);
+        $grouping['compliance_responsible_address_1'] = array('position' => $groupingPosition);
         $grouping['compliance_responsible_address_2'] = array('position' => $groupingPosition);
         $grouping['compliance_responsible_zip_code'] = array('position' => $groupingPosition);
         $grouping['compliance_responsible_city'] = array('position' => $groupingPosition);
@@ -313,7 +350,8 @@ class manufacturer extends xt_backend_cls {
         $grouping['compliance_responsible_phone'] = array('position' => $groupingPosition);
 
 
-		$params['display_MnfSeoMn'] = true;
+
+        $params['display_MnfSeoMn'] = true;
 		
 
 		$params['header']	= $header;

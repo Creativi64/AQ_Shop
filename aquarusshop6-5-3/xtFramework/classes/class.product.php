@@ -326,8 +326,30 @@ class product  extends xt_backend_cls{
 			$this->data['more_images'] = $media_images['images'] ?? [];
 			$this->data['media_files'] = !empty($media_data) ? $this->_getPermittedMediaData($media_data['files']) : [];
 		}
-		
-		($plugin_code = $xtPlugin->PluginCode('class.product.php:BuildData_bottom')) ? eval($plugin_code) : false;
+
+        $this->data['products_condition_name'] = '';
+        if ($this->data['products_condition'] == 'NewCondition' || $this->data['products_condition'] == 'new')
+        {
+            $this->data['products_condition_name'] = __text('TEXT_PRODUCTS_CONDITION_NEW');
+        }
+        else if ($this->data['products_condition'] == 'UsedCondition' || $this->data['products_condition'] == 'used')
+        {
+            $this->data['products_condition_name'] = __text('TEXT_PRODUCTS_CONDITION_USED');
+        }
+        else if ($this->data['products_condition'] == 'RefurbishedCondition' || $this->data['products_condition'] == 'refurbished')
+        {
+            $this->data['products_condition_name'] = __text('TEXT_PRODUCTS_CONDITION_REFURBISHED');
+        }
+        else if ($this->data['products_condition'] == 'DamagedCondition' || $this->data['products_condition'] == 'damaged')
+        {
+            $this->data['products_condition_name'] = __text('TEXT_PRODUCTS_CONDITION_DAMAGED');
+        }
+        else if(!empty($this->data['products_condition']))
+        {
+            $this->data['products_condition_name'] = __text('TEXT_PRODUCTS_CONDITION'.$this->data['products_condition']);
+        }
+
+        ($plugin_code = $xtPlugin->PluginCode('class.product.php:BuildData_bottom')) ? eval($plugin_code) : false;
 	}
 
 	function _getPrice($values)

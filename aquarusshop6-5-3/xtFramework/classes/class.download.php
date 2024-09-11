@@ -68,7 +68,7 @@ class download {
 				if(!is_dir($dir.$file))
 				@unlink($dir.$file);
 				else
-				remove_dir($dir.$file);
+				$this->remove_dir($dir.$file);
 			}
 		}
 		closedir($handle);
@@ -98,7 +98,7 @@ class download {
 	}
 
 	function serveFile($order_id,$media_id, $orders_products_id) {
-		global $db,$xtLink,$info;
+		global $db, $xtLink, $info, $xtPlugin;
 
 		$order_id = (int)$order_id;
 		$media_id = (int)$media_id;
@@ -112,7 +112,7 @@ class download {
 		$rs = $db->Execute($query, array($order_id, $media_id, $orders_products_id, (int)$_SESSION['registered_customer']));
 
 		if ($rs->RecordCount()!='1') {
-			$this->_gotoErrorDownload(array('page'=>'customer','paction'=>'download_overview'));
+			$this->gotoErrorDownload(array('page'=>'customer','paction'=>'download_overview'));
 		} else {
 			if (!$this->checkDownloadPermission($media_id, 'order')) {
 				$this->gotoErrorDownload(array('page'=>'customer','paction'=>'download_overview'));
@@ -132,6 +132,8 @@ class download {
 				$this->addCount($rs->fields['orders_id'],$rs->fields['media_id'], $rs->fields['orders_products_id']);
                 $this->addTotalCount($rs->fields['media_id']);
                 $this->logDownload($rs->fields['media_id']);
+
+                ($plugin_code = $xtPlugin->PluginCode('class.download.php:serveFile:bottom')) ? eval($plugin_code) : false;
 					
 				header("Location: " .  _SRV_WEB.$this->public_dir . $dir . "/" . $rs->fields['file']);
 			}
@@ -192,7 +194,7 @@ class download {
 	 * create symlink using WEBROOT or DOCUMENT_ROOT dir
 	 * @param $file
 	 * @param $tmp_dir
-	 * @return unknown_type
+	 * @return void
 	 */
 	function _createSymlink($file,$tmp_dir) {
 		global $logHandler;
@@ -352,7 +354,7 @@ class download {
 	/**
 	 * create dir in files_public folder
 	 *
-	 * @param unknown_type $dir
+	 * @param string $dir
 	 */
 	function createPublicDir($dir) 
 	{

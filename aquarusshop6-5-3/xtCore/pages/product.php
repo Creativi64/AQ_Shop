@@ -27,6 +27,8 @@
 
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
+global $xtPlugin, $p_info, $info, $current_product_id, $manufacturer;
+
 if(!defined('TABLE_MEDIA_DOWNLOAD_IP'))
 	define('TABLE_MEDIA_DOWNLOAD_IP', 'xt_media_download_ip');
 
