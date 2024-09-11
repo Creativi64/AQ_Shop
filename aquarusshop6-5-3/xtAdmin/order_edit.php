@@ -281,7 +281,8 @@ class admin_order_edit extends order_templates {
 	}
 
 	function setOrderData ($oID) {
-		global $language, $xtPlugin;
+		global $language, $xtPlugin, $db;
+
 		$order = new order($oID);
 		$order_data = $order->_buildData($oID);
 		$this->order = $order;
@@ -300,6 +301,8 @@ class admin_order_edit extends order_templates {
             $total_weight += $op['products_weight'] * $op['products_quantity'];
         }
         $order_data['order_total']['total_weight'] = $total_weight;
+
+        $order_data['customer_id_valid'] = $db->GetOne("SELECT customers_id from ".TABLE_CUSTOMERS. " WHERE customers_id = ?",[$order_data["order_data"]["customers_id"]]);
 
         $order_data['coupon_info'] = false;
         global $db, $order_edit_controller;

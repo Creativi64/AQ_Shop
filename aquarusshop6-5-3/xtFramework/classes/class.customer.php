@@ -1109,6 +1109,8 @@ class customer extends check_fields{
 
 		($plugin_code = $xtPlugin->PluginCode('class.customer.php:_getParams_header')) ? eval($plugin_code) : false;
 
+        $rowActionsJavascript = '';
+
 		$rowActions[] = array('iconCls' => 'address', 'qtipIndex' => 'qtip1', 'tooltip' => __text('TEXT_ADDRESS'));
         if ($this->url_data['edit_id'])
 		{
@@ -1184,10 +1186,174 @@ class customer extends check_fields{
         ";
         $rowActionsFunctions['dsgvo_send_admin'] = $js;
 
+
+        $rowActions[] = array('iconCls' => 'delete_customer', 'qtipIndex' => 'qtip1', 'tooltip' => __text('TEXT_DELETE'));
+
+        $js = "var edit_id = record.id;";
+        $js .= "Ext.Msg.show({title:'".__text('TEXT_DELETE_CUSTOMER')."',
+				msg: '".__text('TEXT_ORDER_DELETE_TOO')."',
+				buttons: Ext.Msg.YESNOCANCEL,
+				animEl: 'elId',
+				fn: function(btn){deleteCustomer_askDeleteOrder(edit_id,btn);},
+				icon: Ext.MessageBox.QUESTION
+				});";
+
+        $rowActionsFunctions['delete_customer'] = $js;
+
+
+        $rowActionsJavascript .= " 
+        
+        function deleteCustomer_askDeleteOrder(edit_id,btn)
+        {
+            if(btn == 'cancel') return;
+            
+            if(btn == 'yes')
+            {
+                Ext.Msg.show({title:'".__text('TEXT_DELETE_CUSTOMER')." - ".__text('TEXT_CUSTOMER_ORDERS')."',
+                    msg: '".__text('TEXT_DELETE_CUSTOMER_ORDERS_ASK')."',
+                    buttons: Ext.Msg.YESNOCANCEL,
+                    animEl: 'elId',
+                    fn: function(btn){deleteCustomer(edit_id, 1, btn);},
+                    icon: Ext.MessageBox.QUESTION
+                    });
+			}
+			else 
+			{
+			    deleteCustomer(edit_id, 0, 0)
+			}
+        }
+        
+        function deleteCustomer(edit_id, delete_order, refill_stock_btn)
+		{
+		    console.log('deleteCustomer',edit_id, delete_order, refill_stock_btn);
+		    
+		    if(refill_stock_btn == 'cancel') return;
+		    
+	  		var edit_id = edit_id;
+	  		var fillup_stock = (refill_stock_btn == 'yes') ? 1 : 0;
+	  		
+	  		var lm = new Ext.LoadMask(Ext.getBody(),{msg:'".__define('TEXT_DELETE')." ...'});
+            lm.show();
+	  	
+	  		var conn = new Ext.data.Connection();
+             conn.request({
+             url: 'row_actions.php',
+             method:'GET',
+             params: {'customers_id': edit_id,'type': 'delete_customer','delete_order': delete_order, 'fillup_stock':fillup_stock},
+             success: function(responseObject) {
+                    var result = Ext.util.JSON.decode(responseObject.responseText);
+                    var msg = '".__text('TEXT_SUCCESS')."';
+                    if(typeof(result.msg) != 'undefined' && result.msg.length > 0)
+                    {
+                        msg = result.msg
+                    }
+                    lm.hide();
+                    customerds.reload();
+                    Ext.MessageBox.alert('Message', msg);
+                 },
+                 failure: function(a,b)
+                 {
+                    console.log(a,b);
+                    Ext.MessageBox.alert('Error', a.statusText + '<br><br>Check Web Console / php logs');
+                    lm.hide();
+                 }
+             });
+		};";
+
+        $js_multiDeleteButton =  "
+        
+        const l = customerds.getModifiedRecords().length;
+        if(l == 0) return;
+        
+        Ext.Msg.show({title: '".__text('TEXT_DELETE_CUSTOMER')." (' + l + ')',
+				msg: '".__text('TEXT_ORDER_DELETE_TOO')."',
+				buttons: Ext.Msg.YESNOCANCEL,
+				animEl: 'elId',
+				fn: function(btn){multiDeleteCustomer_askDeleteOrder(btn);},
+				icon: Ext.MessageBox.QUESTION
+				});
+				
+		function multiDeleteCustomer_askDeleteOrder(btn)
+        {
+            if(btn == 'cancel') return;
+            
+            if(btn == 'yes')
+            {
+                Ext.Msg.show({title:'".__text('TEXT_DELETE_CUSTOMER')." - ".__text('TEXT_CUSTOMER_ORDERS')."',
+                    msg: '".__text('TEXT_DELETE_CUSTOMER_ORDERS_ASK')."',
+                    buttons: Ext.Msg.YESNOCANCEL,
+                    animEl: 'elId',
+                    fn: function(btn){multiDeleteCustomer(1, btn);},
+                    icon: Ext.MessageBox.QUESTION
+                    });
+			}
+			else 
+			{
+			    deleteCustomer(0, 0)
+			}
+        }
+
+        function multiDeleteCustomer(delete_order, refill_stock_btn)
+        {
+            console.log('multiDeleteCustomer', delete_order, refill_stock_btn);
+            
+            if(refill_stock_btn == 'cancel') return;
+            
+	  		var records = new Array();
+            records = customerds.getModifiedRecords();
+            var record_ids = [];
+            for (var i = 0; i < records.length; i++) {
+                if (records[i].get('selectedItem'))
+                    record_ids.push( records[i].get('customers_id'));
+            }
+            if (record_ids.length == 0) return;
+	  		
+	  		var fillup_stock = (refill_stock_btn == 'yes') ? 1 : 0;
+	  		
+	  		var lm = new Ext.LoadMask(Ext.getBody(),{msg:'".__define('TEXT_DELETE')." ...'});
+            lm.show();
+	  		
+	  		var conn = new Ext.data.Connection();
+            conn.request({
+                 url: 'adminHandler.php?load_section=customer&pg=overview&parentNode=node_customer&sec=".$_SESSION['admin_user']['admin_key']."',
+                 method:'POST',
+                 params: {
+                    'multiFlag_unset': true,
+                    'delete_order': delete_order,
+                    'fillup_stock': fillup_stock,
+                    'm_ids': record_ids.toString()
+                 },
+                 success: function(responseObject) {
+                        var result = Ext.util.JSON.decode(responseObject.responseText);
+                        var msg = '".__text('TEXT_SUCCESS')."';
+                        if(typeof(result.msg) != 'undefined' && result.msg.length > 0)
+                        {
+                            msg = result.msg
+                        }
+                        lm.hide();
+                 		customerds.reload();
+                        Ext.MessageBox.alert('Message', msg);
+                 },
+                 failure: function(a,b)
+                 {
+                    console.log(a,b);
+                    Ext.MessageBox.alert('Error', a.statusText + '<br><br>Check Web Console / php logs');
+                    lm.hide();
+                 }
+            });
+		};";
+
+
+        $code = 'customer_multiDeleteButton';
+        $multiDeleteButton = array('text' => 'BUTTON_DELETE', 'style'=>'delete', 'icon'=>'delete.png','font-icon'=>'fa fa-trash-alt', 'acl'=>'delete', 'stm' => $js_multiDeleteButton);
+        $params['display_' . $code . 'Btn'] = true;
+        $params['UserButtons'][$code] = $multiDeleteButton;
+
 		($plugin_code = $xtPlugin->PluginCode(__CLASS__.':_getParams_row_actions')) ? eval($plugin_code) : false;
 
 		$params['rowActions']             = $rowActions;
 		$params['rowActionsFunctions']    = $rowActionsFunctions;
+        $params['rowActionsJavascript']   = $rowActionsJavascript;
 
 		$params['header']         = $header;
 		$params['master_key']     = $this->master_id;
@@ -1197,7 +1363,7 @@ class customer extends check_fields{
 		$params['edit_masterkey'] = false;
 		$params['display_checkItemsCheckbox']  = true;
 		$params['display_checkCol']  = true;
-		//$params['display_newBtn'] = false;
+        $params['display_deleteBtn'] = false;
 
 		$pageSize = (int)_SYSTEM_ADMIN_PAGE_SIZE_CUSTOMER;
 		if($pageSize && is_int($pageSize)) $params['PageSize'] = $pageSize;
@@ -1423,7 +1589,11 @@ class customer extends check_fields{
 	    if ($id == 0) return false;
 		if ($this->position != 'admin') return false;
 
-        $this->deleteCustomer($id);
+        $params = [
+            'delete_order' => !empty($this->url_data["delete_order"]),
+            'refill_stock' => !empty($this->url_data["fillup_stock"]),
+        ];
+        $this->deleteCustomer($id, $params);
 
 	    ($plugin_code = $xtPlugin->PluginCode('class.customer.php:_unset_bottom')) ? eval($plugin_code) : false;
 
@@ -1434,10 +1604,29 @@ class customer extends check_fields{
     {
         global $db, $xtPlugin;
 
+        $id = (int) $id;
+        if ($id == 0) return false;
+
+        $db->Execute("DELETE FROM ". TABLE_CUSTOMERS_BASKET .   " WHERE ".$this->master_id." = ?", array($id));
         $db->Execute("DELETE FROM ". TABLE_CUSTOMERS_ADDRESSES ." WHERE ".$this->master_id." = ?", array($id));
         $db->Execute("DELETE FROM ". TABLE_CUSTOMERS .          " WHERE ".$this->master_id." = ?", array($id));
 
+        if(array_key_exists('delete_order', $params) && $params["delete_order"])
+        {
+            $refill_stock = array_key_exists('refill_stock', $params) ? $params['refill_stock'] : false;
+            $orders = $db->GetArray("SELECT orders_id FROM ".TABLE_ORDERS. " WHERE customers_id = ?", [$id]);
+            foreach ($orders as $order)
+            {
+                static $order_obj;
+                if(empty($order_obj))
+                    $order_obj = new order();
+                $order_obj->_deleteOrder($order['orders_id'], $refill_stock);
+            }
+        }
+
         ($plugin_code = $xtPlugin->PluginCode('class.customer.php:deleteCustomer_bottom')) ? eval($plugin_code) : false;
+        if(isset($plugin_return_value))
+            return $plugin_return_value;
     }
 
 	static function pageCustomerGetDobTplData($pos, $def_dob = 'now', $cust_id = 0)

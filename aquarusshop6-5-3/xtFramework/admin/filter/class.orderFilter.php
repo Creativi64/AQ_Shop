@@ -102,6 +102,8 @@ class OrderFilter extends formFilter{
         $model = self::setWidth($model,"150px");
         $a[] = $model;
 
+        $a[] = PhpExt_Form_Checkbox::createCheckbox("filter_no_valid_customer_assoc",TEXT_NO_VALID_CUSTOMER_ASSOC);
+
         ($plugin_code = $xtPlugin->PluginCode(__CLASS__.':_form_fields_bottom')) ? eval($plugin_code) : false;
         
         foreach($a as $field){

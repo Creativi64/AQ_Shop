@@ -83,12 +83,18 @@
 				<b>{txt key="HEADING_CUSTOMER"}-ID: </b>
 				{if $order_data.customers_id > 0}
 					{$order_data.customers_id}
-					&nbsp;
-					<a href="javascript:void(0)" onclick="openCustomersDetails({$order_data.customers_id})"><i class="fas fa-info-circle" qtip="{txt key='TEXT_CUSTOMER_DETAILS'}"></i></a>
+
+					{if $customer_id_valid}
+						<a href="javascript:void(0)" onclick="openCustomersDetails({$order_data.customers_id})"><i class="fas fa-info-circle" qtip="{txt key='TEXT_CUSTOMER_DETAILS'}"></i></a>
+					{else}
+						<a href="javascript:void(0)" onclick="openCustomersDetails({$order_data.customers_id})"><i class="fas fa-info-circle" style="color: red" qtip="{txt key='TEXT_NO_VALID_CUSTOMER_ASSOC'}"></i></a>
+					{/if}
+
 					&nbsp;
 					<a href="javascript:void(0)" onclick="openCustomersOrders({$order_data.customers_id})"><i class="fas fa-shopping-cart" qtip="{txt key='HEADING_ORDER'}"></i></a>
 					&nbsp;
 					<a href="javascript:void(0)" onclick="openCustomersAddresses({$order_data.customers_id})"><i class="fas fa-address-book" qtip="{txt key='HEADING_ADDRESS'}"></i></a>
+
 				{else} no customers ID ??
 				{/if}
 				{hook key="tpl_order_details:customers_details_bottom"}

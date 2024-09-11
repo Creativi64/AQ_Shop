@@ -64,8 +64,8 @@ class permission {
      * @var mixed|string
      */
     protected mixed $value_id;
-    public string $_perm_table;
-    public string $_perm_where;
+    public string $_perm_table = '';
+    public string $_perm_where = '';
 
     function __construct($data = '') {
 

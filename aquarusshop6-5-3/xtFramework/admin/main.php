@@ -322,7 +322,10 @@ function versionCheck() {
 
 	if ($httpcode!=200) {
 		$response = json_decode($response, TRUE);
-		if (is_array($response['message'])) $response['message']=$response['message'][0];
+		if (is_array($response['message']))
+            $response['message'] = $response['message'][0];
+        if (is_array($response) && $response['error'])
+            $response['message'] = $response['error'];
 		return $response;
 	} 
 	

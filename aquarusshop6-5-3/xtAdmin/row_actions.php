@@ -81,7 +81,12 @@ if (isset($_GET['type'])) {
 	// delete orders
 	if ($_GET['type']=='delete_order') {
 		// check permission
-		if (!$xtc_acl->checkPermission('order','delete')) return false;
+		if (!$xtc_acl->checkPermission('order','delete'))
+        {
+            $response = array('msg' => __text('TEXT_NO_SUCCESS') );
+            echo json_encode($response);
+            die();
+        };
 		
 		$orders_id = (int)$_GET['orders_id'];
 		$order = new order($orders_id,-1);
@@ -95,6 +100,36 @@ if (isset($_GET['type'])) {
 		echo json_encode($response);
 		die();
 	}
+
+    if ($_GET['type']=='delete_customer') {
+        // check permission
+        if (!$xtc_acl->checkPermission('customer','delete'))
+        {
+            $response = array('msg' => __text('TEXT_NO_SUCCESS') );
+            echo json_encode($response);
+            die();
+        };
+
+        $customers_id = (int)$_GET['customers_id'];
+        $customer = new customer($customers_id);
+        $delete_order = false;
+        $refill_stock = false;
+        if ($_GET['delete_order']=='1') {
+            $delete_order = true;
+            if ($_GET['fillup_stock']=='1') $refill_stock = true;
+        }
+
+        $defaultMsg = constant('TEXT_SUCCESS');
+        $params =  [
+            'delete_order' => $delete_order,
+            'refill_stock' => $refill_stock
+        ];
+        $resultMsg = $customer->deleteCustomer($customers_id, $params);
+
+        $response = array('msg' => !empty($resultMsg) ? $resultMsg : $defaultMsg );
+        echo json_encode($response);
+        die();
+    }
 	
 	if ($_GET['type']=='image_processing') {
 

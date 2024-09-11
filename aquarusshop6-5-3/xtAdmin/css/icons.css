@@ -49,6 +49,7 @@
 
 .ORDER_EDIT_REMOVE_ITEM::before,
 .delete_order::before,
+.delete_customer::before,
 .delete::before,
 .deletePlugin::before {
  font-family: "Font Awesome 5 Free";

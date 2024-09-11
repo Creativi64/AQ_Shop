@@ -1890,10 +1890,15 @@ class order extends xt_backend_cls {
 		$rowActionsFunctions['delete_order'] = $js;
 
 
-		$js = " function deleteOrder(edit_id,btn){
+		$js = " function deleteOrder(edit_id,btn)
+		{
+		    if(btn == 'cancel') return;
+		    
 	  		var edit_id = edit_id;
-	  		
 	  		var fillup_stock = (btn == 'yes') ? 1 : 0;
+	  		
+	  		var lm = new Ext.LoadMask(Ext.getBody(),{msg:'".__define('TEXT_DELETE')." ...'});
+            lm.show();
 	  	
 	  		var conn = new Ext.data.Connection();
              conn.request({
@@ -1907,15 +1912,27 @@ class order extends xt_backend_cls {
                     {
                         msg = result.msg
                     }
+                    lm.hide();
                     orderds.reload();
                     Ext.MessageBox.alert('Message', msg);
+                 },
+                 failure: function(a,b)
+                 {
+                    console.log(a,b);
+                    Ext.MessageBox.alert('Error', a.statusText + '<br><br>Check Web Console / php logs');
+                    lm.hide();
                  }
              });
 		};";
 
 		($plugin_code = $xtPlugin->PluginCode('class.order.php:_getParams_row_actions')) ? eval($plugin_code) : false;
 
-        $js_multiDeleteButton =  "Ext.Msg.show({title:'".__text('TEXT_DELETE_ORDER')."',
+        $js_multiDeleteButton =  "
+        
+        const l = orderds.getModifiedRecords().length;
+        if(l == 0) return;
+        
+        Ext.Msg.show({title:'".__text('TEXT_DELETE_ORDER')." (' + l + ')',
 				msg: '".__text('TEXT_DELETE_ORDER_ASK')."',
 				buttons: Ext.Msg.YESNOCANCEL,
 				animEl: 'elId',
@@ -1925,6 +1942,8 @@ class order extends xt_backend_cls {
 
         function multiDeleteOrder(btn)
         {
+            if(btn == 'cancel') return;
+            
 	  		var records = new Array();
             records = orderds.getModifiedRecords();
             var record_ids = [];
@@ -1968,7 +1987,7 @@ class order extends xt_backend_cls {
             });
 		};";
 
-        $code = 'multiDeleteButton';
+        $code = 'order_multiDeleteButton';
         $multiDeleteButton = array('text' => 'BUTTON_DELETE', 'style'=>'delete', 'icon'=>'delete.png','font-icon'=>'fa fa-trash-alt', 'acl'=>'delete', 'stm' => $js_multiDeleteButton);
         $params['display_' . $code . 'Btn'] = true;
         $params['UserButtons'][$code] = $multiDeleteButton;

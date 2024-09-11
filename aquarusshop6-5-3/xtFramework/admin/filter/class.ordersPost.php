@@ -192,4 +192,21 @@ if( $_SESSION['filters_order']['filter_zip'] ?? '' != "" ){
     ;
 }
 
+// filter_no_valid_customer_assoc
+if( ($_SESSION['filters_order']['filter_no_valid_customer_assoc'] ?? '' != "") )
+{
+
+    $where_ar[] = "
+    ".DB_PREFIX."_orders.orders_id in 
+    (
+    SELECT t1.orders_id
+        FROM ".DB_PREFIX."_orders t1
+        LEFT JOIN (
+            SELECT customers_id FROM ".DB_PREFIX."_customers
+        ) t2 ON t2.customers_id = t1.customers_id
+        WHERE t2.customers_id  IS NULL
+    ) 
+    ";
+}
+
 ($plugin_code = $xtPlugin->PluginCode('orderPosts:bottom')) ? eval($plugin_code) : false;

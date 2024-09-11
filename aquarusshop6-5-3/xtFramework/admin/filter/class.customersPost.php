@@ -24,6 +24,9 @@
  #
  #########################################################################
  */
+
+global $db;
+
 $ad_table = '';
 
 //require_once _SRV_WEBROOT . '/xtFramework/library/FirePHPCore/fb.php';
@@ -103,6 +106,31 @@ if( $_SESSION['filters_customer']['filter_zip'] != "" ){
     $ad_table = ', '.TABLE_CUSTOMERS_ADDRESSES.' ca';
     $where_ar[] =   "ca.customers_postcode = '".$_SESSION['filters_customer']['filter_zip']."' "
     ;
+}
+
+// filter_last_order_years_ago
+if( $_SESSION['filters_customer']['filter_last_order_years_ago'] != "" ){
+
+    $years = intval($_SESSION['filters_customer']['filter_last_order_years_ago']);
+    if(is_int($years) && $years > 0)
+    {
+
+        $where_ar[] =   " 
+        ".DB_PREFIX."_customers.customers_id in 
+        (
+            SELECT DISTINCT t1.customers_id
+                FROM ".DB_PREFIX."_orders t1
+            LEFT JOIN (
+                SELECT customers_id FROM ".DB_PREFIX."_orders 
+                WHERE date_purchased > DATE_SUB(now(), INTERVAL {$years} YEAR)
+            ) t2 ON t2.customers_id = t1.customers_id
+            WHERE t1.date_purchased <= DATE_SUB(now(), INTERVAL {$years} YEAR)
+            AND t2.customers_id  IS NULL
+        ) 
+                 ";
+    }
+
+
 }
 
 global $xtPlugin;
