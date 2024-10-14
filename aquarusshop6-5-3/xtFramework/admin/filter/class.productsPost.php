@@ -96,9 +96,14 @@ if(setFloat('filter_price_from') )
 if( setFloat('filter_price_to') ) 
  $where_ar[] = " products_price <= ".(float)$_SESSION['filters_product']['filter_price_to'];
 
-
-if (setInt('filter_manufacturer'))
-  $where_ar[] = " manufacturers_id = ".(int)$_SESSION['filters_product']['filter_manufacturer'];
+if(isset($_SESSION['filters_product']['filter_manufacturer']) && (int)$_SESSION['filters_product']['filter_manufacturer'] == -1)
+{
+    $where_ar[] = " (manufacturers_id IS NULL OR manufacturers_id = '' OR manufacturers_id = 0) ";
+}
+else if (setInt('filter_manufacturer'))
+{
+    $where_ar[] = " manufacturers_id = ".(int)$_SESSION['filters_product']['filter_manufacturer'];
+}
 
 
 if(setInt('filter_stock_from'))

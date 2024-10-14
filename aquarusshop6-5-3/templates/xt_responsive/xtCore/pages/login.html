@@ -1,10 +1,4 @@
 
-{if $smarty.get.form == "register" || $smarty.post.form == "register"}
-    <a href="{link page='customer' paction='login'}" class="btn btn-success pull-right">
-        <i class="fa fa-sign-in"></i> {txt key=BUTTON_LOGIN}
-    </a>
-{/if}
-
 <h1>{txt key=TEXT_PAGE_TITLE_LOGIN}</h1>
 
 {$message}
@@ -425,40 +419,44 @@
                         </script>
 
                         <script>
-                            document.addEventListener("DOMContentLoaded",function(event)
-                        {
-                            const accountTypeChangeEvent = new Event('change');
-                            const accountTypeInput = document.getElementById('accountType');
-                            accountTypeInput.addEventListener('change', (e) =>
-                            {
-                                let display_register = 'none';
-                                let display_guest = 'block';
+                            document.addEventListener("DOMContentLoaded",function(event) {
+                                const accountTypeChangeEvent = new Event('change');
+                                const accountTypeInput = document.getElementById('accountType');
+                                if (accountTypeInput) { accountTypeInput.addEventListener('change', (e) => {
+                                    let display_register = 'none';
+                                    let display_guest = 'block';
 
-                                if (e.target.checked)
-                                {
-                                    display_register = 'block';
-                                    display_guest = 'none';
+                                    if (e.target.checked) {
+                                        display_register = 'block';
+                                        display_guest = 'none';
 
-                                    // egal, ob _STORE_ALLOW_GUEST_ORDERS input.guest-account bekommt value 'register'
-                                    this.value = "register";
-                                    // evtl für gast disabled'te input wieder aktivieren
-                                    document.querySelectorAll('input.disabled-register-guest').forEach((el) => { el.removeAttribute("disabled"); });
-                                } else {
-                                    // die nicht gecheckte checkbox wird nicht gesendet, pro forma aber auf value 'guest' gesetzt
-                                    this.value = "guest";
-                                    // für gast nicht erlaubte inputs leeren und deaktiveren
-                                    // aber nur wenn gast erlaubt
-                                    if(_STORE_ALLOW_GUEST_ORDERS)
+                                        // egal, ob _STORE_ALLOW_GUEST_ORDERS input.guest-account bekommt value 'register'
+                                        this.value = "register";
+                                        // evtl für gast disabled'te input wieder aktivieren
                                         document.querySelectorAll('input.disabled-register-guest').forEach((el) => {
-                                            el.value = "";
-                                            el.setAttribute('disabled', 'true');
+                                            el.removeAttribute("disabled");
                                         });
-                                }
-                                // ein/ausblenden von gast/register spezifischen texten
-                                document.querySelectorAll('.visible-register-account').forEach((el) => { el.style.display = display_register; });
-                                document.querySelectorAll('.visible-register-guest').forEach((el) => { el.style.display = display_guest; });
-                            });
-                            accountTypeInput.dispatchEvent(accountTypeChangeEvent);
+                                    } else {
+                                        // die nicht gecheckte checkbox wird nicht gesendet, pro forma aber auf value 'guest' gesetzt
+                                        this.value = "guest";
+                                        // für gast nicht erlaubte inputs leeren und deaktiveren
+                                        // aber nur wenn gast erlaubt
+                                        if (_STORE_ALLOW_GUEST_ORDERS)
+                                            document.querySelectorAll('input.disabled-register-guest').forEach((el) => {
+                                                el.value = "";
+                                                el.setAttribute('disabled', 'true');
+                                            });
+                                    }
+                                    // ein/ausblenden von gast/register spezifischen texten
+                                    document.querySelectorAll('.visible-register-account').forEach((el) => {
+                                        el.style.display = display_register;
+                                    });
+                                    document.querySelectorAll('.visible-register-guest').forEach((el) => {
+                                        el.style.display = display_guest;
+                                    });
+                                });
+                                accountTypeInput.dispatchEvent(accountTypeChangeEvent);
+                            }
 
                             document.getElementById('federals').querySelectorAll("select[name*=customers_federal_state_code]").forEach((inp) => {
                                 inp.name = "default_address[customers_federal_state_code" + inp.closest('.federals-states').dataset.country + "]";

@@ -43,7 +43,7 @@ if(!function_exists('sessionCustomer'))
 
 global $store_handler, $logHandler, $info, $db, $xtLink, $xtPlugin, $language, $currency, $brotkrumen, $customers_status, $filter;
 
-$no_index_tag = true;
+//$no_index_tag = true;
 
 if(isset($page->page_action) && $page->page_action != ''){
 

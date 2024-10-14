@@ -171,7 +171,9 @@
                     {/if}
                 </div><!-- #content -->
 
+                {if $page != 'checkout'}
                 {*box name=manufacturers_slider order_by='m.manufacturers_name'*}
+                {/if}
 
                 {hook key=container_bottom}
             </div><!-- #container -->

@@ -47,6 +47,8 @@ define('_CUST_STATUS_SHOW_PRICE', $customers_status->customers_status_show_price
 define('_CUST_STATUS_FSK18', $customers_status->customers_fsk18);
 define('_CUST_STATUS_FSK18_DISPLAY', $customers_status->customers_fsk18_display);
 
+if(!defined('_SYSTEM_TEMPLATE'))
+    define('_SYSTEM_TEMPLATE', 'xt_responsive');
 if ($customers_status->customers_status_template != '') {
     define('_STORE_TEMPLATE', $customers_status->customers_status_template);
 } else if (!empty(constant("_STORE_DEFAULT_TEMPLATE"))){

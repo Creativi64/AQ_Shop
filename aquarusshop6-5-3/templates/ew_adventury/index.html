@@ -107,7 +107,9 @@
                 </div><!-- #content -->
                 {hook key=ew_adventury_testimonials}
 
-                {*box name=manufacturers_slider order_by='m.manufacturers_name'*}
+                {if $page != 'checkout'}
+                    {*box name=manufacturers_slider order_by='m.manufacturers_name'*}
+                {/if}
 
                 {hook key=container_bottom}
             </div><!-- #container -->

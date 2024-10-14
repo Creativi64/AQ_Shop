@@ -29,7 +29,7 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
 global $xtPlugin, $system_shipping_link, $info, $brotkrumen, $xtLink;
 
-$no_index_tag = true;
+//$no_index_tag = true;
 
 if(!empty($_SESSION['selected_payment_discount']) || !empty($_SESSION['selected_payment']))
 {

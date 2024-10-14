@@ -3003,3 +3003,6 @@ div.products_to_cat_selector ~ ul > li > div > .x-tree-node-anchor {
 }
 
 .x-form-item .fr-checkbox-line label { width: initial }
+
+.x-form-item .fr-wrapper > iframe.fr-iframe { height:200px; }
+

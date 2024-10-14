@@ -94,6 +94,9 @@ if ($request['get']) {
 		case "manufacturers":
 			$result = $dropdown->getManufacturers();
 			break;
+        case "manufacturers_filter":
+            $result = $dropdown->getManufacturers(true);
+            break;
 		case "manufacturers_sort":
 			$result = $dropdown->getManufacturersSort();
 			break;

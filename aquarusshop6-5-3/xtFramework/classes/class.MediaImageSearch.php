@@ -165,7 +165,13 @@ class MediaImageSearch extends MediaImages {
 		$searchQry = '';
 		$ids = array();
 		if ($this->url_data['query']) {
-			$ids = $this->_getSearchIDs($this->url_data['query']);
+            $q = trim($this->url_data['query']);
+            if(str_starts_with($q, '#')) {
+                $q = substr($q, 1);
+                $ids = array_unique(array_filter(explode(' ', $q)));
+            }
+            else
+			    $ids = $this->_getSearchIDs($q);
 		} 
 				
 		if (count($ids) > 0) {

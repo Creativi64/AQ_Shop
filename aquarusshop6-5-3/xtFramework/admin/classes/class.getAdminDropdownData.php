@@ -466,6 +466,9 @@ class getAdminDropdownData {
         $data[] =  array('id' => '',
                          'name' => __define('TEXT_EMPTY_SELECTION'));
 
+        $data[] =  array('id' => '-1',
+            'name' => '- '. __define('TEXT_NO_MANUFACTURER'));
+
         $_data = $m->getManufacturerList('admin');
         foreach ($_data as $mdata) {
             $data[] =  array('id' => $mdata['manufacturers_id'],

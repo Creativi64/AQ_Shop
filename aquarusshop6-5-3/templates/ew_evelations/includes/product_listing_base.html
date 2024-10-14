@@ -9,30 +9,34 @@
     data-listing-switch-current="{$wanted}"
 >
     {$categories}
-    {if $product_listing}
 
-        {if $manufacturer.MANUFACTURER.manufacturers_image}<div class="manufacturers-image">{img img=$manufacturer.MANUFACTURER.manufacturers_image type=m_org class="img-responsive img-thumbnail"}</div><br />{/if}
+    {if $manufacturer.MANUFACTURER.manufacturers_image}<div class="manufacturers-image">{img img=$manufacturer.MANUFACTURER.manufacturers_image type=m_org class="img-responsive img-thumbnail"}</div><br />{/if}
 
-        {if $heading_text}
-            {if !$smarty.get.page || $smarty.get.page == 'index'}
-                <h2 class="breaking-headline index-heading">{$heading_text}</h2>
+    {if $heading_text}
+        {if !$smarty.get.page || $smarty.get.page == 'index'}
+            <h2 class="breaking-headline index-heading">{$heading_text}</h2>
+        {else}
+            {if $smarty.get.page == 'cart'}
+                <h2 class="breaking-headline {$smarty.get.page}-heading">{$heading_text}</h2>
             {else}
-                {if $smarty.get.page == 'cart'}
-                    <h2 class="breaking-headline {$smarty.get.page}-heading">{$heading_text}</h2>
-                {else}
-                    <h1 class="breaking-headline {$smarty.get.page}-heading">{$heading_text}</h1>
-                {/if}
+                <h1 class="breaking-headline {$smarty.get.page}-heading">{$heading_text}</h1>
             {/if}
         {/if}
-        {if $smarty.get.page == 'search'}
-            {include file="xtCore/pages/search.html" included=true type="tpl_include"}
-        {/if}
+    {/if}
 
-        {if $PRODUCTS_DROPDOWN}{$PRODUCTS_DROPDOWN}{/if}
-        {if $manufacturer && $manufacturer.MANUFACTURER.manufacturers_description|trim != ''}<div class="manufacturers-description text-word-wrap">{$manufacturer.MANUFACTURER.manufacturers_description}</div>{/if}
-        {if $MANUFACTURER_DROPDOWN && !$MANUFACTURER_DROPDOWN.options}{if $MANUFACTURER_DROPDOWN}{$MANUFACTURER_DROPDOWN}{/if}{/if}
+    {if $manufacturer.MANUFACTURER.manufacturers_url}<a class="small" href="{$manufacturer.MANUFACTURER.manufacturers_url}" target="_blank">{$manufacturer.MANUFACTURER.manufacturers_url}</a>{/if}
 
-        <div class="clearfix"></div>
+    {if $smarty.get.page == 'search'}
+        {include file="xtCore/pages/search.html" included=true type="tpl_include"}
+    {/if}
+
+    {if $PRODUCTS_DROPDOWN}{$PRODUCTS_DROPDOWN}{/if}
+    {if $manufacturer && $manufacturer.MANUFACTURER.manufacturers_description|trim != ''}<div class="manufacturers-description text-word-wrap">{$manufacturer.MANUFACTURER.manufacturers_description}</div>{/if}
+    {if $MANUFACTURER_DROPDOWN && !$MANUFACTURER_DROPDOWN.options}{if $MANUFACTURER_DROPDOWN}{$MANUFACTURER_DROPDOWN}{/if}{/if}
+
+    <div class="clearfix"></div>
+
+    {if $product_listing}
 
         <br />
         <hr class="listing-split"/>
@@ -106,7 +110,11 @@
         {/if}
     {/if}
 
-    {$error_listing}
+    {if $error_listing}
+        <div class="alert alert-warning" role="alert">
+            <p class="item"><span class="glyphicon glyphicon-bullhorn"></span>&nbsp;&nbsp;{$error_listing}</p>
+        </div>
+    {/if}
 
     {if $category_data.categories_description_bottom}
         <hr />

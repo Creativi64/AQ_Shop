@@ -321,7 +321,7 @@ class customer extends check_fields{
                 $data['cust_info']['password_required'] = 0;
 			}else{
                 $data['cust_info']['password_required'] = 1;
-                if(empty($data["guest-account"]))   // checkbox ist nicht angehakt, dh Bestätigung zum Account-Anlegen fehlt
+                if(empty($data["guest-account"]) && _STORE_ALLOW_GUEST_ORDERS == 'true')   // checkbox ist nicht angehakt, dh Bestätigung zum Account-Anlegen fehlt
                 {
                     $this->error = true;
                     $info->_addInfo(constant('ERROR_ACCEPT_ACOUNT_CREATION'));

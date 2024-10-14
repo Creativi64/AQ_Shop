@@ -110,7 +110,9 @@ $xtLink->_redirect($xtLink->_link(array('page'=>'index')));
 				'NAVIGATION_PAGES' => $list->navigation_pages,
 				'mnf_page' => true,
 				'sort_default' => $sort_default,
-				'sort_dropdown' => $sort_dropdown);
+				'sort_dropdown' => $sort_dropdown,
+                'error_listing' => is_array($tpl_product_listing) && count($tpl_product_listing)  ? '' : __text('ERROR_NO_SEARCH_RESULT'),
+        );
 		
 		
 		($plugin_code = $xtPlugin->PluginCode('module_manufacturers.php:tpl_data')) ? eval($plugin_code) : false;
