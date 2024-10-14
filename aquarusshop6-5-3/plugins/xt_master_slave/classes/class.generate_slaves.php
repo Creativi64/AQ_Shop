@@ -756,7 +756,7 @@ class generate_slaves extends xt_backend_cls {
 		}else{
 			$data = $table_data->getHeader();
 		}
-		if (count($data)==0) $data="[]";
+		if (count($data)==0) $data=[];
 
 		if($table_data->_total_count!=0 || !$table_data->_total_count)
 			$count_data = $table_data->_total_count;
@@ -1030,41 +1030,35 @@ class generate_slaves extends xt_backend_cls {
 		($plugin_code = $xtPlugin->PluginCode('class.generate_slaves.php:getProductsMaster_top')) ? eval($plugin_code) : false;
 		$data = array();
 
-		if(is_array($_POST) && array_key_exists('query', $_POST)){
+        $this->sql_products = new getProductSQL_query();
+        $this->sql_products->setPosition('getMasterModels');
+        //		$this->sql_products->setSQL_COLS(" as id, p.products_model as name, pd.products_name as desc");
+        $this->sql_products->setFilter('Language');
+        $this->sql_products->setSQL_WHERE("and p.products_model != '' and p.products_master_flag = '1' ");
+        $this->sql_products->setSQL_SORT(' p.products_model ASC');
 
-			$this->sql_products = new getProductSQL_query();
-			$this->sql_products->setPosition('getMasterModels');
-			//		$this->sql_products->setSQL_COLS(" as id, p.products_model as name, pd.products_name as desc");
-			$this->sql_products->setFilter('Language');
-			$this->sql_products->setSQL_WHERE("and p.products_model != '' and p.products_master_flag = '1' ");
-			$this->sql_products->setSQL_SORT(' p.products_model ASC');
+        $query = "".$this->sql_products->getSQL_query("p.products_id, p.products_model as name, pd.products_name")."";
 
-			$query = "".$this->sql_products->getSQL_query("p.products_id, p.products_model as name, pd.products_name")."";
-
-			$data[] =  array('id' => '',
-				'name' => TEXT_EMPTY_SELECTION,
-				'desc' => '');
+        $data[] =  array('id' => '',
+            'name' => TEXT_EMPTY_SELECTION,
+            'desc' => '');
 
 
-			$record = $db->CacheExecute($query);
-			if($record->RecordCount() > 0){
-				while(!$record->EOF){
-					$fields = $record->fields;
-					$fields['id'] = $fields['name'];
-					$fields['desc'] = $fields['products_name'];
-					unset($fields['products_id']);
-					$data[] = $fields;
-					$record->MoveNext();
-				}$record->Close();
+        $record = $db->CacheExecute($query);
+        if($record->RecordCount() > 0){
+            while(!$record->EOF){
+                $fields = $record->fields;
+                $fields['id'] = $fields['name'];
+                $fields['desc'] = $fields['products_name'];
+                unset($fields['products_id']);
+                $data[] = $fields;
+                $record->MoveNext();
+            }$record->Close();
 
-				return $data;
-			}else{
-				return false;
-			}
+            return $data;
+        }
 
-		}else{
-			return $data;
-		}
+        return $data;
 	}
 
 	function getNextSuffix($master_id)

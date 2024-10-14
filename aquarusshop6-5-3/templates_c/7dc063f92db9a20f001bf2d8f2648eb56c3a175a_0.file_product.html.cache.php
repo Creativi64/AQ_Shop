@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-09-09 19:15:03
+/* Smarty version 5.1.0, created on 2024-10-14 17:40:11
   from 'file:/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/pages/product/product.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_66df2d17aecb10_43377833',
+  'unifunc' => 'content_670d3b5b134f54_47155112',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -22,9 +22,9 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:xtCore/pages/files/product_public_files.html' => 1,
   ),
 ))) {
-function content_66df2d17aecb10_43377833 (\Smarty\Template $_smarty_tpl) {
+function content_670d3b5b134f54_47155112 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/pages/product';
-$_smarty_tpl->getCompiled()->nocache_hash = '61751099466df2d17901456_13011141';
+$_smarty_tpl->getCompiled()->nocache_hash = '1700276231670d3b5b0a92e3_50974456';
 echo $_smarty_tpl->getValue('message');?>
 
 <div id="product" class="detail">

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-09-09 19:14:52
+/* Smarty version 5.1.0, created on 2024-10-14 17:40:11
   from 'file:/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/index.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_66df2d0c9513b0_26188327',
+  'unifunc' => 'content_670d3b5b1ee7d5_72078629',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:xtCore/pages/navigation/breadcrumb.html' => 1,
   ),
 ))) {
-function content_66df2d0c9513b0_26188327 (\Smarty\Template $_smarty_tpl) {
+function content_670d3b5b1ee7d5_72078629 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ';
 if ($_smarty_tpl->getValue('page') == 'index' || $_smarty_tpl->getValue('page') == 'product' || $_smarty_tpl->getValue('page') == 'cart' || $_GET['page_action'] == 'login' || $_GET['page_action'] == 'order_info') {?>
     <?php $_smarty_tpl->assign('show_index_boxes', "false", false, NULL);

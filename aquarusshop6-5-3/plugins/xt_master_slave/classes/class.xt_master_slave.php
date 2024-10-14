@@ -461,7 +461,9 @@ class xt_master_slave extends xt_backend_cls
     {
         global $xtPlugin, $db, $language;
 
-        $query = "select * from " . TABLE_PRODUCTS_ATTRIBUTES_TEMPLATES . " ";
+        $data_array = [];
+
+        $query = "select * from " . TABLE_PRODUCTS_ATTRIBUTES_TEMPLATES;
 
         $record = $db->CacheExecute($query);
         if ($record->RecordCount() > 0) {
@@ -488,42 +490,33 @@ class xt_master_slave extends xt_backend_cls
 
         $data = array();
 
-        if (is_array($_POST) && array_key_exists('query', $_POST)) {
+        $this->sql_products = new getProductSQL_query();
+        $this->sql_products->setPosition('getMasterModels');
+        //		$this->sql_products->setSQL_COLS(" as id, p.products_model as name, pd.products_name as desc");
+        $this->sql_products->setFilter('Language');
+        $this->sql_products->setSQL_WHERE("and p.products_model != '' and p.products_master_flag = '1' ");
+        $this->sql_products->setSQL_SORT(' p.products_model ASC');
 
-            $this->sql_products = new getProductSQL_query();
-            $this->sql_products->setPosition('getMasterModels');
-            //		$this->sql_products->setSQL_COLS(" as id, p.products_model as name, pd.products_name as desc");
-            $this->sql_products->setFilter('Language');
-            $this->sql_products->setSQL_WHERE("and p.products_model != '' and p.products_master_flag = '1' ");
-            $this->sql_products->setSQL_SORT(' p.products_model ASC');
+        $query = $this->sql_products->getSQL_query("p.products_id, p.products_model as name, pd.products_name ");
 
-            $query = "" . $this->sql_products->getSQL_query("p.products_id, p.products_model as name, pd.products_name") . "";
+        $data[] = array('id' => '',
+            'name' => __text('TEXT_EMPTY_SELECTION'),
+            'desc' => '');
 
-            $data[] = array('id' => '',
-                'name' => __text('TEXT_EMPTY_SELECTION'),
-                'desc' => '');
-
-
-            $record = $db->CacheExecute($query);
-            if ($record->RecordCount() > 0) {
-                while (!$record->EOF) {
-                    $fields = $record->fields;
-                    $fields['id'] = $fields['name'];
-                    $fields['desc'] = $fields['products_name'];
-                    unset($fields['products_id']);
-                    $data[] = $fields;
-                    $record->MoveNext();
-                }
-                $record->Close();
-
-                return $data;
-            } else {
-                return false;
+        $record = $db->CacheExecute($query);
+        if ($record->RecordCount() > 0) {
+            while (!$record->EOF) {
+                $fields = $record->fields;
+                $fields['id'] = $fields['name'];
+                $fields['desc'] = $fields['products_name'];
+                unset($fields['products_id']);
+                $data[] = $fields;
+                $record->MoveNext();
             }
-
-        } else {
-            return $data;
+            $record->Close();
         }
+
+        return $data;
     }
 
     public function be_fixMasterStocks()

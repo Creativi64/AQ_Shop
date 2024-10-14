@@ -1,3 +1,6 @@
+## [6.2.3]
+- fix for master/slave with just 1 active slave and redirect to slave
+
 ## [6.2.2]
 - Anpassung für Update-Server
 

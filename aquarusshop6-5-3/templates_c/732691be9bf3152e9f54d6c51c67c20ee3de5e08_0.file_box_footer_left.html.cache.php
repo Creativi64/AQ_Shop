@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-09-09 19:14:52
+/* Smarty version 5.1.0, created on 2024-10-14 17:40:11
   from 'file:/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes/box_footer_left.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_66df2d0ca45b68_06042167',
+  'unifunc' => 'content_670d3b5b2b8d85_97379639',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,9 +20,9 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_66df2d0ca45b68_06042167 (\Smarty\Template $_smarty_tpl) {
+function content_670d3b5b2b8d85_97379639 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes';
-$_smarty_tpl->getCompiled()->nocache_hash = '57739420766df2d0ca40513_01139955';
+$_smarty_tpl->getCompiled()->nocache_hash = '1571269847670d3b5b2b0ff7_70512321';
 echo $_smarty_tpl->getSmarty()->getFunctionHandler('content')->handle(array('block_id'=>6,'levels'=>'nested'), $_smarty_tpl);?>
 
 <?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('_content_6')) > 0) {?>
@@ -33,9 +33,9 @@ echo $_smarty_tpl->getSmarty()->getFunctionHandler('content')->handle(array('blo
             <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('_content_6'), 'box_data', false, NULL, 'aussen', array (
 ));
-$foreach9DoElse = true;
+$foreach7DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('box_data')->value) {
-$foreach9DoElse = false;
+$foreach7DoElse = false;
 ?>
                 <li class="level<?php echo $_smarty_tpl->getValue('box_data')['level'];
 if ($_smarty_tpl->getValue('box_data')['active']) {?> active<?php }?>"><a href="<?php echo $_smarty_tpl->getValue('box_data')['link'];?>

@@ -100,7 +100,7 @@ function toogleMsMasterAttributes(form, enable)
         ];
         $.each(elems, function( index, value ) {
             var elem = form.find('input[name='+value+']').closest('div.x-form-item.x-tab-item');
-            console.log(value, enable);
+            //console.log(value, enable);
             if(enable) elem.show();
             else elem.hide();
         });

@@ -1,3 +1,6 @@
+## [6.5.1]
+- FIX Backend Dropdown teilweise ohne Funktion wenn xt-Option 'Dropdown vorladen' aktiv
+
 ## [6.5.0]
 - Beschreibung der Attribute jetzt HTML-Feld mit Editor
 

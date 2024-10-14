@@ -2,10 +2,10 @@
 <xtcommerceplugin>
 
   <code>xt_canonical</code>
-  <version>6.2.2</version>
+  <version>6.2.3</version>
   <type>seo</type>
   
-  <minimum_store_version>6.2.2</minimum_store_version>
+  <minimum_store_version>6.5.4</minimum_store_version>
 
   <required_plugins>
     <plugin>xt_master_slave</plugin>

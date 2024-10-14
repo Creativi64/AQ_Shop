@@ -101,9 +101,20 @@ class xt_canonical{
                 if (count($rs)!=1) return false;
 
                 if (XT_CANONICAL_APPLY_TO_ALL_SLAVES==1 or $rs[0]['products_canonical_master']=='1') {
-                    $link_array = array('page'=> 'product', 'type'=>'product', 'name'=>$rs[0]['products_name'], 'id'=>$rs[0]['products_id'],'seo_url'=>$rs[0]['url_text']);
-                    $link_url = $xtLink->_link($link_array,'',true);
-                    return '<link rel="canonical" href="'.$link_url.'" />';
+                    // count how many slaves are active
+                    $slave_count = $db->GetOne("SELECT count(products_id) FROM xt_products WHERE products_master_model = ? and products_status=1",array($p_info->data['products_master_model']));
+
+                    if ($slave_count==1) {
+                        // show slave as canonical
+                        $link_array = array('page'=> 'product', 'type'=>'product', 'name'=>$p_info->data['products_name'], 'id'=>$p_info->data['products_id'],'seo_url'=>$p_info->data['url_text']);
+                        $link_url = $xtLink->_link($link_array,'',true);
+                        return '<link rel="canonical" href="'.$link_url.'" />';
+                    } else {
+                        $link_array = array('page'=> 'product', 'type'=>'product', 'name'=>$rs[0]['products_name'], 'id'=>$rs[0]['products_id'],'seo_url'=>$rs[0]['url_text']);
+                        $link_url = $xtLink->_link($link_array,'',true);
+                        return '<link rel="canonical" href="'.$link_url.'" />';
+                    }
+
                 }
             }
 
