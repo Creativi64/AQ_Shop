@@ -27,7 +27,7 @@
 
 include '../xtFramework/admin/main.php';
 
-global $xtc_acl, $store_handler;
+global $xtc_acl, $store_handler, $xtPlugin, $language;
 
 if ($xtc_acl->isLoggedIn())
 {
@@ -105,15 +105,45 @@ if (isset($xtc_acl->_successMsg) && ! empty($xtc_acl->_successMsg)) { ?>
       </div>
       <div class="form-group">
             <select class="form-control" name="language">
-                  <?php 
-			foreach ($language->_getLanguageList('all') as $key => $val)
-			{
-				echo '<option value="'.$val['id'].'">'.$val['name'].' ('.$val['id'].')'.'</option>';
-			}
-                  ?>
+                <?php
+                    $all_langs = $language->_getLanguageList('all');
+                    $admin_langs = [];
+                    foreach ($all_langs as $key => $val)
+                    {
+                        if($val['allow_edit'] == 1)
+                            $admin_langs[$val['code']] = $val;
+                    }
+                    $lng = false;
+                    foreach ($admin_langs as $key => $val)
+                    {
+                        if($key == $language->content_language)
+                        {
+                            $lng = $val;
+                            break;
+                        }
+                    }
+                    if(empty($lng) && array_key_exists('de', $admin_langs))
+                    {
+                        $lng = $admin_langs['de'];
+                    }
+                    if(empty($lng) && array_key_exists('en', $admin_langs))
+                    {
+                        $lng = $admin_langs['en'];
+                    }
+                    if($lng)
+                    {
+                        unset($admin_langs[$lng['id']]);
+                        echo '<option value="'.$lng['id'].'">'.$lng['name'].' ('.$lng['id'].')'.'</option>';
+                    }
+                    foreach ($admin_langs as $key => $val)
+                    {
+                        echo '<option value="'.$val['id'].'">'.$val['name'].' ('.$val['id'].')'.'</option>';
+                    }
+
+                ?>
                   </select>
       </div>
-      <?php 
+      <?php
 		($plugin_code = $xtPlugin->PluginCode('login.php:login_form')) ? eval($plugin_code) : false;
 		?>
       <div class="row">

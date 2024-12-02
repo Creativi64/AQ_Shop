@@ -52,7 +52,7 @@ echo PHP_EOL.'<script type="application/ld+json">'. PHP_EOL.json_encode($breadcr
 // Artikelseiten
 if($page->page_name == 'product')
 {
-    global $page, $p_info, $price, $system_status, $currency;
+    global $page, $p_info, $price, $system_status, $currency, $filter;
 
     /**
      *  Artikel
@@ -73,7 +73,7 @@ if($page->page_name == 'product')
         $desc = trim(strip_tags($p_info->data["products_description"]));
 
     if(!empty($desc))
-        $product_ld["description"] =$desc;
+        $product_ld["description"] = $filter->_purifier->purify($desc);
 
     //  Artikel > gtin/ean, mpn
     // fbo in meinen tests hat google immer nur die spezifische gtin erkannt also zb gtin8
@@ -141,7 +141,7 @@ if($page->page_name == 'product')
     }
     if (count($images))
         $product_ld["image"] = $images;
-    
+
     /**
      *   Artikel > Angebot
      */
@@ -277,7 +277,7 @@ if($page->page_name == 'product')
 
     ($plugin_code = $xtPlugin->PluginCode('json-ld.php:product_bottom')) ? eval($plugin_code) : false;
 
-    echo PHP_EOL.'<script type="application/ld+json">'. PHP_EOL.json_encode($product_ld, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES). PHP_EOL.'</script>'. PHP_EOL;
+    echo PHP_EOL.'<script type="application/ld+json">'. PHP_EOL.json_encode($product_ld, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE). PHP_EOL.'</script>'. PHP_EOL;
 }
 
 ($plugin_code = $xtPlugin->PluginCode('json-ld.php:bottom')) ? eval($plugin_code) : false;

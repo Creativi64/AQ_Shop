@@ -68,7 +68,7 @@ class ProductFilter extends formFilter {
         }
         $f[] = self::twoCol($f1, $f2);
         
-        $combo = $eF->_comboBox('filter_manufacturer', ucfirst(FEED_MANUFACTURER),self::$dropdownUrl.'?get=manufacturers',"156");
+        $combo = $eF->_comboBox('filter_manufacturer', ucfirst(FEED_MANUFACTURER),self::$dropdownUrl.'?get=manufacturers_filter',"156");
         if ($_SESSION['filters_product']['filter_manufacturer'] != ""){
             $combo->setValue($_SESSION['filters_product']['filter_manufacturer']);
         }

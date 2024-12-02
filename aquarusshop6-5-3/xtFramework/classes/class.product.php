@@ -2142,7 +2142,8 @@ class product  extends xt_backend_cls{
 
         $deleteCache = true;
 		($plugin_code = $xtPlugin->PluginCode('class.product.php:_set_bottom')) ? eval($plugin_code) : false;
-        array_map('unlink', glob(_SRV_WEBROOT.'cache/*product.html.php'));
+        if ($deleteCache)
+            array_map('unlink', glob(_SRV_WEBROOT.'cache/__product_'.$data['products_id'].'__*product.html.php'));
 		return $obj;
 	}
 

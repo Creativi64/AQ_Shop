@@ -6,9 +6,9 @@ namespace RobThree\Auth\Providers\Qr;
 
 abstract class BaseHTTPQRCodeProvider implements IQRCodeProvider
 {
-    protected bool $verifyssl;
+    protected bool $verifyssl = true;
 
-    protected function getContent(string $url): string|bool
+    protected function getContent(string $url): string
     {
         $curlhandle = curl_init();
 
@@ -22,6 +22,9 @@ abstract class BaseHTTPQRCodeProvider implements IQRCodeProvider
             CURLOPT_USERAGENT => 'TwoFactorAuth',
         ));
         $data = curl_exec($curlhandle);
+        if ($data === false) {
+            throw new QRException(curl_error($curlhandle));
+        }
 
         curl_close($curlhandle);
         return $data;

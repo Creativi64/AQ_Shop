@@ -120,7 +120,7 @@ class customers_status extends xt_backend_cls{
 	}
 
 	function _getStatusList($list_type = 'store', $show_all = 'false'){
-		global $db, $xtPlugin, $store_handlder, $language;
+		global $db, $xtPlugin, $store_handler, $language;
 
 		($plugin_code = $xtPlugin->PluginCode('class.customers_status.php:_getStatuslist_top')) ? eval($plugin_code) : false;
 		if(isset($plugin_return_value))

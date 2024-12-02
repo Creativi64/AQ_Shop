@@ -2,6 +2,9 @@
 
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
+// Größe des Editors
+define('FROALA_HEIGHT_MIN', 200);
+define('FROALA_HEIGHT_MAX', 400);
 
 // FROALA_CDN_VERSION
 // Version der js/css-Bibliothek

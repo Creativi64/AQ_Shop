@@ -98,10 +98,6 @@ class export_categories extends xt_backend_cls
         return $params;
     }
 
-    function _get ($ID = 0)
-    {
-    }
-
     function setExportID ($id)
     {
         $this->exportID = $id;

@@ -97,7 +97,7 @@ if(!empty($_GET['keywords']) && $search_flag==true)
 
 ($plugin_code = $xtPlugin->PluginCode('module_search.php:search_data')) ? eval($plugin_code) : false;
 
-if(count($search->search_data)>0){
+if(is_countable($search->search_data) && count($search->search_data)>0){
     $search_result = array('product_listing' => $search->search_data,
         'NAVIGATION_COUNT' => $search->navigation_count,
         'NAVIGATION_PAGES' => $search->navigation_pages);

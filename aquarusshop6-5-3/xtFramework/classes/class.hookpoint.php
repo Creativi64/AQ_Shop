@@ -35,7 +35,7 @@ class hookpoint {
 	public $active_modules = array();
 	public $active_modules_id = array();
 	public $save_xml_files = false;
-    protected bool $active;
+    public bool $active;
     protected array $ActiveHooks;
     /**
      * @var array|mixed

@@ -135,12 +135,20 @@ if($language->code == 'de')
 <script type="text/javascript" src="../xtFramework/library/ext/ux/form/Ext.ux.Amchart.js"></script>
 <?php
 $froala_load_on_focus_only = false;
+$froala_height_min = 200;
+$froala_height_max = 400;
 if(defined('FROALA_LOAD_ON_FOCUS_ONLY') && FROALA_LOAD_ON_FOCUS_ONLY)  // kommt aus conf/config_froala.php, siehe oben beim css
     $froala_load_on_focus_only = true;
+if(defined('FROALA_HEIGHT_MIN'))  // kommt aus conf/config_froala.php, siehe oben beim css
+    $froala_height_min = constant('FROALA_HEIGHT_MIN');
+if(defined('FROALA_HEIGHT_MAX'))  // kommt aus conf/config_froala.php, siehe oben beim css
+    $froala_height_max = constant('FROALA_HEIGHT_MAX');
 
 echo '<script> 
 const froalaLanguage = "'.$language->code.'";
 let froalaLoadOnFocusOnly = '.($froala_load_on_focus_only ? 'true' :  'false').' ;
+let froalaHeightMin = '.$froala_height_min.';
+let froalaHeightMax = '.$froala_height_max.';
 
 </script>';
 

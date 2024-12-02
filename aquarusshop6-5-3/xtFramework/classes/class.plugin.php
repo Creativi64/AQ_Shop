@@ -1201,6 +1201,8 @@ class plugin extends xt_backend_cls
 			";
             }
 
+            self::clearLanguageCache();
+
             if (!defined('_DONT_CLEAR_CACHE_ADODB_AUTOMATICALLY') || constant('_DONT_CLEAR_CACHE_ADODB_AUTOMATICALLY') != true) $db->cacheFlush();
             return $output;
         }
@@ -1249,7 +1251,7 @@ class plugin extends xt_backend_cls
                 }
             }
 
-        return $output;
+            return $output;
         }
     }
 
@@ -1394,6 +1396,17 @@ class plugin extends xt_backend_cls
                 }
             }
         }
+    }
+
+    static function clearLanguageCache()
+    {
+        // _cache_xt.language_content
+        try
+        {
+            $files = glob(_SRV_WEBROOT . 'cache/_cache_xt.language_content*');
+            array_map('unlink', $files);
+        }
+        catch(Exception $e){ error_log('plugin::clearLanguageCache: '.$e->getMessage()); }
     }
 
     function clearErrorLog($id)

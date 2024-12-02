@@ -1122,7 +1122,7 @@ class customer extends check_fields{
 			$js = "var edit_id = record.id;";
 			$js .= "var edit_name = /*record.data.customers_firstname + ' ' +*/ record.data.customers_lastname + ' ' + edit_id;";
 		}
-		$js .= "addTab('adminHandler.php?load_section=address&pg=overview&adID='+edit_id,'".__text('TEXT_ADDRESS')." '+edit_name,'customerAddresses_'+edit_id);";
+		$js .= "addTab('adminHandler.php?parentNode=node_customer&load_section=address&pg=overview&adID='+edit_id,'".__text('TEXT_ADDRESS')." '+edit_name,'customerAddresses_'+edit_id);";
 		$rowActionsFunctions['address'] = $js;
 
 		$rowActions[] = array('iconCls' => 'orders', 'qtipIndex' => 'qtip1', 'tooltip' => __text('TEXT_ORDERS'));
@@ -1136,7 +1136,7 @@ class customer extends check_fields{
 			$js = "var edit_id = record.id;";
 			$js .= "var edit_name = /*record.data.customers_firstname + ' ' +*/ record.data.customers_lastname + ' ' + edit_id;";
 		}
-		$js .= "addTab('adminHandler.php?load_section=order&pg=overview&c_oID='+edit_id,'".__text('TEXT_ORDERS')." '+edit_name,'customerOrders_'+edit_id);";
+		$js .= "addTab('adminHandler.php?parentNode=node_customer&load_section=order&pg=overview&c_oID='+edit_id,'".__text('TEXT_ORDERS')." '+edit_name,'customerOrders_'+edit_id);";
 		$rowActionsFunctions['orders'] = $js;
 
         $rowActions[] = array('iconCls' => 'dsgvo_send_admin', 'qtipIndex' => 'qtip1', 'tooltip' => __text('TEXT_SEND_GDPA_REPORT'));
@@ -1159,7 +1159,7 @@ class customer extends check_fields{
                 if($('#send_admin').is(':checked')) send_admin = true;
                 var conn = new Ext.data.Connection();
                 conn.request({
-                    url: 'adminHandler.php?load_section=customer&pg=sendDsgvo&sec=' + csrf_key,
+                    url: 'adminHandler.php?parentNode=node_customer&load_section=customer&pg=sendDsgvo&sec=' + csrf_key,
                     method: 'POST',
                     waitMsg: 'Wait',
                     params: {customers_id: customers_id, send_admin: send_admin},
@@ -1315,7 +1315,7 @@ class customer extends check_fields{
 	  		
 	  		var conn = new Ext.data.Connection();
             conn.request({
-                 url: 'adminHandler.php?load_section=customer&pg=overview&parentNode=node_customer&sec=".$_SESSION['admin_user']['admin_key']."',
+                 url: 'adminHandler.php?parentNode=node_customer&load_section=customer&pg=overview&parentNode=node_customer&sec=".$_SESSION['admin_user']['admin_key']."',
                  method:'POST',
                  params: {
                     'multiFlag_unset': true,
@@ -1385,13 +1385,13 @@ class customer extends check_fields{
                 global $language;
                 $lang = $_SESSION['selected_language'] ? $_SESSION['selected_language'] : $language->default_language;
 
-                $url_backend = _SRV_WEB.'adminHandler.php?openRemoteWindow=addProducts&plugin=order_edit&load_section=order_edit_new_order&pg=openNewOrderTabBackend&customers_id=';
+                $url_backend = _SRV_WEB.'adminHandler.php?parentNode=node_customer&openRemoteWindow=addProducts&plugin=order_edit&load_section=order_edit_new_order&pg=openNewOrderTabBackend&customers_id=';
                 $js_backend  = "var customers_id = record.data.customers_id;\n";
                 $js_backend .= "addTab('".$url_backend."' + customers_id,'".__text('TEXT_NEW_ORDER')." ' + record.data.customers_email_address);\n";
                 $js_backend .= "var a = 0;\n";
 
                 $js_frontend  = "var customers_id = record.data.customers_id;\n";
-                $url_frontend = _SRV_WEB. "adminHandler.php?plugin=order_edit&load_section=order_edit_new_order".$add_to_url."&pg=openNewOrderWindowFrontend&customers_email=";
+                $url_frontend = _SRV_WEB. "adminHandler.php?parentNode=node_customer&plugin=order_edit&load_section=order_edit_new_order".$add_to_url."&pg=openNewOrderWindowFrontend&customers_email=";
                 $js_frontend .= "
                     //console.log(encodeURIComponent(record.data.customers_email_address));\n
                     window.open('".$url_frontend."'+encodeURIComponent(record.data.customers_email_address)+'&customers_id='+customers_id,'_blanko');\n";

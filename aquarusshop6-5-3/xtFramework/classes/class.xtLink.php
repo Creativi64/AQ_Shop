@@ -587,7 +587,7 @@ class xtLink
         {
             case 'content':
                 $link_type = 3;
-                if(empty($data['id'] && array_key_exists('coID', $params)))
+                if(empty($data['id']) && array_key_exists('coID', $params))
                     $data['id'] = array_key_exists('coID', $params) ? $params['coID'] : 0;
                 break;
             case 'product':

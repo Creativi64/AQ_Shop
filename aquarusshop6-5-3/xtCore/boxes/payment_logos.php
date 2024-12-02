@@ -97,7 +97,7 @@ if(count($payment_logos)){
 	{
 		unset($payment_logos);
 		$payment_logos = array();
-		$ttt = array_intersect($payment_logos_new, $payment_logos_new_customers ?: []);
+		$ttt = array_intersect($payment_logos_new ?: [], $payment_logos_new_customers ?: []);
 		
 		foreach($payment_logos_new as $pln)
 		{

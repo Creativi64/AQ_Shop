@@ -312,12 +312,12 @@ class manufacturer extends xt_backend_cls {
 
 		$header['compliance_country_code'] = array(
 			'type'	=> 'dropdown',	// you can modyfy the auto type
-			'url'	=> 'DropdownData.php?get=countries'
+			'url'	=> 'DropdownData.php?get=countries_db'
 		);
 
 		$header['compliance_responsible_country_code'] = array(
 			'type'	=> 'dropdown',	// you can modyfy the auto type
-			'url'	=> 'DropdownData.php?get=countries'
+			'url'	=> 'DropdownData.php?get=countries_db'
 		);
 		
 		($plugin_code = $xtPlugin->PluginCode('class.manufacturer.php:_getParams_data')) ? eval($plugin_code) : false;

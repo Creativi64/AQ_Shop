@@ -269,6 +269,8 @@ class plugin_installed extends plugin{
 					$this->debug_output .=$this->_addLangContent($code,$val);
 				}
 			}
+
+            self::clearLanguageCache();
 		}
 	}
 	

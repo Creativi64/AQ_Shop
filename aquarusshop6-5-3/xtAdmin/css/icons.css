@@ -522,4 +522,10 @@
      font-style: normal;
      font-weight: 600;
  }
+.send_email::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f0e0";
+    font-style: normal;
+}
 

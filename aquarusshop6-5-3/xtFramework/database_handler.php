@@ -77,6 +77,12 @@ $db->Connect(_SYSTEM_DATABASE_HOST, _SYSTEM_DATABASE_USER, _SYSTEM_DATABASE_PWD,
     $db->Execute("SET SQL_BIG_SELECTS = 1");
     $db->Execute("SET SESSION sql_mode='NO_ENGINE_SUBSTITUTION'");
 
+    $wait_timeout = (int)$db->GetOne("SELECT @@wait_timeout");
+    $php_max_execution_time = (int)ini_get('max_execution_time');
+    if($php_max_execution_time > $wait_timeout)
+    {
+        $db->Execute("SET wait_timeout=".$php_max_execution_time);
+    }
 
     //--------------------------------------------------------------------------------------
     // Loading Config Tab

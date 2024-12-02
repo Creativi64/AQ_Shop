@@ -77,12 +77,12 @@ class order extends xt_backend_cls {
             '_cart_discount_exact',
             '_cart_discount_data'
         ];
-    public mixed $data_orders_id;
+    public mixed $data_orders_id = 0;
     /**
      * @var bool|int|mixed
      */
-    public mixed $data_orders_products_id;
-    public mixed $order_total;
+    public mixed $data_orders_products_id = 0;
+    public mixed $order_total = 0;
     public mixed $data_orders_total_id = 0;
 
     function __construct($oID=0, $cID=0) {

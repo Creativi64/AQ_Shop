@@ -325,7 +325,7 @@ class Template {
 	}
 
 	function getTemplateCacheID ($template) {
-		global $current_category_id,$category, $store_handler,$customers_status,$currency,$language,$_cache_id_settings,$xtPlugin;
+		global $current_category_id,$category, $store_handler,$customers_status,$currency,$language,$_cache_id_settings,$xtPlugin, $page;
 		$param = @array_merge($_GET,$_POST);
         $cat_tpl = isset($category->current_category_data['categories_template']) ? $category->current_category_data['categories_template'] :'';
         if ($template == '/module/categorie_listing/'.$cat_tpl)
@@ -333,10 +333,15 @@ class Template {
 
 		unset($param['g-recaptcha-response']);
         unset($param['customer_message']);
+
+        foreach($param as $key=>&$value)
+        {
+            if(is_array($value))
+                $value = implode(',',$value);
+        }
 		
 		//$cache_id_params = str_replace('/','_',$template).'_'.$current_category_id.implode('_',$param).'_'.$language->languages_id.'_'.$customers_status->customers_status_id.'_'.$currency->code.'_'.$store_handler->shop_id;
 		$cache_id_params = $current_category_id.implode('_',$param).'_'.$language->languages_id.'_'.$customers_status->customers_status_id.'_'.$currency->code.'_'.$store_handler->shop_id;
-
 
 		// individual cache ID settings
 		if (isset($_cache_id_settings[$template]) && CACHE_ID_OVERRIDE == 'true') {
@@ -371,24 +376,64 @@ class Template {
 			if (count($this->CacheIDParams) >0) {
 				$cache_id_params = array_merge($cache_id_params,$this->CacheIDParams);
 			}
-			
-			
+
 			$cache_id_params = implode('|', $cache_id_params);
 			
 			return $cache_id_params;
 			
 		}
-		
 
-				
 		if (count($this->CacheIDParams) >0) {
 			$cache_id_params.='_'.implode('_',$this->CacheIDParams);
 		}
 
-		//echo $template.' Cache ID:' .$cache_id_params.'<br>';
-		
-		return $cache_id_params;
+        $prefix = $this->getPrefix($param);
+
+        global $info;
+
+        $nfo = trim($info->info_content);
+        if(!empty($nfo))
+        {
+            $cache_id_params.= '_info'.crc32($nfo);
+        }
+
+		return $prefix . $cache_id_params;
 	}
+
+    function getPrefix($params)
+    {
+        $prefix = '';
+        if ($params['page'])
+        {
+            $prefix = '__'.$params['page'];
+            $id = '';
+            switch ($params['page'])
+            {
+                case 'product':
+                    $id = $params['info'];
+                    break;
+                case 'categorie':
+                    $id = $params['cat'];
+                    break;
+                case 'manufacturer':
+                    $id = $params['mnf'];
+                    break;
+                case 'content':
+                    $id = $params['coID'];
+                    break;
+                default:
+                    $id = $params['id'];
+                    if(empty($id))
+                        $id = $params['plugin'];
+            }
+            if (!empty($id))
+            {
+                $prefix .= '_'.$id;
+            }
+            $prefix.= '__';
+        }
+        return $prefix;
+    }
 
     function isTemplateCache ($templateFile) {
 		$this->content_smarty = new Smarty();

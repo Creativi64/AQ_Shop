@@ -641,8 +641,10 @@ class category extends xt_backend_cls {
         );
         $db->AutoExecute(TABLE_CATEGORIES, $update, 'UPDATE', "categories_id=".(int)$categories_id."");
         $nested_set->buildNestedSet();
-        
-        $this->_clearCategoryCache();
+
+        array_map('unlink', glob(_SRV_WEBROOT.'cache/cat^c_'.$categories_id.'^*.html.php'));
+        array_map('unlink', glob(_SRV_WEBROOT.'cache/cat^c_'.$target_id.'^*.html.php'));
+        //$this->_clearCategoryCache();
 
     }
 
@@ -666,8 +668,10 @@ class category extends xt_backend_cls {
 
         $db->AutoExecute(TABLE_CATEGORIES, $update, 'UPDATE', "categories_id=".(int)$source."");
         $nested_set->buildNestedSet();
-        
-        $this->_clearCategoryCache();
+
+        array_map('unlink', glob(_SRV_WEBROOT.'cache/cat^c_'.$source.'^*.html.php'));
+        array_map('unlink', glob(_SRV_WEBROOT.'cache/cat^c_'.$target.'^*.html.php'));
+        //$this->_clearCategoryCache();
     }
 
     /**
@@ -736,8 +740,9 @@ class category extends xt_backend_cls {
 
             ($plugin_code = $xtPlugin->PluginCode('class.category.php:_delete_bottom')) ? eval($plugin_code) : false;
         }
-        
-        $this->_clearCategoryCache();
+
+        array_map('unlink', glob(_SRV_WEBROOT.'cache/cat^c_'.$id.'^*.html.php'));
+        //$this->_clearCategoryCache();
     }
 
     /**
@@ -1069,8 +1074,13 @@ class category extends xt_backend_cls {
         } else {
             $obj->failed = true;
         }
-        
-        $this->_clearCategoryCache();
+
+        $deleteCache = true;
+        ($plugin_code = $xtPlugin->PluginCode('class.category.php:_set_bottom')) ? eval($plugin_code) : false;
+        if ($deleteCache)
+            array_map('unlink', glob(_SRV_WEBROOT.'cache/cat^c_'.$data["categories_id"].'^*.html.php'));
+
+        //$this->_clearCategoryCache();
 
         return $obj;
     }
@@ -1123,7 +1133,8 @@ class category extends xt_backend_cls {
 
         $seo->_rebuildSeo($this->_table, $this->_table_lang, $this->_table_seo, '2', 'category', 'categories_name', $this->_master_key, $id,$s_id,$store_id);
 
-        $this->_clearCategoryCache();
+        array_map('unlink', glob(_SRV_WEBROOT.'cache/cat^c_'.$id.'^*.html.php'));
+        //$this->_clearCategoryCache();
         
         $obj->success = true;
         return $obj;

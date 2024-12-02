@@ -746,7 +746,7 @@ if(isset($page->page_action) && $page->page_action != ''){
 			if (isset ($_POST['action']) && $_POST['action']=='check_captcha'){
 				// check for email
 
-                $email = substr($_POST['email'], 0, 64); // TODO define a max length for the failed_login.look_up and customer.email. first is 64 latter 96?
+                $email = substr($_POST['email'], 0, 96);
 
                 $store_sql = " and shop_id = ? ";
 				$status_sql = "and account_type != 1";
@@ -780,7 +780,7 @@ if(isset($page->page_action) && $page->page_action != ''){
 			}//without captcha
 			elseif(isset ($_POST['email']))
             {
-                $email = substr($_POST['email'], 0, 64); // TODO define a max length for the failed_login.look_up and customer.email. first is 64 latter 96?
+                $email = substr($_POST['email'], 0, 96);
 
                 $store_sql = " and shop_id = ? ";
 				$status_sql = "and account_type != 1";

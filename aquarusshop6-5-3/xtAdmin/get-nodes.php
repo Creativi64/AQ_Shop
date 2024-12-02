@@ -99,19 +99,19 @@ if (strstr($pid,'veyton_partner')) {
     
     // default partner, werden immer angzeigt
 
-   	$partner[]=array('name'=>'IT-Recht Kanzlei','url'=>'//www.it-recht-kanzlei.de/service/xt-commerce-agb.php','icon'=>'images/partner/it-recht-kanzlei.png');
+   	$partner[]=array('name'=>'IT-Recht Kanzlei','url'=>'//www.it-recht-kanzlei.de/Service/xt-Commerce.php','icon'=>'images/partner/it-recht-kanzlei.png');
 	$partner[]=array('name'=>'magnalister','url'=>'//www.xtmulticonnect.com','icon'=>'images/partner/magnalister.png');
 	//$partner[]=array('name'=>'Newsletter2Go','url'=>'//www.newsletter2go.de/de/newsletter/software/tool/code/g&huXkoP81DnUHSn','icon'=>'images/partner/nl2go.png');
 	$partner[]=array('name'=>'Protected Shops','url'=>'//www.protectedshops.de/partner/xtcommerce','icon'=>'images/partner/protectedshops.png');
-	$partner[]=array('name'=>'shipcloud','url'=>'//www.shipcloud.io/external_sites/xt_commerce_info','icon'=>'images/partner/shipcloud.png');
+	$partner[]=array('name'=>'shipcloud','url'=>'//www.shipcloud.com/de/xtcommerce/','icon'=>'images/partner/shipcloud.png');
 	
 	// pro partner, werden nur in der pro angezeigt
 	if($is_pro_version)
 	{
         $partner[]=array('name'=>'Amazon Pay','url'=>'//www.xt-commerce.com/lp/amazon/','icon'=>'images/partner/amazon_pay.jpg');
-        $partner[]=array('name'=>'easyCredit','url'=>'//www.easycredit-ratenkauf.de/xt-commerce-partner.htm','icon'=>'images/partner/easycredit.png');
+        $partner[]=array('name'=>'easyCredit','url'=>'//www.easycredit-ratenkauf.de/systems/xtcommerce/','icon'=>'images/partner/easycredit.png');
         //$partner[]=array('name'=>'PayPal','url'=>'//addons.xt-commerce.com/partner/paypal/index.html','icon'=>'images/partner/paypal.png');
-	    $partner[]=array('name'=>'Skrill','url'=>'//www.skrill.com/de/geschaeftlich/integration/','icon'=>'images/partner/skrill.png');
+	//    $partner[]=array('name'=>'Skrill','url'=>'//www.skrill.com/de/geschaeftlich/integration/','icon'=>'images/partner/skrill.png');
     }
 	 
     $arr = array();

@@ -313,6 +313,12 @@ class Template extends BaseCompiler {
 	 */
 	private $noCacheStackDepth = 0;
 
+	/**
+	 * disabled auto-escape (when set to true, the next variable output is not auto-escaped)
+	 *
+	 * @var boolean
+	 */
+	private $raw_output = false;
 
 	/**
 	 * Initialize compiler
@@ -403,21 +409,37 @@ class Template extends BaseCompiler {
 			}
 			// get template source
 			if (!empty($this->template->getSource()->components)) {
-				// we have array of inheritance templates by extends: resource
-				// generate corresponding source code sequence
-				$_content =
-					ExtendsTag::extendsSourceArrayCode($this->template);
+
+				$_compiled_code = '<?php $_smarty_tpl->getInheritance()->init($_smarty_tpl, true); ?>';
+
+				$i = 0;
+				$reversed_components = array_reverse($this->template->getSource()->components);
+				foreach ($reversed_components as $source) {
+					$i++;
+					if ($i === count($reversed_components)) {
+						$_compiled_code .= '<?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl); ?>';
+					}
+					$_compiled_code .= $this->compileTag(
+						'include',
+						[
+							var_export($source->resource, true),
+							['scope' => 'parent'],
+						]
+					);
+				}
+				$_compiled_code = $this->smarty->runPostFilters($_compiled_code, $this->template);
 			} else {
 				// get template source
 				$_content = $this->template->getSource()->getContent();
+				$_compiled_code = $this->smarty->runPostFilters(
+					$this->doCompile(
+						$this->smarty->runPreFilters($_content, $this->template),
+						true
+					),
+					$this->template
+				);
 			}
-			$_compiled_code = $this->smarty->runPostFilters(
-				$this->doCompile(
-					$this->smarty->runPreFilters($_content, $this->template),
-					true
-				),
-				$this->template
-			);
+
 		} catch (\Exception $e) {
 			if ($this->smarty->debugging) {
 				$this->smarty->getDebug()->end_compile($this->template);
@@ -1469,5 +1491,22 @@ class Template extends BaseCompiler {
 	 */
 	public function getTagStack(): array {
 		return $this->_tag_stack;
+	}
+
+	/**
+	 * Should the next variable output be raw (true) or auto-escaped (false)
+	 * @return bool
+	 */
+	public function isRawOutput(): bool {
+		return $this->raw_output;
+	}
+
+	/**
+	 * Should the next variable output be raw (true) or auto-escaped (false)
+	 * @param bool $raw_output
+	 * @return void
+	 */
+	public function setRawOutput(bool $raw_output): void {
+		$this->raw_output = $raw_output;
 	}
 }

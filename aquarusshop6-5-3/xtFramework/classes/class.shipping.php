@@ -277,7 +277,7 @@ class shipping extends xt_backend_cls {
 
 				$value = $this->_filterCustomer($value);
 
-                if (array_key_exists('use_shipping_zone', $value) && $value['use_shipping_zone']==0) {
+                if (is_array($value) && array_key_exists('use_shipping_zone', $value) && $value['use_shipping_zone']==0) {
                     $value = $this->_filterZone($value);    
                 }   else {
                     $value = $this->_filterShippingZone($value);

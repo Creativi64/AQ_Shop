@@ -202,7 +202,9 @@ $tw_properties = [
 echo "\n";
 foreach($tw_properties as $prop => $val)
 {
-    echo "<meta property=\"twitter:{$prop}\" content=\"{$val}\">\n";
+    $val = str_replace('"','""',$val);
+    $val = json_encode($val, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE);
+    echo '<meta property="twitter:'.$prop.'" content='.$val.'>'."\n";
 }
 echo "\n";
 

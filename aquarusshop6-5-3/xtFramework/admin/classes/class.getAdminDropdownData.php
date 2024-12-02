@@ -114,6 +114,44 @@ class getAdminDropdownData {
 		return $data;
 	}
 
+    function getCountries_DB($lng = '')
+    {
+        global $db,$filter, $language;
+
+        if(empty($lng))
+            $lng = $language->content_language;
+
+        $data=array();
+        $data[] =  array(
+            'id' => '',
+            'name' => __define('TEXT_EMPTY_SELECTION')
+        );
+
+        $qry2 ="
+                SELECT c.*, 
+                cd.countries_name,
+                fs.states_id, fs.states_code, fs.status as states_status,
+                fsd.state_name
+                FROM ".TABLE_COUNTRIES." c 
+                LEFT JOIN ".TABLE_COUNTRIES_DESCRIPTION." cd ON c.countries_iso_code_2=cd.countries_iso_code_2  
+                LEFT JOIN ".TABLE_FEDERAL_STATES." fs ON c.countries_iso_code_2=fs.country_iso_code_2  
+                LEFT JOIN ".TABLE_FEDERAL_STATES_DESCRIPTION." fsd ON fs.states_id = fsd.states_id
+                WHERE cd.language_code=? 
+                ORDER BY cd.countries_name, fsd.state_name ASC
+			";
+
+        $arr = $db->CacheGetArray($qry2, array($lng));
+
+        foreach ($arr as $key => $val) {
+            $data[] =  array(
+                'id' => $val['countries_iso_code_2'],
+                'name' => $val['countries_name']
+            );
+        }
+
+        return $data;
+    }
+
 	function getLanguageClasses() {
 		$data=array();
 		$data[] =  array('id' => '',
@@ -456,7 +494,7 @@ class getAdminDropdownData {
 
 	}
 
-	function getManufacturers () {
+	function getManufacturers ($add_no_manu_assigned = false) {
 
 		//$data=array(array('id'=>1,'name'=>'test'));
         $data = array();
@@ -466,8 +504,9 @@ class getAdminDropdownData {
         $data[] =  array('id' => '',
                          'name' => __define('TEXT_EMPTY_SELECTION'));
 
-        $data[] =  array('id' => '-1',
-            'name' => '- '. __define('TEXT_NO_MANUFACTURER'));
+        if($add_no_manu_assigned)
+            $data[] =  array('id' => '-1',
+                'name' => '- '. __define('TEXT_NO_MANUFACTURER'));
 
         $_data = $m->getManufacturerList('admin');
         foreach ($_data as $mdata) {

@@ -86,7 +86,7 @@ class ComposerStaticInit85b9a102fc6172adade7c89e981479a1
         ),
         'Svg\\' => 
         array (
-            0 => __DIR__ . '/..' . '/phenx/php-svg-lib/src/Svg',
+            0 => __DIR__ . '/..' . '/dompdf/php-svg-lib/src/Svg',
         ),
         'Smarty\\' => 
         array (
@@ -163,7 +163,7 @@ class ComposerStaticInit85b9a102fc6172adade7c89e981479a1
         ),
         'FontLib\\' => 
         array (
-            0 => __DIR__ . '/..' . '/phenx/php-font-lib/src/FontLib',
+            0 => __DIR__ . '/..' . '/dompdf/php-font-lib/src/FontLib',
         ),
         'Dompdf\\' => 
         array (

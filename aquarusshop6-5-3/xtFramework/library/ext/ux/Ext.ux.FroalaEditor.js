@@ -1,6 +1,6 @@
 Ext.namespace("Ext.ux.form");
 
-if(froalaLoadOnFocusOnly === true)
+if(froalaLoadOnFocusOnly === true) // aus ejsadmin.php
 {
     //console.log('froala onFocus version', froalaLoadOnFocusOnly);
 
@@ -70,6 +70,11 @@ function froala_editorInit(sb, ct, position)
     sb.editor = new FroalaEditor(
         _id,
         {
+            //enter: FroalaEditor.ENTER_DIV,
+
+            heightMin: froalaHeightMin, // aus ejsadmin.php
+            heightMax: froalaHeightMax, // aus ejsadmin.php
+
             language: froalaLanguage || 'en',
 
             iframe: true,

@@ -151,6 +151,9 @@ if ($request['get']) {
 		case "countries":
 			$result = $dropdown->getCountries();
 			break;
+        case "countries_db":
+            $result = $dropdown->getCountries_DB();
+            break;
 		case "stores":
 			$result = $dropdown->getStores($request['current_store_id']);
 			break;
