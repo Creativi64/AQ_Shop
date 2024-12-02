@@ -1,0 +1,13 @@
+Hello {$customer_name.firstname} {$customer_name.lastname}
+
+{if $ap.ap_description}
+    {$ap.ap_description}
+
+{/if}
+Payment link <a href="{$payment_link}" target="paymentLink">{$payment_link}</a><br />
+
+If you have any questions, please contact our customer service.<br />
+
+
+------------------------------------------------------------------------------------------------------------
+{$_system_footer_txt}

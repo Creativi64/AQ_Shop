@@ -28,6 +28,9 @@
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
 include _SRV_WEBROOT.'plugins/xt_canonical/classes/class.xt_canonical.php';
+
+global $page;
+
 $can_url = new xt_canonical();
 $canonical_link = $can_url->_getCanonicalUrl($page->page_name);
 if(trim($canonical_link)!='')

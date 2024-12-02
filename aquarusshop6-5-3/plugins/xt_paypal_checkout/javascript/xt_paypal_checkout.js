@@ -102,7 +102,7 @@ function enablePaypalCardForm() {
 
             cardFields.NameField({
                 style: cardStyle,
-                placeholder: "TODO"
+                placeholder: "..."
             }).render("#card_holder_name");
 
 
@@ -260,6 +260,113 @@ function enablePaypalButton(fundingSource, position) {
     }
 }
 
+function enablePaypalButtons_additional_payment(position, ap_no) {
+    if (window.paypal && window.paypal.Buttons) {
+
+        console.log('creating button for additional payment ' , paypal_checkout_constant);
+        console.log('creating button for additional payment ' , ap_no);
+
+        let selector = ppc_button_selector + '_' + position;
+
+        try {
+            let button = paypal.Buttons({
+
+                //fundingSource: '',
+                style: {
+                    label: 'pay',
+                    height: paypal_checkout_constant.BUTTON_SIZE,    // medium | large | responsive
+                    shape: paypal_checkout_constant.BUTTON_SHAPE,      // pill | rect
+                    color: paypal_checkout_constant.BUTTON_COLOR,       // gold | blue | silver | white | bla
+                    tagline: false
+                },
+                createOrder: (data, actions) => ppcCreateOrder(data, actions, selector, ap_no),
+                onApprove: (data, actions) => {
+                    ppcWaitModal();
+                    ppcCaptureOrder(data.orderID, ap_no)
+                    .then(function (resJson) {
+                        console.log('ppcCaptureOrder succes', resJson);
+                        //window.location.href = window.XT.baseUrl + 'pppayment/success?ap=' + ap_no;
+                        // TODO  window.XT.baseUrl fehlt der lang part zb de/
+                        window.location.href = window.XT.baseUrl + '?page=pppayment&page_action=success&ap=' + ap_no;
+                    }).catch((error) => {
+                        console.log('ppcCaptureOrder error', error);
+                        ppcWaitModal('hide');
+                    });
+
+                },
+
+                onError: function (err) {
+                    console.log(err);
+                    ppcWaitModal('hide');
+                    //window.location.href = window.XT.baseUrl + '?page=checkout&page_action=payment&error=ERROR_PAYMENT'
+                },
+                onCancel: function (data) {
+                    console.log(data);
+                    ppcWaitModal('hide');
+                },
+                onInit: function (data, actions) {
+                    console.log('ppcp onInit');
+
+                    let form = ppcGetCheckoutForm();
+
+                    if (form) {
+                        const valid = xtSimpleCheckForm_ppc(form, false);
+                        if (!valid) {
+                            actions.disable();
+                        }
+                        let cbox = form.querySelectorAll("input[type=checkbox]");
+                        cbox.forEach(box => {
+                            box.addEventListener('change', function (event) {
+                                const valid = xtSimpleCheckForm_ppc(form, false);
+                                if (valid) {
+                                    actions.enable();
+                                    box.classList.remove("xt-form-error");
+                                } else {
+                                    actions.disable();
+                                }
+
+                            });
+                        });
+                    }
+
+                },
+                onClick: function (data, actions) {
+                    console.log('ppcp onClick');
+
+                    let form = ppcGetCheckoutForm();
+
+                    if (form) {
+                        const valid = xtSimpleCheckForm_ppc(form, true, true);
+                        if (!valid) {
+                            actions.reject();
+                        }
+                        let cbox = form.querySelectorAll("input[type=checkbox]");
+                        cbox.forEach(box => {
+                            box.addEventListener('change', function (event) {
+                                const valid = xtSimpleCheckForm_ppc(form, false);
+                                if (valid) {
+                                    actions.resolve();
+                                    box.classList.remove("xt-form-error");
+                                } else {
+                                    actions.reject();
+                                }
+
+                            });
+                        });
+                    }
+
+                }
+            }).render(selector);
+        } catch (e) {
+            console.warn('enablePaypalButton: error creating paypal button for selector [' + ppc_button_selector + '_' + position + ']');
+            console.log(e)
+        }
+    } else {
+        console.warn('enablePaypalButton: paypal checkout no available. could not create button for fundingSource ' + fundingSource)
+    }
+}
+
+
 
 function renderAllEligibleButtons() {
     if (window.paypal && window.paypal.Buttons) {
@@ -379,8 +486,8 @@ function ppcGetShippingOptions(data, actions) {
 }
 
 
-function ppcCreateOrder(data, actions, button_container_selector) {
-    console.log({'fnc': 'ppcCreateOrder', 'data': data, 'actions': actions, 'container': button_container_selector});
+function ppcCreateOrder(data, actions, button_container_selector, ap_no = null) {
+    console.log({'fnc': 'ppcCreateOrder', 'data': data, 'actions': actions, 'container': button_container_selector, 'ap_no' : ap_no});
 
     previousCountryCode = "";
     operation = "add";
@@ -394,6 +501,11 @@ function ppcCreateOrder(data, actions, button_container_selector) {
 
     let isExpress = false;
     let url = baseUrl + '?page=PAYPAL_CHECKOUT_ORDER_CREATE';
+    let isAddpay = false;
+    if(typeof ap_no === 'string' && ap_no.length > 0) {
+        isAddpay = true;
+        url = baseUrl + '?page=PAYPAL_CHECKOUT_ORDER_CREATE_ADD_PAY';
+    }
 
     const page = window.XT.page.page_name;
 
@@ -465,6 +577,9 @@ function ppcCreateOrder(data, actions, button_container_selector) {
             formData.append('billingContact_ap', JSON.stringify(data.billingContact_ap));
         }
 
+        if(typeof ap_no === 'string' && ap_no.length > 0) {
+            formData.append('ap_no', ap_no);
+        }
 
         return fetch(
             url,
@@ -479,7 +594,8 @@ function ppcCreateOrder(data, actions, button_container_selector) {
             return response.json();
         }).then(function (resJson) {
             console.log(resJson);
-            ppcWaitModal();
+            if(isAddpay) ppcWaitModal('hide');
+            else ppcWaitModal();
             if(typeof data != 'undefined' && data.paymentSource === "card" && resJson.data.payer_action)
             {
                 window.location.replace(resJson.data.payer_action);
@@ -490,6 +606,7 @@ function ppcCreateOrder(data, actions, button_container_selector) {
         }).catch((error) => {
             console.log(error, isExpress);
             ppcWaitModal('hide');
+            if(isAddpay) throw error;
             if (!isExpress) window.location.replace(window.XT.baseUrl + '?page=cart');
             else if (page != 'product') window.location.replace(window.XT.baseUrl + '?page=cart');
             else if (page == 'product') location.reload();
@@ -497,7 +614,7 @@ function ppcCreateOrder(data, actions, button_container_selector) {
     }
 }
 
-function ppcCaptureOrder(ppcp_order_id) {
+function ppcCaptureOrder(ppcp_order_id, ap_no = '') {
     console.log({'fnc': 'ppcCaptureOrder', 'ppcp_order_id': ppcp_order_id});
 
     ppcWaitModal();
@@ -508,7 +625,7 @@ function ppcCaptureOrder(ppcp_order_id) {
         url,
         {
             method: 'POST',
-            body: {ppcp_order_id: ppcp_order_id},
+            body: {ppcp_order_id: ppcp_order_id, ap_no: ap_no},
             redirect: "error"
         }
     ).then(function (response) {
@@ -714,6 +831,8 @@ function ppcRemoveSubmitButton() {
 }
 
 function ppcWaitModal(close) {
+
+    console.log('ppcWaitModal', close);
     try {
         const modal = document.getElementById('ppc_wait_overlay');
         if (modal) {
@@ -1182,7 +1301,7 @@ async function setupApplepay(appendToContainer) {
                                         })
                                         .catch(validateError => {
                                             console.error('validateError', validateError);
-                                            ppcp_log_js('error onvalidatemerchant', error);
+                                            ppcp_log_js('error onvalidatemerchant', validateError);
                                             session.abort();
                                         });
                                 };
@@ -1227,20 +1346,21 @@ async function setupApplepay(appendToContainer) {
 
                                                 })
                                                 .catch(confirmError => {
-                                                    if (confirmError) {
-                                                        console.error('Error confirming order with applepay token', confirmError);
-                                                        session.completePayment(ApplePaySession.STATUS_FAILURE);
-                                                        ppcp_log_js('Error confirming order with applepay token. onpaymentauthorized > ppcCreateOrder > confirmOrder',
-                                                            {
-                                                                error: confirmError, input: {
-                                                                    orderId: ppOrderId,
-                                                                    token: event && event.payment ? event.payment.token : "n/a",
-                                                                    billingContact: event && event.payment ? event.payment.billingContact : "n/a",
-                                                                    shippingContact: event && event.payment ? event.payment.shippingContact : "n/a"
-                                                                }
+                                                    console.error('Error confirming order with applepay token', confirmError);
+                                                    session.completePayment(ApplePaySession.STATUS_FAILURE);
+
+                                                    ppcp_log_js('Error confirming order with applepay token. onpaymentauthorized > ppcCreateOrder > confirmOrder',
+                                                        {
+                                                            error: confirmError,
+                                                            input: {
+                                                                orderId: ppOrderId,
+                                                                token: event && event.payment ? event.payment.token : "n/a",
+                                                                billingContact: event && event.payment ? event.payment.billingContact : "n/a",
+                                                                shippingContact: event && event.payment ? event.payment.shippingContact : "n/a"
                                                             }
-                                                        );
-                                                    }
+                                                        }
+                                                    );
+
                                                 });
 
                                         })

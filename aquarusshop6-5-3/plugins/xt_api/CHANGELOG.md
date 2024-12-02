@@ -1,3 +1,6 @@
+## [6.1.0]
+-GPSR Felder in setManufacturer
+
 ## [6.0.19]
 - include_once in hook, segfault error on some environments
 

@@ -71,7 +71,8 @@ foreach($idxs as $idx)
 $payment_methods = $db->GetAssoc("SELECT * FROM ".TABLE_PAYMENT." WHERE payment_code LIKE 'xt_paypal_checkout_%'");
 
 if(is_array($payment_methods))
-{$payment = new payment();
+{
+    $payment = new payment();
     foreach ($payment_methods as $payment_id => $payment_data)
     {
         $payment->setPosition('admin');

@@ -28,3 +28,10 @@ input[name*=XT_PAYPAL_CHECKOUT_MERCHANT_ID]
 td div[class$=col_order_payment] {
     text-align: center;
 }
+
+.send_email::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f0e0";
+    font-style: normal;
+}

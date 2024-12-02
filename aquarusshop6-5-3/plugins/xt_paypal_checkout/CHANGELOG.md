@@ -1,3 +1,49 @@
+## [4.2.1]
+- FIX Fehler bei Ermittlung der xt-Bestell-ID bei Refund-IPN's
+  IPN im Log vorhanden aber nicht der Bestellung zugeordnet
+
+## [4.2.0]
+- Funktion Zahlungslink überarbeitet
+- neue Zahlungsweisen:
+  - iDeal (NL) Freischaltung durch PayPal erforderlich
+  - Przelewy24 (PL)
+  - BLIK (PL)
+  - MyBank (IT) Freischaltung durch PayPal erforderlich
+
+## [4.1.1]
+- FIX Call to undefined function xdebug_break() beim Hinzufügen einer Sendungsnummer
+
+## [4.1.0]
+- Anpassungen für Sendungsverfolgung  
+  Verwendung über Plugin xt_ship_and_track ab Plugin-Version 6.3.0
+- FIX Uncaught TypeError: property_exists() in class.paypal_onboarding.php:91
+
+## [4.0.1]
+- FIX 'Dieser Shop versendet nicht an Ihre Adresse' in Express mit Kundengruppen-whitelist
+
+## [4.0.0]
+- FIX PP-Button am Artikel ausblenden, wenn Preis = 0
+- FIX Sonderzeichen in Artikelnamen führen zu Fehler 'Purchase unit missing'
+- FIX invalid_string_length brand_name
+- FIX 'Dieser Shop versendet nicht an Ihre Adresse' in Express mit Kundengruppen-whitelist
+- NEU Kreditkarten-Option 'Immer Standard KK-Formular verwenden'
+- NEU Zahlart Trustly
+- NEU Zahlungslink senden (Nachzahlung, Zahlungsaufforderung, Zahlungserinnerung)
+
+## [3.7.1]
+- ADMIN ppcp_customer_id ausblenden in Kundendetailansicht
+- FIX fehlerhafte Ermittlung access-token verhindert Auswahl jeglicher Zahlungsart  
+  Uncaught PPCPException: SOME_ERROR in plugins/xt_paypal_checkout/classes/PayPalHelper.php:622
+
+## [3.7.0]
+- FIX Vaulting  
+  NOT_ENABLED_TO_VAULT_ PAYMENT _SOURCE. The API caller or the merchant on whose behalf the API call  
+  is initiated is not allowed to vault the given source.
+  Es wir nun geprüft, ob Vaulting aktiviert ist, sichtbar im Backend unter PayPal Checkout Signup > Onboarding Status  
+  PAYPAL_WALLET_VAULTING_ADVANCED sollte dort vorhanden sein  
+  Wenn nicht können Sie das Onboarding nochmals durchführen 
+- FIX weitere Anpassung Festwertgutscheine
+
 ## [3.6.5]
 - FIX Anpassungen für Gutscheine Festwert/Versand
 - FIX Giropay aus Installer entfernt

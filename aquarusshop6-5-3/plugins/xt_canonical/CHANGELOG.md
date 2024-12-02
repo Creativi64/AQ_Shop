@@ -1,3 +1,6 @@
+## [6.2.4]
+- FIX eigener Tabellenprefix führt zu Fehler
+
 ## [6.2.3]
 - fix for master/slave with just 1 active slave and redirect to slave
 

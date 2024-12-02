@@ -38,7 +38,9 @@ global $db;
 /** @var $plugin array */
 /** @var $product_id int */
 /** @var $_plugin_code string */
-ppcInstallPaymentTypes($product_id, $_plugin_code, 'insert', ['applepay']);
+$exist = $db->GetOne('SELECT 1 FROM '.TABLE_PAYMENT. " WHERE payment_code = 'xt_paypal_checkout_applepay'");
+$mode = $exist ? 'update' : 'insert';
+ppcInstallPaymentTypes($product_id, $_plugin_code, $mode, ['applepay']);
 
 if (!file_exists(_SRV_WEBROOT.'.well-known')) {
     mkdir(_SRV_WEBROOT.'.well-known', 0777);

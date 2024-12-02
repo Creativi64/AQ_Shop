@@ -1,0 +1,78 @@
+
+<div id="checkout" class="row">
+    <div class="col col-sm-4 col-md-3">
+        <div class="well payment-address address">
+            <p class="headline-underline clearfix">
+                {txt key=TEXT_ADDITIONAL_PAYMENT}
+            </p>
+
+            {txt key=PPCP_TEXT_ORDER}: &nbsp;{$ap.ap_order_id}<br />
+            {txt key=TEXT_AP_NUMBER}: &nbsp;{$ap.ap_number}<br />
+            <span class="bold">{txt key=TEXT_AP_AMOUNT_TOTAL}: &nbsp;{$ap.ap_amount_total_formated}&nbsp</span><br />
+        </div>
+    </div>
+
+    <div class="col col-sm-8 col-md-9"  style="max-width: 750px">
+
+        <p class="bold">
+            {$TEXT_PAYMENT_LINK_INFO}
+        </p>
+        <p>
+            {txt key=TEXT_PAYMENT_LINK_GENERAL_INFO}
+        </p>
+
+        {form type=form name=process action='checkout' method=post conn=SSL id='checkout-form'}
+        {form type=hidden id=ap_no name=ap_no value="{$ap.ap_number}"}
+
+        <div class="alert alert-warning">
+            {if $smarty.const._STORE_TERMSCOND_CHECK eq 'true'}
+                {content cont_id=3 is_id='false'}
+                <p class="checkbox">
+                    <label>
+                        {form type=checkbox name=conditions_accepted class="xt-form-required"}
+                        {txt key=TEXT_TERMSANDCOND_CONFIRMATION_5} <a href="{$_content_3.content_link}" target="_blank">{txt key=TEXT_TERMSANDCOND_CONFIRMATION_2}</a>{txt key=TEXT_DOT}
+                    </label>
+                </p>
+            {else}
+                {content cont_id=3 is_id='false'}
+                <p><span class="glyphicon glyphicon-ok"></span> <strong>{txt key=TEXT_TERMSANDCOND_CONFIRMATION_4} <a href="{$_content_3.content_link}" target="_blank">{txt key=TEXT_TERMSANDCOND_CONFIRMATION_2}</a>{txt key=TEXT_DOT}</strong></p>
+            {/if}
+            {if $show_digital_checkbox eq 'true'}
+                <p class="checkbox">
+                    <label>
+                        {form type=checkbox name=withdrawal_reject_accepted class="xt-form-required"}
+                        {txt key=TEXT_DIGITALCOND_CHECK}
+                    </label>
+                </p>
+            {/if}
+            {hook key=checkout_tpl_form}
+        </div>
+
+
+        <div id="paypal_button_container_payment" style="text-align: center"><i id="loading-spinner" class="fa fa-refresh fa-2x" style="-webkit-animation:spin_ppcp_spinner 1.2s linear infinite;  -moz-animation:spin_ppcp_spinner 1.2s linear infinite;  animation:spin_ppcp_spinner 1.2s linear infinite;" ></i></div>
+
+        <!--div class="well form-counter">
+            <p class="h4">{txt key=TEXT_COMMENTS} <small>{txt key=TEXT_MAX_CHARACTERS}</small></p>
+            <textarea name="comments" id="comments" class="form-control autosizejs" cols="50" rows="3" placeholder="{txt key=TEXT_COMMENTS_DESC}" maxlength="255">{$smarty.session.order_comments}</textarea>
+        </div-->
+
+        <div class="clearfix">
+        </div>
+
+        {form type=formend}
+
+    </div>
+</div><!-- #checkout .row -->
+
+<script>
+
+    document.addEventListener("PayPalSdkLoaded", function () {
+
+        enablePaypalButtons_additional_payment('payment', '{$ap.ap_number}');
+        document.getElementById("loading-spinner").remove();
+
+    } );
+
+</script>
+
+{include file="./paypal-checkout-wait-modal.tpl.html"}

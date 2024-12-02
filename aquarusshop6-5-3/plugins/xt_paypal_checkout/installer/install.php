@@ -79,6 +79,43 @@ $db->Execute("CREATE TABLE IF NOT EXISTS " . TABLE_PAYPAL_CHECKOUT_REFUNDS . " (
         INDEX `idx_ppcp_refund_id` (`ppcp_refund_id`)
          );");
 
+$db->Execute('CREATE TABLE IF NOT EXISTS  `'.DB_PREFIX.'_additional_payments` (
+    `ap_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `ap_number` VARCHAR(32) NULL,
+    `ap_order_id` INT UNSIGNED NULL,
+    `ap_customer_id` INT UNSIGNED  NULL,
+    `ap_address_id` INT UNSIGNED NULL,
+    `ap_status` TINYINT UNSIGNED NULL DEFAULT 1,
+    `ap_description` TEXT NULL,
+    `ap_amount_total` DECIMAL(10,2) NULL DEFAULT 0,
+    `ap_tax_class_id` TINYINT UNSIGNED NULL DEFAULT 0,
+    `ap_times_sent` TINYINT UNSIGNED NULL DEFAULT 0,
+    `ap_time_sent` TIMESTAMP NULL DEFAULT NULL,
+    `ap_ppcp_order_id` VARCHAR(32) NULL,
+    `ap_ppcp_order_status` VARCHAR(32) NULL,
+    `ap_ppcp_transaction_id` VARCHAR(32) NULL,
+
+    PRIMARY KEY (`ap_id`),
+    INDEX `idx_number` (`ap_number` ASC) ,
+    INDEX `idx_order` (`ap_order_id` DESC) ,
+    INDEX `idx_customer` (`ap_customer_id` ASC) ,
+    INDEX `idx_address` (`ap_address_id` ASC) ,
+    INDEX `idx_status` (`ap_status` ASC) ,
+    INDEX `idx_time_sent` (`ap_time_sent` DESC),
+    INDEX `idx_ppcp_order_id` (`ap_ppcp_order_id` DESC),
+    INDEX `idx_ppcp_order_status` (`ap_ppcp_order_status` DESC),
+    INDEX `idx_ppcp_transaction_id` (`ap_ppcp_transaction_id` DESC)
+); ');
+
+if (defined('TABLE_SHIPPER') && !$this->_FieldExists('shipper_code_ppcp', TABLE_SHIPPER))
+{
+    $db->Execute("ALTER TABLE `" . TABLE_SHIPPER . "` ADD COLUMN `shipper_code_ppcp` VARCHAR(128) NULL DEFAULT NULL;");
+}
+
+$db->Execute("DELETE FROM  `".DB_PREFIX."_acl_nav` WHERE `text` = 'xt_additional_payment'; " );
+$db->Execute("INSERT INTO  `".DB_PREFIX."_acl_nav` (`text`, `plugin_code`, `icon`, `url_i`, `url_d`, `url_h`, `sortorder`, `parent`, `type`, `navtype`, `iconCls`) VALUES ('xt_additional_payment', '', 'images/icons/money_euro.png', '&plugin=xt_paypal_checkout&pg=overview', 'adminHandler.php', 'https://xtcommerce.atlassian.net/wiki/spaces/MANUAL/pages/3317137413', '5', 'ordertab', 'I', 'W', 'fa fa-money-bill' ); ");
+
+
 /** @var $plugin array */
 /** @var $product_id int */
 /** @var $_plugin_code string */
@@ -91,6 +128,10 @@ ppcInstallPaymentIcon();
 ppcFixDependencies();
 
 ppcUpdateRefundStatus();
+
+ppcpInstallMailTemplates();
+
+ppcpCopyPaymentLinkTemplates();
 
 ppcClearLanguageCache();
 

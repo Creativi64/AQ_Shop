@@ -756,7 +756,327 @@
             </de>
         </phrase>
 
+        <phrase>
+            <key>TEXT_XT_ADDITIONAL_PAYMENT</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Zahlungslink]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Payment link]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_ADDITIONAL_PAYMENT</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Zahlungslink]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Payment link]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_AP_ID</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[ID]]></value>
+            </de>
+            <en>
+                <value><![CDATA[ID]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_AP_NUMBER</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Nummer]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Number]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_AP_ORDER_ID</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[ID Bestellung]]></value>
+            </de>
+            <en>
+                <value><![CDATA[ID Order]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_AP_STATUS</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[aktiviert]]></value>
+            </de>
+            <en>
+                <value><![CDATA[activated]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_AP_AMOUNT_TOTAL</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Gesamtbetrag]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Total amount]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_AP_TAX_CLASS_ID</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Steuerklasse]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Tax class]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_AP_PPCP_TRANSACTION_ID</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[bezahlt mit Transaktion]]></value>
+            </de>
+            <en>
+                <value><![CDATA[paid with transaction]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_AP_TIMES_SENT</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[gesendet x]]></value>
+            </de>
+            <en>
+                <value><![CDATA[sent x]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_AP_TIME_SENT</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[gesendet]]></value>
+            </de>
+            <en>
+                <value><![CDATA[sent]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_AP_DESCRIPTION</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Nachricht]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Message]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>SEND_PAYMENT_LINK</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Zahlungslink senden]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Send payment link]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_SEND_PAYMENT_LINK</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Zahlungslink senden]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Send payment link]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYMENT_LINK_SENT</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Zahlungslink gesendet]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Sent payment link]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYMENT_PAID_ALREADY</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Es scheint, dass die Zahlung bereits ausgeführt wurde. Bei weiteren Fragen kontaktieren Sie bitte unseren Kunden-Support.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[It seems that the payment has already been processed. If you have any further questions, please contact our customer support.]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYMENT_LINK_INACTIVE</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Zahlungslink inaktiv bzw ist die Zahlung in Verarbeitung. Bei weiteren Fragen kontaktieren Sie bitte unseren Kunden-Support.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Payment link inactive or payment is being processed. If you have any further questions, please contact our customer support.]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_AP_MESSAGE</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Nachricht]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Message]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYMENT_LINK_COPIED_TO_CLIPBOARD</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Zahlungslink wurde in die Zwischenablage kopiert]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Payment link copied to clipboard]]></value>
+            </en>
+        </phrase>
 
+        <phrase>
+            <key>TEXT_PPCP_DO_ADDPAY_LABEL</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Zahlungslink senden]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Send payment link]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PPCP_DO_ADDPAY</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Zahlungslink anlegen]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Send payment link]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>SEND_PAYMENT_LINK_EMAIL</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Zahlungslink senden]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Create payment link]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>PPCP_TEXT_ORDER</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Bestellung]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Order]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>PPCP_TEXT_ORDER_ID</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[ID PayPal Bestellung]]></value>
+            </de>
+            <en>
+                <value><![CDATA[PayPal order ID]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_AP_PPCP_ORDER_ID</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[ID PayPal Bestellung]]></value>
+            </de>
+            <en>
+                <value><![CDATA[PayPal order ID]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_AP_PPCP_ORDER_STATUS</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Status PayPal Bestellung]]></value>
+            </de>
+            <en>
+                <value><![CDATA[PayPal order status]]></value>
+            </en>
+        </phrase>
+
+
+        <phrase>
+            <key>TEXT_PAYMENT_SUCCESS</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Ihre Zahlung wurde erfolgreich ausgeführt]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Your payment was successfully processed]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYMENT_SUCCESS_DESC</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Ihre Zahlung wurde erfolgreich beim Zahlungsdienstleister ausgeführt. Sie erhalten vom Zahlungsdienstleister ein Bestätigung der Zahlung.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Your payment was successfully processed by the payment service provider. You will receive a confirmation of payment from the payment service provider.]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_PAYMENT_LINK_GENERAL_INFO</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Auf dieser Seite haben Sie die Möglichkeit Ihre Zahlung über die angebotenen Zahlungsweisen durchzuführen.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[On this page you have the option to make your payment using the payment methods offered.]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_PAYMENT_LINK_INFO</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Zahlungsaufforderung von {from} über {amount}.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Payment request from {from} for {amount}.]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_PPCP_ADDPAY_FOR_ORDER</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Nachzahlung für Bestellung]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Additional payment for order ]]></value>
+            </en>
+        </phrase>
 
     <!-- plgbuilder row functions -->
     <phrase>

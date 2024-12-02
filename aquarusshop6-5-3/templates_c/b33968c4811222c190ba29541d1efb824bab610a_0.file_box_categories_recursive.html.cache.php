@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-10-14 17:40:11
+/* Smarty version 5.1.0, created on 2024-12-02 18:49:39
   from 'file:/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes/box_categories_recursive.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_670d3b5b276871_25136597',
+  'unifunc' => 'content_674df33325e554_02832991',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,9 +20,9 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_670d3b5b276871_25136597 (\Smarty\Template $_smarty_tpl) {
+function content_674df33325e554_02832991 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes';
-$_smarty_tpl->getCompiled()->nocache_hash = '1054482984670d3b5b2511f2_01668285';
+$_smarty_tpl->getCompiled()->nocache_hash = '207970446674df3332212f7_89809946';
 if ($_smarty_tpl->getValue('_categories')) {?>
     <?php if ($_smarty_tpl->getValue('params')['position'] == 'navbar') {?>
 
@@ -35,9 +35,9 @@ $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_
   'iteration' => true,
   'total' => true,
 ));
-$foreach2DoElse = true;
+$foreach5DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('k')->value => $_smarty_tpl->getVariable('i')->value) {
-$foreach2DoElse = false;
+$foreach5DoElse = false;
 $_smarty_tpl->tpl_vars['__smarty_foreach_a']->value['iteration']++;
 $_smarty_tpl->tpl_vars['__smarty_foreach_a']->value['index']++;
 $_smarty_tpl->tpl_vars['__smarty_foreach_a']->value['first'] = !$_smarty_tpl->tpl_vars['__smarty_foreach_a']->value['index'];
@@ -62,9 +62,9 @@ if ($_smarty_tpl->getValue('i')['sub']) {?> dropdown<?php if ($_smarty_tpl->getV
                             <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('i')['sub'], 'i1', false, 'k1', 'a1', array (
 ));
-$foreach3DoElse = true;
+$foreach6DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('k1')->value => $_smarty_tpl->getVariable('i1')->value) {
-$foreach3DoElse = false;
+$foreach6DoElse = false;
 ?>
                                 <?php if ($_smarty_tpl->getValue('params')['mega'] == 'true') {?>
                                     <li class="level-<?php echo $_smarty_tpl->getValue('i1')['level'];?>
@@ -78,9 +78,9 @@ $foreach3DoElse = false;
                                                 <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('i1')['sub'], 'i2', false, 'k2', 'a2', array (
 ));
-$foreach4DoElse = true;
+$foreach7DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('k2')->value => $_smarty_tpl->getVariable('i2')->value) {
-$foreach4DoElse = false;
+$foreach7DoElse = false;
 ?>
                                                     <li class="level-<?php echo $_smarty_tpl->getValue('i2')['level'];?>
 ">
@@ -146,9 +146,9 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
                 <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('_categories'), 'module_data', false, NULL, 'aussen', array (
 ));
-$foreach5DoElse = true;
+$foreach8DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('module_data')->value) {
-$foreach5DoElse = false;
+$foreach8DoElse = false;
 ?>
                     <li class="level-<?php if ($_smarty_tpl->getValue('current_parent_id')) {
 echo $_smarty_tpl->getValue('module_data')['level']-1;

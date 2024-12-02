@@ -1,0 +1,171 @@
+{if 
+    $page == 'index' OR
+    $page == 'product' OR
+    $page == 'cart' OR
+    $smarty.get.page_action == 'login' OR
+    $smarty.get.page_action == 'order_info'
+}
+    {assign var="show_index_boxes" value="false"}
+{/if}
+{hook key=index_top}
+<!-- Respond.js IE8 support of media queries -->
+<!--[if lt IE 9]>
+<script type="text/javascript" src="{$smarty.const._SRV_WEB_TEMPLATES}{$smarty.const._STORE_TEMPLATE}/components/Respond/dest/respond.min.js"></script>
+<![endif]-->
+
+
+<div id="site-wrap" class="{$page}-wrap{if $page != 'index'} subpage-wrap{/if}{if $smarty.get.page_action} {$smarty.get.page_action}-action-wrap{/if}">
+    {if !isset($smarty.get.viewport) || $smarty.get.viewport != 'modal'}
+
+        <header id="header">
+            <div class="meta-navigation">
+                <div class="container clearfix">
+                    <ul class="meta list-inline pull-left hidden-xs pull-left">
+                        {hook key=meta_nav_left_first}
+
+                        <li>{box name=language}</li>
+                        {hook key=meta_nav_left_last}
+                    </ul>
+                    <ul class="user list-inline pull-right">
+                        {hook key=meta_nav_right_first}
+
+                        {hook key=meta_nav_right_last}
+                    </ul>
+                </div>
+            </div><!-- .meta-navigation -->
+
+            <div class="header-top">
+                <div class="container">
+                    <div class="row text-center-xs">
+                        <div class="col col-sm-4 col-md-5 col-logo">
+                            <div class="inner branding">
+                                <p class="logo">
+                                    <a href="{link page='index'}" class="text-muted" title="{$smarty.const._STORE_NAME}">
+                                        <img class="img-responsive" src="media/logo/{$smarty.const._STORE_LOGO}" alt="{$smarty.const._STORE_NAME}" />
+                                    </a>
+                                </p>
+                                {if $smarty.const._STORE_STORE_CLAIM|trim != ''}
+                                    <p class="slogan text-muted">{$smarty.const._STORE_STORE_CLAIM}</p>
+                                {/if}
+                            </div>
+                        </div>
+                        <div class="col col-sm-4 hidden-xs">
+                            <div class="inner top-search hidden-sm">
+                                {*box name=search htmlonly=1*}
+                            </div>
+                        </div>
+                        <div class="col col-sm-4 col-md-3 hidden-xs">
+                            <div class="inner top-cart text-right">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- .header-top -->
+
+        </header><!-- #header -->
+
+        <noscript>
+            <div class="container">
+                <div class="alert alert-danger text-center">
+                    <p><i class="fa fa-3x fa-exclamation-triangle"></i></p>
+                    {txt key=TEXT_JS_DISABLED_WARNING}
+                </div>
+            </div>
+        </noscript>
+
+		<div id="navContainer" class="container">
+			<ul class="navbar-mega hidden hidden-float-breakpoint with-backdrop-shadow"></ul>
+		</div>
+
+		{hook key=pre_content_container}
+
+		{if !isset($disable_content_container)}
+        <div id="container" class="container"  style="min-height: unset">
+            {hook key=container_top}
+            <div id="content" class="row">
+                <div class="col primary{if $show_index_boxes == 'true'} col-sm-8 col-sm-push-4 col-md-9 col-md-push-3{else} col-sm-12{/if}">
+
+                    <p id="result-message"></p>
+
+                    {$selected_template}
+
+                    {$content}
+                </div>
+                {if $show_index_boxes == 'true'}
+                    <div class="col secondary col-sm-4 col-sm-pull-8 col-md-3 col-md-pull-9">
+                        {hook key=index_boxes_top}
+                        {hook key=index_boxes_middle}
+                        <div class="sidebar-products">
+                            {hook key=sidebar_products_bottom}
+                        </div>
+                        {hook key=index_boxes_bottom}
+                    </div>
+                {/if}
+            </div><!-- #content -->
+            
+            {hook key=container_bottom}
+        </div><!-- #container -->
+		{/if}
+
+        {hook key=after_content_container}
+
+        <div class="clearfix"></div>
+
+        <footer id="footer">
+            <div class="container">
+                <div id="footer-cols">
+                    <div class="row">
+                        <div class="col col-sm-4">
+                            {box name=footer_contact htmlonly=1}
+                        </div>
+                        <div class="col col-sm-4">
+                            {box name=footer_left htmlonly=1}
+                        </div>
+                        <div class="col col-sm-4">
+                            {box name=footer_right htmlonly=1}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col col-sm-4">
+                            {*box_cache name=manufacturers order_by='m.manufacturers_name'*}
+                        </div>
+                        <div class="col col-sm-4">
+                            {*box name=language*}
+                            {*box name=currency*}
+                        </div>
+                        <div class="col col-sm-4">
+                            {*box_cache name=payment_logos*}
+                            {box name=trusted_shops_ratings}
+                            {box name=trusted_shops_seal}
+                            {box name=trusted_shops_video}
+                        </div>
+                    </div>
+                </div>
+                <div id="footer-meta" class="text-center text-muted">
+
+                    {hook key=index_footer_tpl}
+                    {box name=trusted_shops_rich_snippet}
+
+                </div>
+            </div>
+        </footer><!-- #footer -->
+
+        
+        <a id="back-to-top" class="hidden hidden-xs" href="{$smarty.server.REQUEST_URI}#top" rel="nofollow">
+            <i class="fa fa-3x fa-arrow-circle-o-up"></i>
+            <span class="sr-only">Back to Top</span>
+        </a>
+
+        {if $page != 'cart' && $page != 'checkout'}
+            <div class="bottom-cart">
+                {box name=cart}
+            </div>
+        {/if}
+
+    {else}
+        {$content}
+    {/if}
+</div><!-- #site-wrap -->
+<div class="clearfix"></div>
+
+

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-09-09 19:14:52
+/* Smarty version 5.1.0, created on 2024-12-02 18:49:38
   from 'file:/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/pages/default.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_66df2d0c580847_26370375',
+  'unifunc' => 'content_674df332dbf488_25500919',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_66df2d0c580847_26370375 (\Smarty\Template $_smarty_tpl) {
+function content_674df332dbf488_25500919 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/pages';
 if ($_smarty_tpl->getValue('content_status') == 1) {
 echo $_smarty_tpl->getSmarty()->getFunctionHandler('box')->handle(array('name'=>'teaser','sliderid'=>1), $_smarty_tpl);?>

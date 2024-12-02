@@ -1,0 +1,148 @@
+{if
+$page == 'index' OR
+$page == 'product' OR
+$page == 'cart' OR
+$page == 'checkout' OR
+$page == '404' OR
+(isset($smarty.get.page_action) && $smarty.get.page_action == 'login') OR
+(isset($smarty.get.page_action) && $smarty.get.page_action == 'order_info')
+}
+    {assign var="show_index_boxes" value="false"}
+{/if}
+{hook key=index_top}
+
+
+
+
+<div id="site-wrap" class="{$page}-wrap{if $page != 'index'} subpage-wrap{/if}{if isset($smarty.get.page_action)} {$smarty.get.page_action}-action-wrap{/if} shop{$smarty.const.EW_ADVENTURY_SHOP_ID}">
+    {if !isset($smarty.get.viewport) || $smarty.get.viewport != 'modal'}
+        <div id="header">
+            <div class="header-bg">
+                {box name=noscript htmlonly=1}
+                <div id="meta-navigation">
+                    <div class="container">
+                        <ul class="hidden-xs hidden-sm list-inline pull-left user text-muted">
+
+
+                        </ul>
+                        <ul class="list-inline pull-right user text-muted">
+
+                            <!--li class="hidden-xs hidden-md hidden-lg"><i class="fa fa-search"></i> <a href="javascript:void(0);" class="open-mobile-search">{txt key=BUTTON_SEARCH}</a></li-->
+
+
+                        </ul>
+                        <div style="clear:both;"></div>
+                    </div>
+                </div>
+                <div class="mobile-logo-container visible-xs-block">
+                    <p class="logo text-center">
+                        <a class="text-muted" href="{link page='index'}" title="{$smarty.const._STORE_NAME}">
+                            <img src="media/logo/{$smarty.const._STORE_LOGO}" alt="{$smarty.const._STORE_NAME}" class="img-responsive"/>
+                        </a>
+                    </p>
+                </div>
+                <div class="container">
+                    <div id="header-top" class="row hidden-xs">
+                        <div class="col col-sm-4 branding">
+                            <div class="logo"><a href="{link page='index'}" class="text-muted"><img class="img-responsive" src="media/logo/{$smarty.const._STORE_LOGO}" alt="{$smarty.const._STORE_NAME}" /></a></div>
+                            {if $smarty.const._STORE_STORE_CLAIM|strip_tags|trim != ''}<p class="slogan text-muted">{$smarty.const._STORE_STORE_CLAIM}</p>{/if}
+                        </div>
+                        <div class="col col-sm-4 col-md-2">
+                            <div class="header-info">
+                                {*box name=header htmlonly=1*}
+                            </div>
+                        </div>
+                        <div class="col col-sm-4 col-md-6">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div><!-- #header -->
+
+        {hook key=pre_content_container}
+        {if !isset($disable_content_container)}
+            <div id="container"{if $page == '404' || $page == 'checkout'} class="no-breadcrump-container"{/if}>
+
+
+                {if $page == 'index' }{$content}{/if}
+
+                <div id="content" class="container">
+                    <div class="row">
+                        <div class="col{if $show_index_boxes == 'true'} col-sm-8 col-sm-push-4 col-md-9 col-md-push-3 {else} col-sm-12{/if} primary">
+                            {if $page != 'index' }{$content}{/if}
+                            {* <!-- hook for other cached product listings --> *}
+                        </div>
+                        {if $show_index_boxes == 'true'}
+                            <div class="col col-sm-4 col-sm-pull-8 col-md-3 col-md-pull-9 secondary">
+
+                                <hr class="hidden-sm hidden-md hidden-lg content-splitter" />
+                            </div>
+                        {/if}
+                    </div>
+                </div><!-- #content -->
+
+
+
+            </div><!-- #container -->
+        {/if}
+
+
+        <div id="footer">
+            <div class="container" id="footer-accordion" role="tablist" aria-multiselectable="true">
+                <div class="row footer-top">
+                    <div class="col col-sm-4 col-1">
+                        {include file="includes/box_cache_wrap.html" name=footer_contact htmlonly=1 type="tpl_include"}
+                    </div>
+                    <div class="col col-sm-4 col-1">
+                        {hook key=ew_adventury_footer_info}
+                        {include file="includes/box_cache_wrap.html" name=footer_left htmlonly=1 type="tpl_include"}
+                    </div>
+                    <div class="col col-sm-4 col-2">
+                        {hook key=ew_adventury_footer_content}
+                        {include file="includes/box_cache_wrap.html" name=footer_right htmlonly=1 type="tpl_include"}
+                    </div>
+                </div>
+                <div class="row footer-bottom">
+                    <div class="col col-sm-4 col-1">
+
+                    </div>
+                    <div class="col col-sm-4 col-2">
+
+                    </div>
+                    <div class="col col-sm-4 hidden-sm hidden-md hidden-lg">
+
+                    </div>
+                    <div class="col col-sm-4 col-3">
+                        {box name=trusted_shops_ratings}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-xs-12">
+
+                    </div>
+                </div>
+            </div>
+            <div id="footer-meta" class="text-center text-muted">
+                <ul class="navmeta visible-xs-block visible-sm-block list-unstyled">
+                    {hook key=ew_adventury_navmeta}
+                </ul>
+                {if $smarty.const.CONFIG_EW_ADVENTURY_PLUGIN_SIDEBUTTONS == 0}
+                    <div class="hidden-xs">
+                        {box name=language}
+                    </div>
+                {/if}
+                {box name=trusted_shops_rich_snippet}
+
+                    {hook key=index_footer_tpl}
+            </div>
+        </div><!-- #footer -->
+
+        {box name=floating_boxes htmlonly=1}
+
+    {else}
+        {$content}
+    {/if}
+</div>

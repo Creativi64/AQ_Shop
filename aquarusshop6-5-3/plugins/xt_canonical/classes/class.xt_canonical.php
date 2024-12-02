@@ -102,7 +102,7 @@ class xt_canonical{
 
                 if (XT_CANONICAL_APPLY_TO_ALL_SLAVES==1 or $rs[0]['products_canonical_master']=='1') {
                     // count how many slaves are active
-                    $slave_count = $db->GetOne("SELECT count(products_id) FROM xt_products WHERE products_master_model = ? and products_status=1",array($p_info->data['products_master_model']));
+                    $slave_count = $db->GetOne("SELECT count(products_id) FROM ".TABLE_PRODUCTS." WHERE products_master_model = ? and products_status=1",array($p_info->data['products_master_model']));
 
                     if ($slave_count==1) {
                         // show slave as canonical
@@ -131,7 +131,7 @@ class xt_canonical{
  		 * */
         public function _getContentUrl() {
             global $shop_content_data,$xtLink; 
-            if(_SYSTEM_MOD_REWRITE == 'true' && $shop_content_data['url_text']!=''){
+            if(constant('_SYSTEM_MOD_REWRITE') == 'true' && $shop_content_data['url_text']!=''){
            	 	$link_array = array('page'=>'content', 'seo_url' => $shop_content_data['url_text']);
             }
             else {
@@ -150,7 +150,7 @@ class xt_canonical{
             global $manufacturer,$current_manufacturer_id,$xtLink; 
             $man = array('manufacturers_id' => $current_manufacturer_id);
 			$man_data = $manufacturer->buildData($man);
-            if(_SYSTEM_MOD_REWRITE == 'true'){
+            if(constant('_SYSTEM_MOD_REWRITE')  == 'true'){
 				$link_array = array('page'=>'manufacturers', '','seo_url' => $man_data['url_text']);
             }
             else{
@@ -167,7 +167,7 @@ class xt_canonical{
  		 * */
  		public function _getCategorieUrl() {
             global $category,$current_category_id,$xtLink;
-            if(_SYSTEM_MOD_REWRITE == 'true'){
+            if(constant('_SYSTEM_MOD_REWRITE')  == 'true'){
             	$link_array = array('page'=>'categorie', '','seo_url' => $category->current_category_data['url_text']);
             }
             else {

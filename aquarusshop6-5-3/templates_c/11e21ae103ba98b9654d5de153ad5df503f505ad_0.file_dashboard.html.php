@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-09-10 21:14:15
+/* Smarty version 5.1.0, created on 2024-12-02 18:51:06
   from 'file:/homepages/2/d41324517/htdocs/aquarus_shop/templates/__xtAdmin/xtCore/pages/dashboard.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.1.0',
-  'unifunc' => 'content_66e09a8790e272_94123966',
+  'unifunc' => 'content_674df38a62f8a0_38184522',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_66e09a8790e272_94123966 (\Smarty\Template $_smarty_tpl) {
+function content_674df38a62f8a0_38184522 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/__xtAdmin/xtCore/pages';
 ?><!-- Content Wrapper. Contains page content -->
   <div class="xcontent-wrapper">

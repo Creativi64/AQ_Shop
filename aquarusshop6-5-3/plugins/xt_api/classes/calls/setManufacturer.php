@@ -104,6 +104,24 @@ function setManufacturer($user = '', $pass = '', $ManufacturerItem = '') {
     $data['products_sorting'] = $ManufacturerItem['products_sorting'];
     $data['products_sorting2'] = $ManufacturerItem['products_sorting2'];
     $data['manufacturers_status'] = $ManufacturerItem['manufacturers_status'];
+
+    // GPSR
+    $data['compliance_email'] = $ManufacturerItem['compliance_email'];
+    $data['compliance_address_1'] = $ManufacturerItem['compliance_address_1'];
+    $data['compliance_address_2'] = $ManufacturerItem['compliance_address_2'];
+    $data['compliance_zip_code'] = $ManufacturerItem['compliance_zip_code'];
+    $data['compliance_city'] = $ManufacturerItem['compliance_city'];
+    $data['compliance_country_code'] = $ManufacturerItem['compliance_country_code'];
+    $data['compliance_phone'] = $ManufacturerItem['compliance_phone'];
+    $data['compliance_responsible_name'] = $ManufacturerItem['compliance_responsible_name'];
+    $data['compliance_responsible_email'] = $ManufacturerItem['compliance_responsible_email'];
+    $data['compliance_responsible_address_1'] = $ManufacturerItem['compliance_responsible_address_1'];
+    $data['compliance_responsible_address_2'] = $ManufacturerItem['compliance_responsible_address_2'];
+    $data['compliance_responsible_zip_code'] = $ManufacturerItem['compliance_responsible_zip_code'];
+    $data['compliance_responsible_city'] = $ManufacturerItem['compliance_responsible_city'];
+    $data['compliance_responsible_country_code'] = $ManufacturerItem['compliance_responsible_country_code'];
+    $data['compliance_responsible_phone'] = $ManufacturerItem['compliance_responsible_phone'];
+
     
     // Neues array 'manufacturerDescriptionsList' für Beschreibungen wird genutzt   
     if( $ManufacturerItem['manufacturerDescriptionsList'] && sizeof($ManufacturerItem['manufacturerDescriptionsList']) > 0 ){

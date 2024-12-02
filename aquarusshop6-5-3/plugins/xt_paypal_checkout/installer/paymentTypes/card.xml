@@ -155,6 +155,19 @@
             </en>
         </config>
 
+        <config>
+            <key>CARD_USE_STANDARD_CARD_FORM</key>
+            <type>status</type>
+            <value>0</value>
+            <sort_order>80</sort_order>
+            <de>
+                <title><![CDATA[Immer Standard KK-Formular verwenden]]></title>
+            </de>
+            <en>
+                <title><![CDATA[Always use standard card formular]]></title>
+            </en>
+        </config>
+
 
     </configuration_payment>
 
