@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-
+error_reporting(E_ALL); 
+// ini_set("display_errors", 1); // DEBUG
 /* ----------------------------------------------------------------------------------------
 
  AbamSoft Finos 15.0
@@ -1369,7 +1369,8 @@ function save_manufacturers()
 
 
          $sql_data_array = array('manufacturers_name'     => $manufacturers_name,
-                                 'manufacturers_status'   => $manufacturers_status);
+                                 'manufacturers_status'   => $manufacturers_status,
+                                 'products_sorting2' => "ASC");
 
 
       if ($exists==0)        // Neuanlage
@@ -1377,9 +1378,9 @@ function save_manufacturers()
 
           $insert_sql_data = array('manufacturers_id'      => $manufacturers_id,
                                    'manufacturers_name'    => $manufacturers_name,
-                                   'manufacturers_status'  => $manufacturers_status);
-
-
+                                   'manufacturers_status'  => $manufacturers_status,
+                                   'products_sorting2' => "ASC");
+ 
           $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
           database_insert(TABLE_MANUFACTURERS, $sql_data_array);
 
@@ -1397,45 +1398,43 @@ function save_manufacturers()
       elseif ($exists==1)    //Aktualisieren
       {
           database_insert(TABLE_MANUFACTURERS, $sql_data_array, 'update', 'manufacturers_id = \'' . $manufacturers_id . '\'');
+      } 
+
+      //Beschreibungen zum Hersteller Übernehmen -----------------------------------------------------------------------
+      $manufacturers_description_query = mysqli_query($db,"select * from " . TABLE_MANUFACTURERS_INFO . " where manufacturers_id = '" . $manufacturers_id . "' and language_code = '" . LANG_CODE . "'");
+
+      if ($manufacturers_desc = mysqli_fetch_array($manufacturers_description_query, MYSQLI_BOTH))
+      {
+        $exists = 1;
+      }
+      else
+      {
+        $exists = 0;
       }
 
 
+        // uebergebene Daten einsetzen
+        $manufacturers_description             = isset($_POST['manufacturers_description']) ? $_POST['manufacturers_description']:"";
+        $manufacturers_url                     = isset($_POST['manufacturers_url']) ? $_POST['manufacturers_url']:"";
 
+        $sql_data_array = array('manufacturers_description'          => $manufacturers_description, 
+                                'manufacturers_url'                  => $manufacturers_url,
+                                'manufacturers_store_id'             => 1);
 
-       //Beschreibungen zum Hersteller �bernehmen -----------------------------------------------------------------------
-         $manufacturers_description_query = mysqli_query($db,"select * from " . TABLE_MANUFACTURERS_DESCRIPTION . " where manufacturers_id = '" . $manufacturers_id . "' and language_code = '" . LANG_CODE . "'");
+        if ($exists==0)        // Neuanlage
+        {
 
-          if ($manufacturers_desc = mysqli_fetch_array($manufacturers_description_query, MYSQLI_BOTH))
-          {
-            $exists = 1;
-          }
-          else
-          {
-            $exists = 0;
-          }
+          $insert_sql_data = array('manufacturers_id' => $manufacturers_id,
+                                  'language_code'    => LANG_CODE);
 
+          $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
+          database_insert(TABLE_MANUFACTURERS_INFO, $sql_data_array);
 
-            // uebergebene Daten einsetzen
-            $manufacturers_description             = isset($_POST['manufacturers_description']) ? $_POST['manufacturers_description']:"";
-            $manufacturers_url                     = isset($_POST['manufacturers_url']) ? $_POST['manufacturers_url']:"";
-
-            $sql_data_array = array('manufacturers_description'          => $manufacturers_description,
-                                    'manufacturers_url'                  => $manufacturers_url);
-
-           if ($exists==0)        // Neuanlage
-           {
-
-             $insert_sql_data = array('manufacturers_id' => $manufacturers_id,
-                                      'language_code'    => LANG_CODE);
-
-             $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
-             database_insert(TABLE_MANUFACTURERS_DESCRIPTION, $sql_data_array);
-
-           }
-           elseif ($exists==1)    //Aktualisieren
-           {
-             database_insert(TABLE_MANUFACTURERS_DESCRIPTION, $sql_data_array, 'update', 'manufacturers_id = \'' . $manufacturers_id . '\' and language_code = \'' . LANG_CODE . '\'');
-           }
+        }
+        elseif ($exists==1)    //Aktualisieren
+        {
+          database_insert(TABLE_MANUFACTURERS_INFO, $sql_data_array, 'update', 'manufacturers_id = \'' . $manufacturers_id . '\' and language_code = \'' . LANG_CODE . '\'');
+        }
 
 
     $schema = '<STATUS_DATA>' . "\n" .
@@ -4108,7 +4107,7 @@ function delete_manufacturers ()
   {
 
     $result = mysqli_query($db,"delete from " . TABLE_MANUFACTURERS . " where manufacturers_id = '" . $manufacturers_id . "'");
-    $result2 = mysqli_query($db,"delete from " . TABLE_MANUFACTURERS_DESCRIPTION . " where manufacturers_id = '" . $manufacturers_id . "'");
+    $result2 = mysqli_query($db,"delete from " . TABLE_MANUFACTURERS_INFO . " where manufacturers_id = '" . $manufacturers_id . "'");
 
       $schema = '<STATUS_DATA>' . "\n" .
                  '<ACTION>' . $_GET['action'] . '</ACTION>' . "\n" .
@@ -4152,7 +4151,7 @@ function delete_manufacturers_all ()
 
         // Hersteller l�schen
          $result = mysqli_query($db,"delete from " . TABLE_MANUFACTURERS);
-         $result2 = mysqli_query($db,"delete from " . TABLE_MANUFACTURERS_DESCRIPTION);
+         $result2 = mysqli_query($db,"delete from " . TABLE_MANUFACTURERS_INFO);
 
             $schema = '<STATUS_DATA>' . "\n" .
                         '<ACTION>' . $_GET['action'] . '</ACTION>' . "\n" .
@@ -4429,7 +4428,7 @@ function database_insert($tabelle, $data, $action = 'insert', $parameters = '')
 						
                         $insert_query = substr($insert_query, 0, -2) . ')';
 				// echo "<hr/><pre>\n";
-				echo $insert_query."\n";//DEBUG
+				// echo $insert_query."\n";//DEBUG
 				// echo "</pre>\n";                       
 					   return mysqli_query($db,$insert_query) or die("MySQLFehler: $insert_query;\n" . mysqli_error($db));
 
@@ -4464,7 +4463,7 @@ function database_insert($tabelle, $data, $action = 'insert', $parameters = '')
                       $update_query = substr($update_query, 0, -2) . ' where ' . $parameters;
 
 			 
-			echo $update_query."\n";//DEBUG
+			// echo $update_query."\n";//DEBUG
 			                 
 
 					return mysqli_query($db,$update_query) or die("MySQLFehler: $update_query;\n" . mysqli_error($db));
