@@ -383,7 +383,7 @@ function UpdateArticleFromPost($products_id)
         "products_tax_class_id" => GetValues("products_tax_class_id", $existing),
         "product_template" => null,
         "product_list_template" => null,
-        "manufacturers_id" => GetValues("manufacturers_id", $existing),
+        "manufacturers_int_id" => GetValues("manufacturers_id", $existing, null),
         "products_ordered" =>  GetValues("products_ordered", $existing),
         "products_fsk18" => GetValues("products_fsk18", $existing),
         "products_vpe" => GetValues("products_vpe", $existing),
