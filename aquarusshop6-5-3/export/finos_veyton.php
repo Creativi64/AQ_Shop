@@ -28,6 +28,9 @@ define('DIR_IMAGES_ICON', '/media/images/icon/');        // /media/images/icon/
 
 define('DATE_FORMAT_LONG', '%A, %d. %B %Y');            // this is used for strftime()
 
+const API_USER = "finosScript"; 
+const API_PASSWORD = "vx#Ne/x5u!Q5YS225H$";
+
 $version_nummer = '15.0';
 $version_datum = '2020.12.15';
 
@@ -292,8 +295,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                               XML f�r die R�ckgabe an Finos generieren
 ********************************************************************************************* */
 
-define("API_USER", "finosScript");
-define("API_PASSWORD", "vx#Ne/x5u!Q5YS225H$"); 
+
 
 function GetValues($fielnName, $existing, $default = null)
 {
@@ -454,7 +456,7 @@ function UpdateArticleFromPost($products_id)
 
 function GetExistingManufacturers($manufacturersId)
 {
-  $responseExisting = json_decode(GetManufacturerById($manufacturersId));
+  $responseExisting = GetManufacturerById($manufacturersId);
  
   if (isset($responseExisting)) {
     return $responseExisting;
@@ -489,8 +491,10 @@ function GetManufacturerById($manufacturerId) {
       // Decode the JSON response
       $responseData = json_decode($response, true);
 
+    //  var_dump($responseData);
+
       // Check for API errors
-      if (isset($responseData['message']) && !empty($responseData['message'])) {
+      if (isset($responseData['message']) && !empty($responseData['message'] && $responseData['message'] != 'SUCCESS')) {
           throw new Exception('API Error: ' . $responseData['message']);
       }
 
@@ -522,7 +526,7 @@ function UpdateManufacturerFromPost($manufacturersId)
       "pass" => API_PASSWORD,
       "Item" => array(
         "manufacturers_id" => GetValues("manufacturers_id", $existing, $manufacturersId),
-        "external_id" => GetValues("external_id", $existing),
+        "external_id" => GetValues("external_id", $existing,$manufacturersId),
         "manufacturers_name" => GetValues("manufacturers_name", $existing),
         "manufacturers_image" => GetValues("manufacturers_image", $existing, null),
         "manufacturers_status" => GetValues("manufacturers_status", $existing, 1),
@@ -1384,7 +1388,7 @@ function save_manufacturers()
   $manufacturers_id = isset($_POST['manufacturers_id']) ? $_POST['manufacturers_id'] : "";
     
   $response = UpdateManufacturerFromPost($manufacturers_id);
-  
+ 
   $schema = '<STATUS_DATA>' . "\n" .
     '<EXISTS>' . 1 . '</EXISTS>' . "\n" .
     '<MANUFACTURERS_ID>' . ($response->{"manufacturers_id"}). '</MANUFACTURERS_ID>' . "\n" .
