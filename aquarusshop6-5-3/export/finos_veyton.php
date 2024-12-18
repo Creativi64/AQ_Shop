@@ -2200,6 +2200,8 @@ function save_seo_url()
       break;
     case 2:
       break;
+    case 4: // Manufacture
+      break;
   }
  
     $schema = "<STATUS_DATA>" . "\n" .
