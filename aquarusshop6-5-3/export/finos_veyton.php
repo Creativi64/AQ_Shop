@@ -288,15 +288,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   mysqli_close($db);
 }
 
-
-
-
-
-
-
 /* **************************************** SPEICHERN *****************************************
                               XML f�r die R�ckgabe an Finos generieren
 ********************************************************************************************* */
+
+define("API_USER", "finosScript");
+define("API_PASSWORD", "vx#Ne/x5u!Q5YS225H$"); 
 
 function GetValues($fielnName, $existing, $default = null)
 {
@@ -330,8 +327,8 @@ function GetExistingArticle($productsId)
   $requestExisitng = json_encode(array(
     "function" => "getArticle",
     "paras" => array(
-      "user" => "finosScript",
-      "pass" => "vx#Ne/x5u!Q5YS225H$",
+      "user" => API_USER,
+      "pass" => API_PASSWORD,
       "products_id" => $productsId,
       "external_id" => "",
       "indivFieldList" => []
@@ -355,8 +352,8 @@ function UpdateArticleFromPost($products_id)
   $data = json_encode(array(
     "function" => "setArticle",
     "paras" => array(
-      "user" => "finosScript",
-      "pass" => "vx#Ne/x5u!Q5YS225H$",
+      "user" => API_USER,
+      "pass" => API_PASSWORD,
       "productItem" => array(
         "products_id" => GetValues("products_id", $existing, $products_id),
         "external_id" =>  GetValues("external_id", $existing),
@@ -455,13 +452,120 @@ function UpdateArticleFromPost($products_id)
   return $response;
 }
 
+function GetExistingManufacturers($manufacturersId)
+{
+  $responseExisting = json_decode(GetManufacturerById($manufacturersId));
+ 
+  if (isset($responseExisting)) {
+    return $responseExisting;
+  }
+  return  null;
+ 
+}
+
+function GetManufacturerById($manufacturerId) { 
+  $start = 0;
+  $size = 10; // Number of records to fetch per request
+
+  do {
+      // Prepare the request payload
+      $requestPayload = [
+          'function' => 'getManufacturers',
+          'paras' => [
+              "user" => API_USER,
+              "pass" => API_PASSWORD,
+              'start' => $start,
+              'size' => $size,
+              'extNumberRange' => 0
+          ]
+      ];
+
+      // Convert payload to JSON
+      $jsonPayload = json_encode($requestPayload);
+
+      // Make the API call
+      $response = CallAPI('POST', 'https://shop.aquarus.net/index.php?page=xt_api', $jsonPayload);
+
+      // Decode the JSON response
+      $responseData = json_decode($response, true);
+
+      // Check for API errors
+      if (isset($responseData['message']) && !empty($responseData['message'])) {
+          throw new Exception('API Error: ' . $responseData['message']);
+      }
+
+      // Iterate through the results to find the manufacturer with the specified ID
+      foreach ($responseData['result'] as $manufacturer) {
+          if ($manufacturer['manufacturers_id'] == $manufacturerId) {
+              return $manufacturer;
+          }
+      }
+
+      // Increment the start index for the next set of records
+      $start += $size;
+
+      // Continue fetching until no more records are returned
+  } while (!empty($responseData['result']));
+
+  // If the manufacturer is not found, return null or handle accordingly
+  return null;
+}
+
+function UpdateManufacturerFromPost($manufacturersId)
+{
+  $existing = GetExistingManufacturers($manufacturersId);
+
+  $data = json_encode(array(
+    "function" => "setManufacturer",
+    "paras" => array(
+      "user" => API_USER,
+      "pass" => API_PASSWORD,
+      "Item" => array(
+        "manufacturers_id" => GetValues("manufacturers_id", $existing, $manufacturersId),
+        "external_id" => GetValues("external_id", $existing),
+        "manufacturers_name" => GetValues("manufacturers_name", $existing),
+        "manufacturers_image" => GetValues("manufacturers_image", $existing, null),
+        "manufacturers_status" => GetValues("manufacturers_status", $existing, 1),
+        "manufacturers_sort" => GetValues("manufacturers_sort", $existing, 0),
+        "products_sorting2" => GetValues("products_sorting2",$existing, "ASC") ,
+        "date_added" =>  GetValues("date_added", $existing, date("Y-m-d H:i:s")),
+        "last_modified" => date("Y-m-d H:i:s"),
+        "manufacturers_description" => array(
+          "de" => GetLocalizedValue("manufacturers_description", $existing, "de"),
+          "en" => GetLocalizedValue("manufacturers_description", $existing, "en")
+        ),
+        "meta_description" => array(
+          "de" => GetLocalizedValue("meta_description", $existing, "de"),
+          "en" => GetLocalizedValue("meta_description", $existing, "en")
+        ),
+        "meta_title" => array(
+          "de" => GetLocalizedValue("meta_title", $existing, "de"),
+          "en" => GetLocalizedValue("meta_title", $existing, "en")
+        ),
+        "meta_keywords" => array(
+          "de" => GetLocalizedValue("meta_keywords", $existing, "de"),
+          "en" => GetLocalizedValue("meta_keywords", $existing, "en")
+        ),
+        "manufacturers_url" => array(
+          "de" => GetLocalizedValue("manufacturers_url", $existing, "de"),
+          "en" => GetLocalizedValue("manufacturers_url", $existing, "en")
+        ),
+        "permissionList" => [],
+      )
+    )
+  ), JSON_HEX_QUOT | JSON_HEX_APOS);
+
+  $response = json_decode(CallAPI('POST', 'https://shop.aquarus.net/index.php?page=xt_api', $data));
+
+  return $response;
+}
 
 // function GetExistingCategory($categorieId){
 //   $requestExisitng = json_encode(array(
 //     "function" => "getCategory",
 //     "paras" => array(
-//       "user" => "finosScript",
-//       "pass" => "vx#Ne/x5u!Q5YS225H$",
+//       "user" => API_USER,
+//       "pass" => API_PASSWORD,
 //       "start" => $categorieId-2,
 //       "blocksize" => 1 ,
 //       "extNumberRange"=>0
@@ -489,8 +593,8 @@ function UpdateArticleFromPost($products_id)
 //   $data = json_encode(array(
 //     "function" => "setCategory",
 //     "paras" => array(
-//       "user" => "finosScript",
-//       "pass" => "vx#Ne/x5u!Q5YS225H$"
+//       "user" => API_USER,
+//       "pass" => API_PASSWORD,
 //       )
 //     ));
 
@@ -527,8 +631,6 @@ function save_products()
   //Ergebnis als XML ausgeben
   create_xml($header . $schema . $footer);
 }
-
-
 
 function save_products_descriptions()
 {
@@ -1277,100 +1379,18 @@ function save_manufacturers()
    */
   global $db;
 
-  $header = '<?xml version="1.0" encoding="' . CHARSET . '"?>' . "\n" .
-    '<STATUS>' . "\n";
-
-
+  $header = '<?xml version="1.0" encoding="' . CHARSET . '"?>' . "\n" . '<STATUS>' . "\n";
+ 
   $manufacturers_id = isset($_POST['manufacturers_id']) ? $_POST['manufacturers_id'] : "";
-
-  $sql = "select * from " . TABLE_MANUFACTURERS . " where manufacturers_id = '" . $manufacturers_id . "'";
-
-  $count_query = mysqli_query($db, $sql);
-  if ($manufacturers = mysqli_fetch_array($count_query, MYSQLI_BOTH)) {
-    $exists = 1;
-  } else {
-    $exists = 0;
-  }
-
-
-  // Variablen nur �berschreiben, wenn sie als Parameter �bergeben worden sind
-  $manufacturers_name     = isset($_POST['manufacturers_name']) ? $_POST['manufacturers_name'] : "";
-  $manufacturers_status   = isset($_POST['manufacturers_status']) ? $_POST['manufacturers_status'] : "";
-
-
-  $sql_data_array = array(
-    'manufacturers_name'     => $manufacturers_name,
-    'manufacturers_status'   => $manufacturers_status,
-    'products_sorting2' => "ASC"
-  );
-
-
-  if ($exists == 0)        // Neuanlage
-  {
-
-    $insert_sql_data = array(
-      'manufacturers_id'      => $manufacturers_id,
-      'manufacturers_name'    => $manufacturers_name,
-      'manufacturers_status'  => $manufacturers_status,
-      'products_sorting2' => "ASC"
-    );
-
-    $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
-    database_insert(TABLE_MANUFACTURERS, $sql_data_array);
-
-    if (isset($_POST['manufacturers_id']) && ($manufacturers_id != '')) {
-      $manufacturers_id = isset($_POST['manufacturers_id']) ? $_POST['manufacturers_id'] : "";
-    } else {
-      $manufacturers_id = mysqli_insert_id($db);
-    }
-  } elseif ($exists == 1)    //Aktualisieren
-  {
-    database_insert(TABLE_MANUFACTURERS, $sql_data_array, 'update', 'manufacturers_id = \'' . $manufacturers_id . '\'');
-  }
-
-  //Beschreibungen zum Hersteller Übernehmen -----------------------------------------------------------------------
-  $manufacturers_description_query = mysqli_query($db, "select * from " . TABLE_MANUFACTURERS_INFO . " where manufacturers_id = '" . $manufacturers_id . "' and language_code = '" . LANG_CODE . "'");
-
-  if ($manufacturers_desc = mysqli_fetch_array($manufacturers_description_query, MYSQLI_BOTH)) {
-    $exists = 1;
-  } else {
-    $exists = 0;
-  }
-
-
-  // uebergebene Daten einsetzen
-  $manufacturers_description             = isset($_POST['manufacturers_description']) ? $_POST['manufacturers_description'] : "";
-  $manufacturers_url                     = isset($_POST['manufacturers_url']) ? $_POST['manufacturers_url'] : "";
-
-  $sql_data_array = array(
-    'manufacturers_description'          => $manufacturers_description,
-    'manufacturers_url'                  => $manufacturers_url,
-    'manufacturers_store_id'             => 1
-  );
-
-  if ($exists == 0)        // Neuanlage
-  {
-
-    $insert_sql_data = array(
-      'manufacturers_id' => $manufacturers_id,
-      'language_code'    => LANG_CODE
-    );
-
-    $sql_data_array = array_merge($sql_data_array, $insert_sql_data);
-    database_insert(TABLE_MANUFACTURERS_INFO, $sql_data_array);
-  } elseif ($exists == 1)    //Aktualisieren
-  {
-    database_insert(TABLE_MANUFACTURERS_INFO, $sql_data_array, 'update', 'manufacturers_id = \'' . $manufacturers_id . '\' and language_code = \'' . LANG_CODE . '\'');
-  }
-
-
+    
+  $response = UpdateManufacturerFromPost($manufacturers_id);
+  
   $schema = '<STATUS_DATA>' . "\n" .
-    '<EXISTS>' . $exists . '</EXISTS>' . "\n" .
-    '<MANUFACTURERS_ID>' . $manufacturers_id . '</MANUFACTURERS_ID>' . "\n" .
+    '<EXISTS>' . 1 . '</EXISTS>' . "\n" .
+    '<MANUFACTURERS_ID>' . ($response->{"manufacturers_id"}). '</MANUFACTURERS_ID>' . "\n" .
     '<MESSAGE>' . 'Keine Meldung vorhanden' . '</MESSAGE>' . "\n" .
     '</STATUS_DATA>' . "\n";
-
-
+ 
   $footer = '</STATUS>' . "\n";
 
   //Ergebnis als XML ausgeben
