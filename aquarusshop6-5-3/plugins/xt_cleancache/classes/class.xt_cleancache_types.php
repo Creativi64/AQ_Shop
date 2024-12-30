@@ -32,7 +32,7 @@ if (!defined("TABLE_CLEANCACHE"))
 if (!defined("TABLE_CLEANCACHE_LOGS"))
 	define('TABLE_CLEANCACHE_LOGS', DB_PREFIX.'_clean_cache_logs');
 
-class xt_cleancache_types{
+class xt_cleancache_types extends xt_backend_cls {
 
 	protected $_table = TABLE_CLEANCACHE;
 	protected $_table_lang = '';
@@ -42,18 +42,22 @@ class xt_cleancache_types{
 
 	public function __construct(){
 		global $xtPlugin;
-		
-		($plugin_code = $xtPlugin->PluginCode(__CLASS__.'cleancache_types')) ? eval($plugin_code) : false;
+
+        parent::__construct();
+
+        ($plugin_code = $xtPlugin->PluginCode(__CLASS__.'cleancache_types')) ? eval($plugin_code) : false;
 		if(isset($plugin_return_value))
 		return $plugin_return_value;		
 		
 	}
 
-	public function setPosition ($position) {
+	public function setPosition ($position): void
+    {
 		$this->position = $position;
 	}
 
-	public function _getParams() {
+	public function _getParams(): array
+    {
 		global $language;
 
 
@@ -100,6 +104,12 @@ class xt_cleancache_types{
 		
 		$params['display_searchPanel']  = false;
 
+        $params['include'] = array ('id','type_class','type','cache_type_desc','last_run');
+
+        $params['SortField']     = $this->_master_key;
+        $params['GroupField']     = "type_class";
+        $params['RemoteSort']     = true;
+
 		return $params;
 	}
 
@@ -116,6 +126,14 @@ class xt_cleancache_types{
 
 		if ($this->url_data['get_data']){
         	$data = $table_data->getData();
+            foreach ($data as $k=>&$v)
+            {
+                if($v['type_class'] == 'db') $v['type_class'] = __text('TEXT_CLEAN_CACHE_TYPE_CLASS_DB');
+                else if($v['type_class'] == 'files') $v['type_class'] = __text('TEXT_CLEAN_CACHE_TYPE_CLASS_FILES');
+
+                $v['cache_type_desc'] = __text($v['cache_type_desc']);
+
+            }
 		}elseif($ID){
         	$data = $table_data->getData($ID);
 

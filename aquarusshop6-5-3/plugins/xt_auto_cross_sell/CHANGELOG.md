@@ -1,3 +1,6 @@
+## [5.1.2]
+- FIX wenn Anzeige-Limit unterschritten wird werden keine Artikel angezeigt
+
 ## [5.1.1]
 - cleanup 5.1.0
 

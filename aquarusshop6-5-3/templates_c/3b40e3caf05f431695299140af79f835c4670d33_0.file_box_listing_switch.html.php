@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.4.1, created on 2024-12-02 21:27:28
+/* Smarty version 5.4.1, created on 2024-12-30 01:21:05
   from 'file:/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes/box_listing_switch.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.1',
-  'unifunc' => 'content_674e18307b6181_13000138',
+  'unifunc' => 'content_6771e77192b488_97559105',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_674e18307b6181_13000138 (\Smarty\Template $_smarty_tpl) {
+function content_6771e77192b488_97559105 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes';
 ?><div class="btn-group listing-switch hidden hidden-xs">
     <button class="grid btn btn-default v1" type="button">

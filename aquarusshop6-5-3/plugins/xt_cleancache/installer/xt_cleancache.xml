@@ -2,10 +2,10 @@
 	<xtcommerceplugin>
 
   <code>xt_cleancache</code>
-  <version>5.3.1</version>
+  <version>6.6.0</version>
   <type>cache</type>
   
-  <minimum_store_version>6.2.2</minimum_store_version>
+  <minimum_store_version>6.6.5</minimum_store_version>
   
   <developer>xt:Commerce</developer>
   <url>https://www.xt-commerce.com</url>
@@ -195,6 +195,20 @@
 					<post>
 						<de><![CDATA[Aktivieren Sie das Plugin und laden Sie dann das Backend neu.]]></de>
 						<en><![CDATA[Activate plugin an then reload page.]]></en>
+					</post>
+				</messages>
+			</update>
+
+			<update>
+				<version>5.3.1</version>
+				<to_version>6.0.0</to_version>
+				<code><![CDATA[include _SRV_WEBROOT.'plugins/xt_cleancache/installer/update/5.3.1-6.0.0.php';
+					]]>
+				</code>
+				<messages>
+					<post>
+						<de><![CDATA[Aktivieren Sie das Plugin und laden Sie dann das Backend neu.]]></de>
+						<en><![CDATA[Activate plugin and then reload page.]]></en>
 					</post>
 				</messages>
 			</update>

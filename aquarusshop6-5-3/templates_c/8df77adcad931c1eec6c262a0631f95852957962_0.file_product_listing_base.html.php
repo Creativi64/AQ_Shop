@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.4.1, created on 2024-12-02 21:27:28
+/* Smarty version 5.4.1, created on 2024-12-30 01:21:05
   from 'file:includes/product_listing_base.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.1',
-  'unifunc' => 'content_674e18307a9af3_68933986',
+  'unifunc' => 'content_6771e77190bee9_24657374',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:includes/product_info_label.html' => 1,
   ),
 ))) {
-function content_674e18307a9af3_68933986 (\Smarty\Template $_smarty_tpl) {
+function content_6771e77190bee9_24657374 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/includes';
 ?><div class="product-listing product-listing-<?php echo $_smarty_tpl->getValue('position');
 if ($_smarty_tpl->getValue('listingSwitch') == 1) {?> product-listing-switch<?php }?>">

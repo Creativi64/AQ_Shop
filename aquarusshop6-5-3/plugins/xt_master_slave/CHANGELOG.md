@@ -1,3 +1,7 @@
+## [6.5.2]
+- FIX table xt_tmp_products does not exist
+- Aufruf der Sprungmarke #ms_options_select im Optionstemplate
+
 ## [6.5.1]
 - FIX Backend Dropdown teilweise ohne Funktion wenn xt-Option 'Dropdown vorladen' aktiv
 

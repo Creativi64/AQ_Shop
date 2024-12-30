@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.4.1, created on 2024-12-02 19:41:56
+/* Smarty version 5.4.1, created on 2024-12-30 01:21:09
   from 'file:includes/box_sidebar_products.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.1',
-  'unifunc' => 'content_674dff743f5539_22195656',
+  'unifunc' => 'content_6771e77598c9e8_44110155',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:includes/product_info_label.html' => 1,
   ),
 ))) {
-function content_674dff743f5539_22195656 (\Smarty\Template $_smarty_tpl) {
+function content_6771e77598c9e8_44110155 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/includes';
 $_smarty_tpl->assign('visible_items', "1", false, NULL);?>
 

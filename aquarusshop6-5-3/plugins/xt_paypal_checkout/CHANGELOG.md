@@ -1,3 +1,6 @@
+## [4.2.2]
+- Webhook-Registrierung hinzugefügt für PAYMENT.CAPTURE.PENDING
+
 ## [4.2.1]
 - FIX Fehler bei Ermittlung der xt-Bestell-ID bei Refund-IPN's
   IPN im Log vorhanden aber nicht der Bestellung zugeordnet

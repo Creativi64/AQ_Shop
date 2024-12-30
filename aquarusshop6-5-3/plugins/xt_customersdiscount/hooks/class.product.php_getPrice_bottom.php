@@ -79,7 +79,7 @@ if(!isset($_POST['action']) || ($_POST['action']!='update_product' && $_POST['ac
             'date_expired' => $date_expired
         );
 
-        error_log(print_r($format_array, true));
+        //error_log(print_r($format_array, true));
         $price_data = $price->_Format($format_array);
     }
 }

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.4.1, created on 2024-12-02 19:35:55
+/* Smarty version 5.4.1, created on 2024-12-30 01:19:48
   from 'file:xtCore/pages/navigation/breadcrumb.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.1',
-  'unifunc' => 'content_674dfe0b878873_05074381',
+  'unifunc' => 'content_6771e724ebabf9_89596347',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_674dfe0b878873_05074381 (\Smarty\Template $_smarty_tpl) {
+function content_6771e724ebabf9_89596347 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/pages/navigation';
 ?><ul class="breadcrumb">
     <?php
@@ -31,9 +31,9 @@ $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_
   'iteration' => true,
   'total' => true,
 ));
-$foreach7DoElse = true;
+$foreach6DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('breadcrumb')->value) {
-$foreach7DoElse = false;
+$foreach6DoElse = false;
 $_smarty_tpl->tpl_vars['__smarty_foreach_aussen']->value['iteration']++;
 $_smarty_tpl->tpl_vars['__smarty_foreach_aussen']->value['index']++;
 $_smarty_tpl->tpl_vars['__smarty_foreach_aussen']->value['first'] = !$_smarty_tpl->tpl_vars['__smarty_foreach_aussen']->value['index'];

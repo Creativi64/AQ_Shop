@@ -32,7 +32,9 @@ if (!defined("TABLE_CLEANCACHE"))
 if (!defined("TABLE_CLEANCACHE_LOGS"))
     define('TABLE_CLEANCACHE_LOGS', DB_PREFIX.'_clean_cache_logs');
 
-class cleancache{
+class cleancache {
+
+    const SQL_DELETE_LIMIT = 1000;
 	
     protected $type = false;
 	/**
@@ -41,58 +43,119 @@ class cleancache{
 	public function __construct(){
 
 	}
-	
-	/**
-	 * @param  $type
-	 */
-	public function cleanTemplateCached($type = 'all')
+
+    /**
+     * @throws Exception
+     */
+    public function cleanTemplateCached($type = 'all_files'): void
+    {
+        if($type == 'all') $type = 'all_files';
+        $this->cleanup($type);
+    }
+
+    /**
+     * @param string $type
+     * @return void
+     * @throws Exception
+     */
+	public function cleanup($type = 'all_files'): void
     {
         global $db, $xtPlugin;
 
+        $return = false;
         ($plugin_code = $xtPlugin->PluginCode('cleancache.cleanTemplateCached:top')) ? eval($plugin_code) : false;
+        if($return)
+        {
+            return;
+        }
 
         if((int)$type > 0)
         {
-            $type = $db->GetOne("SELECT type FROM " . TABLE_CLEANCACHE . " WHERE id=?", array((int)$type));
-            if ($type == false)
+            $type_id = (int)$type;
+            $type = $db->GetOne("SELECT type FROM " . TABLE_CLEANCACHE . " WHERE id=?", [$type_id]);
+            if (!$type)
             {
-                $ret = true;
                 ($plugin_code = $xtPlugin->PluginCode('cleancache.cleanTemplateCached:type_false')) ? eval($plugin_code) : false;
-                if ($ret) return " - no cache type found for given id [$type] -";
+                error_log(__CLASS__.':'.__FUNCTION__.": no cache type found for given id [$type_id]");
+                throw new Exception("no cache type found for given id [$type]");
             }
         }
 
 		$this->type = $type;
 		switch ($type){
-			case 'all':
-				$this->cleanCategoryCache();
-				$this->cleanFeedCache();
-                $this->cleanCSSCache();
-                $this->cleanJSCache();
-                $this->cleanSEOCache();
-                $this->clearTemplatesCache();
-				break;
-			case 'cache_feed':
-				$this->cleanFeedCache();
-				break;
-			case 'cache_category':
-				$this->cleanCategoryCache();
-				break;
+            case 'all_files':
+                // alle Dateisystem caches
+                $types = $db->GetArray("SELECT type FROM " . TABLE_CLEANCACHE . " WHERE `type_class`= 'files' and `type` != 'all_files' ");
+                foreach($types as $local_type)
+                {
+                    $this->cleanup($local_type['type']);
+                }
+                break;
+
+            // Dateisystem bereinigen
             case 'cache_css':
                 $this->cleanCSSCache();
                 break;
             case 'cache_js':
                 $this->cleanJSCache();
                 break;
-            case 'templates_c':
-            	$this->clearTemplatesCache();
-            	break;
-            case 'cache_seo':
-                $this->cleanSEOCache();
+
+            case 'dir_templates_c':
+                $this->clearDirTemplates_C();
                 break;
+
+            case 'dir_cache':
+                $this->clearDirCache();
+                break;
+
+            case 'dir_templates_c_cache':
+                $this->clearDirTemplates_C();
+                $this->clearDirCache();
+                break;
+
+            case 'cache_category':
+                $this->cleanCategoryCache();
+                break;
+            case 'cache_product':
+                $this->cleanProductCache();
+                break;
+            case 'cache_manufacturers':
+                $this->cleanManufacturerCache();
+                break;
+
             case 'adodb_cache':
                 $this->cleanAdodbCache();
                 break;
+
+            case 'xt_cache':
+                $this->cleanXtCache();
+                break;
+            case 'xt_cache_language':
+                $this->cleanXtCache('language_content');
+                break;
+
+            case 'plg_hookpoints':
+                $this->cleanPluginHookPoints();
+                break;
+            case 'cache_feed':
+                $this->cleanFeedCache();
+                break;
+
+            case 'opcache':
+                $this->cleanOpCache();
+                break;
+
+
+            case 'all_db':
+                $types = $db->GetArray("SELECT type FROM " . TABLE_CLEANCACHE . " WHERE `type_class`= 'db' and `type` != 'all_db' ");
+                foreach($types as $local_type)
+                {
+                    $this->cleanup($local_type['type']);
+                }
+                break;
+                break;
+
+            // Datenbank bereinigen
             case 'adodb_logsql':
                 $this->cleanAdodblogSql();
                 break;
@@ -111,12 +174,6 @@ class cleancache{
             case 'system_log_ImageProcessing':
                 $this->cleanImageProcessingLog();
                 break;
-            case 'xt_cache':
-                $this->cleanXtCache();
-                break;
-            case 'plg_hookpoints':
-                $this->cleanPluginHookPoints();
-                break;
             case 'clean_cache_logs':
                 $this->cleanCleanCacheLog();
                 break;
@@ -130,29 +187,29 @@ class cleancache{
 		$this->updateLastRun($type);
 
         ($plugin_code = $xtPlugin->PluginCode('cleancache.cleanTemplateCached:bottoom')) ? eval($plugin_code) : false;
-        return true;
 	}
 
     /**
      *
      */
-    public function cleanPluginHookPoints()
+    public function cleanPluginHookPoints(): void
     {
         global $xtPlugin;
 
         if(!empty($xtPlugin->getHookDir()))
         {
-            $this->rrmdir($xtPlugin->getHookDir());
+            self::rrmdir($xtPlugin->getHookDir());
         }
     }
 
-    private function rrmdir($dir) {
+    static function rrmdir($dir): void
+    {
         if (is_dir($dir)) {
             $objects = scandir($dir);
             foreach ($objects as $object) {
                 if ($object != "." && $object != "..") {
                     if (is_dir($dir."/".$object))
-                        $this->rrmdir($dir."/".$object);
+                        self::rrmdir($dir."/".$object);
                     else
                         unlink($dir."/".$object);
                 }
@@ -164,35 +221,49 @@ class cleancache{
 	/**
 	 *
 	 */
-    public function cleanXtCache()
+    public function cleanXtCache($which = ''): void
     {
         if(class_exists('xt_cache'))
         {
-            xt_cache::deleteCache();
+            xt_cache::deleteCache($which);
         }
     }
 
 	/**
 	 * 
 	 */
-	public function clearTemplatesCache()
+	public function clearDirTemplates_C(): void
     {
 		$patterns = [
 		    _SRV_WEBROOT."templates_c/*.php" ,
             _SRV_WEBROOT."templates_c/wrt*" ,
+        ];
+
+        self::unlinkFilesByGlobPattern( $patterns);
+	}
+
+    public function clearDirCache(): void
+    {
+        $patterns = [
             _SRV_WEBROOT."cache/*.php" ,
         ];
 
-		foreach ($patterns as $pattern)
-		{
-            array_map('unlink', glob($pattern));
-		}
-	}
+        self::unlinkFilesByGlobPattern( $patterns);
+    }
+
+    public function cleanOpCache(): void
+    {
+        if(function_exists('opcache_reset'))
+        {
+            opcache_reset();
+        }
+    }
 	
 	/**
 	 * 
 	 */
-	public function cleanFeedCache(){
+	public function cleanFeedCache(): void
+    {
 		$dir = _SRV_WEBROOT.'cache/';
 		
 		$files = array('xt_newpluginfeed.xml','xt_newsfeed.xml','xt_toppluginsfeed.xml');
@@ -200,67 +271,64 @@ class cleancache{
 		foreach ($files as $k=>$v){
 			$filename = $dir.$v;
 			if (file_exists($filename))     unlink($filename);
-		}	
-
+		}
 	}
 
-    public function cleanCSSCache()
+    public function cleanCSSCache(): void
     {
         $patterns = [
             _SRV_WEBROOT."cache/*.css",
             _SRV_WEBROOT."cache/*.lesscache"
         ];
-
-        foreach ($patterns as $pattern)
-        {
-            array_map('unlink', glob($pattern));
-        }
+        self::unlinkFilesByGlobPattern($patterns);
     }
 
-    public function cleanJSCache()
+    public function cleanJSCache(): void
     {
         $patterns = [
             _SRV_WEBROOT."cache/*.js"
         ];
-
-        foreach ($patterns as $pattern)
-        {
-            array_map('unlink', glob($pattern));
-        }
-    }
-
-    public function cleanSEOCache() {
-
-        $dir = _SRV_WEBROOT.'cache/';
-        $files = $this->getSEOFiles();
-
-        if (is_array($files)) {
-            foreach ($files as $key => $val) {
-                if (file_exists($dir.$val)) {
-                    unlink($dir.$val);
-                }
-            }
-        }
+        self::unlinkFilesByGlobPattern($patterns);
     }
 	
 	/**
 	 * 
 	 */
-	public function cleanCategoryCache(){
-
-		$dir = _SRV_WEBROOT.'cache/';
-		$files = $this->getSmartyCacheFiles();
-		foreach ($files as $k=>$v){
-			$filename = $dir.$v;
-			unlink($filename);
-		}
-		
+	public function cleanCategoryCache(): void
+    {
+        $patterns = [
+            _SRV_WEBROOT."cache/*box_categories_recursive*",
+            _SRV_WEBROOT."templates_c/*box_categories_recursive*",
+            _SRV_WEBROOT."templates_c/*categorie_listing*"
+        ];
+        self::unlinkFilesByGlobPattern($patterns);
 	}
+
+    public function cleanProductCache(): void
+    {
+        $patterns = [
+            _SRV_WEBROOT . 'cache/__product_*__*product.html.php',
+            _SRV_WEBROOT."templates_c/*product*",
+        ];
+        self::unlinkFilesByGlobPattern($patterns);
+    }
+
+    public function cleanManufacturerCache(): void
+    {
+        $patterns = [
+            _SRV_WEBROOT . 'cache/*manufacturer*',
+            _SRV_WEBROOT."templates_c/*manufacturer*",
+        ];
+        self::unlinkFilesByGlobPattern($patterns);
+    }
+
+
 
     /**
      *
      */
-    public function cleanCleanCacheLog(){
+    public function cleanCleanCacheLog(): void
+    {
         global $db;
 
         $db->Execute("TRUNCATE ".TABLE_CLEANCACHE_LOGS);
@@ -269,7 +337,7 @@ class cleancache{
     /**
      *
      */
-    public function cleanAdodblogSql()
+    public function cleanAdodblogSql(): void
     {
         global $db;
 
@@ -279,7 +347,8 @@ class cleancache{
     /**
      *
      */
-    public function cleanAdodbCache(){
+    public function cleanAdodbCache(): void
+    {
         global $db;
 
         $db->cacheFlush();
@@ -288,7 +357,8 @@ class cleancache{
     /** System Log entries in db table system_logs
      *
      */
-    private function cleanSystemLog($message_source){
+    private function cleanSystemLog($message_source): void
+    {
         global $db;
         if(empty($message_source)) return;
 
@@ -305,34 +375,42 @@ class cleancache{
             $params_place_holder = '?';
             $params = array($message_source);
         }
-        $db->Execute("DELETE FROM ".TABLE_SYSTEM_LOG. " WHERE message_source in ($params_place_holder)", $params);
+        $params[] = self::SQL_DELETE_LIMIT;
+        $affected_rows = 0;
+        for($i=0; $i<1000; $i++) {
+            $db->Execute("DELETE FROM " . TABLE_SYSTEM_LOG . " WHERE message_source in ($params_place_holder) LIMIT ?", $params);
+            $affected_rows = $db->Affected_Rows();
+            if($affected_rows == 0)
+                break;
+        }
+        if($affected_rows)
+            echo 'noch Reste nach 1000 x 1000 gelöschten Einträgen. Bitte nochmals starten<br>';
+
     }
 
-    public function cleanCronLog()
+    public function cleanCronLog(): void
     {
         $this->cleanSystemLog(array('cronjob','xt_cron'));
     }
-    public function cleanXtExportLog()
+    public function cleanXtExportLog(): void
     {
         $this->cleanSystemLog('xt_export');
     }
-    public function cleanEmailLog()
+    public function cleanEmailLog(): void
     {
         $this->cleanSystemLog('email');
     }
-    public function cleanImageProcessingLog()
+    public function cleanImageProcessingLog(): void
     {
         $this->cleanSystemLog('ImageProcessing');
     }
-    public function cleanXtImExportLog()
+    public function cleanXtImExportLog(): void
     {
         $this->cleanSystemLog('xt_im_export');
     }
 
-	/**
-	 * 
-	 */
-	public function addLogs(){
+	public function addLogs(): void
+    {
 		global $db;
 		
 		$data = array();
@@ -345,118 +423,27 @@ class cleancache{
 	}
 	
 	/**
-	 * @param unknown_type $type
+	 * @param $type string
 	 */
-	public function updateLastRun($type){
+	public function updateLastRun($type): void
+    {
 		global $db;
 		
-		$db->Execute('UPDATE '.TABLE_CLEANCACHE.' SET last_run = '.$db->DBTimeStamp(time()).' WHERE type = "'.$type. '"');
-	}
-	
-	private function getSmartyCacheFiles() {
-		$FilesArray = array();
-		$hDir = _SRV_WEBROOT.'cache/';
-		if ($handle = opendir($hDir)) {
-			while (false !== ($file = readdir($handle))) {
-				if (strpos($file,'categorie_listing.html') !== false) {
-					$FilesArray[] =  $file;
-				}
-			}
-			closedir($handle);
-		}
-		return $FilesArray;
-		
+		$db->Execute('UPDATE '.TABLE_CLEANCACHE.' SET last_run = ?  WHERE type = ?', [date ('Y-m-d H:i:s', time()), $type]);
 	}
 
     /**
-     *
+     * @param $patterns string|array
+     * @return void
      */
-    private function getCSSFiles(){
-        $hDir = _SRV_WEBROOT.'cache/';
-        $FilesArray = array();
-        if ($handle = opendir($hDir)) {
-            while (false !== ($file = readdir($handle))) {
-                if ($file != "." && $file != ".." && strpos($file,'.css') !== false) {
-                    $FilesArray[] =  $file;
-                }
-            }
-            closedir($handle);
+    static function unlinkFilesByGlobPattern($patterns): void
+    {
+        if(is_string($patterns))
+            $patterns[] = $patterns;
+
+        foreach ($patterns as $pattern)
+        {
+            array_map('unlink', glob($pattern));
         }
-        return $FilesArray;
-    }
-    
-    /**
-     * 
-     * @return array
-     */
-    private function getTemplateCacheFiles($hDir) {
-
-
-        $FilesArray = array();
-
-        if(empty($hDir)) return $FilesArray;
-
-    	if ($handle = opendir($hDir)) {
-    		while (false !== ($file = readdir($handle))) {
-    			if ($file != "." && $file != ".." && strpos($file,'.php') !== false) {
-    				$FilesArray[] =  $file;
-    			}
-    		}
-    		closedir($handle);
-    	}
-    	return $FilesArray;
-    }
-
-    /**
-     *
-     * @return array
-     */
-    private function getLessCacheFiles($hDir, $ext = 'lesscache') {
-
-
-        $FilesArray = array();
-
-        if(empty($hDir)) return $FilesArray;
-
-        if ($handle = opendir($hDir)) {
-            while (false !== ($file = readdir($handle))) {
-                if ($file != "." && $file != ".." && strpos($file,'.'.$ext) !== false) {
-                    $FilesArray[] =  $file;
-                }
-            }
-            closedir($handle);
-        }
-        return $FilesArray;
-    }
-
-    /**
-     *
-     */
-    private function getJsFiles(){
-        $hDir = _SRV_WEBROOT.'cache/';
-        $FilesArray = array();
-        if ($handle = opendir($hDir)) {
-            while (false !== ($file = readdir($handle))) {
-                if ($file != "." && $file != ".." && strpos($file,'.js') !== false) {
-                    $FilesArray[] =  $file;
-                }
-            }
-            closedir($handle);
-        }
-        return $FilesArray;
-    }
-
-    private function getSEOFiles(){
-        $hDir = _SRV_WEBROOT.'cache/';
-        $FilesArray = array();
-        if ($handle = opendir($hDir)) {
-            while (false !== ($file = readdir($handle))) {
-                if ($file != "." && $file != ".." && strpos($file,'seo_optimization') !== false) {
-                    $FilesArray[] =  $file;
-                }
-            }
-            closedir($handle);
-        }
-        return $FilesArray;
     }
 }

@@ -282,7 +282,7 @@ if (isset($xtPlugin->active_modules['xt_master_slave']))
                 $link = $xtLink->_link($link_array);
                 $_SESSION['ms_slave_redirect'] = true;
                 //error_log('redir 3');
-                $xtLink->_redirect($link, xt_master_slave_functions::getRedirectCode());
+                $xtLink->_redirect($link.'#ms_options_select', xt_master_slave_functions::getRedirectCode());
             }
         }
     }

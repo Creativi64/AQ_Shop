@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.4.1, created on 2024-12-02 19:35:36
+/* Smarty version 5.4.1, created on 2024-12-30 01:19:49
   from 'file:/homepages/2/d41324517/htdocs/aquarus_shop/plugins/xt_paypal_checkout/templates/paypal-checkout-script-tag.tpl.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.1',
-  'unifunc' => 'content_674dfdf8c00af6_44689521',
+  'unifunc' => 'content_6771e72571ac17_05111114',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_674dfdf8c00af6_44689521 (\Smarty\Template $_smarty_tpl) {
+function content_6771e72571ac17_05111114 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/plugins/xt_paypal_checkout/templates';
 if (!$_smarty_tpl->getValue('ppcp_script_tag_rendered')) {?>
 

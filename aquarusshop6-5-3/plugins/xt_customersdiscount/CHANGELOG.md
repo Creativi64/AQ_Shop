@@ -1,3 +1,6 @@
+## [5.2.4]
+- FIX error_log-Ausgabe entfernt
+
 ## [5.2.3]
 - FIX sofortige Übernahme des Rabatts ohne Seiten-Reload
 - Anpassung für order-edit

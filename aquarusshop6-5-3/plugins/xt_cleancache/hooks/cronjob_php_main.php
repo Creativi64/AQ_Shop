@@ -7,8 +7,11 @@ if(isset($_GET['cleancache']) && isset($_GET['typeid'])){
 	require_once _SRV_WEBROOT.'plugins/xt_cleancache/classes/class.xt_cleancache.php';
 	$cc = new cleancache();
 	$type = $_GET['typeid'];
-
-	$r = $cc->cleanTemplateCached($type);
-	if($r===true) echo TEXT_XT_CACHE_DELETED;
-	else echo $r;
+    try {
+        $cc->cleanup($type);
+        echo constant('TEXT_XT_CACHE_DELETED');
+    }
+    catch(Exception $e) {
+        echo $e->getMessage();
+    }
 }

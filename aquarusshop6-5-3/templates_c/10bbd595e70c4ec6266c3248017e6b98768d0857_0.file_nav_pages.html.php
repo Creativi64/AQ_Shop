@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.4.1, created on 2024-12-02 19:35:36
+/* Smarty version 5.4.1, created on 2024-12-30 01:20:53
   from 'file:/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/pages/navigation/nav_pages.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.1',
-  'unifunc' => 'content_674dfdf85f2428_17383136',
+  'unifunc' => 'content_6771e765af1b82_03837306',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_674dfdf85f2428_17383136 (\Smarty\Template $_smarty_tpl) {
+function content_6771e765af1b82_03837306 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/pages/navigation';
 ?><div class="nav-pages btn-group">
     <?php if ($_smarty_tpl->getValue('pages') && $_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('pages')) > 1) {?>

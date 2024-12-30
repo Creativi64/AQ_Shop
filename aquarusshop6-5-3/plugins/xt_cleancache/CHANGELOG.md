@@ -1,3 +1,6 @@
+## [6.0.0]
+- Plugin überarbeitet
+
 ## [5.3.1]
 - neue Hookpoints
 

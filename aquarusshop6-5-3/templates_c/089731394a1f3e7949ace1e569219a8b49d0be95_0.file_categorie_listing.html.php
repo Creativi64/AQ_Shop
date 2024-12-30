@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.4.1, created on 2024-12-02 21:27:28
+/* Smarty version 5.4.1, created on 2024-12-30 01:21:05
   from 'file:includes/categorie_listing.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.1',
-  'unifunc' => 'content_674e18305846f0_76241854',
+  'unifunc' => 'content_6771e77178fff9_82341729',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_674e18305846f0_76241854 (\Smarty\Template $_smarty_tpl) {
+function content_6771e77178fff9_82341729 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/includes';
 if ($_smarty_tpl->getValue('categorie_listing')) {?>
     <div class="listing categorie-listing">

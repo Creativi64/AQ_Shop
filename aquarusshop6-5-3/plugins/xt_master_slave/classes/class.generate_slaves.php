@@ -739,7 +739,6 @@ class generate_slaves extends xt_backend_cls {
 
 		$table_data = new adminDB_DataRead($this->_table, $this->_table_lang, $this->_table_seo, $this->_master_key,' main_products_id= '.$this->url_data['products_id'].' and saved=0 '.$sql_where);
 
-
 		//or $this->url_data['products_id']
 		if ($this->url_data['get_data'] ){
 			$data = $table_data->getData();
@@ -754,6 +753,19 @@ class generate_slaves extends xt_backend_cls {
 		}elseif($ID){
 			$data = $table_data->getData($ID);
 		}else{
+			
+			$exists = $db->GetOne("SHOW TABLES LIKE ".DB_PREFIX."_tmp_products");
+			if(empty($exists))
+        	{
+        		$db->Execute("CREATE TABLE ".DB_PREFIX."_tmp_products LIKE ".TABLE_PRODUCTS);
+        
+        		$db->Execute("ALTER TABLE " . DB_PREFIX."_tmp_products" . "
+            		ADD COLUMN `products_name` VARCHAR(255) NOT NULL,
+            		ADD COLUMN `main_products_id` INT NOT NULL,
+            		ADD COLUMN `attributes` VARCHAR(255) NOT NULL,
+            		ADD COLUMN `saved` INT NOT NULL,
+            		ADD COLUMN `name_changed` TINYINT NOT NULL;");
+            }
 			$data = $table_data->getHeader();
 		}
 		if (count($data)==0) $data=[];

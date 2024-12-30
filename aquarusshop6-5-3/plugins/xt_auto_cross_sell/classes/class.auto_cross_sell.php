@@ -87,19 +87,24 @@ class auto_cross_sell extends getProductSQL_query {
 
         ($plugin_code = $xtPlugin->PluginCode('class.auto_cross_sell.php:listing')) ? eval($plugin_code) : false;
 
-        $rs = $db->CacheGetArray($query, $params);
+        $rs = $db->GetArray($query, $params);
         if (!$rs || !is_array($rs) || !count($rs)) return false;
 
         $rs = array_column($rs, 'products_id');
         $rs = array_diff($rs, $cart_product_ids);
+
+        shuffle($rs);
         if(count($rs) > $limit)
-            $rs_keys = array_rand($rs, $limit);
+        {
+            $rs = array_flip($rs);
+            $rs = array_rand($rs, $limit);
+        }
 
         $size = 'default';
         $module_content = [];
-        foreach ($rs_keys as $key)
+        foreach ($rs as $products_id)
         {
-            $product = product::getProduct($rs[$key],$size);
+            $product = product::getProduct($products_id,$size);
             $module_content[] = $product->data;
         }
 

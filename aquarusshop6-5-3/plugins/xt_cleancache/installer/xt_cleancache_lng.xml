@@ -1,55 +1,322 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xtcommerceplugin>
 	<language_content>
-<phrase>
-	<key>TEXT_CACHE_TYPE_DESC</key>
-	<class>admin</class>
-	<en>
-		<value><![CDATA[Zu bereinigender Cache/Tabelle]]></value>
-	</en>
-	<de>
-		<value><![CDATA[Zu bereinigender Cache/Tabelle]]></value>
-	</de>
-</phrase>
-<phrase>
-	<key>TEXT_XT_CLEANCACHE</key>
-	<class>admin</class>
-	<en>
-		<value><![CDATA[Cache]]></value>
-	</en>
-	<de>
-		<value><![CDATA[Cache]]></value>
-	</de>
-</phrase>
-<phrase>
-	<key>TEXT_XT_CLEANCACHE_LOGS</key>
-	<class>admin</class>
-	<en>
-		<value><![CDATA[Cache empty log]]></value>
-	</en>
-	<de>
-		<value><![CDATA[Cache entleeren log]]></value>
-	</de>
-</phrase>
-<phrase>
-	<key>TEXT_XT_CLEANCACHE_TYPES</key>
-	<class>admin</class>
-	<en>
-		<value><![CDATA[Cache empty]]></value>
-	</en>
-	<de>
-		<value><![CDATA[Cache entleeren]]></value>
-	</de>
-</phrase>
-<phrase>
-	<key>TEXT_XT_CACHE_DELETED</key>
-	<class>both</class>
-	<en>
-		<value><![CDATA[Cache deleted]]></value>
-	</en>
-	<de>
-		<value><![CDATA[Cache gelöscht]]></value>
-	</de>
-</phrase>
-</language_content>
+		<phrase>
+			<key>TEXT_CACHE_TYPE_DESC</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[Zu bereinigender Cache/Tabelle]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Zu bereinigender Cache/Tabelle]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_XT_CLEANCACHE</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[Cache]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Cache]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_XT_CLEANCACHE_LOGS</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[Cache empty log]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Cache entleeren log]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_XT_CLEANCACHE_TYPES</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[Cache empty]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Cache entleeren]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_XT_CACHE_DELETED</key>
+			<class>both</class>
+			<en>
+				<value><![CDATA[Cache deleted]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Cache gelöscht]]></value>
+			</de>
+		</phrase>
+
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_TYPE_CLASS_DB</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[Cleanup Database]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Datenbank bereinigen]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_TYPE_CLASS_FILES</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[Cleanup files]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Dateien bereinigen]]></value>
+			</de>
+		</phrase>
+
+		<phrase>
+			<key>TEXT_TYPE_CLASS</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[Area]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Bereich]]></value>
+			</de>
+		</phrase>
+
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_ALL_FILES</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[All in files area]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Alles im Bereich Dateien]]></value>
+			</de>
+		</phrase>
+
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_DIR_TEMPLATES_C_CACHE</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[directories templates_c / cache]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Verzeichnisse templates_c / cache]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_DIR_TEMPLATES_C</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[directory templaes_c]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Verzeichnis templates_c]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_DIR_CACHE</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[directory cache]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Verzeichnis cache]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_CSS</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[Css cache]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Css Cache]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_JS</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[Javascript cache]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Javascript Cache]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_CATEGORY</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[categories cache]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Kategorie Cache]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_PRODUCT</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[products cache]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Artikel Cache]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_MANUFACTURER</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[manufacturers cache]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Hersteller cache]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_ADODB</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[AdoDB cache]]></value>
+			</en>
+			<de>
+				<value><![CDATA[AdoDB Cache]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_XT_CACHE</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[XT cache (countries/language variables etc)]]></value>
+			</en>
+			<de>
+				<value><![CDATA[XT Cache (Länder/Sprachvariablen etc)]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_LANGUAGE</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[XT Cache language variables]]></value>
+			</en>
+			<de>
+				<value><![CDATA[XT Cache Sprachvariablen]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_HOOKPOINTS</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[Plugin hookpoints]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Plugin hookpoints]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_FEED</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[Feed cache (Dashboard)]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Feed Cache (Dashboard)]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_OPCACHE</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[Opcache]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Opcache]]></value>
+			</de>
+		</phrase>
+
+
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_ALL_DB</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[All in area database]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Alles im Bereich Datenbank]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_SQL_LOG</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[SQL log]]></value>
+			</en>
+			<de>
+				<value><![CDATA[SQL Log]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_CRONJOB_LOG</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[Cronjob log]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Cronjob Log]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_XT_EXPORT_LOG</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[xt_export log]]></value>
+			</en>
+			<de>
+				<value><![CDATA[xt_export Log]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_XT_IM_EXPORT_LOG</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[xt_im_export log]]></value>
+			</en>
+			<de>
+				<value><![CDATA[xt_im_export Log]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_MAIL_LOG</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[Mail log]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Email Log]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_IMAGE_PROCESSING</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[Clean cache image processing]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Clean cache image processing]]></value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_CLEAN_CACHE_SELF_LOGS</key>
+			<class>admin</class>
+			<en>
+				<value><![CDATA[Clean cache logs]]></value>
+			</en>
+			<de>
+				<value><![CDATA[Clean Cache Logs]]></value>
+			</de>
+		</phrase>
+
+	</language_content>
 </xtcommerceplugin>

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.4.1, created on 2024-12-16 20:00:16
+/* Smarty version 5.4.1, created on 2024-12-30 01:19:49
   from 'file:/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes/box_manufacturers.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.1',
-  'unifunc' => 'content_676078c0b187e7_74252269',
+  'unifunc' => 'content_6771e72513b653_17498476',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,9 +20,9 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_676078c0b187e7_74252269 (\Smarty\Template $_smarty_tpl) {
+function content_6771e72513b653_17498476 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes';
-$_smarty_tpl->getCompiled()->nocache_hash = '583790154676078c0617bb6_59808864';
+$_smarty_tpl->getCompiled()->nocache_hash = '10735424786771e725103659_25338217';
 ?>
 <div class="manufacturers">
 	<p class="headline"><?php if ($_smarty_tpl->getValue('link')) {?><a href="$link"><?php }
@@ -34,9 +34,9 @@ if ($_smarty_tpl->getValue('link')) {?></a><?php }?></p>
 		<?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('_manufacturers'), 'module_data', false, NULL, 'aussen', array (
 ));
-$foreach0DoElse = true;
+$foreach9DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('module_data')->value) {
-$foreach0DoElse = false;
+$foreach9DoElse = false;
 ?>
 		<option value="<?php echo $_smarty_tpl->getValue('module_data')['link'];?>
 "><?php echo $_smarty_tpl->getValue('module_data')['manufacturers_name'];?>

@@ -2,37 +2,14 @@
 
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
-global $db;
-
-if(!defined('DB_STORAGE_ENGINE'))
-{
-    $sel_engine = 'innodb';
-    $sql_version = $db->GetOne("SELECT VERSION() AS Version");
-    if(version_compare($sql_version, '5.6') == -1)
-    {
-        $sel_engine = 'myisam';
-    }
-    define('DB_STORAGE_ENGINE', $sel_engine);
-}
-
-$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_clean_cache");
-$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_clean_cache_logs");
-
-
-$db->Execute("CREATE TABLE IF NOT EXISTS `".DB_PREFIX."_clean_cache_logs` (
-		`id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-		`type` VARCHAR(64) NOT NULL,
-		`change_trigger` VARCHAR(64) NOT NULL,
-		`last_run` datetime NOT NULL
-		) ENGINE=".DB_STORAGE_ENGINE."  DEFAULT CHARSET=utf8;
-");
-
-
 if (!defined("TABLE_CLEANCACHE"))
     define('TABLE_CLEANCACHE', DB_PREFIX.'_clean_cache');
 if (!defined("TABLE_CLEANCACHE_LOGS"))
     define('TABLE_CLEANCACHE_LOGS', DB_PREFIX.'_clean_cache_logs');
 
+global $db;
+
+$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_clean_cache");
 
 $db->Execute("CREATE TABLE `".DB_PREFIX."_clean_cache` (
     `id`        int(11)     NOT NULL AUTO_INCREMENT,
@@ -69,8 +46,3 @@ $db->Execute("INSERT INTO `".DB_PREFIX."_clean_cache` (`type`,`type_class`, `cac
 $db->Execute("INSERT INTO `".DB_PREFIX."_clean_cache` (`type`,`type_class`, `cache_type_desc`,`last_run`) VALUES ('system_log_email', 'db', 'TEXT_CLEAN_CACHE_MAIL_LOG', NULL)");
 $db->Execute("INSERT INTO `".DB_PREFIX."_clean_cache` (`type`,`type_class`, `cache_type_desc`,`last_run`) VALUES ('system_log_ImageProcessing', 'db', 'TEXT_CLEAN_CACHE_IMAGE_PROCESSING', NULL)");
 $db->Execute("INSERT INTO `".DB_PREFIX."_clean_cache` (`type`,`type_class`, `cache_type_desc`,`last_run`) VALUES ('clean_cache_logs', 'db', 'TEXT_CLEAN_CACHE_SELF_LOGS', NULL)");
-
-// Navigation anlegen
-$db->Execute("DELETE FROM ".TABLE_ADMIN_NAVIGATION." WHERE text in ('xt_cleancache_types','xt_cleancache_logs')");
-$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'xt_cleancache_types',      'images/icons/page_save.png', '&plugin=xt_cleancache&load_section=xt_cleancache_types', 'adminHandler.php', '4000', 'systemroot', 'G', 'W');");
-$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'xt_cleancache_logs',       'images/icons/folder.png',    '&plugin=xt_cleancache&load_section=xt_cleancache_logs', 'adminHandler.php', '4020', 'xt_cleancache_types', 'I', 'W');");
