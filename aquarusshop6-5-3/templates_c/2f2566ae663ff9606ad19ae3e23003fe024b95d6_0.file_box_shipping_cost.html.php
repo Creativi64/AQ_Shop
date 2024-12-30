@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-12-02 18:49:51
+/* Smarty version 5.4.1, created on 2024-12-02 19:35:55
   from 'file:/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes/box_shipping_cost.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
-  'version' => '5.1.0',
-  'unifunc' => 'content_674df33fcd93c8_21702649',
+  'version' => '5.4.1',
+  'unifunc' => 'content_674dfe0b77b651_00385458',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_674df33fcd93c8_21702649 (\Smarty\Template $_smarty_tpl) {
+function content_674dfe0b77b651_00385458 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes';
 ?><div class="shipping-preview">
 	<p class="headline"><?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('txt')->handle(array('key'=>TEXT_SHIPPING_COST_PREVIEW), $_smarty_tpl);?>

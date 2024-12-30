@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-12-02 18:49:51
+/* Smarty version 5.4.1, created on 2024-12-02 19:35:55
   from 'file:xtCore/pages/product_listing/product_listing_slider.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
-  'version' => '5.1.0',
-  'unifunc' => 'content_674df33fee44b0_51630570',
+  'version' => '5.4.1',
+  'unifunc' => 'content_674dfe0b84f448_55848199',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:includes/product_info_label.html' => 1,
   ),
 ))) {
-function content_674df33fee44b0_51630570 (\Smarty\Template $_smarty_tpl) {
+function content_674dfe0b84f448_55848199 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/pages/product_listing';
 if ($_smarty_tpl->getValue('product_listing')) {?>
     <div class="product-listing product-slider carousel-outer-wrap <?php echo $_smarty_tpl->getValue('code');?>

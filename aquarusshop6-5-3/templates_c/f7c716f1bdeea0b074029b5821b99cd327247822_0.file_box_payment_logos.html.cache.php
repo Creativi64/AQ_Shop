@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-12-02 18:49:39
+/* Smarty version 5.4.1, created on 2024-12-02 19:35:36
   from 'file:/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes/box_payment_logos.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
-  'version' => '5.1.0',
-  'unifunc' => 'content_674df333312468_29423238',
+  'version' => '5.4.1',
+  'unifunc' => 'content_674dfdf8ba43f2_61330999',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,9 +20,9 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_674df333312468_29423238 (\Smarty\Template $_smarty_tpl) {
+function content_674dfdf8ba43f2_61330999 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes';
-$_smarty_tpl->getCompiled()->nocache_hash = '1905012763674df333301c19_64357981';
+$_smarty_tpl->getCompiled()->nocache_hash = '262463823674dfdf8b93893_27002468';
 ?>
 
 

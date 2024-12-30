@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-12-02 18:49:39
+/* Smarty version 5.4.1, created on 2024-12-02 19:35:36
   from 'file:/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes/box_search.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
-  'version' => '5.1.0',
-  'unifunc' => 'content_674df3331e7241_55072412',
+  'version' => '5.4.1',
+  'unifunc' => 'content_674dfdf8a926b7_33856699',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_674df3331e7241_55072412 (\Smarty\Template $_smarty_tpl) {
+function content_674dfdf8a926b7_33856699 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes';
 ?><div class="box-search">
     <?php echo $_smarty_tpl->getSmarty()->getFunctionHandler('form')->handle(array('class'=>"search-box-form",'type'=>'form','name'=>'search_box','action'=>'search','link_params'=>'getParams','method'=>'get','conn'=>'SSL'), $_smarty_tpl);?>

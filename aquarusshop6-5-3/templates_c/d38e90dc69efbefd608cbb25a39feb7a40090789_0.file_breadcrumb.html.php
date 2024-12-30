@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-12-02 18:49:52
+/* Smarty version 5.4.1, created on 2024-12-02 19:35:55
   from 'file:xtCore/pages/navigation/breadcrumb.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
-  'version' => '5.1.0',
-  'unifunc' => 'content_674df340052901_70334478',
+  'version' => '5.4.1',
+  'unifunc' => 'content_674dfe0b878873_05074381',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_674df340052901_70334478 (\Smarty\Template $_smarty_tpl) {
+function content_674dfe0b878873_05074381 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/pages/navigation';
 ?><ul class="breadcrumb">
     <?php

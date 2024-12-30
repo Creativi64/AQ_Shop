@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.1.0, created on 2024-12-02 18:49:39
+/* Smarty version 5.4.1, created on 2024-12-02 19:35:36
   from 'file:/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes/box_categories_recursive.html' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
-  'version' => '5.1.0',
-  'unifunc' => 'content_674df33325e554_02832991',
+  'version' => '5.4.1',
+  'unifunc' => 'content_674dfdf8b16090_09335740',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,9 +20,9 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_674df33325e554_02832991 (\Smarty\Template $_smarty_tpl) {
+function content_674dfdf8b16090_09335740 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = '/homepages/2/d41324517/htdocs/aquarus_shop/templates/xt_responsive_AQ/xtCore/boxes';
-$_smarty_tpl->getCompiled()->nocache_hash = '207970446674df3332212f7_89809946';
+$_smarty_tpl->getCompiled()->nocache_hash = '195525584674dfdf8aeecc2_32138374';
 if ($_smarty_tpl->getValue('_categories')) {?>
     <?php if ($_smarty_tpl->getValue('params')['position'] == 'navbar') {?>
 

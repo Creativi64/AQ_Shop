@@ -77,7 +77,7 @@ function getManufacturers($user, $pass, $start = 0, $size = 10, $extNumberRange 
             $manu = array();
             // Alle Felder eines Herstellers ins array schreiben
             $manu = $rs->fields;  
-            
+             
             // Datumsangaben prüfen und evtl. anpassen
             $manu['date_added'] = SoapHelper::checkIsoDate($manu['date_added']);
             $manu['last_modified'] = SoapHelper::checkIsoDate($manu['last_modified']);

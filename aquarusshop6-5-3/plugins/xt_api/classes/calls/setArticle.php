@@ -80,7 +80,7 @@ function setArticle($user = '', $pass = '', $ProductItem = '') {
     } else if ($ProductItem['manufacturers_int_id'] != null && $ProductItem['manufacturers_int_id'] > 0) {
         $manuID = $ProductItem['manufacturers_int_id'];
     }
-
+    
     // Hersteller ID einmappen
     $ProductItem['manufacturers_id'] = $manuID;
 
