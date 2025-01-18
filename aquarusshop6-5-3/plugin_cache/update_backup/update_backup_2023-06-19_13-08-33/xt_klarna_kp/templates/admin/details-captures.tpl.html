@@ -1,9 +1,0 @@
-
-{foreach key=$k item=$v from=$view_items.captures name=list_data}
-    {assign var=amount value=($v.captured_amount/100)|number_format:2:",":"." }
-    {assign var=triggerResendFnc value=''}
-    {assign var=name value=$v.captured_at|date_format:"Y-m-d H:m:i"|cat:" - "|cat:$amount|cat:' '|cat:$view_items.purchase_currency}
-    {assign var=name value=$name|cat:$v.html_name}
-    {include file="./accordion.tpl.html" v=$v type="captures" name=$name c=$k+1}
-{/foreach}
-

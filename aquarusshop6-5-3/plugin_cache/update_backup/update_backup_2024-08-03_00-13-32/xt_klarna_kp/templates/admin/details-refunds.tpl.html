@@ -1,6 +1,0 @@
-
-{foreach key=$k item=$v from=$view_items.refunds name=list_data}
-    {assign var=amount value=($v.refunded_amount/100)|number_format:2:",":"." }
-    {assign var=name value=$v.refunded_at|date_format:"Y-m-d H:m:i"|cat:" - "|cat:$amount|cat:' '|cat:$view_items.purchase_currency}
-    {include file="./accordion.tpl.html" v=$v type="refunds" name=$name c=$k+1}
-{/foreach}

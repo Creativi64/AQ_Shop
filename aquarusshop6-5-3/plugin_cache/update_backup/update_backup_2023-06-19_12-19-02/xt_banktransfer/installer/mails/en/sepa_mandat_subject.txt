@@ -1,1 +1,0 @@
-{$_store_name} | SEPA Mandate

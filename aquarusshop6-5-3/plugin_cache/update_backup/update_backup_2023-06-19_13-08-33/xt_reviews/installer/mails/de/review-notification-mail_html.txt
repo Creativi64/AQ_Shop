@@ -1,9 +1,0 @@
-<p>Eine neue Bewertung wartet auf Freischaltung</p>
-<p>{txt key=TEXT_ORDER_NUMBER}: {$orders_id} </p>
-<p>{txt key=TEXT_REVIEW_DATE}: {$review_date} </p>
-<p>{txt key=TEXT_REVIEW_STATUS}: {$review_status} </p>
-<p>{txt key=TEXT_REVIEW_LANGUAGE_CODE}: {$language_code} </p>
-<p>{txt key=TEXT_REVIEW_RATING}: {$review_rating}</p>
-<p>{txt key=TEXT_REVIEW_TEXT}: <br />
-    {$review_text}
-</p>

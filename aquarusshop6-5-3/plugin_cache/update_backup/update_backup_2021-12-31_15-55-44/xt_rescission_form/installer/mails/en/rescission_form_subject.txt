@@ -1,1 +1,0 @@
-{$_store_name} | We have received your cancellation
