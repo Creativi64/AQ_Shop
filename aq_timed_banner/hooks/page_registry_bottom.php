@@ -6,7 +6,7 @@ if (defined('_SYSTEM_ADMIN')) {
         'text' => 'Timed Banners',
         'link' => 'ejsadmin.php?plugin=aq_timed_banner&page=banners', 
         'image' => 'images/icons/clock.png',
-        'node_group' => 'marketing'
+        'node_group' => 'shop'
     );
     
     if ($_REQUEST['plugin'] == 'aq_timed_banner') {
