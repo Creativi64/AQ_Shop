@@ -21,3 +21,15 @@ $db->Execute("CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_aq_timed_banner_descripti
     `banner_description` text NOT NULL,
     PRIMARY KEY (`banner_id`,`language_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+
+// Add admin navigation entry
+$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." 
+    (pid, text, icon, url_i, url_d, sortorder, parent, type, navtype,`iconCls`) VALUES 
+    (NULL, 'aq_timed_banner', 'images/icons/clock.png', 
+    '&plugin=aq_timed_banner', 
+    'adminHandler.php', 
+    '5003',
+    'shop', 
+    'I', 
+    'W', 
+    'fa fa-clock')");

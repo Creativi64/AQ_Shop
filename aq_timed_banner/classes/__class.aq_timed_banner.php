@@ -1,18 +1,42 @@
 <?php
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
-class aq_timed_banner_admin {
-    
+class a_q_timed_banner {
+
+    public function setPosition ($position) {
+		$this->position = $position;
+	}
+    public function _getParams() {
+        $params = array();
+
+        $header['text'] 			= array('type'=>'text');
+		$params['header']         	= $header;
+        $params['master_key']		= 'id';
+        return $params;
+    }
+
+    public function _get($id = 0) {
+        
+		$obj = new stdClass;
+		  
+		$obj->totalCount = 0;
+		$obj->data = null;
+		
+		return $obj;
+    }
+
+    /*
     protected $_table = 'aq_timed_banner';
     protected $_master_key = 'banner_id';
     protected $_language_key = 'language_code';
     protected $_language_fields = ['banner_title', 'banner_description'];
+ 
 
-    function __construct() {
-        global $language;
-    }
-
-    function _getParams() {
+    public function setPosition ($position) {
+		$this->position = $position;
+	}
+	
+    public function _getParams() {
         $header = [];
         $header['banner_id'] = ['type' => 'hidden'];
         $header['banner_name'] = [
@@ -79,7 +103,7 @@ class aq_timed_banner_admin {
         return $params;
     }
 
-    function _getList($search_filter = '') {
+    public function _getList($search_filter = '') {
         global $db;
         
         $sql_where = "";
@@ -102,7 +126,7 @@ class aq_timed_banner_admin {
         return $list;
     }
 
-    function _delete($id) {
+    public function _delete($id) {
         global $db;
         
         if ($id && (int)$id > 0) {
@@ -115,7 +139,7 @@ class aq_timed_banner_admin {
         return false;
     }
 
-    function _get($id) {
+    public function _get($id = 0) {
         global $db;
         
         if ($id === 'new') {
@@ -125,7 +149,7 @@ class aq_timed_banner_admin {
         $sql = "SELECT * FROM ".DB_PREFIX."_aq_timed_banner WHERE banner_id = ?";
         $result = $db->Execute($sql, array((int)$id));
         
-        if ($result->RecordCount() > 0) {
+         if ($result->RecordCount() > 0) {
             $data = $result->fields;
             
             // Get language data
@@ -144,7 +168,7 @@ class aq_timed_banner_admin {
         return false;
     }
     
-    function _set($data, $mode = 'edit') {
+    public function _set($data, $mode = 'edit') {
         global $db;
         
         // Handle file upload if new image
@@ -183,5 +207,6 @@ class aq_timed_banner_admin {
         }
         
         return true;
-    }
+    }      
+*/
 }

@@ -7,8 +7,13 @@ global $store_handler;
 $db->Execute("DELETE FROM ".TABLE_ADMIN_NAVIGATION." WHERE text in ('xt_startpage_products')");
 $db->Execute("
 		INSERT INTO
-		".TABLE_ADMIN_NAVIGATION." (`text`, `icon`, `url_i`, `url_d`, `sortorder`, `parent`, `type`, `navtype`, `cls`, `handler`, `iconCls`)
-		VALUES ('xt_startpage_products', 'images/icons/database_gear.png', '&plugin=xt_startpage_products', 'adminHandler.php', '5002', 'shop', 'I', 'W', NULL, NULL, 'fas fa-home')");
+		".TABLE_ADMIN_NAVIGATION." (`text`, `icon`, `url_i`, `url_d`, `sortorder`, `parent`, 
+		`type`, `navtype`, `cls`, `handler`, `iconCls`)
+		VALUES ('xt_startpage_products',
+		 'images/icons/database_gear.png', 
+		 '&plugin=xt_startpage_products', 
+		 'adminHandler.php', '5002',
+		  'shop', 'I', 'W', NULL, NULL, 'fas fa-home')");
 
 $create = "CREATE TABLE IF NOT EXISTS  `" . DB_PREFIX . "_startpage_products` (
 	 `startpage_products_id` int(11) NOT NULL AUTO_INCREMENT,

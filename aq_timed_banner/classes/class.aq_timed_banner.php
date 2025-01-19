@@ -3,15 +3,17 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
 class aq_timed_banner {
     
-    protected $position = 'both';
-    
-    public function __construct() {
-        $this->position = 'both';
-    }
+    protected $position;
+
+    public function setPosition ($position) {
+		$this->position = $position;
+	}
     
     public function _getParams() {
         global $language;
         
+        $csrf_param = '&sec='. $_SESSION['admin_user']['admin_key'];
+		
         $header['banner_id'] = array('type' => 'hidden');
         $header['banner_name'] = array('type' => 'textfield');
         $header['banner_image'] = array('type' => 'mediafile');
