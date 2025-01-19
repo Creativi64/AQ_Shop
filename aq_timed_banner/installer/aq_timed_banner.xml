@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xtcommerceplugin>
     <code>aq_timed_banner</code>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <type>utility</type>
     <minimum_store_version>6.6.0</minimum_store_version>
 

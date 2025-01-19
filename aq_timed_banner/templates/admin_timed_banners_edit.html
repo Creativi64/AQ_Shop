@@ -5,8 +5,9 @@
 </div>
 
 <div class="contentbox">
-    <form action="adminHandler.php" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="load_section" value="AqTimedBanner" />
+    <form action="ejsadmin.php" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="plugin" value="aq_timed_banner" />
+        <input type="hidden" name="page" value="banners" />
         <input type="hidden" name="banner_id" value="{$data.banner_id}" />
         
         <div class="form-group">
@@ -63,10 +64,10 @@
         </div>
 
         <div class="buttons">
-            <button type="submit" class="button save">
+            <button type="submit" name="save" value="1" class="button save">
                 <i class="fa fa-save"></i> {t}Save{/t}
             </button>
-            <a href="adminHandler.php?load_section=AqTimedBanner" class="button cancel">
+            <a href="ejsadmin.php?plugin=aq_timed_banner&page=banners" class="button cancel">
                 <i class="fa fa-times"></i> {t}Cancel{/t}
             </a>
         </div>

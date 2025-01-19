@@ -33,10 +33,10 @@
                 <td>{$banner.banner_end}</td>
                 <td>{$banner.sort_order}</td>
                 <td class="actions">
-                    <a href="adminHandler.php?load_section=AqTimedBanner&edit_id={$banner.banner_id}" class="button edit" title="{t}Edit{/t}">
+                    <a href="ejsadmin.php?plugin=aq_timed_banner&page=banners&edit_id={$banner.banner_id}" class="button edit" title="{t}Edit{/t}">
                         <i class="fa fa-edit"></i>
                     </a>
-                    <a href="adminHandler.php?load_section=AqTimedBanner&delete_id={$banner.banner_id}" class="button delete" title="{t}Delete{/t}" onclick="return confirm('{t}Do you really want to delete this banner?{/t}')">
+                    <a href="ejsadmin.php?plugin=aq_timed_banner&page=banners&delete_id={$banner.banner_id}" class="button delete" title="{t}Delete{/t}" onclick="return confirm('{t}Do you really want to delete this banner?{/t}')">
                         <i class="fa fa-trash"></i>
                     </a>
                 </td>
@@ -46,7 +46,7 @@
     </table>
 
     <div class="actions">
-        <a href="adminHandler.php?load_section=AqTimedBanner&new=true" class="button">
+        <a href="ejsadmin.php?plugin=aq_timed_banner&page=banners&new=true" class="button">
             <i class="fa fa-plus"></i> {t}Add New Banner{/t}
         </a>
     </div>
