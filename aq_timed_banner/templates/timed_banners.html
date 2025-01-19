@@ -1,0 +1,47 @@
+<div class="aq-timed-banners">
+    {foreach name=banner from=$banners item=banner}
+    <div class="aq-banner">
+        {if $banner.link}
+        <a href="{$banner.link}">
+        {/if}
+            <img src="{$banner.image}" alt="{$banner.title}" />
+            {if $banner.title || $banner.description}
+            <div class="banner-content">
+                {if $banner.title}<h3>{$banner.title}</h3>{/if}
+                {if $banner.description}<p>{$banner.description}</p>{/if}
+            </div>
+            {/if}
+        {if $banner.link}
+        </a>
+        {/if}
+    </div>
+    {/foreach}
+</div>
+
+<style>
+.aq-timed-banners {
+    margin: 20px 0;
+}
+.aq-banner {
+    position: relative;
+    margin-bottom: 20px;
+}
+.aq-banner img {
+    max-width: 100%;
+    height: auto;
+}
+.banner-content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(255,255,255,0.9);
+    padding: 15px;
+    border-radius: 4px;
+}
+.banner-content h3 {
+    margin: 0 0 5px 0;
+}
+.banner-content p {
+    margin: 0;
+}
+</style>

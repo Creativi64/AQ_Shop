@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <code>aq_timed_banner</code>
+    <version>1.0.0</version>
+    <type>utility</type>
+    <minimum_store_version>6.6.0</minimum_store_version>
+
+    <title>Timed Banners</title>
+    <description>Display time-controlled banners on the main page</description>
+    <icon>aq_timed_banner.jpg</icon>
+
+    <db_install><![CDATA[include _SRV_WEBROOT._SRV_WEB_PLUGINS.'aq_timed_banner/installer/install.php';]]></db_install>
+    <db_uninstall><![CDATA[include _SRV_WEBROOT._SRV_WEB_PLUGINS.'aq_timed_banner/installer/uninstall.php';]]></db_uninstall>
+
+    <plugin_code>
+        <code>
+            <hook>page_registry.php:bottom</hook>
+            <phpcode><![CDATA[require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'aq_timed_banner/hooks/page_registry_bottom.php';]]></phpcode>
+            <order>10</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>module_index:index_content</hook>
+            <phpcode><![CDATA[require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'aq_timed_banner/hooks/index_content.php';]]></phpcode>
+            <order>10</order>
+            <active>1</active>
+        </code>
+    </plugin_code>
+
+    <configuration>
+        <config>
+            <key>AQ_TIMED_BANNER_STATUS</key>
+            <type>status</type>
+            <value>1</value>
+            <de>
+                <title>Plugin aktivieren</title>
+            </de>
+            <en>
+                <title>Enable plugin</title>
+            </en>
+        </config>
+    </configuration>
+</xtcommerceplugin>
