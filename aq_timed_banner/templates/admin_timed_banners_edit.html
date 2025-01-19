@@ -1,0 +1,76 @@
+{include file="admin_header.tpl"}
+
+<div class="pageheader">
+    <h2>{if $data.banner_id}{t}Edit Banner{/t}{else}{t}New Banner{/t}{/if}</h2>
+</div>
+
+<div class="contentbox">
+    <form action="adminHandler.php" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="load_section" value="AqTimedBanner" />
+        <input type="hidden" name="banner_id" value="{$data.banner_id}" />
+        
+        <div class="form-group">
+            <label>{t}Name{/t} *</label>
+            <input type="text" name="banner_name" value="{$data.banner_name}" required />
+        </div>
+
+        <div class="form-group">
+            <label>{t}Image{/t} *</label>
+            <input type="file" name="banner_image" {if !$data.banner_id}required{/if} />
+            {if $data.banner_image}
+            <img src="{$data.banner_image_url}" style="max-width:200px; margin-top:10px" />
+            {/if}
+        </div>
+
+        <div class="form-group">
+            <label>{t}Link URL{/t}</label>
+            <input type="text" name="banner_link" value="{$data.banner_link}" />
+        </div>
+
+        <div class="form-group">
+            <label>{t}Valid From{/t} *</label>
+            <input type="datetime-local" name="banner_start" value="{$data.banner_start}" required />
+        </div>
+
+        <div class="form-group">
+            <label>{t}Valid Until{/t} *</label>
+            <input type="datetime-local" name="banner_end" value="{$data.banner_end}" required />
+        </div>
+
+        {foreach from=$languages item=lang}
+        <div class="form-group">
+            <label>{t}Title{/t} ({$lang.name})</label>
+            <input type="text" name="banner_title_{$lang.code}" value="{$data.banner_title_{$lang.code}}" />
+        </div>
+
+        <div class="form-group">
+            <label>{t}Description{/t} ({$lang.name})</label>
+            <textarea name="banner_description_{$lang.code}" rows="3">{$data.banner_description_{$lang.code}}</textarea>
+        </div>
+        {/foreach}
+
+        <div class="form-group">
+            <label>{t}Status{/t}</label>
+            <select name="banner_status">
+                <option value="1" {if $data.banner_status == 1}selected{/if}>{t}Active{/t}</option>
+                <option value="0" {if $data.banner_status == 0}selected{/if}>{t}Inactive{/t}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>{t}Sort Order{/t}</label>
+            <input type="number" name="sort_order" value="{$data.sort_order|default:0}" />
+        </div>
+
+        <div class="buttons">
+            <button type="submit" class="button save">
+                <i class="fa fa-save"></i> {t}Save{/t}
+            </button>
+            <a href="adminHandler.php?load_section=AqTimedBanner" class="button cancel">
+                <i class="fa fa-times"></i> {t}Cancel{/t}
+            </a>
+        </div>
+    </form>
+</div>
+
+{include file="admin_footer.tpl"}

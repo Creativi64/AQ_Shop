@@ -1,0 +1,55 @@
+{include file="admin_header.tpl"}
+
+<div class="pageheader">
+    <h2>{t}Timed Banners{/t}</h2>
+</div>
+
+<div class="contentbox">
+    <table class="datatable">
+        <thead>
+            <tr>
+                <th>{t}ID{/t}</th>
+                <th>{t}Name{/t}</th>
+                <th>{t}Image{/t}</th>
+                <th>{t}Status{/t}</th>
+                <th>{t}Valid From{/t}</th>
+                <th>{t}Valid Until{/t}</th>
+                <th>{t}Sort Order{/t}</th>
+                <th>{t}Actions{/t}</th>
+            </tr>
+        </thead>
+        <tbody>
+        {foreach from=$banners item=banner}
+            <tr>
+                <td>{$banner.banner_id}</td>
+                <td>{$banner.banner_name}</td>
+                <td>
+                    {if $banner.banner_image}
+                    <img src="{$banner.banner_image_url}" style="max-width:100px" />
+                    {/if}
+                </td>
+                <td>{if $banner.banner_status == 1}{t}Active{/t}{else}{t}Inactive{/t}{/if}</td>
+                <td>{$banner.banner_start}</td>
+                <td>{$banner.banner_end}</td>
+                <td>{$banner.sort_order}</td>
+                <td class="actions">
+                    <a href="adminHandler.php?load_section=AqTimedBanner&edit_id={$banner.banner_id}" class="button edit" title="{t}Edit{/t}">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a href="adminHandler.php?load_section=AqTimedBanner&delete_id={$banner.banner_id}" class="button delete" title="{t}Delete{/t}" onclick="return confirm('{t}Do you really want to delete this banner?{/t}')">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        {/foreach}
+        </tbody>
+    </table>
+
+    <div class="actions">
+        <a href="adminHandler.php?load_section=AqTimedBanner&new=true" class="button">
+            <i class="fa fa-plus"></i> {t}Add New Banner{/t}
+        </a>
+    </div>
+</div>
+
+{include file="admin_footer.tpl"}
