@@ -107,100 +107,108 @@ class aq_timed_banner extends default_table
         return false;
     }
 
-    public function _get($id = 0)
+    public function _get($ID = 0)
     {
-        global $db;
+        global $db, $language;
+
+        if ($this->position != 'admin') return false;
 
         $obj = new stdClass;
 
-		if ($this->position != 'admin') return false;
-
-        if ($id === 'new') {
+        if ($ID === 'new') {
             $obj = $this->_set(array(), 'new');
-			$id = $obj->new_id;
+            $ID = $obj->new_id;
         }
 
-        // $table_data = new adminDB_DataRead($this->_table, $this->_table_lang, $this->_table_seo, $this->_master_key);
+        $ID = (int)$ID;
 
-        // if ($this->url_data['get_data'])
-		// $data = $table_data->getData();
-		// elseif($id)
-		// $data = $table_data->getData($id);
-		// else
-		// $data = $table_data->getHeader();
+        if ($this->url_data['get_data']) {
+            // Get list of banners
+            $table_data = new adminDB_DataRead($this->_table, $this->_table.'_description', null, $this->_master_key);
+            $data = $table_data->getData();
 
-		// $obj = new stdClass;
-		// $obj->totalCount = count($data);
-		// $obj->data = $data;
-
-		// return $obj;
-
-        $sql = "SELECT * FROM " . TABLE_BANNER . " WHERE id = ?";
-        $result = $db->Execute($sql, array((int)$id));
-        
-        $recordCount = $result->RecordCount();
-        
-        if ($recordCount > 0) {
-            $data = $result->fields;
-
-            // Get language data
-            $sql = "SELECT * FROM " . TABLE_BANNER_DESCRIPTION . " WHERE id = ?";
-            $result = $db->Execute($sql, array((int)$id));
-
-            while (!$result->EOF) {
-                $data['title_' . $result->fields['language_code']] = $result->fields['title'];
-                $data['description_' . $result->fields['language_code']] = $result->fields['description'];
-                $result->MoveNext();
+            foreach ($data as &$item) {
+                $item['image_url'] = _SRV_WEB_IMAGES . $item['image'];
             }
-            $obj -> totalCount = $recordCount;
-            $obj -> data = $data;
-        
-            return $obj;
+
+        } elseif ($ID) {
+            // Get single banner data
+            $table_data = new adminDB_DataRead($this->_table, $this->_table.'_description', null, $this->_master_key);
+            $data = $table_data->getData($ID);
+
+            if (!empty($data)) {
+                $data[0]['image_url'] = _SRV_WEB_IMAGES . $data[0]['image'];
+            }
+
+        } else {
+            // Get header data
+            $table_data = new adminDB_DataRead($this->_table, $this->_table.'_description', null, $this->_master_key);
+            $data = $table_data->getHeader();
         }
-        return;
+
+        if ($table_data->_total_count != 0 || !$table_data->_total_count) {
+            $count_data = $table_data->_total_count;
+        } else {
+            $count_data = count($data);
+        }
+
+        $obj->totalCount = $count_data;
+        $obj->data = $data;
+
+        return $obj;
     }
 
-    public function _set($data, $mode = 'edit')
-    {
-        global $db;
-
-        // Handle file upload if new image
-        if (isset($_FILES['image']) && $_FILES['image']['size'] > 0) {
-            $upload_dir = _SRV_WEBROOT . 'media/images/banners/';
-            $filename = time() . '_' . $_FILES['image']['name'];
-
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $upload_dir . $filename)) {
-                $data['image'] = 'banners/' . $filename;
+    function _set($data, $set_type='edit') {
+        global $db, $language;
+    
+        $obj = new stdClass;
+        
+        // Set timestamp if new record
+        if ($set_type == 'new') {
+            $data['date_added'] = $db->BindTimeStamp(time());
+        }
+        
+        // Handle language specific fields by mapping them to description table
+        foreach ($language->_getLanguageList() as $key => $val) {
+            $lang_code = $val['code'];
+            foreach ($this->_language_fields as $field) {
+                if (isset($data[$field.'_'.$lang_code])) {
+                    $data[$this->_table.'_description'][$field][$lang_code] = $data[$field.'_'.$lang_code];
+                    unset($data[$field.'_'.$lang_code]);
+                }
             }
         }
-
-        if ($mode == 'new') {
-            $data['date_added'] = date('Y-m-d H:i:s');
-            $db->AutoExecute(TABLE_BANNER , $data, 'INSERT');
-            $banner_id = $db->Insert_ID();
-        } else {
-            $db->AutoExecute(TABLE_BANNER , $data, 'UPDATE', 'id = ' . (int)$data['id']);
-            $banner_id = $data['id'];
+    
+        // Save main table data
+        $o = new adminDB_DataSave($this->_table, $data, false, __CLASS__);
+        $obj = $o->saveDataSet();
+    
+        // Save language data if we have description table data
+        if (isset($data[$this->_table.'_description']) && is_array($data[$this->_table.'_description'])) {
+            $description = new adminDB_DataSave($this->_table.'_description', $data[$this->_table.'_description'], true, __CLASS__);
+            $description->saveDataSet();
         }
+    
+        return $obj;
+    }
 
-        // Save language data
-        global $language;
-        foreach ($language->_getLanguageList() as $lang) {
-            $lang_data = array(
-                'id' => $banner_id,
-                'language_code' => $lang['code'],
-                'title' => $data['title_' . $lang['code']],
-                'description' => $data['description_' . $lang['code']]
-            );
-
-            $db->AutoExecute(
-                TABLE_BANNER_DESCRIPTION,
-                $lang_data,
-                'REPLACE',
-                'id = ' . (int)$banner_id . ' AND language_code = "' . $lang['code'] . '"'
-            );
+    function _unset($id = 0) {
+        global $db;
+        
+        if ($id == 0) return false;
+        if ($this->position != 'admin') return false;
+        
+        $id = (int)$id;
+        if (!is_int($id)) return false;
+    
+        // Delete main entry
+        $db->Execute("DELETE FROM ". $this->_table ." WHERE ".$this->_master_key." = ?", array($id));
+        
+        // Delete language entries
+        if ($this->_table_lang) {
+            $db->Execute("DELETE FROM ". $this->_table."_description" ." WHERE ".$this->_master_key." = ?", array($id));
         }
-
+    
         return true;
     }
 }
