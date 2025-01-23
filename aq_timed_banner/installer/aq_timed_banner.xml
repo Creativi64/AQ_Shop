@@ -25,19 +25,5 @@
             <order>10</order>
             <active>1</active>
         </code>
-    </plugin_code>
-
-    <configuration>
-        <config>
-            <key>AQ_TIMED_BANNER_STATUS</key>
-            <type>status</type>
-            <value>1</value>
-            <de>
-                <title>Plugin aktivieren</title>
-            </de>
-            <en>
-                <title>Enable plugin</title>
-            </en>
-        </config>
-    </configuration>
+    </plugin_code> 
 </xtcommerceplugin>
