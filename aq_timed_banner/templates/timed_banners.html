@@ -1,19 +1,12 @@
 <div class="aq-timed-banners">
     {foreach name=banner from=$banners item=banner}
-    <div class="aq-banner">
-        {if $banner.link}
-        <a href="{$banner.link}">
-        {/if}
-            <img src="{$banner.image}" alt="{$banner.title}" />
-            {if $banner.title || $banner.description}
-            <div class="banner-content">
-                {if $banner.title}<h3>{$banner.title}</h3>{/if}
-                {if $banner.description}<p>{$banner.description}</p>{/if}
-            </div>
-            {/if}
-        {if $banner.link}
-        </a>
-        {/if}
+    <div class="aq-banner"> 
+        {if $banner.title || $banner.description}
+        <div class="banner-content">
+            {if $banner.title}<h3>{$banner.title}</h3>{/if}
+            {if $banner.description}<p>{$banner.description}</p>{/if}
+        </div>
+        {/if} 
     </div>
     {/foreach}
 </div>

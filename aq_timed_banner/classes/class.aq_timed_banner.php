@@ -146,4 +146,30 @@ class aq_timed_banner
 
         return true;
     }
+
+    public function _getList( )
+    {
+        global $db, $current_language_code;
+  
+        $sql = "SELECT * FROM " . $this->_table . "WHERE start_date <= NOW() AND expire_date >= NOW() AND status = 1";
+        $result = $db->Execute($sql);
+
+        if (!empty($result)) {
+            // Get language specific content for each banner
+            foreach ($result as &$banner) {
+                // Get banner description for current language
+                $sql = "SELECT banner_title, banner_description 
+                        FROM " . TABLE_BANNER_DESCRIPTION . "  
+                        WHERE banner_id = ? AND language_code = ?";
+                $resultLang = $db->Execute($sql, array($banner['banner_id'], $current_language_code));
+
+                if ($result->RecordCount() > 0) {
+                    $banner['title'] = $resultLang->fields['banner_title'];
+                    $banner['description'] = $resultLang->fields['banner_description'];
+                }
+            }
+        }
+
+        return $result;
+    }
 }
