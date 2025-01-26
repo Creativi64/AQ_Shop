@@ -25,16 +25,16 @@ class aq_timed_banner
             'required' => true
         ];
         $header['start_date'] = [
-            'type' => 'date', 
+            'type' => 'date',
         ];
         $header['expire_date'] = [
-            'type' => 'date', 
+            'type' => 'date',
         ];
         $header['status'] = array('type' => 'status');
         $header['sort_order'] = array('type' => 'textfield');
         $header['date_added'] = [
-            'type' => 'date', 
-        ]; 
+            'type' => 'date',
+        ];
         global $language;
 
         foreach ($language->_getLanguageList() as $key => $val) {
@@ -96,6 +96,8 @@ class aq_timed_banner
         $obj->totalCount = count($data);
         $obj->data = $data;
 
+        $this->_getList();
+
         return $obj;
     }
 
@@ -107,11 +109,11 @@ class aq_timed_banner
 
         // Set timestamp if new record
         if ($set_type == 'new') {
-            $data['date_added'] = date('Y-m-d H:i:s'); 
+            $data['date_added'] = date('Y-m-d H:i:s');
             $data['expire_date'] = date('Y-m-d H:i:s');
             $data['start_date'] = date('Y-m-d H:i:s');
         }
-     
+
         // Save main table data
         $o = new adminDB_DataSave($this->_table, $data, false, __CLASS__);
         $obj = $o->saveDataSet();
@@ -147,10 +149,10 @@ class aq_timed_banner
         return true;
     }
 
-    public function _getList( )
+    public function _getListasd()
     {
         global $db, $current_language_code;
-  
+
         $sql = "SELECT * FROM " . $this->_table . "WHERE start_date <= NOW() AND expire_date >= NOW() AND status = 1";
         $result = $db->Execute($sql);
 
@@ -171,5 +173,27 @@ class aq_timed_banner
         }
 
         return $result;
+    }
+
+    public function _getList()
+    {
+        global $db, $language;
+        
+        $sql = "SELECT bd.title, bd.description 
+            FROM " . $this->_table . " b
+            LEFT JOIN " . $this->_table_lang . " bd 
+            ON b.id = bd.id AND bd.language_code =?
+            WHERE b.start_date <= NOW() AND b.expire_date >= NOW() AND b.status = 1
+            ORDER BY b.sort_order";
+          
+        $result = $db->Execute($sql,[$language->code]);
+        
+        if ($result->RecordCount() > 0) { 
+            $tdf = $result->getArray();
+            
+            return $tdf;
+        }
+
+        return null;
     }
 }
