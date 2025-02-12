@@ -40,7 +40,7 @@ define('DB_ERROR_SEND_MAIL', true); // sollen überhaupt sql-Fehlermeldungen ges
  * shop frontend could look ugly
  */
 
-define('_SYSTEM_DEBUG_MANUALLY', 'false');// if set to 'true' all errors, warning will be displayed but not in backend
+define('_SYSTEM_DEBUG_MANUALLY', 'true');// if set to 'true' all errors, warning will be displayed but not in backend
 if((defined('_SYSTEM_DEBUG') && _SYSTEM_DEBUG=='true') || (_SYSTEM_DEBUG_MANUALLY=='true' && USER_POSITION != 'admin')){
 		error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
         if (constant('USER_POSITION') == 'store') ini_set("display_errors", "1");

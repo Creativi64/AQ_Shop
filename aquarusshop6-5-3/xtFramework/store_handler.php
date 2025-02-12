@@ -29,6 +29,8 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 
 global $xtPlugin, $db;
 
+include _SRV_WEBROOT . _SRV_WEB_FRAMEWORK . 'classes/class.multistore.php'; 
+
 $store_handler = new multistore();
 $store_handler->determineStoreId();
 $store_handler->loadStoreConfigMainData(); // backend > shop-einstellungen > xyz-shop > mein shop  // ohne sprachabhängige daten
