@@ -16,11 +16,15 @@ services:
       - aq_shop_network
 
   web:
-    build: ./aquarusshop6-5-3  
-    #build: C:/Users/creativi/Downloads/testShop/
+    build: ./aquarusshop6-5-3    # Use the Dockerfile in the ./web folder.
+     # image: php:7.2-apache   # Use the Dockerfile in the ./web folder.
     container_name: web_server
     ports:
-      - 80:80 
+      - "80:80"   # HTTP port mapping (adjust as needed)
+    # volumes: 
+    #  - "E:/GitRepos/AQ_Shop/aquarusshop6-5-3/:/app:ro"
+    #  - "E:/GitRepos/AQ_Shop/aquarusshop6-5-3/docker_config.php:/app/conf/config.php"
+      # - "E:/GitRepos/AQ_Shop/Docker/local_php.ini:/app/php.ini" 
     depends_on:
       - db
     networks:
@@ -29,9 +33,11 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
-    environment: 
+    environment:
+      # Connect to the "db" service by its service name
       PMA_HOST: mysql_db
-      PMA_PORT: 3306 
+      PMA_PORT: 3306
+      # Pass in the root password if needed
       MYSQL_ROOT_PASSWORD: rootpass
       UPLOAD_LIMIT: 64M  
     ports:
