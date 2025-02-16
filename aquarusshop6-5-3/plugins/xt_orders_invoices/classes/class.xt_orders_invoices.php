@@ -33,6 +33,10 @@ defined('_VALID_CALL') or die('Direct Access is not allowed.');
 require_once _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_orders_invoices/classes/class.xt_orders_invoices_templates.php';
 require_once _SRV_WEBROOT . 'xtFramework/admin/classes/class.adminDB_DataSave.php';
 
+require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_orders_invoices/classes/vendor/autoload.php';
+require_once _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_orders_invoices/classes/class.xt_electronic_invoice.php';
+use horstoeko\zugferd\ZugferdDocumentPdfMerger;
+
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
@@ -277,9 +281,28 @@ class xt_orders_invoices
         });";
         $rowActionsFunctions['xt_orders_invoices_cancel'] = $js;
 
+
+/*
+        $rowActions[] = array('iconCls' => 'xt_electronic_invoice_view', 'qtipIndex' => 'qtip1', 'tooltip' => 'XML');
+        if ($this->url_data['edit_id'])
+            $js = "var edit_id = ".$this->url_data['edit_id'].";";
+        else
+            $js = "var edit_id = record.id;";
+        $extF = new ExtFunctions();
+        $js.= $extF->_RemoteWindow("XML","XML","adminHandler.php?plugin=xt_orders_invoices&load_section=xt_electronic_invoice&noFilter=true&pg=getXMLDocument&type=invoice&id='+edit_id+'", "", array(), 800, 600).' new_window.show();';
+
+        $rowActionsFunctions['xt_electronic_invoice_view'] = $js;
+*/
+
+        $rowActions[] = array('iconCls' => 'xt_electronic_invoice_view', 'qtipIndex' => 'qtip1', 'tooltip' => 'XML');
+
+        $js = "window.open('adminHandler.php?plugin=xt_orders_invoices&load_section=xt_electronic_invoice".$add_to_url."&pg=getXMLDocument&type=invoice&id='+".$invoice_id_string.", '');";
+
+        $rowActionsFunctions['xt_electronic_invoice_view'] = $js;
+
         $rowActions[] = array('iconCls' => 'xt_orders_invoices_email', 'qtipIndex' => 'qtip1', 'tooltip' => XT_ORDERS_INVOICES_BUTTON_EMAIL);
         $rowActionsFunctions['xt_orders_invoices_email'] = $this->getEmailFormHandler();
-
+        ($plugin_code = $xtPlugin->PluginCode('class.xt_orders_invoices.php:_getParams_rowActions')) ? eval($plugin_code) : false;
         $params['rowActions'] = $rowActions;
         $params['rowActionsFunctions'] = $rowActionsFunctions;
 		($plugin_code = $xtPlugin->PluginCode('class.xt_orders_invoices.php:_getParams_bottom')) ? eval($plugin_code) : false;
@@ -435,6 +458,14 @@ class xt_orders_invoices
 
         $this->_getPdfContent($data);
     }
+
+    public function getInvoiceContent($id) {
+        $data = $this->_buildDataByInvoiceId($id);
+        if (!$data) {
+            return false;
+        }
+        return $data;
+    }
     
 	public function printButtonPDF() {
         global $db;
@@ -561,16 +592,57 @@ class xt_orders_invoices
         $dompdf->loadHtml($html);
         $dompdf->render();
 
+
+        ($plugin_code = $xtPlugin->PluginCode(__CLASS__.'_'.__FUNCTION__.':e_invoice')) ? eval($plugin_code) : false;
+        if(isset($plugin_return_value))
+            return $plugin_return_value;
+
+
+        require_once _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_orders_invoices/classes/class.xt_electronic_invoice.php';
+        $eInvoice = new xt_electronic_invoice();
+
+        $_xmlInvoice = false;
+        if (isset($data['invoice']['invoice_id'])) {
+            $xmlData = $eInvoice->generateXMLDocument($data['invoice']['invoice_id']);
+            if ($xmlData!== false) $_xmlInvoice = true;
+        }
+
+
         if ($returnPdf) {
-            $s = $dompdf->output();
-            //file_put_contents( _SRV_WEBROOT . _SRV_WEB_EXPORT. $fname . '.pdf', $s);
-            return $s;
+            if ($_xmlInvoice) {
+                $pdfMerger = new ZugferdDocumentPdfMerger($xmlData, $dompdf->output());
+                $pdfMerger->generateDocument();
+                return $pdfMerger->downloadString('dummyfilename.pdf');
+            } else {
+                $s = $dompdf->output();
+                return $s;
+            }
+            
         } else {
+            if ($_xmlInvoice) {
+                if (ob_get_level()) {
+                    ob_end_clean();
+                }
+
+                $pdfMerger = new ZugferdDocumentPdfMerger($xmlData, $dompdf->output());
+                $pdfMerger->generateDocument();
+                $pdfContent = $pdfMerger->downloadString('dummyfilename.pdf');
+
+                header("Content-type: application/pdf");
+                header("Content-disposition: inline; filename=".$fname.".pdf");
+                echo $pdfContent;
+                die();
+
+            } else {
+
             if (ob_get_level())
                 ob_end_clean();
             $dompdf->stream($fname . '.pdf', array('Attachment' => XT_ORDERS_INVOICES_SEND_AS_ATTACHMENT));
             die();
+            }
         }
+        
+        
     }
     
     private function getPdfFileName($tpldata) {

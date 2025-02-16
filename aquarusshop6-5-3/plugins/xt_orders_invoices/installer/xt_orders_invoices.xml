@@ -2,17 +2,17 @@
 <xtcommerceplugin>
 
     <code>xt_orders_invoices</code>
-    <version>6.1.0</version>
+    <version>6.2.1</version>
     <type>core</type>
 
-    <minimum_store_version>6.6.0</minimum_store_version>
-    
+    <minimum_store_version>6.6.7</minimum_store_version>
+
     <developer>xt:Commerce</developer>
     <url>https://www.xt-commerce.com</url>
-	
+
 	<marketplace_link><![CDATA[https://addons.xt-commerce.com/index.php?page=product&info=410]]></marketplace_link>
 	<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=917600]]></documentation_link>
-	
+
 	    <doc_links>
         <doc_link>
             <key>xt_orders_invoices</key>
@@ -35,7 +35,7 @@
             <type>config_group</type>
         </doc_link>
     </doc_links>
-	
+
 	<title>PDF-Rechnung (Orders invoices)</title>
     <icon>xt-commerce_logo.jpg</icon>
 
@@ -55,7 +55,7 @@
            require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_orders_invoices/installer/uninstall_pb.php';
         ]]>
     </db_uninstall>
-	
+
     <plugin_code>
         <code>
             <hook>order_edit.php:getMemoPanel_button_add</hook>
@@ -142,6 +142,26 @@
             <order>1001</order>
             <active>1</active>
         </code>
+        <code>
+            <hook>class.customer.php:_getParams_header</hook>
+            <phpcode>
+                <![CDATA[
+                    require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_orders_invoices/hooks/class.customer.php__getParams_header.php';
+                ]]>
+            </phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.customers_status.php:_getParams</hook>
+            <phpcode>
+                <![CDATA[
+                    require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_orders_invoices/hooks/class.customer.php__getParams_header.php';
+                ]]>
+            </phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
     </plugin_code>
 
     <configuration>
@@ -212,6 +232,95 @@
 			<bp>
             <title>Enviar fatura ou mudar o status</title>
             </bp>
+        </config>
+        <config>
+            <key>XT_ELECTRONIC_INVOICE_SELLER_TC_NAME</key>
+            <value></value>
+            <type>textfield</type>
+            <de>
+                <title>Trade Contact Name</title>
+            </de>
+            <en>
+                <title>Trade Contact Name</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_ELECTRONIC_INVOICE_SELLER_TC_DEPARTMENT</key>
+            <value></value>
+            <type>textfield</type>
+            <de>
+                <title>Trade Contact Abteilung</title>
+            </de>
+            <en>
+                <title>Trade Contact Department</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_ELECTRONIC_INVOICE_SELLER_TC_PHONE</key>
+            <value></value>
+            <type>textfield</type>
+            <de>
+                <title>Trade Contact Telefon</title>
+            </de>
+            <en>
+                <title>Trade Contact Phone</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_ELECTRONIC_INVOICE_SELLER_TC_EMAIL</key>
+            <value></value>
+            <type>textfield</type>
+            <de>
+                <title>Trade Contact E-Mail</title>
+            </de>
+            <en>
+                <title>Trade Contact E-Mail</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_ELECTRONIC_INVOICE_SELLER_IBAN</key>
+            <value></value>
+            <type>textfield</type>
+            <de>
+                <title>Bank - IBAN</title>
+            </de>
+            <en>
+                <title>Bank - IBAN</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_ELECTRONIC_INVOICE_SELLER_BIC</key>
+            <value></value>
+            <type>textfield</type>
+            <de>
+                <title>Bank - BIC</title>
+            </de>
+            <en>
+                <title>Bank - BIC</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_ELECTRONIC_INVOICE_SELLER_ACCOUNT_HOLDER</key>
+            <value></value>
+            <type>textfield</type>
+            <de>
+                <title>Bank - Verfüger</title>
+            </de>
+            <en>
+                <title>Bank - Account Name</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_ELECTRONIC_INVOICE_ACTIVE</key>
+            <value>false</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>XML/E-Rechnung aktiv</title>
+            </de>
+            <en>
+                <title>activate XML/E-Invoice</title>
+            </en>
         </config>
     </configuration>
 
@@ -293,7 +402,7 @@
 			<version>1.3.6</version>
 			<to_version>1.3.7</to_version>
             <code><![CDATA[//]]></code>
-		</update>		
+		</update>
 		<update>
 			<version>1.3.7</version>
 			<to_version>1.3.8</to_version>
@@ -309,7 +418,7 @@
 		</update>
 		<update>
             <version>1.3.9</version>
-            <to_version>2.0.0</to_version> 
+            <to_version>2.0.0</to_version>
             <code><![CDATA[
             	require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_orders_invoices/installer/updates/db_update_to_2_0_0.php';
                     ]]>
@@ -447,6 +556,12 @@
             ]]>
             </code>
         </update>
+        <update>
+            <version>6.1.0</version>
+            <to_version>6.1.1</to_version>
+            <code><![CDATA[require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_orders_invoices/installer/updates/db_update_6.1.0_6.1.1.php';]]>
+            </code>
+        </update>
     </db_update>
-	
+
 </xtcommerceplugin>

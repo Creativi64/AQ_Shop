@@ -44,5 +44,14 @@ echo '
     content: "\f06e";
     font-style: normal;
     }
+
+    .xt_electronic_invoice_view::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    content: "\f1c9";
+    font-style: normal;
+    }
 ';
+
+
 

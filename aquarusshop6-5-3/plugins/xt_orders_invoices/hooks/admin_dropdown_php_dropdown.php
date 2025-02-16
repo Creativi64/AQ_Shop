@@ -22,3 +22,13 @@ if ($request['get'] == 'template_type') {
 
     ($plugin_code = $xtPlugin->PluginCode('dropdown_data:template_type')) ? eval($plugin_code) : false;
 }
+
+
+if ($request['get'] == 'profile_e_invoice') {
+    $result = array();
+    $result[] = array('id' => '0', 'name' => '- none -', 'desc' => '');
+    $result[] = array('id' => '1', 'name' => 'PROFILE_MINIMUM', 'desc' => '');
+    $result[] = array('id' => '2', 'name' => 'PROFILE_BASIC', 'desc' => '');
+    $result[] = array('id' => '3', 'name' => 'PROFILE_EN16931', 'desc' => '');
+    $result[] = array('id' => '4', 'name' => 'PROFILE_XRECHNUNG', 'desc' => '');
+}

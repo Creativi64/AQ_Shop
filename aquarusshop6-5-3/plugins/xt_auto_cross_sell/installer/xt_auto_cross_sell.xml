@@ -2,10 +2,10 @@
 <xtcommerceplugin>
 
     <code>xt_auto_cross_sell</code>
-    <version>5.1.2</version>
+    <version>5.1.4</version>
     <type>core</type>
 
-    <minimum_store_version>6.2.2</minimum_store_version>
+    <minimum_store_version>6.6.6</minimum_store_version>
 
     <developer>xt:Commerce</developer>
     <url>https://www.xt-commerce.com</url>

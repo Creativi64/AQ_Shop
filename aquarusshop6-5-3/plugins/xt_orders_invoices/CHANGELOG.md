@@ -1,3 +1,6 @@
+## [6.2.1]
+- Anpassung für E-Rechnungen (Deutschland) X-Rechnung und ZUGFeRD
+
 ## [6.1.0]
 - Anpassung für Smarty 5
 - xt min Version 6.6

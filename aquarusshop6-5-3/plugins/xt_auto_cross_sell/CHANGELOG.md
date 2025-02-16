@@ -1,3 +1,6 @@
+## [5.1.4]
+- FIX Anpassung an neuen Konstruktor getProductSQL_query
+
 ## [5.1.2]
 - FIX wenn Anzeige-Limit unterschritten wird werden keine Artikel angezeigt
 
