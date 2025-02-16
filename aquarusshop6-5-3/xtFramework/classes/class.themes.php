@@ -930,7 +930,9 @@ class themes extends xt_backend_cls {
                         require_once _SRV_WEBROOT.'plugins/xt_cleancache/classes/class.xt_cleancache.php';
 
                         $cleanCache = new cleancache();
-                        $cleanCache->cleanTemplateCached('all');
+                        $cleanCache->cleanup('cache_css');
+                        $cleanCache->cleanup('cache_javascript');
+                        $cleanCache->cleanup('cache_dir_templates_c');
                     }
 
                 } catch (Exception $e)

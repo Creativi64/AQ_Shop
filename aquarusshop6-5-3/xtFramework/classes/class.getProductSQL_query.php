@@ -26,13 +26,16 @@
  */
 
 defined('_VALID_CALL') or die('Direct Access is not allowed.');
-
+#[AllowDynamicProperties]
 class getProductSQL_query extends SQL_query
 {
-	function __construct() {
+    public array $config = [];
+	function __construct($config = []) {
 		global $xtPlugin;
 
 		parent::__construct();
+
+        $this->config = $config;
 
 		$this->setSQL_TABLE(TABLE_PRODUCTS . " p ");
 		$this->setSQL_WHERE(" p.products_id != '' ");

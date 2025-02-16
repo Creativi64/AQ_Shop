@@ -72,6 +72,8 @@ function froala_editorInit(sb, ct, position)
         {
             //enter: FroalaEditor.ENTER_DIV,
 
+            fontSize: ['8', '9', '10', '11', '12', '14', '18', '24', '30', '36', '48', '60', '72', '96'],
+
             heightMin: froalaHeightMin, // aus ejsadmin.php
             heightMax: froalaHeightMax, // aus ejsadmin.php
 

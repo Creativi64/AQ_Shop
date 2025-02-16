@@ -85,7 +85,7 @@ class plugin extends xt_backend_cls
             */
             'http_errors' => false,
             'connect_timeout' => 5,
-            'timeout' => 5
+            'timeout' => 20
         ] );
 
     }

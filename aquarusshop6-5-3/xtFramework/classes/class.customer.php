@@ -1385,13 +1385,13 @@ class customer extends check_fields{
                 global $language;
                 $lang = $_SESSION['selected_language'] ? $_SESSION['selected_language'] : $language->default_language;
 
-                $url_backend = _SRV_WEB.'adminHandler.php?parentNode=node_customer&openRemoteWindow=addProducts&plugin=order_edit&load_section=order_edit_new_order&pg=openNewOrderTabBackend&customers_id=';
+                $url_backend = _SRV_WEB.'adminHandler.php?openRemoteWindow=addProducts&plugin=order_edit&load_section=order_edit_new_order&pg=openNewOrderTabBackend&customers_id=';
                 $js_backend  = "var customers_id = record.data.customers_id;\n";
                 $js_backend .= "addTab('".$url_backend."' + customers_id,'".__text('TEXT_NEW_ORDER')." ' + record.data.customers_email_address);\n";
                 $js_backend .= "var a = 0;\n";
 
                 $js_frontend  = "var customers_id = record.data.customers_id;\n";
-                $url_frontend = _SRV_WEB. "adminHandler.php?parentNode=node_customer&plugin=order_edit&load_section=order_edit_new_order".$add_to_url."&pg=openNewOrderWindowFrontend&customers_email=";
+                $url_frontend = _SRV_WEB. "adminHandler.php?plugin=order_edit&load_section=order_edit_new_order".$add_to_url."&pg=openNewOrderWindowFrontend&customers_email=";
                 $js_frontend .= "
                     //console.log(encodeURIComponent(record.data.customers_email_address));\n
                     window.open('".$url_frontend."'+encodeURIComponent(record.data.customers_email_address)+'&customers_id='+customers_id,'_blanko');\n";

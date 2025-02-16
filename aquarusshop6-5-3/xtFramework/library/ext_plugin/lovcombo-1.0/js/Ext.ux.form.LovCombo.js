@@ -224,8 +224,9 @@ Ext.ux.form.LovCombo = Ext.extend(Ext.form.ComboBox, {
 			if(this.valueField) {
 				this.store.clearFilter();
 				this.store.each(function(r) {
+					let val = isNaN(r.get(this.valueField)) ?
 					var checked = !(!v.match(
-						 '(^|' + this.separator + ')' + RegExp.escape(r.get(this.valueField))
+						 '(^|' + this.separator + ')' + RegExp.escape(r.get(this.valueField).toString())
 						+'(' + this.separator + '|$)'))
 					;
 

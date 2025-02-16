@@ -96,10 +96,17 @@ class xt_cron extends xt_backend_cls
                             Ext.MessageBox.alert('Message', '".__text('TEXT_CRON_STARTED')."');
                         }
                         else {
-                            Ext.MessageBox.alert('Message', '".__text('TEXT_ERROR_MESSAGE')."');
+                            let msg = '';
+                            var json = Ext.util.JSON.decode(xhr.responseText);
+                            if (typeof(json)=='object' && json.msg)
+                            {
+                                msg = json.msg;
+                            }
+                            Ext.MessageBox.alert('Message', '".__text('TEXT_ERROR_MESSAGE')." ' + msg);
                         }
                     },
-                    failure: function(){
+                    failure: function(response, opts){
+                        console.log(response, opts)
                         Ext.MessageBox.alert('Message', '".__text('TEXT_ERROR_MESSAGE')."');
                     }
                 });

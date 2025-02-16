@@ -98,7 +98,15 @@ function ADODB_Error_Handler($dbms, $fn, $errno, $errmsg, $p1, $p2, &$thisConnec
 		 * dont send twice per x minutes
 		*/
 		$sendErrorMail = defined('DB_ERROR_SEND_MAIL') ? constant('DB_ERROR_SEND_MAIL') : true;
-		if ($ADODB_THROW_EXCEPTIONS !== true && $sendErrorMail)
+		$dontSendOnErrorNumbers = [
+			1040,	//  Too many connections
+			1213,  	//  Deadlock found when trying to get lock
+			1203,	//  User xy already has more than 'max_user_connections' active connections
+			2006,	//  MySQL server has gone away
+		];
+		if(in_array($errno, $dontSendOnErrorNumbers))
+			$sendErrorMail = false;
+		if ($ADODB_THROW_EXCEPTIONS !== true)
 		{
 			$respect_min_file_age = false;
 			if( defined('DB_ERROR_MIN_MAIL_TIME')) // seconds
@@ -135,22 +143,22 @@ function ADODB_Error_Handler($dbms, $fn, $errno, $errmsg, $p1, $p2, &$thisConnec
 					file_put_contents($error_le_file, 'created by xt db error handler xtFramework/library/adodb-xt/xtcommerce-errorhandler.inc.php');
 				}
 
-				$s .= "\n SERVER_NAME => " . $_SERVER['SERVER_NAME'] . "\n";
-				$s .= "\n HTTP_HOST => " . $_SERVER['HTTP_HOST'] . "\n\n";
-				$s .= "\n Current Shop Id = " . $store_handler->shop_id;
+				if($sendErrorMail) {
+					$s .= "\n SERVER_NAME => " . $_SERVER['SERVER_NAME'] . "\n";
+					$s .= "\n HTTP_HOST => " . $_SERVER['HTTP_HOST'] . "\n\n";
+					$s .= "\n Current Shop Id = " . $store_handler->shop_id;
 
-				if (!empty($store_handler))
-				{
-					$s .= "\n All Stores:";
-					foreach ($store_handler->getStores() as $st)
-					{
-						$s .= " \n id: " . $st["id"] . ' - Name: ' . $st["text"];
+					if (!empty($store_handler)) {
+						$s .= "\n All Stores:";
+						foreach ($store_handler->getStores() as $st) {
+							$s .= " \n id: " . $st["id"] . ' - Name: ' . $st["text"];
+						}
 					}
-				}
 
-				$s .= "\n\n see xtLogs/db_error.log";
-				$sys_version = defined('_SYSTEM_VERSION') ? constant('_SYSTEM_VERSION') : '';
-				@mail(_CORE_DEBUG_MAIL_ADDRESS, 'SQL Error - xt:Commerce ' . $sys_version, $s);
+					$s .= "\n\n see xtLogs/db_error.log";
+					$sys_version = defined('_SYSTEM_VERSION') ? constant('_SYSTEM_VERSION') : '';
+					@mail(_CORE_DEBUG_MAIL_ADDRESS, 'SQL Error - xt:Commerce ' . $sys_version, $s);
+				}
 			}
 
 		}

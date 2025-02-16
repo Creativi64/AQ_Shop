@@ -81,7 +81,7 @@ class product  extends xt_backend_cls{
 
 	function __construct($pID=0,$size='default', $qty=1, $force_lang='', $pos='product_info') {
 
-		$this->sql_products = new getProductSQL_query();
+		$this->sql_products = new getProductSQL_query(['products_id'=>$pID]);
 		if($pos)
 			$this->sql_products->setPosition($pos);
 
@@ -495,7 +495,7 @@ class product  extends xt_backend_cls{
 		($plugin_code = $xtPlugin->PluginCode('class.product.php:_getPrice_price')) ? eval($plugin_code) : false;
 
         $priceOverride = $order_edit_controller::getPriceOverride($orderId, $this->pID);
-        if ($priceOverride
+        if ((is_array($priceOverride) || is_numeric($priceOverride))
             && !in_array($_REQUEST['pg'], ['calculateGraduatedPrice'], 'overview')
             //&& !in_array($_REQUEST['load_section'], ['order_edit_edit_paymentShipping'])
         )
@@ -982,6 +982,8 @@ class product  extends xt_backend_cls{
                     $db->Execute("DELETE FROM " . $tbl . " WHERE products_id = ?", array($id));
                 }
             }
+
+            $this->cleanCache($id);
 			
 			($plugin_code = $xtPlugin->PluginCode('class.product.php:_delete_bottom')) ? eval($plugin_code) : false;
 		}
@@ -1004,6 +1006,8 @@ class product  extends xt_backend_cls{
             $db->Execute("DELETE FROM " . TABLE_CUSTOMERS_BASKET . " WHERE products_id= ?", array($id));
 			
 		($plugin_code =$xtPlugin->PluginCode('class.product.php:_setStatus_bottom')) ? eval($plugin_code) : false;
+
+        $this->cleanCache($id);
     }
 
 	function _getTax($id){
@@ -1810,7 +1814,8 @@ class product  extends xt_backend_cls{
                     switch ($url_data_sort)
                     {
                         default:
-                            $sort_table = $sort_join_table = $this->_table_lang;
+                            $sort_join_table = $this->_table_lang;
+                            $sort_table = 'pd_join';  // alias pd_join wird erst unten deklariert
                             $sort_col = $url_data_sort;
                             if(!empty($sql_where))
                                 $sql_where .= ' AND ';
@@ -1849,7 +1854,7 @@ class product  extends xt_backend_cls{
 			if($show_productList==1){
 			    if($sort_join_table)
                 {
-                    $table_data->setJoinCondtion(' LEFT JOIN '.$sort_join_table .' ON '.$sort_join_table.'.products_id = '. $this->_table.'.products_id ');
+                    $table_data->setJoinCondtion(' LEFT JOIN '.$sort_join_table .' pd_join ON pd_join.products_id = '. $this->_table.'.products_id ');
                 }
 				$data = $table_data->getData();
 				if(is_array($data)){
@@ -1892,10 +1897,10 @@ class product  extends xt_backend_cls{
 				$data_count = $table_data->_total_count;
 				// Wenn wir nach dem namen suchen eralten wir immer eine doppelte anzahl von einträgen im _total_count
                 // müsste irgendwie auf store (?) eingegrenzt werden in DataRead
-                // hu, das ist dirty.
+                // hu, das ist dirty.  mai 2021
                 if(FormFilter::setTxt_XT5('filter_product_name', 'product'))
                 {
-                    $data_count /= 2;
+                    //$data_count /= 2;  // dez 2024 FZI-479-62502
                 }
 
 			}else{
@@ -2140,12 +2145,80 @@ class product  extends xt_backend_cls{
 			$obj->failed = true;
 		}
 
-        $deleteCache = true;
+        $this->cleanCache($data['products_id'],
+            [
+                'isMaster' =>               $data["products_master_flag"],
+                'products_model' =>         $data["products_model"],
+                'isVariant' =>              !empty($data["products_master_model"]) ? 1 : 0,
+                'products_master_model' =>  $data["products_master_model"]
+            ]
+        );
+
 		($plugin_code = $xtPlugin->PluginCode('class.product.php:_set_bottom')) ? eval($plugin_code) : false;
-        if ($deleteCache)
-            array_map('unlink', glob(_SRV_WEBROOT.'cache/__product_'.$data['products_id'].'__*product.html.php'));
+
 		return $obj;
 	}
+
+    /**
+     * @param $products_id int|string
+     * @param array $options
+     *          isMaster    0|1
+     *          isVariant   0|1
+     *          products_model  string
+     *          products_model  string
+     *          ignore_dependencies flag only  zb/evtl für notify_on_restock
+     * @return void
+     */
+    static function cleanCache(int|string $products_id, array $options = []): void
+    {
+        global $db, $xtPlugin;
+
+        $products_id = (int) $products_id;
+        $products_ids = [$products_id];
+
+        if(!isset($options['ignore_dependencies']))
+        {
+            // m/s start
+            if (!array_key_exists('isMaster', $options)) {
+                $options['isMaster'] = (int)$db->GetOne("SELECT products_master_flag FROM " . TABLE_PRODUCTS . " WHERE products_id = ?", [$products_id]);
+            }
+            if (!array_key_exists('isVariant', $options)) {
+                $options['isVariant'] = (int)$db->GetOne("SELECT 1  FROM " . TABLE_PRODUCTS . " WHERE products_master_model > '' AND products_id = ?", [$products_id]);
+            }
+
+            if ($options['isMaster']) {
+                if (!array_key_exists('products_model', $options)) {
+                    $options['products_model'] = $db->GetOne("SELECT products_model FROM " . TABLE_PRODUCTS . " WHERE id = ?", [$products_id]);
+                }
+                $variant_ids = $db->GetArray("SELECT products_id FROM " . TABLE_PRODUCTS . " WHERE products_master_model = ?", [$options['products_model']]);
+                $variant_ids = array_column($variant_ids, 'products_id');
+                $products_ids = array_merge($products_ids, $variant_ids);
+            } else if ($options['isVariant']) {
+                if (!array_key_exists('products_master_model', $options)) {
+                    $options['products_master_model'] = $db->GetOne("SELECT products_master_model FROM " . TABLE_PRODUCTS . " WHERE products_id = ?", [$products_id]);
+                }
+
+                $variant_ids = $db->GetArray("SELECT products_id FROM " . TABLE_PRODUCTS . " WHERE products_master_model = ?", [$options['products_master_model']]);
+                $variant_ids = array_column($variant_ids, 'products_id');
+                $products_ids = $variant_ids;
+
+                $master_id = $db->GetOne("SELECT products_id FROM " . TABLE_PRODUCTS . " WHERE products_model = ?", [$options['products_master_model']]);
+                $products_ids[] = $master_id;
+            }
+            // m/s end
+        }
+
+        $deleteCache = true;
+        ($plugin_code = $xtPlugin->PluginCode('class.product.php:cleanCache:_top')) ? eval($plugin_code) : false;
+
+        if ($deleteCache)
+        {
+            foreach ($products_ids as $product_id)
+            {
+                array_map('unlink', glob(_SRV_WEBROOT . 'cache/__product_' . $product_id . '__*product.html.php'));
+            }
+        }
+    }
 
 	/*
 		rebuild data depending on selected reload store for each store and language

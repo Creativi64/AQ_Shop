@@ -45,9 +45,9 @@ function setInt($key){
 
 if(FormFilter::setTxt_XT5('filter_product_name', 'product')){
 
-   $ad_table = ", ".TABLE_PRODUCTS_DESCRIPTION;
-   $where_ar[] = TABLE_PRODUCTS_DESCRIPTION.".products_id = ".TABLE_PRODUCTS.".products_id"; 
-   $where_ar[] = " products_name like '%".$_SESSION['filters_product']['filter_product_name']."%'";
+   $ad_table = ", ".TABLE_PRODUCTS_DESCRIPTION. " pd_filter ";
+   $where_ar[] = " pd_filter.products_id = ".TABLE_PRODUCTS.".products_id";
+   $where_ar[] = " pd_filter.products_name like '%".$_SESSION['filters_product']['filter_product_name']."%'";
 }
 
 if(FormFilter::setTxt_XT5('filter_products_model', 'product'))
@@ -57,7 +57,7 @@ if(FormFilter::setTxt_XT5('filter_products_model', 'product'))
 
 if (setInt('filter_permission') ||  setInt('filter_shop'))
 {
-    $isBlacklist = _SYSTEM_GROUP_PERMISSIONS == 'blacklist' ? ' NOT ':'';
+    $isBlacklist = constant('_SYSTEM_GROUP_PERMISSIONS') == 'blacklist' ? ' NOT ':'';
 
     if($isBlacklist)
     {
@@ -143,4 +143,3 @@ if(isset($_SESSION['filters_product']['filter_master_slave_products']) && $_SESS
 	$where_ar[] = " ((products_master_model !='') or (products_master_flag = 1) )  ";     
 
 ($plugin_code = $xtPlugin->PluginCode('class.productsPost.php:bottom')) ? eval($plugin_code) : false;
-?>

@@ -73,19 +73,15 @@ class xt_cache
         unset($s);
     }
 
-    public static function deleteCache($name = '')
+    public static function deleteCache($which = '')
     {
         $path = self::$_cache_dir.self::$_prefix;
-        if(!empty($name))
+        if(!empty($which))
         {
-            $path = self::$_cache_dir.self::$_prefix.'.'.$name;
+            $path .= '.'.$which;
         }
 
-        $files = glob($path.'.*');
-        foreach($files as $file)
-        {
-            unlink($file);
-        }
+        array_map('unlink', glob($path.'*'));
     }
 
     protected static function getFile($name, $props = [])

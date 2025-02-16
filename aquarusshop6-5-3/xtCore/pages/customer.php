@@ -765,7 +765,7 @@ if(isset($page->page_action) && $page->page_action != ''){
                     else{
                         include _SRV_WEBROOT.'/xtFramework/library/captcha/php-captcha.inc.php';
                         if (PhpCaptcha::Validate($_POST['captcha'])) {
-                            $info->_addInfo(SUCCESS_CAPTCHA_VALID,'success');
+                            $info->_addInfo(SUCCESS_CAPTCHA_VALID,'warning');
                             $remember_customer = new customer;
                             $remember_customer->_customer($record->fields['customers_id']);
                             $remember_customer->_sendPasswordOptIn();
@@ -775,7 +775,7 @@ if(isset($page->page_action) && $page->page_action != ''){
                         }
                     }    
 				} else {
-					$info->_addInfo(ERROR_MAIL_NOT_FOUND);
+					$info->_addInfo(ERROR_MAIL_NOT_FOUND,'warning');
 				}
 			}//without captcha
 			elseif(isset ($_POST['email']))
@@ -790,12 +790,12 @@ if(isset($page->page_action) && $page->page_action != ''){
 
                 $record = $db->Execute("SELECT customers_id FROM ".TABLE_CUSTOMERS." WHERE customers_email_address = ? ".$store_sql." ".$status_sql, $input_arr);
 				if ($record->RecordCount()==1) {
-                    $info->_addInfo(SUCCESS_CAPTCHA_VALID,'success');
+                    $info->_addInfo(SUCCESS_CAPTCHA_VALID,'warning');
                     $remember_customer = new customer;
                     $remember_customer->_customer($record->fields['customers_id']);
                     $remember_customer->_sendPasswordOptIn();
                 } else {
-					$info->_addInfo(ERROR_MAIL_NOT_FOUND);
+					$info->_addInfo(ERROR_MAIL_NOT_FOUND,'warning');
 				}
             }
             

@@ -49,14 +49,14 @@ function smarty_function_price_table($params, & $smarty) {
 
     if (count($price_matrix)) {
 
-        // entweder wir nehemn den wirklich originalen preis als grundpreis
-        // das wäre also eine streichpreis
-        // der wird aber im Template so nicht ausgegben, weil so nicht gedacht
-        // kundengruppenpreis ist kein Striechpreis
+        // entweder wir nehmen den wirklich originalen preis als grundpreis
+        // das wäre also ein streichpreis
+        // der wird aber im Template so nicht ausgegeben, weil so nicht gedacht
+        // kundengruppenpreis ist kein Streichpreis
         // $base_price = $p_info->data['products_price']['original_price_otax'];
 
         // daher nehmen wir den ersten gruppenpreis auf als 'Grundpreis'
-        // zur berechung der %
+        // zur berechnung der %
         $base_price = $price_matrix[0]['price'];
 
 		// calculate taxes
@@ -76,7 +76,7 @@ function smarty_function_price_table($params, & $smarty) {
 			$g_price = $price_matrix[$i]['price'];
 
             $saving = 0;
-            // saving nur erzeugen wenn der festgelegte grundpreis grösser als der aktuelle matrix-preis
+            // saving nur erzeugen, wenn der festgelegte grundpreis grösser als der aktuelle matrix-preis
             if ($g_price!=0 && $base_price!=0 && $base_price > $price_matrix[$i]['price']) {
                 $saving = 100-($g_price/$base_price*100);
                 $saving = round($saving,0);
@@ -85,9 +85,9 @@ function smarty_function_price_table($params, & $smarty) {
             $g_price = $price->_AddTax($g_price, $p_info->data['products_tax_rate']);
 			$g_price=array('plain'=>$g_price,'formated'=>$price->_StyleFormat($g_price));
 			
-			if ($p_info->data['products_vpe_status'] == 1) {
+			if ($p_info->data['products_vpe_status'] == 1 && $p_info->data['products_vpe_value'] > 0) {
 				$pricePerUnit_num = $price->_StyleFormat($g_price['plain']/$p_info->data['products_vpe_value']);
-				$perUnitHeader_str = TEXT_SHIPPING_BASE_PER.'&nbsp;'.$p_info->data['base_price']['vpe']['name'];
+				$perUnitHeader_str = constant('TEXT_SHIPPING_BASE_PER').'&nbsp;'.$p_info->data['base_price']['vpe']['name'];
 
 				$group_prices[] = array ('QTY' => $qty, 'PRICE' => $g_price,'saving'=>$saving, 'pricePerUnit'=>$pricePerUnit_num, 'perUnitHeader'=>$perUnitHeader_str);
 			}

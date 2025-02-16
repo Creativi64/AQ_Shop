@@ -1205,7 +1205,7 @@ class cart {
 				// but omit product->_buidData
 				$tmp_p = product::getProduct(0);
 				$tmp_p->pID = $record->fields['products_id'];
-				$tmp_p->sql_products = new getProductSQL_query();
+				$tmp_p->sql_products = new getProductSQL_query(['products_id' => $tmp_p->pID, 'fnc' => '_rewriteCart']);
 				$is_product = $tmp_p->getProductData('price','') != false;
 
 				if($is_product)
