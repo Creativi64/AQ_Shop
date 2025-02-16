@@ -35,10 +35,10 @@ function enableFoundingSources() {
             });
         } catch (e) {
             console.warn('enableFoundingSources: error');
-            console.log(e)
+            console.log(e);
         }
     } else {
-        console.warn("paypal checkout no available. could not resolve eligible fundingSource's")
+        console.warn("paypal checkout no available. could not resolve eligible fundingSource's");
     }
 }
 
@@ -66,9 +66,10 @@ function enablePaypalCardForm() {
             },
 
             createOrder: (data, actions) => ppcCreateOrder('card_processing', actions),
-            onApprove: (data, actions) => { console.log(data, actions)},
+            onApprove: (data, actions) => { console.log('enablePaypalCardForm onApprove', data, actions)},
             onError: function (err) {
-                console.log(err);
+                console.log('enablePaypalCardForm onError', err);
+                ppcp_log_js('enablePaypalCardForm onError', {}, err);
                 if (err.message) alert(err.message);
                 ppcWaitModal('hide');
                 //window.location.href = window.XT.baseUrl + '?page=checkout&page_action=payment&error=ERROR_PAYMENT'
@@ -253,7 +254,7 @@ function enablePaypalButton(fundingSource, position) {
             }).render(selector);
         } catch (e) {
             console.warn('enablePaypalButton: error creating paypal button for selector [' + ppc_button_selector + '_' + position + ']');
-            console.log(e)
+            console.log(e);
         }
     } else {
         console.warn('enablePaypalButton: paypal checkout no available. could not create button for fundingSource ' + fundingSource)
@@ -887,6 +888,41 @@ function ppcSavePaymentMethodInfoModal(close) {
     }
 }
 
+let vaultedPaymentsDeleteLinksAdded = false;
+function addVaultedPaymentDeleteLink()
+{
+    document.querySelectorAll('[id="xt_paypal_checkout_paypal_vaulted"]', '[id="xt_paypal_checkout_card_vaulted"]').forEach(node => {
+        let link = node.querySelector(".ppcp-delete-payment-token");
+        if(link && !vaultedPaymentsDeleteLinksAdded)
+        {
+            link.addEventListener("click", ev => {
+
+                if(confirm("{txt key=TEXT_XT_PAYPAL_CHECKOUT_SAVED_PAYMENT_DELETE}")) {
+                    try {
+                        ppcWaitModal();
+                        deleteSavedPaymentMethod(link.dataset.paymentToken).
+                        then(function (response) {
+                            console.log(response);
+                            window.location.reload();
+                        }).catch((error) => {
+                            console.log('deleteSavedPaymentMethod', error);
+                        });
+                    } catch (e) {
+                        console.log(e);
+                        ppcWaitModal('hide');
+                    }
+                }
+            });
+        }
+        vaultedPaymentsDeleteLinksAdded = true;
+    })
+}
+document.addEventListener('DOMContentLoaded', function ()
+{
+    console.log('adding delete-vaulted-payment link');
+    addVaultedPaymentDeleteLink();
+});
+
 
 // Restricts input for the given textbox to the given inputFilter function.
 function setInputFilter(textbox, inputFilter, errMsg) {
@@ -1031,15 +1067,22 @@ if (window.Worker) {
 
 
 
-async function ppcp_log_js(fnc, data) {
+async function ppcp_log_js(fnc, data = {}, error = null) {
 
     let url = baseUrl + '?page=PAYPAL_CHECKOUT_LOG';
 
     if(window.Worker && logWorker !== null && typeof paypal_checkout_constant !== 'undefined') {
-        logWorker.postMessage({ url: url, ppcp_session_id: paypal_checkout_constant.PPCP_SESSION_ID, fnc:fnc, data:data });
+        logWorker.postMessage({
+            url: url,
+            ppcp_session_id: paypal_checkout_constant.PPCP_SESSION_ID,
+            fnc: fnc,
+            data: data,
+            error: error
+        });
     }
     else if(typeof paypal_checkout_constant !== 'undefined')
     {
+        console.error('ppcp log worker not available.');
         return fetch(
             url,
             {
@@ -1078,7 +1121,7 @@ let getShippingOptions_ap = countryCode => {
         return resJson;
     }).catch(error => {
         console.error('PAYPAL_CHECKOUT_GET_SHIPPING_OPTIONS_AP error. returning empty array', error);
-        ppcp_log_js('error getShippingOptions_ap', error);
+        ppcp_log_js('error getShippingOptions_ap', {}, error);
         return [];
     });
 }
@@ -1254,7 +1297,7 @@ async function setupApplepay(appendToContainer) {
                                         })
                                         .catch(error => {
                                             console.log(' error in onshippingcontactselected while retrieving shipping options', error);
-                                            ppcp_log_js('error onshippingcontactselected > getShippingOptions_ap', error);
+                                            ppcp_log_js('error onshippingcontactselected > getShippingOptions_ap', {}, error);
                                         });
                                 }
 
@@ -1284,7 +1327,7 @@ async function setupApplepay(appendToContainer) {
                                         })
                                         .catch(error => {
                                             console.log(' error in onshippingmethodselected while retrieving shipping options', error);
-                                            ppcp_log_js('error onshippingmethodselected > setShippingMethod_ap', error);
+                                            ppcp_log_js('error onshippingmethodselected > setShippingMethod_ap', {}, error);
                                         });
                                 }
 
@@ -1301,7 +1344,7 @@ async function setupApplepay(appendToContainer) {
                                         })
                                         .catch(validateError => {
                                             console.error('validateError', validateError);
-                                            ppcp_log_js('error onvalidatemerchant', validateError);
+                                            ppcp_log_js('error onvalidatemerchant', {}, validateError);
                                             session.abort();
                                         });
                                 };
@@ -1341,7 +1384,7 @@ async function setupApplepay(appendToContainer) {
                                                         .catch(captureError => {
                                                             console.error('ppc error when capture applepay', captureError);
                                                             session.completePayment(ApplePaySession.STATUS_FAILURE);
-                                                            ppcp_log_js('error when capture applepay. onpaymentauthorized > ppcCreateOrder > confirmOrder > ppcCaptureOrder', captureError);
+                                                            ppcp_log_js('error when capture applepay. onpaymentauthorized > ppcCreateOrder > confirmOrder > ppcCaptureOrder', {}, captureError);
                                                         });
 
                                                 })
@@ -1351,14 +1394,12 @@ async function setupApplepay(appendToContainer) {
 
                                                     ppcp_log_js('Error confirming order with applepay token. onpaymentauthorized > ppcCreateOrder > confirmOrder',
                                                         {
-                                                            error: confirmError,
-                                                            input: {
                                                                 orderId: ppOrderId,
                                                                 token: event && event.payment ? event.payment.token : "n/a",
                                                                 billingContact: event && event.payment ? event.payment.billingContact : "n/a",
                                                                 shippingContact: event && event.payment ? event.payment.shippingContact : "n/a"
-                                                            }
-                                                        }
+                                                            },
+                                                            confirmError
                                                     );
 
                                                 });
@@ -1367,7 +1408,7 @@ async function setupApplepay(appendToContainer) {
                                         .catch((error) => {
                                             console.log('error onpaymentauthorized > ppcCreateOrder', error);
                                             session.completePayment(ApplePaySession.STATUS_FAILURE);
-                                            ppcp_log_js('error onpaymentauthorized > ppcCreateOrder', error);
+                                            ppcp_log_js('error onpaymentauthorized > ppcCreateOrder', {}, error);
                                         });
 
                                 };
@@ -1440,7 +1481,7 @@ async function setupGooglepay() {
         }
     }
     catch(e){
-       console.log('setupGooglepay', e);
+       console.log('setupGooglePay', e);
     }
 }
 
@@ -1462,7 +1503,7 @@ function addGooglePayButton(appendToContainer) {
 
         const button =
             googlePaymentsClient.createButton({
-                onClick: onGooglePaymentButtonClicked /* To be defined later */,
+                onClick: onGooglePaymentButtonClicked,
                 allowedPaymentMethods: [baseCardPaymentMethod],
                 buttonLocale: paypal_checkout_constant.language_short
             });
@@ -1483,10 +1524,10 @@ async function onGooglePaymentButtonClicked()
         const paymentDataRequest = await getGooglePaymentDataRequest();
         const paymentsClient = getGooglePaymentsClient();
 
-        paymentsClient.loadPaymentData(paymentDataRequest).then(result => {
-
-            ppcWaitModal();
-            console.log('loadPaymentData.then', result);
+        await paymentsClient.loadPaymentData(paymentDataRequest).then(result => {
+            console.log('result' , result);
+            //alert('reload');
+            //window.location.reload();
             window.location.replace(baseUrl + '?page=checkout&page_action=payment_process')
         });
     }
@@ -1503,7 +1544,7 @@ function onGooglePaymentDataChanged(intermediatePaymentData)
         let paymentDataRequestUpdate = {};
 
         if (intermediatePaymentData.callbackTrigger === "INITIALIZE" || intermediatePaymentData.callbackTrigger === "SHIPPING_ADDRESS") {
-            if(shippingAddress.administrativeArea === "NJ") {
+            if(false && shippingAddress.administrativeArea === "NJ") { // beispiel
                 paymentDataRequestUpdate.error = getGoogleUnserviceableAddressError();
             }
             else {
@@ -1522,21 +1563,29 @@ function onGooglePaymentDataChanged(intermediatePaymentData)
 
 function onGooglePaymentAuthorized(paymentData)
 {
-    console.log('paymentData', paymentData);
+    console.log("onGooglePaymentAuthorized", 'paymentData', paymentData);
 
     return new Promise(function (resolve, reject) {
 
         processPayment(paymentData)
             .then(function (data) {
                 resolve({ transactionState: "SUCCESS" });
-                console.log('processPayment.then');
+                console.log('processPayment.then', data);
+                if(data && data.error)
+                {
+                    alert(data.error.message);
+                    window.location.reload();
+                }
             })
-            .catch(function (err) {
-                console.log('paymentData', err);
+            .catch(error => {
+                console.log('processPayment.catch', error);
+
+                ppcp_log_js('error onGooglePaymentAuthorized > processPayment', paymentData, error );
+
                 resolve({
                     transactionState: "ERROR",
                     error: {
-                        message: err.message,
+                        message: error.message,
                     },
                 });
             });
@@ -1545,6 +1594,8 @@ function onGooglePaymentAuthorized(paymentData)
 
 async function processPayment(paymentData)
 {
+    console.log("processPayment", 'paymentData', paymentData);
+
     try {
         let orderId = await ppcCreateOrder();
 
@@ -1555,32 +1606,39 @@ async function processPayment(paymentData)
 
         if (status === "APPROVED") {
             /* Capture the Order */
+            console.log('capturing g-pay order');
             const captureResponse = await ppcCaptureOrder(orderId);
+            console.log('getting g-pay order');
             const orderResponse = await ppcGetOrder(orderId);
+            console.log('checking captureResponse === orderId');
             if(captureResponse === orderId)
                 return { transactionState: "SUCCESS" };
             else
+            {
+                console.error('error google processPayment: createOrderId does not match captureOrderId', {payment_data: paymentData, captureResponse:captureResponse} );
+                ppcp_log_js('error google processPayment: createOrderId does not match captureOrderId', {payment_data: paymentData, captureResponse:captureResponse} );
                 return {
                     transactionState: "ERROR",
                     error: {
                         message: "createOrderId does not match captureOrderId",
-                    },
-            };
+                    }
+                };
+            }
         }
         else if (status === "PAYER_ACTION_REQUIRED") {
             console.log("==== Confirm Payment Completed Payer Action Required =====");
-            paypal
+            await paypal
                 .Googlepay()
-                .intiatePayerAction({ orderId: orderId })
-                .then(async () => {
+                .initiatePayerAction({ orderId: orderId })
+                .then( async () => {
                     console.log("===== Payer Action Completed ====="); /** GET Order */
-                    const orderResponse = await ppcGetOrder(orderId);
+                    const orderResponse =  await ppcGetOrder(orderId);
 
                     console.log("===== 3DS Contingency Result Fetched =====");
                     console.log(
                         orderResponse?.payment_source?.google_pay?.card?.authentication_result
                     );
-                    const captureResponse = await ppcGetOrder(orderId);
+                    const captureResponse = await ppcCaptureOrder(orderId);
                     if(orderId === orderResponse?.id)
                         return { transactionState: "SUCCESS" };
                     else
@@ -1592,10 +1650,13 @@ async function processPayment(paymentData)
                         };
                 }); }
         else {
+            console.error('error google processPayment ', { paymentData: paymentData, status: status } );
+            ppcp_log_js('error google processPayment ', {paymentData: paymentData, status: status} );
             return { transactionState: "ERROR" };
         }
 
     } catch (err) {
+        console.error("error google processPayment", err);
         return {
             transactionState: "ERROR",
             error: {

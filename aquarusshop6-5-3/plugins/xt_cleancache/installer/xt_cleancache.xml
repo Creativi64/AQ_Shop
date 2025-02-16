@@ -2,7 +2,7 @@
 	<xtcommerceplugin>
 
   <code>xt_cleancache</code>
-  <version>6.6.0</version>
+  <version>6.6.1</version>
   <type>cache</type>
   
   <minimum_store_version>6.6.5</minimum_store_version>

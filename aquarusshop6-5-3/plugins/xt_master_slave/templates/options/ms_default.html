@@ -67,6 +67,14 @@
 {literal}
 <script>
 	document.addEventListener("DOMContentLoaded", function(event) {
+
+		let optionsForm = document.getElementById("ms_options_form");
+		if(optionsForm)
+		{
+			let action = optionsForm.getAttribute('action');
+			optionsForm.setAttribute('action', action + '#ms_options_select');
+		}
+
         var selectedColorText = '';
         $('.optionSelector').hover(
             function(){

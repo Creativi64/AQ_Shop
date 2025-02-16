@@ -67,38 +67,4 @@
         }
     </script>
 {/if}
-{if !$ppcp_payments_page_script_rendered}
-    <script>
-        document.addEventListener('DOMContentLoaded', function ()
-        {
-            document.querySelectorAll('[id$="_vaulted"]').forEach(node => {
-                let link = node.querySelector(".ppcp-delete-payment-token");
-                if(link)
-                {
-                    link.addEventListener("click", ev => {
-
-                        if(confirm("{txt key=TEXT_XT_PAYPAL_CHECKOUT_SAVED_PAYMENT_DELETE}")) {
-                            try {
-                                ppcWaitModal();
-                                deleteSavedPaymentMethod(link.dataset.paymentToken).
-                                then(function (response) {
-                                    console.log(response);
-                                    window.location.reload();
-                                }).catch((error) => {
-                                    console.log('deleteSavedPaymentMethod', error);
-                                });
-                            } catch (e) {
-                                console.log(e);
-                                ppcWaitModal('hide');
-                            }
-                        }
-                    });
-                }
-            })
-        });
-    </script>
-    {include file="./paypal-checkout-wait-modal-simple.tpl.html"}
-
-    {assign var=ppcp_payments_page_script_rendered value=1 scope="global"}
-{/if}
 

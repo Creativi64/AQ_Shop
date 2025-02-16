@@ -93,7 +93,7 @@ if (isset($xtPlugin->active_modules['xt_master_slave']))
 
             $_SESSION['ms_slave_open_master'] = true;
             //error_log('redir 2');
-            $xtLink->_redirect($link, xt_master_slave_functions::getRedirectCode());
+            $xtLink->_redirect($link.'#ms_options_select', xt_master_slave_functions::getRedirectCode());
         }
 
         if($_POST['ms_attribute_id'])

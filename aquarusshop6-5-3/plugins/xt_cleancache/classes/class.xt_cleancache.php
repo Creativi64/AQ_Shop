@@ -439,7 +439,11 @@ class cleancache {
     static function unlinkFilesByGlobPattern($patterns): void
     {
         if(is_string($patterns))
-            $patterns[] = $patterns;
+        {
+            $tmp = [$patterns];
+            $patterns = $tmp;
+        }
+
 
         foreach ($patterns as $pattern)
         {

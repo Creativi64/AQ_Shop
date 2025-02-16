@@ -85,7 +85,7 @@
                         }
                     })
                 }
-                console.log("ppcp display.php DOMContentLoaded. injecting sdk script");
+                console.log("ppcp display.php DOMContentLoaded. injecting ppcp sdk script");
 
                 const paypal_script = "https://www.paypal.com/sdk/js?{$query_params}";
                 let script = document.createElement("script");
@@ -93,6 +93,7 @@
                 script.setAttribute("data-partner-attribution-id", "{$partner_attribution_id}");
                 script.setAttribute("data-client-token", "{$client_token}");
                 script.setAttribute("data-user-id-token","{$user_token}");
+                script.setAttribute("onload", "console.log('PayPalSdkLoaded'); let ppcplevent = new Event('PayPalSdkLoaded'); document.dispatchEvent(ppcplevent);");
                 document.head.appendChild(script);
 
                 // apple pay laden
@@ -107,7 +108,7 @@
                 script.setAttribute("src", fraudnet_script);
                 document.head.appendChild(script);
 
-                checkPaypalScriptLoaded();
+                //checkPaypalScriptLoaded();
             }
             catch(e)
             {
@@ -117,12 +118,13 @@
 
         document.addEventListener('PayPalSdkLoaded', function ()
         {
+            console.log("PayPalSdkLoaded. injecting googlepay sdk script");
             // google pay laden
             const google_script = "https://pay.google.com/gp/p/js/pay.js";
             script = document.createElement("script");
             script.setAttribute("src", google_script);
             script.setAttribute("async", "");
-            script.setAttribute("onload", "let gpslevent = new Event('GooglePaySdkLoaded'); document.dispatchEvent(gpslevent);");
+            script.setAttribute("onload", "console.log('GooglePaySdkLoaded'); let gpslevent = new Event('GooglePaySdkLoaded'); document.dispatchEvent(gpslevent);");
             document.head.appendChild(script);
         });
 

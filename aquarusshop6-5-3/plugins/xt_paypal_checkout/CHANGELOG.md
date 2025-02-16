@@ -1,3 +1,16 @@
+## [4.3.1]
+- FIX Aufruf *Onboarding Status anzeigen* erzeugt Fehler  
+  Cannot declare class paypal_checkout, because the name is already in use
+
+## [4.3.0]
+- Anpassung Versand-Tracking  
+  Übermittlung des Warenkorbs für Verkäuferschutz
+- Logging für onboarding->_getAuthToken, onboarding->_getMerchantCredentials und 'complete onboarding clicked'
+- Vaulting überarbeitet
+- Callback überarbeitet
+- Fehler in Google Pay behoben (3ds)
+- Zahlungslink überarbeitet: Es wurde stets die Domain der backend-Anmeldung verwendet
+
 ## [4.2.2]
 - Webhook-Registrierung hinzugefügt für PAYMENT.CAPTURE.PENDING
 

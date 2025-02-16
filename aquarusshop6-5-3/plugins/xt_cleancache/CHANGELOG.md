@@ -1,4 +1,7 @@
-## [6.0.0]
+## [6.6.1]
+- FIX Uncaught Error: [] operator not supported for strings
+
+## [6.6.0]
 - Plugin überarbeitet
 
 ## [5.3.1]

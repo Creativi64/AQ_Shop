@@ -754,7 +754,7 @@ class generate_slaves extends xt_backend_cls {
 			$data = $table_data->getData($ID);
 		}else{
 			
-			$exists = $db->GetOne("SHOW TABLES LIKE ".DB_PREFIX."_tmp_products");
+			$exists = $db->GetOne("SHOW TABLES LIKE '".DB_PREFIX."_tmp_products'");
 			if(empty($exists))
         	{
         		$db->Execute("CREATE TABLE ".DB_PREFIX."_tmp_products LIKE ".TABLE_PRODUCTS);

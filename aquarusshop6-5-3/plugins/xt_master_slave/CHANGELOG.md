@@ -1,3 +1,9 @@
+## [6.5.4]
+- FIX Aufruf der Sprungmarke #ms_options_select funktionierte teilweise nicht
+
+## [6.5.3]
+- FIX SQL-Fehler "SHOW TABLES LIKE xt_tmp_products"  
+
 ## [6.5.2]
 - FIX table xt_tmp_products does not exist
 - Aufruf der Sprungmarke #ms_options_select im Optionstemplate

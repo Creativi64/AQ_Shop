@@ -58,3 +58,6 @@ function do_render_ppcp_sdk_code($render_ppcp_sdk_code)
 
 // Webhooks nicht verarbeiten
 // define('PPCP_DO_NOT_PROCESS_WEBHOOK', false);
+
+// zufälliger string and der invoice_id
+define('PAYPAL_CHECKOUT_INVOICE_ID_ADD_UNIQUE_ID', true);
