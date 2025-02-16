@@ -3,3 +3,6 @@ aquarusshop6-5-3/media**/*.jpg
 aquarusshop6-5-3/xtLogs
 aquarusshop6-5-3/cache
 aquarusshop6-5-3/plugin_cache/*
+aquarusshop6-5-3/templates_c/*html.php
+aquarusshop6-5-3/templates_c/*.cache.php
+aquarusshop6-5-3/templates_c/*tpl.php
