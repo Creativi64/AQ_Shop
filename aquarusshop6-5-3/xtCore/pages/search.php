@@ -33,7 +33,8 @@ global $xtPlugin, $manufacturer, $category, $brotkrumen, $xtLink, $info, $filter
 $search_flag = false;
 
 $_GET['keywords'] = preg_replace('/[[:^print:][äÄöÖüÜ]]/', '', $_GET['keywords']);
-$_GET['keywords'] = rawurldecode($_GET['keywords']); // using rawdecode instead decode to allow +
+$_GET['keywords'] = rawurlencode($_GET['keywords']);
+$_GET['keywords'] = rawurldecode($_GET['keywords']);// using rawdecode instead decode to allow +
 $_GET['keywords'] = $filter->_purifier->purify($_GET['keywords']);
 
 ($plugin_code = $xtPlugin->PluginCode('module_search.php:top')) ? eval($plugin_code) : false;

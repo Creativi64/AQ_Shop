@@ -490,6 +490,8 @@ class customer extends check_fields{
 		$zone_data_str = $db->GetOne('SELECT status_values FROM '.TABLE_SYSTEM_STATUS.' WHERE status_id=?', array($zone_id));
 		$zone_data = unserialize(stripslashes($zone_data_str));
 
+        $data['customers_vat_id_status'] = '0';
+
 		if ($add_type=='insert')
 		{
 			if ($data['customers_status'] == 0 || !$data['customers_status'])

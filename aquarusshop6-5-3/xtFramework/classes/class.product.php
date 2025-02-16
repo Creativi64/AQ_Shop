@@ -665,6 +665,34 @@ class product  extends xt_backend_cls{
 	}
 
 
+	
+	function getMainCategory() {
+		global $xtPlugin,$db,$language,$store_handler;
+
+		$record = $db->GetArray("SELECT
+	seo.url_text, 
+	ptc.products_id, 
+	ptc.categories_id
+FROM
+	".TABLE_SEO_URL." seo
+	INNER JOIN
+	".TABLE_PRODUCTS_TO_CATEGORIES." ptc
+	ON 
+		seo.store_id = ptc.store_id AND
+		seo.link_id = ptc.categories_id
+WHERE
+	seo.language_code = ? AND
+	ptc.store_id = ? AND
+	ptc.master_link = 1 AND
+	seo.link_type = 2 AND
+	ptc.products_id = ?",array($language->code,$store_handler->shop_id,$this->data['products_id']));
+
+	return $record;
+
+
+	}
+
+
 	/**
 	 * get special price of product
 	 *
@@ -2188,7 +2216,7 @@ class product  extends xt_backend_cls{
 
             if ($options['isMaster']) {
                 if (!array_key_exists('products_model', $options)) {
-                    $options['products_model'] = $db->GetOne("SELECT products_model FROM " . TABLE_PRODUCTS . " WHERE id = ?", [$products_id]);
+                    $options['products_model'] = $db->GetOne("SELECT products_model FROM " . TABLE_PRODUCTS . " WHERE products_id = ?", [$products_id]);
                 }
                 $variant_ids = $db->GetArray("SELECT products_id FROM " . TABLE_PRODUCTS . " WHERE products_master_model = ?", [$options['products_model']]);
                 $variant_ids = array_column($variant_ids, 'products_id');

@@ -61,6 +61,11 @@ class export extends xt_backend_cls
         $config->set('Cache.SerializerPath', _SRV_WEBROOT.'templates_c');
         $this->_purifier = new HTMLPurifier($config);
 
+        $configBasic = HTMLPurifier_Config::createDefault();
+        $configBasic->set('HTML.Allowed', 'p,hr,br,strong,ul,li,ol,em,i,table,td,tr');
+        $configBasic->set('Cache.SerializerPath', _SRV_WEBROOT.'templates_c');
+        $this->_purifierBasic = new HTMLPurifier($configBasic);
+
         $this->init($feed_id);
     }
 
@@ -220,6 +225,33 @@ class export extends xt_backend_cls
 
         $customers_status = new customers_status($this->data['feed_p_customers_status']);
 
+        // xt_customersdicount schreibt $_SESSION['customer_group_discount']
+        // $_SESSION['customer_group_discount'] wird, wenn vorhanden benutzt
+        // um $format_type = 'special'; zu ermitteln
+        if (!empty($customers_status->customers_discount))
+        {
+            $total_cart = 0;
+
+            if (strstr($customers_status->customers_discount,'#')) {
+                $discounts = explode(';',$customers_status->customers_discount);
+
+                $_SESSION['customer_group_discount'] = 0;
+                $discounts = array_reverse(array_filter($discounts));
+                for ($i=0;$i<sizeof($discounts);$i++)
+                {
+                    $dsc = explode('#', $discounts[$i]);
+                    if (round($total_cart, 2) >= round($price->_calcCurrency($dsc[0]), 2))
+                    {
+                        $customer_group_discount = $dsc[1];
+                        $_SESSION['customer_group_discount'] = $dsc[1];
+                        break;
+                    }
+                }
+            } else { // only single discount
+                $_SESSION['customer_group_discount'] = floatval($customers_status->customers_discount);
+            }
+        }
+
         if ($this->data['feed_type'] == '1' || $this->data['feed_type'] == '3') { // products / order positions
             $price = new price($customers_status->customers_status_id, $customers_status->customers_status_master, $this->data['feed_p_currency_code']);
             $this->_forceLang = $this->data['feed_language_code'];
@@ -357,8 +389,8 @@ class export extends xt_backend_cls
             }
             else {
                 $params[] = ['executor' => 'admin'];
-                $xtLink->unsetLinkURL();
-                $xtLink->unsetSecureLinkURL();
+                //$xtLink->unsetLinkURL();
+                //$xtLink->unsetSecureLinkURL();
                 $params = http_build_query($params,'','&');
                 $link = $xtLink->_adminlink(['default_page' => 'cronjob.php', 'params' => $params]);
                 echo $this->_displayHTML($link, $limit_lower, $limit_upper, $this->total_count);
@@ -567,7 +599,7 @@ class export extends xt_backend_cls
 
     function _extractData (& $data, $type)
     {
-        global $price, $xtPlugin, $customers_status, $man_list, $xtLink, $db, $system_status, $mediaFiles;
+        global $price, $xtPlugin, $customers_status, $man_list, $xtLink, $db, $system_status, $mediaFiles,$mediaImages;
 
         $base_media = $xtLink->_link(array('default_page'=>'media', 'conn' => 'SSL'), '/xtAdmin');
 
@@ -594,6 +626,7 @@ class export extends xt_backend_cls
                 $data_array['products_short_description'] = str_replace(array("\r", "\n"), ' ', $data_array['products_short_description']);
                 $data_array['products_id'] = $data['products_id'];
                 $data_array['products_description_clean'] = $this->removeHTML($data_array['products_description']);
+                $data_array['products_description_basic_html'] = base64_encode($this->removeBasicHTML($data_array['products_description']));
                 $data_array['products_short_description_clean'] = $this->removeHTML($data_array['products_short_description']);
 
                 if ($data_array['products_image'] != '') {
@@ -666,6 +699,22 @@ class export extends xt_backend_cls
                 $data_array['free_dl'] = $product->_getPermittedMediaData($media_data['files']);
                 if (null == $data_array['free_dl']) {
                 	$data_array['free_dl'] = array();
+                }
+
+                $media_images = $mediaImages->get_media_images($data['products_id'], 'product');
+                $data_array['products_aditional_image_org_1'] = '';
+                $data_array['products_aditional_image_org_2'] = '';
+                $data_array['products_aditional_image_org_3'] = '';
+                $data_array['products_aditional_image_org_4'] = '';
+                $data_array['products_aditional_image_org_5'] = '';
+                if (is_countable($media_images) && count($media_images['images'])>0) {
+                    $_n = 1;
+                    foreach ($media_images['images'] as $img_id => $img_arr)  {
+                        if ($_n==6) continue;
+                        $data_array['products_aditional_image_org_'.$_n]=$base_media . '/images/org/' . $img_arr['data']['file'];
+                        $_n++;
+
+                    }
                 }
 
                 $data_array['url_aliases'] = array();
@@ -779,6 +828,19 @@ class export extends xt_backend_cls
             return $plugin_return_value;
 
         return $string;
+    }
+
+    function removeBasicHTML($string) {
+
+      $string =  $this->_purifierBasic->purify($string);
+      $string = str_replace(chr(13), " ", $string);
+      $string = str_replace(";", ", ", $string);
+      $string = str_replace("\"", "'", $string);
+      $string = trim($string);
+      $string = preg_replace('/[\r\t\n]/', '', $string);
+      $string = str_replace(array("\r", "\n"), '', $string);
+      return $string;
+
     }
 
     function replaceDelimiter ($string)
@@ -1058,7 +1120,14 @@ class export extends xt_backend_cls
         $attachment[] = $this->localFileRoot;
         $exportMail = new xtMailer('none');
         $exportMail->_setFrom(_CORE_DEBUG_MAIL_ADDRESS,_CORE_DEBUG_MAIL_ADDRESS);
-        $exportMail->_addReceiver($this->data['feed_mail'], '');
+        if (strstr($this->data['feed_mail'],';')) {
+            $emails = explode(';',$this->data['feed_mail']);
+            foreach ($emails as $email) {
+              $exportMail->_addReceiver($email, '');
+            }
+        } else {
+            $exportMail->_addReceiver($this->data['feed_mail'], '');
+        }
         $exportMail->_setSubject($this->data['feed_mail_header']);
         $exportMail->_setContent($body_html, $this->data['feed_mail_body']);
         $exportMail->_addAttachment($attachment);

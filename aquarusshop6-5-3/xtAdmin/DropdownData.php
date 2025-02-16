@@ -28,6 +28,9 @@
 include '../xtFramework/admin/main.php';
 
 include (_SRV_WEBROOT_ADMIN.'page_includes.php');
+
+global $xtPlugin, $language;
+
 $request = array();
 
 if($_GET)

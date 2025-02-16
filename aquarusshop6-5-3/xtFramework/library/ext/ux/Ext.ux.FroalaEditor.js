@@ -79,6 +79,8 @@ function froala_editorInit(sb, ct, position)
 
             language: froalaLanguage || 'en',
 
+            pastePlain: true,
+
             iframe: true,
 
             imageUploadMethod: 'POST',
@@ -88,6 +90,14 @@ function froala_editorInit(sb, ct, position)
                 xtClass: xtClass
             },
             imageManagerLoadURL: '/xtAdmin/froala_get_images.php?xtClass=' + xtClass,
+
+
+            imageManagerDeleteMethod: 'POST',
+            imageManagerDeleteParams: {
+                currentType: 'image',
+                xtClass: xtClass
+            },
+            imageManagerDeleteURL: '/xtAdmin/froala_delete_image.php?xtClass=' + xtClass,
 
 
             //videoAllowedProviders: ['youtube', 'vimeo'], // default is ['.*']

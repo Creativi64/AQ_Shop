@@ -140,7 +140,7 @@ class xt_minify
     private function serveCSS($location) {
         global $store_handler,$xtPlugin;
 
-        if (!isset($this->resources[$location]['css']) || !is_array($this->resources[$location]['css'])) return;
+        if (!isset($this->resources[$location]['css']) || !is_array($this->resources[$location]['css']) || count($this->resources[$location]['css'])==0) return;
         
         $filename = $this->css_file.'_'.$store_handler->shop_id._STORE_TEMPLATE.'_'.$location.'.css';
 		$this->sortResources($this->resources[$location]['css'],'sort_order');

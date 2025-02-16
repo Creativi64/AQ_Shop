@@ -70,14 +70,13 @@ class hookpoint {
 				$this->ActiveHooks = array_unique($this->ActiveHooks);
 
 				if (defined('_PRELOAD_PLG_HOOK_CODE') && _PRELOAD_PLG_HOOK_CODE==true) {
-          $this->hookCodePreloaded=[];
-          $record = $db->getAll("SELECT pc.hook,pc.code,pc.sortorder FROM " . TABLE_PLUGIN_CODE . " pc WHERE pc.code_status = 1 and pc.plugin_status = 1 order by pc.sortorder",false,true);
+          			$this->hookCodePreloaded=[];
+          			$record = $db->getAll("SELECT pc.hook,pc.code,pc.sortorder FROM " . TABLE_PLUGIN_CODE . " pc WHERE pc.code_status = 1 and pc.plugin_status = 1 order by pc.sortorder",false,true);
 
-          foreach ($record as $key => $arr) {
-          $this->hookCodePreloaded[$arr['hook']][]=array('code'=>$arr['code'],'sort'=>$arr['sortorder']);
-          }
-        }
-
+          			foreach ($record as $key => $arr) {
+          				$this->hookCodePreloaded[$arr['hook']][]=array('code'=>$arr['code'],'sort'=>$arr['sortorder']);
+          			}
+        		}
 
 			} else {
 				$this->active = false;

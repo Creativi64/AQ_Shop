@@ -27,6 +27,10 @@ $froala_imageUploadOptions = array(
     )
 );
 
+// bei Bildupload den originalen Dateinamen verwenden (+sha1)
+define('FROALA_USE_IMAGE_UPLOAD_NAMES', true);
+
+
 // Optionen für den Video-Upload
 $froala_videoUploadOptions = array(
     'validation' => array(

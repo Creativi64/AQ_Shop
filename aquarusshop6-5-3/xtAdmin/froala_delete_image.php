@@ -44,25 +44,12 @@ include (_SRV_WEBROOT_ADMIN.'page_includes.php');
 
 try
 {
-    $defaultUploadOptions = array(
-        'fieldname' => 'file',
-        'validation' => array(
-            'allowedExts' => array('gif', 'jpeg', 'jpg', 'png', 'webp'),
-            'allowedMimeTypes' => array('image/gif', 'image/jpeg', 'image/pjpeg', 'image/x-png', 'image/png', 'image/webp')
-        ),
-        'resize' => NULL
-    );
     $useUploadSubFolders = true;
     $uploadFolder = 'media/u/images/';
 
     if(file_exists(_SRV_WEBROOT.'conf/config_froala.php'))
     {
         include_once _SRV_WEBROOT.'conf/config_froala.php';
-
-        if(isset($froala_imageUploadOptions) && is_array($froala_imageUploadOptions))
-        {
-            $defaultUploadOptions = array_merge($defaultUploadOptions, $froala_imageUploadOptions);
-        }
 
         if(isset($froala_useUploadSubFolders))
         {
@@ -75,41 +62,15 @@ try
         }
     }
 
-
-    if(!is_dir(_SRV_WEBROOT. $uploadFolder))
-    {
-        $created = mkdir(_SRV_WEBROOT. $uploadFolder, 0755, true);
-        if(!$created)
-        {
-            echo ('1) could not create folder '._SRV_WEBROOT. $uploadFolder);
-            error_log('1) froala_upload_image could not create folder '._SRV_WEBROOT. $uploadFolder);
-            http_response_code(404);
-            die();
-        }
-    }
-
     if($useUploadSubFolders && !empty($_POST['xtClass']))
     {
         $uploadFolder .= $_POST['xtClass'].'/';
     }
 
-    if(!is_dir(_SRV_WEBROOT. $uploadFolder))
-    {
-        $created = mkdir(_SRV_WEBROOT. $uploadFolder, 0755, true);
-        if(!$created)
-        {
-            echo ('2) could not create folder '._SRV_WEBROOT. $uploadFolder);
-            error_log('2) froala_upload_image could not create folder '._SRV_WEBROOT. $uploadFolder);
-            http_response_code(404);
-            die();
-        }
-    }
-    $uploadFolder = '/'.$uploadFolder;
-
-    if(defined('FROALA_USE_IMAGE_UPLOAD_NAMES') && FROALA_USE_IMAGE_UPLOAD_NAMES)
-        $response = Xt_Froala_Image::upload($uploadFolder, $defaultUploadOptions);
-    else
-        $response = FroalaEditor_Image::upload($uploadFolder, $defaultUploadOptions);
+    $src = '/'.$uploadFolder.$_REQUEST["data-name"];
+    $response = false;
+    if($src == $_REQUEST["src"])
+        $response = FroalaEditor_Image::delete($src);
     echo stripslashes(json_encode($response));
 }
 catch (Exception $e) {

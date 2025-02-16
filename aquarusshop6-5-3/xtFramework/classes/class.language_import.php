@@ -103,8 +103,10 @@ class language_import {
             
             $_data = array();     
             if (is_array($lng[$code]))  $_data['languages_id']=$lng[$code]['languages_id'];
-                
-            $_data['name'] = $filter->_filter($xml_data['xtcommerce_language']['name']);  
+
+            $name = $db->GetOne('SELECT `name` FROM '.TABLE_LANGUAGES.' WHERE `code` = ?', $code);
+            $_data['name'] = $name ?? $filter->_filter($xml_data['xtcommerce_language']['name']);
+            
             $_data['code'] = $code;
             $_data['content_language']=$code; 
             if (isset($data['content_language'])) {

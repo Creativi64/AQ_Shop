@@ -168,9 +168,25 @@ if (isset($_GET['type'])) {
 		
 		$params = 'feed_id='.$id.'&seckey='.$_GET['seckey'];
                 
-                $feed = $db->Execute("SELECT * FROM " . TABLE_FEED . " WHERE feed_id='" . $id . "'");
+                $feed = $db->Execute("SELECT * FROM " . TABLE_FEED . " WHERE feed_id= ?", [$id]);
                 
-                if($feed->RecordCount()==1){
+                if($feed->RecordCount()==1)
+                {
+                    $data = $feed->fields;
+
+                    if ($data['feed_store_id'] > 0) {
+                        $query = "SELECT * FROM " . TABLE_MANDANT_CONFIG . " where shop_id = ?";
+                        $record = $db->Execute($query, array($data['feed_store_id']));
+
+                        if ($record->RecordCount() == 1) {
+                            $data['MANDANT'] = $record->fields;
+                        }
+                        else {
+                            echo 'No store with id ' . $data['feed_store_id'];
+                            exit;
+                        }
+                    }
+
                     if($feed->fields['feed_pw_flag'] == 1){
                         if(isset($feed->fields['feed_pw_user'])){
                             $params .= '&user='.$feed->fields['feed_pw_user'];
@@ -179,6 +195,14 @@ if (isset($_GET['type'])) {
                             $params .= '&pass='.$feed->fields['feed_pw_pass'];
                         }
                     }
+
+                    $xtLink->setLinkURL('http://'.$data['MANDANT']['shop_ssl_domain']);
+                    $xtLink->setSecureLinkURL('https://'.$data['MANDANT']['shop_ssl_domain']);
+
+                    ($plugin_code = $xtPlugin->PluginCode('class.export.php:init_getData')) ? eval($plugin_code) : false;
+                    if (isset($plugin_return_value))
+                        return $plugin_return_value;
+
                     $iframe_target = $xtLink->_adminlink(array('default_page'=>'cronjob.php','conn'=>'SSL', 'params'=>$params));
                     echo '<p id="node_feed_'.$id.'">Started... please wait.</p><iframe src="'.$iframe_target.'" frameborder="0" width="100%" height="500"></iframe>';
                 }else{
